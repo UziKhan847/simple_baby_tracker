@@ -39,26 +39,75 @@ class _DayPageState extends State<DayPage> {
     _load();
   }
 
-  Future _add(String type) async {
+  Future<void> _add(String type, {TrackerEvent? existing, int? index}) async {
     TrackerEvent? result;
 
     if (type == 'diaper') {
       result = await showModalBottomSheet(
         context: context,
         isScrollControlled: true,
-        builder: (_) => DiaperForm(initialDate: widget.date),
+        builder: (_) => DiaperForm(
+          initialDate: widget.date,
+          existingEvent: existing, // 👈 add this
+        ),
       );
     } else {
       result = await showModalBottomSheet(
         context: context,
         isScrollControlled: true,
-        builder: (_) => FeedingForm(initialDate: widget.date),
+        builder: (_) => FeedingForm(
+          initialDate: widget.date,
+          existingEvent: existing, // 👈 add this
+        ),
       );
     }
+
     if (result != null) {
       final key = dateKey(widget.date);
-      data.putIfAbsent(key, () => <TrackerEvent>[]).add(result);
-      _save();
+      data.putIfAbsent(key, () => <TrackerEvent>[]);
+
+      if (existing != null && index != null) {
+        // 🔁 Editing
+        data[key]![index] = result;
+      } else {
+        // ➕ Adding new
+        data[key]!.add(result);
+      }
+
+      await _save();
+    }
+  }
+
+  Future<void> _deleteEvent(TrackerEvent event) async {
+    final key = dateKey(widget.date);
+
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Delete entry?'),
+        content: const Text('This cannot be undone.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirm == true) {
+      data[key]?.remove(event);
+
+      // If the list becomes empty, remove the key entirely
+      if (data[key]?.isEmpty ?? false) {
+        data.remove(key);
+      }
+
+      await _save();
     }
   }
 
@@ -74,11 +123,20 @@ class _DayPageState extends State<DayPage> {
               itemCount: events.length,
               itemBuilder: (_, i) {
                 final e = events[i];
+
                 return Card(
                   child: ListTile(
                     title: Text(_title(e)),
                     subtitle: Text('${_subtitle(e)}\n${_time(e.time)}'),
                     isThreeLine: true,
+
+                    // ✏️ Tap to edit
+                    onTap: () => _add(e.type, existing: e, index: i),
+
+                    // 🗑 Long press to delete
+                    onLongPress: () => _deleteEvent(e),
+
+                    trailing: const Icon(Icons.edit),
                   ),
                 );
               },
