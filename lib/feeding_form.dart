@@ -3,8 +3,13 @@ import 'package:simple_baby_tracker/tracker_event.dart';
 
 class FeedingForm extends StatefulWidget {
   final DateTime initialDate;
+  final TrackerEvent? existingEvent;
 
-  const FeedingForm({super.key, required this.initialDate});
+  const FeedingForm({
+    super.key,
+    required this.initialDate,
+    this.existingEvent,
+  });
 
   @override
   State<FeedingForm> createState() => _FeedingFormState();
@@ -16,49 +21,85 @@ class _FeedingFormState extends State<FeedingForm> {
   String method = 'breast';
 
   @override
+  void initState() {
+    super.initState();
+
+    final existing = widget.existingEvent;
+
+    if (existing != null) {
+      controller.text =
+          (existing.data['amountMl'] ?? '').toString();
+
+      method = existing.data['method'] ?? 'breast';
+
+      time = TimeOfDay(
+        hour: existing.time.hour,
+        minute: existing.time.minute,
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final inset = MediaQuery.of(context).viewInsets.bottom;
+    final isEditing = widget.existingEvent != null;
 
     return Padding(
       padding: EdgeInsets.only(bottom: inset),
       child: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
-          mainAxisSize: .min,
-          crossAxisAlignment: .start,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Feeding',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              isEditing ? 'Edit feeding' : 'Feeding',
+              style: const TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold),
             ),
             TextField(
               controller: controller,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(labelText: 'Amount (ml)'),
+              decoration:
+                  const InputDecoration(labelText: 'Amount (ml)'),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             DropdownButtonFormField<String>(
               initialValue: method,
-              items: [
-                DropdownMenuItem(value: 'breast', child: Text('Breast')),
-                DropdownMenuItem(value: 'formula', child: Text('Formula')),
+              items: const [
+                DropdownMenuItem(
+                    value: 'breast', child: Text('Breast')),
+                DropdownMenuItem(
+                    value: 'formula', child: Text('Formula')),
               ],
-              onChanged: (v) => setState(() => method = v!),
+              onChanged: (v) =>
+                  setState(() => method = v ?? 'breast'),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             TextButton(
               onPressed: () async {
                 final t = await showTimePicker(
                   context: context,
                   initialTime: time,
                 );
-                if (t != null) setState(() => time = t);
+                if (t != null) {
+                  setState(() => time = t);
+                }
               },
               child: Text('Time: ${time.format(context)}'),
             ),
             Align(
               alignment: Alignment.centerRight,
-              child: ElevatedButton(onPressed: _save, child: Text('Save')),
+              child: ElevatedButton(
+                onPressed: _save,
+                child: Text(isEditing ? 'Update' : 'Save'),
+              ),
             ),
           ],
         ),
@@ -68,7 +109,8 @@ class _FeedingFormState extends State<FeedingForm> {
 
   void _save() {
     final d = widget.initialDate;
-    final dt = DateTime(d.year, d.month, d.day, time.hour, time.minute);
+    final dt =
+        DateTime(d.year, d.month, d.day, time.hour, time.minute);
 
     Navigator.pop(
       context,

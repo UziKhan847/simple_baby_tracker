@@ -3,8 +3,9 @@ import 'package:simple_baby_tracker/tracker_event.dart';
 
 class DiaperForm extends StatefulWidget {
   final DateTime initialDate;
+  final TrackerEvent? existingEvent;
 
-  const DiaperForm({super.key, required this.initialDate});
+  const DiaperForm({super.key, required this.initialDate, this.existingEvent});
 
   @override
   State<DiaperForm> createState() => _DiaperFormState();
@@ -15,74 +16,116 @@ class _DiaperFormState extends State<DiaperForm> {
   TimeOfDay time = TimeOfDay.now();
   String? pooColor;
 
-  final colors = ['Default', 'Brown', 'Green', 'Yellow', 'Black', 'Red', 'Orange'];
+  final colors = [
+    'Default',
+    'Brown',
+    'Green',
+    'Yellow',
+    'Black',
+    'Red',
+    'Orange',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+
+    final existing = widget.existingEvent;
+
+    if (existing != null) {
+      final data = existing.data;
+
+      final pee = data['pee'] == true;
+      final poo = data['poo'] == true;
+
+      if (pee && poo) {
+        type = 'both';
+      } else if (pee) {
+        type = 'pee';
+      } else if (poo) {
+        type = 'poo';
+      } else {
+        type = 'none';
+      }
+
+      pooColor = data['pooColor'];
+
+      time = TimeOfDay(hour: existing.time.hour, minute: existing.time.minute);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final inset = MediaQuery.of(context).viewInsets.bottom;
+    final isEditing = widget.existingEvent != null;
 
     return Padding(
       padding: EdgeInsets.only(bottom: inset),
       child: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Diaper change',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              isEditing ? 'Edit diaper change' : 'Diaper change',
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Wrap(
               spacing: 8,
               children: [
                 ChoiceChip(
-                  label: Text('None'),
+                  label: const Text('None'),
                   selected: type == 'none',
                   onSelected: (_) => setState(() => type = 'none'),
                 ),
                 ChoiceChip(
-                  label: Text('Pee'),
+                  label: const Text('Pee'),
                   selected: type == 'pee',
                   onSelected: (_) => setState(() => type = 'pee'),
                 ),
                 ChoiceChip(
-                  label: Text('Poo'),
+                  label: const Text('Poo'),
                   selected: type == 'poo',
                   onSelected: (_) => setState(() => type = 'poo'),
                 ),
                 ChoiceChip(
-                  label: Text('Both'),
+                  label: const Text('Both'),
                   selected: type == 'both',
                   onSelected: (_) => setState(() => type = 'both'),
                 ),
               ],
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             if (type == 'poo' || type == 'both')
               DropdownButtonFormField<String>(
-                initialValue: pooColor,
-                hint: Text('Poo color'),
+                value: pooColor,
+                hint: const Text('Poo color'),
                 items: colors
                     .map((c) => DropdownMenuItem(value: c, child: Text(c)))
                     .toList(),
                 onChanged: (v) => setState(() => pooColor = v),
               ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             TextButton(
               onPressed: () async {
                 final t = await showTimePicker(
                   context: context,
                   initialTime: time,
                 );
-                if (t != null) setState(() => time = t);
+                if (t != null) {
+                  setState(() => time = t);
+                }
               },
               child: Text('Time: ${time.format(context)}'),
             ),
             Align(
               alignment: Alignment.centerRight,
-              child: ElevatedButton(onPressed: _save, child: Text('Save')),
+              child: ElevatedButton(
+                onPressed: _save,
+                child: Text(isEditing ? 'Update' : 'Save'),
+              ),
             ),
           ],
         ),
