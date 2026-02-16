@@ -6,11 +6,13 @@ class StatCard extends StatelessWidget {
     required this.title,
     required this.value,
     required this.icon,
+    required this.color
   });
 
   final String title;
   final String value;
   final IconData icon;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class StatCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: .start,
           children: [
-            Icon(icon, size: 32),
+            Icon(icon, size: 32, color: color,),
             const SizedBox(width: 12),
 
             Expanded(

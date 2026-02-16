@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_baby_tracker/stat.dart';
+import 'package:simple_baby_tracker/day_stat.dart';
 
 class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
   final int poos;
