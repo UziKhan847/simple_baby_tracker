@@ -292,6 +292,11 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 )
                               : ListView.builder(
+                                  padding: EdgeInsets.only(
+                                    bottom:
+                                        MediaQuery.of(context).padding.bottom +
+                                        16,
+                                  ),
                                   itemCount: otherDates.length,
                                   itemBuilder: (context, i) =>
                                       _buildTile(otherDates[i]),

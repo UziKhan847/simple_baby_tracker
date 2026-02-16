@@ -141,25 +141,30 @@ class _DayPageState extends State<DayPage> {
                     milk: totals['milk']!,
                   ),
                 ),
-                SliverList(
-                  delegate: SliverChildBuilderDelegate((_, i) {
-                    final e = events[i];
+                SliverPadding(
+                  padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).padding.bottom + 16,
+                  ),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate((_, i) {
+                      final e = events[i];
 
-                    return Card(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 6,
-                      ),
-                      child: ListTile(
-                        title: Text(_title(e)),
-                        subtitle: Text('${_subtitle(e)}\n${_time(e.time)}'),
-                        isThreeLine: true,
-                        onTap: () => _add(e.type, existing: e, index: i),
-                        onLongPress: () => _deleteEvent(e),
-                        trailing: const Icon(Icons.edit),
-                      ),
-                    );
-                  }, childCount: events.length),
+                      return Card(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
+                        child: ListTile(
+                          title: Text(_title(e)),
+                          subtitle: Text('${_subtitle(e)}\n${_time(e.time)}'),
+                          isThreeLine: true,
+                          onTap: () => _add(e.type, existing: e, index: i),
+                          onLongPress: () => _deleteEvent(e),
+                          trailing: const Icon(Icons.edit),
+                        ),
+                      );
+                    }, childCount: events.length),
+                  ),
                 ),
               ],
             ),

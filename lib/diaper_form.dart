@@ -113,11 +113,14 @@ class _DiaperFormState extends State<DiaperForm> {
 
   @override
   Widget build(BuildContext context) {
-    final inset = MediaQuery.of(context).viewInsets.bottom;
+    final media = MediaQuery.of(context);
+    final bottomInset = media.viewInsets.bottom;
+    final bottomSafe = media.padding.bottom;
+    final bottomPadding = bottomInset > 0 ? bottomInset : bottomSafe + 16;
     final isEditing = widget.existingEvent != null;
 
     return Padding(
-      padding: EdgeInsets.only(bottom: inset),
+      padding: EdgeInsets.only(bottom: bottomPadding),
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
