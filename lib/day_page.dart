@@ -3,6 +3,7 @@ import 'package:simple_baby_tracker/diaper_form.dart';
 import 'package:simple_baby_tracker/feeding_form.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/storage.dart';
+import 'package:simple_baby_tracker/summary_header_delegate.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 
 class DayPage extends StatefulWidget {
@@ -28,7 +29,7 @@ class _DayPageState extends State<DayPage> {
     setState(() {});
   }
 
-  List _events() {
+  List<TrackerEvent> _events() {
     final list = data[dateKey(widget.date)] ?? [];
     list.sort((a, b) => a.time.compareTo(b.time));
     return list;
@@ -39,6 +40,23 @@ class _DayPageState extends State<DayPage> {
     _load();
   }
 
+  Map<String, int> _totals(List<TrackerEvent> events) {
+    int poos = 0;
+    int pees = 0;
+    int milk = 0;
+
+    for (final e in events) {
+      if (e.type == 'diaper') {
+        if (e.data['poo'] == true) poos++;
+        if (e.data['pee'] == true) pees++;
+      } else if (e.type == 'feeding') {
+        milk += (e.data['amountMl'] as int?) ?? 0;
+      }
+    }
+
+    return {'poos': poos, 'pees': pees, 'milk': milk};
+  }
+
   Future<void> _add(String type, {TrackerEvent? existing, int? index}) async {
     TrackerEvent? result;
 
@@ -46,19 +64,15 @@ class _DayPageState extends State<DayPage> {
       result = await showModalBottomSheet(
         context: context,
         isScrollControlled: true,
-        builder: (_) => DiaperForm(
-          initialDate: widget.date,
-          existingEvent: existing, // 👈 add this
-        ),
+        builder: (_) =>
+            DiaperForm(initialDate: widget.date, existingEvent: existing),
       );
     } else {
       result = await showModalBottomSheet(
         context: context,
         isScrollControlled: true,
-        builder: (_) => FeedingForm(
-          initialDate: widget.date,
-          existingEvent: existing, // 👈 add this
-        ),
+        builder: (_) =>
+            FeedingForm(initialDate: widget.date, existingEvent: existing),
       );
     }
 
@@ -67,10 +81,8 @@ class _DayPageState extends State<DayPage> {
       data.putIfAbsent(key, () => <TrackerEvent>[]);
 
       if (existing != null && index != null) {
-        // 🔁 Editing
         data[key]![index] = result;
       } else {
-        // ➕ Adding new
         data[key]!.add(result);
       }
 
@@ -102,7 +114,6 @@ class _DayPageState extends State<DayPage> {
     if (confirm == true) {
       data[key]?.remove(event);
 
-      // If the list becomes empty, remove the key entirely
       if (data[key]?.isEmpty ?? false) {
         data.remove(key);
       }
@@ -114,35 +125,46 @@ class _DayPageState extends State<DayPage> {
   @override
   Widget build(BuildContext context) {
     final events = _events();
+    final totals = _totals(events);
 
     return Scaffold(
       appBar: AppBar(title: Text(displayDate(widget.date))),
       body: events.isEmpty
-          ? Center(child: Text('No entries'))
-          : ListView.builder(
-              itemCount: events.length,
-              itemBuilder: (_, i) {
-                final e = events[i];
-
-                return Card(
-                  child: ListTile(
-                    title: Text(_title(e)),
-                    subtitle: Text('${_subtitle(e)}\n${_time(e.time)}'),
-                    isThreeLine: true,
-
-                    // ✏️ Tap to edit
-                    onTap: () => _add(e.type, existing: e, index: i),
-
-                    // 🗑 Long press to delete
-                    onLongPress: () => _deleteEvent(e),
-
-                    trailing: const Icon(Icons.edit),
+          ? const Center(child: Text('No entries'))
+          : CustomScrollView(
+              slivers: [
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: SummaryHeaderDelegate(
+                    poos: totals['poos']!,
+                    pees: totals['pees']!,
+                    milk: totals['milk']!,
                   ),
-                );
-              },
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate((_, i) {
+                    final e = events[i];
+
+                    return Card(
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
+                      child: ListTile(
+                        title: Text(_title(e)),
+                        subtitle: Text('${_subtitle(e)}\n${_time(e.time)}'),
+                        isThreeLine: true,
+                        onTap: () => _add(e.type, existing: e, index: i),
+                        onLongPress: () => _deleteEvent(e),
+                        trailing: const Icon(Icons.edit),
+                      ),
+                    );
+                  }, childCount: events.length),
+                ),
+              ],
             ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () async {
           final type = await showModalBottomSheet<String>(
             context: context,
@@ -151,11 +173,11 @@ class _DayPageState extends State<DayPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ListTile(
-                    title: Text('Diaper change'),
+                    title: const Text('Diaper change'),
                     onTap: () => Navigator.pop(context, 'diaper'),
                   ),
                   ListTile(
-                    title: Text('Feeding'),
+                    title: const Text('Feeding'),
                     onTap: () => Navigator.pop(context, 'feeding'),
                   ),
                 ],
