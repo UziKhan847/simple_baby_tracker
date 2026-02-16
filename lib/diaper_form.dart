@@ -14,11 +14,9 @@ class DiaperForm extends StatefulWidget {
 class _DiaperFormState extends State<DiaperForm> {
   String type = 'none';
   TimeOfDay time = TimeOfDay.now();
-  String? pooColor; // will hold "1".."9"
+  String? pooColor;
 
-  // poo color options approximated from the chart image
   final List<Map<String, dynamic>> pooOptions = [
-    // Abnormal 1 - 6 (pale)
     {
       'id': '1',
       'label': '1',
@@ -62,7 +60,6 @@ class _DiaperFormState extends State<DiaperForm> {
       'abnormal': true,
     },
 
-    // Normal 7 - 9
     {
       'id': '7',
       'label': '7',
@@ -108,7 +105,6 @@ class _DiaperFormState extends State<DiaperForm> {
         type = 'none';
       }
 
-      // keep previous behavior: store string id (e.g. "3")
       pooColor = data['pooColor']?.toString();
 
       time = TimeOfDay(hour: existing.time.hour, minute: existing.time.minute);
@@ -160,7 +156,6 @@ class _DiaperFormState extends State<DiaperForm> {
             ),
             const SizedBox(height: 12),
 
-            // If poo selected, show custom grid grouped into Abnormal and Normal
             if (type == 'poo' || type == 'both') ...[
               const Text(
                 'Select poo colour (tap a swatch). Numbers follow the chart:',
@@ -171,7 +166,7 @@ class _DiaperFormState extends State<DiaperForm> {
               const SizedBox(height: 12),
               _buildGroup('Normal', false),
               const SizedBox(height: 8),
-              // show selected label
+
               if (pooColor != null)
                 Padding(
                   padding: const EdgeInsets.only(top: 6),
@@ -228,7 +223,7 @@ class _DiaperFormState extends State<DiaperForm> {
           physics: const NeverScrollableScrollPhysics(),
           itemCount: items.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, // 3 per row like the chart
+            crossAxisCount: 3,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             childAspectRatio: 1,
@@ -314,7 +309,7 @@ class _DiaperFormState extends State<DiaperForm> {
         data: {
           'pee': type == 'pee' || type == 'both',
           'poo': type == 'poo' || type == 'both',
-          // store the selected id (e.g. "3") or null
+
           'pooColor': pooColor,
         },
       ),
