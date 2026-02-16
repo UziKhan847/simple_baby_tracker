@@ -5,11 +5,7 @@ class FeedingForm extends StatefulWidget {
   final DateTime initialDate;
   final TrackerEvent? existingEvent;
 
-  const FeedingForm({
-    super.key,
-    required this.initialDate,
-    this.existingEvent,
-  });
+  const FeedingForm({super.key, required this.initialDate, this.existingEvent});
 
   @override
   State<FeedingForm> createState() => _FeedingFormState();
@@ -27,15 +23,11 @@ class _FeedingFormState extends State<FeedingForm> {
     final existing = widget.existingEvent;
 
     if (existing != null) {
-      controller.text =
-          (existing.data['amountMl'] ?? '').toString();
+      controller.text = (existing.data['amountMl'] ?? '').toString();
 
       method = existing.data['method'] ?? 'breast';
 
-      time = TimeOfDay(
-        hour: existing.time.hour,
-        minute: existing.time.minute,
-      );
+      time = TimeOfDay(hour: existing.time.hour, minute: existing.time.minute);
     }
   }
 
@@ -47,11 +39,14 @@ class _FeedingFormState extends State<FeedingForm> {
 
   @override
   Widget build(BuildContext context) {
-    final inset = MediaQuery.of(context).viewInsets.bottom;
+    final media = MediaQuery.of(context);
+    final bottomInset = media.viewInsets.bottom;
+    final bottomSafe = media.padding.bottom;
+    final bottomPadding = bottomInset > 0 ? bottomInset : bottomSafe + 16;
     final isEditing = widget.existingEvent != null;
 
     return Padding(
-      padding: EdgeInsets.only(bottom: inset),
+      padding: EdgeInsets.only(bottom: bottomPadding),
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -60,26 +55,21 @@ class _FeedingFormState extends State<FeedingForm> {
           children: [
             Text(
               isEditing ? 'Edit feeding' : 'Feeding',
-              style: const TextStyle(
-                  fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             TextField(
               controller: controller,
               keyboardType: TextInputType.number,
-              decoration:
-                  const InputDecoration(labelText: 'Amount (ml)'),
+              decoration: const InputDecoration(labelText: 'Amount (ml)'),
             ),
             const SizedBox(height: 12),
             DropdownButtonFormField<String>(
               initialValue: method,
               items: const [
-                DropdownMenuItem(
-                    value: 'breast', child: Text('Breast')),
-                DropdownMenuItem(
-                    value: 'formula', child: Text('Formula')),
+                DropdownMenuItem(value: 'breast', child: Text('Breast')),
+                DropdownMenuItem(value: 'formula', child: Text('Formula')),
               ],
-              onChanged: (v) =>
-                  setState(() => method = v ?? 'breast'),
+              onChanged: (v) => setState(() => method = v ?? 'breast'),
             ),
             const SizedBox(height: 12),
             TextButton(
@@ -109,8 +99,7 @@ class _FeedingFormState extends State<FeedingForm> {
 
   void _save() {
     final d = widget.initialDate;
-    final dt =
-        DateTime(d.year, d.month, d.day, time.hour, time.minute);
+    final dt = DateTime(d.year, d.month, d.day, time.hour, time.minute);
 
     Navigator.pop(
       context,
