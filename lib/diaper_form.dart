@@ -17,70 +17,15 @@ class _DiaperFormState extends State<DiaperForm> {
   String? pooColor;
 
   final List<Map<String, dynamic>> pooOptions = [
-    {
-      'id': '1',
-      'label': '1',
-      'name': 'Pale 1',
-      'color': const Color(0xFFF3EACA),
-      'abnormal': true,
-    },
-    {
-      'id': '2',
-      'label': '2',
-      'name': 'Pale 2',
-      'color': const Color(0xFFE8DEC8),
-      'abnormal': true,
-    },
-    {
-      'id': '3',
-      'label': '3',
-      'name': 'Pale 3',
-      'color': const Color(0xFFF2E7B0),
-      'abnormal': true,
-    },
-    {
-      'id': '4',
-      'label': '4',
-      'name': 'Pale 4',
-      'color': const Color(0xFFEDE9B5),
-      'abnormal': true,
-    },
-    {
-      'id': '5',
-      'label': '5',
-      'name': 'Pale 5',
-      'color': const Color(0xFFE6D0A4),
-      'abnormal': true,
-    },
-    {
-      'id': '6',
-      'label': '6',
-      'name': 'Pale 6',
-      'color': const Color(0xFFD9B78A),
-      'abnormal': true,
-    },
-
-    {
-      'id': '7',
-      'label': '7',
-      'name': 'Normal 7',
-      'color': const Color(0xFFE6C431),
-      'abnormal': false,
-    },
-    {
-      'id': '8',
-      'label': '8',
-      'name': 'Normal 8',
-      'color': const Color(0xFFDFA12A),
-      'abnormal': false,
-    },
-    {
-      'id': '9',
-      'label': '9',
-      'name': 'Normal 9',
-      'color': const Color(0xFF9AA400),
-      'abnormal': false,
-    },
+    {'id': '1', 'label': '1', 'name': 'Pale 1', 'abnormal': true},
+    {'id': '2', 'label': '2', 'name': 'Pale 2', 'abnormal': true},
+    {'id': '3', 'label': '3', 'name': 'Pale 3', 'abnormal': true},
+    {'id': '4', 'label': '4', 'name': 'Pale 4', 'abnormal': true},
+    {'id': '5', 'label': '5', 'name': 'Pale 5', 'abnormal': true},
+    {'id': '6', 'label': '6', 'name': 'Pale 6', 'abnormal': true},
+    {'id': '7', 'label': '7', 'name': 'Normal 7', 'abnormal': false},
+    {'id': '8', 'label': '8', 'name': 'Normal 8', 'abnormal': false},
+    {'id': '9', 'label': '9', 'name': 'Normal 9', 'abnormal': false},
   ];
 
   @override
@@ -132,6 +77,7 @@ class _DiaperFormState extends State<DiaperForm> {
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
+
             Wrap(
               spacing: 8,
               children: [
@@ -157,18 +103,19 @@ class _DiaperFormState extends State<DiaperForm> {
                 ),
               ],
             ),
+
             const SizedBox(height: 12),
 
             if (type == 'poo' || type == 'both') ...[
               const Text(
-                'Select poo colour (tap a swatch). Numbers follow the chart:',
+                'Select poo colour (tap an image). Numbers follow the chart:',
                 style: TextStyle(fontWeight: FontWeight.w500),
               ),
               const SizedBox(height: 8),
+
               _buildGroup('Abnormal (pale)', true),
               const SizedBox(height: 12),
               _buildGroup('Normal', false),
-              const SizedBox(height: 8),
 
               if (pooColor != null)
                 Padding(
@@ -181,6 +128,7 @@ class _DiaperFormState extends State<DiaperForm> {
             ],
 
             const SizedBox(height: 12),
+
             TextButton(
               onPressed: () async {
                 final t = await showTimePicker(
@@ -193,6 +141,7 @@ class _DiaperFormState extends State<DiaperForm> {
               },
               child: Text('Time: ${time.format(context)}'),
             ),
+
             Align(
               alignment: Alignment.centerRight,
               child: ElevatedButton(
@@ -221,6 +170,7 @@ class _DiaperFormState extends State<DiaperForm> {
           ),
         ),
         const SizedBox(height: 10),
+
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -234,7 +184,6 @@ class _DiaperFormState extends State<DiaperForm> {
           itemBuilder: (context, index) {
             final o = items[index];
             final id = o['id'] as String;
-            final color = o['color'] as Color;
             final selected = pooColor == id;
 
             return GestureDetector(
@@ -242,7 +191,6 @@ class _DiaperFormState extends State<DiaperForm> {
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
                 decoration: BoxDecoration(
-                  color: color,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
                     color: selected
@@ -261,30 +209,27 @@ class _DiaperFormState extends State<DiaperForm> {
                       ),
                   ],
                 ),
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: 8,
-                      left: 8,
-                      child: Text(
-                        id,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.black,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Image.asset('assets/$id.png', fit: BoxFit.cover),
+
+                      if (selected)
+                        Container(color: Colors.black.withAlpha(64)),
+
+                      if (selected)
+                        const Align(
+                          alignment: Alignment.center,
+                          child: Icon(
+                            Icons.check_circle,
+                            color: Colors.white,
+                            size: 32,
+                          ),
                         ),
-                      ),
-                    ),
-                    if (selected)
-                      const Align(
-                        alignment: Alignment.center,
-                        child: Icon(
-                          Icons.check_circle,
-                          color: Colors.white,
-                          size: 32,
-                        ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             );
@@ -312,7 +257,6 @@ class _DiaperFormState extends State<DiaperForm> {
         data: {
           'pee': type == 'pee' || type == 'both',
           'poo': type == 'poo' || type == 'both',
-
           'pooColor': pooColor,
         },
       ),
