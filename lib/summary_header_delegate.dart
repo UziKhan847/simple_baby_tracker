@@ -5,11 +5,13 @@ class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
   final int poos;
   final int pees;
   final int milk;
+  final int breastMinutes;
 
   SummaryHeaderDelegate({
     required this.poos,
     required this.pees,
     required this.milk,
+    required this.breastMinutes,
   });
 
   @override
@@ -34,9 +36,9 @@ class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
         borderRadius: BorderRadius.circular(20),
         color: theme.colorScheme.surface,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Row(
-            mainAxisAlignment: .spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Stat(
                 color: Colors.brown,
@@ -56,6 +58,12 @@ class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
                 label: 'Milk (ml)',
                 value: milk,
               ),
+              Stat(
+                color: Colors.deepPurple,
+                icon: Icons.timer,
+                label: 'Breast (min)',
+                value: breastMinutes,
+              ),
             ],
           ),
         ),
@@ -67,5 +75,6 @@ class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(covariant SummaryHeaderDelegate oldDelegate) =>
       oldDelegate.poos != poos ||
       oldDelegate.pees != pees ||
-      oldDelegate.milk != milk;
+      oldDelegate.milk != milk ||
+      oldDelegate.breastMinutes != breastMinutes;
 }

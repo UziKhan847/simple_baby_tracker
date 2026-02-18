@@ -12,8 +12,12 @@ class FeedingForm extends StatefulWidget {
 }
 
 class _FeedingFormState extends State<FeedingForm> {
-  final controller = TextEditingController();
+  final amountController = TextEditingController();
+  final durationController = TextEditingController();
   TimeOfDay time = TimeOfDay.now();
+
+  // feedMode: 'bottle' or 'suckle'
+  String feedMode = 'bottle';
   String method = 'breast';
 
   @override
@@ -21,9 +25,16 @@ class _FeedingFormState extends State<FeedingForm> {
     super.initState();
 
     final existing = widget.existingEvent;
-
     if (existing != null) {
-      controller.text = (existing.data['amountMl'] ?? '').toString();
+      // support older saved events: default to bottle if not present
+      final isBottle = (existing.data['isBottle'] as bool?) ?? true;
+      feedMode = isBottle ? 'bottle' : 'suckle';
+
+      final amount = existing.data['amountMl']?.toString() ?? '';
+      amountController.text = amount;
+
+      final duration = existing.data['durationMin']?.toString() ?? '';
+      durationController.text = duration;
 
       method = existing.data['method'] ?? 'breast';
 
@@ -33,7 +44,8 @@ class _FeedingFormState extends State<FeedingForm> {
 
   @override
   void dispose() {
-    controller.dispose();
+    amountController.dispose();
+    durationController.dispose();
     super.dispose();
   }
 
@@ -57,20 +69,47 @@ class _FeedingFormState extends State<FeedingForm> {
               isEditing ? 'Edit feeding' : 'Feeding',
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            TextField(
-              controller: controller,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Amount (ml)'),
-            ),
             const SizedBox(height: 12),
+
+            // Feed mode selector
             DropdownButtonFormField<String>(
-              initialValue: method,
+              initialValue: feedMode,
               items: const [
-                DropdownMenuItem(value: 'breast', child: Text('Breast')),
-                DropdownMenuItem(value: 'formula', child: Text('Formula')),
+                DropdownMenuItem(value: 'bottle', child: Text('Bottle')),
+                DropdownMenuItem(value: 'suckle', child: Text('Suckling (no bottle)')),
               ],
-              onChanged: (v) => setState(() => method = v ?? 'breast'),
+              onChanged: (v) => setState(() => feedMode = v ?? 'bottle'),
+              decoration: const InputDecoration(labelText: 'Feed type'),
             ),
+
+            const SizedBox(height: 12),
+
+            // If bottle: show amount and method
+            if (feedMode == 'bottle') ...[
+              TextField(
+                controller: amountController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(labelText: 'Amount (ml)'),
+              ),
+              const SizedBox(height: 12),
+              DropdownButtonFormField<String>(
+                initialValue: method,
+                items: const [
+                  DropdownMenuItem(value: 'breast', child: Text('Breast (bottle)')),
+                  DropdownMenuItem(value: 'formula', child: Text('Formula')),
+                ],
+                onChanged: (v) => setState(() => method = v ?? 'breast'),
+                decoration: const InputDecoration(labelText: 'Method'),
+              ),
+            ] else ...[
+              // If not bottle: show duration in minutes
+              TextField(
+                controller: durationController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(labelText: 'Duration (minutes)'),
+              ),
+            ],
+
             const SizedBox(height: 12),
             TextButton(
               onPressed: () async {
@@ -101,15 +140,23 @@ class _FeedingFormState extends State<FeedingForm> {
     final d = widget.initialDate;
     final dt = DateTime(d.year, d.month, d.day, time.hour, time.minute);
 
+    final isBottle = feedMode == 'bottle';
+
+    final data = <String, Object?>{
+      'isBottle': isBottle,
+      // keep method only for bottle entries
+      if (isBottle) 'method': method,
+      // parse amount/duration as ints (defaults to 0)
+      'amountMl': isBottle ? (int.tryParse(amountController.text) ?? 0) : 0,
+      if (!isBottle) 'durationMin': int.tryParse(durationController.text) ?? 0,
+    };
+
     Navigator.pop(
       context,
       TrackerEvent(
         type: 'feeding',
         time: dt,
-        data: {
-          'amountMl': int.tryParse(controller.text) ?? 0,
-          'method': method,
-        },
+        data: data,
       ),
     );
   }

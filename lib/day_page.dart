@@ -44,17 +44,29 @@ class _DayPageState extends State<DayPage> {
     int poos = 0;
     int pees = 0;
     int milk = 0;
+    int breastMinutes = 0;
 
     for (final e in events) {
       if (e.type == 'diaper') {
         if (e.data['poo'] == true) poos++;
         if (e.data['pee'] == true) pees++;
       } else if (e.type == 'feeding') {
-        milk += (e.data['amountMl'] as int?) ?? 0;
+        final isBottle = (e.data['isBottle'] as bool?) ?? true;
+
+        if (isBottle) {
+          milk += (e.data['amountMl'] as int?) ?? 0;
+        } else {
+          breastMinutes += (e.data['durationMin'] as int?) ?? 0;
+        }
       }
     }
 
-    return {'poos': poos, 'pees': pees, 'milk': milk};
+    return {
+      'poos': poos,
+      'pees': pees,
+      'milk': milk,
+      'breastMinutes': breastMinutes,
+    };
   }
 
   Future<void> _add(String type, {TrackerEvent? existing, int? index}) async {
@@ -139,6 +151,7 @@ class _DayPageState extends State<DayPage> {
                     poos: totals['poos']!,
                     pees: totals['pees']!,
                     milk: totals['milk']!,
+                    breastMinutes: totals['breastMinutes']!,
                   ),
                 ),
                 SliverPadding(
@@ -207,12 +220,24 @@ class _DayPageState extends State<DayPage> {
       if (poo) return 'Diaper: poo';
       return 'Diaper change';
     }
-    return 'Feeding (${e.data['method']})';
+
+    final isBottle = (e.data['isBottle'] as bool?) ?? true;
+    if (isBottle) {
+      final method = e.data['method'] ?? 'bottle';
+      return 'Feeding (bottle: $method)';
+    } else {
+      return 'Feeding (suckling)';
+    }
   }
 
   String _subtitle(TrackerEvent e) {
     if (e.type == 'feeding') {
-      return 'Amount: ${e.data['amountMl']} ml';
+      final isBottle = (e.data['isBottle'] as bool?) ?? true;
+      if (isBottle) {
+        return 'Amount: ${e.data['amountMl']} ml';
+      } else {
+        return 'Duration: ${e.data['durationMin']} min';
+      }
     }
     return 'Color: ${e.data['pooColor'] ?? '-'}';
   }
