@@ -2,7 +2,7 @@ import 'package:simple_baby_tracker/main.dart';
 
 class TrackerEvent {
   String id;
-  String type; 
+  String type;
   Map<String, dynamic> data;
   DateTime time;
 
@@ -14,16 +14,16 @@ class TrackerEvent {
   }) : id = id ?? uuid.v4();
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'type': type,
-    'time': time.toIso8601String(),
-    'data': data,
-  };
+        'id': id,
+        'type': type,
+        'time': time.toIso8601String(),
+        'data': data,
+      };
 
   static TrackerEvent fromJson(Map<String, dynamic> j) => TrackerEvent(
-    id: j['id'],
-    type: j['type'],
-    time: DateTime.parse(j['time']),
-    data: Map<String, dynamic>.from(j['data']),
-  );
+        id: j['id'] as String?,
+        type: j['type'] as String,
+        time: DateTime.parse(j['time'] as String),
+        data: Map<String, dynamic>.from(j['data'] as Map),
+      );
 }

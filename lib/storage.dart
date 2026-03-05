@@ -15,27 +15,28 @@ class Storage {
 
     final decoded = json.decode(raw) as Map<String, dynamic>;
     final out = <String, List<TrackerEvent>>{};
-    decoded.forEach((k, v) {
-      out[k] = (v as List)
-          .map((e) => TrackerEvent.fromJson(Map<String, dynamic>.from(e)))
+
+    for (final entry in decoded.entries) {
+      out[entry.key] = (entry.value as List)
+          .map((e) => TrackerEvent.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList();
-    });
+    }
+
     return out;
   }
 
   static Future<void> saveAll(Map<String, List<TrackerEvent>> map) async {
     final sp = await SharedPreferences.getInstance();
-
     final encoded = map.map(
       (k, v) => MapEntry(k, v.map((e) => e.toJson()).toList()),
     );
     await sp.setString(_kKey, json.encode(encoded));
   }
 
-  static Future exportToFile(Map<String, List> data) async {
+  static Future<File> exportToFile(
+      Map<String, List<TrackerEvent>> data) async {
     final dir = await getApplicationDocumentsDirectory();
     final file = File('${dir.path}/baby_tracker_export.json');
-
     final encoded = data.map(
       (k, v) => MapEntry(k, v.map((e) => e.toJson()).toList()),
     );
