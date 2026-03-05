@@ -7,7 +7,7 @@ class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
   final int milk;
   final int breastMinutes;
 
-  SummaryHeaderDelegate({
+  const SummaryHeaderDelegate({
     required this.poos,
     required this.pees,
     required this.milk,
@@ -15,10 +15,10 @@ class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
   });
 
   @override
-  double get minExtent => 110;
+  double get minExtent => 100;
 
   @override
-  double get maxExtent => 110;
+  double get maxExtent => 100;
 
   @override
   Widget build(
@@ -30,13 +30,13 @@ class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
 
     return Container(
       color: theme.scaffoldBackgroundColor,
-      padding: const EdgeInsets.fromLTRB(12, 12, 12, 4),
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
       child: Material(
         elevation: overlapsContent ? 6 : 2,
-        borderRadius: BorderRadius.circular(20),
-        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(16),
+        color: theme.colorScheme.surfaceContainerHighest,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

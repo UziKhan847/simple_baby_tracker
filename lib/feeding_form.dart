@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/feed_entry.dart';
+import 'package:simple_baby_tracker/feeding_entry_card.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 
 class FeedingForm extends StatefulWidget {
   final DateTime initialDate;
   final TrackerEvent? existingEvent;
 
-  const FeedingForm({super.key, required this.initialDate, this.existingEvent});
+  const FeedingForm({
+    super.key,
+    required this.initialDate,
+    this.existingEvent,
+  });
 
   @override
   State<FeedingForm> createState() => _FeedingFormState();
 }
 
 class _FeedingFormState extends State<FeedingForm> {
-  final amountController = TextEditingController();
-  final durationController = TextEditingController();
-  TimeOfDay time = TimeOfDay.now();
-
-  // feedMode: 'bottle' or 'suckle'
-  String feedMode = 'bottle';
-  String method = 'breast';
+  TimeOfDay _time = TimeOfDay.now();
+  final List<FeedEntry> _feeds = [];
+  bool get _isEditing => widget.existingEvent != null;
 
   @override
   void initState() {
@@ -26,36 +28,79 @@ class _FeedingFormState extends State<FeedingForm> {
 
     final existing = widget.existingEvent;
     if (existing != null) {
-      // support older saved events: default to bottle if not present
       final isBottle = (existing.data['isBottle'] as bool?) ?? true;
-      feedMode = isBottle ? 'bottle' : 'suckle';
-
-      final amount = existing.data['amountMl']?.toString() ?? '';
-      amountController.text = amount;
-
-      final duration = existing.data['durationMin']?.toString() ?? '';
-      durationController.text = duration;
-
-      method = existing.data['method'] ?? 'breast';
-
-      time = TimeOfDay(hour: existing.time.hour, minute: existing.time.minute);
+      _feeds.add(FeedEntry(
+        feedMode: isBottle ? 'bottle' : 'suckle',
+        method: existing.data['method'] as String? ?? 'breast',
+        amount: existing.data['amountMl']?.toString() ?? '',
+        duration: existing.data['durationMin']?.toString() ?? '',
+      ));
+      _time =
+          TimeOfDay(hour: existing.time.hour, minute: existing.time.minute);
+    } else {
+      _feeds.add(FeedEntry());
     }
   }
 
-  @override
-  void dispose() {
-    amountController.dispose();
-    durationController.dispose();
-    super.dispose();
+  void _addFeed() => setState(() => _feeds.add(FeedEntry()));
+
+  void _removeFeed(int i) {
+    if (_feeds.length > 1) setState(() => _feeds.removeAt(i));
+  }
+
+  Future<void> _pickTime() async {
+    final t = await showTimePicker(context: context, initialTime: _time);
+    if (t != null) setState(() => _time = t);
+  }
+
+  void _save() {
+    if (_feeds.isEmpty) return;
+
+    final d = widget.initialDate;
+    final dt = DateTime(d.year, d.month, d.day, _time.hour, _time.minute);
+
+    if (_isEditing || _feeds.length == 1) {
+      // Single event (edit mode or only 1 feed)
+      final f = _feeds.first;
+      final isBottle = f.feedMode == 'bottle';
+      Navigator.pop(
+        context,
+        TrackerEvent(
+          id: widget.existingEvent?.id,
+          type: 'feeding',
+          time: dt,
+          data: {
+            'isBottle': isBottle,
+            if (isBottle) 'method': f.method,
+            'amountMl': isBottle ? (int.tryParse(f.amount) ?? 0) : 0,
+            if (!isBottle) 'durationMin': int.tryParse(f.duration) ?? 0,
+          },
+        ),
+      );
+    } else {
+      // Multiple feeds — return a list so the caller can insert all
+      final events = _feeds.map((f) {
+        final isBottle = f.feedMode == 'bottle';
+        return TrackerEvent(
+          type: 'feeding',
+          time: dt,
+          data: {
+            'isBottle': isBottle,
+            if (isBottle) 'method': f.method,
+            'amountMl': isBottle ? (int.tryParse(f.amount) ?? 0) : 0,
+            if (!isBottle) 'durationMin': int.tryParse(f.duration) ?? 0,
+          },
+        );
+      }).toList();
+      Navigator.pop(context, events);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
-    final bottomInset = media.viewInsets.bottom;
-    final bottomSafe = media.padding.bottom;
-    final bottomPadding = bottomInset > 0 ? bottomInset : bottomSafe + 16;
-    final isEditing = widget.existingEvent != null;
+    final bottomPadding =
+        media.viewInsets.bottom > 0 ? media.viewInsets.bottom : media.padding.bottom + 16;
 
     return Padding(
       padding: EdgeInsets.only(bottom: bottomPadding),
@@ -65,98 +110,54 @@ class _FeedingFormState extends State<FeedingForm> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              isEditing ? 'Edit feeding' : 'Feeding',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 12),
-
-            // Feed mode selector
-            DropdownButtonFormField<String>(
-              initialValue: feedMode,
-              items: const [
-                DropdownMenuItem(value: 'bottle', child: Text('Bottle')),
-                DropdownMenuItem(value: 'suckle', child: Text('Suckling (no bottle)')),
+            Row(
+              children: [
+                Text(
+                  _isEditing ? 'Edit feeding' : 'Add feeding',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const Spacer(),
+                TextButton.icon(
+                  onPressed: _pickTime,
+                  icon: const Icon(Icons.access_time, size: 18),
+                  label: Text(_time.format(context)),
+                ),
               ],
-              onChanged: (v) => setState(() => feedMode = v ?? 'bottle'),
-              decoration: const InputDecoration(labelText: 'Feed type'),
             ),
+            const SizedBox(height: 8),
 
-            const SizedBox(height: 12),
+            ..._feeds.asMap().entries.map((entry) {
+              final i = entry.key;
+              final f = entry.value;
+              return FeedEntryCard(
+                entry: f,
+                index: i,
+                canRemove: _feeds.length > 1,
+                onRemove: () => _removeFeed(i),
+                onChanged: () => setState(() {}),
+              );
+            }),
 
-            // If bottle: show amount and method
-            if (feedMode == 'bottle') ...[
-              TextField(
-                controller: amountController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Amount (ml)'),
+            if (!_isEditing)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: OutlinedButton.icon(
+                  onPressed: _addFeed,
+                  icon: const Icon(Icons.add),
+                  label: const Text('Add another feed'),
+                ),
               ),
-              const SizedBox(height: 12),
-              DropdownButtonFormField<String>(
-                initialValue: method,
-                items: const [
-                  DropdownMenuItem(value: 'breast', child: Text('Breast (bottle)')),
-                  DropdownMenuItem(value: 'formula', child: Text('Formula')),
-                ],
-                onChanged: (v) => setState(() => method = v ?? 'breast'),
-                decoration: const InputDecoration(labelText: 'Method'),
-              ),
-            ] else ...[
-              // If not bottle: show duration in minutes
-              TextField(
-                controller: durationController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Duration (minutes)'),
-              ),
-            ],
 
-            const SizedBox(height: 12),
-            TextButton(
-              onPressed: () async {
-                final t = await showTimePicker(
-                  context: context,
-                  initialTime: time,
-                );
-                if (t != null) {
-                  setState(() => time = t);
-                }
-              },
-              child: Text('Time: ${time.format(context)}'),
-            ),
+            const SizedBox(height: 8),
             Align(
               alignment: Alignment.centerRight,
-              child: ElevatedButton(
+              child: FilledButton(
                 onPressed: _save,
-                child: Text(isEditing ? 'Update' : 'Save'),
+                child: Text(_isEditing ? 'Update' : 'Save'),
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  void _save() {
-    final d = widget.initialDate;
-    final dt = DateTime(d.year, d.month, d.day, time.hour, time.minute);
-
-    final isBottle = feedMode == 'bottle';
-
-    final data = <String, Object?>{
-      'isBottle': isBottle,
-      // keep method only for bottle entries
-      if (isBottle) 'method': method,
-      // parse amount/duration as ints (defaults to 0)
-      'amountMl': isBottle ? (int.tryParse(amountController.text) ?? 0) : 0,
-      if (!isBottle) 'durationMin': int.tryParse(durationController.text) ?? 0,
-    };
-
-    Navigator.pop(
-      context,
-      TrackerEvent(
-        type: 'feeding',
-        time: dt,
-        data: data,
       ),
     );
   }

@@ -5,18 +5,22 @@ class DiaperForm extends StatefulWidget {
   final DateTime initialDate;
   final TrackerEvent? existingEvent;
 
-  const DiaperForm({super.key, required this.initialDate, this.existingEvent});
+  const DiaperForm({
+    super.key,
+    required this.initialDate,
+    this.existingEvent,
+  });
 
   @override
   State<DiaperForm> createState() => _DiaperFormState();
 }
 
 class _DiaperFormState extends State<DiaperForm> {
-  String type = 'none';
-  TimeOfDay time = TimeOfDay.now();
-  String? pooColor;
+  String _type = 'none'; // 'none' | 'pee' | 'poo' | 'both'
+  TimeOfDay _time = TimeOfDay.now();
+  String? _pooColor;
 
-  final List<Map<String, dynamic>> pooOptions = [
+  static const _pooOptions = [
     {'id': '1', 'label': '1', 'name': 'Pale 1', 'abnormal': true},
     {'id': '2', 'label': '2', 'name': 'Pale 2', 'abnormal': true},
     {'id': '3', 'label': '3', 'name': 'Pale 3', 'abnormal': true},
@@ -28,41 +32,34 @@ class _DiaperFormState extends State<DiaperForm> {
     {'id': '9', 'label': '9', 'name': 'Normal 9', 'abnormal': false},
   ];
 
+  bool get _isEditing => widget.existingEvent != null;
+
   @override
   void initState() {
     super.initState();
-
     final existing = widget.existingEvent;
-
     if (existing != null) {
-      final data = existing.data;
-
-      final pee = data['pee'] == true;
-      final poo = data['poo'] == true;
-
-      if (pee && poo) {
-        type = 'both';
-      } else if (pee) {
-        type = 'pee';
-      } else if (poo) {
-        type = 'poo';
-      } else {
-        type = 'none';
-      }
-
-      pooColor = data['pooColor']?.toString();
-
-      time = TimeOfDay(hour: existing.time.hour, minute: existing.time.minute);
+      final pee = existing.data['pee'] == true;
+      final poo = existing.data['poo'] == true;
+      _type = (pee && poo)
+          ? 'both'
+          : pee
+              ? 'pee'
+              : poo
+                  ? 'poo'
+                  : 'none';
+      _pooColor = existing.data['pooColor']?.toString();
+      _time =
+          TimeOfDay(hour: existing.time.hour, minute: existing.time.minute);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
-    final bottomInset = media.viewInsets.bottom;
-    final bottomSafe = media.padding.bottom;
-    final bottomPadding = bottomInset > 0 ? bottomInset : bottomSafe + 16;
-    final isEditing = widget.existingEvent != null;
+    final bottomPadding = media.viewInsets.bottom > 0
+        ? media.viewInsets.bottom
+        : media.padding.bottom + 16;
 
     return Padding(
       padding: EdgeInsets.only(bottom: bottomPadding),
@@ -72,81 +69,65 @@ class _DiaperFormState extends State<DiaperForm> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              isEditing ? 'Edit diaper change' : 'Diaper change',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 12),
-
-            Wrap(
-              spacing: 8,
+            Row(
               children: [
-                ChoiceChip(
-                  label: const Text('None'),
-                  selected: type == 'none',
-                  onSelected: (_) => setState(() => type = 'none'),
+                Text(
+                  _isEditing ? 'Edit diaper change' : 'Diaper change',
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-                ChoiceChip(
-                  label: const Text('Pee'),
-                  selected: type == 'pee',
-                  onSelected: (_) => setState(() => type = 'pee'),
-                ),
-                ChoiceChip(
-                  label: const Text('Poo'),
-                  selected: type == 'poo',
-                  onSelected: (_) => setState(() => type = 'poo'),
-                ),
-                ChoiceChip(
-                  label: const Text('Both'),
-                  selected: type == 'both',
-                  onSelected: (_) => setState(() => type = 'both'),
+                const Spacer(),
+                TextButton.icon(
+                  onPressed: _pickTime,
+                  icon: const Icon(Icons.access_time, size: 18),
+                  label: Text(_time.format(context)),
                 ),
               ],
             ),
-
             const SizedBox(height: 12),
 
-            if (type == 'poo' || type == 'both') ...[
-              const Text(
-                'Select poo colour (tap an image). Numbers follow the chart:',
-                style: TextStyle(fontWeight: FontWeight.w500),
+            SegmentedButton<String>(
+              segments: const [
+                ButtonSegment(value: 'none', label: Text('None')),
+                ButtonSegment(
+                    value: 'pee',
+                    label: Text('Pee'),
+                    icon: Icon(Icons.water_drop, size: 16)),
+                ButtonSegment(
+                    value: 'poo',
+                    label: Text('Poo'),
+                    icon: Icon(Icons.baby_changing_station, size: 16)),
+                ButtonSegment(value: 'both', label: Text('Both')),
+              ],
+              selected: {_type},
+              onSelectionChanged: (s) => setState(() => _type = s.first),
+            ),
+
+            if (_type == 'poo' || _type == 'both') ...[
+              const SizedBox(height: 16),
+              Text(
+                'Select poo colour',
+                style: Theme.of(context).textTheme.titleSmall,
               ),
-              const SizedBox(height: 8),
-
-              _buildGroup('Abnormal (pale)', true),
+              const SizedBox(height: 4),
+              _buildColorGroup('⚠️ Abnormal (pale)', true),
               const SizedBox(height: 12),
-              _buildGroup('Normal', false),
-
-              if (pooColor != null)
+              _buildColorGroup('✅ Normal', false),
+              if (_pooColor != null)
                 Padding(
-                  padding: const EdgeInsets.only(top: 6),
+                  padding: const EdgeInsets.only(top: 8),
                   child: Text(
-                    'Selected: ${_optionLabel(pooColor!)}',
+                    'Selected: ${_optionLabel(_pooColor!)}',
                     style: const TextStyle(fontStyle: FontStyle.italic),
                   ),
                 ),
             ],
 
-            const SizedBox(height: 12),
-
-            TextButton(
-              onPressed: () async {
-                final t = await showTimePicker(
-                  context: context,
-                  initialTime: time,
-                );
-                if (t != null) {
-                  setState(() => time = t);
-                }
-              },
-              child: Text('Time: ${time.format(context)}'),
-            ),
-
+            const SizedBox(height: 16),
             Align(
               alignment: Alignment.centerRight,
-              child: ElevatedButton(
+              child: FilledButton(
                 onPressed: _save,
-                child: Text(isEditing ? 'Update' : 'Save'),
+                child: Text(_isEditing ? 'Update' : 'Save'),
               ),
             ),
           ],
@@ -155,8 +136,14 @@ class _DiaperFormState extends State<DiaperForm> {
     );
   }
 
-  Widget _buildGroup(String title, bool abnormal) {
-    final items = pooOptions.where((o) => o['abnormal'] == abnormal).toList();
+  Future<void> _pickTime() async {
+    final t = await showTimePicker(context: context, initialTime: _time);
+    if (t != null) setState(() => _time = t);
+  }
+
+  Widget _buildColorGroup(String title, bool abnormal) {
+    final items =
+        _pooOptions.where((o) => o['abnormal'] == abnormal).toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,68 +152,62 @@ class _DiaperFormState extends State<DiaperForm> {
           title,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 16,
             color: abnormal ? Colors.red : Colors.green,
           ),
         ),
-        const SizedBox(height: 10),
-
+        const SizedBox(height: 8),
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: items.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
             childAspectRatio: 1,
           ),
           itemBuilder: (context, index) {
             final o = items[index];
             final id = o['id'] as String;
-            final selected = pooColor == id;
+            final selected = _pooColor == id;
 
             return GestureDetector(
-              onTap: () => setState(() => pooColor = id),
+              onTap: () => setState(() => _pooColor = id),
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
+                duration: const Duration(milliseconds: 150),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     color: selected
                         ? Theme.of(context).colorScheme.primary
                         : Colors.grey.shade300,
-                    width: selected ? 4 : 1.5,
+                    width: selected ? 3.5 : 1.5,
                   ),
-                  boxShadow: [
-                    if (selected)
-                      BoxShadow(
-                        color: Theme.of(
-                          context,
-                        ).colorScheme.primary.withAlpha(77),
-                        blurRadius: 8,
-                        spreadRadius: 1,
-                      ),
-                  ],
+                  boxShadow: selected
+                      ? [
+                          BoxShadow(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withAlpha(80),
+                            blurRadius: 6,
+                            spreadRadius: 1,
+                          )
+                        ]
+                      : null,
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
                       Image.asset('assets/$id.png', fit: BoxFit.cover),
-
                       if (selected)
-                        Container(color: Colors.black.withAlpha(64)),
-
+                        Container(color: Colors.black.withAlpha(50)),
                       if (selected)
-                        const Align(
-                          alignment: Alignment.center,
-                          child: Icon(
-                            Icons.check_circle,
-                            color: Colors.white,
-                            size: 32,
-                          ),
+                        const Center(
+                          child: Icon(Icons.check_circle,
+                              color: Colors.white, size: 28),
                         ),
                     ],
                   ),
@@ -240,24 +221,25 @@ class _DiaperFormState extends State<DiaperForm> {
   }
 
   String _optionLabel(String id) {
-    final found = pooOptions.firstWhere((o) => o['id'] == id, orElse: () => {});
+    final found =
+        _pooOptions.firstWhere((o) => o['id'] == id, orElse: () => {});
     if (found.isEmpty) return id;
-    return '${found['label']} - ${found['name']}';
+    return '${found['label']} — ${found['name']}';
   }
 
   void _save() {
     final d = widget.initialDate;
-    final dt = DateTime(d.year, d.month, d.day, time.hour, time.minute);
-
+    final dt = DateTime(d.year, d.month, d.day, _time.hour, _time.minute);
     Navigator.pop(
       context,
       TrackerEvent(
+        id: widget.existingEvent?.id,
         type: 'diaper',
         time: dt,
         data: {
-          'pee': type == 'pee' || type == 'both',
-          'poo': type == 'poo' || type == 'both',
-          'pooColor': pooColor,
+          'pee': _type == 'pee' || _type == 'both',
+          'poo': _type == 'poo' || _type == 'both',
+          'pooColor': _pooColor,
         },
       ),
     );

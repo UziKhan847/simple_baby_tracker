@@ -6,17 +6,19 @@ String dateKey(DateTime d) =>
 String displayDate(DateTime d) {
   final now = DateTime.now();
   if (dateKey(now) == dateKey(d)) return 'Today';
-  return '${d.year}-${d.month}-${d.day}';
+  return fullDate(d);
 }
 
 DateTime dateFromKey(String key) {
   final parts = key.split('-');
-  final y = int.parse(parts[0]);
-  final m = int.parse(parts[1]);
-  final d = int.parse(parts[2]);
-  return DateTime(y, m, d);
+  return DateTime(
+    int.parse(parts[0]),
+    int.parse(parts[1]),
+    int.parse(parts[2]),
+  );
 }
 
-String fullDate(DateTime d) {
-  return DateFormat('MMMM d, yyyy').format(d);
-}
+String fullDate(DateTime d) => DateFormat('MMMM d, yyyy').format(d);
+
+String formatTime(DateTime t) =>
+    '${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}';
