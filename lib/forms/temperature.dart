@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/helpers.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 
@@ -20,7 +21,7 @@ class TemperatureForm extends StatefulWidget {
 class _TemperatureFormState extends State<TemperatureForm> {
   TimeOfDay _time = TimeOfDay.now();
   final _ctrl = TextEditingController();
-  bool _inputInCelsius = true; // tracks the input unit in this session
+  bool _inputInCelsius = true;
   bool get _isEditing => widget.existingEvent != null;
 
   @override
@@ -30,25 +31,21 @@ class _TemperatureFormState extends State<TemperatureForm> {
     if (e != null) {
       _time = TimeOfDay(hour: e.time.hour, minute: e.time.minute);
       final c = (e.data['valueCelsius'] as num?)?.toDouble();
-      if (c != null) {
-        _inputInCelsius = true;
-        _ctrl.text = c.toStringAsFixed(1);
-      }
+      if (c != null) _ctrl.text = c.toStringAsFixed(1);
     }
-    // Match initial input unit to user preference
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        final useC = SettingsProvider.of(context).settings.useCelsius;
-        final existing = widget.existingEvent;
-        if (existing != null && !useC) {
-          final c = (existing.data['valueCelsius'] as num?)?.toDouble() ?? 0.0;
-          setState(() {
-            _inputInCelsius = false;
-            _ctrl.text = celsiusToFahrenheit(c).toStringAsFixed(1);
-          });
-        } else {
-          setState(() => _inputInCelsius = useC);
-        }
+      if (!mounted) return;
+      final useC = SettingsProvider.of(context).settings.useCelsius;
+      final existing = widget.existingEvent;
+      if (existing != null && !useC) {
+        final c =
+            (existing.data['valueCelsius'] as num?)?.toDouble() ?? 0.0;
+        setState(() {
+          _inputInCelsius = false;
+          _ctrl.text = celsiusToFahrenheit(c).toStringAsFixed(1);
+        });
+      } else {
+        setState(() => _inputInCelsius = useC);
       }
     });
   }
@@ -67,6 +64,7 @@ class _TemperatureFormState extends State<TemperatureForm> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final media = MediaQuery.of(context);
     final bottomPad = media.viewInsets.bottom > 0
         ? media.viewInsets.bottom
@@ -86,16 +84,14 @@ class _TemperatureFormState extends State<TemperatureForm> {
             Row(
               children: [
                 Text(
-                  _isEditing ? 'Edit temperature' : 'Log temperature',
+                  _isEditing ? l.editTemperature : l.logTemperature,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const Spacer(),
                 TextButton.icon(
                   onPressed: () async {
                     final t = await showTimePicker(
-                      context: context,
-                      initialTime: _time,
-                    );
+                        context: context, initialTime: _time);
                     if (t != null) setState(() => _time = t);
                   },
                   icon: const Icon(Icons.access_time, size: 18),
@@ -112,11 +108,10 @@ class _TemperatureFormState extends State<TemperatureForm> {
                   child: TextField(
                     controller: _ctrl,
                     keyboardType: const TextInputType.numberWithOptions(
-                      decimal: true,
-                    ),
+                        decimal: true),
                     onChanged: (_) => setState(() {}),
                     decoration: InputDecoration(
-                      labelText: 'Temperature',
+                      labelText: l.temperatureLabel,
                       suffixText: _inputInCelsius ? '°C' : '°F',
                       border: const OutlineInputBorder(),
                     ),
@@ -134,13 +129,11 @@ class _TemperatureFormState extends State<TemperatureForm> {
                     setState(() {
                       if (current != null) {
                         if (!_inputInCelsius && s.first) {
-                          _ctrl.text = fahrenheitToCelsius(
-                            current,
-                          ).toStringAsFixed(1);
+                          _ctrl.text =
+                              fahrenheitToCelsius(current).toStringAsFixed(1);
                         } else if (_inputInCelsius && !s.first) {
-                          _ctrl.text = celsiusToFahrenheit(
-                            current,
-                          ).toStringAsFixed(1);
+                          _ctrl.text =
+                              celsiusToFahrenheit(current).toStringAsFixed(1);
                         }
                       }
                       _inputInCelsius = s.first;
@@ -150,23 +143,21 @@ class _TemperatureFormState extends State<TemperatureForm> {
               ],
             ),
 
-            // Severity indicator
             if (severity != null) ...[
               const SizedBox(height: 12),
-              _SeverityBanner(severity: severity, celsius: celsius!),
+              _SeverityBanner(severity: severity, l: l),
             ],
 
             const SizedBox(height: 16),
-
-            // Reference card
-            _ReferenceCard(),
+            _ReferenceCard(l: l),
 
             const SizedBox(height: 16),
             Align(
               alignment: Alignment.centerRight,
               child: FilledButton(
                 onPressed: celsius != null ? _save : null,
-                child: Text(_isEditing ? 'Update' : 'Save'),
+                child:
+                    Text(_isEditing ? l.actionUpdate : l.actionSave),
               ),
             ),
           ],
@@ -194,25 +185,25 @@ class _TemperatureFormState extends State<TemperatureForm> {
 
 class _SeverityBanner extends StatelessWidget {
   final String severity;
-  final double celsius;
+  final AppLocalizations l;
 
-  const _SeverityBanner({required this.severity, required this.celsius});
+  const _SeverityBanner({required this.severity, required this.l});
 
   @override
   Widget build(BuildContext context) {
     final (icon, label, color) = switch (severity) {
-      'low' => (Icons.thermostat, 'Low temperature — monitor', Colors.blue),
-      'normal' => (Icons.check_circle, 'Normal temperature', Colors.green),
+      'low' => (Icons.thermostat, l.tempSeverityLow, Colors.blue),
+      'normal' => (Icons.check_circle, l.tempSeverityNormal, Colors.green),
       'elevated' => (
-        Icons.warning_amber_rounded,
-        'Slightly elevated — monitor closely',
-        Colors.orange,
-      ),
+          Icons.warning_amber_rounded,
+          l.tempSeverityElevated,
+          Colors.orange,
+        ),
       _ => (
-        Icons.local_fire_department,
-        'Fever — consult your doctor',
-        Colors.red,
-      ),
+          Icons.local_fire_department,
+          l.tempSeverityFever,
+          Colors.red,
+        ),
     };
 
     return Container(
@@ -226,10 +217,9 @@ class _SeverityBanner extends StatelessWidget {
         children: [
           Icon(icon, color: color, size: 20),
           const SizedBox(width: 8),
-          Text(
-            label,
-            style: TextStyle(color: color, fontWeight: FontWeight.w600),
-          ),
+          Text(label,
+              style: TextStyle(
+                  color: color, fontWeight: FontWeight.w600)),
         ],
       ),
     );
@@ -237,25 +227,28 @@ class _SeverityBanner extends StatelessWidget {
 }
 
 class _ReferenceCard extends StatelessWidget {
+  final AppLocalizations l;
+  const _ReferenceCard({required this.l});
+
   @override
   Widget build(BuildContext context) {
+    final rows = [
+      (l.tempLow, l.tempRefLow, Colors.blue),
+      (l.tempNormal, l.tempRefNormal, Colors.green),
+      (l.tempElevated, l.tempRefElevated, Colors.orange),
+      (l.tempFever, l.tempRefFever, Colors.red),
+    ];
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Temperature reference',
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
+            Text(l.tempReference,
+                style: Theme.of(context).textTheme.labelLarge),
             const SizedBox(height: 6),
-            ...[
-              ('Low', '< 36.0 °C / 96.8 °F', Colors.blue),
-              ('Normal', '36.0 – 37.4 °C / 96.8 – 99.3 °F', Colors.green),
-              ('Elevated', '37.5 – 38.4 °C / 99.5 – 101.1 °F', Colors.orange),
-              ('Fever', '≥ 38.5 °C / 101.3 °F', Colors.red),
-            ].map(
+            ...rows.map(
               (r) => Padding(
                 padding: const EdgeInsets.symmetric(vertical: 2),
                 child: Row(
@@ -264,29 +257,23 @@ class _ReferenceCard extends StatelessWidget {
                       width: 10,
                       height: 10,
                       decoration: BoxDecoration(
-                        color: r.$3,
-                        shape: BoxShape.circle,
-                      ),
+                          color: r.$3, shape: BoxShape.circle),
                     ),
                     const SizedBox(width: 8),
-                    Text(
-                      r.$1,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                      ),
-                    ),
+                    Text(r.$1,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 12)),
                     const SizedBox(width: 8),
                     Expanded(
-                      child: Text(r.$2, style: const TextStyle(fontSize: 12)),
-                    ),
+                        child: Text(r.$2,
+                            style: const TextStyle(fontSize: 12))),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 4),
             Text(
-              '⚠️ Always consult your paediatrician for fever in infants under 3 months.',
+              l.tempFeverWarning,
               style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
             ),
           ],

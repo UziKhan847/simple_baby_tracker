@@ -1,0 +1,507 @@
+{
+    "@@locale": "ru",
+    "appTitle": "Дневник малыша",
+    "@appTitle": {},
+    "navHome": "Главная",
+    "@navHome": {},
+    "navGraphs": "Графики",
+    "@navGraphs": {},
+    "navSettings": "Настройки",
+    "@navSettings": {},
+    "actionCancel": "Отмена",
+    "@actionCancel": {},
+    "actionSave": "Сохранить",
+    "@actionSave": {},
+    "actionUpdate": "Обновить",
+    "@actionUpdate": {},
+    "actionDelete": "Удалить",
+    "@actionDelete": {},
+    "actionAdd": "Добавить",
+    "@actionAdd": {},
+    "actionEdit": "Редактировать",
+    "@actionEdit": {},
+    "actionClose": "Закрыть",
+    "@actionClose": {},
+    "actionExport": "Экспорт данных",
+    "@actionExport": {},
+    "actionAddDay": "Добавить день",
+    "@actionAddDay": {},
+    "cannotUndo": "Это действие нельзя отменить",
+    "@cannotUndo": {},
+    "noData": "Нет данных",
+    "@noData": {},
+    "homeTitle": "Дневник",
+    "@homeTitle": {},
+    "feedsToday": "Кормлений сегодня",
+    "@feedsToday": {},
+    "diapersToday": "Подгузников сегодня",
+    "@diapersToday": {},
+    "sleepToday": "Сна сегодня",
+    "@sleepToday": {},
+    "todayLabel": "Сегодня — {date}",
+    "@todayLabel": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "eventCount": "{count, plural, =0{Нет событий} =1{1 событие} few{{count} события} many{{count} событий} other{{count} события}}",
+    "@eventCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deleteDayTitle": "Удалить этот день?",
+    "@deleteDayTitle": {},
+    "deleteDayContent": "Удалить {date} и все записи? Это действие нельзя отменить",
+    "@deleteDayContent": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "noEntriesYet": "Пока нет записей",
+    "@noEntriesYet": {},
+    "addEntry": "Добавить запись",
+    "@addEntry": {},
+    "deleteEntryTitle": "Удалить эту запись?",
+    "@deleteEntryTitle": {},
+    "entryTypeDiaper": "Смена подгузника",
+    "@entryTypeDiaper": {},
+    "entryTypeFeeding": "Кормление",
+    "@entryTypeFeeding": {},
+    "entryTypeSleep": "Сон",
+    "@entryTypeSleep": {},
+    "entryTypeTemperature": "Температура",
+    "@entryTypeTemperature": {},
+    "entryTypeWeight": "Вес",
+    "@entryTypeWeight": {},
+    "diaperPeePoo": "Подгузник — моча + кал",
+    "@diaperPeePoo": {},
+    "diaperPee": "Подгузник — только моча",
+    "@diaperPee": {},
+    "diaperPoo": "Подгузник — только кал",
+    "@diaperPoo": {},
+    "diaperChange": "Смена подгузника",
+    "@diaperChange": {},
+    "editDiaper": "Редактировать подгузник",
+    "@editDiaper": {},
+    "diaperContents": "Содержимое",
+    "@diaperContents": {},
+    "diaperNone": "Нет",
+    "@diaperNone": {},
+    "diaperPeeLabel": "Моча",
+    "@diaperPeeLabel": {},
+    "diaperPooLabel": "Кал",
+    "@diaperPooLabel": {},
+    "diaperBoth": "Оба",
+    "@diaperBoth": {},
+    "diaperConsistency": "Консистенция",
+    "@diaperConsistency": {},
+    "consistencyHard": "Твёрдый / Комочками",
+    "@consistencyHard": {},
+    "consistencyHardHint": "Запор",
+    "@consistencyHardHint": {},
+    "consistencyFirm": "Оформленный",
+    "@consistencyFirm": {},
+    "consistencyFirmHint": "Слегка твёрдый",
+    "@consistencyFirmHint": {},
+    "consistencyNormal": "Нормальный",
+    "@consistencyNormal": {},
+    "consistencyNormalHint": "Здоровый",
+    "@consistencyNormalHint": {},
+    "consistencySoft": "Мягкий",
+    "@consistencySoft": {},
+    "consistencySoftHint": "Слегка мягкий",
+    "@consistencySoftHint": {},
+    "consistencyLoose": "Кашицеобразный / Полужидкий",
+    "@consistencyLoose": {},
+    "consistencyLooseHint": "Наблюдать",
+    "@consistencyLooseHint": {},
+    "consistencyWatery": "Водянистый",
+    "@consistencyWatery": {},
+    "consistencyWateryHint": "Диарея",
+    "@consistencyWateryHint": {},
+    "warnConstipation": "Признаки запора — внимательно наблюдайте",
+    "@warnConstipation": {},
+    "warnDiarrhea": "Признаки диареи — внимательно наблюдайте",
+    "@warnDiarrhea": {},
+    "pooColourLabel": "Цвет (нажмите, чтобы выбрать)",
+    "@pooColourLabel": {},
+    "pooColourAbnormal": "⚠️ Ненормальный (бледный)",
+    "@pooColourAbnormal": {},
+    "pooColourNormal": "✅ Нормальный",
+    "@pooColourNormal": {},
+    "pooColourSelected": "Выбрано: {label}",
+    "@pooColourSelected": {
+        "placeholders": {
+            "label": {
+                "type": "String"
+            }
+        }
+    },
+    "diaperSize": "Размер подгузника",
+    "@diaperSize": {},
+    "diaperBrand": "Бренд",
+    "@diaperBrand": {},
+    "diaperBrandCustomLabel": "Название бренда",
+    "@diaperBrandCustomLabel": {},
+    "rashPresent": "Есть опрелость",
+    "@rashPresent": {},
+    "rashPresentHint": "Покраснение, раздражение или опрелость",
+    "@rashPresentHint": {},
+    "rashCreamUsed": "Крем использован",
+    "@rashCreamUsed": {},
+    "rashCreamCustomLabel": "Название крема / мази",
+    "@rashCreamCustomLabel": {},
+    "rashFollowUpTitle": "⚠️ Наблюдение за опрелостью",
+    "@rashFollowUpTitle": {},
+    "rashFollowUpQuestion": "В последнем подгузнике была отмечена опрелость. Улучшилось?",
+    "@rashFollowUpQuestion": {},
+    "rashImproved": "Да, улучшилось",
+    "@rashImproved": {},
+    "rashNoChange": "Без изменений / ухудшилось",
+    "@rashNoChange": {},
+    "rashRecorded": "Опрелость зафиксирована",
+    "@rashRecorded": {},
+    "addFeeding": "Добавить кормление",
+    "@addFeeding": {},
+    "editFeeding": "Редактировать кормление",
+    "@editFeeding": {},
+    "feedLabel": "Кормление {number}",
+    "@feedLabel": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "feedModeBottle": "Бутылочка",
+    "@feedModeBottle": {},
+    "feedModeSuckle": "Грудное вскармливание",
+    "@feedModeSuckle": {},
+    "feedAmountMl": "Объём (мл)",
+    "@feedAmountMl": {},
+    "feedType": "Тип",
+    "@feedType": {},
+    "feedBreastMilk": "Грудное молоко",
+    "@feedBreastMilk": {},
+    "feedFormula": "Смесь",
+    "@feedFormula": {},
+    "feedFormulaBrand": "Бренд смеси",
+    "@feedFormulaBrand": {},
+    "feedFormulaBrandCustom": "Название бренда",
+    "@feedFormulaBrandCustom": {},
+    "feedDurationMinutes": "Длительность (минуты)",
+    "@feedDurationMinutes": {},
+    "addAnotherFeed": "Добавить ещё одно кормление",
+    "@addAnotherFeed": {},
+    "bottleBreastMilk": "Бутылочка — грудное молоко",
+    "@bottleBreastMilk": {},
+    "bottleFormula": "Бутылочка — смесь",
+    "@bottleFormula": {},
+    "breastfeedingSuckle": "Грудное вскармливание",
+    "@breastfeedingSuckle": {},
+    "logSleep": "Записать сон",
+    "@logSleep": {},
+    "editSleep": "Редактировать сон",
+    "@editSleep": {},
+    "sleepStart": "Начало сна",
+    "@sleepStart": {},
+    "sleepWakeUp": "Пробуждение",
+    "@sleepWakeUp": {},
+    "sleepDuration": "Длительность: {duration}",
+    "@sleepDuration": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "sleepInvalidTimes": "Неверное время",
+    "@sleepInvalidTimes": {},
+    "sleepWrapsNextDay": "(переходит на следующий день)",
+    "@sleepWrapsNextDay": {},
+    "sleepNotes": "Заметки (необязательно)",
+    "@sleepNotes": {},
+    "sleepNotesHint": "Напр.: беспокойный, ненадолго просыпался...",
+    "@sleepNotesHint": {},
+    "sleepNoNotes": "Нет заметок",
+    "@sleepNoNotes": {},
+    "sleepHoursShort": "{h}ч {m}мин",
+    "@sleepHoursShort": {
+        "placeholders": {
+            "h": {
+                "type": "int"
+            },
+            "m": {
+                "type": "int"
+            }
+        }
+    },
+    "logTemperature": "Записать температуру",
+    "@logTemperature": {},
+    "editTemperature": "Редактировать температуру",
+    "@editTemperature": {},
+    "temperatureLabel": "Температура",
+    "@temperatureLabel": {},
+    "tempSeverityLow": "Пониженная — наблюдать",
+    "@tempSeverityLow": {},
+    "tempSeverityNormal": "Нормальная",
+    "@tempSeverityNormal": {},
+    "tempSeverityElevated": "Слегка повышена — внимательно наблюдать",
+    "@tempSeverityElevated": {},
+    "tempSeverityFever": "Лихорадка — обратитесь к врачу",
+    "@tempSeverityFever": {},
+    "tempReference": "Референсные значения",
+    "@tempReference": {},
+    "tempRefLow": "< 36,0 °C / 96,8 °F",
+    "@tempRefLow": {},
+    "tempRefNormal": "36,0 – 37,4 °C / 96,8 – 99,3 °F",
+    "@tempRefNormal": {},
+    "tempRefElevated": "37,5 – 38,4 °C / 99,5 – 101,1 °F",
+    "@tempRefElevated": {},
+    "tempRefFever": "≥ 38,5 °C / 101,3 °F",
+    "@tempRefFever": {},
+    "tempFeverWarning": "⚠️ При лихорадке у младенца младше 3 месяцев всегда консультируйтесь с педиатром",
+    "@tempFeverWarning": {},
+    "tempLow": "Понижена",
+    "@tempLow": {},
+    "tempNormal": "Норма",
+    "@tempNormal": {},
+    "tempElevated": "Повышена",
+    "@tempElevated": {},
+    "tempFever": "Лихорадка",
+    "@tempFever": {},
+    "tempLatest": "Последняя температура",
+    "@tempLatest": {},
+    "tempSummary": "Сводка температур",
+    "@tempSummary": {},
+    "tempFeverThreshold": "Порог лихорадки",
+    "@tempFeverThreshold": {},
+    "tempDays": "{count, plural, =1{1 день} few{{count} дня} many{{count} дней} other{{count} дня}}",
+    "@tempDays": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "logWeight": "Записать вес",
+    "@logWeight": {},
+    "editWeight": "Редактировать вес",
+    "@editWeight": {},
+    "weightLabel": "Вес",
+    "@weightLabel": {},
+    "weightGain": "+{amount} прибавка",
+    "@weightGain": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLoss": "−{amount} потеря",
+    "@weightLoss": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightPrevious": "Предыдущий: {weight}",
+    "@weightPrevious": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLastRecorded": "Последняя запись: {weight} ({date})",
+    "@weightLastRecorded": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            },
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLatest": "Последний вес",
+    "@weightLatest": {},
+    "weightOverPeriod": "{sign}{amount} за период",
+    "@weightOverPeriod": {
+        "placeholders": {
+            "sign": {
+                "type": "String"
+            },
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "settingsTitle": "Настройки",
+    "@settingsTitle": {},
+    "settingsAppearance": "Внешний вид",
+    "@settingsAppearance": {},
+    "settingsDarkMode": "Тёмный режим",
+    "@settingsDarkMode": {},
+    "settingsDarkActive": "Тёмная тема активна",
+    "@settingsDarkActive": {},
+    "settingsLightActive": "Светлая тема активна",
+    "@settingsLightActive": {},
+    "settingsUnits": "Единицы измерения",
+    "@settingsUnits": {},
+    "settingsWeightUnit": "Единица веса",
+    "@settingsWeightUnit": {},
+    "settingsTempUnit": "Единица температуры",
+    "@settingsTempUnit": {},
+    "settingsLanguage": "Язык",
+    "@settingsLanguage": {},
+    "settingsTips": "Советы",
+    "@settingsTips": {},
+    "tipSwitchBabies": "Переключить малыша",
+    "@tipSwitchBabies": {},
+    "tipSwitchBabiesDesc": "Нажмите на аватар малыша вверху, чтобы переключиться или добавить профиль",
+    "@tipSwitchBabiesDesc": {},
+    "tipSwipeDelete": "Смахните влево для удаления",
+    "@tipSwipeDelete": {},
+    "tipSwipeDeleteDesc": "Работает для карточек дней и отдельных записей",
+    "@tipSwipeDeleteDesc": {},
+    "tipMultipleFeeds": "Записывать несколько кормлений",
+    "@tipMultipleFeeds": {},
+    "tipMultipleFeedsDesc": "В форме кормления нажмите «Добавить ещё кормление», чтобы записать грудь и бутылочку за раз",
+    "@tipMultipleFeedsDesc": {},
+    "tipExportData": "Экспорт данных",
+    "@tipExportData": {},
+    "tipExportDataDesc": "Используйте значок «Поделиться» на главной странице, чтобы экспортировать все данные в JSON",
+    "@tipExportDataDesc": {},
+    "tipTapToEdit": "Нажмите на любую запись, чтобы редактировать",
+    "@tipTapToEdit": {},
+    "babiesTitle": "Малыши",
+    "@babiesTitle": {},
+    "addBaby": "Добавить малыша",
+    "@addBaby": {},
+    "editProfile": "Редактировать профиль",
+    "@editProfile": {},
+    "babyNameRequired": "Имя *",
+    "@babyNameRequired": {},
+    "babyDobOptional": "Дата рождения (необязательно)",
+    "@babyDobOptional": {},
+    "babyBornOn": "Родился {date}",
+    "@babyBornOn": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "genderUnknown": "Не указано",
+    "@genderUnknown": {},
+    "genderBoy": "Мальчик",
+    "@genderBoy": {},
+    "genderGirl": "Девочка",
+    "@genderGirl": {},
+    "cannotDeleteOnlyProfile": "Нельзя удалить единственный профиль малыша",
+    "@cannotDeleteOnlyProfile": {},
+    "deleteProfileTitle": "Удалить {name}?",
+    "@deleteProfileTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "deleteProfileContent": "Все данные этого малыша будут удалены навсегда",
+    "@deleteProfileContent": {},
+    "graphsTitle": "Графики",
+    "@graphsTitle": {},
+    "graphsTabDaily": "Ежедневно",
+    "@graphsTabDaily": {},
+    "graphsTabGrowth": "Рост",
+    "@graphsTabGrowth": {},
+    "graphsTabHealth": "Здоровье",
+    "@graphsTabHealth": {},
+    "graphsTotalFeeds": "Всего кормлений",
+    "@graphsTotalFeeds": {},
+    "graphsAvgPerDay": "В среднем/день",
+    "@graphsAvgPerDay": {},
+    "graphsTotalDiapers": "Подгузников",
+    "@graphsTotalDiapers": {},
+    "graphsTotalMilk": "Всего молока/смеси",
+    "@graphsTotalMilk": {},
+    "graphsTotalSleep": "Всего сна",
+    "@graphsTotalSleep": {},
+    "graphsAvgSleep": "Сна в среднем/день",
+    "@graphsAvgSleep": {},
+    "graphsFeedsPerDay": "Кормлений в день",
+    "@graphsFeedsPerDay": {},
+    "graphsDiapersPerDay": "Подгузников в день",
+    "@graphsDiapersPerDay": {},
+    "graphsMilkPerDay": "Молока/смеси в день (мл)",
+    "@graphsMilkPerDay": {},
+    "graphsSleepPerDay": "Сна в день (часы)",
+    "@graphsSleepPerDay": {},
+    "graphsWeightOverTime": "Вес в динамике",
+    "@graphsWeightOverTime": {},
+    "graphsTempOverTime": "Температура в динамике",
+    "@graphsTempOverTime": {},
+    "graphsMaxLabel": "Макс: {value}",
+    "@graphsMaxLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsMinLabel": "Мин: {value}",
+    "@graphsMinLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsNoWeightData": "Пока нет записей веса\nЗапишите вес через записи дня",
+    "@graphsNoWeightData": {},
+    "graphsNoTempData": "Пока нет записей температуры\nЗапишите температуру через какой‑либо день",
+    "@graphsNoTempData": {},
+    "timeLabel": "Время",
+    "@timeLabel": {},
+    "noColourRecorded": "Цвет не записан",
+    "@noColourRecorded": {},
+    "noDetails": "Нет деталей",
+    "@noDetails": {},
+    "ageDay": "{count, plural, =1{1 день} few{{count} дня} many{{count} дней} other{{count} дня}}",
+    "@ageDay": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageMonth": "{count, plural, =1{1 месяц} few{{count} месяца} many{{count} месяцев} other{{count} месяца}}",
+    "@ageMonth": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageYearMonth": "{years} г. {months} мес.",
+    "@ageYearMonth": {
+        "placeholders": {
+            "years": {
+                "type": "int"
+            },
+            "months": {
+                "type": "int"
+            }
+        }
+    }
+}

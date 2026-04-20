@@ -1,0 +1,507 @@
+{
+    "@@locale": "ko",
+    "appTitle": "아기 기록장",
+    "@appTitle": {},
+    "navHome": "홈",
+    "@navHome": {},
+    "navGraphs": "그래프",
+    "@navGraphs": {},
+    "navSettings": "설정",
+    "@navSettings": {},
+    "actionCancel": "취소",
+    "@actionCancel": {},
+    "actionSave": "저장",
+    "@actionSave": {},
+    "actionUpdate": "수정",
+    "@actionUpdate": {},
+    "actionDelete": "삭제",
+    "@actionDelete": {},
+    "actionAdd": "추가",
+    "@actionAdd": {},
+    "actionEdit": "편집",
+    "@actionEdit": {},
+    "actionClose": "닫기",
+    "@actionClose": {},
+    "actionExport": "데이터 내보내기",
+    "@actionExport": {},
+    "actionAddDay": "날짜 추가",
+    "@actionAddDay": {},
+    "cannotUndo": "이 작업은 취소할 수 없습니다",
+    "@cannotUndo": {},
+    "noData": "데이터 없음",
+    "@noData": {},
+    "homeTitle": "기록",
+    "@homeTitle": {},
+    "feedsToday": "오늘 수유",
+    "@feedsToday": {},
+    "diapersToday": "오늘 기저귀",
+    "@diapersToday": {},
+    "sleepToday": "오늘 수면",
+    "@sleepToday": {},
+    "todayLabel": "오늘 — {date}",
+    "@todayLabel": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "eventCount": "{count, plural, =0{이벤트 없음} =1{1개 이벤트} other{{count}개 이벤트}}",
+    "@eventCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deleteDayTitle": "이 날짜를 삭제하시겠습니까?",
+    "@deleteDayTitle": {},
+    "deleteDayContent": "{date} 및 모든 항목을 삭제하시겠습니까? 이 작업은 취소할 수 없습니다",
+    "@deleteDayContent": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "noEntriesYet": "아직 기록이 없습니다",
+    "@noEntriesYet": {},
+    "addEntry": "기록 추가",
+    "@addEntry": {},
+    "deleteEntryTitle": "이 기록을 삭제하시겠습니까?",
+    "@deleteEntryTitle": {},
+    "entryTypeDiaper": "기저귀 갈기",
+    "@entryTypeDiaper": {},
+    "entryTypeFeeding": "수유",
+    "@entryTypeFeeding": {},
+    "entryTypeSleep": "수면",
+    "@entryTypeSleep": {},
+    "entryTypeTemperature": "체온",
+    "@entryTypeTemperature": {},
+    "entryTypeWeight": "체중",
+    "@entryTypeWeight": {},
+    "diaperPeePoo": "기저귀 — 소변 + 대변",
+    "@diaperPeePoo": {},
+    "diaperPee": "기저귀 — 소변만",
+    "@diaperPee": {},
+    "diaperPoo": "기저귀 — 대변만",
+    "@diaperPoo": {},
+    "diaperChange": "기저귀 갈기",
+    "@diaperChange": {},
+    "editDiaper": "기저귀 편집",
+    "@editDiaper": {},
+    "diaperContents": "내용물",
+    "@diaperContents": {},
+    "diaperNone": "없음",
+    "@diaperNone": {},
+    "diaperPeeLabel": "소변",
+    "@diaperPeeLabel": {},
+    "diaperPooLabel": "대변",
+    "@diaperPooLabel": {},
+    "diaperBoth": "둘 다",
+    "@diaperBoth": {},
+    "diaperConsistency": "형태",
+    "@diaperConsistency": {},
+    "consistencyHard": "딱딱함 / 알갱이",
+    "@consistencyHard": {},
+    "consistencyHardHint": "변비",
+    "@consistencyHardHint": {},
+    "consistencyFirm": "단단함",
+    "@consistencyFirm": {},
+    "consistencyFirmHint": "약간 단단함",
+    "@consistencyFirmHint": {},
+    "consistencyNormal": "보통",
+    "@consistencyNormal": {},
+    "consistencyNormalHint": "건강함",
+    "@consistencyNormalHint": {},
+    "consistencySoft": "부드러움",
+    "@consistencySoft": {},
+    "consistencySoftHint": "약간 부드러움",
+    "@consistencySoftHint": {},
+    "consistencyLoose": "묽음 / 반고체",
+    "@consistencyLoose": {},
+    "consistencyLooseHint": "관찰 필요",
+    "@consistencyLooseHint": {},
+    "consistencyWatery": "물 같음",
+    "@consistencyWatery": {},
+    "consistencyWateryHint": "설사",
+    "@consistencyWateryHint": {},
+    "warnConstipation": "변비 징후 — 주의 깊게 관찰",
+    "@warnConstipation": {},
+    "warnDiarrhea": "설사 징후 — 주의 깊게 관찰",
+    "@warnDiarrhea": {},
+    "pooColourLabel": "색상 (터치하여 선택)",
+    "@pooColourLabel": {},
+    "pooColourAbnormal": "⚠️ 비정상 (창백함)",
+    "@pooColourAbnormal": {},
+    "pooColourNormal": "✅ 정상",
+    "@pooColourNormal": {},
+    "pooColourSelected": "선택됨: {label}",
+    "@pooColourSelected": {
+        "placeholders": {
+            "label": {
+                "type": "String"
+            }
+        }
+    },
+    "diaperSize": "기저귀 사이즈",
+    "@diaperSize": {},
+    "diaperBrand": "브랜드",
+    "@diaperBrand": {},
+    "diaperBrandCustomLabel": "브랜드명",
+    "@diaperBrandCustomLabel": {},
+    "rashPresent": "기저귀 발진 있음",
+    "@rashPresent": {},
+    "rashPresentHint": "발적, 자극 또는 기저귀 발진",
+    "@rashPresentHint": {},
+    "rashCreamUsed": "크림 사용함",
+    "@rashCreamUsed": {},
+    "rashCreamCustomLabel": "크림 / 연고 이름",
+    "@rashCreamCustomLabel": {},
+    "rashFollowUpTitle": "⚠️ 발진 후속 확인",
+    "@rashFollowUpTitle": {},
+    "rashFollowUpQuestion": "마지막 기저귀에 발진이 기록되었습니다. 호전되었나요?",
+    "@rashFollowUpQuestion": {},
+    "rashImproved": "네, 호전됨",
+    "@rashImproved": {},
+    "rashNoChange": "변화 없음 / 악화됨",
+    "@rashNoChange": {},
+    "rashRecorded": "발진 기록됨",
+    "@rashRecorded": {},
+    "addFeeding": "수유 추가",
+    "@addFeeding": {},
+    "editFeeding": "수유 편집",
+    "@editFeeding": {},
+    "feedLabel": "{number}번째 수유",
+    "@feedLabel": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "feedModeBottle": "젖병",
+    "@feedModeBottle": {},
+    "feedModeSuckle": "모유 직수",
+    "@feedModeSuckle": {},
+    "feedAmountMl": "양 (ml)",
+    "@feedAmountMl": {},
+    "feedType": "종류",
+    "@feedType": {},
+    "feedBreastMilk": "모유",
+    "@feedBreastMilk": {},
+    "feedFormula": "분유",
+    "@feedFormula": {},
+    "feedFormulaBrand": "분유 브랜드",
+    "@feedFormulaBrand": {},
+    "feedFormulaBrandCustom": "브랜드명",
+    "@feedFormulaBrandCustom": {},
+    "feedDurationMinutes": "수유 시간 (분)",
+    "@feedDurationMinutes": {},
+    "addAnotherFeed": "다른 수유 추가",
+    "@addAnotherFeed": {},
+    "bottleBreastMilk": "젖병 — 모유",
+    "@bottleBreastMilk": {},
+    "bottleFormula": "젖병 — 분유",
+    "@bottleFormula": {},
+    "breastfeedingSuckle": "모유 수유 (직수)",
+    "@breastfeedingSuckle": {},
+    "logSleep": "수면 기록",
+    "@logSleep": {},
+    "editSleep": "수면 편집",
+    "@editSleep": {},
+    "sleepStart": "잠든 시간",
+    "@sleepStart": {},
+    "sleepWakeUp": "깬 시간",
+    "@sleepWakeUp": {},
+    "sleepDuration": "수면 시간: {duration}",
+    "@sleepDuration": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "sleepInvalidTimes": "유효하지 않은 시간",
+    "@sleepInvalidTimes": {},
+    "sleepWrapsNextDay": "(다음 날로 이어짐)",
+    "@sleepWrapsNextDay": {},
+    "sleepNotes": "메모 (선택사항)",
+    "@sleepNotes": {},
+    "sleepNotesHint": "예: 불안함, 잠시 깨어 있었음...",
+    "@sleepNotesHint": {},
+    "sleepNoNotes": "메모 없음",
+    "@sleepNoNotes": {},
+    "sleepHoursShort": "{h}시간 {m}분",
+    "@sleepHoursShort": {
+        "placeholders": {
+            "h": {
+                "type": "int"
+            },
+            "m": {
+                "type": "int"
+            }
+        }
+    },
+    "logTemperature": "체온 기록",
+    "@logTemperature": {},
+    "editTemperature": "체온 편집",
+    "@editTemperature": {},
+    "temperatureLabel": "체온",
+    "@temperatureLabel": {},
+    "tempSeverityLow": "체온 낮음 — 관찰",
+    "@tempSeverityLow": {},
+    "tempSeverityNormal": "정상 체온",
+    "@tempSeverityNormal": {},
+    "tempSeverityElevated": "약간 높음 — 주의 깊게 관찰",
+    "@tempSeverityElevated": {},
+    "tempSeverityFever": "열 — 의사와 상담",
+    "@tempSeverityFever": {},
+    "tempReference": "체온 참고",
+    "@tempReference": {},
+    "tempRefLow": "< 36.0 °C / 96.8 °F",
+    "@tempRefLow": {},
+    "tempRefNormal": "36.0 – 37.4 °C / 96.8 – 99.3 °F",
+    "@tempRefNormal": {},
+    "tempRefElevated": "37.5 – 38.4 °C / 99.5 – 101.1 °F",
+    "@tempRefElevated": {},
+    "tempRefFever": "≥ 38.5 °C / 101.3 °F",
+    "@tempRefFever": {},
+    "tempFeverWarning": "⚠️ 3개월 미만 영아의 발열 시 항상 소아과 의사와 상담하세요",
+    "@tempFeverWarning": {},
+    "tempLow": "낮음",
+    "@tempLow": {},
+    "tempNormal": "정상",
+    "@tempNormal": {},
+    "tempElevated": "높음",
+    "@tempElevated": {},
+    "tempFever": "열",
+    "@tempFever": {},
+    "tempLatest": "최근 체온",
+    "@tempLatest": {},
+    "tempSummary": "체온 요약",
+    "@tempSummary": {},
+    "tempFeverThreshold": "발열 기준",
+    "@tempFeverThreshold": {},
+    "tempDays": "{count, plural, =1{1일} other{{count}일}}",
+    "@tempDays": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "logWeight": "체중 기록",
+    "@logWeight": {},
+    "editWeight": "체중 편집",
+    "@editWeight": {},
+    "weightLabel": "체중",
+    "@weightLabel": {},
+    "weightGain": "+{amount} 증가",
+    "@weightGain": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLoss": "−{amount} 감소",
+    "@weightLoss": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightPrevious": "이전: {weight}",
+    "@weightPrevious": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLastRecorded": "마지막 기록: {weight} ({date})",
+    "@weightLastRecorded": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            },
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLatest": "최근 체중",
+    "@weightLatest": {},
+    "weightOverPeriod": "{sign}{amount} (기간 내)",
+    "@weightOverPeriod": {
+        "placeholders": {
+            "sign": {
+                "type": "String"
+            },
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "settingsTitle": "설정",
+    "@settingsTitle": {},
+    "settingsAppearance": "화면 테마",
+    "@settingsAppearance": {},
+    "settingsDarkMode": "다크 모드",
+    "@settingsDarkMode": {},
+    "settingsDarkActive": "다크 테마 활성화됨",
+    "@settingsDarkActive": {},
+    "settingsLightActive": "라이트 테마 활성화됨",
+    "@settingsLightActive": {},
+    "settingsUnits": "단위",
+    "@settingsUnits": {},
+    "settingsWeightUnit": "체중 단위",
+    "@settingsWeightUnit": {},
+    "settingsTempUnit": "체온 단위",
+    "@settingsTempUnit": {},
+    "settingsLanguage": "언어",
+    "@settingsLanguage": {},
+    "settingsTips": "팁",
+    "@settingsTips": {},
+    "tipSwitchBabies": "아기 전환",
+    "@tipSwitchBabies": {},
+    "tipSwitchBabiesDesc": "상단의 아기 아바타를 눌러 아기를 전환하거나 추가하세요",
+    "@tipSwitchBabiesDesc": {},
+    "tipSwipeDelete": "왼쪽으로 밀어서 삭제",
+    "@tipSwipeDelete": {},
+    "tipSwipeDeleteDesc": "날짜 카드 및 개별 항목에 적용됩니다",
+    "@tipSwipeDeleteDesc": {},
+    "tipMultipleFeeds": "여러 번의 수유 기록",
+    "@tipMultipleFeeds": {},
+    "tipMultipleFeedsDesc": "수유 양식에서 '다른 수유 추가'를 눌러 모유 직수와 젖병을 한 번에 기록하세요",
+    "@tipMultipleFeedsDesc": {},
+    "tipExportData": "데이터 내보내기",
+    "@tipExportData": {},
+    "tipExportDataDesc": "홈의 공유 아이콘을 사용하여 모든 데이터를 JSON으로 내보내세요",
+    "@tipExportDataDesc": {},
+    "tipTapToEdit": "항목을 탭하여 편집하세요",
+    "@tipTapToEdit": {},
+    "babiesTitle": "아기들",
+    "@babiesTitle": {},
+    "addBaby": "아기 추가",
+    "@addBaby": {},
+    "editProfile": "프로필 편집",
+    "@editProfile": {},
+    "babyNameRequired": "이름 *",
+    "@babyNameRequired": {},
+    "babyDobOptional": "생년월일 (선택사항)",
+    "@babyDobOptional": {},
+    "babyBornOn": "{date} 출생",
+    "@babyBornOn": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "genderUnknown": "선택 안함",
+    "@genderUnknown": {},
+    "genderBoy": "남아",
+    "@genderBoy": {},
+    "genderGirl": "여아",
+    "@genderGirl": {},
+    "cannotDeleteOnlyProfile": "유일한 아기 프로필은 삭제할 수 없습니다",
+    "@cannotDeleteOnlyProfile": {},
+    "deleteProfileTitle": "{name} 님을 삭제하시겠습니까?",
+    "@deleteProfileTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "deleteProfileContent": "이 아기의 모든 데이터가 영구 삭제됩니다",
+    "@deleteProfileContent": {},
+    "graphsTitle": "그래프",
+    "@graphsTitle": {},
+    "graphsTabDaily": "일간",
+    "@graphsTabDaily": {},
+    "graphsTabGrowth": "성장",
+    "@graphsTabGrowth": {},
+    "graphsTabHealth": "건강",
+    "@graphsTabHealth": {},
+    "graphsTotalFeeds": "총 수유 횟수",
+    "@graphsTotalFeeds": {},
+    "graphsAvgPerDay": "일평균",
+    "@graphsAvgPerDay": {},
+    "graphsTotalDiapers": "기저귀 횟수",
+    "@graphsTotalDiapers": {},
+    "graphsTotalMilk": "총 수유량",
+    "@graphsTotalMilk": {},
+    "graphsTotalSleep": "총 수면 시간",
+    "@graphsTotalSleep": {},
+    "graphsAvgSleep": "일평균 수면",
+    "@graphsAvgSleep": {},
+    "graphsFeedsPerDay": "일일 수유 횟수",
+    "@graphsFeedsPerDay": {},
+    "graphsDiapersPerDay": "일일 기저귀 횟수",
+    "@graphsDiapersPerDay": {},
+    "graphsMilkPerDay": "일일 수유량 (ml)",
+    "@graphsMilkPerDay": {},
+    "graphsSleepPerDay": "일일 수면 시간 (시간)",
+    "@graphsSleepPerDay": {},
+    "graphsWeightOverTime": "체중 변화 추이",
+    "@graphsWeightOverTime": {},
+    "graphsTempOverTime": "체온 변화 추이",
+    "@graphsTempOverTime": {},
+    "graphsMaxLabel": "최대: {value}",
+    "@graphsMaxLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsMinLabel": "최소: {value}",
+    "@graphsMinLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsNoWeightData": "아직 체중 기록이 없습니다\n날짜 항목에서 체중을 기록하세요",
+    "@graphsNoWeightData": {},
+    "graphsNoTempData": "아직 체온 기록이 없습니다\n날짜에서 체온을 기록하세요",
+    "@graphsNoTempData": {},
+    "timeLabel": "시간",
+    "@timeLabel": {},
+    "noColourRecorded": "색상 기록 없음",
+    "@noColourRecorded": {},
+    "noDetails": "세부 정보 없음",
+    "@noDetails": {},
+    "ageDay": "{count, plural, =1{1일} other{{count}일}}",
+    "@ageDay": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageMonth": "{count, plural, =1{1개월} other{{count}개월}}",
+    "@ageMonth": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageYearMonth": "{years}년 {months}개월",
+    "@ageYearMonth": {
+        "placeholders": {
+            "years": {
+                "type": "int"
+            },
+            "months": {
+                "type": "int"
+            }
+        }
+    }
+}

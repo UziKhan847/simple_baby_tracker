@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/baby_profile.dart';
-import 'package:simple_baby_tracker/homepage.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/pages/graphs.dart';
+import 'package:simple_baby_tracker/pages/homepage.dart';
+import 'package:simple_baby_tracker/pages/milestones.dart';
 import 'package:simple_baby_tracker/pages/settings.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
@@ -37,7 +39,6 @@ class _AppShellState extends State<AppShell> {
 
   Future<void> _init() async {
     await Storage.migrateIfNeeded();
-
     _profiles = await Storage.loadProfiles();
 
     if (_profiles.isEmpty) {
@@ -73,9 +74,10 @@ class _AppShellState extends State<AppShell> {
     await _loadData();
   }
 
-  // ─── Profile dialog ───────────────────────────────────────────────────────
+  // ─── Profile dialog ────────────────────────────────────────────────────────
 
   Future<BabyProfile?> _showProfileDialog(BabyProfile? existing) async {
+    final l = AppLocalizations.of(context)!;
     final nameCtrl = TextEditingController(text: existing?.name ?? '');
     DateTime? bd = existing?.birthDate;
     String? gender = existing?.gender;
@@ -84,16 +86,16 @@ class _AppShellState extends State<AppShell> {
       context: context,
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, set) => AlertDialog(
-          title: Text(existing == null ? 'Add baby' : 'Edit profile'),
+          title: Text(existing == null ? l.addBaby : l.editProfile),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: nameCtrl,
                 textCapitalization: TextCapitalization.words,
-                decoration: const InputDecoration(
-                  labelText: 'Name *',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: l.babyNameRequired,
+                  border: const OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 12),
@@ -102,8 +104,8 @@ class _AppShellState extends State<AppShell> {
                 dense: true,
                 title: Text(
                   bd == null
-                      ? 'Date of birth (optional)'
-                      : 'Born ${bd!.day}/${bd!.month}/${bd!.year}',
+                      ? l.babyDobOptional
+                      : l.babyBornOn('${bd!.day}/${bd!.month}/${bd!.year}'),
                 ),
                 trailing: const Icon(Icons.calendar_today, size: 18),
                 onTap: () async {
@@ -119,10 +121,10 @@ class _AppShellState extends State<AppShell> {
               const SizedBox(height: 8),
               SegmentedButton<String?>(
                 emptySelectionAllowed: true,
-                segments: const [
-                  ButtonSegment(value: null, label: Text('Unknown')),
-                  ButtonSegment(value: 'male', label: Text('Boy')),
-                  ButtonSegment(value: 'female', label: Text('Girl')),
+                segments: [
+                  ButtonSegment(value: null, label: Text(l.genderUnknown)),
+                  ButtonSegment(value: 'male', label: Text(l.genderBoy)),
+                  ButtonSegment(value: 'female', label: Text(l.genderGirl)),
                 ],
                 selected: {gender},
                 onSelectionChanged: (s) => set(() => gender = s.first),
@@ -132,7 +134,7 @@ class _AppShellState extends State<AppShell> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child: const Text('Cancel'),
+              child: Text(l.actionCancel),
             ),
             FilledButton(
               onPressed: () {
@@ -147,7 +149,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                 );
               },
-              child: const Text('Save'),
+              child: Text(l.actionSave),
             ),
           ],
         ),
@@ -180,33 +182,35 @@ class _AppShellState extends State<AppShell> {
 
   Future<void> _deleteProfile(BabyProfile p) async {
     Navigator.pop(context);
+    final l = AppLocalizations.of(context)!;
+
     if (_profiles.length == 1) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Can't delete the only baby profile.")),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l.cannotDeleteOnlyProfile)));
       }
       return;
     }
+
     final ok = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text('Delete ${p.name}?'),
-        content: const Text(
-          'All data for this baby will be permanently deleted.',
-        ),
+        title: Text(l.deleteProfileTitle(p.name)),
+        content: Text(l.deleteProfileContent),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(l.actionCancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Delete'),
+            child: Text(l.actionDelete),
           ),
         ],
       ),
     );
+
     if (ok == true) {
       await Storage.deleteData(p.id);
       _profiles.removeWhere((x) => x.id == p.id);
@@ -216,6 +220,8 @@ class _AppShellState extends State<AppShell> {
   }
 
   void _showProfileSheet() {
+    final l = AppLocalizations.of(context)!;
+
     showModalBottomSheet(
       context: context,
       builder: (_) => SafeArea(
@@ -236,14 +242,14 @@ class _AppShellState extends State<AppShell> {
               child: Row(
                 children: [
                   Text(
-                    'Babies',
+                    l.babiesTitle,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const Spacer(),
                   FilledButton.icon(
                     onPressed: _addProfile,
                     icon: const Icon(Icons.add, size: 16),
-                    label: const Text('Add baby'),
+                    label: Text(l.addBaby),
                   ),
                 ],
               ),
@@ -308,11 +314,14 @@ class _AppShellState extends State<AppShell> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+
     if (_loading) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
     final profile = _activeProfile;
+    final activeId = _activeId ?? '';
 
     return Scaffold(
       appBar: AppBar(
@@ -378,33 +387,39 @@ class _AppShellState extends State<AppShell> {
         index: _currentIndex,
         children: [
           HomePage(
-            babyId: _activeId ?? '',
+            babyId: activeId,
             data: _data,
             onDataChanged: _onDataChanged,
             onReload: _loadData,
           ),
           GraphsPage(data: _data, profile: profile),
+          MilestonesPage(babyId: activeId, babyName: profile?.name ?? 'Baby'),
           const SettingsPage(),
         ],
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,
         onDestinationSelected: (i) => setState(() => _currentIndex = i),
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: 'Home',
+            icon: const Icon(Icons.home_outlined),
+            selectedIcon: const Icon(Icons.home),
+            label: l.navHome,
           ),
           NavigationDestination(
-            icon: Icon(Icons.bar_chart_outlined),
-            selectedIcon: Icon(Icons.bar_chart),
-            label: 'Graphs',
+            icon: const Icon(Icons.bar_chart_outlined),
+            selectedIcon: const Icon(Icons.bar_chart),
+            label: l.navGraphs,
           ),
           NavigationDestination(
-            icon: Icon(Icons.settings_outlined),
-            selectedIcon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: const Icon(Icons.star_outline),
+            selectedIcon: const Icon(Icons.star),
+            label: 'Milestones',
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.settings_outlined),
+            selectedIcon: const Icon(Icons.settings),
+            label: l.navSettings,
           ),
         ],
       ),

@@ -23,6 +23,9 @@ DateTime dateFromKey(String key) {
 
 String fullDate(DateTime d) => DateFormat('MMMM d, yyyy').format(d);
 
+/// Month name only, locale-aware (e.g. "January" / "janvier" / "يناير").
+String fullMonthName(DateTime d) => DateFormat('MMMM').format(d);
+
 String formatTime(DateTime t) =>
     '${t.hour.toString().padLeft(2, '0')}:'
     '${t.minute.toString().padLeft(2, '0')}';

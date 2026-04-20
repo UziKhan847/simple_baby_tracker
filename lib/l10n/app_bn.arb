@@ -1,0 +1,507 @@
+{
+    "@@locale": "bn",
+    "appTitle": "বেবি ট্র্যাকার",
+    "@appTitle": {},
+    "navHome": "হোম",
+    "@navHome": {},
+    "navGraphs": "গ্রাফ",
+    "@navGraphs": {},
+    "navSettings": "সেটিংস",
+    "@navSettings": {},
+    "actionCancel": "বাতিল করুন",
+    "@actionCancel": {},
+    "actionSave": "সংরক্ষণ করুন",
+    "@actionSave": {},
+    "actionUpdate": "আপডেট করুন",
+    "@actionUpdate": {},
+    "actionDelete": "মুছে ফেলুন",
+    "@actionDelete": {},
+    "actionAdd": "যোগ করুন",
+    "@actionAdd": {},
+    "actionEdit": "সম্পাদনা করুন",
+    "@actionEdit": {},
+    "actionClose": "বন্ধ করুন",
+    "@actionClose": {},
+    "actionExport": "ডেটা এক্সপোর্ট করুন",
+    "@actionExport": {},
+    "actionAddDay": "দিন যোগ করুন",
+    "@actionAddDay": {},
+    "cannotUndo": "এটি পূর্বাবস্থায় ফেরানো যাবে না",
+    "@cannotUndo": {},
+    "noData": "কোনো ডেটা নেই",
+    "@noData": {},
+    "homeTitle": "ট্র্যাকার",
+    "@homeTitle": {},
+    "feedsToday": "আজকের খাওয়ানো",
+    "@feedsToday": {},
+    "diapersToday": "আজকের ডায়াপার",
+    "@diapersToday": {},
+    "sleepToday": "আজকের ঘুম",
+    "@sleepToday": {},
+    "todayLabel": "আজ — {date}",
+    "@todayLabel": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "eventCount": "{count, plural, =0{কোনো ঘটনা নেই} =1{1টি ঘটনা} other{{count}টি ঘটনা}}",
+    "@eventCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deleteDayTitle": "দিনটি মুছবেন?",
+    "@deleteDayTitle": {},
+    "deleteDayContent": "{date} এবং এর সমস্ত এন্ট্রি মুছবেন? এটি পূর্বাবস্থায় ফেরানো যাবে না",
+    "@deleteDayContent": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "noEntriesYet": "এখনও কোনো এন্ট্রি নেই",
+    "@noEntriesYet": {},
+    "addEntry": "এন্ট্রি যোগ করুন",
+    "@addEntry": {},
+    "deleteEntryTitle": "এন্ট্রি মুছবেন?",
+    "@deleteEntryTitle": {},
+    "entryTypeDiaper": "ডায়াপার পরিবর্তন",
+    "@entryTypeDiaper": {},
+    "entryTypeFeeding": "খাওয়ানো",
+    "@entryTypeFeeding": {},
+    "entryTypeSleep": "ঘুম",
+    "@entryTypeSleep": {},
+    "entryTypeTemperature": "তাপমাত্রা",
+    "@entryTypeTemperature": {},
+    "entryTypeWeight": "ওজন",
+    "@entryTypeWeight": {},
+    "diaperPeePoo": "ডায়াপার — প্রস্রাব + পায়খানা",
+    "@diaperPeePoo": {},
+    "diaperPee": "ডায়াপার — শুধু প্রস্রাব",
+    "@diaperPee": {},
+    "diaperPoo": "ডায়াপার — শুধু পায়খানা",
+    "@diaperPoo": {},
+    "diaperChange": "ডায়াপার পরিবর্তন",
+    "@diaperChange": {},
+    "editDiaper": "ডায়াপার সম্পাদনা করুন",
+    "@editDiaper": {},
+    "diaperContents": "বিষয়বস্তু",
+    "@diaperContents": {},
+    "diaperNone": "কিছু না",
+    "@diaperNone": {},
+    "diaperPeeLabel": "প্রস্রাব",
+    "@diaperPeeLabel": {},
+    "diaperPooLabel": "পায়খানা",
+    "@diaperPooLabel": {},
+    "diaperBoth": "উভয়",
+    "@diaperBoth": {},
+    "diaperConsistency": "গঠন",
+    "@diaperConsistency": {},
+    "consistencyHard": "শক্ত / দানাদার",
+    "@consistencyHard": {},
+    "consistencyHardHint": "কোষ্ঠকাঠিন্য",
+    "@consistencyHardHint": {},
+    "consistencyFirm": "শক্ত (নরম নয়)",
+    "@consistencyFirm": {},
+    "consistencyFirmHint": "হালকা শক্ত",
+    "@consistencyFirmHint": {},
+    "consistencyNormal": "স্বাভাবিক",
+    "@consistencyNormal": {},
+    "consistencyNormalHint": "স্বাস্থ্যকর",
+    "@consistencyNormalHint": {},
+    "consistencySoft": "নরম",
+    "@consistencySoft": {},
+    "consistencySoftHint": "হালকা নরম",
+    "@consistencySoftHint": {},
+    "consistencyLoose": "পাতলা / মাড়ানো",
+    "@consistencyLoose": {},
+    "consistencyLooseHint": "নজর রাখুন",
+    "@consistencyLooseHint": {},
+    "consistencyWatery": "পানির মতো",
+    "@consistencyWatery": {},
+    "consistencyWateryHint": "ডায়রিয়া",
+    "@consistencyWateryHint": {},
+    "warnConstipation": "কোষ্ঠকাঠিন্যের লক্ষণ — ঘনিষ্ঠভাবে পর্যবেক্ষণ করুন",
+    "@warnConstipation": {},
+    "warnDiarrhea": "ডায়রিয়ার লক্ষণ — ঘনিষ্ঠভাবে পর্যবেক্ষণ করুন",
+    "@warnDiarrhea": {},
+    "pooColourLabel": "রং (নির্বাচন করতে ট্যাপ করুন)",
+    "@pooColourLabel": {},
+    "pooColourAbnormal": "⚠️ অস্বাভাবিক (ফ্যাকাশে)",
+    "@pooColourAbnormal": {},
+    "pooColourNormal": "✅ স্বাভাবিক",
+    "@pooColourNormal": {},
+    "pooColourSelected": "নির্বাচিত: {label}",
+    "@pooColourSelected": {
+        "placeholders": {
+            "label": {
+                "type": "String"
+            }
+        }
+    },
+    "diaperSize": "ডায়াপারের সাইজ",
+    "@diaperSize": {},
+    "diaperBrand": "ব্র্যান্ড",
+    "@diaperBrand": {},
+    "diaperBrandCustomLabel": "ব্র্যান্ডের নাম",
+    "@diaperBrandCustomLabel": {},
+    "rashPresent": "ডায়াপার র্যাশ আছে",
+    "@rashPresent": {},
+    "rashPresentHint": "লালচেভাব, জ্বালা বা ডায়াপার র্যাশ",
+    "@rashPresentHint": {},
+    "rashCreamUsed": "ক্রিম ব্যবহার করা হয়েছে",
+    "@rashCreamUsed": {},
+    "rashCreamCustomLabel": "ক্রিম / মলমের নাম",
+    "@rashCreamCustomLabel": {},
+    "rashFollowUpTitle": "⚠️ র্যাশের ফলোআপ",
+    "@rashFollowUpTitle": {},
+    "rashFollowUpQuestion": "শেষ ডায়াপারে র্যাশ রেকর্ড করা হয়েছিল। কি উন্নতি হয়েছে?",
+    "@rashFollowUpQuestion": {},
+    "rashImproved": "হ্যাঁ, উন্নতি হয়েছে",
+    "@rashImproved": {},
+    "rashNoChange": "কোনো পরিবর্তন নাই / খারাপ হয়েছে",
+    "@rashNoChange": {},
+    "rashRecorded": "র্যাশ রেকর্ড করা হয়েছে",
+    "@rashRecorded": {},
+    "addFeeding": "খাওয়ানো যোগ করুন",
+    "@addFeeding": {},
+    "editFeeding": "খাওয়ানো সম্পাদনা করুন",
+    "@editFeeding": {},
+    "feedLabel": "খাওয়ানো {number}",
+    "@feedLabel": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "feedModeBottle": "বোতল",
+    "@feedModeBottle": {},
+    "feedModeSuckle": "বুকের দুধ",
+    "@feedModeSuckle": {},
+    "feedAmountMl": "পরিমাণ (মিলি)",
+    "@feedAmountMl": {},
+    "feedType": "ধরন",
+    "@feedType": {},
+    "feedBreastMilk": "মায়ের দুধ",
+    "@feedBreastMilk": {},
+    "feedFormula": "ফর্মুলা দুধ",
+    "@feedFormula": {},
+    "feedFormulaBrand": "ফর্মুলার ব্র্যান্ড",
+    "@feedFormulaBrand": {},
+    "feedFormulaBrandCustom": "ব্র্যান্ডের নাম",
+    "@feedFormulaBrandCustom": {},
+    "feedDurationMinutes": "সময়কাল (মিনিট)",
+    "@feedDurationMinutes": {},
+    "addAnotherFeed": "আরেকটি খাওয়ানো যোগ করুন",
+    "@addAnotherFeed": {},
+    "bottleBreastMilk": "বোতল — মায়ের দুধ",
+    "@bottleBreastMilk": {},
+    "bottleFormula": "বোতল — ফর্মুলা",
+    "@bottleFormula": {},
+    "breastfeedingSuckle": "বুকের দুধ খাওয়ানো",
+    "@breastfeedingSuckle": {},
+    "logSleep": "ঘুম লগ করুন",
+    "@logSleep": {},
+    "editSleep": "ঘুম সম্পাদনা করুন",
+    "@editSleep": {},
+    "sleepStart": "ঘুম শুরুর সময়",
+    "@sleepStart": {},
+    "sleepWakeUp": "জাগরণের সময়",
+    "@sleepWakeUp": {},
+    "sleepDuration": "সময়কাল: {duration}",
+    "@sleepDuration": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "sleepInvalidTimes": "অবৈধ সময়",
+    "@sleepInvalidTimes": {},
+    "sleepWrapsNextDay": "(পরের দিন শেষ হয়)",
+    "@sleepWrapsNextDay": {},
+    "sleepNotes": "নোট (ঐচ্ছিক)",
+    "@sleepNotes": {},
+    "sleepNotesHint": "উদা: অস্থির, কিছুক্ষণ জেগেছিল...",
+    "@sleepNotesHint": {},
+    "sleepNoNotes": "কোনো নোট নেই",
+    "@sleepNoNotes": {},
+    "sleepHoursShort": "{h}ঘ {m}মি",
+    "@sleepHoursShort": {
+        "placeholders": {
+            "h": {
+                "type": "int"
+            },
+            "m": {
+                "type": "int"
+            }
+        }
+    },
+    "logTemperature": "তাপমাত্রা লগ করুন",
+    "@logTemperature": {},
+    "editTemperature": "তাপমাত্রা সম্পাদনা করুন",
+    "@editTemperature": {},
+    "temperatureLabel": "তাপমাত্রা",
+    "@temperatureLabel": {},
+    "tempSeverityLow": "তাপমাত্রা কম — পর্যবেক্ষণ করুন",
+    "@tempSeverityLow": {},
+    "tempSeverityNormal": "স্বাভাবিক তাপমাত্রা",
+    "@tempSeverityNormal": {},
+    "tempSeverityElevated": "সামান্য বেড়েছে — ঘনিষ্ঠভাবে পর্যবেক্ষণ করুন",
+    "@tempSeverityElevated": {},
+    "tempSeverityFever": "জ্বর — ডাক্তারের পরামর্শ নিন",
+    "@tempSeverityFever": {},
+    "tempReference": "তাপমাত্রার রেফারেন্স",
+    "@tempReference": {},
+    "tempRefLow": "< 36.0 °C / 96.8 °F",
+    "@tempRefLow": {},
+    "tempRefNormal": "36.0 – 37.4 °C / 96.8 – 99.3 °F",
+    "@tempRefNormal": {},
+    "tempRefElevated": "37.5 – 38.4 °C / 99.5 – 101.1 °F",
+    "@tempRefElevated": {},
+    "tempRefFever": "≥ 38.5 °C / 101.3 °F",
+    "@tempRefFever": {},
+    "tempFeverWarning": "⚠️ ৩ মাসের কম বয়সী শিশুর জ্বরে সর্বদা শিশু বিশেষজ্ঞের পরামর্শ নিন",
+    "@tempFeverWarning": {},
+    "tempLow": "কম",
+    "@tempLow": {},
+    "tempNormal": "স্বাভাবিক",
+    "@tempNormal": {},
+    "tempElevated": "বেড়েছে",
+    "@tempElevated": {},
+    "tempFever": "জ্বর",
+    "@tempFever": {},
+    "tempLatest": "সর্বশেষ তাপমাত্রা",
+    "@tempLatest": {},
+    "tempSummary": "তাপমাত্রার সারাংশ",
+    "@tempSummary": {},
+    "tempFeverThreshold": "জ্বরের সীমারেখা",
+    "@tempFeverThreshold": {},
+    "tempDays": "{count, plural, =1{1 দিন} other{{count} দিন}}",
+    "@tempDays": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "logWeight": "ওজন লগ করুন",
+    "@logWeight": {},
+    "editWeight": "ওজন সম্পাদনা করুন",
+    "@editWeight": {},
+    "weightLabel": "ওজন",
+    "@weightLabel": {},
+    "weightGain": "+{amount} বেড়েছে",
+    "@weightGain": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLoss": "−{amount} কমেছে",
+    "@weightLoss": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightPrevious": "আগের: {weight}",
+    "@weightPrevious": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLastRecorded": "শেষ রেকর্ড: {weight} ({date})",
+    "@weightLastRecorded": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            },
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLatest": "সর্বশেষ ওজন",
+    "@weightLatest": {},
+    "weightOverPeriod": "{sign}{amount} এই সময়ের মধ্যে",
+    "@weightOverPeriod": {
+        "placeholders": {
+            "sign": {
+                "type": "String"
+            },
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "settingsTitle": "সেটিংস",
+    "@settingsTitle": {},
+    "settingsAppearance": "চেহারা",
+    "@settingsAppearance": {},
+    "settingsDarkMode": "ডার্ক মোড",
+    "@settingsDarkMode": {},
+    "settingsDarkActive": "ডার্ক থিম সক্রিয়",
+    "@settingsDarkActive": {},
+    "settingsLightActive": "লাইট থিম সক্রিয়",
+    "@settingsLightActive": {},
+    "settingsUnits": "একক",
+    "@settingsUnits": {},
+    "settingsWeightUnit": "ওজনের একক",
+    "@settingsWeightUnit": {},
+    "settingsTempUnit": "তাপমাত্রার একক",
+    "@settingsTempUnit": {},
+    "settingsLanguage": "ভাষা",
+    "@settingsLanguage": {},
+    "settingsTips": "টিপস",
+    "@settingsTips": {},
+    "tipSwitchBabies": "বাচ্চা পরিবর্তন করুন",
+    "@tipSwitchBabies": {},
+    "tipSwitchBabiesDesc": "বাচ্চা পরিবর্তন বা নতুন প্রোফাইল যোগ করতে উপরের বাচ্চার অবতার ট্যাপ করুন",
+    "@tipSwitchBabiesDesc": {},
+    "tipSwipeDelete": "মুছতে বামে সোয়াইপ করুন",
+    "@tipSwipeDelete": {},
+    "tipSwipeDeleteDesc": "দিনের কার্ড এবং পৃথক এন্ট্রিতে কাজ করে",
+    "@tipSwipeDeleteDesc": {},
+    "tipMultipleFeeds": "একসাথে একাধিক খাওয়ানো লগ করুন",
+    "@tipMultipleFeeds": {},
+    "tipMultipleFeedsDesc": "খাওয়ানোর ফর্মে, \"আরেকটি খাওয়ানো যোগ করুন\" ট্যাপ করুন",
+    "@tipMultipleFeedsDesc": {},
+    "tipExportData": "ডেটা এক্সপোর্ট করুন",
+    "@tipExportData": {},
+    "tipExportDataDesc": "হোমে শেয়ার আইকন ব্যবহার করুন",
+    "@tipExportDataDesc": {},
+    "tipTapToEdit": "সম্পাদনা করতে যেকোনো এন্ট্রি ট্যাপ করুন",
+    "@tipTapToEdit": {},
+    "babiesTitle": "বাচ্চারা",
+    "@babiesTitle": {},
+    "addBaby": "বাচ্চা যোগ করুন",
+    "@addBaby": {},
+    "editProfile": "প্রোফাইল সম্পাদনা করুন",
+    "@editProfile": {},
+    "babyNameRequired": "নাম *",
+    "@babyNameRequired": {},
+    "babyDobOptional": "জন্ম তারিখ (ঐচ্ছিক)",
+    "@babyDobOptional": {},
+    "babyBornOn": "জন্ম {date}",
+    "@babyBornOn": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "genderUnknown": "অনির্ধারিত",
+    "@genderUnknown": {},
+    "genderBoy": "ছেলে",
+    "@genderBoy": {},
+    "genderGirl": "মেয়ে",
+    "@genderGirl": {},
+    "cannotDeleteOnlyProfile": "একমাত্র বাচ্চার প্রোফাইল মুছা যাবে না",
+    "@cannotDeleteOnlyProfile": {},
+    "deleteProfileTitle": "{name} মুছবেন?",
+    "@deleteProfileTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "deleteProfileContent": "এই বাচ্চার সমস্ত ডেটা স্থায়ীভাবে মুছে ফেলা হবে",
+    "@deleteProfileContent": {},
+    "graphsTitle": "গ্রাফ",
+    "@graphsTitle": {},
+    "graphsTabDaily": "দৈনিক",
+    "@graphsTabDaily": {},
+    "graphsTabGrowth": "বৃদ্ধি",
+    "@graphsTabGrowth": {},
+    "graphsTabHealth": "স্বাস্থ্য",
+    "@graphsTabHealth": {},
+    "graphsTotalFeeds": "মোট খাওয়ানো",
+    "@graphsTotalFeeds": {},
+    "graphsAvgPerDay": "গড়/দিন",
+    "@graphsAvgPerDay": {},
+    "graphsTotalDiapers": "ডায়াপার",
+    "@graphsTotalDiapers": {},
+    "graphsTotalMilk": "মোট দুধ",
+    "@graphsTotalMilk": {},
+    "graphsTotalSleep": "মোট ঘুম",
+    "@graphsTotalSleep": {},
+    "graphsAvgSleep": "গড় ঘুম/দিন",
+    "@graphsAvgSleep": {},
+    "graphsFeedsPerDay": "প্রতিদিন খাওয়ানো",
+    "@graphsFeedsPerDay": {},
+    "graphsDiapersPerDay": "প্রতিদিন ডায়াপার",
+    "@graphsDiapersPerDay": {},
+    "graphsMilkPerDay": "প্রতিদিন দুধ (মিলি)",
+    "@graphsMilkPerDay": {},
+    "graphsSleepPerDay": "প্রতিদিন ঘুম (ঘন্টা)",
+    "@graphsSleepPerDay": {},
+    "graphsWeightOverTime": "সময়ের সাথে ওজন",
+    "@graphsWeightOverTime": {},
+    "graphsTempOverTime": "সময়ের সাথে তাপমাত্রা",
+    "@graphsTempOverTime": {},
+    "graphsMaxLabel": "সর্বোচ্চ: {value}",
+    "@graphsMaxLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsMinLabel": "সর্বনিম্ন: {value}",
+    "@graphsMinLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsNoWeightData": "এখনও কোনো ওজন এন্ট্রি নেই\nএকটি দিনের এন্ট্রি থেকে ওজন লগ করুন",
+    "@graphsNoWeightData": {},
+    "graphsNoTempData": "এখনও কোনো তাপমাত্রা এন্ট্রি নেই\nএকটি দিন থেকে তাপমাত্রা লগ করুন",
+    "@graphsNoTempData": {},
+    "timeLabel": "সময়",
+    "@timeLabel": {},
+    "noColourRecorded": "কোনো রং রেকর্ড করা হয়নি",
+    "@noColourRecorded": {},
+    "noDetails": "কোনো বিবরণ নেই",
+    "@noDetails": {},
+    "ageDay": "{count, plural, =1{1 দিন} other{{count} দিন}}",
+    "@ageDay": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageMonth": "{count, plural, =1{1 মাস} other{{count} মাস}}",
+    "@ageMonth": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageYearMonth": "{years} বছর {months} মাস",
+    "@ageYearMonth": {
+        "placeholders": {
+            "years": {
+                "type": "int"
+            },
+            "months": {
+                "type": "int"
+            }
+        }
+    }
+}

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
-
-// ── Naming: lowerCamelCase for all top-level constants ──────────────────────
 
 const _formulaBrands = [
   'Similac',
@@ -15,13 +14,9 @@ const _formulaBrands = [
   'Other',
 ];
 
-// ── _FeedEntry ───────────────────────────────────────────────────────────────
-// Unused constructor parameters removed. State is held directly on the fields
-// and via the TextEditingControllers (which ARE the source of truth for text).
-
 class _FeedEntry {
-  String feedMode = 'bottle'; // 'bottle' | 'suckle'
-  String method = 'breast'; // 'breast' | 'formula'  (bottle only)
+  String feedMode = 'bottle';
+  String method = 'breast';
   String formulaBrand = '';
   bool customFormulaBrand = false;
 
@@ -37,8 +32,6 @@ class _FeedEntry {
     brandCtrl.dispose();
   }
 }
-
-// ── FeedingForm ───────────────────────────────────────────────────────────────
 
 class FeedingForm extends StatefulWidget {
   final DateTime initialDate;
@@ -142,6 +135,7 @@ class _FeedingFormState extends State<FeedingForm> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final media = MediaQuery.of(context);
     final bottomPad = media.viewInsets.bottom > 0
         ? media.viewInsets.bottom
@@ -158,7 +152,7 @@ class _FeedingFormState extends State<FeedingForm> {
             Row(
               children: [
                 Text(
-                  _isEditing ? 'Edit feeding' : 'Add feeding',
+                  _isEditing ? l.editFeeding : l.addFeeding,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const Spacer(),
@@ -192,7 +186,7 @@ class _FeedingFormState extends State<FeedingForm> {
                 child: OutlinedButton.icon(
                   onPressed: _addFeed,
                   icon: const Icon(Icons.add),
-                  label: const Text('Add another feed'),
+                  label: Text(l.addAnotherFeed),
                 ),
               ),
             const SizedBox(height: 8),
@@ -200,7 +194,7 @@ class _FeedingFormState extends State<FeedingForm> {
               alignment: Alignment.centerRight,
               child: FilledButton(
                 onPressed: _save,
-                child: Text(_isEditing ? 'Update' : 'Save'),
+                child: Text(_isEditing ? l.actionUpdate : l.actionSave),
               ),
             ),
           ],
@@ -209,8 +203,6 @@ class _FeedingFormState extends State<FeedingForm> {
     );
   }
 }
-
-// ── _FeedCard ─────────────────────────────────────────────────────────────────
 
 class _FeedCard extends StatefulWidget {
   final _FeedEntry entry;
@@ -235,6 +227,7 @@ class _FeedCard extends StatefulWidget {
 class _FeedCardState extends State<_FeedCard> {
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final f = widget.entry;
 
     return Card(
@@ -247,7 +240,7 @@ class _FeedCardState extends State<_FeedCard> {
             Row(
               children: [
                 Text(
-                  'Feed ${widget.index + 1}',
+                  l.feedLabel(widget.index + 1),
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
                 const Spacer(),
@@ -261,18 +254,18 @@ class _FeedCardState extends State<_FeedCard> {
             ),
             const SizedBox(height: 8),
 
-            // Bottle vs suckle toggle
+            // Bottle vs suckle
             SegmentedButton<String>(
-              segments: const [
+              segments: [
                 ButtonSegment(
                   value: 'bottle',
-                  label: Text('Bottle'),
-                  icon: Icon(Icons.local_drink, size: 14),
+                  label: Text(l.feedModeBottle),
+                  icon: const Icon(Icons.local_drink, size: 14),
                 ),
                 ButtonSegment(
                   value: 'suckle',
-                  label: Text('Suckle'),
-                  icon: Icon(Icons.child_care, size: 14),
+                  label: Text(l.feedModeSuckle),
+                  icon: const Icon(Icons.child_care, size: 14),
                 ),
               ],
               selected: {f.feedMode},
@@ -290,9 +283,9 @@ class _FeedCardState extends State<_FeedCard> {
                     child: TextField(
                       controller: f.amountCtrl,
                       keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        labelText: 'Amount (ml)',
-                        border: OutlineInputBorder(),
+                      decoration: InputDecoration(
+                        labelText: l.feedAmountMl,
+                        border: const OutlineInputBorder(),
                         isDense: true,
                       ),
                       onChanged: (_) => widget.onChanged(),
@@ -300,22 +293,21 @@ class _FeedCardState extends State<_FeedCard> {
                   ),
                   const SizedBox(width: 10),
                   Expanded(
-                    // ── Fix: value → initialValue (deprecated after v3.33) ──
                     child: DropdownButtonFormField<String>(
                       initialValue: f.method,
-                      decoration: const InputDecoration(
-                        labelText: 'Type',
-                        border: OutlineInputBorder(),
+                      decoration: InputDecoration(
+                        labelText: l.feedType,
+                        border: const OutlineInputBorder(),
                         isDense: true,
                       ),
-                      items: const [
+                      items: [
                         DropdownMenuItem(
                           value: 'breast',
-                          child: Text('Breast milk'),
+                          child: Text(l.feedBreastMilk),
                         ),
                         DropdownMenuItem(
                           value: 'formula',
-                          child: Text('Formula'),
+                          child: Text(l.feedFormula),
                         ),
                       ],
                       onChanged: (v) {
@@ -331,7 +323,7 @@ class _FeedCardState extends State<_FeedCard> {
               if (f.method == 'formula') ...[
                 const SizedBox(height: 10),
                 Text(
-                  'Formula brand',
+                  l.feedFormulaBrand,
                   style: Theme.of(context).textTheme.labelSmall,
                 ),
                 const SizedBox(height: 4),
@@ -365,9 +357,9 @@ class _FeedCardState extends State<_FeedCard> {
                     padding: const EdgeInsets.only(top: 8),
                     child: TextField(
                       controller: f.brandCtrl,
-                      decoration: const InputDecoration(
-                        labelText: 'Formula brand name',
-                        border: OutlineInputBorder(),
+                      decoration: InputDecoration(
+                        labelText: l.feedFormulaBrandCustom,
+                        border: const OutlineInputBorder(),
                         isDense: true,
                       ),
                     ),
@@ -377,9 +369,9 @@ class _FeedCardState extends State<_FeedCard> {
               TextField(
                 controller: f.durationCtrl,
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  labelText: 'Duration (minutes)',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: l.feedDurationMinutes,
+                  border: const OutlineInputBorder(),
                   isDense: true,
                 ),
                 onChanged: (_) => widget.onChanged(),

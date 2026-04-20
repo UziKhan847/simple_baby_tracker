@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 
-class SleepForm extends StatefulWidget {
+class TummyTimeForm extends StatefulWidget {
   final DateTime initialDate;
   final TrackerEvent? existingEvent;
 
-  const SleepForm({
+  const TummyTimeForm({
     super.key,
     required this.initialDate,
     this.existingEvent,
   });
 
   @override
-  State<SleepForm> createState() => _SleepFormState();
+  State<TummyTimeForm> createState() => _TummyTimeFormState();
 }
 
-class _SleepFormState extends State<SleepForm> {
+class _TummyTimeFormState extends State<TummyTimeForm> {
   TimeOfDay _startTime = TimeOfDay.now();
   TimeOfDay _endTime = TimeOfDay.now();
   final _notesCtrl = TextEditingController();
@@ -46,30 +45,26 @@ class _SleepFormState extends State<SleepForm> {
   int get _durationMinutes {
     final d = widget.initialDate;
     var start = DateTime(
-        d.year, d.month, d.day, _startTime.hour, _startTime.minute);
-    var end =
-        DateTime(d.year, d.month, d.day, _endTime.hour, _endTime.minute);
+      d.year,
+      d.month,
+      d.day,
+      _startTime.hour,
+      _startTime.minute,
+    );
+    var end = DateTime(d.year, d.month, d.day, _endTime.hour, _endTime.minute);
     if (end.isBefore(start)) end = end.add(const Duration(days: 1));
     return end.difference(start).inMinutes;
   }
 
-  String _durationLabel(AppLocalizations l) {
+  String _durationLabel() {
     final m = _durationMinutes;
-    if (m <= 0) return l.sleepInvalidTimes;
-    final h = m ~/ 60;
-    final rem = m % 60;
-    // Build a human-readable duration string then pass to the l10n key
-    final durStr = h == 0
-        ? '${rem}min'
-        : rem == 0
-            ? '${h}h'
-            : '${h}h ${rem}min';
-    return l.sleepDuration(durStr);
+    if (m <= 0) return 'Invalid times';
+    if (m < 60) return '$m min';
+    return '${m ~/ 60}h ${m % 60}min';
   }
 
   @override
   Widget build(BuildContext context) {
-    final l = AppLocalizations.of(context)!;
     final media = MediaQuery.of(context);
     final bottomPad = media.viewInsets.bottom > 0
         ? media.viewInsets.bottom
@@ -84,21 +79,29 @@ class _SleepFormState extends State<SleepForm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              _isEditing ? l.editSleep : l.logSleep,
+              _isEditing ? 'Edit tummy time' : 'Log tummy time',
               style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Tummy time strengthens neck and shoulder muscles.',
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: Colors.grey),
             ),
             const SizedBox(height: 16),
 
-            // Start / end time pickers
             Row(
               children: [
                 Expanded(
                   child: _TimePicker(
-                    label: l.sleepStart,
+                    label: 'Start time',
                     time: _startTime,
                     onTap: () async {
                       final t = await showTimePicker(
-                          context: context, initialTime: _startTime);
+                        context: context,
+                        initialTime: _startTime,
+                      );
                       if (t != null) setState(() => _startTime = t);
                     },
                   ),
@@ -106,11 +109,13 @@ class _SleepFormState extends State<SleepForm> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: _TimePicker(
-                    label: l.sleepWakeUp,
+                    label: 'End time',
                     time: _endTime,
                     onTap: () async {
                       final t = await showTimePicker(
-                          context: context, initialTime: _endTime);
+                        context: context,
+                        initialTime: _endTime,
+                      );
                       if (t != null) setState(() => _endTime = t);
                     },
                   ),
@@ -120,40 +125,24 @@ class _SleepFormState extends State<SleepForm> {
 
             const SizedBox(height: 12),
 
-            // Duration display
             Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               decoration: BoxDecoration(
-                color: Theme.of(context)
-                    .colorScheme
-                    .secondaryContainer
-                    .withAlpha(100),
+                color: Colors.green.withAlpha(25),
                 borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.green.withAlpha(80)),
               ),
               child: Row(
                 children: [
-                  Icon(Icons.bedtime,
-                      color: Theme.of(context).colorScheme.secondary),
+                  const Icon(Icons.child_care, color: Colors.green),
                   const SizedBox(width: 8),
                   Text(
-                    _durationLabel(l),
-                    style: TextStyle(
+                    'Duration: ${_durationLabel()}',
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Theme.of(context)
-                          .colorScheme
-                          .onSecondaryContainer,
+                      color: Colors.green,
                     ),
                   ),
-                  if (_durationMinutes <= 0)
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Text(
-                        l.sleepWrapsNextDay,
-                        style: const TextStyle(
-                            fontSize: 11, color: Colors.grey),
-                      ),
-                    ),
                 ],
               ),
             ),
@@ -162,10 +151,10 @@ class _SleepFormState extends State<SleepForm> {
 
             TextField(
               controller: _notesCtrl,
-              decoration: InputDecoration(
-                labelText: l.sleepNotes,
-                hintText: l.sleepNotesHint,
-                border: const OutlineInputBorder(),
+              decoration: const InputDecoration(
+                labelText: 'Notes (optional)',
+                hintText: 'e.g. enjoyed it, fussy...',
+                border: OutlineInputBorder(),
                 isDense: true,
               ),
             ),
@@ -175,8 +164,7 @@ class _SleepFormState extends State<SleepForm> {
               alignment: Alignment.centerRight,
               child: FilledButton(
                 onPressed: _durationMinutes > 0 ? _save : null,
-                child:
-                    Text(_isEditing ? l.actionUpdate : l.actionSave),
+                child: Text(_isEditing ? 'Update' : 'Save'),
               ),
             ),
           ],
@@ -188,16 +176,26 @@ class _SleepFormState extends State<SleepForm> {
   void _save() {
     final d = widget.initialDate;
     final startDt = DateTime(
-        d.year, d.month, d.day, _startTime.hour, _startTime.minute);
-    var endDt =
-        DateTime(d.year, d.month, d.day, _endTime.hour, _endTime.minute);
+      d.year,
+      d.month,
+      d.day,
+      _startTime.hour,
+      _startTime.minute,
+    );
+    var endDt = DateTime(
+      d.year,
+      d.month,
+      d.day,
+      _endTime.hour,
+      _endTime.minute,
+    );
     if (endDt.isBefore(startDt)) endDt = endDt.add(const Duration(days: 1));
 
     Navigator.pop(
       context,
       TrackerEvent(
         id: widget.existingEvent?.id,
-        type: 'sleep',
+        type: 'tummy_time',
         time: startDt,
         data: {
           'endTime': endDt.toIso8601String(),
@@ -215,9 +213,11 @@ class _TimePicker extends StatelessWidget {
   final String label;
   final TimeOfDay time;
   final VoidCallback onTap;
-
-  const _TimePicker(
-      {required this.label, required this.time, required this.onTap});
+  const _TimePicker({
+    required this.label,
+    required this.time,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -225,18 +225,18 @@ class _TimePicker extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(8),
       child: Container(
-        padding:
-            const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
         decoration: BoxDecoration(
-          border:
-              Border.all(color: Theme.of(context).colorScheme.outline),
+          border: Border.all(color: Theme.of(context).colorScheme.outline),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(label,
-                style: const TextStyle(fontSize: 11, color: Colors.grey)),
+            Text(
+              label,
+              style: const TextStyle(fontSize: 11, color: Colors.grey),
+            ),
             const SizedBox(height: 4),
             Row(
               children: [
@@ -245,7 +245,9 @@ class _TimePicker extends StatelessWidget {
                 Text(
                   time.format(context),
                   style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),

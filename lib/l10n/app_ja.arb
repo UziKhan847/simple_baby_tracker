@@ -1,0 +1,507 @@
+{
+    "@@locale": "ja",
+    "appTitle": "ベビートラッカー",
+    "@appTitle": {},
+    "navHome": "ホーム",
+    "@navHome": {},
+    "navGraphs": "グラフ",
+    "@navGraphs": {},
+    "navSettings": "設定",
+    "@navSettings": {},
+    "actionCancel": "キャンセル",
+    "@actionCancel": {},
+    "actionSave": "保存",
+    "@actionSave": {},
+    "actionUpdate": "更新",
+    "@actionUpdate": {},
+    "actionDelete": "削除",
+    "@actionDelete": {},
+    "actionAdd": "追加",
+    "@actionAdd": {},
+    "actionEdit": "編集",
+    "@actionEdit": {},
+    "actionClose": "閉じる",
+    "@actionClose": {},
+    "actionExport": "データをエクスポート",
+    "@actionExport": {},
+    "actionAddDay": "日付を追加",
+    "@actionAddDay": {},
+    "cannotUndo": "この操作は元に戻せません",
+    "@cannotUndo": {},
+    "noData": "データなし",
+    "@noData": {},
+    "homeTitle": "トラッカー",
+    "@homeTitle": {},
+    "feedsToday": "今日の授乳",
+    "@feedsToday": {},
+    "diapersToday": "今日のおむつ",
+    "@diapersToday": {},
+    "sleepToday": "今日の睡眠",
+    "@sleepToday": {},
+    "todayLabel": "今日 — {date}",
+    "@todayLabel": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "eventCount": "{count, plural, =0{イベントなし} =1{1件のイベント} other{{count}件のイベント}}",
+    "@eventCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deleteDayTitle": "この日を削除しますか？",
+    "@deleteDayTitle": {},
+    "deleteDayContent": "{date}とすべての記録を削除しますか？この操作は元に戻せません",
+    "@deleteDayContent": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "noEntriesYet": "まだ記録がありません",
+    "@noEntriesYet": {},
+    "addEntry": "記録を追加",
+    "@addEntry": {},
+    "deleteEntryTitle": "この記録を削除しますか？",
+    "@deleteEntryTitle": {},
+    "entryTypeDiaper": "おむつ替え",
+    "@entryTypeDiaper": {},
+    "entryTypeFeeding": "授乳",
+    "@entryTypeFeeding": {},
+    "entryTypeSleep": "睡眠",
+    "@entryTypeSleep": {},
+    "entryTypeTemperature": "体温",
+    "@entryTypeTemperature": {},
+    "entryTypeWeight": "体重",
+    "@entryTypeWeight": {},
+    "diaperPeePoo": "おむつ — おしっこ + うんち",
+    "@diaperPeePoo": {},
+    "diaperPee": "おむつ — おしっこのみ",
+    "@diaperPee": {},
+    "diaperPoo": "おむつ — うんちのみ",
+    "@diaperPoo": {},
+    "diaperChange": "おむつ替え",
+    "@diaperChange": {},
+    "editDiaper": "おむつを編集",
+    "@editDiaper": {},
+    "diaperContents": "内容",
+    "@diaperContents": {},
+    "diaperNone": "なし",
+    "@diaperNone": {},
+    "diaperPeeLabel": "おしっこ",
+    "@diaperPeeLabel": {},
+    "diaperPooLabel": "うんち",
+    "@diaperPooLabel": {},
+    "diaperBoth": "両方",
+    "@diaperBoth": {},
+    "diaperConsistency": "形状",
+    "@diaperConsistency": {},
+    "consistencyHard": "硬い / 粒状",
+    "@consistencyHard": {},
+    "consistencyHardHint": "便秘",
+    "@consistencyHardHint": {},
+    "consistencyFirm": "かため",
+    "@consistencyFirm": {},
+    "consistencyFirmHint": "やや硬い",
+    "@consistencyFirmHint": {},
+    "consistencyNormal": "普通",
+    "@consistencyNormal": {},
+    "consistencyNormalHint": "健康的",
+    "@consistencyNormalHint": {},
+    "consistencySoft": "柔らかい",
+    "@consistencySoft": {},
+    "consistencySoftHint": "やや柔らかい",
+    "@consistencySoftHint": {},
+    "consistencyLoose": "泥状 / 半液体",
+    "@consistencyLoose": {},
+    "consistencyLooseHint": "要観察",
+    "@consistencyLooseHint": {},
+    "consistencyWatery": "水様",
+    "@consistencyWatery": {},
+    "consistencyWateryHint": "下痢",
+    "@consistencyWateryHint": {},
+    "warnConstipation": "便秘の兆候 — 注意深く観察",
+    "@warnConstipation": {},
+    "warnDiarrhea": "下痢の兆候 — 注意深く観察",
+    "@warnDiarrhea": {},
+    "pooColourLabel": "色 (タップして選択)",
+    "@pooColourLabel": {},
+    "pooColourAbnormal": "⚠️ 異常 (青白い)",
+    "@pooColourAbnormal": {},
+    "pooColourNormal": "✅ 正常",
+    "@pooColourNormal": {},
+    "pooColourSelected": "選択: {label}",
+    "@pooColourSelected": {
+        "placeholders": {
+            "label": {
+                "type": "String"
+            }
+        }
+    },
+    "diaperSize": "おむつのサイズ",
+    "@diaperSize": {},
+    "diaperBrand": "ブランド",
+    "@diaperBrand": {},
+    "diaperBrandCustomLabel": "ブランド名",
+    "@diaperBrandCustomLabel": {},
+    "rashPresent": "おむつかぶれあり",
+    "@rashPresent": {},
+    "rashPresentHint": "発赤、刺激、おむつかぶれ",
+    "@rashPresentHint": {},
+    "rashCreamUsed": "クリームを使用",
+    "@rashCreamUsed": {},
+    "rashCreamCustomLabel": "クリーム / 軟膏の名前",
+    "@rashCreamCustomLabel": {},
+    "rashFollowUpTitle": "⚠️ かぶれの経過観察",
+    "@rashFollowUpTitle": {},
+    "rashFollowUpQuestion": "前回のおむつでかぶれが記録されました。改善しましたか？",
+    "@rashFollowUpQuestion": {},
+    "rashImproved": "はい、改善した",
+    "@rashImproved": {},
+    "rashNoChange": "変化なし / 悪化した",
+    "@rashNoChange": {},
+    "rashRecorded": "かぶれを記録しました",
+    "@rashRecorded": {},
+    "addFeeding": "授乳を追加",
+    "@addFeeding": {},
+    "editFeeding": "授乳を編集",
+    "@editFeeding": {},
+    "feedLabel": "{number}回目の授乳",
+    "@feedLabel": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "feedModeBottle": "哺乳瓶",
+    "@feedModeBottle": {},
+    "feedModeSuckle": "直接授乳",
+    "@feedModeSuckle": {},
+    "feedAmountMl": "量 (ml)",
+    "@feedAmountMl": {},
+    "feedType": "種類",
+    "@feedType": {},
+    "feedBreastMilk": "母乳",
+    "@feedBreastMilk": {},
+    "feedFormula": "ミルク",
+    "@feedFormula": {},
+    "feedFormulaBrand": "ミルクのブランド",
+    "@feedFormulaBrand": {},
+    "feedFormulaBrandCustom": "ブランド名",
+    "@feedFormulaBrandCustom": {},
+    "feedDurationMinutes": "授乳時間 (分)",
+    "@feedDurationMinutes": {},
+    "addAnotherFeed": "別の授乳を追加",
+    "@addAnotherFeed": {},
+    "bottleBreastMilk": "哺乳瓶 — 母乳",
+    "@bottleBreastMilk": {},
+    "bottleFormula": "哺乳瓶 — ミルク",
+    "@bottleFormula": {},
+    "breastfeedingSuckle": "母乳授乳 (直接)",
+    "@breastfeedingSuckle": {},
+    "logSleep": "睡眠を記録",
+    "@logSleep": {},
+    "editSleep": "睡眠を編集",
+    "@editSleep": {},
+    "sleepStart": "寝た時間",
+    "@sleepStart": {},
+    "sleepWakeUp": "起きた時間",
+    "@sleepWakeUp": {},
+    "sleepDuration": "睡眠時間: {duration}",
+    "@sleepDuration": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "sleepInvalidTimes": "無効な時間",
+    "@sleepInvalidTimes": {},
+    "sleepWrapsNextDay": "(翌日にまたがる)",
+    "@sleepWrapsNextDay": {},
+    "sleepNotes": "メモ (任意)",
+    "@sleepNotes": {},
+    "sleepNotesHint": "例: 落ち着かない、短時間で目覚めた...",
+    "@sleepNotesHint": {},
+    "sleepNoNotes": "メモなし",
+    "@sleepNoNotes": {},
+    "sleepHoursShort": "{h}時間{m}分",
+    "@sleepHoursShort": {
+        "placeholders": {
+            "h": {
+                "type": "int"
+            },
+            "m": {
+                "type": "int"
+            }
+        }
+    },
+    "logTemperature": "体温を記録",
+    "@logTemperature": {},
+    "editTemperature": "体温を編集",
+    "@editTemperature": {},
+    "temperatureLabel": "体温",
+    "@temperatureLabel": {},
+    "tempSeverityLow": "低体温 — 要観察",
+    "@tempSeverityLow": {},
+    "tempSeverityNormal": "正常体温",
+    "@tempSeverityNormal": {},
+    "tempSeverityElevated": "微熱 — 注意深く観察",
+    "@tempSeverityElevated": {},
+    "tempSeverityFever": "発熱 — 医師に相談",
+    "@tempSeverityFever": {},
+    "tempReference": "体温の目安",
+    "@tempReference": {},
+    "tempRefLow": "< 36.0 °C / 96.8 °F",
+    "@tempRefLow": {},
+    "tempRefNormal": "36.0 – 37.4 °C / 96.8 – 99.3 °F",
+    "@tempRefNormal": {},
+    "tempRefElevated": "37.5 – 38.4 °C / 99.5 – 101.1 °F",
+    "@tempRefElevated": {},
+    "tempRefFever": "≥ 38.5 °C / 101.3 °F",
+    "@tempRefFever": {},
+    "tempFeverWarning": "⚠️ 3か月未満の乳児の発熱時は必ず小児科医に相談してください",
+    "@tempFeverWarning": {},
+    "tempLow": "低め",
+    "@tempLow": {},
+    "tempNormal": "正常",
+    "@tempNormal": {},
+    "tempElevated": "高め",
+    "@tempElevated": {},
+    "tempFever": "発熱",
+    "@tempFever": {},
+    "tempLatest": "最近の体温",
+    "@tempLatest": {},
+    "tempSummary": "体温サマリー",
+    "@tempSummary": {},
+    "tempFeverThreshold": "発熱の閾値",
+    "@tempFeverThreshold": {},
+    "tempDays": "{count, plural, =1{1日} other{{count}日}}",
+    "@tempDays": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "logWeight": "体重を記録",
+    "@logWeight": {},
+    "editWeight": "体重を編集",
+    "@editWeight": {},
+    "weightLabel": "体重",
+    "@weightLabel": {},
+    "weightGain": "+{amount} 増加",
+    "@weightGain": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLoss": "−{amount} 減少",
+    "@weightLoss": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightPrevious": "前回: {weight}",
+    "@weightPrevious": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLastRecorded": "最終記録: {weight} ({date})",
+    "@weightLastRecorded": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            },
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLatest": "最近の体重",
+    "@weightLatest": {},
+    "weightOverPeriod": "{sign}{amount} (期間内)",
+    "@weightOverPeriod": {
+        "placeholders": {
+            "sign": {
+                "type": "String"
+            },
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "settingsTitle": "設定",
+    "@settingsTitle": {},
+    "settingsAppearance": "外観",
+    "@settingsAppearance": {},
+    "settingsDarkMode": "ダークモード",
+    "@settingsDarkMode": {},
+    "settingsDarkActive": "ダークテーマ有効",
+    "@settingsDarkActive": {},
+    "settingsLightActive": "ライトテーマ有効",
+    "@settingsLightActive": {},
+    "settingsUnits": "単位",
+    "@settingsUnits": {},
+    "settingsWeightUnit": "体重の単位",
+    "@settingsWeightUnit": {},
+    "settingsTempUnit": "体温の単位",
+    "@settingsTempUnit": {},
+    "settingsLanguage": "言語",
+    "@settingsLanguage": {},
+    "settingsTips": "ヒント",
+    "@settingsTips": {},
+    "tipSwitchBabies": "赤ちゃんを切り替える",
+    "@tipSwitchBabies": {},
+    "tipSwitchBabiesDesc": "上部の赤ちゃんのアバターをタップして、赤ちゃんを切り替えたり追加したりできます",
+    "@tipSwitchBabiesDesc": {},
+    "tipSwipeDelete": "左にスワイプして削除",
+    "@tipSwipeDelete": {},
+    "tipSwipeDeleteDesc": "日付カードや個別の記録に適用されます",
+    "@tipSwipeDeleteDesc": {},
+    "tipMultipleFeeds": "複数回の授乳を記録",
+    "@tipMultipleFeeds": {},
+    "tipMultipleFeedsDesc": "授乳フォームで「別の授乳を追加」をタップすると、直接授乳と哺乳瓶を一度に記録できます",
+    "@tipMultipleFeedsDesc": {},
+    "tipExportData": "データをエクスポート",
+    "@tipExportData": {},
+    "tipExportDataDesc": "ホームの共有アイコンを使用して、すべてのデータをJSONとしてエクスポートします",
+    "@tipExportDataDesc": {},
+    "tipTapToEdit": "記録をタップして編集",
+    "@tipTapToEdit": {},
+    "babiesTitle": "赤ちゃん",
+    "@babiesTitle": {},
+    "addBaby": "赤ちゃんを追加",
+    "@addBaby": {},
+    "editProfile": "プロフィールを編集",
+    "@editProfile": {},
+    "babyNameRequired": "名前 *",
+    "@babyNameRequired": {},
+    "babyDobOptional": "生年月日 (任意)",
+    "@babyDobOptional": {},
+    "babyBornOn": "{date} 生まれ",
+    "@babyBornOn": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "genderUnknown": "未回答",
+    "@genderUnknown": {},
+    "genderBoy": "男の子",
+    "@genderBoy": {},
+    "genderGirl": "女の子",
+    "@genderGirl": {},
+    "cannotDeleteOnlyProfile": "唯一の赤ちゃんプロフィールは削除できません",
+    "@cannotDeleteOnlyProfile": {},
+    "deleteProfileTitle": "{name} を削除しますか？",
+    "@deleteProfileTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "deleteProfileContent": "この赤ちゃんのすべてのデータが完全に削除されます",
+    "@deleteProfileContent": {},
+    "graphsTitle": "グラフ",
+    "@graphsTitle": {},
+    "graphsTabDaily": "日次",
+    "@graphsTabDaily": {},
+    "graphsTabGrowth": "成長",
+    "@graphsTabGrowth": {},
+    "graphsTabHealth": "健康",
+    "@graphsTabHealth": {},
+    "graphsTotalFeeds": "総授乳回数",
+    "@graphsTotalFeeds": {},
+    "graphsAvgPerDay": "1日平均",
+    "@graphsAvgPerDay": {},
+    "graphsTotalDiapers": "おむつ回数",
+    "@graphsTotalDiapers": {},
+    "graphsTotalMilk": "総ミルク量",
+    "@graphsTotalMilk": {},
+    "graphsTotalSleep": "総睡眠時間",
+    "@graphsTotalSleep": {},
+    "graphsAvgSleep": "1日平均睡眠",
+    "@graphsAvgSleep": {},
+    "graphsFeedsPerDay": "1日あたりの授乳回数",
+    "@graphsFeedsPerDay": {},
+    "graphsDiapersPerDay": "1日あたりのおむつ回数",
+    "@graphsDiapersPerDay": {},
+    "graphsMilkPerDay": "1日あたりのミルク量 (ml)",
+    "@graphsMilkPerDay": {},
+    "graphsSleepPerDay": "1日あたりの睡眠時間 (時間)",
+    "@graphsSleepPerDay": {},
+    "graphsWeightOverTime": "体重の推移",
+    "@graphsWeightOverTime": {},
+    "graphsTempOverTime": "体温の推移",
+    "@graphsTempOverTime": {},
+    "graphsMaxLabel": "最大: {value}",
+    "@graphsMaxLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsMinLabel": "最小: {value}",
+    "@graphsMinLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsNoWeightData": "まだ体重の記録がありません\n日付の記録から体重を追加してください",
+    "@graphsNoWeightData": {},
+    "graphsNoTempData": "まだ体温の記録がありません\n日付から体温を記録してください",
+    "@graphsNoTempData": {},
+    "timeLabel": "時刻",
+    "@timeLabel": {},
+    "noColourRecorded": "色の記録なし",
+    "@noColourRecorded": {},
+    "noDetails": "詳細なし",
+    "@noDetails": {},
+    "ageDay": "{count, plural, =1{1日} other{{count}日}}",
+    "@ageDay": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageMonth": "{count, plural, =1{1ヶ月} other{{count}ヶ月}}",
+    "@ageMonth": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageYearMonth": "{years}歳{months}ヶ月",
+    "@ageYearMonth": {
+        "placeholders": {
+            "years": {
+                "type": "int"
+            },
+            "months": {
+                "type": "int"
+            }
+        }
+    }
+}

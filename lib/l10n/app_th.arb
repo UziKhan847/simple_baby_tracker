@@ -1,0 +1,507 @@
+{
+    "@@locale": "th",
+    "appTitle": "ตัวติดตามเด็ก",
+    "@appTitle": {},
+    "navHome": "หน้าหลัก",
+    "@navHome": {},
+    "navGraphs": "กราฟ",
+    "@navGraphs": {},
+    "navSettings": "ตั้งค่า",
+    "@navSettings": {},
+    "actionCancel": "ยกเลิก",
+    "@actionCancel": {},
+    "actionSave": "บันทึก",
+    "@actionSave": {},
+    "actionUpdate": "อัปเดต",
+    "@actionUpdate": {},
+    "actionDelete": "ลบ",
+    "@actionDelete": {},
+    "actionAdd": "เพิ่ม",
+    "@actionAdd": {},
+    "actionEdit": "แก้ไข",
+    "@actionEdit": {},
+    "actionClose": "ปิด",
+    "@actionClose": {},
+    "actionExport": "ส่งออกข้อมูล",
+    "@actionExport": {},
+    "actionAddDay": "เพิ่มวัน",
+    "@actionAddDay": {},
+    "cannotUndo": "ไม่สามารถยกเลิกการกระทำนี้ได้",
+    "@cannotUndo": {},
+    "noData": "ไม่มีข้อมูล",
+    "@noData": {},
+    "homeTitle": "ตัวติดตาม",
+    "@homeTitle": {},
+    "feedsToday": "การให้นมวันนี้",
+    "@feedsToday": {},
+    "diapersToday": "ผ้าอ้อมวันนี้",
+    "@diapersToday": {},
+    "sleepToday": "การนอนวันนี้",
+    "@sleepToday": {},
+    "todayLabel": "วันนี้ — {date}",
+    "@todayLabel": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "eventCount": "{count, plural, =0{ไม่มีเหตุการณ์} =1{1 เหตุการณ์} other{{count} เหตุการณ์}}",
+    "@eventCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deleteDayTitle": "ลบวันนี้?",
+    "@deleteDayTitle": {},
+    "deleteDayContent": "ลบ {date} และรายการทั้งหมด? ไม่สามารถยกเลิกการกระทำนี้ได้",
+    "@deleteDayContent": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "noEntriesYet": "ยังไม่มีรายการ",
+    "@noEntriesYet": {},
+    "addEntry": "เพิ่มรายการ",
+    "@addEntry": {},
+    "deleteEntryTitle": "ลบรายการนี้?",
+    "@deleteEntryTitle": {},
+    "entryTypeDiaper": "เปลี่ยนผ้าอ้อม",
+    "@entryTypeDiaper": {},
+    "entryTypeFeeding": "การให้นม",
+    "@entryTypeFeeding": {},
+    "entryTypeSleep": "การนอน",
+    "@entryTypeSleep": {},
+    "entryTypeTemperature": "อุณหภูมิ",
+    "@entryTypeTemperature": {},
+    "entryTypeWeight": "น้ำหนัก",
+    "@entryTypeWeight": {},
+    "diaperPeePoo": "ผ้าอ้อม — ปัสสาวะ + อุจจาระ",
+    "@diaperPeePoo": {},
+    "diaperPee": "ผ้าอ้อม — ปัสสาวะอย่างเดียว",
+    "@diaperPee": {},
+    "diaperPoo": "ผ้าอ้อม — อุจจาระอย่างเดียว",
+    "@diaperPoo": {},
+    "diaperChange": "เปลี่ยนผ้าอ้อม",
+    "@diaperChange": {},
+    "editDiaper": "แก้ไขผ้าอ้อม",
+    "@editDiaper": {},
+    "diaperContents": "สิ่งที่อยู่ในผ้าอ้อม",
+    "@diaperContents": {},
+    "diaperNone": "ไม่มีอะไร",
+    "@diaperNone": {},
+    "diaperPeeLabel": "ปัสสาวะ",
+    "@diaperPeeLabel": {},
+    "diaperPooLabel": "อุจจาระ",
+    "@diaperPooLabel": {},
+    "diaperBoth": "ทั้งสองอย่าง",
+    "@diaperBoth": {},
+    "diaperConsistency": "ลักษณะ",
+    "@diaperConsistency": {},
+    "consistencyHard": "แข็ง / เป็นเม็ด",
+    "@consistencyHard": {},
+    "consistencyHardHint": "ท้องผูก",
+    "@consistencyHardHint": {},
+    "consistencyFirm": "เป็นก้อน",
+    "@consistencyFirm": {},
+    "consistencyFirmHint": "ค่อนข้างแข็ง",
+    "@consistencyFirmHint": {},
+    "consistencyNormal": "ปกติ",
+    "@consistencyNormal": {},
+    "consistencyNormalHint": "สุขภาพดี",
+    "@consistencyNormalHint": {},
+    "consistencySoft": "นิ่ม",
+    "@consistencySoft": {},
+    "consistencySoftHint": "นิ่มเล็กน้อย",
+    "@consistencySoftHint": {},
+    "consistencyLoose": "เหลวข้น / กึ่งเหลว",
+    "@consistencyLoose": {},
+    "consistencyLooseHint": "ต้องสังเกต",
+    "@consistencyLooseHint": {},
+    "consistencyWatery": "เป็นน้ำ",
+    "@consistencyWatery": {},
+    "consistencyWateryHint": "ท้องเสีย",
+    "@consistencyWateryHint": {},
+    "warnConstipation": "สัญญาณของท้องผูก — สังเกตอย่างใกล้ชิด",
+    "@warnConstipation": {},
+    "warnDiarrhea": "สัญญาณของท้องเสีย — สังเกตอย่างใกล้ชิด",
+    "@warnDiarrhea": {},
+    "pooColourLabel": "สี (แตะเพื่อเลือก)",
+    "@pooColourLabel": {},
+    "pooColourAbnormal": "⚠️ ผิดปกติ (สีซีด)",
+    "@pooColourAbnormal": {},
+    "pooColourNormal": "✅ ปกติ",
+    "@pooColourNormal": {},
+    "pooColourSelected": "เลือกแล้ว: {label}",
+    "@pooColourSelected": {
+        "placeholders": {
+            "label": {
+                "type": "String"
+            }
+        }
+    },
+    "diaperSize": "ขนาดผ้าอ้อม",
+    "@diaperSize": {},
+    "diaperBrand": "ยี่ห้อ",
+    "@diaperBrand": {},
+    "diaperBrandCustomLabel": "ชื่อยี่ห้อ",
+    "@diaperBrandCustomLabel": {},
+    "rashPresent": "มีผื่นผ้าอ้อม",
+    "@rashPresent": {},
+    "rashPresentHint": "รอยแดง ระคายเคือง หรือผื่นผ้าอ้อม",
+    "@rashPresentHint": {},
+    "rashCreamUsed": "ใช้ครีมแล้ว",
+    "@rashCreamUsed": {},
+    "rashCreamCustomLabel": "ชื่อครีม / ยาทา",
+    "@rashCreamCustomLabel": {},
+    "rashFollowUpTitle": "⚠️ การติดตามผื่น",
+    "@rashFollowUpTitle": {},
+    "rashFollowUpQuestion": "ผ้าอ้อมครั้งล่าสุดมีผื่นบันทึกไว้ ดีขึ้นหรือไม่?",
+    "@rashFollowUpQuestion": {},
+    "rashImproved": "ใช่ ดีขึ้น",
+    "@rashImproved": {},
+    "rashNoChange": "ไม่เปลี่ยนแปลง / แย่ลง",
+    "@rashNoChange": {},
+    "rashRecorded": "บันทึกผื่นแล้ว",
+    "@rashRecorded": {},
+    "addFeeding": "เพิ่มการให้นม",
+    "@addFeeding": {},
+    "editFeeding": "แก้ไขการให้นม",
+    "@editFeeding": {},
+    "feedLabel": "การให้นมครั้งที่ {number}",
+    "@feedLabel": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "feedModeBottle": "ขวดนม",
+    "@feedModeBottle": {},
+    "feedModeSuckle": "ดูดนมจากเต้า",
+    "@feedModeSuckle": {},
+    "feedAmountMl": "ปริมาณ (มล.)",
+    "@feedAmountMl": {},
+    "feedType": "ประเภท",
+    "@feedType": {},
+    "feedBreastMilk": "น้ำนมแม่",
+    "@feedBreastMilk": {},
+    "feedFormula": "นมผง",
+    "@feedFormula": {},
+    "feedFormulaBrand": "ยี่ห้อของนมผง",
+    "@feedFormulaBrand": {},
+    "feedFormulaBrandCustom": "ชื่อยี่ห้อ",
+    "@feedFormulaBrandCustom": {},
+    "feedDurationMinutes": "ระยะเวลา (นาที)",
+    "@feedDurationMinutes": {},
+    "addAnotherFeed": "เพิ่มการให้นมอีกครั้ง",
+    "@addAnotherFeed": {},
+    "bottleBreastMilk": "ขวดนม — น้ำนมแม่",
+    "@bottleBreastMilk": {},
+    "bottleFormula": "ขวดนม — นมผง",
+    "@bottleFormula": {},
+    "breastfeedingSuckle": "การให้นมจากเต้า",
+    "@breastfeedingSuckle": {},
+    "logSleep": "บันทึกการนอน",
+    "@logSleep": {},
+    "editSleep": "แก้ไขการนอน",
+    "@editSleep": {},
+    "sleepStart": "เริ่มนอน",
+    "@sleepStart": {},
+    "sleepWakeUp": "ตื่น",
+    "@sleepWakeUp": {},
+    "sleepDuration": "ระยะเวลา: {duration}",
+    "@sleepDuration": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "sleepInvalidTimes": "เวลาไม่ถูกต้อง",
+    "@sleepInvalidTimes": {},
+    "sleepWrapsNextDay": "(สิ้นสุดในวันถัดไป)",
+    "@sleepWrapsNextDay": {},
+    "sleepNotes": "หมายเหตุ (ไม่บังคับ)",
+    "@sleepNotes": {},
+    "sleepNotesHint": "เช่น: กระสับกระส่าย ตื่นสั้นๆ...",
+    "@sleepNotesHint": {},
+    "sleepNoNotes": "ไม่มีหมายเหตุ",
+    "@sleepNoNotes": {},
+    "sleepHoursShort": "{h}ชม. {m}นาที",
+    "@sleepHoursShort": {
+        "placeholders": {
+            "h": {
+                "type": "int"
+            },
+            "m": {
+                "type": "int"
+            }
+        }
+    },
+    "logTemperature": "บันทึกอุณหภูมิ",
+    "@logTemperature": {},
+    "editTemperature": "แก้ไขอุณหภูมิ",
+    "@editTemperature": {},
+    "temperatureLabel": "อุณหภูมิร่างกาย",
+    "@temperatureLabel": {},
+    "tempSeverityLow": "อุณหภูมิต่ำ — สังเกต",
+    "@tempSeverityLow": {},
+    "tempSeverityNormal": "อุณหภูมิปกติ",
+    "@tempSeverityNormal": {},
+    "tempSeverityElevated": "สูงเล็กน้อย — สังเกตอย่างใกล้ชิด",
+    "@tempSeverityElevated": {},
+    "tempSeverityFever": "ไข้ — ปรึกษาแพทย์",
+    "@tempSeverityFever": {},
+    "tempReference": "ค่าอ้างอิงอุณหภูมิ",
+    "@tempReference": {},
+    "tempRefLow": "< 36.0 °C / 96.8 °F",
+    "@tempRefLow": {},
+    "tempRefNormal": "36.0 – 37.4 °C / 96.8 – 99.3 °F",
+    "@tempRefNormal": {},
+    "tempRefElevated": "37.5 – 38.4 °C / 99.5 – 101.1 °F",
+    "@tempRefElevated": {},
+    "tempRefFever": "≥ 38.5 °C / 101.3 °F",
+    "@tempRefFever": {},
+    "tempFeverWarning": "⚠️ หากทารกอายุน้อยกว่า 3 เดือนมีไข้ ควรปรึกษากุมารแพทย์ทุกครั้ง",
+    "@tempFeverWarning": {},
+    "tempLow": "ต่ำ",
+    "@tempLow": {},
+    "tempNormal": "ปกติ",
+    "@tempNormal": {},
+    "tempElevated": "สูง",
+    "@tempElevated": {},
+    "tempFever": "ไข้",
+    "@tempFever": {},
+    "tempLatest": "อุณหภูมิล่าสุด",
+    "@tempLatest": {},
+    "tempSummary": "สรุปอุณหภูมิ",
+    "@tempSummary": {},
+    "tempFeverThreshold": "เกณฑ์ไข้",
+    "@tempFeverThreshold": {},
+    "tempDays": "{count, plural, =1{1 วัน} other{{count} วัน}}",
+    "@tempDays": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "logWeight": "บันทึกน้ำหนัก",
+    "@logWeight": {},
+    "editWeight": "แก้ไขน้ำหนัก",
+    "@editWeight": {},
+    "weightLabel": "น้ำหนัก",
+    "@weightLabel": {},
+    "weightGain": "+{amount} เพิ่มขึ้น",
+    "@weightGain": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLoss": "−{amount} ลดลง",
+    "@weightLoss": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightPrevious": "ครั้งก่อน: {weight}",
+    "@weightPrevious": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLastRecorded": "บันทึกล่าสุด: {weight} เมื่อ {date}",
+    "@weightLastRecorded": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            },
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLatest": "น้ำหนักล่าสุด",
+    "@weightLatest": {},
+    "weightOverPeriod": "{sign}{amount} ในช่วงเวลานี้",
+    "@weightOverPeriod": {
+        "placeholders": {
+            "sign": {
+                "type": "String"
+            },
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "settingsTitle": "ตั้งค่า",
+    "@settingsTitle": {},
+    "settingsAppearance": "รูปลักษณ์",
+    "@settingsAppearance": {},
+    "settingsDarkMode": "โหมดมืด",
+    "@settingsDarkMode": {},
+    "settingsDarkActive": "ธีมมืดเปิดใช้งาน",
+    "@settingsDarkActive": {},
+    "settingsLightActive": "ธีมสว่างเปิดใช้งาน",
+    "@settingsLightActive": {},
+    "settingsUnits": "หน่วย",
+    "@settingsUnits": {},
+    "settingsWeightUnit": "หน่วยน้ำหนัก",
+    "@settingsWeightUnit": {},
+    "settingsTempUnit": "หน่วยอุณหภูมิ",
+    "@settingsTempUnit": {},
+    "settingsLanguage": "ภาษา",
+    "@settingsLanguage": {},
+    "settingsTips": "เคล็ดลับ",
+    "@settingsTips": {},
+    "tipSwitchBabies": "เปลี่ยนเด็ก",
+    "@tipSwitchBabies": {},
+    "tipSwitchBabiesDesc": "แตะที่อวาตาร์ของเด็กด้านบนเพื่อเปลี่ยนหรือเพิ่มโปรไฟล์",
+    "@tipSwitchBabiesDesc": {},
+    "tipSwipeDelete": "ปัดซ้ายเพื่อลบ",
+    "@tipSwipeDelete": {},
+    "tipSwipeDeleteDesc": "ใช้ได้กับทั้งการ์ดวันและรายการย่อย",
+    "@tipSwipeDeleteDesc": {},
+    "tipMultipleFeeds": "บันทึกการให้นมหลายครั้ง",
+    "@tipMultipleFeeds": {},
+    "tipMultipleFeedsDesc": "ในฟอร์มการให้นม แตะที่ «เพิ่มการให้นมอีกครั้ง» เพื่อบันทึกทั้งการดูดนมจากเต้าและขวดนมในครั้งเดียว",
+    "@tipMultipleFeedsDesc": {},
+    "tipExportData": "ส่งออกข้อมูล",
+    "@tipExportData": {},
+    "tipExportDataDesc": "ใช้ไอคอนแชร์บนหน้าหลักเพื่อส่งออกข้อมูลทั้งหมดเป็น JSON",
+    "@tipExportDataDesc": {},
+    "tipTapToEdit": "แตะที่รายการใดก็ได้เพื่อแก้ไข",
+    "@tipTapToEdit": {},
+    "babiesTitle": "เด็ก ๆ",
+    "@babiesTitle": {},
+    "addBaby": "เพิ่มเด็ก",
+    "@addBaby": {},
+    "editProfile": "แก้ไขโปรไฟล์",
+    "@editProfile": {},
+    "babyNameRequired": "ชื่อ *",
+    "@babyNameRequired": {},
+    "babyDobOptional": "วันเกิด (ไม่บังคับ)",
+    "@babyDobOptional": {},
+    "babyBornOn": "เกิด {date}",
+    "@babyBornOn": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "genderUnknown": "ไม่ระบุ",
+    "@genderUnknown": {},
+    "genderBoy": "ชาย",
+    "@genderBoy": {},
+    "genderGirl": "หญิง",
+    "@genderGirl": {},
+    "cannotDeleteOnlyProfile": "ไม่สามารถลบโปรไฟล์เด็กเพียงโปรไฟล์เดียวได้",
+    "@cannotDeleteOnlyProfile": {},
+    "deleteProfileTitle": "ลบ {name}?",
+    "@deleteProfileTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "deleteProfileContent": "ข้อมูลทั้งหมดของเด็กนี้จะถูกลบอย่างถาวร",
+    "@deleteProfileContent": {},
+    "graphsTitle": "กราฟ",
+    "@graphsTitle": {},
+    "graphsTabDaily": "รายวัน",
+    "@graphsTabDaily": {},
+    "graphsTabGrowth": "การเจริญเติบโต",
+    "@graphsTabGrowth": {},
+    "graphsTabHealth": "สุขภาพ",
+    "@graphsTabHealth": {},
+    "graphsTotalFeeds": "จำนวนการให้นมทั้งหมด",
+    "@graphsTotalFeeds": {},
+    "graphsAvgPerDay": "เฉลี่ย/วัน",
+    "@graphsAvgPerDay": {},
+    "graphsTotalDiapers": "ผ้าอ้อม",
+    "@graphsTotalDiapers": {},
+    "graphsTotalMilk": "ปริมาณนมทั้งหมด",
+    "@graphsTotalMilk": {},
+    "graphsTotalSleep": "ระยะเวลานอนทั้งหมด",
+    "@graphsTotalSleep": {},
+    "graphsAvgSleep": "ค่าเฉลี่ยนอน/วัน",
+    "@graphsAvgSleep": {},
+    "graphsFeedsPerDay": "การให้นมต่อวัน",
+    "@graphsFeedsPerDay": {},
+    "graphsDiapersPerDay": "ผ้าอ้อมต่อวัน",
+    "@graphsDiapersPerDay": {},
+    "graphsMilkPerDay": "นมต่อวัน (มล.)",
+    "@graphsMilkPerDay": {},
+    "graphsSleepPerDay": "การนอนต่อวัน (ชั่วโมง)",
+    "@graphsSleepPerDay": {},
+    "graphsWeightOverTime": "น้ำหนักตามช่วงเวลา",
+    "@graphsWeightOverTime": {},
+    "graphsTempOverTime": "อุณหภูมิตามช่วงเวลา",
+    "@graphsTempOverTime": {},
+    "graphsMaxLabel": "สูงสุด: {value}",
+    "@graphsMaxLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsMinLabel": "ต่ำสุด: {value}",
+    "@graphsMinLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsNoWeightData": "ยังไม่มีรายการน้ำหนัก\nบันทึกน้ำหนักจากรายการของวัน",
+    "@graphsNoWeightData": {},
+    "graphsNoTempData": "ยังไม่มีรายการอุณหภูมิ\nบันทึกอุณหภูมิจากวันใดวันหนึ่ง",
+    "@graphsNoTempData": {},
+    "timeLabel": "เวลา",
+    "@timeLabel": {},
+    "noColourRecorded": "ไม่มีการบันทึกสี",
+    "@noColourRecorded": {},
+    "noDetails": "ไม่มีรายละเอียด",
+    "@noDetails": {},
+    "ageDay": "{count, plural, =1{1 วัน} other{{count} วัน}}",
+    "@ageDay": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageMonth": "{count, plural, =1{1 เดือน} other{{count} เดือน}}",
+    "@ageMonth": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageYearMonth": "{years} ปี {months} เดือน",
+    "@ageYearMonth": {
+        "placeholders": {
+            "years": {
+                "type": "int"
+            },
+            "months": {
+                "type": "int"
+            }
+        }
+    }
+}

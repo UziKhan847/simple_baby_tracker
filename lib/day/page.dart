@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/forms/daily_note.dart';
 import 'package:simple_baby_tracker/forms/diaper.dart';
+import 'package:simple_baby_tracker/forms/doctor_visit.dart';
 import 'package:simple_baby_tracker/forms/feeding.dart';
+import 'package:simple_baby_tracker/forms/medication.dart';
+import 'package:simple_baby_tracker/forms/sleep.dart';
+import 'package:simple_baby_tracker/forms/temperature.dart';
+import 'package:simple_baby_tracker/forms/tummy_time.dart';
 import 'package:simple_baby_tracker/forms/weight.dart';
 import 'package:simple_baby_tracker/helpers.dart';
-import 'package:simple_baby_tracker/forms/sleep.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/summary_header_delegate.dart';
-import 'package:simple_baby_tracker/forms/temperature.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
-
 
 class DayPage extends StatefulWidget {
   const DayPage({super.key, required this.date, required this.babyId});
@@ -77,12 +81,10 @@ class _DayPageState extends State<DayPage> {
     };
   }
 
-  // ─── Last-weight lookup (for WeightForm comparison) ───────────────────────
-
   ({double kg, DateTime date})? _lastWeight() {
     final allEvents =
         _data.entries
-            .expand((e) => e.value.map((ev) => ev))
+            .expand((e) => e.value)
             .where((e) => e.type == 'weight')
             .where((e) => dateKey(e.time) != dateKey(widget.date))
             .toList()
@@ -92,8 +94,6 @@ class _DayPageState extends State<DayPage> {
     if (kg == null) return null;
     return (kg: kg, date: allEvents.first.time);
   }
-
-  // ─── Last-diaper rash check ───────────────────────────────────────────────
 
   bool _lastDiaperHadRash() {
     final allDiapers =
@@ -106,7 +106,7 @@ class _DayPageState extends State<DayPage> {
     return allDiapers.first.data['rash'] == true;
   }
 
-  // ─── Add / edit events ────────────────────────────────────────────────────
+  // ─── Add/edit routing ─────────────────────────────────────────────────────
 
   Future<void> _add(String type, {TrackerEvent? existing, int? index}) async {
     final key = dateKey(widget.date);
@@ -195,23 +195,74 @@ class _DayPageState extends State<DayPage> {
           insertOrReplace(result);
           await _save();
         }
+
+      case 'tummy_time':
+        final result = await showModalBottomSheet<TrackerEvent>(
+          context: context,
+          isScrollControlled: true,
+          builder: (_) =>
+              TummyTimeForm(initialDate: widget.date, existingEvent: existing),
+        );
+        if (result != null) {
+          insertOrReplace(result);
+          await _save();
+        }
+
+      case 'medication':
+        final result = await showModalBottomSheet<TrackerEvent>(
+          context: context,
+          isScrollControlled: true,
+          builder: (_) =>
+              MedicationForm(initialDate: widget.date, existingEvent: existing),
+        );
+        if (result != null) {
+          insertOrReplace(result);
+          await _save();
+        }
+
+      case 'doctor_visit':
+        final result = await showModalBottomSheet<TrackerEvent>(
+          context: context,
+          isScrollControlled: true,
+          builder: (_) => DoctorVisitForm(
+            initialDate: widget.date,
+            existingEvent: existing,
+          ),
+        );
+        if (result != null) {
+          insertOrReplace(result);
+          await _save();
+        }
+
+      case 'note':
+        final result = await showModalBottomSheet<TrackerEvent>(
+          context: context,
+          isScrollControlled: true,
+          builder: (_) =>
+              DailyNoteForm(initialDate: widget.date, existingEvent: existing),
+        );
+        if (result != null) {
+          insertOrReplace(result);
+          await _save();
+        }
     }
   }
 
   Future<void> _deleteEvent(TrackerEvent event) async {
+    final l = AppLocalizations.of(context)!;
     final ok = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text('Delete entry?'),
-        content: const Text('This cannot be undone.'),
+        title: Text(l.deleteEntryTitle),
+        content: Text(l.cannotUndo),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(l.actionCancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Delete'),
+            child: Text(l.actionDelete),
           ),
         ],
       ),
@@ -228,6 +279,8 @@ class _DayPageState extends State<DayPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+
     if (_loading) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
@@ -249,12 +302,12 @@ class _DayPageState extends State<DayPage> {
                     color: Theme.of(context).colorScheme.outline,
                   ),
                   const SizedBox(height: 12),
-                  const Text('No entries yet'),
+                  Text(l.noEntriesYet),
                   const SizedBox(height: 8),
                   FilledButton.icon(
                     onPressed: _showAddSheet,
                     icon: const Icon(Icons.add),
-                    label: const Text('Add entry'),
+                    label: Text(l.addEntry),
                   ),
                 ],
               ),
@@ -283,19 +336,19 @@ class _DayPageState extends State<DayPage> {
                       return Dismissible(
                         key: ValueKey(e.id),
                         direction: DismissDirection.endToStart,
-                        confirmDismiss: (_) async => await showDialog<bool>(
+                        confirmDismiss: (_) async => showDialog<bool>(
                           context: context,
                           builder: (_) => AlertDialog(
-                            title: const Text('Delete entry?'),
-                            content: const Text('This cannot be undone.'),
+                            title: Text(l.deleteEntryTitle),
+                            content: Text(l.cannotUndo),
                             actions: [
                               TextButton(
                                 onPressed: () => Navigator.pop(context, false),
-                                child: const Text('Cancel'),
+                                child: Text(l.actionCancel),
                               ),
                               FilledButton(
                                 onPressed: () => Navigator.pop(context, true),
-                                child: const Text('Delete'),
+                                child: Text(l.actionDelete),
                               ),
                             ],
                           ),
@@ -314,9 +367,9 @@ class _DayPageState extends State<DayPage> {
                           margin: const EdgeInsets.symmetric(vertical: 4),
                           child: ListTile(
                             leading: _eventIcon(e),
-                            title: Text(_title(e, settings)),
+                            title: Text(_title(e, l, settings)),
                             subtitle: Text(
-                              '${_subtitle(e, settings)}  •  ${formatTime(e.time)}',
+                              '${_subtitle(e, l, settings)}  •  ${formatTime(e.time)}',
                             ),
                             onTap: () => _add(e.type, existing: e, index: i),
                             trailing: const Icon(Icons.edit, size: 18),
@@ -336,57 +389,91 @@ class _DayPageState extends State<DayPage> {
   }
 
   Future<void> _showAddSheet() async {
+    final l = AppLocalizations.of(context)!;
     final type = await showModalBottomSheet<String>(
       context: context,
       builder: (_) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(height: 8),
-            Container(
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(2),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 8),
+              Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(2),
+                ),
               ),
-            ),
-            const SizedBox(height: 4),
-            ListTile(
-              leading: const Icon(
+              const SizedBox(height: 4),
+              // Core tracking
+              _SheetTile(
                 Icons.baby_changing_station,
-                color: Colors.brown,
+                Colors.brown,
+                l.entryTypeDiaper,
+                'diaper',
               ),
-              title: const Text('Diaper change'),
-              onTap: () => Navigator.pop(context, 'diaper'),
-            ),
-            ListTile(
-              leading: const Icon(Icons.local_drink, color: Colors.pink),
-              title: const Text('Feeding'),
-              onTap: () => Navigator.pop(context, 'feeding'),
-            ),
-            ListTile(
-              leading: const Icon(Icons.bedtime, color: Colors.indigo),
-              title: const Text('Sleep'),
-              onTap: () => Navigator.pop(context, 'sleep'),
-            ),
-            ListTile(
-              leading: const Icon(Icons.thermostat, color: Colors.orange),
-              title: const Text('Temperature'),
-              onTap: () => Navigator.pop(context, 'temperature'),
-            ),
-            ListTile(
-              leading: const Icon(Icons.monitor_weight, color: Colors.teal),
-              title: const Text('Weight'),
-              onTap: () => Navigator.pop(context, 'weight'),
-            ),
-            const SizedBox(height: 8),
-          ],
+              _SheetTile(
+                Icons.local_drink,
+                Colors.pink,
+                l.entryTypeFeeding,
+                'feeding',
+              ),
+              _SheetTile(
+                Icons.bedtime,
+                Colors.indigo,
+                l.entryTypeSleep,
+                'sleep',
+              ),
+              _SheetTile(
+                Icons.thermostat,
+                Colors.orange,
+                l.entryTypeTemperature,
+                'temperature',
+              ),
+              _SheetTile(
+                Icons.monitor_weight,
+                Colors.teal,
+                l.entryTypeWeight,
+                'weight',
+              ),
+              const Divider(height: 1),
+              // Additional tracking
+              _SheetTile(
+                Icons.child_care,
+                Colors.green,
+                'Tummy time',
+                'tummy_time',
+              ),
+              _SheetTile(
+                Icons.medication,
+                Colors.purple,
+                'Medication',
+                'medication',
+              ),
+              _SheetTile(
+                Icons.local_hospital_outlined,
+                Colors.blue,
+                'Doctor visit',
+                'doctor_visit',
+              ),
+              _SheetTile(
+                Icons.edit_note,
+                Colors.deepOrange,
+                'Daily note / journal',
+                'note',
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
         ),
       ),
     );
     if (type != null) _add(type);
   }
+
+  // ─── Icon / title / subtitle helpers ──────────────────────────────────────
 
   Widget _eventIcon(TrackerEvent e) {
     final (icon, color) = switch (e.type) {
@@ -394,6 +481,10 @@ class _DayPageState extends State<DayPage> {
       'sleep' => (Icons.bedtime, Colors.indigo),
       'temperature' => (Icons.thermostat, Colors.orange),
       'weight' => (Icons.monitor_weight, Colors.teal),
+      'tummy_time' => (Icons.child_care, Colors.green),
+      'medication' => (Icons.medication, Colors.purple),
+      'doctor_visit' => (Icons.local_hospital_outlined, Colors.blue),
+      'note' => (Icons.edit_note, Colors.deepOrange),
       _ => (
         (e.data['isBottle'] as bool?) ?? true
             ? Icons.local_drink
@@ -407,62 +498,71 @@ class _DayPageState extends State<DayPage> {
     );
   }
 
-  String _title(TrackerEvent e, settings) {
+  String _title(TrackerEvent e, AppLocalizations l, dynamic settings) {
     switch (e.type) {
       case 'diaper':
         final pee = e.data['pee'] == true;
         final poo = e.data['poo'] == true;
         final rash = e.data['rash'] == true;
         final base = (pee && poo)
-            ? 'Diaper — pee + poo'
+            ? l.diaperPeePoo
             : pee
-            ? 'Diaper — pee'
+            ? l.diaperPee
             : poo
-            ? 'Diaper — poo'
-            : 'Diaper change';
+            ? l.diaperPoo
+            : l.diaperChange;
         return rash ? '$base  🔴' : base;
       case 'sleep':
         final min = (e.data['durationMin'] as num?)?.toInt() ?? 0;
         final h = min ~/ 60;
         final rem = min % 60;
-        final dur = h > 0 ? '${h}h ${rem}m' : '${rem}m';
-        return 'Sleep  ($dur)';
+        return '${l.entryTypeSleep}  (${h > 0 ? '${h}h ${rem}m' : '${rem}m'})';
       case 'temperature':
         final c = (e.data['valueCelsius'] as num?)?.toDouble() ?? 0;
-        final s = tempSeverity(c);
-        final dot = switch (s) {
+        final dot = switch (tempSeverity(c)) {
           'fever' => '🔴',
           'elevated' => '🟠',
           'low' => '🔵',
           _ => '🟢',
         };
-        return 'Temperature  $dot';
+        return '${l.entryTypeTemperature}  $dot';
       case 'weight':
-        return 'Weight';
+        return l.entryTypeWeight;
+      case 'tummy_time':
+        final min = (e.data['durationMin'] as num?)?.toInt() ?? 0;
+        final h = min ~/ 60;
+        final rem = min % 60;
+        return 'Tummy time  (${h > 0 ? '${h}h ${rem}m' : '${rem}m'})';
+      case 'medication':
+        return 'Medication: ${e.data['name'] ?? ''}';
+      case 'doctor_visit':
+        final reason = e.data['reason'] as String? ?? 'Visit';
+        return 'Doctor visit — $reason';
+      case 'note':
+        final title = e.data['title'] as String?;
+        return title != null && title.isNotEmpty ? '📝 $title' : '📝 Note';
       default:
         final isBottle = (e.data['isBottle'] as bool?) ?? true;
         if (isBottle) {
-          final method = e.data['method'] as String? ?? 'breast';
-          return method == 'formula'
-              ? 'Bottle — formula'
-              : 'Bottle — breast milk';
+          return (e.data['method'] as String?) == 'formula'
+              ? l.bottleFormula
+              : l.bottleBreastMilk;
         }
-        return 'Breastfeeding (suckle)';
+        return l.breastfeedingSuckle;
     }
   }
 
-  String _subtitle(TrackerEvent e, dynamic settings) {
-    final s = settings as dynamic;
+  String _subtitle(TrackerEvent e, AppLocalizations l, dynamic settings) {
     switch (e.type) {
       case 'diaper':
         final parts = <String>[];
         final cons = e.data['consistency'] as String?;
-        if (cons != null) parts.add('Consistency: $cons');
+        if (cons != null) parts.add('${l.diaperConsistency}: $cons');
         final size = e.data['size'] as String?;
-        if (size != null) parts.add('Size $size');
+        if (size != null) parts.add('${l.diaperSize} $size');
         final brand = e.data['brand'] as String?;
         if (brand != null) parts.add(brand);
-        return parts.isEmpty ? 'No details' : parts.join('  •  ');
+        return parts.isEmpty ? l.noDetails : parts.join('  •  ');
       case 'feeding':
         final isBottle = (e.data['isBottle'] as bool?) ?? true;
         if (isBottle) {
@@ -472,26 +572,60 @@ class _DayPageState extends State<DayPage> {
         }
         return '${e.data['durationMin'] ?? 0} min';
       case 'sleep':
-        final notes = e.data['notes'] as String?;
-        return notes ?? 'No notes';
+        return (e.data['notes'] as String?) ?? l.sleepNoNotes;
       case 'temperature':
         final c = (e.data['valueCelsius'] as num?)?.toDouble() ?? 0.0;
-        final sp = s as dynamic;
-        // Try to use settings safely
         try {
-          return formatTemp(c, useCelsius: (sp.useCelsius as bool?) ?? true);
+          return formatTemp(
+            c,
+            useCelsius: (settings.useCelsius as bool?) ?? true,
+          );
         } catch (_) {
           return '${c.toStringAsFixed(1)} °C';
         }
       case 'weight':
         final kg = (e.data['valueKg'] as num?)?.toDouble() ?? 0.0;
         try {
-          return formatWeight(kg, useKg: (s.useKg as bool?) ?? true);
+          return formatWeight(kg, useKg: (settings.useKg as bool?) ?? true);
         } catch (_) {
           return '${kg.toStringAsFixed(3)} kg';
         }
+      case 'tummy_time':
+        return (e.data['notes'] as String?) ?? 'No notes';
+      case 'medication':
+        final dose = e.data['dose'];
+        final unit = e.data['unit'] ?? '';
+        return dose != null ? '$dose $unit' : unit;
+      case 'doctor_visit':
+        final doctor = e.data['doctorName'] as String?;
+        return doctor != null ? 'Dr: $doctor' : 'No doctor recorded';
+      case 'note':
+        final text = e.data['text'] as String? ?? '';
+        return text.length > 60 ? '${text.substring(0, 60)}…' : text;
       default:
         return '';
     }
+  }
+}
+
+/// Helper widget for the add-entry bottom sheet tiles.
+class _SheetTile extends StatelessWidget {
+  final IconData icon;
+  final Color color;
+  final String label;
+  final String type;
+
+  const _SheetTile(this.icon, this.color, this.label, this.type);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: CircleAvatar(
+        backgroundColor: color.withAlpha(30),
+        child: Icon(icon, color: color, size: 20),
+      ),
+      title: Text(label),
+      onTap: () => Navigator.pop(context, type),
+    );
   }
 }
