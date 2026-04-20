@@ -1,0 +1,507 @@
+{
+    "@@locale": "tr",
+    "appTitle": "Bebek Takibi",
+    "@appTitle": {},
+    "navHome": "Ana Sayfa",
+    "@navHome": {},
+    "navGraphs": "Grafikler",
+    "@navGraphs": {},
+    "navSettings": "Ayarlar",
+    "@navSettings": {},
+    "actionCancel": "İptal",
+    "@actionCancel": {},
+    "actionSave": "Kaydet",
+    "@actionSave": {},
+    "actionUpdate": "Güncelle",
+    "@actionUpdate": {},
+    "actionDelete": "Sil",
+    "@actionDelete": {},
+    "actionAdd": "Ekle",
+    "@actionAdd": {},
+    "actionEdit": "Düzenle",
+    "@actionEdit": {},
+    "actionClose": "Kapat",
+    "@actionClose": {},
+    "actionExport": "Verileri Dışa Aktar",
+    "@actionExport": {},
+    "actionAddDay": "Gün Ekle",
+    "@actionAddDay": {},
+    "cannotUndo": "Bu işlem geri alınamaz",
+    "@cannotUndo": {},
+    "noData": "Veri yok",
+    "@noData": {},
+    "homeTitle": "Takip",
+    "@homeTitle": {},
+    "feedsToday": "Bugünkü Beslemeler",
+    "@feedsToday": {},
+    "diapersToday": "Bugünkü Bebek Bezleri",
+    "@diapersToday": {},
+    "sleepToday": "Bugünkü Uyku",
+    "@sleepToday": {},
+    "todayLabel": "Bugün — {date}",
+    "@todayLabel": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "eventCount": "{count, plural, =0{Olay yok} =1{1 olay} other{{count} olay}}",
+    "@eventCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deleteDayTitle": "Gün silinsin mi?",
+    "@deleteDayTitle": {},
+    "deleteDayContent": "{date} ve tüm girişleri silinsin mi? Bu işlem geri alınamaz",
+    "@deleteDayContent": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "noEntriesYet": "Henüz giriş yok",
+    "@noEntriesYet": {},
+    "addEntry": "Giriş Ekle",
+    "@addEntry": {},
+    "deleteEntryTitle": "Giriş silinsin mi?",
+    "@deleteEntryTitle": {},
+    "entryTypeDiaper": "Bez Değiştirme",
+    "@entryTypeDiaper": {},
+    "entryTypeFeeding": "Besleme",
+    "@entryTypeFeeding": {},
+    "entryTypeSleep": "Uyku",
+    "@entryTypeSleep": {},
+    "entryTypeTemperature": "Ateş",
+    "@entryTypeTemperature": {},
+    "entryTypeWeight": "Kilo",
+    "@entryTypeWeight": {},
+    "diaperPeePoo": "Bez — çiş + kaka",
+    "@diaperPeePoo": {},
+    "diaperPee": "Bez — sadece çiş",
+    "@diaperPee": {},
+    "diaperPoo": "Bez — sadece kaka",
+    "@diaperPoo": {},
+    "diaperChange": "Bez Değiştirme",
+    "@diaperChange": {},
+    "editDiaper": "Bezi Düzenle",
+    "@editDiaper": {},
+    "diaperContents": "İçerik",
+    "@diaperContents": {},
+    "diaperNone": "Yok",
+    "@diaperNone": {},
+    "diaperPeeLabel": "Çiş",
+    "@diaperPeeLabel": {},
+    "diaperPooLabel": "Kaka",
+    "@diaperPooLabel": {},
+    "diaperBoth": "İkisi de",
+    "@diaperBoth": {},
+    "diaperConsistency": "Kıvam",
+    "@diaperConsistency": {},
+    "consistencyHard": "Sert / Topaklı",
+    "@consistencyHard": {},
+    "consistencyHardHint": "Kabızlık",
+    "@consistencyHardHint": {},
+    "consistencyFirm": "Şekilli",
+    "@consistencyFirm": {},
+    "consistencyFirmHint": "Hafif sert",
+    "@consistencyFirmHint": {},
+    "consistencyNormal": "Normal",
+    "@consistencyNormal": {},
+    "consistencyNormalHint": "Sağlıklı",
+    "@consistencyNormalHint": {},
+    "consistencySoft": "Yumuşak",
+    "@consistencySoft": {},
+    "consistencySoftHint": "Hafif yumuşak",
+    "@consistencySoftHint": {},
+    "consistencyLoose": "Macunsu / Yarı sıvı",
+    "@consistencyLoose": {},
+    "consistencyLooseHint": "Takip et",
+    "@consistencyLooseHint": {},
+    "consistencyWatery": "Sulu",
+    "@consistencyWatery": {},
+    "consistencyWateryHint": "İshal",
+    "@consistencyWateryHint": {},
+    "warnConstipation": "Kabızlık belirtileri — yakından izle",
+    "@warnConstipation": {},
+    "warnDiarrhea": "İshal belirtileri — yakından izle",
+    "@warnDiarrhea": {},
+    "pooColourLabel": "Renk (seçmek için dokun)",
+    "@pooColourLabel": {},
+    "pooColourAbnormal": "⚠️ Anormal (soluk)",
+    "@pooColourAbnormal": {},
+    "pooColourNormal": "✅ Normal",
+    "@pooColourNormal": {},
+    "pooColourSelected": "Seçilen: {label}",
+    "@pooColourSelected": {
+        "placeholders": {
+            "label": {
+                "type": "String"
+            }
+        }
+    },
+    "diaperSize": "Bez Numarası",
+    "@diaperSize": {},
+    "diaperBrand": "Marka",
+    "@diaperBrand": {},
+    "diaperBrandCustomLabel": "Marka adı",
+    "@diaperBrandCustomLabel": {},
+    "rashPresent": "Pişik var",
+    "@rashPresent": {},
+    "rashPresentHint": "Kızarıklık, tahriş veya pişik",
+    "@rashPresentHint": {},
+    "rashCreamUsed": "Krem kullanıldı",
+    "@rashCreamUsed": {},
+    "rashCreamCustomLabel": "Krem / merhem adı",
+    "@rashCreamCustomLabel": {},
+    "rashFollowUpTitle": "⚠️ Pişik takibi",
+    "@rashFollowUpTitle": {},
+    "rashFollowUpQuestion": "Son bezde pişik kaydedildi. İyileşme oldu mu?",
+    "@rashFollowUpQuestion": {},
+    "rashImproved": "Evet, iyileşti",
+    "@rashImproved": {},
+    "rashNoChange": "Değişiklik yok / kötüleşti",
+    "@rashNoChange": {},
+    "rashRecorded": "Pişik kaydedildi",
+    "@rashRecorded": {},
+    "addFeeding": "Besleme Ekle",
+    "@addFeeding": {},
+    "editFeeding": "Beslemeyi Düzenle",
+    "@editFeeding": {},
+    "feedLabel": "Besleme {number}",
+    "@feedLabel": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "feedModeBottle": "Biberon",
+    "@feedModeBottle": {},
+    "feedModeSuckle": "Emzirme",
+    "@feedModeSuckle": {},
+    "feedAmountMl": "Miktar (ml)",
+    "@feedAmountMl": {},
+    "feedType": "Tür",
+    "@feedType": {},
+    "feedBreastMilk": "Anne sütü",
+    "@feedBreastMilk": {},
+    "feedFormula": "Mama",
+    "@feedFormula": {},
+    "feedFormulaBrand": "Mama markası",
+    "@feedFormulaBrand": {},
+    "feedFormulaBrandCustom": "Marka adı",
+    "@feedFormulaBrandCustom": {},
+    "feedDurationMinutes": "Süre (dakika)",
+    "@feedDurationMinutes": {},
+    "addAnotherFeed": "Başka bir besleme ekle",
+    "@addAnotherFeed": {},
+    "bottleBreastMilk": "Biberon — anne sütü",
+    "@bottleBreastMilk": {},
+    "bottleFormula": "Biberon — mama",
+    "@bottleFormula": {},
+    "breastfeedingSuckle": "Emzirme (direkt)",
+    "@breastfeedingSuckle": {},
+    "logSleep": "Uyku Kaydet",
+    "@logSleep": {},
+    "editSleep": "Uykuyu Düzenle",
+    "@editSleep": {},
+    "sleepStart": "Uyku başlangıcı",
+    "@sleepStart": {},
+    "sleepWakeUp": "Uyanma",
+    "@sleepWakeUp": {},
+    "sleepDuration": "Süre: {duration}",
+    "@sleepDuration": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "sleepInvalidTimes": "Geçersiz saatler",
+    "@sleepInvalidTimes": {},
+    "sleepWrapsNextDay": "(ertesi güne geçer)",
+    "@sleepWrapsNextDay": {},
+    "sleepNotes": "Notlar (isteğe bağlı)",
+    "@sleepNotes": {},
+    "sleepNotesHint": "Örn: huzursuz, kısa süreli uyanma...",
+    "@sleepNotesHint": {},
+    "sleepNoNotes": "Not yok",
+    "@sleepNoNotes": {},
+    "sleepHoursShort": "{h}s {m}dk",
+    "@sleepHoursShort": {
+        "placeholders": {
+            "h": {
+                "type": "int"
+            },
+            "m": {
+                "type": "int"
+            }
+        }
+    },
+    "logTemperature": "Ateş Kaydet",
+    "@logTemperature": {},
+    "editTemperature": "Ateşi Düzenle",
+    "@editTemperature": {},
+    "temperatureLabel": "Ateş",
+    "@temperatureLabel": {},
+    "tempSeverityLow": "Düşük ateş — izle",
+    "@tempSeverityLow": {},
+    "tempSeverityNormal": "Normal ateş",
+    "@tempSeverityNormal": {},
+    "tempSeverityElevated": "Hafif yüksek — yakından izle",
+    "@tempSeverityElevated": {},
+    "tempSeverityFever": "Ateş — doktora danış",
+    "@tempSeverityFever": {},
+    "tempReference": "Ateş referansı",
+    "@tempReference": {},
+    "tempRefLow": "< 36,0 °C / 96,8 °F",
+    "@tempRefLow": {},
+    "tempRefNormal": "36,0 – 37,4 °C / 96,8 – 99,3 °F",
+    "@tempRefNormal": {},
+    "tempRefElevated": "37,5 – 38,4 °C / 99,5 – 101,1 °F",
+    "@tempRefElevated": {},
+    "tempRefFever": "≥ 38,5 °C / 101,3 °F",
+    "@tempRefFever": {},
+    "tempFeverWarning": "⚠️ 3 aydan küçük bebeklerde ateş durumunda mutlaka çocuk doktoruna danışın",
+    "@tempFeverWarning": {},
+    "tempLow": "Düşük",
+    "@tempLow": {},
+    "tempNormal": "Normal",
+    "@tempNormal": {},
+    "tempElevated": "Yüksek",
+    "@tempElevated": {},
+    "tempFever": "Ateş",
+    "@tempFever": {},
+    "tempLatest": "Son ateş",
+    "@tempLatest": {},
+    "tempSummary": "Ateş özeti",
+    "@tempSummary": {},
+    "tempFeverThreshold": "Ateş eşiği",
+    "@tempFeverThreshold": {},
+    "tempDays": "{count, plural, =1{1 gün} other{{count} gün}}",
+    "@tempDays": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "logWeight": "Kilo Kaydet",
+    "@logWeight": {},
+    "editWeight": "Kiloyu Düzenle",
+    "@editWeight": {},
+    "weightLabel": "Kilo",
+    "@weightLabel": {},
+    "weightGain": "+{amount} artış",
+    "@weightGain": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLoss": "−{amount} azalma",
+    "@weightLoss": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightPrevious": "Önceki: {weight}",
+    "@weightPrevious": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLastRecorded": "Son kayıt: {weight} ({date})",
+    "@weightLastRecorded": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            },
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLatest": "Son kilo",
+    "@weightLatest": {},
+    "weightOverPeriod": "{sign}{amount} bu dönemde",
+    "@weightOverPeriod": {
+        "placeholders": {
+            "sign": {
+                "type": "String"
+            },
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "settingsTitle": "Ayarlar",
+    "@settingsTitle": {},
+    "settingsAppearance": "Görünüm",
+    "@settingsAppearance": {},
+    "settingsDarkMode": "Karanlık mod",
+    "@settingsDarkMode": {},
+    "settingsDarkActive": "Karanlık tema aktif",
+    "@settingsDarkActive": {},
+    "settingsLightActive": "Aydınlık tema aktif",
+    "@settingsLightActive": {},
+    "settingsUnits": "Birimler",
+    "@settingsUnits": {},
+    "settingsWeightUnit": "Kilo birimi",
+    "@settingsWeightUnit": {},
+    "settingsTempUnit": "Ateş birimi",
+    "@settingsTempUnit": {},
+    "settingsLanguage": "Dil",
+    "@settingsLanguage": {},
+    "settingsTips": "İpuçları",
+    "@settingsTips": {},
+    "tipSwitchBabies": "Bebek değiştir",
+    "@tipSwitchBabies": {},
+    "tipSwitchBabiesDesc": "Bebek değiştirmek veya profil eklemek için üstteki bebek avatarına dokun",
+    "@tipSwitchBabiesDesc": {},
+    "tipSwipeDelete": "Silmek için sola kaydır",
+    "@tipSwipeDelete": {},
+    "tipSwipeDeleteDesc": "Gün kartlarında ve tek tek girişlerde çalışır",
+    "@tipSwipeDeleteDesc": {},
+    "tipMultipleFeeds": "Birden fazla besleme kaydet",
+    "@tipMultipleFeeds": {},
+    "tipMultipleFeedsDesc": "Besleme formunda \"Başka bir besleme ekle\"ye dokunarak emzirme ve biberonu tek seferde kaydedebilirsin",
+    "@tipMultipleFeedsDesc": {},
+    "tipExportData": "Verileri dışa aktar",
+    "@tipExportData": {},
+    "tipExportDataDesc": "Ana sayfadaki paylaş simgesini kullanarak tüm verileri JSON olarak dışa aktar",
+    "@tipExportDataDesc": {},
+    "tipTapToEdit": "Düzenlemek için herhangi bir girişe dokun",
+    "@tipTapToEdit": {},
+    "babiesTitle": "Bebekler",
+    "@babiesTitle": {},
+    "addBaby": "Bebek Ekle",
+    "@addBaby": {},
+    "editProfile": "Profili Düzenle",
+    "@editProfile": {},
+    "babyNameRequired": "İsim *",
+    "@babyNameRequired": {},
+    "babyDobOptional": "Doğum tarihi (isteğe bağlı)",
+    "@babyDobOptional": {},
+    "babyBornOn": "{date} doğumlu",
+    "@babyBornOn": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "genderUnknown": "Belirtilmemiş",
+    "@genderUnknown": {},
+    "genderBoy": "Erkek",
+    "@genderBoy": {},
+    "genderGirl": "Kız",
+    "@genderGirl": {},
+    "cannotDeleteOnlyProfile": "Tek bebek profili silinemez",
+    "@cannotDeleteOnlyProfile": {},
+    "deleteProfileTitle": "{name} silinsin mi?",
+    "@deleteProfileTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "deleteProfileContent": "Bu bebeğin tüm verileri kalıcı olarak silinecek",
+    "@deleteProfileContent": {},
+    "graphsTitle": "Grafikler",
+    "@graphsTitle": {},
+    "graphsTabDaily": "Günlük",
+    "@graphsTabDaily": {},
+    "graphsTabGrowth": "Büyüme",
+    "@graphsTabGrowth": {},
+    "graphsTabHealth": "Sağlık",
+    "@graphsTabHealth": {},
+    "graphsTotalFeeds": "Toplam besleme",
+    "@graphsTotalFeeds": {},
+    "graphsAvgPerDay": "Günlük ort.",
+    "@graphsAvgPerDay": {},
+    "graphsTotalDiapers": "Bez sayısı",
+    "@graphsTotalDiapers": {},
+    "graphsTotalMilk": "Toplam süt",
+    "@graphsTotalMilk": {},
+    "graphsTotalSleep": "Toplam uyku",
+    "@graphsTotalSleep": {},
+    "graphsAvgSleep": "Günlük uyku ort.",
+    "@graphsAvgSleep": {},
+    "graphsFeedsPerDay": "Günde besleme sayısı",
+    "@graphsFeedsPerDay": {},
+    "graphsDiapersPerDay": "Günde bez sayısı",
+    "@graphsDiapersPerDay": {},
+    "graphsMilkPerDay": "Günde süt (ml)",
+    "@graphsMilkPerDay": {},
+    "graphsSleepPerDay": "Günde uyku (saat)",
+    "@graphsSleepPerDay": {},
+    "graphsWeightOverTime": "Zamanla kilo değişimi",
+    "@graphsWeightOverTime": {},
+    "graphsTempOverTime": "Zamanla ateş değişimi",
+    "@graphsTempOverTime": {},
+    "graphsMaxLabel": "Maks: {value}",
+    "@graphsMaxLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsMinLabel": "Min: {value}",
+    "@graphsMinLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsNoWeightData": "Henüz kilo girişi yok\nBir günün girişlerinden kilo ekleyin",
+    "@graphsNoWeightData": {},
+    "graphsNoTempData": "Henüz ateş girişi yok\nBir günden ateş ekleyin",
+    "@graphsNoTempData": {},
+    "timeLabel": "Saat",
+    "@timeLabel": {},
+    "noColourRecorded": "Renk kaydedilmedi",
+    "@noColourRecorded": {},
+    "noDetails": "Detay yok",
+    "@noDetails": {},
+    "ageDay": "{count, plural, =1{1 günlük} other{{count} günlük}}",
+    "@ageDay": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageMonth": "{count, plural, =1{1 aylık} other{{count} aylık}}",
+    "@ageMonth": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageYearMonth": "{years} yaş {months} ay",
+    "@ageYearMonth": {
+        "placeholders": {
+            "years": {
+                "type": "int"
+            },
+            "months": {
+                "type": "int"
+            }
+        }
+    }
+}

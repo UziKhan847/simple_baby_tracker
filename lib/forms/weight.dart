@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/helpers.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 
 class WeightForm extends StatefulWidget {
   final DateTime initialDate;
   final TrackerEvent? existingEvent;
-  /// Most recent prior weight in kg (for comparison), null if none.
   final double? lastWeightKg;
   final DateTime? lastWeightDate;
 
@@ -40,6 +40,7 @@ class _WeightFormState extends State<WeightForm> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       final useKg = SettingsProvider.of(context).settings.useKg;
+      final e = widget.existingEvent;
       if (e != null && !useKg) {
         final kg = (e.data['valueKg'] as num?)?.toDouble() ?? 0.0;
         setState(() {
@@ -66,6 +67,7 @@ class _WeightFormState extends State<WeightForm> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final media = MediaQuery.of(context);
     final bottomPad = media.viewInsets.bottom > 0
         ? media.viewInsets.bottom
@@ -85,7 +87,7 @@ class _WeightFormState extends State<WeightForm> {
             Row(
               children: [
                 Text(
-                  _isEditing ? 'Edit weight' : 'Log weight',
+                  _isEditing ? l.editWeight : l.logWeight,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const Spacer(),
@@ -112,7 +114,7 @@ class _WeightFormState extends State<WeightForm> {
                         decimal: true),
                     onChanged: (_) => setState(() {}),
                     decoration: InputDecoration(
-                      labelText: 'Weight',
+                      labelText: l.weightLabel,
                       suffixText: _inputInKg ? 'kg' : 'lbs',
                       border: const OutlineInputBorder(),
                     ),
@@ -150,13 +152,20 @@ class _WeightFormState extends State<WeightForm> {
                 lastKg: widget.lastWeightKg!,
                 lastDate: widget.lastWeightDate,
                 useKg: useKg,
+                l: l,
               ),
             ] else if (widget.lastWeightKg != null) ...[
               const SizedBox(height: 10),
               Text(
-                'Last recorded: ${formatWeight(widget.lastWeightKg!, useKg: useKg)}'
-                '${widget.lastWeightDate != null ? ' on ${fullDate(widget.lastWeightDate!)}' : ''}',
-                style: const TextStyle(color: Colors.grey, fontSize: 13),
+                widget.lastWeightDate != null
+                    ? l.weightLastRecorded(
+                        formatWeight(widget.lastWeightKg!, useKg: useKg),
+                        fullDate(widget.lastWeightDate!),
+                      )
+                    : l.weightPrevious(
+                        formatWeight(widget.lastWeightKg!, useKg: useKg)),
+                style:
+                    const TextStyle(color: Colors.grey, fontSize: 13),
               ),
             ],
 
@@ -165,7 +174,8 @@ class _WeightFormState extends State<WeightForm> {
               alignment: Alignment.centerRight,
               child: FilledButton(
                 onPressed: valueKg != null ? _save : null,
-                child: Text(_isEditing ? 'Update' : 'Save'),
+                child:
+                    Text(_isEditing ? l.actionUpdate : l.actionSave),
               ),
             ),
           ],
@@ -196,12 +206,14 @@ class _WeightComparison extends StatelessWidget {
   final double lastKg;
   final DateTime? lastDate;
   final bool useKg;
+  final AppLocalizations l;
 
   const _WeightComparison({
     required this.currentKg,
     required this.lastKg,
     required this.lastDate,
     required this.useKg,
+    required this.l,
   });
 
   @override
@@ -211,10 +223,12 @@ class _WeightComparison extends StatelessWidget {
     final color = isGain ? Colors.green : Colors.red;
     final arrow = isGain ? Icons.arrow_upward : Icons.arrow_downward;
     final diffStr = formatWeight(diff.abs(), useKg: useKg);
-    final label = isGain ? '+$diffStr gain' : '−$diffStr loss';
+    final gainLossLabel =
+        isGain ? l.weightGain(diffStr) : l.weightLoss(diffStr);
     final lastStr = formatWeight(lastKg, useKg: useKg);
-    final dateStr =
-        lastDate != null ? ' (${fullDate(lastDate!)})' : '';
+    final previousLabel = lastDate != null
+        ? l.weightLastRecorded(lastStr, fullDate(lastDate!))
+        : l.weightPrevious(lastStr);
 
     return Container(
       padding: const EdgeInsets.all(12),
@@ -231,12 +245,12 @@ class _WeightComparison extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(label,
+                Text(gainLossLabel,
                     style: TextStyle(
                         color: color, fontWeight: FontWeight.bold)),
-                Text('Previous: $lastStr$dateStr',
-                    style:
-                        const TextStyle(fontSize: 12, color: Colors.grey)),
+                Text(previousLabel,
+                    style: const TextStyle(
+                        fontSize: 12, color: Colors.grey)),
               ],
             ),
           ),

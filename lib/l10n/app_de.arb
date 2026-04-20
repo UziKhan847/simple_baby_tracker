@@ -1,0 +1,507 @@
+{
+    "@@locale": "de",
+    "appTitle": "Baby-Tracker",
+    "@appTitle": {},
+    "navHome": "Start",
+    "@navHome": {},
+    "navGraphs": "Diagramme",
+    "@navGraphs": {},
+    "navSettings": "Einstellungen",
+    "@navSettings": {},
+    "actionCancel": "Abbrechen",
+    "@actionCancel": {},
+    "actionSave": "Speichern",
+    "@actionSave": {},
+    "actionUpdate": "Aktualisieren",
+    "@actionUpdate": {},
+    "actionDelete": "Löschen",
+    "@actionDelete": {},
+    "actionAdd": "Hinzufügen",
+    "@actionAdd": {},
+    "actionEdit": "Bearbeiten",
+    "@actionEdit": {},
+    "actionClose": "Schließen",
+    "@actionClose": {},
+    "actionExport": "Daten exportieren",
+    "@actionExport": {},
+    "actionAddDay": "Tag hinzufügen",
+    "@actionAddDay": {},
+    "cannotUndo": "Diese Aktion kann nicht rückgängig gemacht werden",
+    "@cannotUndo": {},
+    "noData": "Keine Daten",
+    "@noData": {},
+    "homeTitle": "Tracker",
+    "@homeTitle": {},
+    "feedsToday": "Heutige Mahlzeiten",
+    "@feedsToday": {},
+    "diapersToday": "Heutige Windeln",
+    "@diapersToday": {},
+    "sleepToday": "Heutiger Schlaf",
+    "@sleepToday": {},
+    "todayLabel": "Heute — {date}",
+    "@todayLabel": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "eventCount": "{count, plural, =0{Keine Ereignisse} =1{1 Ereignis} other{{count} Ereignisse}}",
+    "@eventCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deleteDayTitle": "Diesen Tag löschen?",
+    "@deleteDayTitle": {},
+    "deleteDayContent": "{date} und alle Einträge löschen? Diese Aktion kann nicht rückgängig gemacht werden",
+    "@deleteDayContent": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "noEntriesYet": "Noch keine Einträge",
+    "@noEntriesYet": {},
+    "addEntry": "Eintrag hinzufügen",
+    "@addEntry": {},
+    "deleteEntryTitle": "Diesen Eintrag löschen?",
+    "@deleteEntryTitle": {},
+    "entryTypeDiaper": "Windel wechseln",
+    "@entryTypeDiaper": {},
+    "entryTypeFeeding": "Fütterung",
+    "@entryTypeFeeding": {},
+    "entryTypeSleep": "Schlaf",
+    "@entryTypeSleep": {},
+    "entryTypeTemperature": "Temperatur",
+    "@entryTypeTemperature": {},
+    "entryTypeWeight": "Gewicht",
+    "@entryTypeWeight": {},
+    "diaperPeePoo": "Windel — Pipi + Stuhl",
+    "@diaperPeePoo": {},
+    "diaperPee": "Windel — nur Pipi",
+    "@diaperPee": {},
+    "diaperPoo": "Windel — nur Stuhl",
+    "@diaperPoo": {},
+    "diaperChange": "Windel wechseln",
+    "@diaperChange": {},
+    "editDiaper": "Windel bearbeiten",
+    "@editDiaper": {},
+    "diaperContents": "Inhalt",
+    "@diaperContents": {},
+    "diaperNone": "Keins",
+    "@diaperNone": {},
+    "diaperPeeLabel": "Pipi",
+    "@diaperPeeLabel": {},
+    "diaperPooLabel": "Stuhl",
+    "@diaperPooLabel": {},
+    "diaperBoth": "Beides",
+    "@diaperBoth": {},
+    "diaperConsistency": "Konsistenz",
+    "@diaperConsistency": {},
+    "consistencyHard": "Hart / Körnig",
+    "@consistencyHard": {},
+    "consistencyHardHint": "Verstopfung",
+    "@consistencyHardHint": {},
+    "consistencyFirm": "Fest",
+    "@consistencyFirm": {},
+    "consistencyFirmHint": "Leicht fest",
+    "@consistencyFirmHint": {},
+    "consistencyNormal": "Normal",
+    "@consistencyNormal": {},
+    "consistencyNormalHint": "Gesund",
+    "@consistencyNormalHint": {},
+    "consistencySoft": "Weich",
+    "@consistencySoft": {},
+    "consistencySoftHint": "Leicht weich",
+    "@consistencySoftHint": {},
+    "consistencyLoose": "Breiiig / Halbflüssig",
+    "@consistencyLoose": {},
+    "consistencyLooseHint": "Beobachten",
+    "@consistencyLooseHint": {},
+    "consistencyWatery": "Wässrig",
+    "@consistencyWatery": {},
+    "consistencyWateryHint": "Durchfall",
+    "@consistencyWateryHint": {},
+    "warnConstipation": "Anzeichen von Verstopfung — genau beobachten",
+    "@warnConstipation": {},
+    "warnDiarrhea": "Anzeichen von Durchfall — genau beobachten",
+    "@warnDiarrhea": {},
+    "pooColourLabel": "Farbe (tippen zum Auswählen)",
+    "@pooColourLabel": {},
+    "pooColourAbnormal": "⚠️ Abnorm (blass)",
+    "@pooColourAbnormal": {},
+    "pooColourNormal": "✅ Normal",
+    "@pooColourNormal": {},
+    "pooColourSelected": "Ausgewählt: {label}",
+    "@pooColourSelected": {
+        "placeholders": {
+            "label": {
+                "type": "String"
+            }
+        }
+    },
+    "diaperSize": "Windelgröße",
+    "@diaperSize": {},
+    "diaperBrand": "Marke",
+    "@diaperBrand": {},
+    "diaperBrandCustomLabel": "Markenname",
+    "@diaperBrandCustomLabel": {},
+    "rashPresent": "Windelausschlag vorhanden",
+    "@rashPresent": {},
+    "rashPresentHint": "Rötung, Reizung oder Windelausschlag",
+    "@rashPresentHint": {},
+    "rashCreamUsed": "Creme verwendet",
+    "@rashCreamUsed": {},
+    "rashCreamCustomLabel": "Name der Creme / Salbe",
+    "@rashCreamCustomLabel": {},
+    "rashFollowUpTitle": "⚠️ Ausschlag-Nachsorge",
+    "@rashFollowUpTitle": {},
+    "rashFollowUpQuestion": "Bei der letzten Windel wurde Ausschlag festgestellt. Hat sich gebessert?",
+    "@rashFollowUpQuestion": {},
+    "rashImproved": "Ja, gebessert",
+    "@rashImproved": {},
+    "rashNoChange": "Keine Veränderung / Verschlechtert",
+    "@rashNoChange": {},
+    "rashRecorded": "Ausschlag dokumentiert",
+    "@rashRecorded": {},
+    "addFeeding": "Fütterung hinzufügen",
+    "@addFeeding": {},
+    "editFeeding": "Fütterung bearbeiten",
+    "@editFeeding": {},
+    "feedLabel": "Fütterung {number}",
+    "@feedLabel": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "feedModeBottle": "Flasche",
+    "@feedModeBottle": {},
+    "feedModeSuckle": "Stillen",
+    "@feedModeSuckle": {},
+    "feedAmountMl": "Menge (ml)",
+    "@feedAmountMl": {},
+    "feedType": "Art",
+    "@feedType": {},
+    "feedBreastMilk": "Muttermilch",
+    "@feedBreastMilk": {},
+    "feedFormula": "Pre-Nahrung",
+    "@feedFormula": {},
+    "feedFormulaBrand": "Marke der Pre-Nahrung",
+    "@feedFormulaBrand": {},
+    "feedFormulaBrandCustom": "Markenname",
+    "@feedFormulaBrandCustom": {},
+    "feedDurationMinutes": "Dauer (Minuten)",
+    "@feedDurationMinutes": {},
+    "addAnotherFeed": "Weitere Fütterung hinzufügen",
+    "@addAnotherFeed": {},
+    "bottleBreastMilk": "Flasche — Muttermilch",
+    "@bottleBreastMilk": {},
+    "bottleFormula": "Flasche — Pre-Nahrung",
+    "@bottleFormula": {},
+    "breastfeedingSuckle": "Stillen (direkt)",
+    "@breastfeedingSuckle": {},
+    "logSleep": "Schlaf aufzeichnen",
+    "@logSleep": {},
+    "editSleep": "Schlaf bearbeiten",
+    "@editSleep": {},
+    "sleepStart": "Schlafbeginn",
+    "@sleepStart": {},
+    "sleepWakeUp": "Aufwachen",
+    "@sleepWakeUp": {},
+    "sleepDuration": "Dauer: {duration}",
+    "@sleepDuration": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "sleepInvalidTimes": "Ungültige Uhrzeiten",
+    "@sleepInvalidTimes": {},
+    "sleepWrapsNextDay": "(endet am nächsten Tag)",
+    "@sleepWrapsNextDay": {},
+    "sleepNotes": "Notizen (optional)",
+    "@sleepNotes": {},
+    "sleepNotesHint": "z.B. unruhig, kurz wach...",
+    "@sleepNotesHint": {},
+    "sleepNoNotes": "Keine Notizen",
+    "@sleepNoNotes": {},
+    "sleepHoursShort": "{h}h {m}min",
+    "@sleepHoursShort": {
+        "placeholders": {
+            "h": {
+                "type": "int"
+            },
+            "m": {
+                "type": "int"
+            }
+        }
+    },
+    "logTemperature": "Temperatur aufzeichnen",
+    "@logTemperature": {},
+    "editTemperature": "Temperatur bearbeiten",
+    "@editTemperature": {},
+    "temperatureLabel": "Temperatur",
+    "@temperatureLabel": {},
+    "tempSeverityLow": "Niedrige Temperatur — beobachten",
+    "@tempSeverityLow": {},
+    "tempSeverityNormal": "Normale Temperatur",
+    "@tempSeverityNormal": {},
+    "tempSeverityElevated": "Leicht erhöht — genau beobachten",
+    "@tempSeverityElevated": {},
+    "tempSeverityFever": "Fieber — Arzt konsultieren",
+    "@tempSeverityFever": {},
+    "tempReference": "Temperatur-Referenz",
+    "@tempReference": {},
+    "tempRefLow": "< 36,0 °C / 96,8 °F",
+    "@tempRefLow": {},
+    "tempRefNormal": "36,0 – 37,4 °C / 96,8 – 99,3 °F",
+    "@tempRefNormal": {},
+    "tempRefElevated": "37,5 – 38,4 °C / 99,5 – 101,1 °F",
+    "@tempRefElevated": {},
+    "tempRefFever": "≥ 38,5 °C / 101,3 °F",
+    "@tempRefFever": {},
+    "tempFeverWarning": "⚠️ Bei Säuglingen unter 3 Monaten mit Fieber immer den Kinderarzt aufsuchen",
+    "@tempFeverWarning": {},
+    "tempLow": "Niedrig",
+    "@tempLow": {},
+    "tempNormal": "Normal",
+    "@tempNormal": {},
+    "tempElevated": "Erhöht",
+    "@tempElevated": {},
+    "tempFever": "Fieber",
+    "@tempFever": {},
+    "tempLatest": "Letzte Temperatur",
+    "@tempLatest": {},
+    "tempSummary": "Temperaturübersicht",
+    "@tempSummary": {},
+    "tempFeverThreshold": "Fieberschwelle",
+    "@tempFeverThreshold": {},
+    "tempDays": "{count, plural, =1{1 Tag} other{{count} Tage}}",
+    "@tempDays": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "logWeight": "Gewicht aufzeichnen",
+    "@logWeight": {},
+    "editWeight": "Gewicht bearbeiten",
+    "@editWeight": {},
+    "weightLabel": "Gewicht",
+    "@weightLabel": {},
+    "weightGain": "+{amount} Zunahme",
+    "@weightGain": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLoss": "−{amount} Abnahme",
+    "@weightLoss": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightPrevious": "Vorher: {weight}",
+    "@weightPrevious": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLastRecorded": "Letzte Aufzeichnung: {weight} am {date}",
+    "@weightLastRecorded": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            },
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLatest": "Aktuellstes Gewicht",
+    "@weightLatest": {},
+    "weightOverPeriod": "{sign}{amount} in diesem Zeitraum",
+    "@weightOverPeriod": {
+        "placeholders": {
+            "sign": {
+                "type": "String"
+            },
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "settingsTitle": "Einstellungen",
+    "@settingsTitle": {},
+    "settingsAppearance": "Erscheinungsbild",
+    "@settingsAppearance": {},
+    "settingsDarkMode": "Dunkelmodus",
+    "@settingsDarkMode": {},
+    "settingsDarkActive": "Dunkles Thema aktiv",
+    "@settingsDarkActive": {},
+    "settingsLightActive": "Helles Thema aktiv",
+    "@settingsLightActive": {},
+    "settingsUnits": "Einheiten",
+    "@settingsUnits": {},
+    "settingsWeightUnit": "Gewichtseinheit",
+    "@settingsWeightUnit": {},
+    "settingsTempUnit": "Temperatureinheit",
+    "@settingsTempUnit": {},
+    "settingsLanguage": "Sprache",
+    "@settingsLanguage": {},
+    "settingsTips": "Tipps",
+    "@settingsTips": {},
+    "tipSwitchBabies": "Baby wechseln",
+    "@tipSwitchBabies": {},
+    "tipSwitchBabiesDesc": "Tippe auf das Baby-Avatar oben, um das Baby zu wechseln oder ein Profil hinzuzufügen",
+    "@tipSwitchBabiesDesc": {},
+    "tipSwipeDelete": "Nach links wischen zum Löschen",
+    "@tipSwipeDelete": {},
+    "tipSwipeDeleteDesc": "Funktioniert bei Tageskarten und einzelnen Einträgen",
+    "@tipSwipeDeleteDesc": {},
+    "tipMultipleFeeds": "Mehrere Fütterungen erfassen",
+    "@tipMultipleFeeds": {},
+    "tipMultipleFeedsDesc": "Tippe im Fütterungsformular auf „Weitere Fütterung hinzufügen“, um Stillen und Flasche in einem Schritt zu erfassen",
+    "@tipMultipleFeedsDesc": {},
+    "tipExportData": "Daten exportieren",
+    "@tipExportData": {},
+    "tipExportDataDesc": "Verwende das Teilen-Symbol auf der Startseite, um alle Daten als JSON zu exportieren",
+    "@tipExportDataDesc": {},
+    "tipTapToEdit": "Tippe auf einen beliebigen Eintrag, um ihn zu bearbeiten",
+    "@tipTapToEdit": {},
+    "babiesTitle": "Babys",
+    "@babiesTitle": {},
+    "addBaby": "Baby hinzufügen",
+    "@addBaby": {},
+    "editProfile": "Profil bearbeiten",
+    "@editProfile": {},
+    "babyNameRequired": "Name *",
+    "@babyNameRequired": {},
+    "babyDobOptional": "Geburtsdatum (optional)",
+    "@babyDobOptional": {},
+    "babyBornOn": "Geboren am {date}",
+    "@babyBornOn": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "genderUnknown": "Nicht angegeben",
+    "@genderUnknown": {},
+    "genderBoy": "Junge",
+    "@genderBoy": {},
+    "genderGirl": "Mädchen",
+    "@genderGirl": {},
+    "cannotDeleteOnlyProfile": "Das einzige Babyprofil kann nicht gelöscht werden",
+    "@cannotDeleteOnlyProfile": {},
+    "deleteProfileTitle": "{name} löschen?",
+    "@deleteProfileTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "deleteProfileContent": "Alle Daten dieses Babys werden dauerhaft gelöscht",
+    "@deleteProfileContent": {},
+    "graphsTitle": "Diagramme",
+    "@graphsTitle": {},
+    "graphsTabDaily": "Täglich",
+    "@graphsTabDaily": {},
+    "graphsTabGrowth": "Wachstum",
+    "@graphsTabGrowth": {},
+    "graphsTabHealth": "Gesundheit",
+    "@graphsTabHealth": {},
+    "graphsTotalFeeds": "Fütterungen gesamt",
+    "@graphsTotalFeeds": {},
+    "graphsAvgPerDay": "Ø pro Tag",
+    "@graphsAvgPerDay": {},
+    "graphsTotalDiapers": "Windeln",
+    "@graphsTotalDiapers": {},
+    "graphsTotalMilk": "Milch gesamt",
+    "@graphsTotalMilk": {},
+    "graphsTotalSleep": "Schlaf gesamt",
+    "@graphsTotalSleep": {},
+    "graphsAvgSleep": "Ø Schlaf/Tag",
+    "@graphsAvgSleep": {},
+    "graphsFeedsPerDay": "Fütterungen pro Tag",
+    "@graphsFeedsPerDay": {},
+    "graphsDiapersPerDay": "Windeln pro Tag",
+    "@graphsDiapersPerDay": {},
+    "graphsMilkPerDay": "Milch pro Tag (ml)",
+    "@graphsMilkPerDay": {},
+    "graphsSleepPerDay": "Schlaf pro Tag (Stunden)",
+    "@graphsSleepPerDay": {},
+    "graphsWeightOverTime": "Gewicht im Zeitverlauf",
+    "@graphsWeightOverTime": {},
+    "graphsTempOverTime": "Temperatur im Zeitverlauf",
+    "@graphsTempOverTime": {},
+    "graphsMaxLabel": "Max: {value}",
+    "@graphsMaxLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsMinLabel": "Min: {value}",
+    "@graphsMinLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsNoWeightData": "Noch keine Gewichtseinträge\nGewicht über die Einträge eines Tages erfassen",
+    "@graphsNoWeightData": {},
+    "graphsNoTempData": "Noch keine Temperatureinträge\nTemperatur über einen Tag erfassen",
+    "@graphsNoTempData": {},
+    "timeLabel": "Uhrzeit",
+    "@timeLabel": {},
+    "noColourRecorded": "Keine Farbe erfasst",
+    "@noColourRecorded": {},
+    "noDetails": "Keine Details",
+    "@noDetails": {},
+    "ageDay": "{count, plural, =1{1 Tag} other{{count} Tage}}",
+    "@ageDay": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageMonth": "{count, plural, =1{1 Monat} other{{count} Monate}}",
+    "@ageMonth": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageYearMonth": "{years} Jahr(e) {months} Monat(e)",
+    "@ageYearMonth": {
+        "placeholders": {
+            "years": {
+                "type": "int"
+            },
+            "months": {
+                "type": "int"
+            }
+        }
+    }
+}

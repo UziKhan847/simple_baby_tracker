@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:simple_baby_tracker/day_page.dart';
+import 'package:simple_baby_tracker/day/page.dart';
 import 'package:simple_baby_tracker/extensions.dart';
 import 'package:simple_baby_tracker/helpers.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/stat_card.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
@@ -140,25 +141,10 @@ class _HomePageState extends State<HomePage> {
     return result;
   }
 
-  static const _monthNames = [
-    '',
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-
   // ─── Day tile ──────────────────────────────────────────────────────────────
 
   Widget _buildDayTile(DateTime d, {bool isToday = false}) {
+    final l = AppLocalizations.of(context)!;
     final key = dateKey(d);
     final count = _count(key);
     final hasRash =
@@ -170,21 +156,19 @@ class _HomePageState extends State<HomePage> {
     return Dismissible(
       key: ValueKey(key),
       direction: DismissDirection.endToStart,
-      confirmDismiss: (_) async => await showDialog<bool>(
+      confirmDismiss: (_) async => showDialog<bool>(
         context: context,
         builder: (_) => AlertDialog(
-          title: const Text('Delete day?'),
-          content: Text(
-            'Remove ${fullDate(d)} and all its entries? This cannot be undone.',
-          ),
+          title: Text(l.deleteDayTitle),
+          content: Text(l.deleteDayContent(fullDate(d))),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, false),
-              child: const Text('Cancel'),
+              child: Text(l.actionCancel),
             ),
             FilledButton(
               onPressed: () => Navigator.pop(context, true),
-              child: const Text('Delete'),
+              child: Text(l.actionDelete),
             ),
           ],
         ),
@@ -221,20 +205,20 @@ class _HomePageState extends State<HomePage> {
             children: [
               Expanded(
                 child: Text(
-                  isToday ? 'Today — ${fullDate(d)}' : fullDate(d),
+                  isToday ? l.todayLabel(fullDate(d)) : fullDate(d),
                   style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
               ),
               if (hasRash)
-                const Tooltip(
-                  message: 'Rash recorded',
-                  child: Text('🔴', style: TextStyle(fontSize: 13)),
+                Tooltip(
+                  message: l.rashRecorded,
+                  child: const Text('🔴', style: TextStyle(fontSize: 13)),
                 ),
             ],
           ),
           subtitle: Text(d.shortName()),
           trailing: Chip(
-            label: Text('$count event${count == 1 ? '' : 's'}'),
+            label: Text(l.eventCount(count)),
             visualDensity: VisualDensity.compact,
           ),
           onTap: () async {
@@ -255,6 +239,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final today = DateTime.now();
     final todayKey = dateKey(today);
     final hasToday = widget.data.containsKey(todayKey);
@@ -263,12 +248,12 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tracker'),
+        title: Text(l.homeTitle),
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: const Icon(Icons.share),
-            tooltip: 'Export data',
+            tooltip: l.actionExport,
             onPressed: _export,
           ),
         ],
@@ -276,7 +261,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _addTileForDate(),
         icon: const Icon(Icons.add),
-        label: const Text('Add day'),
+        label: Text(l.actionAddDay),
       ),
       body: Column(
         children: [
@@ -288,7 +273,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Expanded(
                       child: StatCard(
-                        title: 'Feeds today',
+                        title: l.feedsToday,
                         value: '${_totalFeedsToday()}',
                         icon: Icons.local_drink,
                         color: Colors.pink,
@@ -297,7 +282,7 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(width: 12),
                     Expanded(
                       child: StatCard(
-                        title: 'Diapers today',
+                        title: l.diapersToday,
                         value: '${_totalDiapersToday()}',
                         icon: Icons.baby_changing_station,
                         color: Colors.brown,
@@ -308,7 +293,7 @@ class _HomePageState extends State<HomePage> {
                 if (sleepToday > 0) ...[
                   const SizedBox(height: 8),
                   StatCard(
-                    title: 'Sleep today',
+                    title: l.sleepToday,
                     value: _sleepLabel(sleepToday),
                     icon: Icons.bedtime,
                     color: Colors.indigo,
@@ -348,6 +333,8 @@ class _HomePageState extends State<HomePage> {
     DateTime today,
     Map<int, Map<int, List<DateTime>>> grouped,
   ) {
+    final l = AppLocalizations.of(context)!;
+
     if (hasToday) {
       if (index == 0) return _buildDayTile(today, isToday: true);
       if (index == 1) return const Divider(height: 20);
@@ -374,14 +361,15 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.fromLTRB(8, 6, 4, 2),
             child: Row(
               children: [
+                // Use intl-formatted month name so it respects locale automatically
                 Text(
-                  _monthNames[monthEntry.key],
+                  _localizedMonthName(monthEntry.key, l),
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
                 const Spacer(),
                 TextButton.icon(
                   icon: const Icon(Icons.add, size: 16),
-                  label: const Text('Add day'),
+                  label: Text(l.actionAddDay),
                   onPressed: () => _addTileForDate(
                     initial: DateTime(yearEntry.key, monthEntry.key),
                   ),
@@ -402,11 +390,20 @@ class _HomePageState extends State<HomePage> {
     return const SizedBox.shrink();
   }
 
-  // ── Fix: use SharePlus.instance.share() instead of deprecated Share.shareXFiles ──
+  /// Returns a locale-aware month name by formatting a representative date.
+  String _localizedMonthName(int month, AppLocalizations l) {
+    // Use intl's DateFormat so the month name follows the active locale.
+    // We construct a date in that month and format just the month portion.
+    final date = DateTime(2000, month);
+    // DateFormat is already imported via helpers.dart (intl package).
+    return fullMonthName(date);
+  }
+
   Future<void> _export() async {
+    final l = AppLocalizations.of(context)!;
     final file = await Storage.exportToFile(widget.babyId, widget.data);
     await SharePlus.instance.share(
-      ShareParams(files: [XFile(file.path)], subject: 'Baby tracker export'),
+      ShareParams(files: [XFile(file.path)], subject: l.actionExport),
     );
   }
 }

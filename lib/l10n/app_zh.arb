@@ -1,0 +1,507 @@
+{
+    "@@locale": "zh",
+    "appTitle": "宝宝追踪器",
+    "@appTitle": {},
+    "navHome": "首页",
+    "@navHome": {},
+    "navGraphs": "图表",
+    "@navGraphs": {},
+    "navSettings": "设置",
+    "@navSettings": {},
+    "actionCancel": "取消",
+    "@actionCancel": {},
+    "actionSave": "保存",
+    "@actionSave": {},
+    "actionUpdate": "更新",
+    "@actionUpdate": {},
+    "actionDelete": "删除",
+    "@actionDelete": {},
+    "actionAdd": "添加",
+    "@actionAdd": {},
+    "actionEdit": "编辑",
+    "@actionEdit": {},
+    "actionClose": "关闭",
+    "@actionClose": {},
+    "actionExport": "导出数据",
+    "@actionExport": {},
+    "actionAddDay": "添加日期",
+    "@actionAddDay": {},
+    "cannotUndo": "此操作无法撤销",
+    "@cannotUndo": {},
+    "noData": "无数据",
+    "@noData": {},
+    "homeTitle": "追踪",
+    "@homeTitle": {},
+    "feedsToday": "今日喂养",
+    "@feedsToday": {},
+    "diapersToday": "今日尿布",
+    "@diapersToday": {},
+    "sleepToday": "今日睡眠",
+    "@sleepToday": {},
+    "todayLabel": "今天 — {date}",
+    "@todayLabel": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "eventCount": "{count, plural, =0{无事件} =1{1个事件} other{{count}个事件}}",
+    "@eventCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deleteDayTitle": "删除这一天？",
+    "@deleteDayTitle": {},
+    "deleteDayContent": "删除{date}及其所有记录？此操作无法撤销",
+    "@deleteDayContent": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "noEntriesYet": "暂无记录",
+    "@noEntriesYet": {},
+    "addEntry": "添加记录",
+    "@addEntry": {},
+    "deleteEntryTitle": "删除此记录？",
+    "@deleteEntryTitle": {},
+    "entryTypeDiaper": "换尿布",
+    "@entryTypeDiaper": {},
+    "entryTypeFeeding": "喂养",
+    "@entryTypeFeeding": {},
+    "entryTypeSleep": "睡眠",
+    "@entryTypeSleep": {},
+    "entryTypeTemperature": "体温",
+    "@entryTypeTemperature": {},
+    "entryTypeWeight": "体重",
+    "@entryTypeWeight": {},
+    "diaperPeePoo": "尿布 — 小便 + 大便",
+    "@diaperPeePoo": {},
+    "diaperPee": "尿布 — 仅小便",
+    "@diaperPee": {},
+    "diaperPoo": "尿布 — 仅大便",
+    "@diaperPoo": {},
+    "diaperChange": "换尿布",
+    "@diaperChange": {},
+    "editDiaper": "编辑尿布",
+    "@editDiaper": {},
+    "diaperContents": "内容物",
+    "@diaperContents": {},
+    "diaperNone": "无",
+    "@diaperNone": {},
+    "diaperPeeLabel": "小便",
+    "@diaperPeeLabel": {},
+    "diaperPooLabel": "大便",
+    "@diaperPooLabel": {},
+    "diaperBoth": "两者都有",
+    "@diaperBoth": {},
+    "diaperConsistency": "质地",
+    "@diaperConsistency": {},
+    "consistencyHard": "硬 / 颗粒状",
+    "@consistencyHard": {},
+    "consistencyHardHint": "便秘",
+    "@consistencyHardHint": {},
+    "consistencyFirm": "成形",
+    "@consistencyFirm": {},
+    "consistencyFirmHint": "略硬",
+    "@consistencyFirmHint": {},
+    "consistencyNormal": "正常",
+    "@consistencyNormal": {},
+    "consistencyNormalHint": "健康",
+    "@consistencyNormalHint": {},
+    "consistencySoft": "软",
+    "@consistencySoft": {},
+    "consistencySoftHint": "略软",
+    "@consistencySoftHint": {},
+    "consistencyLoose": "糊状 / 半液体",
+    "@consistencyLoose": {},
+    "consistencyLooseHint": "需关注",
+    "@consistencyLooseHint": {},
+    "consistencyWatery": "水样",
+    "@consistencyWatery": {},
+    "consistencyWateryHint": "腹泻",
+    "@consistencyWateryHint": {},
+    "warnConstipation": "便秘迹象 — 密切观察",
+    "@warnConstipation": {},
+    "warnDiarrhea": "腹泻迹象 — 密切观察",
+    "@warnDiarrhea": {},
+    "pooColourLabel": "颜色（点击选择）",
+    "@pooColourLabel": {},
+    "pooColourAbnormal": "⚠️ 异常（苍白）",
+    "@pooColourAbnormal": {},
+    "pooColourNormal": "✅ 正常",
+    "@pooColourNormal": {},
+    "pooColourSelected": "已选：{label}",
+    "@pooColourSelected": {
+        "placeholders": {
+            "label": {
+                "type": "String"
+            }
+        }
+    },
+    "diaperSize": "尿布尺寸",
+    "@diaperSize": {},
+    "diaperBrand": "品牌",
+    "@diaperBrand": {},
+    "diaperBrandCustomLabel": "品牌名称",
+    "@diaperBrandCustomLabel": {},
+    "rashPresent": "有尿布疹",
+    "@rashPresent": {},
+    "rashPresentHint": "发红、刺激或尿布疹",
+    "@rashPresentHint": {},
+    "rashCreamUsed": "已使用护臀霜",
+    "@rashCreamUsed": {},
+    "rashCreamCustomLabel": "护臀霜 / 药膏名称",
+    "@rashCreamCustomLabel": {},
+    "rashFollowUpTitle": "⚠️ 尿布疹随访",
+    "@rashFollowUpTitle": {},
+    "rashFollowUpQuestion": "上次尿布记录有尿布疹。有改善吗？",
+    "@rashFollowUpQuestion": {},
+    "rashImproved": "是，有改善",
+    "@rashImproved": {},
+    "rashNoChange": "无变化 / 更糟",
+    "@rashNoChange": {},
+    "rashRecorded": "已记录尿布疹",
+    "@rashRecorded": {},
+    "addFeeding": "添加喂养",
+    "@addFeeding": {},
+    "editFeeding": "编辑喂养",
+    "@editFeeding": {},
+    "feedLabel": "第{number}次喂养",
+    "@feedLabel": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "feedModeBottle": "奶瓶",
+    "@feedModeBottle": {},
+    "feedModeSuckle": "亲喂",
+    "@feedModeSuckle": {},
+    "feedAmountMl": "奶量（毫升）",
+    "@feedAmountMl": {},
+    "feedType": "类型",
+    "@feedType": {},
+    "feedBreastMilk": "母乳",
+    "@feedBreastMilk": {},
+    "feedFormula": "配方奶",
+    "@feedFormula": {},
+    "feedFormulaBrand": "配方奶品牌",
+    "@feedFormulaBrand": {},
+    "feedFormulaBrandCustom": "品牌名称",
+    "@feedFormulaBrandCustom": {},
+    "feedDurationMinutes": "时长（分钟）",
+    "@feedDurationMinutes": {},
+    "addAnotherFeed": "再添加一次喂养",
+    "@addAnotherFeed": {},
+    "bottleBreastMilk": "奶瓶 — 母乳",
+    "@bottleBreastMilk": {},
+    "bottleFormula": "奶瓶 — 配方奶",
+    "@bottleFormula": {},
+    "breastfeedingSuckle": "母乳亲喂",
+    "@breastfeedingSuckle": {},
+    "logSleep": "记录睡眠",
+    "@logSleep": {},
+    "editSleep": "编辑睡眠",
+    "@editSleep": {},
+    "sleepStart": "入睡时间",
+    "@sleepStart": {},
+    "sleepWakeUp": "醒来时间",
+    "@sleepWakeUp": {},
+    "sleepDuration": "时长：{duration}",
+    "@sleepDuration": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "sleepInvalidTimes": "时间无效",
+    "@sleepInvalidTimes": {},
+    "sleepWrapsNextDay": "（结束于次日）",
+    "@sleepWrapsNextDay": {},
+    "sleepNotes": "备注（可选）",
+    "@sleepNotes": {},
+    "sleepNotesHint": "例如：烦躁、短暂醒来……",
+    "@sleepNotesHint": {},
+    "sleepNoNotes": "无备注",
+    "@sleepNoNotes": {},
+    "sleepHoursShort": "{h}小时{m}分钟",
+    "@sleepHoursShort": {
+        "placeholders": {
+            "h": {
+                "type": "int"
+            },
+            "m": {
+                "type": "int"
+            }
+        }
+    },
+    "logTemperature": "记录体温",
+    "@logTemperature": {},
+    "editTemperature": "编辑体温",
+    "@editTemperature": {},
+    "temperatureLabel": "体温",
+    "@temperatureLabel": {},
+    "tempSeverityLow": "体温偏低 — 关注",
+    "@tempSeverityLow": {},
+    "tempSeverityNormal": "体温正常",
+    "@tempSeverityNormal": {},
+    "tempSeverityElevated": "轻微发热 — 密切观察",
+    "@tempSeverityElevated": {},
+    "tempSeverityFever": "发烧 — 咨询医生",
+    "@tempSeverityFever": {},
+    "tempReference": "体温参考",
+    "@tempReference": {},
+    "tempRefLow": "< 36.0 °C / 96.8 °F",
+    "@tempRefLow": {},
+    "tempRefNormal": "36.0 – 37.4 °C / 96.8 – 99.3 °F",
+    "@tempRefNormal": {},
+    "tempRefElevated": "37.5 – 38.4 °C / 99.5 – 101.1 °F",
+    "@tempRefElevated": {},
+    "tempRefFever": "≥ 38.5 °C / 101.3 °F",
+    "@tempRefFever": {},
+    "tempFeverWarning": "⚠️ 3个月以下婴儿发烧请务必咨询儿科医生",
+    "@tempFeverWarning": {},
+    "tempLow": "偏低",
+    "@tempLow": {},
+    "tempNormal": "正常",
+    "@tempNormal": {},
+    "tempElevated": "偏高",
+    "@tempElevated": {},
+    "tempFever": "发烧",
+    "@tempFever": {},
+    "tempLatest": "最近体温",
+    "@tempLatest": {},
+    "tempSummary": "体温摘要",
+    "@tempSummary": {},
+    "tempFeverThreshold": "发烧阈值",
+    "@tempFeverThreshold": {},
+    "tempDays": "{count, plural, =1{1天} other{{count}天}}",
+    "@tempDays": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "logWeight": "记录体重",
+    "@logWeight": {},
+    "editWeight": "编辑体重",
+    "@editWeight": {},
+    "weightLabel": "体重",
+    "@weightLabel": {},
+    "weightGain": "+{amount} 增加",
+    "@weightGain": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLoss": "−{amount} 减少",
+    "@weightLoss": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightPrevious": "上一次：{weight}",
+    "@weightPrevious": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLastRecorded": "上次记录：{weight}（{date}）",
+    "@weightLastRecorded": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            },
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLatest": "最近体重",
+    "@weightLatest": {},
+    "weightOverPeriod": "{sign}{amount} 在此期间",
+    "@weightOverPeriod": {
+        "placeholders": {
+            "sign": {
+                "type": "String"
+            },
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "settingsTitle": "设置",
+    "@settingsTitle": {},
+    "settingsAppearance": "外观",
+    "@settingsAppearance": {},
+    "settingsDarkMode": "深色模式",
+    "@settingsDarkMode": {},
+    "settingsDarkActive": "深色主题已启用",
+    "@settingsDarkActive": {},
+    "settingsLightActive": "浅色主题已启用",
+    "@settingsLightActive": {},
+    "settingsUnits": "单位",
+    "@settingsUnits": {},
+    "settingsWeightUnit": "体重单位",
+    "@settingsWeightUnit": {},
+    "settingsTempUnit": "体温单位",
+    "@settingsTempUnit": {},
+    "settingsLanguage": "语言",
+    "@settingsLanguage": {},
+    "settingsTips": "提示",
+    "@settingsTips": {},
+    "tipSwitchBabies": "切换宝宝",
+    "@tipSwitchBabies": {},
+    "tipSwitchBabiesDesc": "点击顶部的宝宝头像来切换或添加宝宝档案",
+    "@tipSwitchBabiesDesc": {},
+    "tipSwipeDelete": "向左滑动删除",
+    "@tipSwipeDelete": {},
+    "tipSwipeDeleteDesc": "适用于日期卡片和单个记录",
+    "@tipSwipeDeleteDesc": {},
+    "tipMultipleFeeds": "记录多次喂养",
+    "@tipMultipleFeeds": {},
+    "tipMultipleFeedsDesc": "在喂养表单中，点击“再添加一次喂养”可同时记录亲喂和奶瓶",
+    "@tipMultipleFeedsDesc": {},
+    "tipExportData": "导出数据",
+    "@tipExportData": {},
+    "tipExportDataDesc": "使用首页的分享图标将所有数据导出为JSON",
+    "@tipExportDataDesc": {},
+    "tipTapToEdit": "点击任意记录即可编辑",
+    "@tipTapToEdit": {},
+    "babiesTitle": "宝宝",
+    "@babiesTitle": {},
+    "addBaby": "添加宝宝",
+    "@addBaby": {},
+    "editProfile": "编辑档案",
+    "@editProfile": {},
+    "babyNameRequired": "姓名 *",
+    "@babyNameRequired": {},
+    "babyDobOptional": "出生日期（可选）",
+    "@babyDobOptional": {},
+    "babyBornOn": "出生于 {date}",
+    "@babyBornOn": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "genderUnknown": "未知",
+    "@genderUnknown": {},
+    "genderBoy": "男孩",
+    "@genderBoy": {},
+    "genderGirl": "女孩",
+    "@genderGirl": {},
+    "cannotDeleteOnlyProfile": "无法删除唯一的宝宝档案",
+    "@cannotDeleteOnlyProfile": {},
+    "deleteProfileTitle": "删除 {name}？",
+    "@deleteProfileTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "deleteProfileContent": "此宝宝的所有数据将被永久删除",
+    "@deleteProfileContent": {},
+    "graphsTitle": "图表",
+    "@graphsTitle": {},
+    "graphsTabDaily": "每日",
+    "@graphsTabDaily": {},
+    "graphsTabGrowth": "成长",
+    "@graphsTabGrowth": {},
+    "graphsTabHealth": "健康",
+    "@graphsTabHealth": {},
+    "graphsTotalFeeds": "喂养总数",
+    "@graphsTotalFeeds": {},
+    "graphsAvgPerDay": "日均",
+    "@graphsAvgPerDay": {},
+    "graphsTotalDiapers": "尿布总数",
+    "@graphsTotalDiapers": {},
+    "graphsTotalMilk": "总奶量",
+    "@graphsTotalMilk": {},
+    "graphsTotalSleep": "总睡眠时长",
+    "@graphsTotalSleep": {},
+    "graphsAvgSleep": "日均睡眠",
+    "@graphsAvgSleep": {},
+    "graphsFeedsPerDay": "每日喂养次数",
+    "@graphsFeedsPerDay": {},
+    "graphsDiapersPerDay": "每日尿布次数",
+    "@graphsDiapersPerDay": {},
+    "graphsMilkPerDay": "每日奶量（毫升）",
+    "@graphsMilkPerDay": {},
+    "graphsSleepPerDay": "每日睡眠（小时）",
+    "@graphsSleepPerDay": {},
+    "graphsWeightOverTime": "体重变化趋势",
+    "@graphsWeightOverTime": {},
+    "graphsTempOverTime": "体温变化趋势",
+    "@graphsTempOverTime": {},
+    "graphsMaxLabel": "最高：{value}",
+    "@graphsMaxLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsMinLabel": "最低：{value}",
+    "@graphsMinLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsNoWeightData": "暂无体重记录\n可从某天的记录中添加体重",
+    "@graphsNoWeightData": {},
+    "graphsNoTempData": "暂无体温记录\n可从某天添加体温",
+    "@graphsNoTempData": {},
+    "timeLabel": "时间",
+    "@timeLabel": {},
+    "noColourRecorded": "未记录颜色",
+    "@noColourRecorded": {},
+    "noDetails": "无详情",
+    "@noDetails": {},
+    "ageDay": "{count, plural, =1{1天} other{{count}天}}",
+    "@ageDay": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageMonth": "{count, plural, =1{1个月} other{{count}个月}}",
+    "@ageMonth": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageYearMonth": "{years}岁{months}个月",
+    "@ageYearMonth": {
+        "placeholders": {
+            "years": {
+                "type": "int"
+            },
+            "months": {
+                "type": "int"
+            }
+        }
+    }
+}

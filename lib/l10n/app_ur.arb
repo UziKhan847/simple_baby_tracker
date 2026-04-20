@@ -1,0 +1,507 @@
+{
+    "@@locale": "ur",
+    "appTitle": "بچے کا ٹریکر",
+    "@appTitle": {},
+    "navHome": "ہوم",
+    "@navHome": {},
+    "navGraphs": "گراف",
+    "@navGraphs": {},
+    "navSettings": "ترتیبات",
+    "@navSettings": {},
+    "actionCancel": "منسوخ کریں",
+    "@actionCancel": {},
+    "actionSave": "محفوظ کریں",
+    "@actionSave": {},
+    "actionUpdate": "اپ ڈیٹ کریں",
+    "@actionUpdate": {},
+    "actionDelete": "حذف کریں",
+    "@actionDelete": {},
+    "actionAdd": "شامل کریں",
+    "@actionAdd": {},
+    "actionEdit": "ترمیم کریں",
+    "@actionEdit": {},
+    "actionClose": "بند کریں",
+    "@actionClose": {},
+    "actionExport": "ڈیٹا برآمد کریں",
+    "@actionExport": {},
+    "actionAddDay": "دن شامل کریں",
+    "@actionAddDay": {},
+    "cannotUndo": "اسے کالعدم نہیں کیا جا سکتا",
+    "@cannotUndo": {},
+    "noData": "کوئی ڈیٹا نہیں",
+    "@noData": {},
+    "homeTitle": "ٹریکر",
+    "@homeTitle": {},
+    "feedsToday": "آج کی فیڈنگ",
+    "@feedsToday": {},
+    "diapersToday": "آج کے ڈائپر",
+    "@diapersToday": {},
+    "sleepToday": "آج کی نیند",
+    "@sleepToday": {},
+    "todayLabel": "آج — {date}",
+    "@todayLabel": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "eventCount": "{count, plural, =0{کوئی واقعہ نہیں} =1{1 واقعہ} other{{count} واقعات}}",
+    "@eventCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deleteDayTitle": "دن حذف کریں؟",
+    "@deleteDayTitle": {},
+    "deleteDayContent": "{date} اور اس کی تمام اندراجات حذف کریں؟ اسے کالعدم نہیں کیا جا سکتا",
+    "@deleteDayContent": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "noEntriesYet": "ابھی کوئی اندراج نہیں",
+    "@noEntriesYet": {},
+    "addEntry": "اندراج شامل کریں",
+    "@addEntry": {},
+    "deleteEntryTitle": "اندراج حذف کریں؟",
+    "@deleteEntryTitle": {},
+    "entryTypeDiaper": "ڈائپر تبدیل کریں",
+    "@entryTypeDiaper": {},
+    "entryTypeFeeding": "فیڈنگ",
+    "@entryTypeFeeding": {},
+    "entryTypeSleep": "نیند",
+    "@entryTypeSleep": {},
+    "entryTypeTemperature": "درجہ حرارت",
+    "@entryTypeTemperature": {},
+    "entryTypeWeight": "وزن",
+    "@entryTypeWeight": {},
+    "diaperPeePoo": "ڈائپر — پیشاب + پاخانہ",
+    "@diaperPeePoo": {},
+    "diaperPee": "ڈائپر — صرف پیشاب",
+    "@diaperPee": {},
+    "diaperPoo": "ڈائپر — صرف پاخانہ",
+    "@diaperPoo": {},
+    "diaperChange": "ڈائپر تبدیل کریں",
+    "@diaperChange": {},
+    "editDiaper": "ڈائپر ترمیم کریں",
+    "@editDiaper": {},
+    "diaperContents": "مواد",
+    "@diaperContents": {},
+    "diaperNone": "کچھ نہیں",
+    "@diaperNone": {},
+    "diaperPeeLabel": "پیشاب",
+    "@diaperPeeLabel": {},
+    "diaperPooLabel": "پاخانہ",
+    "@diaperPooLabel": {},
+    "diaperBoth": "دونوں",
+    "@diaperBoth": {},
+    "diaperConsistency": "مستقل مزاجی",
+    "@diaperConsistency": {},
+    "consistencyHard": "سخت / دانے دار",
+    "@consistencyHard": {},
+    "consistencyHardHint": "قبض",
+    "@consistencyHardHint": {},
+    "consistencyFirm": "ٹھوس",
+    "@consistencyFirm": {},
+    "consistencyFirmHint": "ہلکا ٹھوس",
+    "@consistencyFirmHint": {},
+    "consistencyNormal": "معمول",
+    "@consistencyNormal": {},
+    "consistencyNormalHint": "صحت مند",
+    "@consistencyNormalHint": {},
+    "consistencySoft": "نرم",
+    "@consistencySoft": {},
+    "consistencySoftHint": "ہلکا نرم",
+    "@consistencySoftHint": {},
+    "consistencyLoose": "پتلا / گاڑھا پانی",
+    "@consistencyLoose": {},
+    "consistencyLooseHint": "نگرانی کریں",
+    "@consistencyLooseHint": {},
+    "consistencyWatery": "پانی جیسا",
+    "@consistencyWatery": {},
+    "consistencyWateryHint": "اسہال",
+    "@consistencyWateryHint": {},
+    "warnConstipation": "قبض کی علامات — قریب سے نگرانی کریں",
+    "@warnConstipation": {},
+    "warnDiarrhea": "اسہال کی علامات — قریب سے نگرانی کریں",
+    "@warnDiarrhea": {},
+    "pooColourLabel": "رنگ (منتخب کرنے کے لیے ٹیپ کریں)",
+    "@pooColourLabel": {},
+    "pooColourAbnormal": "⚠️ غیر معمولی (پھیکا)",
+    "@pooColourAbnormal": {},
+    "pooColourNormal": "✅ معمول",
+    "@pooColourNormal": {},
+    "pooColourSelected": "منتخب: {label}",
+    "@pooColourSelected": {
+        "placeholders": {
+            "label": {
+                "type": "String"
+            }
+        }
+    },
+    "diaperSize": "ڈائپر کا سائز",
+    "@diaperSize": {},
+    "diaperBrand": "برانڈ",
+    "@diaperBrand": {},
+    "diaperBrandCustomLabel": "برانڈ کا نام",
+    "@diaperBrandCustomLabel": {},
+    "rashPresent": "ڈائپر ریش موجود",
+    "@rashPresent": {},
+    "rashPresentHint": "لالی، جلن یا ڈائپر ریش",
+    "@rashPresentHint": {},
+    "rashCreamUsed": "کریم لگائی گئی",
+    "@rashCreamUsed": {},
+    "rashCreamCustomLabel": "کریم / مرہم کا نام",
+    "@rashCreamCustomLabel": {},
+    "rashFollowUpTitle": "⚠️ ریش کی پیروی",
+    "@rashFollowUpTitle": {},
+    "rashFollowUpQuestion": "آخری ڈائپر میں ریش درج تھا۔ کیا بہتری ہوئی؟",
+    "@rashFollowUpQuestion": {},
+    "rashImproved": "ہاں، بہتری ہوئی",
+    "@rashImproved": {},
+    "rashNoChange": "کوئی تبدیلی نہیں / بگڑ گیا",
+    "@rashNoChange": {},
+    "rashRecorded": "ریش درج کیا گیا",
+    "@rashRecorded": {},
+    "addFeeding": "فیڈنگ شامل کریں",
+    "@addFeeding": {},
+    "editFeeding": "فیڈنگ ترمیم کریں",
+    "@editFeeding": {},
+    "feedLabel": "فیڈ {number}",
+    "@feedLabel": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "feedModeBottle": "بوتل",
+    "@feedModeBottle": {},
+    "feedModeSuckle": "چھاتی",
+    "@feedModeSuckle": {},
+    "feedAmountMl": "مقدار (ملی)",
+    "@feedAmountMl": {},
+    "feedType": "قسم",
+    "@feedType": {},
+    "feedBreastMilk": "ماں کا دودھ",
+    "@feedBreastMilk": {},
+    "feedFormula": "فارمولا دودھ",
+    "@feedFormula": {},
+    "feedFormulaBrand": "فارمولا برانڈ",
+    "@feedFormulaBrand": {},
+    "feedFormulaBrandCustom": "برانڈ کا نام",
+    "@feedFormulaBrandCustom": {},
+    "feedDurationMinutes": "مدت (منٹ)",
+    "@feedDurationMinutes": {},
+    "addAnotherFeed": "ایک اور فیڈنگ شامل کریں",
+    "@addAnotherFeed": {},
+    "bottleBreastMilk": "بوتل — ماں کا دودھ",
+    "@bottleBreastMilk": {},
+    "bottleFormula": "بوتل — فارمولا",
+    "@bottleFormula": {},
+    "breastfeedingSuckle": "چھاتی کا دودھ",
+    "@breastfeedingSuckle": {},
+    "logSleep": "نیند لاگ کریں",
+    "@logSleep": {},
+    "editSleep": "نیند ترمیم کریں",
+    "@editSleep": {},
+    "sleepStart": "نیند کا آغاز",
+    "@sleepStart": {},
+    "sleepWakeUp": "جاگنا",
+    "@sleepWakeUp": {},
+    "sleepDuration": "مدت: {duration}",
+    "@sleepDuration": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "sleepInvalidTimes": "غلط اوقات",
+    "@sleepInvalidTimes": {},
+    "sleepWrapsNextDay": "(اگلے دن ختم ہوتی ہے)",
+    "@sleepWrapsNextDay": {},
+    "sleepNotes": "نوٹس (اختیاری)",
+    "@sleepNotes": {},
+    "sleepNotesHint": "مثال: بے چین، تھوڑی دیر جاگا...",
+    "@sleepNotesHint": {},
+    "sleepNoNotes": "کوئی نوٹ نہیں",
+    "@sleepNoNotes": {},
+    "sleepHoursShort": "{h}گھنٹے {m}منٹ",
+    "@sleepHoursShort": {
+        "placeholders": {
+            "h": {
+                "type": "int"
+            },
+            "m": {
+                "type": "int"
+            }
+        }
+    },
+    "logTemperature": "درجہ حرارت لاگ کریں",
+    "@logTemperature": {},
+    "editTemperature": "درجہ حرارت ترمیم کریں",
+    "@editTemperature": {},
+    "temperatureLabel": "درجہ حرارت",
+    "@temperatureLabel": {},
+    "tempSeverityLow": "درجہ حرارت کم — نگرانی کریں",
+    "@tempSeverityLow": {},
+    "tempSeverityNormal": "نارمل درجہ حرارت",
+    "@tempSeverityNormal": {},
+    "tempSeverityElevated": "ہلکا بڑھا ہوا — قریب سے نگرانی کریں",
+    "@tempSeverityElevated": {},
+    "tempSeverityFever": "بخار — ڈاکٹر سے رجوع کریں",
+    "@tempSeverityFever": {},
+    "tempReference": "درجہ حرارت کا حوالہ",
+    "@tempReference": {},
+    "tempRefLow": "< 36.0 °C / 96.8 °F",
+    "@tempRefLow": {},
+    "tempRefNormal": "36.0 – 37.4 °C / 96.8 – 99.3 °F",
+    "@tempRefNormal": {},
+    "tempRefElevated": "37.5 – 38.4 °C / 99.5 – 101.1 °F",
+    "@tempRefElevated": {},
+    "tempRefFever": "≥ 38.5 °C / 101.3 °F",
+    "@tempRefFever": {},
+    "tempFeverWarning": "⚠️ 3 ماہ سے کم عمر بچوں میں بخار ہونے پر ہمیشہ ماہر اطفال سے رجوع کریں",
+    "@tempFeverWarning": {},
+    "tempLow": "کم",
+    "@tempLow": {},
+    "tempNormal": "نارمل",
+    "@tempNormal": {},
+    "tempElevated": "بڑھا ہوا",
+    "@tempElevated": {},
+    "tempFever": "بخار",
+    "@tempFever": {},
+    "tempLatest": "تازہ ترین درجہ حرارت",
+    "@tempLatest": {},
+    "tempSummary": "درجہ حرارت کا خلاصہ",
+    "@tempSummary": {},
+    "tempFeverThreshold": "بخار کی حد",
+    "@tempFeverThreshold": {},
+    "tempDays": "{count, plural, =1{1 دن} other{{count} دن}}",
+    "@tempDays": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "logWeight": "وزن لاگ کریں",
+    "@logWeight": {},
+    "editWeight": "وزن ترمیم کریں",
+    "@editWeight": {},
+    "weightLabel": "وزن",
+    "@weightLabel": {},
+    "weightGain": "+{amount} بڑھا",
+    "@weightGain": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLoss": "−{amount} گھٹا",
+    "@weightLoss": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightPrevious": "پچھلا: {weight}",
+    "@weightPrevious": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLastRecorded": "آخری ریکارڈ: {weight} ({date})",
+    "@weightLastRecorded": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            },
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLatest": "تازہ ترین وزن",
+    "@weightLatest": {},
+    "weightOverPeriod": "{sign}{amount} اس مدت میں",
+    "@weightOverPeriod": {
+        "placeholders": {
+            "sign": {
+                "type": "String"
+            },
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "settingsTitle": "ترتیبات",
+    "@settingsTitle": {},
+    "settingsAppearance": "ظاہریت",
+    "@settingsAppearance": {},
+    "settingsDarkMode": "ڈارک موڈ",
+    "@settingsDarkMode": {},
+    "settingsDarkActive": "ڈارک تھیم فعال",
+    "@settingsDarkActive": {},
+    "settingsLightActive": "لائٹ تھیم فعال",
+    "@settingsLightActive": {},
+    "settingsUnits": "اکائیاں",
+    "@settingsUnits": {},
+    "settingsWeightUnit": "وزن کی اکائی",
+    "@settingsWeightUnit": {},
+    "settingsTempUnit": "درجہ حرارت کی اکائی",
+    "@settingsTempUnit": {},
+    "settingsLanguage": "زبان",
+    "@settingsLanguage": {},
+    "settingsTips": "تجاویز",
+    "@settingsTips": {},
+    "tipSwitchBabies": "بچہ تبدیل کریں",
+    "@tipSwitchBabies": {},
+    "tipSwitchBabiesDesc": "بچہ تبدیل کرنے یا نیا پروفائل شامل کرنے کے لیے اوپر والے بچے کے ایواٹار پر ٹیپ کریں",
+    "@tipSwitchBabiesDesc": {},
+    "tipSwipeDelete": "حذف کرنے کے لیے بائیں سوائپ کریں",
+    "@tipSwipeDelete": {},
+    "tipSwipeDeleteDesc": "دن کارڈز اور انفرادی اندراجات پر کام کرتا ہے",
+    "@tipSwipeDeleteDesc": {},
+    "tipMultipleFeeds": "ایک ساتھ متعدد فیڈنگ لاگ کریں",
+    "@tipMultipleFeeds": {},
+    "tipMultipleFeedsDesc": "فیڈنگ فارم میں، \"ایک اور فیڈنگ شامل کریں\" پر ٹیپ کریں",
+    "@tipMultipleFeedsDesc": {},
+    "tipExportData": "ڈیٹا برآمد کریں",
+    "@tipExportData": {},
+    "tipExportDataDesc": "ہوم پر شیئر آئیکون استعمال کریں",
+    "@tipExportDataDesc": {},
+    "tipTapToEdit": "ترمیم کرنے کے لیے کسی بھی اندراج پر ٹیپ کریں",
+    "@tipTapToEdit": {},
+    "babiesTitle": "بچے",
+    "@babiesTitle": {},
+    "addBaby": "بچہ شامل کریں",
+    "@addBaby": {},
+    "editProfile": "پروفائل ترمیم کریں",
+    "@editProfile": {},
+    "babyNameRequired": "نام *",
+    "@babyNameRequired": {},
+    "babyDobOptional": "پیدائش کی تاریخ (اختیاری)",
+    "@babyDobOptional": {},
+    "babyBornOn": "پیدائش {date}",
+    "@babyBornOn": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "genderUnknown": "غیر متعین",
+    "@genderUnknown": {},
+    "genderBoy": "لڑکا",
+    "@genderBoy": {},
+    "genderGirl": "لڑکی",
+    "@genderGirl": {},
+    "cannotDeleteOnlyProfile": "اکلوتا بچہ پروفائل حذف نہیں کیا جا سکتا",
+    "@cannotDeleteOnlyProfile": {},
+    "deleteProfileTitle": "{name} حذف کریں؟",
+    "@deleteProfileTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "deleteProfileContent": "اس بچے کا سارا ڈیٹا مستقل طور پر حذف ہو جائے گا",
+    "@deleteProfileContent": {},
+    "graphsTitle": "گراف",
+    "@graphsTitle": {},
+    "graphsTabDaily": "یومیہ",
+    "@graphsTabDaily": {},
+    "graphsTabGrowth": "نمو",
+    "@graphsTabGrowth": {},
+    "graphsTabHealth": "صحت",
+    "@graphsTabHealth": {},
+    "graphsTotalFeeds": "کل فیڈنگز",
+    "@graphsTotalFeeds": {},
+    "graphsAvgPerDay": "اوسط/دن",
+    "@graphsAvgPerDay": {},
+    "graphsTotalDiapers": "ڈائپرز",
+    "@graphsTotalDiapers": {},
+    "graphsTotalMilk": "کل دودھ",
+    "@graphsTotalMilk": {},
+    "graphsTotalSleep": "کل نیند",
+    "@graphsTotalSleep": {},
+    "graphsAvgSleep": "اوسط نیند/دن",
+    "@graphsAvgSleep": {},
+    "graphsFeedsPerDay": "فی دن فیڈنگز",
+    "@graphsFeedsPerDay": {},
+    "graphsDiapersPerDay": "فی دن ڈائپرز",
+    "@graphsDiapersPerDay": {},
+    "graphsMilkPerDay": "فی دن دودھ (ملی)",
+    "@graphsMilkPerDay": {},
+    "graphsSleepPerDay": "فی دن نیند (گھنٹے)",
+    "@graphsSleepPerDay": {},
+    "graphsWeightOverTime": "وقت کے ساتھ وزن",
+    "@graphsWeightOverTime": {},
+    "graphsTempOverTime": "وقت کے ساتھ درجہ حرارت",
+    "@graphsTempOverTime": {},
+    "graphsMaxLabel": "زیادہ سے زیادہ: {value}",
+    "@graphsMaxLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsMinLabel": "کم سے کم: {value}",
+    "@graphsMinLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsNoWeightData": "ابھی کوئی وزن اندراج نہیں\nکسی دن کی اندراجات سے وزن لاگ کریں",
+    "@graphsNoWeightData": {},
+    "graphsNoTempData": "ابھی کوئی درجہ حرارت اندراج نہیں\nکسی دن سے درجہ حرارت لاگ کریں",
+    "@graphsNoTempData": {},
+    "timeLabel": "وقت",
+    "@timeLabel": {},
+    "noColourRecorded": "کوئی رنگ ریکارڈ نہیں",
+    "@noColourRecorded": {},
+    "noDetails": "کوئی تفصیل نہیں",
+    "@noDetails": {},
+    "ageDay": "{count, plural, =1{1 دن} other{{count} دن}}",
+    "@ageDay": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageMonth": "{count, plural, =1{1 مہینہ} other{{count} مہینے}}",
+    "@ageMonth": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageYearMonth": "{years} سال {months} مہینے",
+    "@ageYearMonth": {
+        "placeholders": {
+            "years": {
+                "type": "int"
+            },
+            "months": {
+                "type": "int"
+            }
+        }
+    }
+}

@@ -1,0 +1,507 @@
+{
+    "@@locale": "it",
+    "appTitle": "Tracker del Bambino",
+    "@appTitle": {},
+    "navHome": "Home",
+    "@navHome": {},
+    "navGraphs": "Grafici",
+    "@navGraphs": {},
+    "navSettings": "Impostazioni",
+    "@navSettings": {},
+    "actionCancel": "Annulla",
+    "@actionCancel": {},
+    "actionSave": "Salva",
+    "@actionSave": {},
+    "actionUpdate": "Aggiorna",
+    "@actionUpdate": {},
+    "actionDelete": "Elimina",
+    "@actionDelete": {},
+    "actionAdd": "Aggiungi",
+    "@actionAdd": {},
+    "actionEdit": "Modifica",
+    "@actionEdit": {},
+    "actionClose": "Chiudi",
+    "@actionClose": {},
+    "actionExport": "Esporta dati",
+    "@actionExport": {},
+    "actionAddDay": "Aggiungi giorno",
+    "@actionAddDay": {},
+    "cannotUndo": "Questa azione non può essere annullata",
+    "@cannotUndo": {},
+    "noData": "Nessun dato",
+    "@noData": {},
+    "homeTitle": "Tracker",
+    "@homeTitle": {},
+    "feedsToday": "Poppe oggi",
+    "@feedsToday": {},
+    "diapersToday": "Pannolini oggi",
+    "@diapersToday": {},
+    "sleepToday": "Sonno oggi",
+    "@sleepToday": {},
+    "todayLabel": "Oggi — {date}",
+    "@todayLabel": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "eventCount": "{count, plural, =0{Nessun evento} =1{1 evento} other{{count} eventi}}",
+    "@eventCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deleteDayTitle": "Eliminare questo giorno?",
+    "@deleteDayTitle": {},
+    "deleteDayContent": "Eliminare {date} e tutte le sue voci? Questa azione non può essere annullata",
+    "@deleteDayContent": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "noEntriesYet": "Ancora nessuna voce",
+    "@noEntriesYet": {},
+    "addEntry": "Aggiungi voce",
+    "@addEntry": {},
+    "deleteEntryTitle": "Eliminare questa voce?",
+    "@deleteEntryTitle": {},
+    "entryTypeDiaper": "Cambio pannolino",
+    "@entryTypeDiaper": {},
+    "entryTypeFeeding": "Poppa",
+    "@entryTypeFeeding": {},
+    "entryTypeSleep": "Sonno",
+    "@entryTypeSleep": {},
+    "entryTypeTemperature": "Temperatura",
+    "@entryTypeTemperature": {},
+    "entryTypeWeight": "Peso",
+    "@entryTypeWeight": {},
+    "diaperPeePoo": "Pannolino — pipì + cacca",
+    "@diaperPeePoo": {},
+    "diaperPee": "Pannolino — solo pipì",
+    "@diaperPee": {},
+    "diaperPoo": "Pannolino — solo cacca",
+    "@diaperPoo": {},
+    "diaperChange": "Cambio pannolino",
+    "@diaperChange": {},
+    "editDiaper": "Modifica pannolino",
+    "@editDiaper": {},
+    "diaperContents": "Contenuto",
+    "@diaperContents": {},
+    "diaperNone": "Niente",
+    "@diaperNone": {},
+    "diaperPeeLabel": "Pipì",
+    "@diaperPeeLabel": {},
+    "diaperPooLabel": "Cacca",
+    "@diaperPooLabel": {},
+    "diaperBoth": "Entrambi",
+    "@diaperBoth": {},
+    "diaperConsistency": "Consistenza",
+    "@diaperConsistency": {},
+    "consistencyHard": "Dura / A pallini",
+    "@consistencyHard": {},
+    "consistencyHardHint": "Stitichezza",
+    "@consistencyHardHint": {},
+    "consistencyFirm": "Formata",
+    "@consistencyFirm": {},
+    "consistencyFirmHint": "Leggermente soda",
+    "@consistencyFirmHint": {},
+    "consistencyNormal": "Normale",
+    "@consistencyNormal": {},
+    "consistencyNormalHint": "Salutare",
+    "@consistencyNormalHint": {},
+    "consistencySoft": "Morbida",
+    "@consistencySoft": {},
+    "consistencySoftHint": "Leggermente morbida",
+    "@consistencySoftHint": {},
+    "consistencyLoose": "Pastosa / Semi-liquida",
+    "@consistencyLoose": {},
+    "consistencyLooseHint": "Da monitorare",
+    "@consistencyLooseHint": {},
+    "consistencyWatery": "Liquida / Acquosa",
+    "@consistencyWatery": {},
+    "consistencyWateryHint": "Diarrea",
+    "@consistencyWateryHint": {},
+    "warnConstipation": "Segni di stitichezza — monitorare attentamente",
+    "@warnConstipation": {},
+    "warnDiarrhea": "Segni di diarrea — monitorare attentamente",
+    "@warnDiarrhea": {},
+    "pooColourLabel": "Colore (tocca per selezionare)",
+    "@pooColourLabel": {},
+    "pooColourAbnormal": "⚠️ Anormale (pallido)",
+    "@pooColourAbnormal": {},
+    "pooColourNormal": "✅ Normale",
+    "@pooColourNormal": {},
+    "pooColourSelected": "Selezionato: {label}",
+    "@pooColourSelected": {
+        "placeholders": {
+            "label": {
+                "type": "String"
+            }
+        }
+    },
+    "diaperSize": "Taglia del pannolino",
+    "@diaperSize": {},
+    "diaperBrand": "Marca",
+    "@diaperBrand": {},
+    "diaperBrandCustomLabel": "Nome della marca",
+    "@diaperBrandCustomLabel": {},
+    "rashPresent": "Eritema da pannolino presente",
+    "@rashPresent": {},
+    "rashPresentHint": "Rossore, irritazione o dermatite da pannolino",
+    "@rashPresentHint": {},
+    "rashCreamUsed": "Crema applicata",
+    "@rashCreamUsed": {},
+    "rashCreamCustomLabel": "Nome della crema / pomata",
+    "@rashCreamCustomLabel": {},
+    "rashFollowUpTitle": "⚠️ Follow-up dell'eritema",
+    "@rashFollowUpTitle": {},
+    "rashFollowUpQuestion": "Nell'ultimo pannolino è stato registrato un arrossamento. È migliorato?",
+    "@rashFollowUpQuestion": {},
+    "rashImproved": "Sì, migliorato",
+    "@rashImproved": {},
+    "rashNoChange": "Nessun cambiamento / peggiorato",
+    "@rashNoChange": {},
+    "rashRecorded": "Arrossamento registrato",
+    "@rashRecorded": {},
+    "addFeeding": "Aggiungi poppata",
+    "@addFeeding": {},
+    "editFeeding": "Modifica poppata",
+    "@editFeeding": {},
+    "feedLabel": "Poppata {number}",
+    "@feedLabel": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "feedModeBottle": "Biberon",
+    "@feedModeBottle": {},
+    "feedModeSuckle": "Allattamento al seno",
+    "@feedModeSuckle": {},
+    "feedAmountMl": "Quantità (ml)",
+    "@feedAmountMl": {},
+    "feedType": "Tipo",
+    "@feedType": {},
+    "feedBreastMilk": "Latte materno",
+    "@feedBreastMilk": {},
+    "feedFormula": "Latte artificiale",
+    "@feedFormula": {},
+    "feedFormulaBrand": "Marca del latte",
+    "@feedFormulaBrand": {},
+    "feedFormulaBrandCustom": "Nome della marca",
+    "@feedFormulaBrandCustom": {},
+    "feedDurationMinutes": "Durata (minuti)",
+    "@feedDurationMinutes": {},
+    "addAnotherFeed": "Aggiungi un'altra poppata",
+    "@addAnotherFeed": {},
+    "bottleBreastMilk": "Biberon — latte materno",
+    "@bottleBreastMilk": {},
+    "bottleFormula": "Biberon — latte artificiale",
+    "@bottleFormula": {},
+    "breastfeedingSuckle": "Allattamento al seno",
+    "@breastfeedingSuckle": {},
+    "logSleep": "Registra sonno",
+    "@logSleep": {},
+    "editSleep": "Modifica sonno",
+    "@editSleep": {},
+    "sleepStart": "Inizio sonno",
+    "@sleepStart": {},
+    "sleepWakeUp": "Risveglio",
+    "@sleepWakeUp": {},
+    "sleepDuration": "Durata: {duration}",
+    "@sleepDuration": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "sleepInvalidTimes": "Orari non validi",
+    "@sleepInvalidTimes": {},
+    "sleepWrapsNextDay": "(termina il giorno successivo)",
+    "@sleepWrapsNextDay": {},
+    "sleepNotes": "Note (opzionali)",
+    "@sleepNotes": {},
+    "sleepNotesHint": "Es.: irrequieto, si è svegliato brevemente...",
+    "@sleepNotesHint": {},
+    "sleepNoNotes": "Nessuna nota",
+    "@sleepNoNotes": {},
+    "sleepHoursShort": "{h}h {m}min",
+    "@sleepHoursShort": {
+        "placeholders": {
+            "h": {
+                "type": "int"
+            },
+            "m": {
+                "type": "int"
+            }
+        }
+    },
+    "logTemperature": "Registra temperatura",
+    "@logTemperature": {},
+    "editTemperature": "Modifica temperatura",
+    "@editTemperature": {},
+    "temperatureLabel": "Temperatura",
+    "@temperatureLabel": {},
+    "tempSeverityLow": "Temperatura bassa — monitorare",
+    "@tempSeverityLow": {},
+    "tempSeverityNormal": "Temperatura normale",
+    "@tempSeverityNormal": {},
+    "tempSeverityElevated": "Leggermente elevata — monitorare attentamente",
+    "@tempSeverityElevated": {},
+    "tempSeverityFever": "Febbre — consultare il medico",
+    "@tempSeverityFever": {},
+    "tempReference": "Riferimento temperatura",
+    "@tempReference": {},
+    "tempRefLow": "< 36,0 °C / 96,8 °F",
+    "@tempRefLow": {},
+    "tempRefNormal": "36,0 – 37,4 °C / 96,8 – 99,3 °F",
+    "@tempRefNormal": {},
+    "tempRefElevated": "37,5 – 38,4 °C / 99,5 – 101,1 °F",
+    "@tempRefElevated": {},
+    "tempRefFever": "≥ 38,5 °C / 101,3 °F",
+    "@tempRefFever": {},
+    "tempFeverWarning": "⚠️ In caso di febbre in neonati di età inferiore a 3 mesi, consultare sempre il pediatra",
+    "@tempFeverWarning": {},
+    "tempLow": "Bassa",
+    "@tempLow": {},
+    "tempNormal": "Normale",
+    "@tempNormal": {},
+    "tempElevated": "Elevata",
+    "@tempElevated": {},
+    "tempFever": "Febbre",
+    "@tempFever": {},
+    "tempLatest": "Ultima temperatura",
+    "@tempLatest": {},
+    "tempSummary": "Riepilogo temperature",
+    "@tempSummary": {},
+    "tempFeverThreshold": "Soglia febbrile",
+    "@tempFeverThreshold": {},
+    "tempDays": "{count, plural, =1{1 giorno} other{{count} giorni}}",
+    "@tempDays": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "logWeight": "Registra peso",
+    "@logWeight": {},
+    "editWeight": "Modifica peso",
+    "@editWeight": {},
+    "weightLabel": "Peso",
+    "@weightLabel": {},
+    "weightGain": "+{amount} di aumento",
+    "@weightGain": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLoss": "−{amount} di perdita",
+    "@weightLoss": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightPrevious": "Precedente: {weight}",
+    "@weightPrevious": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLastRecorded": "Ultima registrazione: {weight} il {date}",
+    "@weightLastRecorded": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            },
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLatest": "Ultimo peso",
+    "@weightLatest": {},
+    "weightOverPeriod": "{sign}{amount} nel periodo",
+    "@weightOverPeriod": {
+        "placeholders": {
+            "sign": {
+                "type": "String"
+            },
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "settingsTitle": "Impostazioni",
+    "@settingsTitle": {},
+    "settingsAppearance": "Aspetto",
+    "@settingsAppearance": {},
+    "settingsDarkMode": "Modalità scura",
+    "@settingsDarkMode": {},
+    "settingsDarkActive": "Tema scuro attivo",
+    "@settingsDarkActive": {},
+    "settingsLightActive": "Tema chiaro attivo",
+    "@settingsLightActive": {},
+    "settingsUnits": "Unità di misura",
+    "@settingsUnits": {},
+    "settingsWeightUnit": "Unità di peso",
+    "@settingsWeightUnit": {},
+    "settingsTempUnit": "Unità di temperatura",
+    "@settingsTempUnit": {},
+    "settingsLanguage": "Lingua",
+    "@settingsLanguage": {},
+    "settingsTips": "Suggerimenti",
+    "@settingsTips": {},
+    "tipSwitchBabies": "Cambia bambino",
+    "@tipSwitchBabies": {},
+    "tipSwitchBabiesDesc": "Tocca l'avatar del bambino in alto per cambiare o aggiungere un profilo",
+    "@tipSwitchBabiesDesc": {},
+    "tipSwipeDelete": "Scorri a sinistra per eliminare",
+    "@tipSwipeDelete": {},
+    "tipSwipeDeleteDesc": "Funziona sulle schede giornaliere e sulle singole voci",
+    "@tipSwipeDeleteDesc": {},
+    "tipMultipleFeeds": "Registra più poppate",
+    "@tipMultipleFeeds": {},
+    "tipMultipleFeedsDesc": "Nel modulo della poppata, tocca \"Aggiungi un'altra poppata\" per registrare allattamento e biberon insieme",
+    "@tipMultipleFeedsDesc": {},
+    "tipExportData": "Esporta dati",
+    "@tipExportData": {},
+    "tipExportDataDesc": "Usa l'icona di condivisione nella Home per esportare tutti i dati in JSON",
+    "@tipExportDataDesc": {},
+    "tipTapToEdit": "Tocca qualsiasi voce per modificarla",
+    "@tipTapToEdit": {},
+    "babiesTitle": "Bambini",
+    "@babiesTitle": {},
+    "addBaby": "Aggiungi bambino",
+    "@addBaby": {},
+    "editProfile": "Modifica profilo",
+    "@editProfile": {},
+    "babyNameRequired": "Nome *",
+    "@babyNameRequired": {},
+    "babyDobOptional": "Data di nascita (opzionale)",
+    "@babyDobOptional": {},
+    "babyBornOn": "Nato il {date}",
+    "@babyBornOn": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "genderUnknown": "Non specificato",
+    "@genderUnknown": {},
+    "genderBoy": "Maschio",
+    "@genderBoy": {},
+    "genderGirl": "Femmina",
+    "@genderGirl": {},
+    "cannotDeleteOnlyProfile": "Impossibile eliminare l'unico profilo del bambino",
+    "@cannotDeleteOnlyProfile": {},
+    "deleteProfileTitle": "Eliminare {name}?",
+    "@deleteProfileTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "deleteProfileContent": "Tutti i dati di questo bambino saranno eliminati definitivamente",
+    "@deleteProfileContent": {},
+    "graphsTitle": "Grafici",
+    "@graphsTitle": {},
+    "graphsTabDaily": "Giornaliero",
+    "@graphsTabDaily": {},
+    "graphsTabGrowth": "Crescita",
+    "@graphsTabGrowth": {},
+    "graphsTabHealth": "Salute",
+    "@graphsTabHealth": {},
+    "graphsTotalFeeds": "Totale poppate",
+    "@graphsTotalFeeds": {},
+    "graphsAvgPerDay": "Media/giorno",
+    "@graphsAvgPerDay": {},
+    "graphsTotalDiapers": "Pannolini",
+    "@graphsTotalDiapers": {},
+    "graphsTotalMilk": "Latte totale",
+    "@graphsTotalMilk": {},
+    "graphsTotalSleep": "Sonno totale",
+    "@graphsTotalSleep": {},
+    "graphsAvgSleep": "Sonno medio/giorno",
+    "@graphsAvgSleep": {},
+    "graphsFeedsPerDay": "Poppate al giorno",
+    "@graphsFeedsPerDay": {},
+    "graphsDiapersPerDay": "Pannolini al giorno",
+    "@graphsDiapersPerDay": {},
+    "graphsMilkPerDay": "Latte al giorno (ml)",
+    "@graphsMilkPerDay": {},
+    "graphsSleepPerDay": "Sonno al giorno (ore)",
+    "@graphsSleepPerDay": {},
+    "graphsWeightOverTime": "Peso nel tempo",
+    "@graphsWeightOverTime": {},
+    "graphsTempOverTime": "Temperatura nel tempo",
+    "@graphsTempOverTime": {},
+    "graphsMaxLabel": "Max: {value}",
+    "@graphsMaxLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsMinLabel": "Min: {value}",
+    "@graphsMinLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsNoWeightData": "Ancora nessuna registrazione di peso\nRegistra il peso dalle voci di un giorno",
+    "@graphsNoWeightData": {},
+    "graphsNoTempData": "Ancora nessuna registrazione di temperatura\nRegistra la temperatura da un giorno",
+    "@graphsNoTempData": {},
+    "timeLabel": "Ora",
+    "@timeLabel": {},
+    "noColourRecorded": "Nessun colore registrato",
+    "@noColourRecorded": {},
+    "noDetails": "Nessun dettaglio",
+    "@noDetails": {},
+    "ageDay": "{count, plural, =1{1 giorno} other{{count} giorni}}",
+    "@ageDay": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageMonth": "{count, plural, =1{1 mese} other{{count} mesi}}",
+    "@ageMonth": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageYearMonth": "{years} anni {months} mesi",
+    "@ageYearMonth": {
+        "placeholders": {
+            "years": {
+                "type": "int"
+            },
+            "months": {
+                "type": "int"
+            }
+        }
+    }
+}

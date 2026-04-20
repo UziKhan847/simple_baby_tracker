@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
-
-// ── lowerCamelCase constant names ─────────────────────────────────────────────
 
 const _diaperBrands = [
   'Pampers',
@@ -26,26 +25,6 @@ const _rashCreams = [
 
 const _diaperSizes = ['NB', '1', '2', '3', '4', '5', '6'];
 
-/// Stool consistency using a simplified Bristol-like scale.
-const _consistencies = [
-  {
-    'id': 'hard',
-    'label': 'Hard / Pellets',
-    'hint': 'Constipation',
-    'color': 0xFFB71C1C,
-  },
-  {'id': 'firm', 'label': 'Firm', 'hint': 'Slightly firm', 'color': 0xFFE64A19},
-  {'id': 'normal', 'label': 'Normal', 'hint': 'Healthy', 'color': 0xFF388E3C},
-  {'id': 'soft', 'label': 'Soft', 'hint': 'Slightly soft', 'color': 0xFFF9A825},
-  {
-    'id': 'loose',
-    'label': 'Loose / Mushy',
-    'hint': 'Monitor',
-    'color': 0xFFE65100,
-  },
-  {'id': 'watery', 'label': 'Watery', 'hint': 'Diarrhea', 'color': 0xFFB71C1C},
-];
-
 const _pooOptions = [
   {'id': '1', 'label': '1', 'name': 'Pale 1', 'abnormal': true},
   {'id': '2', 'label': '2', 'name': 'Pale 2', 'abnormal': true},
@@ -58,13 +37,20 @@ const _pooOptions = [
   {'id': '9', 'label': '9', 'name': 'Normal 9', 'abnormal': false},
 ];
 
-// ── DiaperForm ────────────────────────────────────────────────────────────────
+// Consistency options — labels/hints are looked up from l10n in build().
+const _consistencyIds = ['hard', 'firm', 'normal', 'soft', 'loose', 'watery'];
+const _consistencyColors = {
+  'hard': 0xFFB71C1C,
+  'firm': 0xFFE64A19,
+  'normal': 0xFF388E3C,
+  'soft': 0xFFF9A825,
+  'loose': 0xFFE65100,
+  'watery': 0xFFB71C1C,
+};
 
 class DiaperForm extends StatefulWidget {
   final DateTime initialDate;
   final TrackerEvent? existingEvent;
-
-  /// Whether the most recent prior diaper had a rash, for follow-up prompt.
   final bool previousRash;
 
   const DiaperForm({
@@ -79,7 +65,7 @@ class DiaperForm extends StatefulWidget {
 }
 
 class _DiaperFormState extends State<DiaperForm> {
-  String _type = 'none'; // 'none' | 'pee' | 'poo' | 'both'
+  String _type = 'none';
   TimeOfDay _time = TimeOfDay.now();
   String? _pooColor;
   String? _consistency;
@@ -113,7 +99,6 @@ class _DiaperFormState extends State<DiaperForm> {
       _pooColor = e.data['pooColor'] as String?;
       _consistency = e.data['consistency'] as String?;
       _size = e.data['size'] as String?;
-
       final brand = e.data['brand'] as String?;
       if (brand != null && !_diaperBrands.contains(brand)) {
         _customBrand = true;
@@ -121,7 +106,6 @@ class _DiaperFormState extends State<DiaperForm> {
       } else {
         _brand = brand;
       }
-
       _rash = e.data['rash'] == true;
       final cream = e.data['rashCream'] as String?;
       if (cream != null && !_rashCreams.contains(cream)) {
@@ -130,7 +114,6 @@ class _DiaperFormState extends State<DiaperForm> {
       } else {
         _rashCream = cream;
       }
-
       _rashImproved = e.data['rashImproved'] as bool?;
       _time = TimeOfDay(hour: e.time.hour, minute: e.time.minute);
     }
@@ -143,8 +126,25 @@ class _DiaperFormState extends State<DiaperForm> {
     super.dispose();
   }
 
+  // Returns translated label and hint for a consistency id.
+  (String label, String hint) _consistencyStrings(
+    String id,
+    AppLocalizations l,
+  ) {
+    return switch (id) {
+      'hard' => (l.consistencyHard, l.consistencyHardHint),
+      'firm' => (l.consistencyFirm, l.consistencyFirmHint),
+      'normal' => (l.consistencyNormal, l.consistencyNormalHint),
+      'soft' => (l.consistencySoft, l.consistencySoftHint),
+      'loose' => (l.consistencyLoose, l.consistencyLooseHint),
+      'watery' => (l.consistencyWatery, l.consistencyWateryHint),
+      _ => (id, ''),
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final media = MediaQuery.of(context);
     final bottomPad = media.viewInsets.bottom > 0
         ? media.viewInsets.bottom
@@ -158,11 +158,11 @@ class _DiaperFormState extends State<DiaperForm> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header row
+            // Header
             Row(
               children: [
                 Text(
-                  _isEditing ? 'Edit diaper' : 'Diaper change',
+                  _isEditing ? l.editDiaper : l.diaperChange,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const Spacer(),
@@ -175,7 +175,7 @@ class _DiaperFormState extends State<DiaperForm> {
             ),
             const SizedBox(height: 12),
 
-            // Rash follow-up (only when previous diaper had a rash)
+            // Rash follow-up
             if (widget.previousRash && !_isEditing) ...[
               Card(
                 color: Theme.of(context).colorScheme.errorContainer,
@@ -185,7 +185,7 @@ class _DiaperFormState extends State<DiaperForm> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '⚠️ Rash follow-up',
+                        l.rashFollowUpTitle,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Theme.of(context).colorScheme.onErrorContainer,
@@ -193,7 +193,7 @@ class _DiaperFormState extends State<DiaperForm> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'The last diaper had a rash recorded. Did it improve?',
+                        l.rashFollowUpQuestion,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.onErrorContainer,
                         ),
@@ -201,14 +201,14 @@ class _DiaperFormState extends State<DiaperForm> {
                       const SizedBox(height: 8),
                       SegmentedButton<bool?>(
                         emptySelectionAllowed: true,
-                        segments: const [
+                        segments: [
                           ButtonSegment(
                             value: true,
-                            label: Text('Yes, improved'),
+                            label: Text(l.rashImproved),
                           ),
                           ButtonSegment(
                             value: false,
-                            label: Text('No change / worse'),
+                            label: Text(l.rashNoChange),
                           ),
                         ],
                         selected: {_rashImproved},
@@ -223,22 +223,25 @@ class _DiaperFormState extends State<DiaperForm> {
             ],
 
             // Contents
-            Text('Contents', style: Theme.of(context).textTheme.labelLarge),
+            Text(
+              l.diaperContents,
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
             const SizedBox(height: 6),
             SegmentedButton<String>(
-              segments: const [
-                ButtonSegment(value: 'none', label: Text('None')),
+              segments: [
+                ButtonSegment(value: 'none', label: Text(l.diaperNone)),
                 ButtonSegment(
                   value: 'pee',
-                  label: Text('Pee'),
-                  icon: Icon(Icons.water_drop, size: 14),
+                  label: Text(l.diaperPeeLabel),
+                  icon: const Icon(Icons.water_drop, size: 14),
                 ),
                 ButtonSegment(
                   value: 'poo',
-                  label: Text('Poo'),
-                  icon: Icon(Icons.baby_changing_station, size: 14),
+                  label: Text(l.diaperPooLabel),
+                  icon: const Icon(Icons.baby_changing_station, size: 14),
                 ),
-                ButtonSegment(value: 'both', label: Text('Both')),
+                ButtonSegment(value: 'both', label: Text(l.diaperBoth)),
               ],
               selected: {_type},
               onSelectionChanged: (s) => setState(() => _type = s.first),
@@ -250,30 +253,30 @@ class _DiaperFormState extends State<DiaperForm> {
 
               // Consistency
               Text(
-                'Consistency',
+                l.diaperConsistency,
                 style: Theme.of(context).textTheme.labelLarge,
               ),
               const SizedBox(height: 6),
               Wrap(
                 spacing: 6,
                 runSpacing: 4,
-                children: _consistencies.map((c) {
-                  final id = c['id'] as String;
+                children: _consistencyIds.map((id) {
                   final selected = _consistency == id;
-                  final color = Color(c['color'] as int);
+                  final color = Color(_consistencyColors[id] ?? 0xFF000000);
+                  final (label, hint) = _consistencyStrings(id, l);
                   return FilterChip(
                     label: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          c['label'] as String,
+                          label,
                           style: TextStyle(
                             fontSize: 12,
                             color: selected ? Colors.white : null,
                           ),
                         ),
                         Text(
-                          c['hint'] as String,
+                          hint,
                           style: TextStyle(
                             fontSize: 10,
                             color: selected ? Colors.white70 : Colors.grey,
@@ -306,8 +309,8 @@ class _DiaperFormState extends State<DiaperForm> {
                       const SizedBox(width: 6),
                       Text(
                         _consistency == 'hard'
-                            ? 'Signs of constipation — monitor closely'
-                            : 'Signs of diarrhea — monitor closely',
+                            ? l.warnConstipation
+                            : l.warnDiarrhea,
                         style: TextStyle(
                           color: Colors.orange.shade700,
                           fontSize: 12,
@@ -321,18 +324,18 @@ class _DiaperFormState extends State<DiaperForm> {
 
               // Colour chart
               Text(
-                'Colour (tap to select)',
+                l.pooColourLabel,
                 style: Theme.of(context).textTheme.labelLarge,
               ),
               const SizedBox(height: 6),
-              _buildColorGroup('⚠️ Abnormal (pale)', true),
+              _buildColorGroup(l.pooColourAbnormal, true, l),
               const SizedBox(height: 10),
-              _buildColorGroup('✅ Normal', false),
+              _buildColorGroup(l.pooColourNormal, false, l),
               if (_pooColor != null)
                 Padding(
                   padding: const EdgeInsets.only(top: 6),
                   child: Text(
-                    'Selected: ${_optionLabel(_pooColor!)}',
+                    l.pooColourSelected(_optionLabel(_pooColor!)),
                     style: const TextStyle(
                       fontStyle: FontStyle.italic,
                       fontSize: 12,
@@ -344,7 +347,7 @@ class _DiaperFormState extends State<DiaperForm> {
             const SizedBox(height: 16),
 
             // Diaper size
-            Text('Diaper size', style: Theme.of(context).textTheme.labelLarge),
+            Text(l.diaperSize, style: Theme.of(context).textTheme.labelLarge),
             const SizedBox(height: 6),
             Wrap(
               spacing: 6,
@@ -363,7 +366,7 @@ class _DiaperFormState extends State<DiaperForm> {
             const SizedBox(height: 12),
 
             // Brand
-            Text('Brand', style: Theme.of(context).textTheme.labelLarge),
+            Text(l.diaperBrand, style: Theme.of(context).textTheme.labelLarge),
             const SizedBox(height: 6),
             Wrap(
               spacing: 6,
@@ -393,9 +396,9 @@ class _DiaperFormState extends State<DiaperForm> {
                 padding: const EdgeInsets.only(top: 8),
                 child: TextField(
                   controller: _brandCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Brand name',
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    labelText: l.diaperBrandCustomLabel,
+                    border: const OutlineInputBorder(),
                     isDense: true,
                   ),
                 ),
@@ -406,15 +409,15 @@ class _DiaperFormState extends State<DiaperForm> {
             // Rash toggle
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
-              title: const Text('Rash present'),
-              subtitle: const Text('Redness, irritation or nappy rash'),
+              title: Text(l.rashPresent),
+              subtitle: Text(l.rashPresentHint),
               value: _rash,
               onChanged: (v) => setState(() => _rash = v),
             ),
 
             if (_rash) ...[
               Text(
-                'Rash cream used',
+                l.rashCreamUsed,
                 style: Theme.of(context).textTheme.labelLarge,
               ),
               const SizedBox(height: 6),
@@ -446,9 +449,9 @@ class _DiaperFormState extends State<DiaperForm> {
                   padding: const EdgeInsets.only(top: 8, bottom: 4),
                   child: TextField(
                     controller: _creamCtrl,
-                    decoration: const InputDecoration(
-                      labelText: 'Cream / ointment name',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: l.rashCreamCustomLabel,
+                      border: const OutlineInputBorder(),
                       isDense: true,
                     ),
                   ),
@@ -461,7 +464,7 @@ class _DiaperFormState extends State<DiaperForm> {
               alignment: Alignment.centerRight,
               child: FilledButton(
                 onPressed: _save,
-                child: Text(_isEditing ? 'Update' : 'Save'),
+                child: Text(_isEditing ? l.actionUpdate : l.actionSave),
               ),
             ),
           ],
@@ -475,7 +478,7 @@ class _DiaperFormState extends State<DiaperForm> {
     if (t != null) setState(() => _time = t);
   }
 
-  Widget _buildColorGroup(String title, bool abnormal) {
+  Widget _buildColorGroup(String title, bool abnormal, AppLocalizations l) {
     final items = _pooOptions.where((o) => o['abnormal'] == abnormal).toList();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

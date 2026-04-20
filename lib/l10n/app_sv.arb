@@ -1,0 +1,507 @@
+{
+    "@@locale": "sv",
+    "appTitle": "Baby tracker",
+    "@appTitle": {},
+    "navHome": "Hem",
+    "@navHome": {},
+    "navGraphs": "Diagram",
+    "@navGraphs": {},
+    "navSettings": "Inställningar",
+    "@navSettings": {},
+    "actionCancel": "Avbryt",
+    "@actionCancel": {},
+    "actionSave": "Spara",
+    "@actionSave": {},
+    "actionUpdate": "Uppdatera",
+    "@actionUpdate": {},
+    "actionDelete": "Radera",
+    "@actionDelete": {},
+    "actionAdd": "Lägg till",
+    "@actionAdd": {},
+    "actionEdit": "Redigera",
+    "@actionEdit": {},
+    "actionClose": "Stäng",
+    "@actionClose": {},
+    "actionExport": "Exportera data",
+    "@actionExport": {},
+    "actionAddDay": "Lägg till dag",
+    "@actionAddDay": {},
+    "cannotUndo": "Den här åtgärden kan inte ångras",
+    "@cannotUndo": {},
+    "noData": "Inga data",
+    "@noData": {},
+    "homeTitle": "Spårare",
+    "@homeTitle": {},
+    "feedsToday": "Dagens matningar",
+    "@feedsToday": {},
+    "diapersToday": "Dagens blöjor",
+    "@diapersToday": {},
+    "sleepToday": "Dagens sömn",
+    "@sleepToday": {},
+    "todayLabel": "Idag — {date}",
+    "@todayLabel": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "eventCount": "{count, plural, =0{Inga händelser} =1{1 händelse} other{{count} händelser}}",
+    "@eventCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deleteDayTitle": "Radera den här dagen?",
+    "@deleteDayTitle": {},
+    "deleteDayContent": "Radera {date} och alla dess poster? Den här åtgärden kan inte ångras",
+    "@deleteDayContent": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "noEntriesYet": "Inga poster ännu",
+    "@noEntriesYet": {},
+    "addEntry": "Lägg till post",
+    "@addEntry": {},
+    "deleteEntryTitle": "Radera den här posten?",
+    "@deleteEntryTitle": {},
+    "entryTypeDiaper": "Blöjbyte",
+    "@entryTypeDiaper": {},
+    "entryTypeFeeding": "Matning",
+    "@entryTypeFeeding": {},
+    "entryTypeSleep": "Sömn",
+    "@entryTypeSleep": {},
+    "entryTypeTemperature": "Temperatur",
+    "@entryTypeTemperature": {},
+    "entryTypeWeight": "Vikt",
+    "@entryTypeWeight": {},
+    "diaperPeePoo": "Blöja — kiss + bajs",
+    "@diaperPeePoo": {},
+    "diaperPee": "Blöja — bara kiss",
+    "@diaperPee": {},
+    "diaperPoo": "Blöja — bara bajs",
+    "@diaperPoo": {},
+    "diaperChange": "Blöjbyte",
+    "@diaperChange": {},
+    "editDiaper": "Redigera blöja",
+    "@editDiaper": {},
+    "diaperContents": "Innehåll",
+    "@diaperContents": {},
+    "diaperNone": "Inget",
+    "@diaperNone": {},
+    "diaperPeeLabel": "Kiss",
+    "@diaperPeeLabel": {},
+    "diaperPooLabel": "Bajs",
+    "@diaperPooLabel": {},
+    "diaperBoth": "Båda",
+    "@diaperBoth": {},
+    "diaperConsistency": "Konsistens",
+    "@diaperConsistency": {},
+    "consistencyHard": "Hård / Klikkig",
+    "@consistencyHard": {},
+    "consistencyHardHint": "Förstoppning",
+    "@consistencyHardHint": {},
+    "consistencyFirm": "Fast",
+    "@consistencyFirm": {},
+    "consistencyFirmHint": "Lätt fast",
+    "@consistencyFirmHint": {},
+    "consistencyNormal": "Normal",
+    "@consistencyNormal": {},
+    "consistencyNormalHint": "Hälsosam",
+    "@consistencyNormalHint": {},
+    "consistencySoft": "Mjuk",
+    "@consistencySoft": {},
+    "consistencySoftHint": "Lätt mjuk",
+    "@consistencySoftHint": {},
+    "consistencyLoose": "Grötlik / Halvflytande",
+    "@consistencyLoose": {},
+    "consistencyLooseHint": "Observera",
+    "@consistencyLooseHint": {},
+    "consistencyWatery": "Vattnig",
+    "@consistencyWatery": {},
+    "consistencyWateryHint": "Diarré",
+    "@consistencyWateryHint": {},
+    "warnConstipation": "Tecken på förstoppning — övervaka noga",
+    "@warnConstipation": {},
+    "warnDiarrhea": "Tecken på diarré — övervaka noga",
+    "@warnDiarrhea": {},
+    "pooColourLabel": "Färg (tryck för att välja)",
+    "@pooColourLabel": {},
+    "pooColourAbnormal": "⚠️ Onormal (blek)",
+    "@pooColourAbnormal": {},
+    "pooColourNormal": "✅ Normal",
+    "@pooColourNormal": {},
+    "pooColourSelected": "Vald: {label}",
+    "@pooColourSelected": {
+        "placeholders": {
+            "label": {
+                "type": "String"
+            }
+        }
+    },
+    "diaperSize": "Blöjstorlek",
+    "@diaperSize": {},
+    "diaperBrand": "Märke",
+    "@diaperBrand": {},
+    "diaperBrandCustomLabel": "Märkesnamn",
+    "@diaperBrandCustomLabel": {},
+    "rashPresent": "Blöjutslag förekommer",
+    "@rashPresent": {},
+    "rashPresentHint": "Rodnad, irritation eller blöjutslag",
+    "@rashPresentHint": {},
+    "rashCreamUsed": "Kräm använd",
+    "@rashCreamUsed": {},
+    "rashCreamCustomLabel": "Kräm/salvas namn",
+    "@rashCreamCustomLabel": {},
+    "rashFollowUpTitle": "⚠️ Uppföljning av utslag",
+    "@rashFollowUpTitle": {},
+    "rashFollowUpQuestion": "Den senaste blöjan registrerade utslag. Har det förbättrats?",
+    "@rashFollowUpQuestion": {},
+    "rashImproved": "Ja, förbättrats",
+    "@rashImproved": {},
+    "rashNoChange": "Ingen förändring / förvärrats",
+    "@rashNoChange": {},
+    "rashRecorded": "Utslag registrerat",
+    "@rashRecorded": {},
+    "addFeeding": "Lägg till matning",
+    "@addFeeding": {},
+    "editFeeding": "Redigera matning",
+    "@editFeeding": {},
+    "feedLabel": "Matning {number}",
+    "@feedLabel": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "feedModeBottle": "Flaska",
+    "@feedModeBottle": {},
+    "feedModeSuckle": "Amning",
+    "@feedModeSuckle": {},
+    "feedAmountMl": "Mängd (ml)",
+    "@feedAmountMl": {},
+    "feedType": "Typ",
+    "@feedType": {},
+    "feedBreastMilk": "Bröstmjölk",
+    "@feedBreastMilk": {},
+    "feedFormula": "Ersättning",
+    "@feedFormula": {},
+    "feedFormulaBrand": "Ersättningsmärke",
+    "@feedFormulaBrand": {},
+    "feedFormulaBrandCustom": "Märkesnamn",
+    "@feedFormulaBrandCustom": {},
+    "feedDurationMinutes": "Varaktighet (minuter)",
+    "@feedDurationMinutes": {},
+    "addAnotherFeed": "Lägg till en matning till",
+    "@addAnotherFeed": {},
+    "bottleBreastMilk": "Flaska — bröstmjölk",
+    "@bottleBreastMilk": {},
+    "bottleFormula": "Flaska — ersättning",
+    "@bottleFormula": {},
+    "breastfeedingSuckle": "Amning (direkt)",
+    "@breastfeedingSuckle": {},
+    "logSleep": "Registrera sömn",
+    "@logSleep": {},
+    "editSleep": "Redigera sömn",
+    "@editSleep": {},
+    "sleepStart": "Sömnstart",
+    "@sleepStart": {},
+    "sleepWakeUp": "Uppvaknande",
+    "@sleepWakeUp": {},
+    "sleepDuration": "Varaktighet: {duration}",
+    "@sleepDuration": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "sleepInvalidTimes": "Ogiltiga tider",
+    "@sleepInvalidTimes": {},
+    "sleepWrapsNextDay": "(slutar följande dag)",
+    "@sleepWrapsNextDay": {},
+    "sleepNotes": "Anteckningar (valfritt)",
+    "@sleepNotes": {},
+    "sleepNotesHint": "T.ex.: orolig, vaknade kort...",
+    "@sleepNotesHint": {},
+    "sleepNoNotes": "Inga anteckningar",
+    "@sleepNoNotes": {},
+    "sleepHoursShort": "{h}t {m}min",
+    "@sleepHoursShort": {
+        "placeholders": {
+            "h": {
+                "type": "int"
+            },
+            "m": {
+                "type": "int"
+            }
+        }
+    },
+    "logTemperature": "Registrera temperatur",
+    "@logTemperature": {},
+    "editTemperature": "Redigera temperatur",
+    "@editTemperature": {},
+    "temperatureLabel": "Temperatur",
+    "@temperatureLabel": {},
+    "tempSeverityLow": "Låg temperatur — observera",
+    "@tempSeverityLow": {},
+    "tempSeverityNormal": "Normal temperatur",
+    "@tempSeverityNormal": {},
+    "tempSeverityElevated": "Lätt förhöjd — övervaka noga",
+    "@tempSeverityElevated": {},
+    "tempSeverityFever": "Feber — kontakta läkare",
+    "@tempSeverityFever": {},
+    "tempReference": "Temperaturreferens",
+    "@tempReference": {},
+    "tempRefLow": "< 36,0 °C / 96,8 °F",
+    "@tempRefLow": {},
+    "tempRefNormal": "36,0 – 37,4 °C / 96,8 – 99,3 °F",
+    "@tempRefNormal": {},
+    "tempRefElevated": "37,5 – 38,4 °C / 99,5 – 101,1 °F",
+    "@tempRefElevated": {},
+    "tempRefFever": "≥ 38,5 °C / 101,3 °F",
+    "@tempRefFever": {},
+    "tempFeverWarning": "⚠️ Vid feber hos spädbarn under 3 månader, kontakta alltid en barnläkare",
+    "@tempFeverWarning": {},
+    "tempLow": "Låg",
+    "@tempLow": {},
+    "tempNormal": "Normal",
+    "@tempNormal": {},
+    "tempElevated": "Förhöjd",
+    "@tempElevated": {},
+    "tempFever": "Feber",
+    "@tempFever": {},
+    "tempLatest": "Senaste temperaturen",
+    "@tempLatest": {},
+    "tempSummary": "Temperatursammanfattning",
+    "@tempSummary": {},
+    "tempFeverThreshold": "Febergräns",
+    "@tempFeverThreshold": {},
+    "tempDays": "{count, plural, =1{1 dag} other{{count} dagar}}",
+    "@tempDays": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "logWeight": "Registrera vikt",
+    "@logWeight": {},
+    "editWeight": "Redigera vikt",
+    "@editWeight": {},
+    "weightLabel": "Vikt",
+    "@weightLabel": {},
+    "weightGain": "+{amount} ökning",
+    "@weightGain": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLoss": "−{amount} minskning",
+    "@weightLoss": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightPrevious": "Tidigare: {weight}",
+    "@weightPrevious": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLastRecorded": "Senaste registrering: {weight} den {date}",
+    "@weightLastRecorded": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            },
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLatest": "Senaste vikten",
+    "@weightLatest": {},
+    "weightOverPeriod": "{sign}{amount} under perioden",
+    "@weightOverPeriod": {
+        "placeholders": {
+            "sign": {
+                "type": "String"
+            },
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "settingsTitle": "Inställningar",
+    "@settingsTitle": {},
+    "settingsAppearance": "Utseende",
+    "@settingsAppearance": {},
+    "settingsDarkMode": "Mörkt läge",
+    "@settingsDarkMode": {},
+    "settingsDarkActive": "Mörkt tema aktivt",
+    "@settingsDarkActive": {},
+    "settingsLightActive": "Ljust tema aktivt",
+    "@settingsLightActive": {},
+    "settingsUnits": "Enheter",
+    "@settingsUnits": {},
+    "settingsWeightUnit": "Viktenhet",
+    "@settingsWeightUnit": {},
+    "settingsTempUnit": "Temperatur enhet",
+    "@settingsTempUnit": {},
+    "settingsLanguage": "Språk",
+    "@settingsLanguage": {},
+    "settingsTips": "Tips",
+    "@settingsTips": {},
+    "tipSwitchBabies": "Byt barn",
+    "@tipSwitchBabies": {},
+    "tipSwitchBabiesDesc": "Tryck på barnets avatar högst upp för att byta eller lägga till en profil",
+    "@tipSwitchBabiesDesc": {},
+    "tipSwipeDelete": "Svep åt vänster för att radera",
+    "@tipSwipeDelete": {},
+    "tipSwipeDeleteDesc": "Fungerar på dagskort och enskilda poster",
+    "@tipSwipeDeleteDesc": {},
+    "tipMultipleFeeds": "Registrera flera matningar",
+    "@tipMultipleFeeds": {},
+    "tipMultipleFeedsDesc": "I matningsformuläret, tryck på \"Lägg till en matning till\" för att registrera amning och flaska på en gång",
+    "@tipMultipleFeedsDesc": {},
+    "tipExportData": "Exportera data",
+    "@tipExportData": {},
+    "tipExportDataDesc": "Använd delningsikonen på Hem för att exportera all data som JSON",
+    "@tipExportDataDesc": {},
+    "tipTapToEdit": "Tryck på valfri post för att redigera den",
+    "@tipTapToEdit": {},
+    "babiesTitle": "Barn",
+    "@babiesTitle": {},
+    "addBaby": "Lägg till barn",
+    "@addBaby": {},
+    "editProfile": "Redigera profil",
+    "@editProfile": {},
+    "babyNameRequired": "Namn *",
+    "@babyNameRequired": {},
+    "babyDobOptional": "Födelsedatum (valfritt)",
+    "@babyDobOptional": {},
+    "babyBornOn": "Född {date}",
+    "@babyBornOn": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "genderUnknown": "Ej angivet",
+    "@genderUnknown": {},
+    "genderBoy": "Pojke",
+    "@genderBoy": {},
+    "genderGirl": "Flicka",
+    "@genderGirl": {},
+    "cannotDeleteOnlyProfile": "Kan inte radera den enda barnprofilen",
+    "@cannotDeleteOnlyProfile": {},
+    "deleteProfileTitle": "Radera {name}?",
+    "@deleteProfileTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "deleteProfileContent": "All data för detta barn kommer att raderas permanent",
+    "@deleteProfileContent": {},
+    "graphsTitle": "Diagram",
+    "@graphsTitle": {},
+    "graphsTabDaily": "Dagligen",
+    "@graphsTabDaily": {},
+    "graphsTabGrowth": "Tillväxt",
+    "@graphsTabGrowth": {},
+    "graphsTabHealth": "Hälsa",
+    "@graphsTabHealth": {},
+    "graphsTotalFeeds": "Totalt antal matningar",
+    "@graphsTotalFeeds": {},
+    "graphsAvgPerDay": "Medel/dag",
+    "@graphsAvgPerDay": {},
+    "graphsTotalDiapers": "Blöjor",
+    "@graphsTotalDiapers": {},
+    "graphsTotalMilk": "Total mjölk",
+    "@graphsTotalMilk": {},
+    "graphsTotalSleep": "Total sömn",
+    "@graphsTotalSleep": {},
+    "graphsAvgSleep": "Genomsnittlig sömn/dag",
+    "@graphsAvgSleep": {},
+    "graphsFeedsPerDay": "Matningar per dag",
+    "@graphsFeedsPerDay": {},
+    "graphsDiapersPerDay": "Blöjor per dag",
+    "@graphsDiapersPerDay": {},
+    "graphsMilkPerDay": "Mjölk per dag (ml)",
+    "@graphsMilkPerDay": {},
+    "graphsSleepPerDay": "Sömn per dag (timmar)",
+    "@graphsSleepPerDay": {},
+    "graphsWeightOverTime": "Vikt över tid",
+    "@graphsWeightOverTime": {},
+    "graphsTempOverTime": "Temperatur över tid",
+    "@graphsTempOverTime": {},
+    "graphsMaxLabel": "Max: {value}",
+    "@graphsMaxLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsMinLabel": "Min: {value}",
+    "@graphsMinLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsNoWeightData": "Inga viktposter ännu\nRegistrera vikt från en dags poster",
+    "@graphsNoWeightData": {},
+    "graphsNoTempData": "Inga temperaturposter ännu\nRegistrera temperatur från en dag",
+    "@graphsNoTempData": {},
+    "timeLabel": "Tid",
+    "@timeLabel": {},
+    "noColourRecorded": "Ingen färg registrerad",
+    "@noColourRecorded": {},
+    "noDetails": "Inga detaljer",
+    "@noDetails": {},
+    "ageDay": "{count, plural, =1{1 dag} other{{count} dagar}}",
+    "@ageDay": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageMonth": "{count, plural, =1{1 månad} other{{count} månader}}",
+    "@ageMonth": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageYearMonth": "{years} år {months} månader",
+    "@ageYearMonth": {
+        "placeholders": {
+            "years": {
+                "type": "int"
+            },
+            "months": {
+                "type": "int"
+            }
+        }
+    }
+}

@@ -1,0 +1,507 @@
+{
+  "@@locale": "ar",
+  "appTitle": "متتبع الطفل",
+  "@appTitle": {},
+  "navHome": "الرئيسية",
+  "@navHome": {},
+  "navGraphs": "الرسوم البيانية",
+  "@navGraphs": {},
+  "navSettings": "الإعدادات",
+  "@navSettings": {},
+  "actionCancel": "إلغاء",
+  "@actionCancel": {},
+  "actionSave": "حفظ",
+  "@actionSave": {},
+  "actionUpdate": "تحديث",
+  "@actionUpdate": {},
+  "actionDelete": "حذف",
+  "@actionDelete": {},
+  "actionAdd": "إضافة",
+  "@actionAdd": {},
+  "actionEdit": "تعديل",
+  "@actionEdit": {},
+  "actionClose": "إغلاق",
+  "@actionClose": {},
+  "actionExport": "تصدير البيانات",
+  "@actionExport": {},
+  "actionAddDay": "إضافة يوم",
+  "@actionAddDay": {},
+  "cannotUndo": "لا يمكن التراجع عن هذا",
+  "@cannotUndo": {},
+  "noData": "لا توجد بيانات",
+  "@noData": {},
+  "homeTitle": "المتتبع",
+  "@homeTitle": {},
+  "feedsToday": "الرضعات اليوم",
+  "@feedsToday": {},
+  "diapersToday": "الحفاضات اليوم",
+  "@diapersToday": {},
+  "sleepToday": "النوم اليوم",
+  "@sleepToday": {},
+  "todayLabel": "اليوم — {date}",
+  "@todayLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "eventCount": "{count, plural, =0{لا أحداث} =1{حدث واحد} =2{حدثان} few{{count} أحداث} many{{count} حدثًا} other{{count} حدث}}",
+  "@eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "deleteDayTitle": "حذف اليوم؟",
+  "@deleteDayTitle": {},
+  "deleteDayContent": "حذف {date} وجميع إدخالاته؟ لا يمكن التراجع عن هذا",
+  "@deleteDayContent": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "noEntriesYet": "لا توجد إدخالات بعد",
+  "@noEntriesYet": {},
+  "addEntry": "إضافة إدخال",
+  "@addEntry": {},
+  "deleteEntryTitle": "حذف الإدخال؟",
+  "@deleteEntryTitle": {},
+  "entryTypeDiaper": "تغيير الحفاض",
+  "@entryTypeDiaper": {},
+  "entryTypeFeeding": "الرضاعة",
+  "@entryTypeFeeding": {},
+  "entryTypeSleep": "النوم",
+  "@entryTypeSleep": {},
+  "entryTypeTemperature": "درجة الحرارة",
+  "@entryTypeTemperature": {},
+  "entryTypeWeight": "الوزن",
+  "@entryTypeWeight": {},
+  "diaperPeePoo": "حفاض — بول وبراز",
+  "@diaperPeePoo": {},
+  "diaperPee": "حفاض — بول",
+  "@diaperPee": {},
+  "diaperPoo": "حفاض — براز",
+  "@diaperPoo": {},
+  "diaperChange": "تغيير الحفاض",
+  "@diaperChange": {},
+  "editDiaper": "تعديل الحفاض",
+  "@editDiaper": {},
+  "diaperContents": "المحتويات",
+  "@diaperContents": {},
+  "diaperNone": "لا شيء",
+  "@diaperNone": {},
+  "diaperPeeLabel": "بول",
+  "@diaperPeeLabel": {},
+  "diaperPooLabel": "براز",
+  "@diaperPooLabel": {},
+  "diaperBoth": "كلاهما",
+  "@diaperBoth": {},
+  "diaperConsistency": "القوام",
+  "@diaperConsistency": {},
+  "consistencyHard": "صلب / حبيبات",
+  "@consistencyHard": {},
+  "consistencyHardHint": "إمساك",
+  "@consistencyHardHint": {},
+  "consistencyFirm": "متماسك",
+  "@consistencyFirm": {},
+  "consistencyFirmHint": "متماسك نوعًا ما",
+  "@consistencyFirmHint": {},
+  "consistencyNormal": "طبيعي",
+  "@consistencyNormal": {},
+  "consistencyNormalHint": "صحي",
+  "@consistencyNormalHint": {},
+  "consistencySoft": "طري",
+  "@consistencySoft": {},
+  "consistencySoftHint": "طري نوعًا ما",
+  "@consistencySoftHint": {},
+  "consistencyLoose": "سائل / طري",
+  "@consistencyLoose": {},
+  "consistencyLooseHint": "يحتاج مراقبة",
+  "@consistencyLooseHint": {},
+  "consistencyWatery": "مائي",
+  "@consistencyWatery": {},
+  "consistencyWateryHint": "إسهال",
+  "@consistencyWateryHint": {},
+  "warnConstipation": "علامات إمساك — راقب عن كثب",
+  "@warnConstipation": {},
+  "warnDiarrhea": "علامات إسهال — راقب عن كثب",
+  "@warnDiarrhea": {},
+  "pooColourLabel": "اللون (اضغط للاختيار)",
+  "@pooColourLabel": {},
+  "pooColourAbnormal": "⚠️ غير طبيعي (شاحب)",
+  "@pooColourAbnormal": {},
+  "pooColourNormal": "✅ طبيعي",
+  "@pooColourNormal": {},
+  "pooColourSelected": "المختار: {label}",
+  "@pooColourSelected": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "diaperSize": "مقاس الحفاض",
+  "@diaperSize": {},
+  "diaperBrand": "العلامة التجارية",
+  "@diaperBrand": {},
+  "diaperBrandCustomLabel": "اسم العلامة التجارية",
+  "@diaperBrandCustomLabel": {},
+  "rashPresent": "يوجد طفح جلدي",
+  "@rashPresent": {},
+  "rashPresentHint": "احمرار أو تهيج أو طفح الحفاض",
+  "@rashPresentHint": {},
+  "rashCreamUsed": "تم استخدام كريم الطفح",
+  "@rashCreamUsed": {},
+  "rashCreamCustomLabel": "اسم الكريم / المرهم",
+  "@rashCreamCustomLabel": {},
+  "rashFollowUpTitle": "⚠️ متابعة الطفح الجلدي",
+  "@rashFollowUpTitle": {},
+  "rashFollowUpQuestion": "آخر حفاض كان به طفح جلدي. هل تحسن؟",
+  "@rashFollowUpQuestion": {},
+  "rashImproved": "نعم، تحسن",
+  "@rashImproved": {},
+  "rashNoChange": "لا تغيير / أسوأ",
+  "@rashNoChange": {},
+  "rashRecorded": "تم تسجيل طفح جلدي",
+  "@rashRecorded": {},
+  "addFeeding": "إضافة رضاعة",
+  "@addFeeding": {},
+  "editFeeding": "تعديل الرضاعة",
+  "@editFeeding": {},
+  "feedLabel": "رضعة {number}",
+  "@feedLabel": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "feedModeBottle": "زجاجة",
+  "@feedModeBottle": {},
+  "feedModeSuckle": "رضاعة طبيعية",
+  "@feedModeSuckle": {},
+  "feedAmountMl": "الكمية (مل)",
+  "@feedAmountMl": {},
+  "feedType": "النوع",
+  "@feedType": {},
+  "feedBreastMilk": "حليب أم",
+  "@feedBreastMilk": {},
+  "feedFormula": "حليب صناعي",
+  "@feedFormula": {},
+  "feedFormulaBrand": "ماركة الحليب الصناعي",
+  "@feedFormulaBrand": {},
+  "feedFormulaBrandCustom": "اسم ماركة الحليب",
+  "@feedFormulaBrandCustom": {},
+  "feedDurationMinutes": "المدة (دقائق)",
+  "@feedDurationMinutes": {},
+  "addAnotherFeed": "إضافة رضاعة أخرى",
+  "@addAnotherFeed": {},
+  "bottleBreastMilk": "زجاجة — حليب أم",
+  "@bottleBreastMilk": {},
+  "bottleFormula": "زجاجة — حليب صناعي",
+  "@bottleFormula": {},
+  "breastfeedingSuckle": "رضاعة طبيعية (مص)",
+  "@breastfeedingSuckle": {},
+  "logSleep": "تسجيل النوم",
+  "@logSleep": {},
+  "editSleep": "تعديل النوم",
+  "@editSleep": {},
+  "sleepStart": "بداية النوم",
+  "@sleepStart": {},
+  "sleepWakeUp": "الاستيقاظ",
+  "@sleepWakeUp": {},
+  "sleepDuration": "المدة: {duration}",
+  "@sleepDuration": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "sleepInvalidTimes": "أوقات غير صالحة",
+  "@sleepInvalidTimes": {},
+  "sleepWrapsNextDay": "(ينتهي في اليوم التالي)",
+  "@sleepWrapsNextDay": {},
+  "sleepNotes": "ملاحظات (اختياري)",
+  "@sleepNotes": {},
+  "sleepNotesHint": "مثال: مضطرب، استيقظ لفترة وجيزة...",
+  "@sleepNotesHint": {},
+  "sleepNoNotes": "لا توجد ملاحظات",
+  "@sleepNoNotes": {},
+  "sleepHoursShort": "{h}س {m}د",
+  "@sleepHoursShort": {
+    "placeholders": {
+      "h": {
+        "type": "int"
+      },
+      "m": {
+        "type": "int"
+      }
+    }
+  },
+  "logTemperature": "تسجيل درجة الحرارة",
+  "@logTemperature": {},
+  "editTemperature": "تعديل درجة الحرارة",
+  "@editTemperature": {},
+  "temperatureLabel": "درجة الحرارة",
+  "@temperatureLabel": {},
+  "tempSeverityLow": "درجة حرارة منخفضة — راقب",
+  "@tempSeverityLow": {},
+  "tempSeverityNormal": "درجة حرارة طبيعية",
+  "@tempSeverityNormal": {},
+  "tempSeverityElevated": "مرتفعة قليلاً — راقب عن كثب",
+  "@tempSeverityElevated": {},
+  "tempSeverityFever": "حمى — استشر طبيبك",
+  "@tempSeverityFever": {},
+  "tempReference": "مرجع درجة الحرارة",
+  "@tempReference": {},
+  "tempRefLow": "< 36.0 °م / 96.8 °ف",
+  "@tempRefLow": {},
+  "tempRefNormal": "36.0 – 37.4 °م / 96.8 – 99.3 °ف",
+  "@tempRefNormal": {},
+  "tempRefElevated": "37.5 – 38.4 °م / 99.5 – 101.1 °ف",
+  "@tempRefElevated": {},
+  "tempRefFever": "≥ 38.5 °م / 101.3 °ف",
+  "@tempRefFever": {},
+  "tempFeverWarning": "⚠️ استشر طبيب الأطفال دائمًا عند ارتفاع الحرارة لدى الرضع أقل من 3 أشهر",
+  "@tempFeverWarning": {},
+  "tempLow": "منخفضة",
+  "@tempLow": {},
+  "tempNormal": "طبيعية",
+  "@tempNormal": {},
+  "tempElevated": "مرتفعة",
+  "@tempElevated": {},
+  "tempFever": "حمى",
+  "@tempFever": {},
+  "tempLatest": "آخر قراءة",
+  "@tempLatest": {},
+  "tempSummary": "ملخص درجة الحرارة",
+  "@tempSummary": {},
+  "tempFeverThreshold": "حد الحمى",
+  "@tempFeverThreshold": {},
+  "tempDays": "{count, plural, =1{يوم واحد} =2{يومان} few{{count} أيام} many{{count} يومًا} other{{count} يوم}}",
+  "@tempDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "logWeight": "تسجيل الوزن",
+  "@logWeight": {},
+  "editWeight": "تعديل الوزن",
+  "@editWeight": {},
+  "weightLabel": "الوزن",
+  "@weightLabel": {},
+  "weightGain": "+{amount} زيادة",
+  "@weightGain": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "weightLoss": "−{amount} نقصان",
+  "@weightLoss": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "weightPrevious": "السابق: {weight}",
+  "@weightPrevious": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      }
+    }
+  },
+  "weightLastRecorded": "آخر تسجيل: {weight} في {date}",
+  "@weightLastRecorded": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "weightLatest": "آخر وزن",
+  "@weightLatest": {},
+  "weightOverPeriod": "{sign}{amount} خلال الفترة",
+  "@weightOverPeriod": {
+    "placeholders": {
+      "sign": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsTitle": "الإعدادات",
+  "@settingsTitle": {},
+  "settingsAppearance": "المظهر",
+  "@settingsAppearance": {},
+  "settingsDarkMode": "الوضع الداكن",
+  "@settingsDarkMode": {},
+  "settingsDarkActive": "الوضع الداكن مفعل",
+  "@settingsDarkActive": {},
+  "settingsLightActive": "الوضع الفاتح مفعل",
+  "@settingsLightActive": {},
+  "settingsUnits": "الوحدات",
+  "@settingsUnits": {},
+  "settingsWeightUnit": "وحدة الوزن",
+  "@settingsWeightUnit": {},
+  "settingsTempUnit": "وحدة درجة الحرارة",
+  "@settingsTempUnit": {},
+  "settingsLanguage": "اللغة",
+  "@settingsLanguage": {},
+  "settingsTips": "نصائح",
+  "@settingsTips": {},
+  "tipSwitchBabies": "التبديل بين الأطفال",
+  "@tipSwitchBabies": {},
+  "tipSwitchBabiesDesc": "اضغط على صورة الطفل في الأعلى للتبديل أو إضافة ملف شخصي",
+  "@tipSwitchBabiesDesc": {},
+  "tipSwipeDelete": "اسحب يسارًا للحذف",
+  "@tipSwipeDelete": {},
+  "tipSwipeDeleteDesc": "يعمل على بطاقات الأيام والإدخالات الفردية",
+  "@tipSwipeDeleteDesc": {},
+  "tipMultipleFeeds": "تسجيل رضعات متعددة",
+  "@tipMultipleFeeds": {},
+  "tipMultipleFeedsDesc": "في نموذج الرضاعة، اضغط \"إضافة رضاعة أخرى\" لتسجيل رضاعة طبيعية وزجاجة معًا",
+  "@tipMultipleFeedsDesc": {},
+  "tipExportData": "تصدير البيانات",
+  "@tipExportData": {},
+  "tipExportDataDesc": "استخدم أيقونة المشاركة في الصفحة الرئيسية لتصدير جميع البيانات بصيغة JSON",
+  "@tipExportDataDesc": {},
+  "tipTapToEdit": "اضغط على أي إدخال لتعديله",
+  "@tipTapToEdit": {},
+  "babiesTitle": "الأطفال",
+  "@babiesTitle": {},
+  "addBaby": "إضافة طفل",
+  "@addBaby": {},
+  "editProfile": "تعديل الملف الشخصي",
+  "@editProfile": {},
+  "babyNameRequired": "الاسم *",
+  "@babyNameRequired": {},
+  "babyDobOptional": "تاريخ الميلاد (اختياري)",
+  "@babyDobOptional": {},
+  "babyBornOn": "وُلد في {date}",
+  "@babyBornOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "genderUnknown": "غير محدد",
+  "@genderUnknown": {},
+  "genderBoy": "ولد",
+  "@genderBoy": {},
+  "genderGirl": "بنت",
+  "@genderGirl": {},
+  "cannotDeleteOnlyProfile": "لا يمكن حذف الملف الشخصي الوحيد",
+  "@cannotDeleteOnlyProfile": {},
+  "deleteProfileTitle": "حذف {name}؟",
+  "@deleteProfileTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteProfileContent": "سيتم حذف جميع بيانات هذا الطفل بشكل دائم",
+  "@deleteProfileContent": {},
+  "graphsTitle": "الرسوم البيانية",
+  "@graphsTitle": {},
+  "graphsTabDaily": "يومي",
+  "@graphsTabDaily": {},
+  "graphsTabGrowth": "النمو",
+  "@graphsTabGrowth": {},
+  "graphsTabHealth": "الصحة",
+  "@graphsTabHealth": {},
+  "graphsTotalFeeds": "إجمالي الرضعات",
+  "@graphsTotalFeeds": {},
+  "graphsAvgPerDay": "متوسط/يوم",
+  "@graphsAvgPerDay": {},
+  "graphsTotalDiapers": "الحفاضات",
+  "@graphsTotalDiapers": {},
+  "graphsTotalMilk": "إجمالي الحليب",
+  "@graphsTotalMilk": {},
+  "graphsTotalSleep": "إجمالي النوم",
+  "@graphsTotalSleep": {},
+  "graphsAvgSleep": "متوسط النوم/يوم",
+  "@graphsAvgSleep": {},
+  "graphsFeedsPerDay": "الرضعات يوميًا",
+  "@graphsFeedsPerDay": {},
+  "graphsDiapersPerDay": "الحفاضات يوميًا",
+  "@graphsDiapersPerDay": {},
+  "graphsMilkPerDay": "الحليب يوميًا (مل)",
+  "@graphsMilkPerDay": {},
+  "graphsSleepPerDay": "النوم يوميًا (ساعات)",
+  "@graphsSleepPerDay": {},
+  "graphsWeightOverTime": "الوزن عبر الزمن",
+  "@graphsWeightOverTime": {},
+  "graphsTempOverTime": "درجة الحرارة عبر الزمن",
+  "@graphsTempOverTime": {},
+  "graphsMaxLabel": "الأعلى: {value}",
+  "@graphsMaxLabel": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "graphsMinLabel": "الأدنى: {value}",
+  "@graphsMinLabel": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "graphsNoWeightData": "لا توجد إدخالات وزن بعد\nسجل الوزن من إدخالات اليوم",
+  "@graphsNoWeightData": {},
+  "graphsNoTempData": "لا توجد إدخالات حرارة بعد\nسجل درجة الحرارة من اليوم",
+  "@graphsNoTempData": {},
+  "timeLabel": "الوقت",
+  "@timeLabel": {},
+  "noColourRecorded": "لم يسجل لون",
+  "@noColourRecorded": {},
+  "noDetails": "لا تفاصيل",
+  "@noDetails": {},
+  "ageDay": "{count, plural, =1{يوم واحد} =2{يومان} few{{count} أيام} many{{count} يومًا} other{{count} يوم}}",
+  "@ageDay": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ageMonth": "{count, plural, =1{شهر واحد} =2{شهران} few{{count} أشهر} many{{count} شهرًا} other{{count} شهر}}",
+  "@ageMonth": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ageYearMonth": "{years} سنة {months} شهر",
+  "@ageYearMonth": {
+    "placeholders": {
+      "years": {
+        "type": "int"
+      },
+      "months": {
+        "type": "int"
+      }
+    }
+  }
+}

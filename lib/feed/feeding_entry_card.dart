@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_baby_tracker/feed_entry.dart';
+import 'package:simple_baby_tracker/feed/feed_entry.dart';
 
 class FeedEntryCard extends StatefulWidget {
   final FeedEntry entry;

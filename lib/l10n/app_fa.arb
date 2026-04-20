@@ -1,0 +1,507 @@
+{
+    "@@locale": "fa",
+    "appTitle": "پیگیر کودک",
+    "@appTitle": {},
+    "navHome": "خانه",
+    "@navHome": {},
+    "navGraphs": "نمودارها",
+    "@navGraphs": {},
+    "navSettings": "تنظیمات",
+    "@navSettings": {},
+    "actionCancel": "لغو",
+    "@actionCancel": {},
+    "actionSave": "ذخیره",
+    "@actionSave": {},
+    "actionUpdate": "به‌روزرسانی",
+    "@actionUpdate": {},
+    "actionDelete": "حذف",
+    "@actionDelete": {},
+    "actionAdd": "افزودن",
+    "@actionAdd": {},
+    "actionEdit": "ویرایش",
+    "@actionEdit": {},
+    "actionClose": "بستن",
+    "@actionClose": {},
+    "actionExport": "خروجی داده",
+    "@actionExport": {},
+    "actionAddDay": "افزودن روز",
+    "@actionAddDay": {},
+    "cannotUndo": "این عمل قابل بازگشت نیست",
+    "@cannotUndo": {},
+    "noData": "داده‌ای وجود ندارد",
+    "@noData": {},
+    "homeTitle": "پیگیر",
+    "@homeTitle": {},
+    "feedsToday": "شیردهی‌های امروز",
+    "@feedsToday": {},
+    "diapersToday": "پوشک‌های امروز",
+    "@diapersToday": {},
+    "sleepToday": "خواب امروز",
+    "@sleepToday": {},
+    "todayLabel": "امروز — {date}",
+    "@todayLabel": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "eventCount": "{count, plural, =0{بدون رویداد} =1{۱ رویداد} other{{count} رویداد}}",
+    "@eventCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deleteDayTitle": "این روز حذف شود؟",
+    "@deleteDayTitle": {},
+    "deleteDayContent": "{date} و همهٔ ورودی‌هایش حذف شود؟ این عمل قابل بازگشت نیست",
+    "@deleteDayContent": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "noEntriesYet": "هنوز ورودی‌ای وجود ندارد",
+    "@noEntriesYet": {},
+    "addEntry": "افزودن ورودی",
+    "@addEntry": {},
+    "deleteEntryTitle": "این ورودی حذف شود؟",
+    "@deleteEntryTitle": {},
+    "entryTypeDiaper": "تعویض پوشک",
+    "@entryTypeDiaper": {},
+    "entryTypeFeeding": "شیردهی",
+    "@entryTypeFeeding": {},
+    "entryTypeSleep": "خواب",
+    "@entryTypeSleep": {},
+    "entryTypeTemperature": "دما",
+    "@entryTypeTemperature": {},
+    "entryTypeWeight": "وزن",
+    "@entryTypeWeight": {},
+    "diaperPeePoo": "پوشک — ادرار + مدفوع",
+    "@diaperPeePoo": {},
+    "diaperPee": "پوشک — فقط ادرار",
+    "@diaperPee": {},
+    "diaperPoo": "پوشک — فقط مدفوع",
+    "@diaperPoo": {},
+    "diaperChange": "تعویض پوشک",
+    "@diaperChange": {},
+    "editDiaper": "ویرایش پوشک",
+    "@editDiaper": {},
+    "diaperContents": "محتویات",
+    "@diaperContents": {},
+    "diaperNone": "هیچ",
+    "@diaperNone": {},
+    "diaperPeeLabel": "ادرار",
+    "@diaperPeeLabel": {},
+    "diaperPooLabel": "مدفوع",
+    "@diaperPooLabel": {},
+    "diaperBoth": "هر دو",
+    "@diaperBoth": {},
+    "diaperConsistency": "قوام",
+    "@diaperConsistency": {},
+    "consistencyHard": "سفت / دانه‌دانه",
+    "@consistencyHard": {},
+    "consistencyHardHint": "یبوست",
+    "@consistencyHardHint": {},
+    "consistencyFirm": "قالبی",
+    "@consistencyFirm": {},
+    "consistencyFirmHint": "کمی سفت",
+    "@consistencyFirmHint": {},
+    "consistencyNormal": "عادی",
+    "@consistencyNormal": {},
+    "consistencyNormalHint": "سالم",
+    "@consistencyNormalHint": {},
+    "consistencySoft": "نرم",
+    "@consistencySoft": {},
+    "consistencySoftHint": "کمی نرم",
+    "@consistencySoftHint": {},
+    "consistencyLoose": "خمیری / نیمه‌مایع",
+    "@consistencyLoose": {},
+    "consistencyLooseHint": "نیاز به مراقبت",
+    "@consistencyLooseHint": {},
+    "consistencyWatery": "آبکی",
+    "@consistencyWatery": {},
+    "consistencyWateryHint": "اسهال",
+    "@consistencyWateryHint": {},
+    "warnConstipation": "نشانه‌های یبوست — از نزدیک نظارت کنید",
+    "@warnConstipation": {},
+    "warnDiarrhea": "نشانه‌های اسهال — از نزدیک نظارت کنید",
+    "@warnDiarrhea": {},
+    "pooColourLabel": "رنگ (برای انتخاب ضربه بزنید)",
+    "@pooColourLabel": {},
+    "pooColourAbnormal": "⚠️ غیرعادی (کم‌رنگ)",
+    "@pooColourAbnormal": {},
+    "pooColourNormal": "✅ عادی",
+    "@pooColourNormal": {},
+    "pooColourSelected": "انتخاب شده: {label}",
+    "@pooColourSelected": {
+        "placeholders": {
+            "label": {
+                "type": "String"
+            }
+        }
+    },
+    "diaperSize": "سایز پوشک",
+    "@diaperSize": {},
+    "diaperBrand": "برند",
+    "@diaperBrand": {},
+    "diaperBrandCustomLabel": "نام برند",
+    "@diaperBrandCustomLabel": {},
+    "rashPresent": "دانه‌های پوستی (راش) وجود دارد",
+    "@rashPresent": {},
+    "rashPresentHint": "قرمزی، تحریک یا راش پوشک",
+    "@rashPresentHint": {},
+    "rashCreamUsed": "کرم استفاده شده",
+    "@rashCreamUsed": {},
+    "rashCreamCustomLabel": "نام کرم / پماد",
+    "@rashCreamCustomLabel": {},
+    "rashFollowUpTitle": "⚠️ پیگیری راش",
+    "@rashFollowUpTitle": {},
+    "rashFollowUpQuestion": "در آخرین پوشک راش ثبت شده بود. آیا بهبود یافته؟",
+    "@rashFollowUpQuestion": {},
+    "rashImproved": "بله، بهبود یافته",
+    "@rashImproved": {},
+    "rashNoChange": "بدون تغییر / بدتر شده",
+    "@rashNoChange": {},
+    "rashRecorded": "راش ثبت شد",
+    "@rashRecorded": {},
+    "addFeeding": "افزودن شیردهی",
+    "@addFeeding": {},
+    "editFeeding": "ویرایش شیردهی",
+    "@editFeeding": {},
+    "feedLabel": "شیردهی {number}",
+    "@feedLabel": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "feedModeBottle": "شیشه",
+    "@feedModeBottle": {},
+    "feedModeSuckle": "شیر مادر",
+    "@feedModeSuckle": {},
+    "feedAmountMl": "مقدار (میلی‌لیتر)",
+    "@feedAmountMl": {},
+    "feedType": "نوع",
+    "@feedType": {},
+    "feedBreastMilk": "شیر مادر",
+    "@feedBreastMilk": {},
+    "feedFormula": "شیر خشک",
+    "@feedFormula": {},
+    "feedFormulaBrand": "برند شیر خشک",
+    "@feedFormulaBrand": {},
+    "feedFormulaBrandCustom": "نام برند",
+    "@feedFormulaBrandCustom": {},
+    "feedDurationMinutes": "مدت (دقیقه)",
+    "@feedDurationMinutes": {},
+    "addAnotherFeed": "افزودن شیردهی دیگر",
+    "@addAnotherFeed": {},
+    "bottleBreastMilk": "شیشه — شیر مادر",
+    "@bottleBreastMilk": {},
+    "bottleFormula": "شیشه — شیر خشک",
+    "@bottleFormula": {},
+    "breastfeedingSuckle": "شیردهی مستقیم",
+    "@breastfeedingSuckle": {},
+    "logSleep": "ثبت خواب",
+    "@logSleep": {},
+    "editSleep": "ویرایش خواب",
+    "@editSleep": {},
+    "sleepStart": "شروع خواب",
+    "@sleepStart": {},
+    "sleepWakeUp": "بیداری",
+    "@sleepWakeUp": {},
+    "sleepDuration": "مدت: {duration}",
+    "@sleepDuration": {
+        "placeholders": {
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "sleepInvalidTimes": "زمان نامعتبر",
+    "@sleepInvalidTimes": {},
+    "sleepWrapsNextDay": "(به روز بعد ختم می‌شود)",
+    "@sleepWrapsNextDay": {},
+    "sleepNotes": "یادداشت (اختیاری)",
+    "@sleepNotes": {},
+    "sleepNotesHint": "مثال: بی‌قرار،短暂 بیدار شده...",
+    "@sleepNotesHint": {},
+    "sleepNoNotes": "بدون یادداشت",
+    "@sleepNoNotes": {},
+    "sleepHoursShort": "{h}ساعت {m}دقیقه",
+    "@sleepHoursShort": {
+        "placeholders": {
+            "h": {
+                "type": "int"
+            },
+            "m": {
+                "type": "int"
+            }
+        }
+    },
+    "logTemperature": "ثبت دما",
+    "@logTemperature": {},
+    "editTemperature": "ویرایش دما",
+    "@editTemperature": {},
+    "temperatureLabel": "دمای بدن",
+    "@temperatureLabel": {},
+    "tempSeverityLow": "دمای پایین — نظارت کنید",
+    "@tempSeverityLow": {},
+    "tempSeverityNormal": "دمای طبیعی",
+    "@tempSeverityNormal": {},
+    "tempSeverityElevated": "کمی بالا — از نزدیک نظارت کنید",
+    "@tempSeverityElevated": {},
+    "tempSeverityFever": "تب — با پزشک مشورت کنید",
+    "@tempSeverityFever": {},
+    "tempReference": "مرجع دما",
+    "@tempReference": {},
+    "tempRefLow": "< 36.0 °C / 96.8 °F",
+    "@tempRefLow": {},
+    "tempRefNormal": "36.0 – 37.4 °C / 96.8 – 99.3 °F",
+    "@tempRefNormal": {},
+    "tempRefElevated": "37.5 – 38.4 °C / 99.5 – 101.1 °F",
+    "@tempRefElevated": {},
+    "tempRefFever": "≥ 38.5 °C / 101.3 °F",
+    "@tempRefFever": {},
+    "tempFeverWarning": "⚠️ در صورت تب در نوزادان زیر ۳ ماه، همیشه با پزشک متخصص اطفال مشورت کنید",
+    "@tempFeverWarning": {},
+    "tempLow": "پایین",
+    "@tempLow": {},
+    "tempNormal": "طبیعی",
+    "@tempNormal": {},
+    "tempElevated": "بالا",
+    "@tempElevated": {},
+    "tempFever": "تب",
+    "@tempFever": {},
+    "tempLatest": "آخرین دما",
+    "@tempLatest": {},
+    "tempSummary": "خلاصه دما",
+    "@tempSummary": {},
+    "tempFeverThreshold": "آستانه تب",
+    "@tempFeverThreshold": {},
+    "tempDays": "{count, plural, =1{۱ روز} other{{count} روز}}",
+    "@tempDays": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "logWeight": "ثبت وزن",
+    "@logWeight": {},
+    "editWeight": "ویرایش وزن",
+    "@editWeight": {},
+    "weightLabel": "وزن",
+    "@weightLabel": {},
+    "weightGain": "+{amount} افزایش",
+    "@weightGain": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLoss": "−{amount} کاهش",
+    "@weightLoss": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "weightPrevious": "قبلی: {weight}",
+    "@weightPrevious": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLastRecorded": "آخرین ثبت: {weight} در {date}",
+    "@weightLastRecorded": {
+        "placeholders": {
+            "weight": {
+                "type": "String"
+            },
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "weightLatest": "آخرین وزن",
+    "@weightLatest": {},
+    "weightOverPeriod": "{sign}{amount} در این دوره",
+    "@weightOverPeriod": {
+        "placeholders": {
+            "sign": {
+                "type": "String"
+            },
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "settingsTitle": "تنظیمات",
+    "@settingsTitle": {},
+    "settingsAppearance": "ظاهر",
+    "@settingsAppearance": {},
+    "settingsDarkMode": "حالت تیره",
+    "@settingsDarkMode": {},
+    "settingsDarkActive": "تم تیره فعال است",
+    "@settingsDarkActive": {},
+    "settingsLightActive": "تم روشن فعال است",
+    "@settingsLightActive": {},
+    "settingsUnits": "واحدها",
+    "@settingsUnits": {},
+    "settingsWeightUnit": "واحد وزن",
+    "@settingsWeightUnit": {},
+    "settingsTempUnit": "واحد دما",
+    "@settingsTempUnit": {},
+    "settingsLanguage": "زبان",
+    "@settingsLanguage": {},
+    "settingsTips": "نکات",
+    "@settingsTips": {},
+    "tipSwitchBabies": "تغییر کودک",
+    "@tipSwitchBabies": {},
+    "tipSwitchBabiesDesc": "برای تغییر یا افزودن پروفایل، روی آواتار کودک در بالا ضربه بزنید",
+    "@tipSwitchBabiesDesc": {},
+    "tipSwipeDelete": "برای حذف به چپ بکشید",
+    "@tipSwipeDelete": {},
+    "tipSwipeDeleteDesc": "روی کارت‌های روز و ورودی‌های جداگانه کار می‌کند",
+    "@tipSwipeDeleteDesc": {},
+    "tipMultipleFeeds": "ثبت چندین شیردهی",
+    "@tipMultipleFeeds": {},
+    "tipMultipleFeedsDesc": "در فرم شیردهی، روی «افزودن شیردهی دیگر» ضربه بزنید تا شیر مادر و شیشه را یکجا ثبت کنید",
+    "@tipMultipleFeedsDesc": {},
+    "tipExportData": "خروجی داده",
+    "@tipExportData": {},
+    "tipExportDataDesc": "از آیکون اشتراک‌گذاری در صفحه اصلی برای خروجی همه داده‌ها به صورت JSON استفاده کنید",
+    "@tipExportDataDesc": {},
+    "tipTapToEdit": "برای ویرایش هر ورودی، روی آن ضربه بزنید",
+    "@tipTapToEdit": {},
+    "babiesTitle": "کودکان",
+    "@babiesTitle": {},
+    "addBaby": "افزودن کودک",
+    "@addBaby": {},
+    "editProfile": "ویرایش پروفایل",
+    "@editProfile": {},
+    "babyNameRequired": "نام *",
+    "@babyNameRequired": {},
+    "babyDobOptional": "تاریخ تولد (اختیاری)",
+    "@babyDobOptional": {},
+    "babyBornOn": "متولد {date}",
+    "@babyBornOn": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "genderUnknown": "نامشخص",
+    "@genderUnknown": {},
+    "genderBoy": "پسر",
+    "@genderBoy": {},
+    "genderGirl": "دختر",
+    "@genderGirl": {},
+    "cannotDeleteOnlyProfile": "تنها پروفایل کودک قابل حذف نیست",
+    "@cannotDeleteOnlyProfile": {},
+    "deleteProfileTitle": "{name} حذف شود؟",
+    "@deleteProfileTitle": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "deleteProfileContent": "همه داده‌های این کودک به طور دائم حذف خواهند شد",
+    "@deleteProfileContent": {},
+    "graphsTitle": "نمودارها",
+    "@graphsTitle": {},
+    "graphsTabDaily": "روزانه",
+    "@graphsTabDaily": {},
+    "graphsTabGrowth": "رشد",
+    "@graphsTabGrowth": {},
+    "graphsTabHealth": "سلامت",
+    "@graphsTabHealth": {},
+    "graphsTotalFeeds": "کل شیردهی‌ها",
+    "@graphsTotalFeeds": {},
+    "graphsAvgPerDay": "میانگین/روز",
+    "@graphsAvgPerDay": {},
+    "graphsTotalDiapers": "تعداد پوشک",
+    "@graphsTotalDiapers": {},
+    "graphsTotalMilk": "کل شیر",
+    "@graphsTotalMilk": {},
+    "graphsTotalSleep": "کل خواب",
+    "@graphsTotalSleep": {},
+    "graphsAvgSleep": "میانگین خواب/روز",
+    "@graphsAvgSleep": {},
+    "graphsFeedsPerDay": "شیردهی در روز",
+    "@graphsFeedsPerDay": {},
+    "graphsDiapersPerDay": "پوشک در روز",
+    "@graphsDiapersPerDay": {},
+    "graphsMilkPerDay": "شیر در روز (میلی‌لیتر)",
+    "@graphsMilkPerDay": {},
+    "graphsSleepPerDay": "خواب در روز (ساعت)",
+    "@graphsSleepPerDay": {},
+    "graphsWeightOverTime": "وزن در طول زمان",
+    "@graphsWeightOverTime": {},
+    "graphsTempOverTime": "دما در طول زمان",
+    "@graphsTempOverTime": {},
+    "graphsMaxLabel": "حداکثر: {value}",
+    "@graphsMaxLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsMinLabel": "حداقل: {value}",
+    "@graphsMinLabel": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "graphsNoWeightData": "هنوز ورودی وزنی وجود ندارد\nوزن را از ورودی‌های یک روز ثبت کنید",
+    "@graphsNoWeightData": {},
+    "graphsNoTempData": "هنوز ورودی دمایی وجود ندارد\nدما را از یک روز ثبت کنید",
+    "@graphsNoTempData": {},
+    "timeLabel": "زمان",
+    "@timeLabel": {},
+    "noColourRecorded": "رنگی ثبت نشده",
+    "@noColourRecorded": {},
+    "noDetails": "بدون جزئیات",
+    "@noDetails": {},
+    "ageDay": "{count, plural, =1{۱ روزه} other{{count} روزه}}",
+    "@ageDay": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageMonth": "{count, plural, =1{۱ ماهه} other{{count} ماهه}}",
+    "@ageMonth": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "ageYearMonth": "{years} سال و {months} ماه",
+    "@ageYearMonth": {
+        "placeholders": {
+            "years": {
+                "type": "int"
+            },
+            "months": {
+                "type": "int"
+            }
+        }
+    }
+}

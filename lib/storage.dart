@@ -5,10 +5,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_baby_tracker/app_settings.dart';
 import 'package:simple_baby_tracker/baby_profile.dart';
+import 'package:simple_baby_tracker/models/milestone_entry.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 
 class Storage {
   static const _kDataPrefix = 'baby_tracker_data_v3_';
+  static const _kMilestonesPrefix = 'baby_tracker_milestones_';
   static const _kLegacyKey = 'baby_tracker_data_v2';
   static const _kProfiles = 'baby_profiles';
   static const _kActiveProfile = 'active_baby_id';
@@ -28,7 +30,9 @@ class Storage {
   static Future<void> saveProfiles(List<BabyProfile> profiles) async {
     final sp = await SharedPreferences.getInstance();
     await sp.setString(
-        _kProfiles, json.encode(profiles.map((p) => p.toJson()).toList()));
+      _kProfiles,
+      json.encode(profiles.map((p) => p.toJson()).toList()),
+    );
   }
 
   static Future<String?> getActiveProfileId() async {
@@ -73,27 +77,34 @@ class Storage {
     final out = <String, List<TrackerEvent>>{};
     for (final entry in decoded.entries) {
       out[entry.key] = (entry.value as List)
-          .map((e) =>
-              TrackerEvent.fromJson(Map<String, dynamic>.from(e as Map)))
+          .map(
+            (e) => TrackerEvent.fromJson(Map<String, dynamic>.from(e as Map)),
+          )
           .toList();
     }
     return out;
   }
 
   static Future<void> saveAll(
-      String babyId, Map<String, List<TrackerEvent>> map) async {
+    String babyId,
+    Map<String, List<TrackerEvent>> map,
+  ) async {
     final sp = await SharedPreferences.getInstance();
-    final encoded =
-        map.map((k, v) => MapEntry(k, v.map((e) => e.toJson()).toList()));
+    final encoded = map.map(
+      (k, v) => MapEntry(k, v.map((e) => e.toJson()).toList()),
+    );
     await sp.setString('$_kDataPrefix$babyId', json.encode(encoded));
   }
 
   static Future<File> exportToFile(
-      String babyId, Map<String, List<TrackerEvent>> data) async {
+    String babyId,
+    Map<String, List<TrackerEvent>> data,
+  ) async {
     final dir = await getApplicationDocumentsDirectory();
     final file = File('${dir.path}/baby_tracker_export_$babyId.json');
-    final encoded =
-        data.map((k, v) => MapEntry(k, v.map((e) => e.toJson()).toList()));
+    final encoded = data.map(
+      (k, v) => MapEntry(k, v.map((e) => e.toJson()).toList()),
+    );
     await file.writeAsString(json.encode(encoded));
     return file;
   }
@@ -101,6 +112,31 @@ class Storage {
   static Future<void> deleteData(String babyId) async {
     final sp = await SharedPreferences.getInstance();
     await sp.remove('$_kDataPrefix$babyId');
+    await sp.remove('$_kMilestonesPrefix$babyId');
+  }
+
+  // ─── Milestones ───────────────────────────────────────────────────────────
+
+  static Future<List<MilestoneEntry>> loadMilestones(String babyId) async {
+    final sp = await SharedPreferences.getInstance();
+    final raw = sp.getString('$_kMilestonesPrefix$babyId');
+    if (raw == null) return [];
+    return (json.decode(raw) as List)
+        .map(
+          (e) => MilestoneEntry.fromJson(Map<String, dynamic>.from(e as Map)),
+        )
+        .toList();
+  }
+
+  static Future<void> saveMilestones(
+    String babyId,
+    List<MilestoneEntry> milestones,
+  ) async {
+    final sp = await SharedPreferences.getInstance();
+    await sp.setString(
+      '$_kMilestonesPrefix$babyId',
+      json.encode(milestones.map((m) => m.toJson()).toList()),
+    );
   }
 
   // ─── Settings ─────────────────────────────────────────────────────────────
