@@ -18,7 +18,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get navGraphs => 'Gráficos';
 
   @override
-  String get navMilestones => 'Milestones';
+  String get navMilestones => 'Marcos';
 
   @override
   String get navSettings => 'Configurações';
@@ -51,22 +51,22 @@ class AppLocalizationsPt extends AppLocalizations {
   String get actionAddDay => 'Adicionar dia';
 
   @override
-  String get actionLog => 'Log';
+  String get actionLog => 'Registrar';
 
   @override
-  String get cannotUndo => 'Esta ação não pode ser desfeita';
+  String get cannotUndo => 'Esta ação não pode ser desfeita.';
 
   @override
-  String get noData => 'Sem dados';
+  String get noData => 'Nenhum dado';
 
   @override
-  String get noNotes => 'No notes';
+  String get noNotes => 'Nenhuma anotação';
 
   @override
-  String get noDetails => 'Sem detalhes';
+  String get noDetails => 'Nenhum detalhe';
 
   @override
-  String get optional => '(optional)';
+  String get optional => '(opcional)';
 
   @override
   String get homeTitle => 'Rastreador';
@@ -92,33 +92,33 @@ class AppLocalizationsPt extends AppLocalizations {
       locale: localeName,
       other: '$count eventos',
       one: '1 evento',
-      zero: 'Nenhum evento',
+      zero: 'nenhum evento',
     );
     return '$_temp0';
   }
 
   @override
-  String get deleteDayTitle => 'Excluir este dia?';
+  String get deleteDayTitle => 'Excluir dia?';
 
   @override
   String deleteDayContent(String date) {
-    return 'Remover $date e todas as suas entradas? Esta ação não pode ser desfeita';
+    return 'Remover $date e todas as suas entradas? Esta ação não pode ser desfeita.';
   }
 
   @override
   String get rashRecorded => 'Assadura registrada';
 
   @override
-  String get noEntriesYet => 'Nenhuma entrada ainda';
+  String get noEntriesYet => 'Ainda não há entradas';
 
   @override
   String get addEntry => 'Adicionar entrada';
 
   @override
-  String get deleteEntryTitle => 'Excluir esta entrada?';
+  String get deleteEntryTitle => 'Excluir entrada?';
 
   @override
-  String get entryTypeDiaper => 'Troca de fralda';
+  String get entryTypeDiaper => 'Trocar fralda';
 
   @override
   String get entryTypeFeeding => 'Mamada';
@@ -133,34 +133,34 @@ class AppLocalizationsPt extends AppLocalizations {
   String get entryTypeWeight => 'Peso';
 
   @override
-  String get entryTypeTummyTime => 'Tummy time';
+  String get entryTypeTummyTime => 'Tempo de bruços';
 
   @override
-  String get entryTypeMedication => 'Medication';
+  String get entryTypeMedication => 'Medicamento';
 
   @override
-  String get entryTypeDoctorVisit => 'Doctor visit';
+  String get entryTypeDoctorVisit => 'Consulta médica';
 
   @override
-  String get entryTypeNote => 'Daily note / journal';
+  String get entryTypeNote => 'Nota diária / diário';
 
   @override
-  String get entryTypePumping => 'Pumping session';
+  String get entryTypePumping => 'Sessão de ordenha';
 
   @override
-  String get entryTypeBath => 'Bath';
+  String get entryTypeBath => 'Banho';
 
   @override
-  String get diaperPeePoo => 'Fralda — xixi e cocô';
+  String get diaperPeePoo => 'Fralda — xixi + cocô';
 
   @override
-  String get diaperPee => 'Fralda — só xixi';
+  String get diaperPee => 'Fralda — xixi';
 
   @override
-  String get diaperPoo => 'Fralda — só cocô';
+  String get diaperPoo => 'Fralda — cocô';
 
   @override
-  String get diaperChange => 'Troca de fralda';
+  String get diaperChange => 'Trocar fralda';
 
   @override
   String get editDiaper => 'Editar fralda';
@@ -169,7 +169,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get diaperContents => 'Conteúdo';
 
   @override
-  String get diaperNone => 'Nada';
+  String get diaperNone => 'Nenhum';
 
   @override
   String get diaperPeeLabel => 'Xixi';
@@ -184,7 +184,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get diaperConsistency => 'Consistência';
 
   @override
-  String get consistencyHard => 'Dura / Em bolinhas';
+  String get consistencyHard => 'Duro / em pelotas';
 
   @override
   String get consistencyHardHint => 'Constipação';
@@ -202,41 +202,41 @@ class AppLocalizationsPt extends AppLocalizations {
   String get consistencyNormalHint => 'Saudável';
 
   @override
-  String get consistencySoft => 'Macia';
+  String get consistencySoft => 'Mole';
 
   @override
-  String get consistencySoftHint => 'Ligeiramente macia';
+  String get consistencySoftHint => 'Ligeiramente mole';
 
   @override
-  String get consistencyLoose => 'Pastosa / Semilíquida';
+  String get consistencyLoose => 'Pastoso / líquido';
 
   @override
   String get consistencyLooseHint => 'Observar';
 
   @override
-  String get consistencyWatery => 'Líquida / Aquosa';
+  String get consistencyWatery => 'Aquoso';
 
   @override
   String get consistencyWateryHint => 'Diarreia';
 
   @override
-  String get warnConstipation => 'Sinais de constipação — observar de perto';
+  String get warnConstipation => 'Sinais de constipação — monitore de perto';
 
   @override
-  String get warnDiarrhea => 'Sinais de diarreia — observar de perto';
+  String get warnDiarrhea => 'Sinais de diarreia — monitore de perto';
 
   @override
   String get pooColourLabel => 'Cor (toque para selecionar)';
 
   @override
-  String get pooColourAbnormal => '⚠️ Anormal (pálida)';
+  String get pooColourAbnormal => '⚠️ Anormal (pálido)';
 
   @override
   String get pooColourNormal => '✅ Normal';
 
   @override
   String pooColourSelected(String label) {
-    return 'Selecionada: $label';
+    return 'Selecionado: $label';
   }
 
   @override
@@ -252,10 +252,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get rashPresent => 'Assadura presente';
 
   @override
-  String get rashPresentHint => 'Vermelhidão, irritação ou dermatite de fralda';
+  String get rashPresentHint => 'Vermelhidão, irritação ou assadura';
 
   @override
-  String get rashCreamUsed => 'Creme aplicado';
+  String get rashCreamUsed => 'Creme para assadura usado';
 
   @override
   String get rashCreamCustomLabel => 'Nome do creme / pomada';
@@ -264,13 +264,13 @@ class AppLocalizationsPt extends AppLocalizations {
   String get rashFollowUpTitle => '⚠️ Acompanhamento da assadura';
 
   @override
-  String get rashFollowUpQuestion => 'A última fralda registrou assadura. Houve melhora?';
+  String get rashFollowUpQuestion => 'A última fralda tinha assadura registrada. Melhorou?';
 
   @override
   String get rashImproved => 'Sim, melhorou';
 
   @override
-  String get rashNoChange => 'Sem mudança / Piorou';
+  String get rashNoChange => 'Nenhuma mudança / piorou';
 
   @override
   String get addFeeding => 'Adicionar mamada';
@@ -287,7 +287,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get feedModeBottle => 'Mamadeira';
 
   @override
-  String get feedModeSuckle => 'Peito';
+  String get feedModeSuckle => 'Mamar no peito';
 
   @override
   String get feedAmountMl => 'Quantidade (ml)';
@@ -305,7 +305,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get feedFormulaBrand => 'Marca da fórmula';
 
   @override
-  String get feedFormulaBrandCustom => 'Nome da marca';
+  String get feedFormulaBrandCustom => 'Nome da marca da fórmula';
 
   @override
   String get feedDurationMinutes => 'Duração (minutos)';
@@ -346,17 +346,17 @@ class AppLocalizationsPt extends AppLocalizations {
   String get sleepWrapsNextDay => '(termina no dia seguinte)';
 
   @override
-  String get sleepNotes => 'Notas (opcional)';
+  String get sleepNotes => 'Anotações (opcional)';
 
   @override
-  String get sleepNotesHint => 'Exemplo: agitado, acordou brevemente...';
+  String get sleepNotesHint => 'ex. inquieto, acordou brevemente...';
 
   @override
-  String get sleepNoNotes => 'Sem notas';
+  String get sleepNoNotes => 'Nenhuma anotação';
 
   @override
   String sleepHoursShort(int h, int m) {
-    return '${h}h ${m}min';
+    return '${h}h ${m}m';
   }
 
   @override
@@ -369,13 +369,13 @@ class AppLocalizationsPt extends AppLocalizations {
   String get temperatureLabel => 'Temperatura';
 
   @override
-  String get tempSeverityLow => 'Temperatura baixa — observar';
+  String get tempSeverityLow => 'Temperatura baixa — monitore';
 
   @override
   String get tempSeverityNormal => 'Temperatura normal';
 
   @override
-  String get tempSeverityElevated => 'Levemente elevada — observar de perto';
+  String get tempSeverityElevated => 'Ligeiramente elevada — monitore de perto';
 
   @override
   String get tempSeverityFever => 'Febre — consulte seu médico';
@@ -396,7 +396,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get tempRefFever => '≥ 38,5 °C / 101,3 °F';
 
   @override
-  String get tempFeverWarning => '⚠️ Consulte sempre o pediatra em caso de febre em bebês com menos de 3 meses';
+  String get tempFeverWarning => '⚠️ Sempre consulte seu pediatra em caso de febre em bebês com menos de 3 meses.';
 
   @override
   String get tempLow => 'Baixa';
@@ -417,7 +417,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get tempSummary => 'Resumo das temperaturas';
 
   @override
-  String get tempFeverThreshold => 'Limiar de febre';
+  String get tempFeverThreshold => 'Limite de febre';
 
   @override
   String tempDays(int count) {
@@ -426,6 +426,7 @@ class AppLocalizationsPt extends AppLocalizations {
       locale: localeName,
       other: '$count dias',
       one: '1 dia',
+      zero: 'nenhum dia',
     );
     return '$_temp0';
   }
@@ -441,12 +442,12 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String weightGain(String amount) {
-    return '+$amount ganho';
+    return '+$amount de ganho';
   }
 
   @override
   String weightLoss(String amount) {
-    return '−$amount perdido';
+    return '−$amount de perda';
   }
 
   @override
@@ -468,221 +469,221 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get tummyTimeLog => 'Log tummy time';
+  String get tummyTimeLog => 'Registrar tempo de bruços';
 
   @override
-  String get tummyTimeEdit => 'Edit tummy time';
+  String get tummyTimeEdit => 'Editar tempo de bruços';
 
   @override
-  String get tummyTimeStart => 'Start time';
+  String get tummyTimeStart => 'Horário de início';
 
   @override
-  String get tummyTimeEnd => 'End time';
+  String get tummyTimeEnd => 'Horário de término';
 
   @override
-  String get tummyTimeTip => 'Tummy time strengthens neck and shoulder muscles.';
+  String get tummyTimeTip => 'O tempo de bruços fortalece os músculos do pescoço e dos ombros.';
 
   @override
-  String get medicationLog => 'Log medication';
+  String get medicationLog => 'Registrar medicamento';
 
   @override
-  String get medicationEdit => 'Edit medication';
+  String get medicationEdit => 'Editar medicamento';
 
   @override
-  String get medicationName => 'Medication name *';
+  String get medicationName => 'Nome do medicamento *';
 
   @override
   String get medicationDose => 'Dose';
 
   @override
-  String get medicationUnit => 'Unit';
+  String get medicationUnit => 'Unidade';
 
   @override
-  String get medicationCommon => 'Common medications';
+  String get medicationCommon => 'Medicamentos comuns';
 
   @override
-  String get medicationWarning => 'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.';
+  String get medicationWarning => 'Sempre siga as instruções de dosagem de acordo com o peso/idade. Não exceda a frequência recomendada.';
 
   @override
-  String get medicationNotes => 'Notes (optional)';
+  String get medicationNotes => 'Anotações (opcional)';
 
   @override
-  String get medicationNotesHint => 'e.g. reason, reaction...';
+  String get medicationNotesHint => 'ex. motivo, reação...';
 
   @override
-  String get doctorVisitLog => 'Doctor visit';
+  String get doctorVisitLog => 'Consulta médica';
 
   @override
-  String get doctorVisitEdit => 'Edit doctor visit';
+  String get doctorVisitEdit => 'Editar consulta médica';
 
   @override
-  String get doctorName => 'Doctor / clinic name';
+  String get doctorName => 'Nome do médico / clínica';
 
   @override
-  String get doctorVisitReason => 'Reason for visit';
+  String get doctorVisitReason => 'Motivo da consulta';
 
   @override
-  String get doctorVisitMeasurements => 'Measurements (optional)';
+  String get doctorVisitMeasurements => 'Medições (opcional)';
 
   @override
-  String get doctorVisitNotes => 'Notes';
+  String get doctorVisitNotes => 'Anotações';
 
   @override
-  String get doctorVisitNotesHint => 'e.g. vaccinations given, doctor recommendations...';
+  String get doctorVisitNotesHint => 'ex. vacinas administradas, recomendações do médico...';
 
   @override
-  String get measurementWeightKg => 'Weight (kg)';
+  String get measurementWeightKg => 'Peso (kg)';
 
   @override
-  String get measurementWeightLbs => 'Weight (lbs)';
+  String get measurementWeightLbs => 'Peso (lbs)';
 
   @override
-  String get measurementHeightCm => 'Length / height (cm)';
+  String get measurementHeightCm => 'Comprimento / altura (cm)';
 
   @override
-  String get measurementHeadCm => 'Head circumference (cm)';
+  String get measurementHeadCm => 'Perímetro cefálico (cm)';
 
   @override
-  String get dailyNoteLog => 'Daily note';
+  String get dailyNoteLog => 'Nota diária';
 
   @override
-  String get dailyNoteEdit => 'Edit note';
+  String get dailyNoteEdit => 'Editar nota';
 
   @override
-  String get dailyNoteTitle => 'Title (optional)';
+  String get dailyNoteTitle => 'Título (opcional)';
 
   @override
-  String get dailyNoteText => 'Note';
+  String get dailyNoteText => 'Nota';
 
   @override
-  String get dailyNoteHint => 'What happened today? First time rolling? Fussy morning?';
+  String get dailyNoteHint => 'O que aconteceu hoje? Primeira vez rolando? Manhã irritada?';
 
   @override
-  String get dailyNoteTags => 'Quick tags';
+  String get dailyNoteTags => 'Tags rápidas';
 
   @override
-  String get pumpingLog => 'Log pumping session';
+  String get pumpingLog => 'Registrar sessão de ordenha';
 
   @override
-  String get pumpingEdit => 'Edit pumping session';
+  String get pumpingEdit => 'Editar sessão de ordenha';
 
   @override
-  String get pumpingLeft => 'Left breast (ml)';
+  String get pumpingLeft => 'Seio esquerdo (ml)';
 
   @override
-  String get pumpingRight => 'Right breast (ml)';
+  String get pumpingRight => 'Seio direito (ml)';
 
   @override
-  String get pumpingTotal => 'Total pumped';
+  String get pumpingTotal => 'Total ordenhado';
 
   @override
-  String get pumpingDuration => 'Duration (minutes)';
+  String get pumpingDuration => 'Duração (minutos)';
 
   @override
-  String get pumpingStored => 'Stored / frozen';
+  String get pumpingStored => 'Armazenado / congelado';
 
   @override
-  String get pumpingNotes => 'Notes (optional)';
+  String get pumpingNotes => 'Anotações (opcional)';
 
   @override
-  String get pumpingSessionTitle => 'Pumping';
+  String get pumpingSessionTitle => 'Ordenha';
 
   @override
   String pumpingTotalMl(int ml) {
-    return '$ml ml total';
+    return 'Total de $ml ml';
   }
 
   @override
-  String get bathLog => 'Log bath';
+  String get bathLog => 'Registrar banho';
 
   @override
-  String get bathEdit => 'Edit bath';
+  String get bathEdit => 'Editar banho';
 
   @override
-  String get bathType => 'Bath type';
+  String get bathType => 'Tipo de banho';
 
   @override
-  String get bathTypeSponge => 'Sponge bath';
+  String get bathTypeSponge => 'Banho de esponja';
 
   @override
-  String get bathTypeTub => 'Tub bath';
+  String get bathTypeTub => 'Banho de banheira';
 
   @override
-  String get bathTypeShower => 'Shower';
+  String get bathTypeShower => 'Chuveiro';
 
   @override
-  String get bathNotes => 'Notes (optional)';
+  String get bathNotes => 'Anotações (opcional)';
 
   @override
-  String get bathProducts => 'Products used (optional)';
+  String get bathProducts => 'Produtos usados (opcional)';
 
   @override
-  String get vaccineTitle => 'Vaccinations';
+  String get vaccineTitle => 'Vacinação';
 
   @override
-  String get vaccineTabGiven => 'Given';
+  String get vaccineTabGiven => 'Administradas';
 
   @override
-  String get vaccineTabSchedule => 'Schedule';
+  String get vaccineTabSchedule => 'Cronograma';
 
   @override
-  String get vaccineLog => 'Log vaccine';
+  String get vaccineLog => 'Registrar vacina';
 
   @override
-  String get vaccineEdit => 'Edit vaccine';
+  String get vaccineEdit => 'Editar vacina';
 
   @override
-  String get vaccineName => 'Vaccine name';
+  String get vaccineName => 'Nome da vacina';
 
   @override
-  String get vaccineBrand => 'Brand / manufacturer (optional)';
+  String get vaccineBrand => 'Marca / fabricante (opcional)';
 
   @override
-  String get vaccineDate => 'Date given';
+  String get vaccineDate => 'Data da administração';
 
   @override
-  String get vaccineDose => 'Dose number (optional)';
+  String get vaccineDose => 'Número da dose (opcional)';
 
   @override
-  String get vaccineSite => 'Injection site (optional)';
+  String get vaccineSite => 'Local da injeção (opcional)';
 
   @override
-  String get vaccineNotes => 'Notes / reactions';
+  String get vaccineNotes => 'Anotações / reações';
 
   @override
   String vaccineDue(String age) {
-    return 'Due at $age';
+    return 'Prevista aos $age';
   }
 
   @override
-  String get vaccineGiven => 'Given';
+  String get vaccineGiven => 'Administrada';
 
   @override
-  String get vaccineNoGiven => 'No vaccines logged yet.';
+  String get vaccineNoGiven => 'Nenhuma vacina registrada ainda.';
 
   @override
-  String get vaccineMarkGiven => 'Mark as given';
+  String get vaccineMarkGiven => 'Marcar como administrada';
 
   @override
-  String get whoChartTitle => 'WHO Growth Charts';
+  String get whoChartTitle => 'Curvas de Crescimento da OMS';
 
   @override
-  String get whoWeightForAge => 'Weight-for-age';
+  String get whoWeightForAge => 'Peso por idade';
 
   @override
-  String get whoHeightForAge => 'Length/Height-for-age';
+  String get whoHeightForAge => 'Comprimento/altura por idade';
 
   @override
-  String get whoHeadForAge => 'Head circumference-for-age';
+  String get whoHeadForAge => 'Perímetro cefálico por idade';
 
   @override
-  String get whoGenderBoy => 'Boy';
+  String get whoGenderBoy => 'Menino';
 
   @override
-  String get whoGenderGirl => 'Girl';
+  String get whoGenderGirl => 'Menina';
 
   @override
-  String get whoNoData => 'No measurements logged yet.\nLog weight from a day\'s entries to see the chart.';
+  String get whoNoData => 'Nenhuma medição registrada ainda.\nRegistre o peso a partir das entradas de um dia para ver o gráfico.';
 
   @override
   String whoPercentileLabel(String p) {
@@ -690,151 +691,151 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get whoYourBaby => 'Your baby';
+  String get whoYourBaby => 'Seu bebê';
 
   @override
   String whoAgeMonths(int n) {
-    return '$n mo';
+    return '$n meses';
   }
 
   @override
-  String get whoNoBirthDate => 'Set baby\'s date of birth in the profile to see age-based charts.';
+  String get whoNoBirthDate => 'Defina a data de nascimento do bebê no perfil para ver gráficos baseados na idade.';
 
   @override
-  String get notifTitle => 'Reminders';
+  String get notifTitle => 'Lembretes';
 
   @override
-  String get notifFeedingReminder => 'Feeding reminder';
+  String get notifFeedingReminder => 'Lembrete de mamada';
 
   @override
   String notifFeedingReminderDesc(int hours) {
-    return 'Remind me after ${hours}h if no feed logged';
+    return 'Lembrar-me após $hours hora(s) se nenhuma mamada for registrada';
   }
 
   @override
-  String get notifDiaperReminder => 'Diaper reminder';
+  String get notifDiaperReminder => 'Lembrete de fralda';
 
   @override
   String notifDiaperReminderDesc(int hours) {
-    return 'Remind me after ${hours}h if no diaper logged';
+    return 'Lembrar-me após $hours hora(s) se nenhuma fralda for registrada';
   }
 
   @override
-  String get notifMedicationReminder => 'Medication reminder';
+  String get notifMedicationReminder => 'Lembrete de medicamento';
 
   @override
-  String get notifEnabled => 'Notifications enabled';
+  String get notifEnabled => 'Notificações ativadas';
 
   @override
-  String get notifDisabled => 'Notifications disabled';
+  String get notifDisabled => 'Notificações desativadas';
 
   @override
-  String get notifPermissionRequired => 'Please enable notifications in your device settings.';
+  String get notifPermissionRequired => 'Ative as notificações nas configurações do seu dispositivo.';
 
   @override
-  String get exportTitle => 'Export & backup';
+  String get exportTitle => 'Exportar e fazer backup';
 
   @override
-  String get exportJson => 'Export as JSON';
+  String get exportJson => 'Exportar como JSON';
 
   @override
-  String get exportPdf => 'Export as PDF';
+  String get exportPdf => 'Exportar como PDF';
 
   @override
-  String get exportPdfDesc => 'Human-readable summary for your paediatrician';
+  String get exportPdfDesc => 'Resumo legível para o seu pediatra';
 
   @override
-  String get exportGoogleDrive => 'Back up to Google Drive';
+  String get exportGoogleDrive => 'Fazer backup no Google Drive';
 
   @override
-  String get exportGenerating => 'Generating report...';
+  String get exportGenerating => 'Gerando relatório...';
 
   @override
-  String get milestoneTitle => 'Milestones';
+  String get milestoneTitle => 'Marcos';
 
   @override
-  String get milestoneTabAchieved => 'Achieved';
+  String get milestoneTabAchieved => 'Alcançados';
 
   @override
-  String get milestoneTabUpcoming => 'Upcoming';
+  String get milestoneTabUpcoming => 'Próximos';
 
   @override
-  String get milestoneCustomAdd => 'Custom milestone';
+  String get milestoneCustomAdd => 'Marco personalizado';
 
   @override
-  String get milestoneDeleteTitle => 'Delete milestone?';
+  String get milestoneDeleteTitle => 'Excluir marco?';
 
   @override
-  String get milestoneEdit => 'Edit milestone';
+  String get milestoneEdit => 'Editar marco';
 
   @override
-  String get milestoneAdd => 'Add milestone';
+  String get milestoneAdd => 'Adicionar marco';
 
   @override
-  String get milestoneName => 'Milestone name *';
+  String get milestoneName => 'Nome do marco *';
 
   @override
-  String get milestoneDate => 'Date achieved';
+  String get milestoneDate => 'Data de alcance';
 
   @override
-  String get milestoneNotes => 'Notes (optional)';
+  String get milestoneNotes => 'Anotações (opcional)';
 
   @override
-  String get milestoneNotesHint => 'Any details worth remembering...';
+  String get milestoneNotesHint => 'Qualquer detalhe que valha a pena lembrar...';
 
   @override
-  String get milestoneNoAchieved => 'No milestones logged yet.';
+  String get milestoneNoAchieved => 'Nenhum marco registrado ainda.';
 
   @override
-  String get milestoneAllDone => 'All preset milestones achieved! 🎉';
+  String get milestoneAllDone => 'Todos os marcos predefinidos foram alcançados! 🎉';
 
   @override
-  String get milestoneFirstSmile => '😊 First smile';
+  String get milestoneFirstSmile => '😊 Primeiro sorriso';
 
   @override
-  String get milestoneFirstLaugh => '😂 First laugh';
+  String get milestoneFirstLaugh => '😂 Primeira risada';
 
   @override
-  String get milestoneFirstTooth => '🦷 First tooth';
+  String get milestoneFirstTooth => '🦷 Primeiro dente';
 
   @override
-  String get milestoneRolledBackTummy => '🔄 Rolled back → tummy';
+  String get milestoneRolledBackTummy => '🔄 Rolou de costas para a barriga';
 
   @override
-  String get milestoneRolledTummyBack => '🔄 Rolled tummy → back';
+  String get milestoneRolledTummyBack => '🔄 Rolou da barriga para as costas';
 
   @override
-  String get milestoneSatUnsupported => '🧸 Sat unsupported';
+  String get milestoneSatUnsupported => '🧸 Sentou sem apoio';
 
   @override
-  String get milestoneStartedCrawling => '🐣 Started crawling';
+  String get milestoneStartedCrawling => '🐣 Começou a engatinhar';
 
   @override
-  String get milestonePulledToStand => '🏋️ Pulled to stand';
+  String get milestonePulledToStand => '🏋️ Levantou-se segurando';
 
   @override
-  String get milestoneFirstSteps => '👣 First steps';
+  String get milestoneFirstSteps => '👣 Primeiros passos';
 
   @override
-  String get milestoneFirstWord => '💬 First word';
+  String get milestoneFirstWord => '💬 Primeira palavra';
 
   @override
-  String get milestoneFirstSolidFood => '🥣 First solid food';
+  String get milestoneFirstSolidFood => '🥣 Primeira comida sólida';
 
   @override
-  String get milestoneFirstHaircut => '✂️ First haircut';
+  String get milestoneFirstHaircut => '✂️ Primeiro corte de cabelo';
 
   @override
-  String get milestoneSleptThroughNight => '🌙 Slept through the night';
+  String get milestoneSleptThroughNight => '🌙 Dormiu a noite toda';
 
   @override
-  String get milestoneWavedBye => '👋 Waved bye-bye';
+  String get milestoneWavedBye => '👋 Acenou tchau';
 
   @override
-  String get milestoneClappedHands => '👏 Clapped hands';
+  String get milestoneClappedHands => '👏 Bateu palmas';
 
   @override
-  String get milestoneFirstBirthday => '🎂 First birthday';
+  String get milestoneFirstBirthday => '🎂 Primeiro aniversário';
 
   @override
   String get settingsTitle => 'Configurações';
@@ -864,40 +865,40 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settingsLanguage => 'Idioma';
 
   @override
-  String get settingsNotifications => 'Notifications & reminders';
+  String get settingsNotifications => 'Notificações e lembretes';
 
   @override
-  String get settingsExport => 'Export & backup';
+  String get settingsExport => 'Exportar e fazer backup';
 
   @override
   String get settingsTips => 'Dicas';
 
   @override
-  String get tipSwitchBabies => 'Trocar de bebê';
+  String get tipSwitchBabies => 'Alternar bebês';
 
   @override
-  String get tipSwitchBabiesDesc => 'Toque no avatar do bebê no topo para trocar ou adicionar um perfil';
+  String get tipSwitchBabiesDesc => 'Toque no avatar do bebê no topo para alternar ou adicionar um perfil de bebê.';
 
   @override
   String get tipSwipeDelete => 'Deslize para a esquerda para excluir';
 
   @override
-  String get tipSwipeDeleteDesc => 'Funciona nos cartões de dia e nas entradas individuais';
+  String get tipSwipeDeleteDesc => 'Funciona nos blocos de dia e em entradas individuais.';
 
   @override
   String get tipTapToEdit => 'Toque em qualquer entrada para editá-la';
 
   @override
-  String get tipMultipleFeeds => 'Registrar várias mamadas';
+  String get tipMultipleFeeds => 'Registrar múltiplas mamadas';
 
   @override
-  String get tipMultipleFeedsDesc => 'No formulário, toque em \"Adicionar outra mamada\" para registrar peito e mamadeira de uma vez';
+  String get tipMultipleFeedsDesc => 'No formulário de mamada, toque em \"Adicionar outra mamada\" para registrar peito + mamadeira de uma só vez.';
 
   @override
   String get tipExportData => 'Exportar dados';
 
   @override
-  String get tipExportDataDesc => 'Use o ícone de compartilhar no Início para exportar todos os dados em JSON';
+  String get tipExportDataDesc => 'Use o ícone de compartilhar na Tela Inicial para exportar todos os dados como JSON.';
 
   @override
   String get babiesTitle => 'Bebês';
@@ -920,7 +921,7 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get genderUnknown => 'Não informado';
+  String get genderUnknown => 'Desconhecido';
 
   @override
   String get genderBoy => 'Menino';
@@ -929,7 +930,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get genderGirl => 'Menina';
 
   @override
-  String get cannotDeleteOnlyProfile => 'Não é possível excluir o único perfil de bebê';
+  String get cannotDeleteOnlyProfile => 'Não é possível excluir o único perfil de bebê.';
 
   @override
   String deleteProfileTitle(String name) {
@@ -937,7 +938,7 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get deleteProfileContent => 'Todos os dados deste bebê serão excluídos permanentemente';
+  String get deleteProfileContent => 'Todos os dados deste bebê serão excluídos permanentemente.';
 
   @override
   String get graphsTitle => 'Gráficos';
@@ -952,7 +953,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get graphsTabHealth => 'Saúde';
 
   @override
-  String get graphsTabWho => 'WHO Charts';
+  String get graphsTabWho => 'Curvas OMS';
 
   @override
   String get graphsTotalFeeds => 'Total de mamadas';
@@ -964,10 +965,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get graphsTotalDiapers => 'Fraldas';
 
   @override
-  String get graphsTotalMilk => 'Leite total';
+  String get graphsTotalMilk => 'Total de leite';
 
   @override
-  String get graphsTotalSleep => 'Sono total';
+  String get graphsTotalSleep => 'Total de sono';
 
   @override
   String get graphsAvgSleep => 'Média de sono/dia';
@@ -992,22 +993,22 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String graphsMaxLabel(String value) {
-    return 'Máximo: $value';
+    return 'Máx: $value';
   }
 
   @override
   String graphsMinLabel(String value) {
-    return 'Mínimo: $value';
+    return 'Mín: $value';
   }
 
   @override
-  String get graphsNoWeightData => 'Ainda não há registros de peso\nRegistre o peso nas entradas de um dia';
+  String get graphsNoWeightData => 'Ainda não há entradas de peso.\nRegistre o peso a partir das entradas de um dia.';
 
   @override
-  String get graphsNoTempData => 'Ainda não há registros de temperatura\nRegistre a temperatura em um dia';
+  String get graphsNoTempData => 'Ainda não há entradas de temperatura.\nRegistre a temperatura a partir de um dia.';
 
   @override
-  String get timeLabel => 'Horário';
+  String get timeLabel => 'Hora';
 
   @override
   String get noColourRecorded => 'Nenhuma cor registrada';
@@ -1019,6 +1020,7 @@ class AppLocalizationsPt extends AppLocalizations {
       locale: localeName,
       other: '$count dias',
       one: '1 dia',
+      zero: 'recém-nascido',
     );
     return '$_temp0';
   }
@@ -1030,6 +1032,7 @@ class AppLocalizationsPt extends AppLocalizations {
       locale: localeName,
       other: '$count meses',
       one: '1 mês',
+      zero: 'menos de 1 mês',
     );
     return '$_temp0';
   }

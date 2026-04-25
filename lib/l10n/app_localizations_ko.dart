@@ -9,7 +9,7 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
-  String get appTitle => '아기 기록장';
+  String get appTitle => '아기 트래커';
 
   @override
   String get navHome => '홈';
@@ -18,7 +18,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get navGraphs => '그래프';
 
   @override
-  String get navMilestones => 'Milestones';
+  String get navMilestones => '성장 이정표';
 
   @override
   String get navSettings => '설정';
@@ -30,7 +30,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get actionSave => '저장';
 
   @override
-  String get actionUpdate => '수정';
+  String get actionUpdate => '업데이트';
 
   @override
   String get actionDelete => '삭제';
@@ -48,28 +48,28 @@ class AppLocalizationsKo extends AppLocalizations {
   String get actionExport => '데이터 내보내기';
 
   @override
-  String get actionAddDay => '날짜 추가';
+  String get actionAddDay => '일자 추가';
 
   @override
-  String get actionLog => 'Log';
+  String get actionLog => '기록';
 
   @override
-  String get cannotUndo => '이 작업은 취소할 수 없습니다';
+  String get cannotUndo => '이 작업은 되돌릴 수 없습니다.';
 
   @override
   String get noData => '데이터 없음';
 
   @override
-  String get noNotes => 'No notes';
+  String get noNotes => '메모 없음';
 
   @override
   String get noDetails => '세부 정보 없음';
 
   @override
-  String get optional => '(optional)';
+  String get optional => '(선택 사항)';
 
   @override
-  String get homeTitle => '기록';
+  String get homeTitle => '트래커';
 
   @override
   String get feedsToday => '오늘 수유';
@@ -98,15 +98,15 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get deleteDayTitle => '이 날짜를 삭제하시겠습니까?';
+  String get deleteDayTitle => '이 날을 삭제하시겠습니까?';
 
   @override
   String deleteDayContent(String date) {
-    return '$date 및 모든 항목을 삭제하시겠습니까? 이 작업은 취소할 수 없습니다';
+    return '$date 및 모든 기록을 삭제하시겠습니까? 되돌릴 수 없습니다.';
   }
 
   @override
-  String get rashRecorded => '발진 기록됨';
+  String get rashRecorded => '기저귀 발진 기록됨';
 
   @override
   String get noEntriesYet => '아직 기록이 없습니다';
@@ -115,7 +115,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get addEntry => '기록 추가';
 
   @override
-  String get deleteEntryTitle => '이 기록을 삭제하시겠습니까?';
+  String get deleteEntryTitle => '기록을 삭제하시겠습니까?';
 
   @override
   String get entryTypeDiaper => '기저귀 갈기';
@@ -133,37 +133,37 @@ class AppLocalizationsKo extends AppLocalizations {
   String get entryTypeWeight => '체중';
 
   @override
-  String get entryTypeTummyTime => 'Tummy time';
+  String get entryTypeTummyTime => '엎드려 놀기';
 
   @override
-  String get entryTypeMedication => 'Medication';
+  String get entryTypeMedication => '약';
 
   @override
-  String get entryTypeDoctorVisit => 'Doctor visit';
+  String get entryTypeDoctorVisit => '병원 방문';
 
   @override
-  String get entryTypeNote => 'Daily note / journal';
+  String get entryTypeNote => '일일 메모 / 일기';
 
   @override
-  String get entryTypePumping => 'Pumping session';
+  String get entryTypePumping => '유축 세션';
 
   @override
-  String get entryTypeBath => 'Bath';
+  String get entryTypeBath => '목욕';
 
   @override
   String get diaperPeePoo => '기저귀 — 소변 + 대변';
 
   @override
-  String get diaperPee => '기저귀 — 소변만';
+  String get diaperPee => '기저귀 — 소변';
 
   @override
-  String get diaperPoo => '기저귀 — 대변만';
+  String get diaperPoo => '기저귀 — 대변';
 
   @override
   String get diaperChange => '기저귀 갈기';
 
   @override
-  String get editDiaper => '기저귀 편집';
+  String get editDiaper => '기저귀 기록 편집';
 
   @override
   String get diaperContents => '내용물';
@@ -181,7 +181,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get diaperBoth => '둘 다';
 
   @override
-  String get diaperConsistency => '형태';
+  String get diaperConsistency => '대변 상태';
 
   @override
   String get consistencyHard => '딱딱함 / 알갱이';
@@ -202,13 +202,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get consistencyNormalHint => '건강함';
 
   @override
-  String get consistencySoft => '부드러움';
+  String get consistencySoft => '무름';
 
   @override
-  String get consistencySoftHint => '약간 부드러움';
+  String get consistencySoftHint => '약간 무름';
 
   @override
-  String get consistencyLoose => '묽음 / 반고체';
+  String get consistencyLoose => '묽음 / 죽 같음';
 
   @override
   String get consistencyLooseHint => '관찰 필요';
@@ -220,13 +220,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get consistencyWateryHint => '설사';
 
   @override
-  String get warnConstipation => '변비 징후 — 주의 깊게 관찰';
+  String get warnConstipation => '변비 징후 — 주의 깊게 관찰하세요';
 
   @override
-  String get warnDiarrhea => '설사 징후 — 주의 깊게 관찰';
+  String get warnDiarrhea => '설사 징후 — 주의 깊게 관찰하세요';
 
   @override
-  String get pooColourLabel => '색상 (터치하여 선택)';
+  String get pooColourLabel => '색상 (탭하여 선택)';
 
   @override
   String get pooColourAbnormal => '⚠️ 비정상 (창백함)';
@@ -255,19 +255,19 @@ class AppLocalizationsKo extends AppLocalizations {
   String get rashPresentHint => '발적, 자극 또는 기저귀 발진';
 
   @override
-  String get rashCreamUsed => '크림 사용함';
+  String get rashCreamUsed => '발진 크림 사용함';
 
   @override
   String get rashCreamCustomLabel => '크림 / 연고 이름';
 
   @override
-  String get rashFollowUpTitle => '⚠️ 발진 후속 확인';
+  String get rashFollowUpTitle => '⚠️ 발진 후속 조치';
 
   @override
-  String get rashFollowUpQuestion => '마지막 기저귀에 발진이 기록되었습니다. 호전되었나요?';
+  String get rashFollowUpQuestion => '마지막 기저귀에서 발진이 기록되었습니다. 나아졌나요?';
 
   @override
-  String get rashImproved => '네, 호전됨';
+  String get rashImproved => '네, 나아졌습니다';
 
   @override
   String get rashNoChange => '변화 없음 / 악화됨';
@@ -280,20 +280,20 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String feedLabel(int number) {
-    return '$number번째 수유';
+    return '수유 $number';
   }
 
   @override
   String get feedModeBottle => '젖병';
 
   @override
-  String get feedModeSuckle => '모유 직수';
+  String get feedModeSuckle => '직접 수유';
 
   @override
   String get feedAmountMl => '양 (ml)';
 
   @override
-  String get feedType => '종류';
+  String get feedType => '유형';
 
   @override
   String get feedBreastMilk => '모유';
@@ -305,10 +305,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get feedFormulaBrand => '분유 브랜드';
 
   @override
-  String get feedFormulaBrandCustom => '브랜드명';
+  String get feedFormulaBrandCustom => '분유 브랜드명';
 
   @override
-  String get feedDurationMinutes => '수유 시간 (분)';
+  String get feedDurationMinutes => '시간 (분)';
 
   @override
   String get addAnotherFeed => '다른 수유 추가';
@@ -320,7 +320,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get bottleFormula => '젖병 — 분유';
 
   @override
-  String get breastfeedingSuckle => '모유 수유 (직수)';
+  String get breastfeedingSuckle => '모유 직접 수유';
 
   @override
   String get logSleep => '수면 기록';
@@ -329,27 +329,27 @@ class AppLocalizationsKo extends AppLocalizations {
   String get editSleep => '수면 편집';
 
   @override
-  String get sleepStart => '잠든 시간';
+  String get sleepStart => '수면 시작';
 
   @override
-  String get sleepWakeUp => '깬 시간';
+  String get sleepWakeUp => '기상';
 
   @override
   String sleepDuration(String duration) {
-    return '수면 시간: $duration';
+    return '시간: $duration';
   }
 
   @override
   String get sleepInvalidTimes => '유효하지 않은 시간';
 
   @override
-  String get sleepWrapsNextDay => '(다음 날로 이어짐)';
+  String get sleepWrapsNextDay => '(종료 시간이 다음 날로 넘어감)';
 
   @override
-  String get sleepNotes => '메모 (선택사항)';
+  String get sleepNotes => '메모 (선택 사항)';
 
   @override
-  String get sleepNotesHint => '예: 불안함, 잠시 깨어 있었음...';
+  String get sleepNotesHint => '예: 불안함, 잠시 깨어남…';
 
   @override
   String get sleepNoNotes => '메모 없음';
@@ -369,7 +369,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get temperatureLabel => '체온';
 
   @override
-  String get tempSeverityLow => '체온 낮음 — 관찰';
+  String get tempSeverityLow => '저체온 — 관찰 필요';
 
   @override
   String get tempSeverityNormal => '정상 체온';
@@ -378,10 +378,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get tempSeverityElevated => '약간 높음 — 주의 깊게 관찰';
 
   @override
-  String get tempSeverityFever => '열 — 의사와 상담';
+  String get tempSeverityFever => '열 — 의사와 상담하세요';
 
   @override
-  String get tempReference => '체온 참고';
+  String get tempReference => '체온 참고표';
 
   @override
   String get tempRefLow => '< 36.0 °C / 96.8 °F';
@@ -396,16 +396,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get tempRefFever => '≥ 38.5 °C / 101.3 °F';
 
   @override
-  String get tempFeverWarning => '⚠️ 3개월 미만 영아의 발열 시 항상 소아과 의사와 상담하세요';
+  String get tempFeverWarning => '⚠️ 생후 3개월 미만 영아의 발열은 항상 소아과 의사와 상담하세요.';
 
   @override
-  String get tempLow => '낮음';
+  String get tempLow => '저체온';
 
   @override
   String get tempNormal => '정상';
 
   @override
-  String get tempElevated => '높음';
+  String get tempElevated => '고체온';
 
   @override
   String get tempFever => '열';
@@ -426,6 +426,7 @@ class AppLocalizationsKo extends AppLocalizations {
       locale: localeName,
       other: '$count일',
       one: '1일',
+      zero: '0일',
     );
     return '$_temp0';
   }
@@ -464,225 +465,225 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String weightOverPeriod(String sign, String amount) {
-    return '$sign$amount (기간 내)';
+    return '$sign$amount (기간 중 변화)';
   }
 
   @override
-  String get tummyTimeLog => 'Log tummy time';
+  String get tummyTimeLog => '엎드려 놀기 기록';
 
   @override
-  String get tummyTimeEdit => 'Edit tummy time';
+  String get tummyTimeEdit => '엎드려 놀기 편집';
 
   @override
-  String get tummyTimeStart => 'Start time';
+  String get tummyTimeStart => '시작 시간';
 
   @override
-  String get tummyTimeEnd => 'End time';
+  String get tummyTimeEnd => '종료 시간';
 
   @override
-  String get tummyTimeTip => 'Tummy time strengthens neck and shoulder muscles.';
+  String get tummyTimeTip => '엎드려 놀기는 목과 어깨 근육을 강화합니다.';
 
   @override
-  String get medicationLog => 'Log medication';
+  String get medicationLog => '약 기록';
 
   @override
-  String get medicationEdit => 'Edit medication';
+  String get medicationEdit => '약 편집';
 
   @override
-  String get medicationName => 'Medication name *';
+  String get medicationName => '약 이름 *';
 
   @override
-  String get medicationDose => 'Dose';
+  String get medicationDose => '용량';
 
   @override
-  String get medicationUnit => 'Unit';
+  String get medicationUnit => '단위';
 
   @override
-  String get medicationCommon => 'Common medications';
+  String get medicationCommon => '일반적인 약물';
 
   @override
-  String get medicationWarning => 'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.';
+  String get medicationWarning => '체중/연령에 따른 용량 지침을 항상 따르세요. 권장 빈도를 초과하지 마세요.';
 
   @override
-  String get medicationNotes => 'Notes (optional)';
+  String get medicationNotes => '메모 (선택 사항)';
 
   @override
-  String get medicationNotesHint => 'e.g. reason, reaction...';
+  String get medicationNotesHint => '예: 이유, 반응…';
 
   @override
-  String get doctorVisitLog => 'Doctor visit';
+  String get doctorVisitLog => '병원 방문';
 
   @override
-  String get doctorVisitEdit => 'Edit doctor visit';
+  String get doctorVisitEdit => '병원 방문 편집';
 
   @override
-  String get doctorName => 'Doctor / clinic name';
+  String get doctorName => '의사 / 병원 이름';
 
   @override
-  String get doctorVisitReason => 'Reason for visit';
+  String get doctorVisitReason => '방문 이유';
 
   @override
-  String get doctorVisitMeasurements => 'Measurements (optional)';
+  String get doctorVisitMeasurements => '측정값 (선택 사항)';
 
   @override
-  String get doctorVisitNotes => 'Notes';
+  String get doctorVisitNotes => '메모';
 
   @override
-  String get doctorVisitNotesHint => 'e.g. vaccinations given, doctor recommendations...';
+  String get doctorVisitNotesHint => '예: 접종한 백신, 의사 권고사항…';
 
   @override
-  String get measurementWeightKg => 'Weight (kg)';
+  String get measurementWeightKg => '체중 (kg)';
 
   @override
-  String get measurementWeightLbs => 'Weight (lbs)';
+  String get measurementWeightLbs => '체중 (lbs)';
 
   @override
-  String get measurementHeightCm => 'Length / height (cm)';
+  String get measurementHeightCm => '신장 (cm)';
 
   @override
-  String get measurementHeadCm => 'Head circumference (cm)';
+  String get measurementHeadCm => '머리둘레 (cm)';
 
   @override
-  String get dailyNoteLog => 'Daily note';
+  String get dailyNoteLog => '일일 메모';
 
   @override
-  String get dailyNoteEdit => 'Edit note';
+  String get dailyNoteEdit => '메모 편집';
 
   @override
-  String get dailyNoteTitle => 'Title (optional)';
+  String get dailyNoteTitle => '제목 (선택 사항)';
 
   @override
-  String get dailyNoteText => 'Note';
+  String get dailyNoteText => '메모';
 
   @override
-  String get dailyNoteHint => 'What happened today? First time rolling? Fussy morning?';
+  String get dailyNoteHint => '오늘 무슨 일이 있었나요? 첫 뒤집기? 짜증난 아침?';
 
   @override
-  String get dailyNoteTags => 'Quick tags';
+  String get dailyNoteTags => '빠른 태그';
 
   @override
-  String get pumpingLog => 'Log pumping session';
+  String get pumpingLog => '유축 기록';
 
   @override
-  String get pumpingEdit => 'Edit pumping session';
+  String get pumpingEdit => '유축 편집';
 
   @override
-  String get pumpingLeft => 'Left breast (ml)';
+  String get pumpingLeft => '왼쪽 가슴 (ml)';
 
   @override
-  String get pumpingRight => 'Right breast (ml)';
+  String get pumpingRight => '오른쪽 가슴 (ml)';
 
   @override
-  String get pumpingTotal => 'Total pumped';
+  String get pumpingTotal => '총 유축량';
 
   @override
-  String get pumpingDuration => 'Duration (minutes)';
+  String get pumpingDuration => '시간 (분)';
 
   @override
-  String get pumpingStored => 'Stored / frozen';
+  String get pumpingStored => '보관 / 냉동';
 
   @override
-  String get pumpingNotes => 'Notes (optional)';
+  String get pumpingNotes => '메모 (선택 사항)';
 
   @override
-  String get pumpingSessionTitle => 'Pumping';
+  String get pumpingSessionTitle => '유축';
 
   @override
   String pumpingTotalMl(int ml) {
-    return '$ml ml total';
+    return '총 $ml ml';
   }
 
   @override
-  String get bathLog => 'Log bath';
+  String get bathLog => '목욕 기록';
 
   @override
-  String get bathEdit => 'Edit bath';
+  String get bathEdit => '목욕 편집';
 
   @override
-  String get bathType => 'Bath type';
+  String get bathType => '목욕 종류';
 
   @override
-  String get bathTypeSponge => 'Sponge bath';
+  String get bathTypeSponge => '스펀지 목욕';
 
   @override
-  String get bathTypeTub => 'Tub bath';
+  String get bathTypeTub => '욕조 목욕';
 
   @override
-  String get bathTypeShower => 'Shower';
+  String get bathTypeShower => '샤워';
 
   @override
-  String get bathNotes => 'Notes (optional)';
+  String get bathNotes => '메모 (선택 사항)';
 
   @override
-  String get bathProducts => 'Products used (optional)';
+  String get bathProducts => '사용한 제품 (선택 사항)';
 
   @override
-  String get vaccineTitle => 'Vaccinations';
+  String get vaccineTitle => '예방접종';
 
   @override
-  String get vaccineTabGiven => 'Given';
+  String get vaccineTabGiven => '접종 완료';
 
   @override
-  String get vaccineTabSchedule => 'Schedule';
+  String get vaccineTabSchedule => '접종 일정';
 
   @override
-  String get vaccineLog => 'Log vaccine';
+  String get vaccineLog => '백신 기록';
 
   @override
-  String get vaccineEdit => 'Edit vaccine';
+  String get vaccineEdit => '백신 편집';
 
   @override
-  String get vaccineName => 'Vaccine name';
+  String get vaccineName => '백신 이름';
 
   @override
-  String get vaccineBrand => 'Brand / manufacturer (optional)';
+  String get vaccineBrand => '브랜드 / 제조사 (선택 사항)';
 
   @override
-  String get vaccineDate => 'Date given';
+  String get vaccineDate => '접종 날짜';
 
   @override
-  String get vaccineDose => 'Dose number (optional)';
+  String get vaccineDose => '차수 (선택 사항)';
 
   @override
-  String get vaccineSite => 'Injection site (optional)';
+  String get vaccineSite => '주사 부위 (선택 사항)';
 
   @override
-  String get vaccineNotes => 'Notes / reactions';
+  String get vaccineNotes => '메모 / 반응';
 
   @override
   String vaccineDue(String age) {
-    return 'Due at $age';
+    return '$age에 접종 예정';
   }
 
   @override
-  String get vaccineGiven => 'Given';
+  String get vaccineGiven => '접종 완료';
 
   @override
-  String get vaccineNoGiven => 'No vaccines logged yet.';
+  String get vaccineNoGiven => '아직 백신 기록이 없습니다.';
 
   @override
-  String get vaccineMarkGiven => 'Mark as given';
+  String get vaccineMarkGiven => '접종 완료로 표시';
 
   @override
-  String get whoChartTitle => 'WHO Growth Charts';
+  String get whoChartTitle => 'WHO 성장 차트';
 
   @override
-  String get whoWeightForAge => 'Weight-for-age';
+  String get whoWeightForAge => '연령별 체중';
 
   @override
-  String get whoHeightForAge => 'Length/Height-for-age';
+  String get whoHeightForAge => '연령별 신장';
 
   @override
-  String get whoHeadForAge => 'Head circumference-for-age';
+  String get whoHeadForAge => '연령별 머리둘레';
 
   @override
-  String get whoGenderBoy => 'Boy';
+  String get whoGenderBoy => '남아';
 
   @override
-  String get whoGenderGirl => 'Girl';
+  String get whoGenderGirl => '여아';
 
   @override
-  String get whoNoData => 'No measurements logged yet.\nLog weight from a day\'s entries to see the chart.';
+  String get whoNoData => '아직 측정 기록이 없습니다.\n일일 기록에서 체중을 입력하면 차트를 볼 수 있습니다.';
 
   @override
   String whoPercentileLabel(String p) {
@@ -690,151 +691,151 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get whoYourBaby => 'Your baby';
+  String get whoYourBaby => '우리 아기';
 
   @override
   String whoAgeMonths(int n) {
-    return '$n mo';
+    return '$n개월';
   }
 
   @override
-  String get whoNoBirthDate => 'Set baby\'s date of birth in the profile to see age-based charts.';
+  String get whoNoBirthDate => '연령 기반 차트를 보려면 프로필에서 아기의 생년월일을 설정하세요.';
 
   @override
-  String get notifTitle => 'Reminders';
+  String get notifTitle => '리마인더';
 
   @override
-  String get notifFeedingReminder => 'Feeding reminder';
+  String get notifFeedingReminder => '수유 리마인더';
 
   @override
   String notifFeedingReminderDesc(int hours) {
-    return 'Remind me after ${hours}h if no feed logged';
+    return '$hours시간 동안 수유 기록이 없으면 알림';
   }
 
   @override
-  String get notifDiaperReminder => 'Diaper reminder';
+  String get notifDiaperReminder => '기저귀 리마인더';
 
   @override
   String notifDiaperReminderDesc(int hours) {
-    return 'Remind me after ${hours}h if no diaper logged';
+    return '$hours시간 동안 기저귀 기록이 없으면 알림';
   }
 
   @override
-  String get notifMedicationReminder => 'Medication reminder';
+  String get notifMedicationReminder => '약 복용 리마인더';
 
   @override
-  String get notifEnabled => 'Notifications enabled';
+  String get notifEnabled => '알림 활성화됨';
 
   @override
-  String get notifDisabled => 'Notifications disabled';
+  String get notifDisabled => '알림 비활성화됨';
 
   @override
-  String get notifPermissionRequired => 'Please enable notifications in your device settings.';
+  String get notifPermissionRequired => '기기 설정에서 알림을 활성화해주세요.';
 
   @override
-  String get exportTitle => 'Export & backup';
+  String get exportTitle => '내보내기 및 백업';
 
   @override
-  String get exportJson => 'Export as JSON';
+  String get exportJson => 'JSON으로 내보내기';
 
   @override
-  String get exportPdf => 'Export as PDF';
+  String get exportPdf => 'PDF로 내보내기';
 
   @override
-  String get exportPdfDesc => 'Human-readable summary for your paediatrician';
+  String get exportPdfDesc => '소아과 의사를 위한 읽기 쉬운 요약본';
 
   @override
-  String get exportGoogleDrive => 'Back up to Google Drive';
+  String get exportGoogleDrive => 'Google Drive에 백업';
 
   @override
-  String get exportGenerating => 'Generating report...';
+  String get exportGenerating => '보고서 생성 중...';
 
   @override
-  String get milestoneTitle => 'Milestones';
+  String get milestoneTitle => '성장 이정표';
 
   @override
-  String get milestoneTabAchieved => 'Achieved';
+  String get milestoneTabAchieved => '달성함';
 
   @override
-  String get milestoneTabUpcoming => 'Upcoming';
+  String get milestoneTabUpcoming => '다가올 이정표';
 
   @override
-  String get milestoneCustomAdd => 'Custom milestone';
+  String get milestoneCustomAdd => '사용자 정의 이정표';
 
   @override
-  String get milestoneDeleteTitle => 'Delete milestone?';
+  String get milestoneDeleteTitle => '이정표를 삭제하시겠습니까?';
 
   @override
-  String get milestoneEdit => 'Edit milestone';
+  String get milestoneEdit => '이정표 편집';
 
   @override
-  String get milestoneAdd => 'Add milestone';
+  String get milestoneAdd => '이정표 추가';
 
   @override
-  String get milestoneName => 'Milestone name *';
+  String get milestoneName => '이정표 이름 *';
 
   @override
-  String get milestoneDate => 'Date achieved';
+  String get milestoneDate => '달성 날짜';
 
   @override
-  String get milestoneNotes => 'Notes (optional)';
+  String get milestoneNotes => '메모 (선택 사항)';
 
   @override
-  String get milestoneNotesHint => 'Any details worth remembering...';
+  String get milestoneNotesHint => '기억할 만한 세부 사항...';
 
   @override
-  String get milestoneNoAchieved => 'No milestones logged yet.';
+  String get milestoneNoAchieved => '아직 기록된 이정표가 없습니다.';
 
   @override
-  String get milestoneAllDone => 'All preset milestones achieved! 🎉';
+  String get milestoneAllDone => '모든 기본 이정표를 달성했습니다! 🎉';
 
   @override
-  String get milestoneFirstSmile => '😊 First smile';
+  String get milestoneFirstSmile => '😊 첫 미소';
 
   @override
-  String get milestoneFirstLaugh => '😂 First laugh';
+  String get milestoneFirstLaugh => '😂 처음 크게 웃음';
 
   @override
-  String get milestoneFirstTooth => '🦷 First tooth';
+  String get milestoneFirstTooth => '🦷 첫 이빨';
 
   @override
-  String get milestoneRolledBackTummy => '🔄 Rolled back → tummy';
+  String get milestoneRolledBackTummy => '🔄 뒤집기 (등 → 배)';
 
   @override
-  String get milestoneRolledTummyBack => '🔄 Rolled tummy → back';
+  String get milestoneRolledTummyBack => '🔄 뒤집기 (배 → 등)';
 
   @override
-  String get milestoneSatUnsupported => '🧸 Sat unsupported';
+  String get milestoneSatUnsupported => '🧸 지지 없이 앉기';
 
   @override
-  String get milestoneStartedCrawling => '🐣 Started crawling';
+  String get milestoneStartedCrawling => '🐣 기기 시작';
 
   @override
-  String get milestonePulledToStand => '🏋️ Pulled to stand';
+  String get milestonePulledToStand => '🏋️ 잡고 일어서기';
 
   @override
-  String get milestoneFirstSteps => '👣 First steps';
+  String get milestoneFirstSteps => '👣 첫걸음';
 
   @override
-  String get milestoneFirstWord => '💬 First word';
+  String get milestoneFirstWord => '💬 첫 말';
 
   @override
-  String get milestoneFirstSolidFood => '🥣 First solid food';
+  String get milestoneFirstSolidFood => '🥣 첫 이유식';
 
   @override
-  String get milestoneFirstHaircut => '✂️ First haircut';
+  String get milestoneFirstHaircut => '✂️ 첫 이발';
 
   @override
-  String get milestoneSleptThroughNight => '🌙 Slept through the night';
+  String get milestoneSleptThroughNight => '🌙 밤새 잠';
 
   @override
-  String get milestoneWavedBye => '👋 Waved bye-bye';
+  String get milestoneWavedBye => '👋 손 흔들며 작별 인사';
 
   @override
-  String get milestoneClappedHands => '👏 Clapped hands';
+  String get milestoneClappedHands => '👏 박수';
 
   @override
-  String get milestoneFirstBirthday => '🎂 First birthday';
+  String get milestoneFirstBirthday => '🎂 첫 생일';
 
   @override
   String get settingsTitle => '설정';
@@ -858,49 +859,49 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsWeightUnit => '체중 단위';
 
   @override
-  String get settingsTempUnit => '체온 단위';
+  String get settingsTempUnit => '온도 단위';
 
   @override
   String get settingsLanguage => '언어';
 
   @override
-  String get settingsNotifications => 'Notifications & reminders';
+  String get settingsNotifications => '알림 및 리마인더';
 
   @override
-  String get settingsExport => 'Export & backup';
+  String get settingsExport => '내보내기 및 백업';
 
   @override
   String get settingsTips => '팁';
 
   @override
-  String get tipSwitchBabies => '아기 전환';
+  String get tipSwitchBabies => '아기 전환하기';
 
   @override
-  String get tipSwitchBabiesDesc => '상단의 아기 아바타를 눌러 아기를 전환하거나 추가하세요';
+  String get tipSwitchBabiesDesc => '상단의 아기 아바타를 탭하여 아기를 전환하거나 추가할 수 있습니다.';
 
   @override
-  String get tipSwipeDelete => '왼쪽으로 밀어서 삭제';
+  String get tipSwipeDelete => '왼쪽으로 스와이프하여 삭제';
 
   @override
-  String get tipSwipeDeleteDesc => '날짜 카드 및 개별 항목에 적용됩니다';
+  String get tipSwipeDeleteDesc => '일자 타일 및 개별 기록에 적용됩니다.';
 
   @override
-  String get tipTapToEdit => '항목을 탭하여 편집하세요';
+  String get tipTapToEdit => '기록을 탭하여 편집';
 
   @override
-  String get tipMultipleFeeds => '여러 번의 수유 기록';
+  String get tipMultipleFeeds => '여러 번 수유 기록하기';
 
   @override
-  String get tipMultipleFeedsDesc => '수유 양식에서 \'다른 수유 추가\'를 눌러 모유 직수와 젖병을 한 번에 기록하세요';
+  String get tipMultipleFeedsDesc => '수유 폼에서 \"다른 수유 추가\"를 탭하여 직접 수유와 젖병을 한 번에 기록할 수 있습니다.';
 
   @override
   String get tipExportData => '데이터 내보내기';
 
   @override
-  String get tipExportDataDesc => '홈의 공유 아이콘을 사용하여 모든 데이터를 JSON으로 내보내세요';
+  String get tipExportDataDesc => '홈 화면의 공유 아이콘을 사용하여 모든 데이터를 JSON으로 내보낼 수 있습니다.';
 
   @override
-  String get babiesTitle => '아기들';
+  String get babiesTitle => '아기';
 
   @override
   String get addBaby => '아기 추가';
@@ -912,7 +913,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get babyNameRequired => '이름 *';
 
   @override
-  String get babyDobOptional => '생년월일 (선택사항)';
+  String get babyDobOptional => '생년월일 (선택 사항)';
 
   @override
   String babyBornOn(String date) {
@@ -920,7 +921,7 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get genderUnknown => '선택 안함';
+  String get genderUnknown => '알 수 없음';
 
   @override
   String get genderBoy => '남아';
@@ -929,15 +930,15 @@ class AppLocalizationsKo extends AppLocalizations {
   String get genderGirl => '여아';
 
   @override
-  String get cannotDeleteOnlyProfile => '유일한 아기 프로필은 삭제할 수 없습니다';
+  String get cannotDeleteOnlyProfile => '유일한 아기 프로필은 삭제할 수 없습니다.';
 
   @override
   String deleteProfileTitle(String name) {
-    return '$name 님을 삭제하시겠습니까?';
+    return '$name을(를) 삭제하시겠습니까?';
   }
 
   @override
-  String get deleteProfileContent => '이 아기의 모든 데이터가 영구 삭제됩니다';
+  String get deleteProfileContent => '이 아기의 모든 데이터가 영구적으로 삭제됩니다.';
 
   @override
   String get graphsTitle => '그래프';
@@ -952,7 +953,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get graphsTabHealth => '건강';
 
   @override
-  String get graphsTabWho => 'WHO Charts';
+  String get graphsTabWho => 'WHO 차트';
 
   @override
   String get graphsTotalFeeds => '총 수유 횟수';
@@ -1001,10 +1002,10 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get graphsNoWeightData => '아직 체중 기록이 없습니다\n날짜 항목에서 체중을 기록하세요';
+  String get graphsNoWeightData => '아직 체중 기록이 없습니다.\n일일 기록에서 체중을 입력하세요.';
 
   @override
-  String get graphsNoTempData => '아직 체온 기록이 없습니다\n날짜에서 체온을 기록하세요';
+  String get graphsNoTempData => '아직 체온 기록이 없습니다.\n일일 기록에서 체온을 입력하세요.';
 
   @override
   String get timeLabel => '시간';
@@ -1019,6 +1020,7 @@ class AppLocalizationsKo extends AppLocalizations {
       locale: localeName,
       other: '$count일',
       one: '1일',
+      zero: '신생아',
     );
     return '$_temp0';
   }
@@ -1030,12 +1032,13 @@ class AppLocalizationsKo extends AppLocalizations {
       locale: localeName,
       other: '$count개월',
       one: '1개월',
+      zero: '1개월 미만',
     );
     return '$_temp0';
   }
 
   @override
   String ageYearMonth(int years, int months) {
-    return '$years년 $months개월';
+    return '$years세 $months개월';
   }
 }

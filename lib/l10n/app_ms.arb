@@ -1,19 +1,20 @@
 {
   "@@locale": "ms",
-
   "appTitle": "Penjejak Bayi",
   "@appTitle": {},
   "navHome": "Utama",
   "@navHome": {},
   "navGraphs": "Graf",
   "@navGraphs": {},
+  "navMilestones": "Perkembangan",
+  "@navMilestones": {},
   "navSettings": "Tetapan",
   "@navSettings": {},
   "actionCancel": "Batal",
   "@actionCancel": {},
   "actionSave": "Simpan",
   "@actionSave": {},
-  "actionUpdate": "Kemas Kini",
+  "actionUpdate": "Kemas kini",
   "@actionUpdate": {},
   "actionDelete": "Padam",
   "@actionDelete": {},
@@ -23,59 +24,95 @@
   "@actionEdit": {},
   "actionClose": "Tutup",
   "@actionClose": {},
-  "actionExport": "Eksport Data",
+  "actionExport": "Eksport data",
   "@actionExport": {},
-  "actionAddDay": "Tambah Hari",
+  "actionAddDay": "Tambah hari",
   "@actionAddDay": {},
-  "cannotUndo": "Tindakan ini tidak boleh dibatalkan",
+  "actionLog": "Log",
+  "@actionLog": {},
+  "cannotUndo": "Tindakan ini tidak boleh dibuat semula.",
   "@cannotUndo": {},
   "noData": "Tiada data",
   "@noData": {},
-
+  "noNotes": "Tiada catatan",
+  "@noNotes": {},
+  "noDetails": "Tiada butiran",
+  "@noDetails": {},
+  "optional": "(pilihan)",
+  "@optional": {},
   "homeTitle": "Penjejak",
   "@homeTitle": {},
-  "feedsToday": "Penyusuan Hari Ini",
+  "feedsToday": "Penyusuan hari ini",
   "@feedsToday": {},
-  "diapersToday": "Lampin Hari Ini",
+  "diapersToday": "Lampin hari ini",
   "@diapersToday": {},
-  "sleepToday": "Tidur Hari Ini",
+  "sleepToday": "Tidur hari ini",
   "@sleepToday": {},
-  "todayLabel": "Hari Ini — {date}",
-  "@todayLabel": { "placeholders": { "date": { "type": "String" } } },
-  "eventCount": "{count, plural, =0{Tiada peristiwa} =1{1 peristiwa} other{{count} peristiwa}}",
-  "@eventCount": { "placeholders": { "count": { "type": "int" } } },
+  "todayLabel": "Hari ini — {date}",
+  "@todayLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "eventCount": "{count, plural, =0{tiada peristiwa} =1{1 peristiwa} other{{count} peristiwa}}",
+  "@eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "deleteDayTitle": "Padam hari ini?",
   "@deleteDayTitle": {},
-  "deleteDayContent": "Padam {date} dan semua entrinya? Tindakan ini tidak boleh dibatalkan",
-  "@deleteDayContent": { "placeholders": { "date": { "type": "String" } } },
-
+  "deleteDayContent": "Padam {date} dan semua entri di dalamnya? Tindakan ini tidak boleh dibuat semula.",
+  "@deleteDayContent": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "rashRecorded": "Ruam lampin direkod",
+  "@rashRecorded": {},
   "noEntriesYet": "Tiada entri lagi",
   "@noEntriesYet": {},
-  "addEntry": "Tambah Entri",
+  "addEntry": "Tambah entri",
   "@addEntry": {},
-  "deleteEntryTitle": "Padam entri ini?",
+  "deleteEntryTitle": "Padam entri?",
   "@deleteEntryTitle": {},
-
-  "entryTypeDiaper": "Tukar Lampin",
+  "entryTypeDiaper": "Tukar lampin",
   "@entryTypeDiaper": {},
   "entryTypeFeeding": "Penyusuan",
   "@entryTypeFeeding": {},
   "entryTypeSleep": "Tidur",
   "@entryTypeSleep": {},
-  "entryTypeTemperature": "Suhu Badan",
+  "entryTypeTemperature": "Suhu",
   "@entryTypeTemperature": {},
-  "entryTypeWeight": "Berat Badan",
+  "entryTypeWeight": "Berat badan",
   "@entryTypeWeight": {},
-
-  "diaperPeePoo": "Lampin — kencing + najis",
+  "entryTypeTummyTime": "Masa meniarap",
+  "@entryTypeTummyTime": {},
+  "entryTypeMedication": "Ubat",
+  "@entryTypeMedication": {},
+  "entryTypeDoctorVisit": "Lawatan doktor",
+  "@entryTypeDoctorVisit": {},
+  "entryTypeNote": "Catatan harian / jurnal",
+  "@entryTypeNote": {},
+  "entryTypePumping": "Sesi mengepam susu",
+  "@entryTypePumping": {},
+  "entryTypeBath": "Mandi",
+  "@entryTypeBath": {},
+  "diaperPeePoo": "Lampin — kencing + berak",
   "@diaperPeePoo": {},
-  "diaperPee": "Lampin — kencing sahaja",
+  "diaperPee": "Lampin — kencing",
   "@diaperPee": {},
-  "diaperPoo": "Lampin — najis sahaja",
+  "diaperPoo": "Lampin — berak",
   "@diaperPoo": {},
-  "diaperChange": "Tukar Lampin",
+  "diaperChange": "Tukar lampin",
   "@diaperChange": {},
-  "editDiaper": "Sunting Lampin",
+  "editDiaper": "Sunting lampin",
   "@editDiaper": {},
   "diaperContents": "Kandungan",
   "@diaperContents": {},
@@ -83,13 +120,13 @@
   "@diaperNone": {},
   "diaperPeeLabel": "Kencing",
   "@diaperPeeLabel": {},
-  "diaperPooLabel": "Najis",
+  "diaperPooLabel": "Berak",
   "@diaperPooLabel": {},
-  "diaperBoth": "Kedua-duanya",
+  "diaperBoth": "Kedua-dua",
   "@diaperBoth": {},
-  "diaperConsistency": "Tekstur",
+  "diaperConsistency": "Konsistensi",
   "@diaperConsistency": {},
-  "consistencyHard": "Keras / Berketul",
+  "consistencyHard": "Keras / berketul",
   "@consistencyHard": {},
   "consistencyHardHint": "Sembelit",
   "@consistencyHardHint": {},
@@ -105,60 +142,69 @@
   "@consistencySoft": {},
   "consistencySoftHint": "Agak lembut",
   "@consistencySoftHint": {},
-  "consistencyLoose": "Berpasta / Separuh cair",
+  "consistencyLoose": "Cair / seperti bubur",
   "@consistencyLoose": {},
-  "consistencyLooseHint": "Perlu perhatian",
+  "consistencyLooseHint": "Perhatikan",
   "@consistencyLooseHint": {},
   "consistencyWatery": "Berair",
   "@consistencyWatery": {},
   "consistencyWateryHint": "Cirit-birit",
   "@consistencyWateryHint": {},
-  "warnConstipation": "Tanda sembelit — perhatikan dengan rapi",
+  "warnConstipation": "Tanda-tanda sembelit — perhatikan dengan teliti",
   "@warnConstipation": {},
-  "warnDiarrhea": "Tanda cirit-birit — perhatikan dengan rapi",
+  "warnDiarrhea": "Tanda-tanda cirit-birit — perhatikan dengan teliti",
   "@warnDiarrhea": {},
-  "pooColourLabel": "Warna (sentuh untuk pilih)",
+  "pooColourLabel": "Warna (ketik untuk pilih)",
   "@pooColourLabel": {},
   "pooColourAbnormal": "⚠️ Tidak normal (pucat)",
   "@pooColourAbnormal": {},
   "pooColourNormal": "✅ Normal",
   "@pooColourNormal": {},
   "pooColourSelected": "Dipilih: {label}",
-  "@pooColourSelected": { "placeholders": { "label": { "type": "String" } } },
-  "diaperSize": "Saiz Lampin",
+  "@pooColourSelected": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "diaperSize": "Saiz lampin",
   "@diaperSize": {},
   "diaperBrand": "Jenama",
   "@diaperBrand": {},
   "diaperBrandCustomLabel": "Nama jenama",
   "@diaperBrandCustomLabel": {},
-  "rashPresent": "Ruam lampin ada",
+  "rashPresent": "Ruam hadir",
   "@rashPresent": {},
   "rashPresentHint": "Kemerahan, kerengsaan atau ruam lampin",
   "@rashPresentHint": {},
-  "rashCreamUsed": "Krim digunakan",
+  "rashCreamUsed": "Krim ruam digunakan",
   "@rashCreamUsed": {},
   "rashCreamCustomLabel": "Nama krim / salap",
   "@rashCreamCustomLabel": {},
   "rashFollowUpTitle": "⚠️ Tindakan susulan ruam",
   "@rashFollowUpTitle": {},
-  "rashFollowUpQuestion": "Lampin lepas mencatat ruam. Adakah bertambah baik?",
+  "rashFollowUpQuestion": "Lampin terakhir mencatatkan ruam. Adakah ia bertambah baik?",
   "@rashFollowUpQuestion": {},
   "rashImproved": "Ya, bertambah baik",
   "@rashImproved": {},
   "rashNoChange": "Tiada perubahan / semakin teruk",
   "@rashNoChange": {},
-  "rashRecorded": "Ruam direkodkan",
-  "@rashRecorded": {},
-
-  "addFeeding": "Tambah Penyusuan",
+  "addFeeding": "Tambah sesi penyusuan",
   "@addFeeding": {},
-  "editFeeding": "Sunting Penyusuan",
+  "editFeeding": "Sunting sesi penyusuan",
   "@editFeeding": {},
   "feedLabel": "Penyusuan {number}",
-  "@feedLabel": { "placeholders": { "number": { "type": "int" } } },
+  "@feedLabel": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "feedModeBottle": "Botol",
   "@feedModeBottle": {},
-  "feedModeSuckle": "Penyusuan terus",
+  "feedModeSuckle": "Menyusu terus",
   "@feedModeSuckle": {},
   "feedAmountMl": "Jumlah (ml)",
   "@feedAmountMl": {},
@@ -170,55 +216,68 @@
   "@feedFormula": {},
   "feedFormulaBrand": "Jenama formula",
   "@feedFormulaBrand": {},
-  "feedFormulaBrandCustom": "Nama jenama",
+  "feedFormulaBrandCustom": "Nama jenama formula",
   "@feedFormulaBrandCustom": {},
   "feedDurationMinutes": "Tempoh (minit)",
   "@feedDurationMinutes": {},
-  "addAnotherFeed": "Tambah penyusuan lain",
+  "addAnotherFeed": "Tambah sesi penyusuan lain",
   "@addAnotherFeed": {},
   "bottleBreastMilk": "Botol — susu ibu",
   "@bottleBreastMilk": {},
   "bottleFormula": "Botol — susu formula",
   "@bottleFormula": {},
-  "breastfeedingSuckle": "Penyusuan ibu (terus)",
+  "breastfeedingSuckle": "Menyusu terus (dari payudara)",
   "@breastfeedingSuckle": {},
-
-  "logSleep": "Rekod Tidur",
+  "logSleep": "Log tidur",
   "@logSleep": {},
-  "editSleep": "Sunting Tidur",
+  "editSleep": "Sunting tidur",
   "@editSleep": {},
   "sleepStart": "Mula tidur",
   "@sleepStart": {},
-  "sleepWakeUp": "Bangun",
+  "sleepWakeUp": "Jaga",
   "@sleepWakeUp": {},
   "sleepDuration": "Tempoh: {duration}",
-  "@sleepDuration": { "placeholders": { "duration": { "type": "String" } } },
+  "@sleepDuration": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
   "sleepInvalidTimes": "Masa tidak sah",
   "@sleepInvalidTimes": {},
-  "sleepWrapsNextDay": "(berterusan ke hari berikutnya)",
+  "sleepWrapsNextDay": "(berakhir pada hari berikutnya)",
   "@sleepWrapsNextDay": {},
-  "sleepNotes": "Nota (pilihan)",
+  "sleepNotes": "Catatan (pilihan)",
   "@sleepNotes": {},
-  "sleepNotesHint": "Contoh: gelisah, terjaga seketika...",
+  "sleepNotesHint": "contoh: gelisah, terjaga sebentar...",
   "@sleepNotesHint": {},
-  "sleepNoNotes": "Tiada nota",
+  "sleepNoNotes": "Tiada catatan",
   "@sleepNoNotes": {},
   "sleepHoursShort": "{h}j {m}m",
-  "@sleepHoursShort": { "placeholders": { "h": { "type": "int" }, "m": { "type": "int" } } },
-
-  "logTemperature": "Rekod Suhu",
+  "@sleepHoursShort": {
+    "placeholders": {
+      "h": {
+        "type": "int"
+      },
+      "m": {
+        "type": "int"
+      }
+    }
+  },
+  "logTemperature": "Log suhu",
   "@logTemperature": {},
-  "editTemperature": "Sunting Suhu",
+  "editTemperature": "Sunting suhu",
   "@editTemperature": {},
-  "temperatureLabel": "Suhu Badan",
+  "temperatureLabel": "Suhu",
   "@temperatureLabel": {},
-  "tempSeverityLow": "Suhu rendah — perhatian",
+  "tempSeverityLow": "Suhu rendah — perhatikan",
   "@tempSeverityLow": {},
   "tempSeverityNormal": "Suhu normal",
   "@tempSeverityNormal": {},
-  "tempSeverityElevated": "Agak tinggi — perhatikan dengan rapi",
+  "tempSeverityElevated": "Agak tinggi — perhatikan dengan teliti",
   "@tempSeverityElevated": {},
-  "tempSeverityFever": "Demam — rujuk doktor",
+  "tempSeverityFever": "Demam — rujuk doktor anda",
   "@tempSeverityFever": {},
   "tempReference": "Rujukan suhu",
   "@tempReference": {},
@@ -230,7 +289,7 @@
   "@tempRefElevated": {},
   "tempRefFever": "≥ 38.5 °C / 101.3 °F",
   "@tempRefFever": {},
-  "tempFeverWarning": "⚠️ Bayi bawah 3 bulan yang demam, sentiasa rujuk pakar pediatrik",
+  "tempFeverWarning": "⚠️ Sentiasa rujuk pakar pediatrik untuk demam pada bayi di bawah 3 bulan.",
   "@tempFeverWarning": {},
   "tempLow": "Rendah",
   "@tempLow": {},
@@ -246,28 +305,342 @@
   "@tempSummary": {},
   "tempFeverThreshold": "Ambang demam",
   "@tempFeverThreshold": {},
-  "tempDays": "{count, plural, =1{1 hari} other{{count} hari}}",
-  "@tempDays": { "placeholders": { "count": { "type": "int" } } },
-
-  "logWeight": "Rekod Berat",
+  "tempDays": "{count, plural, =0{tiada hari} =1{1 hari} other{{count} hari}}",
+  "@tempDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "logWeight": "Log berat badan",
   "@logWeight": {},
-  "editWeight": "Sunting Berat",
+  "editWeight": "Sunting berat badan",
   "@editWeight": {},
-  "weightLabel": "Berat Badan",
+  "weightLabel": "Berat badan",
   "@weightLabel": {},
   "weightGain": "+{amount} kenaikan",
-  "@weightGain": { "placeholders": { "amount": { "type": "String" } } },
+  "@weightGain": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "weightLoss": "−{amount} penurunan",
-  "@weightLoss": { "placeholders": { "amount": { "type": "String" } } },
+  "@weightLoss": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "weightPrevious": "Sebelumnya: {weight}",
-  "@weightPrevious": { "placeholders": { "weight": { "type": "String" } } },
-  "weightLastRecorded": "Rekod terakhir: {weight} ({date})",
-  "@weightLastRecorded": { "placeholders": { "weight": { "type": "String" }, "date": { "type": "String" } } },
-  "weightLatest": "Berat terkini",
+  "@weightPrevious": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      }
+    }
+  },
+  "weightLastRecorded": "Terakhir direkod: {weight} pada {date}",
+  "@weightLastRecorded": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "weightLatest": "Berat badan terkini",
   "@weightLatest": {},
-  "weightOverPeriod": "{sign}{amount} dalam tempoh ini",
-  "@weightOverPeriod": { "placeholders": { "sign": { "type": "String" }, "amount": { "type": "String" } } },
-
+  "weightOverPeriod": "{sign}{amount} sepanjang tempoh",
+  "@weightOverPeriod": {
+    "placeholders": {
+      "sign": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "tummyTimeLog": "Log masa meniarap",
+  "@tummyTimeLog": {},
+  "tummyTimeEdit": "Sunting masa meniarap",
+  "@tummyTimeEdit": {},
+  "tummyTimeStart": "Masa mula",
+  "@tummyTimeStart": {},
+  "tummyTimeEnd": "Masa tamat",
+  "@tummyTimeEnd": {},
+  "tummyTimeTip": "Masa meniarap menguatkan otot leher dan bahu.",
+  "@tummyTimeTip": {},
+  "medicationLog": "Log ubat",
+  "@medicationLog": {},
+  "medicationEdit": "Sunting ubat",
+  "@medicationEdit": {},
+  "medicationName": "Nama ubat *",
+  "@medicationName": {},
+  "medicationDose": "Dos",
+  "@medicationDose": {},
+  "medicationUnit": "Unit",
+  "@medicationUnit": {},
+  "medicationCommon": "Ubat lazim",
+  "@medicationCommon": {},
+  "medicationWarning": "Sentiasa ikut arahan dos berdasarkan berat/umur. Jangan melebihi kekerapan yang disyorkan.",
+  "@medicationWarning": {},
+  "medicationNotes": "Catatan (pilihan)",
+  "@medicationNotes": {},
+  "medicationNotesHint": "contoh: sebab, tindak balas...",
+  "@medicationNotesHint": {},
+  "doctorVisitLog": "Lawatan doktor",
+  "@doctorVisitLog": {},
+  "doctorVisitEdit": "Sunting lawatan doktor",
+  "@doctorVisitEdit": {},
+  "doctorName": "Nama doktor / klinik",
+  "@doctorName": {},
+  "doctorVisitReason": "Sebab lawatan",
+  "@doctorVisitReason": {},
+  "doctorVisitMeasurements": "Ukuran (pilihan)",
+  "@doctorVisitMeasurements": {},
+  "doctorVisitNotes": "Catatan",
+  "@doctorVisitNotes": {},
+  "doctorVisitNotesHint": "contoh: vaksin yang diberikan, cadangan doktor...",
+  "@doctorVisitNotesHint": {},
+  "measurementWeightKg": "Berat badan (kg)",
+  "@measurementWeightKg": {},
+  "measurementWeightLbs": "Berat badan (lbs)",
+  "@measurementWeightLbs": {},
+  "measurementHeightCm": "Panjang / tinggi (cm)",
+  "@measurementHeightCm": {},
+  "measurementHeadCm": "Lilitan kepala (cm)",
+  "@measurementHeadCm": {},
+  "dailyNoteLog": "Catatan harian",
+  "@dailyNoteLog": {},
+  "dailyNoteEdit": "Sunting catatan",
+  "@dailyNoteEdit": {},
+  "dailyNoteTitle": "Tajuk (pilihan)",
+  "@dailyNoteTitle": {},
+  "dailyNoteText": "Catatan",
+  "@dailyNoteText": {},
+  "dailyNoteHint": "Apa yang berlaku hari ini? Kali pertama berguling? Pagi yang rewel?",
+  "@dailyNoteHint": {},
+  "dailyNoteTags": "Tag pantas",
+  "@dailyNoteTags": {},
+  "pumpingLog": "Log sesi mengepam",
+  "@pumpingLog": {},
+  "pumpingEdit": "Sunting sesi mengepam",
+  "@pumpingEdit": {},
+  "pumpingLeft": "Payudara kiri (ml)",
+  "@pumpingLeft": {},
+  "pumpingRight": "Payudara kanan (ml)",
+  "@pumpingRight": {},
+  "pumpingTotal": "Jumlah yang dipam",
+  "@pumpingTotal": {},
+  "pumpingDuration": "Tempoh (minit)",
+  "@pumpingDuration": {},
+  "pumpingStored": "Disimpan / dibekukan",
+  "@pumpingStored": {},
+  "pumpingNotes": "Catatan (pilihan)",
+  "@pumpingNotes": {},
+  "pumpingSessionTitle": "Mengepam",
+  "@pumpingSessionTitle": {},
+  "pumpingTotalMl": "Jumlah {ml} ml",
+  "@pumpingTotalMl": {
+    "placeholders": {
+      "ml": {
+        "type": "int"
+      }
+    }
+  },
+  "bathLog": "Log mandi",
+  "@bathLog": {},
+  "bathEdit": "Sunting mandi",
+  "@bathEdit": {},
+  "bathType": "Jenis mandi",
+  "@bathType": {},
+  "bathTypeSponge": "Mandi span",
+  "@bathTypeSponge": {},
+  "bathTypeTub": "Mandi dalam tab mandi",
+  "@bathTypeTub": {},
+  "bathTypeShower": "Pancuran",
+  "@bathTypeShower": {},
+  "bathNotes": "Catatan (pilihan)",
+  "@bathNotes": {},
+  "bathProducts": "Produk yang digunakan (pilihan)",
+  "@bathProducts": {},
+  "vaccineTitle": "Vaksinasi",
+  "@vaccineTitle": {},
+  "vaccineTabGiven": "Diberi",
+  "@vaccineTabGiven": {},
+  "vaccineTabSchedule": "Jadual",
+  "@vaccineTabSchedule": {},
+  "vaccineLog": "Log vaksin",
+  "@vaccineLog": {},
+  "vaccineEdit": "Sunting vaksin",
+  "@vaccineEdit": {},
+  "vaccineName": "Nama vaksin",
+  "@vaccineName": {},
+  "vaccineBrand": "Jenama / pengilang (pilihan)",
+  "@vaccineBrand": {},
+  "vaccineDate": "Tarikh diberi",
+  "@vaccineDate": {},
+  "vaccineDose": "Nombor dos (pilihan)",
+  "@vaccineDose": {},
+  "vaccineSite": "Tempat suntikan (pilihan)",
+  "@vaccineSite": {},
+  "vaccineNotes": "Catatan / reaksi",
+  "@vaccineNotes": {},
+  "vaccineDue": "Jadual pada {age}",
+  "@vaccineDue": {
+    "placeholders": {
+      "age": {
+        "type": "String"
+      }
+    }
+  },
+  "vaccineGiven": "Diberi",
+  "@vaccineGiven": {},
+  "vaccineNoGiven": "Tiada vaksin yang direkod lagi.",
+  "@vaccineNoGiven": {},
+  "vaccineMarkGiven": "Tanda sebagai sudah diberi",
+  "@vaccineMarkGiven": {},
+  "whoChartTitle": "Carta Pertumbuhan WHO",
+  "@whoChartTitle": {},
+  "whoWeightForAge": "Berat mengikut umur",
+  "@whoWeightForAge": {},
+  "whoHeightForAge": "Panjang/tinggi mengikut umur",
+  "@whoHeightForAge": {},
+  "whoHeadForAge": "Lilitan kepala mengikut umur",
+  "@whoHeadForAge": {},
+  "whoGenderBoy": "Lelaki",
+  "@whoGenderBoy": {},
+  "whoGenderGirl": "Perempuan",
+  "@whoGenderGirl": {},
+  "whoNoData": "Tiada ukuran yang direkod lagi.\nLog berat dari entri hari ini untuk melihat carta.",
+  "@whoNoData": {},
+  "whoPercentileLabel": "P{p}",
+  "@whoPercentileLabel": {
+    "placeholders": {
+      "p": {
+        "type": "String"
+      }
+    }
+  },
+  "whoYourBaby": "Bayi anda",
+  "@whoYourBaby": {},
+  "whoAgeMonths": "{n} bln",
+  "@whoAgeMonths": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "whoNoBirthDate": "Tetapkan tarikh lahir bayi dalam profil untuk melihat carta berdasarkan umur.",
+  "@whoNoBirthDate": {},
+  "notifTitle": "Peringatan",
+  "@notifTitle": {},
+  "notifFeedingReminder": "Peringatan penyusuan",
+  "@notifFeedingReminder": {},
+  "notifFeedingReminderDesc": "Ingatkan saya selepas {hours} jam jika tiada sesi penyusuan direkod",
+  "@notifFeedingReminderDesc": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notifDiaperReminder": "Peringatan lampin",
+  "@notifDiaperReminder": {},
+  "notifDiaperReminderDesc": "Ingatkan saya selepas {hours} jam jika tiada lampin direkod",
+  "@notifDiaperReminderDesc": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notifMedicationReminder": "Peringatan ubat",
+  "@notifMedicationReminder": {},
+  "notifEnabled": "Pemberitahuan diaktifkan",
+  "@notifEnabled": {},
+  "notifDisabled": "Pemberitahuan dinyahaktifkan",
+  "@notifDisabled": {},
+  "notifPermissionRequired": "Sila aktifkan pemberitahuan dalam tetapan peranti anda.",
+  "@notifPermissionRequired": {},
+  "exportTitle": "Eksport & sandaran",
+  "@exportTitle": {},
+  "exportJson": "Eksport sebagai JSON",
+  "@exportJson": {},
+  "exportPdf": "Eksport sebagai PDF",
+  "@exportPdf": {},
+  "exportPdfDesc": "Ringkasan mudah dibaca untuk pakar pediatrik anda",
+  "@exportPdfDesc": {},
+  "exportGoogleDrive": "Sandaran ke Google Drive",
+  "@exportGoogleDrive": {},
+  "exportGenerating": "Menjana laporan...",
+  "@exportGenerating": {},
+  "milestoneTitle": "Perkembangan",
+  "@milestoneTitle": {},
+  "milestoneTabAchieved": "Tercapai",
+  "@milestoneTabAchieved": {},
+  "milestoneTabUpcoming": "Akan datang",
+  "@milestoneTabUpcoming": {},
+  "milestoneCustomAdd": "Perkembangan tersuai",
+  "@milestoneCustomAdd": {},
+  "milestoneDeleteTitle": "Padam perkembangan?",
+  "@milestoneDeleteTitle": {},
+  "milestoneEdit": "Sunting perkembangan",
+  "@milestoneEdit": {},
+  "milestoneAdd": "Tambah perkembangan",
+  "@milestoneAdd": {},
+  "milestoneName": "Nama perkembangan *",
+  "@milestoneName": {},
+  "milestoneDate": "Tarikh tercapai",
+  "@milestoneDate": {},
+  "milestoneNotes": "Catatan (pilihan)",
+  "@milestoneNotes": {},
+  "milestoneNotesHint": "Sebarang butiran yang perlu diingat...",
+  "@milestoneNotesHint": {},
+  "milestoneNoAchieved": "Tiada perkembangan yang direkod lagi.",
+  "@milestoneNoAchieved": {},
+  "milestoneAllDone": "Semua perkembangan pratetap tercapai! 🎉",
+  "@milestoneAllDone": {},
+  "milestoneFirstSmile": "😊 Senyuman pertama",
+  "@milestoneFirstSmile": {},
+  "milestoneFirstLaugh": "😂 Ketawa pertama",
+  "@milestoneFirstLaugh": {},
+  "milestoneFirstTooth": "🦷 Gigi pertama",
+  "@milestoneFirstTooth": {},
+  "milestoneRolledBackTummy": "🔄 Berguling dari belakang ke perut",
+  "@milestoneRolledBackTummy": {},
+  "milestoneRolledTummyBack": "🔄 Berguling dari perut ke belakang",
+  "@milestoneRolledTummyBack": {},
+  "milestoneSatUnsupported": "🧸 Duduk tanpa sokongan",
+  "@milestoneSatUnsupported": {},
+  "milestoneStartedCrawling": "🐣 Mula merangkak",
+  "@milestoneStartedCrawling": {},
+  "milestonePulledToStand": "🏋️ Berdiri sambil berpegang",
+  "@milestonePulledToStand": {},
+  "milestoneFirstSteps": "👣 Langkah pertama",
+  "@milestoneFirstSteps": {},
+  "milestoneFirstWord": "💬 Perkataan pertama",
+  "@milestoneFirstWord": {},
+  "milestoneFirstSolidFood": "🥣 Makanan pejal pertama",
+  "@milestoneFirstSolidFood": {},
+  "milestoneFirstHaircut": "✂️ Potong rambut pertama",
+  "@milestoneFirstHaircut": {},
+  "milestoneSleptThroughNight": "🌙 Tidur sepanjang malam",
+  "@milestoneSleptThroughNight": {},
+  "milestoneWavedBye": "👋 Lambai tangan selamat tinggal",
+  "@milestoneWavedBye": {},
+  "milestoneClappedHands": "👏 Bertepuk tangan",
+  "@milestoneClappedHands": {},
+  "milestoneFirstBirthday": "🎂 Hari jadi pertama",
+  "@milestoneFirstBirthday": {},
   "settingsTitle": "Tetapan",
   "@settingsTitle": {},
   "settingsAppearance": "Penampilan",
@@ -286,52 +659,66 @@
   "@settingsTempUnit": {},
   "settingsLanguage": "Bahasa",
   "@settingsLanguage": {},
-  "settingsTips": "Tip",
+  "settingsNotifications": "Pemberitahuan & peringatan",
+  "@settingsNotifications": {},
+  "settingsExport": "Eksport & sandaran",
+  "@settingsExport": {},
+  "settingsTips": "Petua",
   "@settingsTips": {},
-  "tipSwitchBabies": "Tukar bayi",
+  "tipSwitchBabies": "Tukar antara bayi",
   "@tipSwitchBabies": {},
-  "tipSwitchBabiesDesc": "Sentuh avatar bayi di bahagian atas untuk menukar atau menambah profil",
+  "tipSwitchBabiesDesc": "Ketik avatar bayi di bahagian atas untuk bertukar atau menambah profil bayi.",
   "@tipSwitchBabiesDesc": {},
-  "tipSwipeDelete": "Leret ke kiri untuk padam",
+  "tipSwipeDelete": "Leret ke kiri untuk memadam",
   "@tipSwipeDelete": {},
-  "tipSwipeDeleteDesc": "Berfungsi pada kad hari dan entri individu",
+  "tipSwipeDeleteDesc": "Berfungsi pada jubin hari dan entri individu.",
   "@tipSwipeDeleteDesc": {},
-  "tipMultipleFeeds": "Rekod pelbagai penyusuan",
+  "tipTapToEdit": "Ketik mana-mana entri untuk menyuntingnya",
+  "@tipTapToEdit": {},
+  "tipMultipleFeeds": "Log berbilang sesi penyusuan",
   "@tipMultipleFeeds": {},
-  "tipMultipleFeedsDesc": "Dalam borang penyusuan, sentuh \"Tambah penyusuan lain\" untuk merekod penyusuan terus dan botol sekali gus",
+  "tipMultipleFeedsDesc": "Dalam borang penyusuan, ketik \"Tambah sesi penyusuan lain\" untuk log menyusu terus + botol sekaligus.",
   "@tipMultipleFeedsDesc": {},
   "tipExportData": "Eksport data",
   "@tipExportData": {},
-  "tipExportDataDesc": "Guna ikon kongsi di Halaman Utama untuk eksport semua data ke JSON",
+  "tipExportDataDesc": "Gunakan ikon kongsi di Laman Utama untuk mengeksport semua data sebagai JSON.",
   "@tipExportDataDesc": {},
-  "tipTapToEdit": "Sentuh mana‑mana entri untuk menyuntingnya",
-  "@tipTapToEdit": {},
-
   "babiesTitle": "Bayi",
   "@babiesTitle": {},
-  "addBaby": "Tambah Bayi",
+  "addBaby": "Tambah bayi",
   "@addBaby": {},
-  "editProfile": "Sunting Profil",
+  "editProfile": "Sunting profil",
   "@editProfile": {},
   "babyNameRequired": "Nama *",
   "@babyNameRequired": {},
   "babyDobOptional": "Tarikh lahir (pilihan)",
   "@babyDobOptional": {},
-  "babyBornOn": "Dilahirkan {date}",
-  "@babyBornOn": { "placeholders": { "date": { "type": "String" } } },
-  "genderUnknown": "Tidak dinyatakan",
+  "babyBornOn": "Lahir {date}",
+  "@babyBornOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "genderUnknown": "Tidak diketahui",
   "@genderUnknown": {},
   "genderBoy": "Lelaki",
   "@genderBoy": {},
   "genderGirl": "Perempuan",
   "@genderGirl": {},
-  "cannotDeleteOnlyProfile": "Profil bayi tunggal tidak boleh dipadam",
+  "cannotDeleteOnlyProfile": "Tidak boleh memadam satu-satunya profil bayi.",
   "@cannotDeleteOnlyProfile": {},
   "deleteProfileTitle": "Padam {name}?",
-  "@deleteProfileTitle": { "placeholders": { "name": { "type": "String" } } },
-  "deleteProfileContent": "Semua data bayi ini akan dipadam secara kekal",
+  "@deleteProfileTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteProfileContent": "Semua data untuk bayi ini akan dipadam secara kekal.",
   "@deleteProfileContent": {},
-
   "graphsTitle": "Graf",
   "@graphsTitle": {},
   "graphsTabDaily": "Harian",
@@ -340,6 +727,8 @@
   "@graphsTabGrowth": {},
   "graphsTabHealth": "Kesihatan",
   "@graphsTabHealth": {},
+  "graphsTabWho": "Carta WHO",
+  "@graphsTabWho": {},
   "graphsTotalFeeds": "Jumlah penyusuan",
   "@graphsTotalFeeds": {},
   "graphsAvgPerDay": "Purata/hari",
@@ -352,37 +741,67 @@
   "@graphsTotalSleep": {},
   "graphsAvgSleep": "Purata tidur/hari",
   "@graphsAvgSleep": {},
-  "graphsFeedsPerDay": "Penyusuan sehari",
+  "graphsFeedsPerDay": "Penyusuan per hari",
   "@graphsFeedsPerDay": {},
-  "graphsDiapersPerDay": "Lampin sehari",
+  "graphsDiapersPerDay": "Lampin per hari",
   "@graphsDiapersPerDay": {},
-  "graphsMilkPerDay": "Susu sehari (ml)",
+  "graphsMilkPerDay": "Susu per hari (ml)",
   "@graphsMilkPerDay": {},
-  "graphsSleepPerDay": "Tidur sehari (jam)",
+  "graphsSleepPerDay": "Tidur per hari (jam)",
   "@graphsSleepPerDay": {},
-  "graphsWeightOverTime": "Perubahan berat mengikut masa",
+  "graphsWeightOverTime": "Berat badan mengikut masa",
   "@graphsWeightOverTime": {},
-  "graphsTempOverTime": "Perubahan suhu mengikut masa",
+  "graphsTempOverTime": "Suhu mengikut masa",
   "@graphsTempOverTime": {},
   "graphsMaxLabel": "Maks: {value}",
-  "@graphsMaxLabel": { "placeholders": { "value": { "type": "String" } } },
+  "@graphsMaxLabel": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "graphsMinLabel": "Min: {value}",
-  "@graphsMinLabel": { "placeholders": { "value": { "type": "String" } } },
-  "graphsNoWeightData": "Tiada entri berat lagi\nRekod berat dari entri hari",
+  "@graphsMinLabel": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "graphsNoWeightData": "Tiada entri berat badan lagi.\nLog berat dari entri hari ini.",
   "@graphsNoWeightData": {},
-  "graphsNoTempData": "Tiada entri suhu lagi\nRekod suhu dari sesuatu hari",
+  "graphsNoTempData": "Tiada entri suhu lagi.\nLog suhu dari mana-mana hari.",
   "@graphsNoTempData": {},
-
   "timeLabel": "Masa",
   "@timeLabel": {},
   "noColourRecorded": "Tiada warna direkod",
   "@noColourRecorded": {},
-  "noDetails": "Tiada butiran",
-  "@noDetails": {},
-  "ageDay": "{count, plural, =1{1 hari} other{{count} hari}}",
-  "@ageDay": { "placeholders": { "count": { "type": "int" } } },
-  "ageMonth": "{count, plural, =1{1 bulan} other{{count} bulan}}",
-  "@ageMonth": { "placeholders": { "count": { "type": "int" } } },
+  "ageDay": "{count, plural, =0{baru lahir} =1{1 hari} other{{count} hari}}",
+  "@ageDay": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ageMonth": "{count, plural, =0{kurang dari 1 bulan} =1{1 bulan} other{{count} bulan}}",
+  "@ageMonth": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "ageYearMonth": "{years} tahun {months} bulan",
-  "@ageYearMonth": { "placeholders": { "years": { "type": "int" }, "months": { "type": "int" } } }
+  "@ageYearMonth": {
+    "placeholders": {
+      "years": {
+        "type": "int"
+      },
+      "months": {
+        "type": "int"
+      }
+    }
+  }
 }
