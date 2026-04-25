@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
 
-/// InheritedWidget that propagates theme state. Any widget calling
-/// [ThemeProvider.of] will rebuild when the theme changes.
 class ThemeProvider extends InheritedWidget {
   const ThemeProvider({
     super.key,
     required this.themeMode,
     required this.toggleTheme,
+    required this.isDarkResolved,
     required super.child,
   });
 
   final ThemeMode themeMode;
   final VoidCallback toggleTheme;
 
-  bool get isDark => themeMode == ThemeMode.dark;
+  /// Pre-resolved dark/light bool from [_MyAppState], which accounts for
+  /// [ThemeMode.system] by reading the platform brightness. Use this instead
+  /// of checking [themeMode] directly — the toggle will always match what
+  /// the user actually sees on screen.
+  final bool isDarkResolved;
+
+  bool get isDark => isDarkResolved;
 
   static ThemeProvider of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<ThemeProvider>()!;
 
   @override
-  bool updateShouldNotify(ThemeProvider old) => old.themeMode != themeMode;
+  bool updateShouldNotify(ThemeProvider old) =>
+      old.themeMode != themeMode || old.isDarkResolved != isDarkResolved;
 }

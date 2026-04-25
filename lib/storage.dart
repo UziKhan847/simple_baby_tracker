@@ -6,11 +6,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_baby_tracker/app_settings.dart';
 import 'package:simple_baby_tracker/baby_profile.dart';
 import 'package:simple_baby_tracker/models/milestone_entry.dart';
+import 'package:simple_baby_tracker/models/vaccination_entry.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 
 class Storage {
   static const _kDataPrefix = 'baby_tracker_data_v3_';
   static const _kMilestonesPrefix = 'baby_tracker_milestones_';
+  static const _kVaccinesPrefix = 'baby_tracker_vaccines_';
   static const _kLegacyKey = 'baby_tracker_data_v2';
   static const _kProfiles = 'baby_profiles';
   static const _kActiveProfile = 'active_baby_id';
@@ -113,6 +115,7 @@ class Storage {
     final sp = await SharedPreferences.getInstance();
     await sp.remove('$_kDataPrefix$babyId');
     await sp.remove('$_kMilestonesPrefix$babyId');
+    await sp.remove('$_kVaccinesPrefix$babyId');
   }
 
   // ─── Milestones ───────────────────────────────────────────────────────────
@@ -136,6 +139,30 @@ class Storage {
     await sp.setString(
       '$_kMilestonesPrefix$babyId',
       json.encode(milestones.map((m) => m.toJson()).toList()),
+    );
+  }
+
+  // ─── Vaccinations ─────────────────────────────────────────────────────────
+
+  static Future<List<VaccinationEntry>> loadVaccinations(String babyId) async {
+    final sp = await SharedPreferences.getInstance();
+    final raw = sp.getString('$_kVaccinesPrefix$babyId');
+    if (raw == null) return [];
+    return (json.decode(raw) as List)
+        .map(
+          (e) => VaccinationEntry.fromJson(Map<String, dynamic>.from(e as Map)),
+        )
+        .toList();
+  }
+
+  static Future<void> saveVaccinations(
+    String babyId,
+    List<VaccinationEntry> vaccines,
+  ) async {
+    final sp = await SharedPreferences.getInstance();
+    await sp.setString(
+      '$_kVaccinesPrefix$babyId',
+      json.encode(vaccines.map((v) => v.toJson()).toList()),
     );
   }
 

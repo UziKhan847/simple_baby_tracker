@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:simple_baby_tracker/day/page.dart';
+import 'package:simple_baby_tracker/pages/day.dart';
 import 'package:simple_baby_tracker/extensions.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
@@ -39,21 +39,24 @@ class _HomePageState extends State<HomePage> {
   @override
   void didUpdateWidget(covariant HomePage oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.data != widget.data || oldWidget.babyId != widget.babyId) {
+    if (oldWidget.data != widget.data ||
+        oldWidget.babyId != widget.babyId) {
       _syncDates();
     }
   }
 
   void _syncDates() {
-    _visibleDates = widget.data.keys.map(dateFromKey).toList()
+    _visibleDates = widget.data.keys
+        .map(dateFromKey)
+        .toList()
       ..sort((a, b) => b.compareTo(a));
   }
 
   Future<void> _ensureTodayExists() async {
     final key = dateKey(DateTime.now());
     if (!widget.data.containsKey(key)) {
-      final updated = Map<String, List<TrackerEvent>>.from(widget.data)
-        ..[key] = [];
+      final updated =
+          Map<String, List<TrackerEvent>>.from(widget.data)..[key] = [];
       await Storage.saveAll(widget.babyId, updated);
       widget.onDataChanged(updated);
     }
@@ -72,16 +75,16 @@ class _HomePageState extends State<HomePage> {
     final key = dateKey(dateOnly);
     if (widget.data.containsKey(key)) return;
 
-    final updated = Map<String, List<TrackerEvent>>.from(widget.data)
-      ..[key] = [];
+    final updated =
+        Map<String, List<TrackerEvent>>.from(widget.data)..[key] = [];
     await Storage.saveAll(widget.babyId, updated);
     widget.onDataChanged(updated);
   }
 
   Future<void> _removeTile(DateTime d) async {
     final key = dateKey(d);
-    final updated = Map<String, List<TrackerEvent>>.from(widget.data)
-      ..remove(key);
+    final updated =
+        Map<String, List<TrackerEvent>>.from(widget.data)..remove(key);
     await Storage.saveAll(widget.babyId, updated);
     widget.onDataChanged(updated);
   }
@@ -132,8 +135,8 @@ class _HomePageState extends State<HomePage> {
     for (final year
         in (grouped.keys.toList()..sort((a, b) => b.compareTo(a)))) {
       result[year] = {};
-      for (final month
-          in (grouped[year]!.keys.toList()..sort((a, b) => b.compareTo(a)))) {
+      for (final month in (grouped[year]!.keys.toList()
+        ..sort((a, b) => b.compareTo(a)))) {
         result[year]![month] = grouped[year]![month]!
           ..sort((a, b) => b.compareTo(a));
       }
@@ -147,10 +150,8 @@ class _HomePageState extends State<HomePage> {
     final l = AppLocalizations.of(context)!;
     final key = dateKey(d);
     final count = _count(key);
-    final hasRash =
-        widget.data[key]?.any(
-          (e) => e.type == 'diaper' && e.data['rash'] == true,
-        ) ??
+    final hasRash = widget.data[key]
+            ?.any((e) => e.type == 'diaper' && e.data['rash'] == true) ??
         false;
 
     return Dismissible(
@@ -212,7 +213,8 @@ class _HomePageState extends State<HomePage> {
               if (hasRash)
                 Tooltip(
                   message: l.rashRecorded,
-                  child: const Text('🔴', style: TextStyle(fontSize: 13)),
+                  child: const Text('🔴',
+                      style: TextStyle(fontSize: 13)),
                 ),
             ],
           ),
@@ -259,6 +261,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'home_page_fab',
         onPressed: () => _addTileForDate(),
         icon: const Icon(Icons.add),
         label: Text(l.actionAddDay),
@@ -315,7 +318,10 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  int _itemCount(bool hasToday, Map<int, Map<int, List<DateTime>>> grouped) {
+  int _itemCount(
+    bool hasToday,
+    Map<int, Map<int, List<DateTime>>> grouped,
+  ) {
     int n = hasToday ? 2 : 0;
     for (final months in grouped.values) {
       n++;
@@ -347,9 +353,10 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.fromLTRB(4, 8, 4, 2),
           child: Text(
             yearEntry.key.toString(),
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium
+                ?.copyWith(fontWeight: FontWeight.bold),
           ),
         );
       }
@@ -402,8 +409,44 @@ class _HomePageState extends State<HomePage> {
   Future<void> _export() async {
     final l = AppLocalizations.of(context)!;
     final file = await Storage.exportToFile(widget.babyId, widget.data);
+
+    // share_plus does not support file sharing on Linux.
+    // Show the file path in a dialog instead so the user can open it manually.
+    if (!mounted) return;
+    if (Theme.of(context).platform == TargetPlatform.linux) {
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text(l.actionExport),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('File saved to:'),
+              const SizedBox(height: 8),
+              SelectableText(
+                file.path,
+                style: const TextStyle(
+                    fontFamily: 'monospace', fontSize: 12),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(l.actionClose),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
     await SharePlus.instance.share(
-      ShareParams(files: [XFile(file.path)], subject: l.actionExport),
+      ShareParams(
+        files: [XFile(file.path)],
+        subject: l.actionExport,
+      ),
     );
   }
 }

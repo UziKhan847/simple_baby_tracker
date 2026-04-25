@@ -314,12 +314,11 @@ class _AppShellState extends State<AppShell> {
 
   @override
   Widget build(BuildContext context) {
-    final l = AppLocalizations.of(context)!;
-
     if (_loading) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
+    final l = AppLocalizations.of(context)!;
     final profile = _activeProfile;
     final activeId = _activeId ?? '';
 

@@ -1,16 +1,15 @@
 {
   "@@locale": "en",
-
   "appTitle": "Baby Tracker",
-  "@appTitle": { "description": "Application title" },
-
+  "@appTitle": {},
   "navHome": "Home",
   "@navHome": {},
   "navGraphs": "Graphs",
   "@navGraphs": {},
+  "navMilestones": "Milestones",
+  "@navMilestones": {},
   "navSettings": "Settings",
   "@navSettings": {},
-
   "actionCancel": "Cancel",
   "@actionCancel": {},
   "actionSave": "Save",
@@ -29,11 +28,18 @@
   "@actionExport": {},
   "actionAddDay": "Add day",
   "@actionAddDay": {},
+  "actionLog": "Log",
+  "@actionLog": {},
   "cannotUndo": "This cannot be undone.",
   "@cannotUndo": {},
   "noData": "No data",
   "@noData": {},
-
+  "noNotes": "No notes",
+  "@noNotes": {},
+  "noDetails": "No details",
+  "@noDetails": {},
+  "optional": "(optional)",
+  "@optional": {},
   "homeTitle": "Tracker",
   "@homeTitle": {},
   "feedsToday": "Feeds today",
@@ -44,26 +50,38 @@
   "@sleepToday": {},
   "todayLabel": "Today — {date}",
   "@todayLabel": {
-    "placeholders": { "date": { "type": "String" } }
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
   },
   "eventCount": "{count, plural, =1{1 event} other{{count} events}}",
   "@eventCount": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "deleteDayTitle": "Delete day?",
   "@deleteDayTitle": {},
   "deleteDayContent": "Remove {date} and all its entries? This cannot be undone.",
   "@deleteDayContent": {
-    "placeholders": { "date": { "type": "String" } }
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
   },
-
+  "rashRecorded": "Rash recorded",
+  "@rashRecorded": {},
   "noEntriesYet": "No entries yet",
   "@noEntriesYet": {},
   "addEntry": "Add entry",
   "@addEntry": {},
   "deleteEntryTitle": "Delete entry?",
   "@deleteEntryTitle": {},
-
   "entryTypeDiaper": "Diaper change",
   "@entryTypeDiaper": {},
   "entryTypeFeeding": "Feeding",
@@ -74,7 +92,18 @@
   "@entryTypeTemperature": {},
   "entryTypeWeight": "Weight",
   "@entryTypeWeight": {},
-
+  "entryTypeTummyTime": "Tummy time",
+  "@entryTypeTummyTime": {},
+  "entryTypeMedication": "Medication",
+  "@entryTypeMedication": {},
+  "entryTypeDoctorVisit": "Doctor visit",
+  "@entryTypeDoctorVisit": {},
+  "entryTypeNote": "Daily note / journal",
+  "@entryTypeNote": {},
+  "entryTypePumping": "Pumping session",
+  "@entryTypePumping": {},
+  "entryTypeBath": "Bath",
+  "@entryTypeBath": {},
   "diaperPeePoo": "Diaper — pee + poo",
   "@diaperPeePoo": {},
   "diaperPee": "Diaper — pee",
@@ -133,7 +162,11 @@
   "@pooColourNormal": {},
   "pooColourSelected": "Selected: {label}",
   "@pooColourSelected": {
-    "placeholders": { "label": { "type": "String" } }
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
   },
   "diaperSize": "Diaper size",
   "@diaperSize": {},
@@ -157,16 +190,17 @@
   "@rashImproved": {},
   "rashNoChange": "No change / worse",
   "@rashNoChange": {},
-  "rashRecorded": "Rash recorded",
-  "@rashRecorded": {},
-
   "addFeeding": "Add feeding",
   "@addFeeding": {},
   "editFeeding": "Edit feeding",
   "@editFeeding": {},
   "feedLabel": "Feed {number}",
   "@feedLabel": {
-    "placeholders": { "number": { "type": "int" } }
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
   },
   "feedModeBottle": "Bottle",
   "@feedModeBottle": {},
@@ -194,7 +228,6 @@
   "@bottleFormula": {},
   "breastfeedingSuckle": "Breastfeeding (suckle)",
   "@breastfeedingSuckle": {},
-
   "logSleep": "Log sleep",
   "@logSleep": {},
   "editSleep": "Edit sleep",
@@ -205,7 +238,11 @@
   "@sleepWakeUp": {},
   "sleepDuration": "Duration: {duration}",
   "@sleepDuration": {
-    "placeholders": { "duration": { "type": "String" } }
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
   },
   "sleepInvalidTimes": "Invalid times",
   "@sleepInvalidTimes": {},
@@ -220,11 +257,14 @@
   "sleepHoursShort": "{h}h {m}m",
   "@sleepHoursShort": {
     "placeholders": {
-      "h": { "type": "int" },
-      "m": { "type": "int" }
+      "h": {
+        "type": "int"
+      },
+      "m": {
+        "type": "int"
+      }
     }
   },
-
   "logTemperature": "Log temperature",
   "@logTemperature": {},
   "editTemperature": "Edit temperature",
@@ -267,9 +307,12 @@
   "@tempFeverThreshold": {},
   "tempDays": "{count, plural, =1{1 day} other{{count} days}}",
   "@tempDays": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
-
   "logWeight": "Log weight",
   "@logWeight": {},
   "editWeight": "Edit weight",
@@ -278,21 +321,37 @@
   "@weightLabel": {},
   "weightGain": "+{amount} gain",
   "@weightGain": {
-    "placeholders": { "amount": { "type": "String" } }
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
   },
   "weightLoss": "−{amount} loss",
   "@weightLoss": {
-    "placeholders": { "amount": { "type": "String" } }
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
   },
   "weightPrevious": "Previous: {weight}",
   "@weightPrevious": {
-    "placeholders": { "weight": { "type": "String" } }
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      }
+    }
   },
   "weightLastRecorded": "Last recorded: {weight} on {date}",
   "@weightLastRecorded": {
     "placeholders": {
-      "weight": { "type": "String" },
-      "date": { "type": "String" }
+      "weight": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
     }
   },
   "weightLatest": "Latest weight",
@@ -300,11 +359,288 @@
   "weightOverPeriod": "{sign}{amount} over period",
   "@weightOverPeriod": {
     "placeholders": {
-      "sign": { "type": "String" },
-      "amount": { "type": "String" }
+      "sign": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
     }
   },
-
+  "tummyTimeLog": "Log tummy time",
+  "@tummyTimeLog": {},
+  "tummyTimeEdit": "Edit tummy time",
+  "@tummyTimeEdit": {},
+  "tummyTimeStart": "Start time",
+  "@tummyTimeStart": {},
+  "tummyTimeEnd": "End time",
+  "@tummyTimeEnd": {},
+  "tummyTimeTip": "Tummy time strengthens neck and shoulder muscles.",
+  "@tummyTimeTip": {},
+  "medicationLog": "Log medication",
+  "@medicationLog": {},
+  "medicationEdit": "Edit medication",
+  "@medicationEdit": {},
+  "medicationName": "Medication name *",
+  "@medicationName": {},
+  "medicationDose": "Dose",
+  "@medicationDose": {},
+  "medicationUnit": "Unit",
+  "@medicationUnit": {},
+  "medicationCommon": "Common medications",
+  "@medicationCommon": {},
+  "medicationWarning": "Always follow dosage instructions for weight/age. Do not exceed recommended frequency.",
+  "@medicationWarning": {},
+  "medicationNotes": "Notes (optional)",
+  "@medicationNotes": {},
+  "medicationNotesHint": "e.g. reason, reaction...",
+  "@medicationNotesHint": {},
+  "doctorVisitLog": "Doctor visit",
+  "@doctorVisitLog": {},
+  "doctorVisitEdit": "Edit doctor visit",
+  "@doctorVisitEdit": {},
+  "doctorName": "Doctor / clinic name",
+  "@doctorName": {},
+  "doctorVisitReason": "Reason for visit",
+  "@doctorVisitReason": {},
+  "doctorVisitMeasurements": "Measurements (optional)",
+  "@doctorVisitMeasurements": {},
+  "doctorVisitNotes": "Notes",
+  "@doctorVisitNotes": {},
+  "doctorVisitNotesHint": "e.g. vaccinations given, doctor recommendations...",
+  "@doctorVisitNotesHint": {},
+  "measurementWeightKg": "Weight (kg)",
+  "@measurementWeightKg": {},
+  "measurementWeightLbs": "Weight (lbs)",
+  "@measurementWeightLbs": {},
+  "measurementHeightCm": "Length / height (cm)",
+  "@measurementHeightCm": {},
+  "measurementHeadCm": "Head circumference (cm)",
+  "@measurementHeadCm": {},
+  "dailyNoteLog": "Daily note",
+  "@dailyNoteLog": {},
+  "dailyNoteEdit": "Edit note",
+  "@dailyNoteEdit": {},
+  "dailyNoteTitle": "Title (optional)",
+  "@dailyNoteTitle": {},
+  "dailyNoteText": "Note",
+  "@dailyNoteText": {},
+  "dailyNoteHint": "What happened today? First time rolling? Fussy morning?",
+  "@dailyNoteHint": {},
+  "dailyNoteTags": "Quick tags",
+  "@dailyNoteTags": {},
+  "pumpingLog": "Log pumping session",
+  "@pumpingLog": {},
+  "pumpingEdit": "Edit pumping session",
+  "@pumpingEdit": {},
+  "pumpingLeft": "Left breast (ml)",
+  "@pumpingLeft": {},
+  "pumpingRight": "Right breast (ml)",
+  "@pumpingRight": {},
+  "pumpingTotal": "Total pumped",
+  "@pumpingTotal": {},
+  "pumpingDuration": "Duration (minutes)",
+  "@pumpingDuration": {},
+  "pumpingStored": "Stored / frozen",
+  "@pumpingStored": {},
+  "pumpingNotes": "Notes (optional)",
+  "@pumpingNotes": {},
+  "pumpingSessionTitle": "Pumping",
+  "@pumpingSessionTitle": {},
+  "pumpingTotalMl": "{ml} ml total",
+  "@pumpingTotalMl": {
+    "placeholders": {
+      "ml": {
+        "type": "int"
+      }
+    }
+  },
+  "bathLog": "Log bath",
+  "@bathLog": {},
+  "bathEdit": "Edit bath",
+  "@bathEdit": {},
+  "bathType": "Bath type",
+  "@bathType": {},
+  "bathTypeSponge": "Sponge bath",
+  "@bathTypeSponge": {},
+  "bathTypeTub": "Tub bath",
+  "@bathTypeTub": {},
+  "bathTypeShower": "Shower",
+  "@bathTypeShower": {},
+  "bathNotes": "Notes (optional)",
+  "@bathNotes": {},
+  "bathProducts": "Products used (optional)",
+  "@bathProducts": {},
+  "vaccineTitle": "Vaccinations",
+  "@vaccineTitle": {},
+  "vaccineTabGiven": "Given",
+  "@vaccineTabGiven": {},
+  "vaccineTabSchedule": "Schedule",
+  "@vaccineTabSchedule": {},
+  "vaccineLog": "Log vaccine",
+  "@vaccineLog": {},
+  "vaccineEdit": "Edit vaccine",
+  "@vaccineEdit": {},
+  "vaccineName": "Vaccine name",
+  "@vaccineName": {},
+  "vaccineBrand": "Brand / manufacturer (optional)",
+  "@vaccineBrand": {},
+  "vaccineDate": "Date given",
+  "@vaccineDate": {},
+  "vaccineDose": "Dose number (optional)",
+  "@vaccineDose": {},
+  "vaccineSite": "Injection site (optional)",
+  "@vaccineSite": {},
+  "vaccineNotes": "Notes / reactions",
+  "@vaccineNotes": {},
+  "vaccineDue": "Due at {age}",
+  "@vaccineDue": {
+    "placeholders": {
+      "age": {
+        "type": "String"
+      }
+    }
+  },
+  "vaccineGiven": "Given",
+  "@vaccineGiven": {},
+  "vaccineNoGiven": "No vaccines logged yet.",
+  "@vaccineNoGiven": {},
+  "vaccineMarkGiven": "Mark as given",
+  "@vaccineMarkGiven": {},
+  "whoChartTitle": "WHO Growth Charts",
+  "@whoChartTitle": {},
+  "whoWeightForAge": "Weight-for-age",
+  "@whoWeightForAge": {},
+  "whoHeightForAge": "Length/Height-for-age",
+  "@whoHeightForAge": {},
+  "whoHeadForAge": "Head circumference-for-age",
+  "@whoHeadForAge": {},
+  "whoGenderBoy": "Boy",
+  "@whoGenderBoy": {},
+  "whoGenderGirl": "Girl",
+  "@whoGenderGirl": {},
+  "whoNoData": "No measurements logged yet.\nLog weight from a day's entries to see the chart.",
+  "@whoNoData": {},
+  "whoPercentileLabel": "P{p}",
+  "@whoPercentileLabel": {
+    "placeholders": {
+      "p": {
+        "type": "String"
+      }
+    }
+  },
+  "whoYourBaby": "Your baby",
+  "@whoYourBaby": {},
+  "whoAgeMonths": "{n} mo",
+  "@whoAgeMonths": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "whoNoBirthDate": "Set baby's date of birth in the profile to see age-based charts.",
+  "@whoNoBirthDate": {},
+  "notifTitle": "Reminders",
+  "@notifTitle": {},
+  "notifFeedingReminder": "Feeding reminder",
+  "@notifFeedingReminder": {},
+  "notifFeedingReminderDesc": "Remind me after {hours}h if no feed logged",
+  "@notifFeedingReminderDesc": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notifDiaperReminder": "Diaper reminder",
+  "@notifDiaperReminder": {},
+  "notifDiaperReminderDesc": "Remind me after {hours}h if no diaper logged",
+  "@notifDiaperReminderDesc": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notifMedicationReminder": "Medication reminder",
+  "@notifMedicationReminder": {},
+  "notifEnabled": "Notifications enabled",
+  "@notifEnabled": {},
+  "notifDisabled": "Notifications disabled",
+  "@notifDisabled": {},
+  "notifPermissionRequired": "Please enable notifications in your device settings.",
+  "@notifPermissionRequired": {},
+  "exportTitle": "Export & backup",
+  "@exportTitle": {},
+  "exportJson": "Export as JSON",
+  "@exportJson": {},
+  "exportPdf": "Export as PDF",
+  "@exportPdf": {},
+  "exportPdfDesc": "Human-readable summary for your paediatrician",
+  "@exportPdfDesc": {},
+  "exportGoogleDrive": "Back up to Google Drive",
+  "@exportGoogleDrive": {},
+  "exportGenerating": "Generating report...",
+  "@exportGenerating": {},
+  "milestoneTitle": "Milestones",
+  "@milestoneTitle": {},
+  "milestoneTabAchieved": "Achieved",
+  "@milestoneTabAchieved": {},
+  "milestoneTabUpcoming": "Upcoming",
+  "@milestoneTabUpcoming": {},
+  "milestoneCustomAdd": "Custom milestone",
+  "@milestoneCustomAdd": {},
+  "milestoneDeleteTitle": "Delete milestone?",
+  "@milestoneDeleteTitle": {},
+  "milestoneEdit": "Edit milestone",
+  "@milestoneEdit": {},
+  "milestoneAdd": "Add milestone",
+  "@milestoneAdd": {},
+  "milestoneName": "Milestone name *",
+  "@milestoneName": {},
+  "milestoneDate": "Date achieved",
+  "@milestoneDate": {},
+  "milestoneNotes": "Notes (optional)",
+  "@milestoneNotes": {},
+  "milestoneNotesHint": "Any details worth remembering...",
+  "@milestoneNotesHint": {},
+  "milestoneNoAchieved": "No milestones logged yet.",
+  "@milestoneNoAchieved": {},
+  "milestoneAllDone": "All preset milestones achieved! 🎉",
+  "@milestoneAllDone": {},
+  "milestoneFirstSmile": "😊 First smile",
+  "@milestoneFirstSmile": {},
+  "milestoneFirstLaugh": "😂 First laugh",
+  "@milestoneFirstLaugh": {},
+  "milestoneFirstTooth": "🦷 First tooth",
+  "@milestoneFirstTooth": {},
+  "milestoneRolledBackTummy": "🔄 Rolled back → tummy",
+  "@milestoneRolledBackTummy": {},
+  "milestoneRolledTummyBack": "🔄 Rolled tummy → back",
+  "@milestoneRolledTummyBack": {},
+  "milestoneSatUnsupported": "🧸 Sat unsupported",
+  "@milestoneSatUnsupported": {},
+  "milestoneStartedCrawling": "🐣 Started crawling",
+  "@milestoneStartedCrawling": {},
+  "milestonePulledToStand": "🏋️ Pulled to stand",
+  "@milestonePulledToStand": {},
+  "milestoneFirstSteps": "👣 First steps",
+  "@milestoneFirstSteps": {},
+  "milestoneFirstWord": "💬 First word",
+  "@milestoneFirstWord": {},
+  "milestoneFirstSolidFood": "🥣 First solid food",
+  "@milestoneFirstSolidFood": {},
+  "milestoneFirstHaircut": "✂️ First haircut",
+  "@milestoneFirstHaircut": {},
+  "milestoneSleptThroughNight": "🌙 Slept through the night",
+  "@milestoneSleptThroughNight": {},
+  "milestoneWavedBye": "👋 Waved bye-bye",
+  "@milestoneWavedBye": {},
+  "milestoneClappedHands": "👏 Clapped hands",
+  "@milestoneClappedHands": {},
+  "milestoneFirstBirthday": "🎂 First birthday",
+  "@milestoneFirstBirthday": {},
   "settingsTitle": "Settings",
   "@settingsTitle": {},
   "settingsAppearance": "Appearance",
@@ -323,6 +659,10 @@
   "@settingsTempUnit": {},
   "settingsLanguage": "Language",
   "@settingsLanguage": {},
+  "settingsNotifications": "Notifications & reminders",
+  "@settingsNotifications": {},
+  "settingsExport": "Export & backup",
+  "@settingsExport": {},
   "settingsTips": "Tips",
   "@settingsTips": {},
   "tipSwitchBabies": "Switch babies",
@@ -333,6 +673,8 @@
   "@tipSwipeDelete": {},
   "tipSwipeDeleteDesc": "Works on day tiles and individual entries.",
   "@tipSwipeDeleteDesc": {},
+  "tipTapToEdit": "Tap any entry to edit it",
+  "@tipTapToEdit": {},
   "tipMultipleFeeds": "Log multiple feeds",
   "@tipMultipleFeeds": {},
   "tipMultipleFeedsDesc": "In the feeding form, tap \"Add another feed\" to log breastfeed + bottle in one go.",
@@ -341,9 +683,6 @@
   "@tipExportData": {},
   "tipExportDataDesc": "Use the share icon on Home to export all data as JSON.",
   "@tipExportDataDesc": {},
-  "tipTapToEdit": "Tap any entry to edit it",
-  "@tipTapToEdit": {},
-
   "babiesTitle": "Babies",
   "@babiesTitle": {},
   "addBaby": "Add baby",
@@ -356,7 +695,11 @@
   "@babyDobOptional": {},
   "babyBornOn": "Born {date}",
   "@babyBornOn": {
-    "placeholders": { "date": { "type": "String" } }
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
   },
   "genderUnknown": "Unknown",
   "@genderUnknown": {},
@@ -368,11 +711,14 @@
   "@cannotDeleteOnlyProfile": {},
   "deleteProfileTitle": "Delete {name}?",
   "@deleteProfileTitle": {
-    "placeholders": { "name": { "type": "String" } }
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   },
   "deleteProfileContent": "All data for this baby will be permanently deleted.",
   "@deleteProfileContent": {},
-
   "graphsTitle": "Graphs",
   "@graphsTitle": {},
   "graphsTabDaily": "Daily",
@@ -381,6 +727,8 @@
   "@graphsTabGrowth": {},
   "graphsTabHealth": "Health",
   "@graphsTabHealth": {},
+  "graphsTabWho": "WHO Charts",
+  "@graphsTabWho": {},
   "graphsTotalFeeds": "Total feeds",
   "@graphsTotalFeeds": {},
   "graphsAvgPerDay": "Avg/day",
@@ -407,36 +755,53 @@
   "@graphsTempOverTime": {},
   "graphsMaxLabel": "Max: {value}",
   "@graphsMaxLabel": {
-    "placeholders": { "value": { "type": "String" } }
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
   },
   "graphsMinLabel": "Min: {value}",
   "@graphsMinLabel": {
-    "placeholders": { "value": { "type": "String" } }
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
   },
   "graphsNoWeightData": "No weight entries yet.\nLog weight from a day's entries.",
   "@graphsNoWeightData": {},
   "graphsNoTempData": "No temperature entries yet.\nLog temperature from a day.",
   "@graphsNoTempData": {},
-
   "timeLabel": "Time",
   "@timeLabel": {},
   "noColourRecorded": "No colour recorded",
   "@noColourRecorded": {},
-  "noDetails": "No details",
-  "@noDetails": {},
   "ageDay": "{count, plural, =1{1 day old} other{{count} days old}}",
   "@ageDay": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "ageMonth": "{count, plural, =1{1 month old} other{{count} months old}}",
   "@ageMonth": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "ageYearMonth": "{years}yr {months}mo old",
   "@ageYearMonth": {
     "placeholders": {
-      "years": { "type": "int" },
-      "months": { "type": "int" }
+      "years": {
+        "type": "int"
+      },
+      "months": {
+        "type": "int"
+      }
     }
   }
 }
