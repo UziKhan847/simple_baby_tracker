@@ -48,8 +48,10 @@ class _MilestonesPageState extends State<MilestonesPage>
   late final TabController _tabs;
 
   // Keys that have already been logged
-  Set<String> get _achievedPresets =>
-      _milestones.where((m) => m.isPreset).map((m) => m.title).toSet();
+  Set<String> get _achievedPresets => _milestones
+      .where((m) => m.isPreset)
+      .map((m) => m.title)
+      .toSet();
 
   @override
   void initState() {
@@ -88,7 +90,8 @@ class _MilestonesPageState extends State<MilestonesPage>
     final titleCtrl = TextEditingController(
       text: existing?.title ?? (isPreset ? presetKey : ''),
     );
-    final notesCtrl = TextEditingController(text: existing?.notes ?? '');
+    final notesCtrl =
+        TextEditingController(text: existing?.notes ?? '');
     DateTime pickedDate = existing?.date ?? DateTime.now();
 
     final result = await showDialog<MilestoneEntry>(
@@ -99,8 +102,8 @@ class _MilestonesPageState extends State<MilestonesPage>
             existing != null
                 ? 'Edit milestone'
                 : isPreset
-                ? _presetTitle(presetKey)
-                : 'Add milestone',
+                    ? _presetTitle(presetKey)
+                    : 'Add milestone',
           ),
           content: SingleChildScrollView(
             child: Column(
@@ -152,7 +155,9 @@ class _MilestonesPageState extends State<MilestonesPage>
             ),
             FilledButton(
               onPressed: () {
-                final title = isPreset ? presetKey : titleCtrl.text.trim();
+                final title = isPreset
+                    ? presetKey
+                    : titleCtrl.text.trim();
                 if (title.isEmpty) return;
                 Navigator.pop(
                   ctx,
@@ -195,13 +200,11 @@ class _MilestonesPageState extends State<MilestonesPage>
         content: const Text('This cannot be undone.'),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
-          ),
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Cancel')),
           FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: const Text('Delete'),
-          ),
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('Delete')),
         ],
       ),
     );
@@ -229,6 +232,7 @@ class _MilestonesPageState extends State<MilestonesPage>
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'milestones_fab',
         onPressed: () => _showMilestoneDialog(),
         icon: const Icon(Icons.add),
         label: const Text('Custom milestone'),
@@ -245,7 +249,8 @@ class _MilestonesPageState extends State<MilestonesPage>
                 ),
                 _UpcomingTab(
                   achieved: _achievedPresets,
-                  onLog: (key) => _showMilestoneDialog(presetKey: key),
+                  onLog: (key) =>
+                      _showMilestoneDialog(presetKey: key),
                 ),
               ],
             ),
@@ -273,12 +278,11 @@ class _AchievedTab extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.star_border, size: 64, color: Colors.grey.shade400),
+            Icon(Icons.star_border,
+                size: 64, color: Colors.grey.shade400),
             const SizedBox(height: 12),
-            const Text(
-              'No milestones logged yet.',
-              style: TextStyle(color: Colors.grey),
-            ),
+            const Text('No milestones logged yet.',
+                style: TextStyle(color: Colors.grey)),
             const SizedBox(height: 8),
             const Text(
               'Tap "Upcoming" to log a preset,\nor use the + button for a custom one.',
@@ -295,7 +299,8 @@ class _AchievedTab extends StatelessWidget {
       itemCount: milestones.length,
       itemBuilder: (context, i) {
         final m = milestones[i];
-        final title = m.isPreset ? _presetTitle(m.title) : m.title;
+        final title =
+            m.isPreset ? _presetTitle(m.title) : m.title;
 
         return Dismissible(
           key: ValueKey(m.id),
@@ -307,13 +312,11 @@ class _AchievedTab extends StatelessWidget {
               content: const Text('This cannot be undone.'),
               actions: [
                 TextButton(
-                  onPressed: () => Navigator.pop(context, false),
-                  child: const Text('Cancel'),
-                ),
+                    onPressed: () => Navigator.pop(context, false),
+                    child: const Text('Cancel')),
                 FilledButton(
-                  onPressed: () => Navigator.pop(context, true),
-                  child: const Text('Delete'),
-                ),
+                    onPressed: () => Navigator.pop(context, true),
+                    child: const Text('Delete')),
               ],
             ),
           ),
@@ -334,10 +337,8 @@ class _AchievedTab extends StatelessWidget {
                 backgroundColor: Colors.amber.withAlpha(40),
                 child: const Icon(Icons.star, color: Colors.amber),
               ),
-              title: Text(
-                title,
-                style: const TextStyle(fontWeight: FontWeight.w600),
-              ),
+              title: Text(title,
+                  style: const TextStyle(fontWeight: FontWeight.w600)),
               subtitle: Text(fullDate(m.date)),
               trailing: IconButton(
                 icon: const Icon(Icons.edit_outlined, size: 18),
@@ -345,31 +346,30 @@ class _AchievedTab extends StatelessWidget {
               ),
               onTap: m.notes != null
                   ? () => showDialog(
-                      context: context,
-                      builder: (_) => AlertDialog(
-                        title: Text(title),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              fullDate(m.date),
-                              style: const TextStyle(color: Colors.grey),
-                            ),
-                            if (m.notes != null) ...[
-                              const SizedBox(height: 8),
-                              Text(m.notes!),
+                        context: context,
+                        builder: (_) => AlertDialog(
+                          title: Text(title),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(fullDate(m.date),
+                                  style: const TextStyle(
+                                      color: Colors.grey)),
+                              if (m.notes != null) ...[
+                                const SizedBox(height: 8),
+                                Text(m.notes!),
+                              ],
                             ],
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text('Close'),
+                            ),
                           ],
                         ),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: const Text('Close'),
-                          ),
-                        ],
-                      ),
-                    )
+                      )
                   : null,
             ),
           ),
@@ -400,10 +400,8 @@ class _UpcomingTab extends StatelessWidget {
           children: [
             const Text('🎉', style: TextStyle(fontSize: 48)),
             const SizedBox(height: 12),
-            const Text(
-              'All preset milestones achieved!',
-              style: TextStyle(color: Colors.grey),
-            ),
+            const Text('All preset milestones achieved!',
+                style: TextStyle(color: Colors.grey)),
           ],
         ),
       );
@@ -418,12 +416,13 @@ class _UpcomingTab extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 4),
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-              child: Icon(
-                Icons.pending_outlined,
-                color: Theme.of(context).colorScheme.onSecondaryContainer,
-                size: 20,
-              ),
+              backgroundColor:
+                  Theme.of(context).colorScheme.secondaryContainer,
+              child: Icon(Icons.pending_outlined,
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSecondaryContainer,
+                  size: 20),
             ),
             title: Text(_presetTitle(key)),
             trailing: FilledButton.tonal(

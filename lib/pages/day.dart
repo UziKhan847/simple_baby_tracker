@@ -16,7 +16,11 @@ import 'package:simple_baby_tracker/summary_header_delegate.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 
 class DayPage extends StatefulWidget {
-  const DayPage({super.key, required this.date, required this.babyId});
+  const DayPage({
+    super.key,
+    required this.date,
+    required this.babyId,
+  });
 
   final DateTime date;
   final String babyId;
@@ -52,7 +56,7 @@ class _DayPageState extends State<DayPage> {
 
   Future<void> _save() async {
     await Storage.saveAll(widget.babyId, _data);
-    await _load();
+    if (mounted) await _load();
   }
 
   Map<String, int> _totals(List<TrackerEvent> events) {
@@ -82,13 +86,12 @@ class _DayPageState extends State<DayPage> {
   }
 
   ({double kg, DateTime date})? _lastWeight() {
-    final allEvents =
-        _data.entries
-            .expand((e) => e.value)
-            .where((e) => e.type == 'weight')
-            .where((e) => dateKey(e.time) != dateKey(widget.date))
-            .toList()
-          ..sort((a, b) => b.time.compareTo(a.time));
+    final allEvents = _data.entries
+        .expand((e) => e.value)
+        .where((e) => e.type == 'weight')
+        .where((e) => dateKey(e.time) != dateKey(widget.date))
+        .toList()
+      ..sort((a, b) => b.time.compareTo(a.time));
     if (allEvents.isEmpty) return null;
     final kg = (allEvents.first.data['valueKg'] as num?)?.toDouble();
     if (kg == null) return null;
@@ -96,19 +99,19 @@ class _DayPageState extends State<DayPage> {
   }
 
   bool _lastDiaperHadRash() {
-    final allDiapers =
-        _data.entries
-            .expand((e) => e.value)
-            .where((e) => e.type == 'diaper')
-            .toList()
-          ..sort((a, b) => b.time.compareTo(a.time));
+    final allDiapers = _data.entries
+        .expand((e) => e.value)
+        .where((e) => e.type == 'diaper')
+        .toList()
+      ..sort((a, b) => b.time.compareTo(a.time));
     if (allDiapers.isEmpty) return false;
     return allDiapers.first.data['rash'] == true;
   }
 
   // ─── Add/edit routing ─────────────────────────────────────────────────────
 
-  Future<void> _add(String type, {TrackerEvent? existing, int? index}) async {
+  Future<void> _add(String type,
+      {TrackerEvent? existing, int? index}) async {
     final key = dateKey(widget.date);
     _data.putIfAbsent(key, () => []);
 
@@ -131,10 +134,7 @@ class _DayPageState extends State<DayPage> {
             previousRash: existing == null ? _lastDiaperHadRash() : false,
           ),
         );
-        if (result != null) {
-          insertOrReplace(result);
-          await _save();
-        }
+        if (result != null) { insertOrReplace(result); await _save(); }
 
       case 'feeding':
         final result = await showModalBottomSheet<dynamic>(
@@ -160,24 +160,16 @@ class _DayPageState extends State<DayPage> {
           builder: (_) =>
               SleepForm(initialDate: widget.date, existingEvent: existing),
         );
-        if (result != null) {
-          insertOrReplace(result);
-          await _save();
-        }
+        if (result != null) { insertOrReplace(result); await _save(); }
 
       case 'temperature':
         final result = await showModalBottomSheet<TrackerEvent>(
           context: context,
           isScrollControlled: true,
           builder: (_) => TemperatureForm(
-            initialDate: widget.date,
-            existingEvent: existing,
-          ),
+              initialDate: widget.date, existingEvent: existing),
         );
-        if (result != null) {
-          insertOrReplace(result);
-          await _save();
-        }
+        if (result != null) { insertOrReplace(result); await _save(); }
 
       case 'weight':
         final lw = _lastWeight();
@@ -191,60 +183,43 @@ class _DayPageState extends State<DayPage> {
             lastWeightDate: lw?.date,
           ),
         );
-        if (result != null) {
-          insertOrReplace(result);
-          await _save();
-        }
+        if (result != null) { insertOrReplace(result); await _save(); }
 
       case 'tummy_time':
         final result = await showModalBottomSheet<TrackerEvent>(
           context: context,
           isScrollControlled: true,
-          builder: (_) =>
-              TummyTimeForm(initialDate: widget.date, existingEvent: existing),
+          builder: (_) => TummyTimeForm(
+              initialDate: widget.date, existingEvent: existing),
         );
-        if (result != null) {
-          insertOrReplace(result);
-          await _save();
-        }
+        if (result != null) { insertOrReplace(result); await _save(); }
 
       case 'medication':
         final result = await showModalBottomSheet<TrackerEvent>(
           context: context,
           isScrollControlled: true,
-          builder: (_) =>
-              MedicationForm(initialDate: widget.date, existingEvent: existing),
+          builder: (_) => MedicationForm(
+              initialDate: widget.date, existingEvent: existing),
         );
-        if (result != null) {
-          insertOrReplace(result);
-          await _save();
-        }
+        if (result != null) { insertOrReplace(result); await _save(); }
 
       case 'doctor_visit':
         final result = await showModalBottomSheet<TrackerEvent>(
           context: context,
           isScrollControlled: true,
           builder: (_) => DoctorVisitForm(
-            initialDate: widget.date,
-            existingEvent: existing,
-          ),
+              initialDate: widget.date, existingEvent: existing),
         );
-        if (result != null) {
-          insertOrReplace(result);
-          await _save();
-        }
+        if (result != null) { insertOrReplace(result); await _save(); }
 
       case 'note':
         final result = await showModalBottomSheet<TrackerEvent>(
           context: context,
           isScrollControlled: true,
-          builder: (_) =>
-              DailyNoteForm(initialDate: widget.date, existingEvent: existing),
+          builder: (_) => DailyNoteForm(
+              initialDate: widget.date, existingEvent: existing),
         );
-        if (result != null) {
-          insertOrReplace(result);
-          await _save();
-        }
+        if (result != null) { insertOrReplace(result); await _save(); }
     }
   }
 
@@ -279,12 +254,18 @@ class _DayPageState extends State<DayPage> {
 
   @override
   Widget build(BuildContext context) {
-    final l = AppLocalizations.of(context)!;
-
     if (_loading) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return const Directionality(
+        textDirection: TextDirection.ltr,
+        child: Scaffold(
+          body: Center(child: CircularProgressIndicator()),
+        ),
+      );
     }
 
+    // Only look up inherited providers after the loading guard —
+    // the new route's context is fully wired up by this point.
+    final l = AppLocalizations.of(context)!;
     final events = _events();
     final totals = _totals(events);
     final settings = SettingsProvider.of(context).settings;
@@ -296,11 +277,9 @@ class _DayPageState extends State<DayPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.event_note,
-                    size: 64,
-                    color: Theme.of(context).colorScheme.outline,
-                  ),
+                  Icon(Icons.event_note,
+                      size: 64,
+                      color: Theme.of(context).colorScheme.outline),
                   const SizedBox(height: 12),
                   Text(l.noEntriesYet),
                   const SizedBox(height: 8),
@@ -331,57 +310,68 @@ class _DayPageState extends State<DayPage> {
                     bottom: MediaQuery.of(context).padding.bottom + 80,
                   ),
                   sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate((_, i) {
-                      final e = events[i];
-                      return Dismissible(
-                        key: ValueKey(e.id),
-                        direction: DismissDirection.endToStart,
-                        confirmDismiss: (_) async => showDialog<bool>(
-                          context: context,
-                          builder: (_) => AlertDialog(
-                            title: Text(l.deleteEntryTitle),
-                            content: Text(l.cannotUndo),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.pop(context, false),
-                                child: Text(l.actionCancel),
-                              ),
-                              FilledButton(
-                                onPressed: () => Navigator.pop(context, true),
-                                child: Text(l.actionDelete),
-                              ),
-                            ],
-                          ),
-                        ),
-                        onDismissed: (_) => _deleteEvent(e),
-                        background: Container(
-                          alignment: Alignment.centerRight,
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Icon(Icons.delete, color: Colors.white),
-                        ),
-                        child: Card(
-                          margin: const EdgeInsets.symmetric(vertical: 4),
-                          child: ListTile(
-                            leading: _eventIcon(e),
-                            title: Text(_title(e, l, settings)),
-                            subtitle: Text(
-                              '${_subtitle(e, l, settings)}  •  ${formatTime(e.time)}',
+                    delegate: SliverChildBuilderDelegate(
+                      (_, i) {
+                        final e = events[i];
+                        return Dismissible(
+                          key: ValueKey(e.id),
+                          direction: DismissDirection.endToStart,
+                          confirmDismiss: (_) async => showDialog<bool>(
+                            context: context,
+                            builder: (_) => AlertDialog(
+                              title: Text(l.deleteEntryTitle),
+                              content: Text(l.cannotUndo),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(context, false),
+                                  child: Text(l.actionCancel),
+                                ),
+                                FilledButton(
+                                  onPressed: () =>
+                                      Navigator.pop(context, true),
+                                  child: Text(l.actionDelete),
+                                ),
+                              ],
                             ),
-                            onTap: () => _add(e.type, existing: e, index: i),
-                            trailing: const Icon(Icons.edit, size: 18),
                           ),
-                        ),
-                      );
-                    }, childCount: events.length),
+                          onDismissed: (_) => _deleteEvent(e),
+                          background: Container(
+                            alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20),
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: const Icon(Icons.delete,
+                                color: Colors.white),
+                          ),
+                          child: Card(
+                            margin:
+                                const EdgeInsets.symmetric(vertical: 4),
+                            child: ListTile(
+                              leading: _eventIcon(e),
+                              title: Text(_title(e, l, settings)),
+                              subtitle: Text(
+                                '${_subtitle(e, l, settings)}  •  ${formatTime(e.time)}',
+                              ),
+                              onTap: () =>
+                                  _add(e.type, existing: e, index: i),
+                              trailing:
+                                  const Icon(Icons.edit, size: 18),
+                            ),
+                          ),
+                        );
+                      },
+                      childCount: events.length,
+                    ),
                   ),
                 ),
               ],
             ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'day_page_fab',
         onPressed: _showAddSheet,
         child: const Icon(Icons.add),
       ),
@@ -399,8 +389,7 @@ class _DayPageState extends State<DayPage> {
             children: [
               const SizedBox(height: 8),
               Container(
-                width: 40,
-                height: 4,
+                width: 40, height: 4,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade300,
                   borderRadius: BorderRadius.circular(2),
@@ -408,62 +397,26 @@ class _DayPageState extends State<DayPage> {
               ),
               const SizedBox(height: 4),
               // Core tracking
-              _SheetTile(
-                Icons.baby_changing_station,
-                Colors.brown,
-                l.entryTypeDiaper,
-                'diaper',
-              ),
-              _SheetTile(
-                Icons.local_drink,
-                Colors.pink,
-                l.entryTypeFeeding,
-                'feeding',
-              ),
-              _SheetTile(
-                Icons.bedtime,
-                Colors.indigo,
-                l.entryTypeSleep,
-                'sleep',
-              ),
-              _SheetTile(
-                Icons.thermostat,
-                Colors.orange,
-                l.entryTypeTemperature,
-                'temperature',
-              ),
-              _SheetTile(
-                Icons.monitor_weight,
-                Colors.teal,
-                l.entryTypeWeight,
-                'weight',
-              ),
+              _SheetTile(Icons.baby_changing_station, Colors.brown,
+                  l.entryTypeDiaper, 'diaper'),
+              _SheetTile(Icons.local_drink, Colors.pink,
+                  l.entryTypeFeeding, 'feeding'),
+              _SheetTile(Icons.bedtime, Colors.indigo,
+                  l.entryTypeSleep, 'sleep'),
+              _SheetTile(Icons.thermostat, Colors.orange,
+                  l.entryTypeTemperature, 'temperature'),
+              _SheetTile(Icons.monitor_weight, Colors.teal,
+                  l.entryTypeWeight, 'weight'),
               const Divider(height: 1),
               // Additional tracking
-              _SheetTile(
-                Icons.child_care,
-                Colors.green,
-                'Tummy time',
-                'tummy_time',
-              ),
-              _SheetTile(
-                Icons.medication,
-                Colors.purple,
-                'Medication',
-                'medication',
-              ),
-              _SheetTile(
-                Icons.local_hospital_outlined,
-                Colors.blue,
-                'Doctor visit',
-                'doctor_visit',
-              ),
-              _SheetTile(
-                Icons.edit_note,
-                Colors.deepOrange,
-                'Daily note / journal',
-                'note',
-              ),
+              _SheetTile(Icons.child_care, Colors.green,
+                  'Tummy time', 'tummy_time'),
+              _SheetTile(Icons.medication, Colors.purple,
+                  'Medication', 'medication'),
+              _SheetTile(Icons.local_hospital_outlined, Colors.blue,
+                  'Doctor visit', 'doctor_visit'),
+              _SheetTile(Icons.edit_note, Colors.deepOrange,
+                  'Daily note / journal', 'note'),
               const SizedBox(height: 8),
             ],
           ),
@@ -485,12 +438,10 @@ class _DayPageState extends State<DayPage> {
       'medication' => (Icons.medication, Colors.purple),
       'doctor_visit' => (Icons.local_hospital_outlined, Colors.blue),
       'note' => (Icons.edit_note, Colors.deepOrange),
-      _ => (
-        (e.data['isBottle'] as bool?) ?? true
+      _ => ((e.data['isBottle'] as bool?) ?? true
             ? Icons.local_drink
             : Icons.child_care,
-        Colors.pink,
-      ),
+          Colors.pink),
     };
     return CircleAvatar(
       backgroundColor: color.withAlpha(30),
@@ -507,10 +458,10 @@ class _DayPageState extends State<DayPage> {
         final base = (pee && poo)
             ? l.diaperPeePoo
             : pee
-            ? l.diaperPee
-            : poo
-            ? l.diaperPoo
-            : l.diaperChange;
+                ? l.diaperPee
+                : poo
+                    ? l.diaperPoo
+                    : l.diaperChange;
         return rash ? '$base  🔴' : base;
       case 'sleep':
         final min = (e.data['durationMin'] as num?)?.toInt() ?? 0;
@@ -520,10 +471,7 @@ class _DayPageState extends State<DayPage> {
       case 'temperature':
         final c = (e.data['valueCelsius'] as num?)?.toDouble() ?? 0;
         final dot = switch (tempSeverity(c)) {
-          'fever' => '🔴',
-          'elevated' => '🟠',
-          'low' => '🔵',
-          _ => '🟢',
+          'fever' => '🔴', 'elevated' => '🟠', 'low' => '🔵', _ => '🟢'
         };
         return '${l.entryTypeTemperature}  $dot';
       case 'weight':
@@ -576,10 +524,8 @@ class _DayPageState extends State<DayPage> {
       case 'temperature':
         final c = (e.data['valueCelsius'] as num?)?.toDouble() ?? 0.0;
         try {
-          return formatTemp(
-            c,
-            useCelsius: (settings.useCelsius as bool?) ?? true,
-          );
+          return formatTemp(c,
+              useCelsius: (settings.useCelsius as bool?) ?? true);
         } catch (_) {
           return '${c.toStringAsFixed(1)} °C';
         }

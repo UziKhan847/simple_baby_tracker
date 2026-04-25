@@ -131,7 +131,7 @@ abstract class AppLocalizations {
     Locale('zh')
   ];
 
-  /// Application title
+  /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
   /// **'Baby Tracker'**
@@ -148,6 +148,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Graphs'**
   String get navGraphs;
+
+  /// No description provided for @navMilestones.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestones'**
+  String get navMilestones;
 
   /// No description provided for @navSettings.
   ///
@@ -209,6 +215,12 @@ abstract class AppLocalizations {
   /// **'Add day'**
   String get actionAddDay;
 
+  /// No description provided for @actionLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Log'**
+  String get actionLog;
+
   /// No description provided for @cannotUndo.
   ///
   /// In en, this message translates to:
@@ -220,6 +232,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No data'**
   String get noData;
+
+  /// No description provided for @noNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'No notes'**
+  String get noNotes;
+
+  /// No description provided for @noDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'No details'**
+  String get noDetails;
+
+  /// No description provided for @optional.
+  ///
+  /// In en, this message translates to:
+  /// **'(optional)'**
+  String get optional;
 
   /// No description provided for @homeTitle.
   ///
@@ -269,6 +299,12 @@ abstract class AppLocalizations {
   /// **'Remove {date} and all its entries? This cannot be undone.'**
   String deleteDayContent(String date);
 
+  /// No description provided for @rashRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'Rash recorded'**
+  String get rashRecorded;
+
   /// No description provided for @noEntriesYet.
   ///
   /// In en, this message translates to:
@@ -316,6 +352,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Weight'**
   String get entryTypeWeight;
+
+  /// No description provided for @entryTypeTummyTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Tummy time'**
+  String get entryTypeTummyTime;
+
+  /// No description provided for @entryTypeMedication.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication'**
+  String get entryTypeMedication;
+
+  /// No description provided for @entryTypeDoctorVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor visit'**
+  String get entryTypeDoctorVisit;
+
+  /// No description provided for @entryTypeNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily note / journal'**
+  String get entryTypeNote;
+
+  /// No description provided for @entryTypePumping.
+  ///
+  /// In en, this message translates to:
+  /// **'Pumping session'**
+  String get entryTypePumping;
+
+  /// No description provided for @entryTypeBath.
+  ///
+  /// In en, this message translates to:
+  /// **'Bath'**
+  String get entryTypeBath;
 
   /// No description provided for @diaperPeePoo.
   ///
@@ -556,12 +628,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No change / worse'**
   String get rashNoChange;
-
-  /// No description provided for @rashRecorded.
-  ///
-  /// In en, this message translates to:
-  /// **'Rash recorded'**
-  String get rashRecorded;
 
   /// No description provided for @addFeeding.
   ///
@@ -905,6 +971,720 @@ abstract class AppLocalizations {
   /// **'{sign}{amount} over period'**
   String weightOverPeriod(String sign, String amount);
 
+  /// No description provided for @tummyTimeLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Log tummy time'**
+  String get tummyTimeLog;
+
+  /// No description provided for @tummyTimeEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit tummy time'**
+  String get tummyTimeEdit;
+
+  /// No description provided for @tummyTimeStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start time'**
+  String get tummyTimeStart;
+
+  /// No description provided for @tummyTimeEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'End time'**
+  String get tummyTimeEnd;
+
+  /// No description provided for @tummyTimeTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Tummy time strengthens neck and shoulder muscles.'**
+  String get tummyTimeTip;
+
+  /// No description provided for @medicationLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Log medication'**
+  String get medicationLog;
+
+  /// No description provided for @medicationEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit medication'**
+  String get medicationEdit;
+
+  /// No description provided for @medicationName.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication name *'**
+  String get medicationName;
+
+  /// No description provided for @medicationDose.
+  ///
+  /// In en, this message translates to:
+  /// **'Dose'**
+  String get medicationDose;
+
+  /// No description provided for @medicationUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit'**
+  String get medicationUnit;
+
+  /// No description provided for @medicationCommon.
+  ///
+  /// In en, this message translates to:
+  /// **'Common medications'**
+  String get medicationCommon;
+
+  /// No description provided for @medicationWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.'**
+  String get medicationWarning;
+
+  /// No description provided for @medicationNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (optional)'**
+  String get medicationNotes;
+
+  /// No description provided for @medicationNotesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. reason, reaction...'**
+  String get medicationNotesHint;
+
+  /// No description provided for @doctorVisitLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor visit'**
+  String get doctorVisitLog;
+
+  /// No description provided for @doctorVisitEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit doctor visit'**
+  String get doctorVisitEdit;
+
+  /// No description provided for @doctorName.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor / clinic name'**
+  String get doctorName;
+
+  /// No description provided for @doctorVisitReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason for visit'**
+  String get doctorVisitReason;
+
+  /// No description provided for @doctorVisitMeasurements.
+  ///
+  /// In en, this message translates to:
+  /// **'Measurements (optional)'**
+  String get doctorVisitMeasurements;
+
+  /// No description provided for @doctorVisitNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get doctorVisitNotes;
+
+  /// No description provided for @doctorVisitNotesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. vaccinations given, doctor recommendations...'**
+  String get doctorVisitNotesHint;
+
+  /// No description provided for @measurementWeightKg.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight (kg)'**
+  String get measurementWeightKg;
+
+  /// No description provided for @measurementWeightLbs.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight (lbs)'**
+  String get measurementWeightLbs;
+
+  /// No description provided for @measurementHeightCm.
+  ///
+  /// In en, this message translates to:
+  /// **'Length / height (cm)'**
+  String get measurementHeightCm;
+
+  /// No description provided for @measurementHeadCm.
+  ///
+  /// In en, this message translates to:
+  /// **'Head circumference (cm)'**
+  String get measurementHeadCm;
+
+  /// No description provided for @dailyNoteLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily note'**
+  String get dailyNoteLog;
+
+  /// No description provided for @dailyNoteEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit note'**
+  String get dailyNoteEdit;
+
+  /// No description provided for @dailyNoteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title (optional)'**
+  String get dailyNoteTitle;
+
+  /// No description provided for @dailyNoteText.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get dailyNoteText;
+
+  /// No description provided for @dailyNoteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What happened today? First time rolling? Fussy morning?'**
+  String get dailyNoteHint;
+
+  /// No description provided for @dailyNoteTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick tags'**
+  String get dailyNoteTags;
+
+  /// No description provided for @pumpingLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Log pumping session'**
+  String get pumpingLog;
+
+  /// No description provided for @pumpingEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit pumping session'**
+  String get pumpingEdit;
+
+  /// No description provided for @pumpingLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Left breast (ml)'**
+  String get pumpingLeft;
+
+  /// No description provided for @pumpingRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Right breast (ml)'**
+  String get pumpingRight;
+
+  /// No description provided for @pumpingTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total pumped'**
+  String get pumpingTotal;
+
+  /// No description provided for @pumpingDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration (minutes)'**
+  String get pumpingDuration;
+
+  /// No description provided for @pumpingStored.
+  ///
+  /// In en, this message translates to:
+  /// **'Stored / frozen'**
+  String get pumpingStored;
+
+  /// No description provided for @pumpingNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (optional)'**
+  String get pumpingNotes;
+
+  /// No description provided for @pumpingSessionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pumping'**
+  String get pumpingSessionTitle;
+
+  /// No description provided for @pumpingTotalMl.
+  ///
+  /// In en, this message translates to:
+  /// **'{ml} ml total'**
+  String pumpingTotalMl(int ml);
+
+  /// No description provided for @bathLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Log bath'**
+  String get bathLog;
+
+  /// No description provided for @bathEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit bath'**
+  String get bathEdit;
+
+  /// No description provided for @bathType.
+  ///
+  /// In en, this message translates to:
+  /// **'Bath type'**
+  String get bathType;
+
+  /// No description provided for @bathTypeSponge.
+  ///
+  /// In en, this message translates to:
+  /// **'Sponge bath'**
+  String get bathTypeSponge;
+
+  /// No description provided for @bathTypeTub.
+  ///
+  /// In en, this message translates to:
+  /// **'Tub bath'**
+  String get bathTypeTub;
+
+  /// No description provided for @bathTypeShower.
+  ///
+  /// In en, this message translates to:
+  /// **'Shower'**
+  String get bathTypeShower;
+
+  /// No description provided for @bathNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (optional)'**
+  String get bathNotes;
+
+  /// No description provided for @bathProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'Products used (optional)'**
+  String get bathProducts;
+
+  /// No description provided for @vaccineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccinations'**
+  String get vaccineTitle;
+
+  /// No description provided for @vaccineTabGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'Given'**
+  String get vaccineTabGiven;
+
+  /// No description provided for @vaccineTabSchedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule'**
+  String get vaccineTabSchedule;
+
+  /// No description provided for @vaccineLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Log vaccine'**
+  String get vaccineLog;
+
+  /// No description provided for @vaccineEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit vaccine'**
+  String get vaccineEdit;
+
+  /// No description provided for @vaccineName.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccine name'**
+  String get vaccineName;
+
+  /// No description provided for @vaccineBrand.
+  ///
+  /// In en, this message translates to:
+  /// **'Brand / manufacturer (optional)'**
+  String get vaccineBrand;
+
+  /// No description provided for @vaccineDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date given'**
+  String get vaccineDate;
+
+  /// No description provided for @vaccineDose.
+  ///
+  /// In en, this message translates to:
+  /// **'Dose number (optional)'**
+  String get vaccineDose;
+
+  /// No description provided for @vaccineSite.
+  ///
+  /// In en, this message translates to:
+  /// **'Injection site (optional)'**
+  String get vaccineSite;
+
+  /// No description provided for @vaccineNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes / reactions'**
+  String get vaccineNotes;
+
+  /// No description provided for @vaccineDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Due at {age}'**
+  String vaccineDue(String age);
+
+  /// No description provided for @vaccineGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'Given'**
+  String get vaccineGiven;
+
+  /// No description provided for @vaccineNoGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'No vaccines logged yet.'**
+  String get vaccineNoGiven;
+
+  /// No description provided for @vaccineMarkGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as given'**
+  String get vaccineMarkGiven;
+
+  /// No description provided for @whoChartTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'WHO Growth Charts'**
+  String get whoChartTitle;
+
+  /// No description provided for @whoWeightForAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight-for-age'**
+  String get whoWeightForAge;
+
+  /// No description provided for @whoHeightForAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Length/Height-for-age'**
+  String get whoHeightForAge;
+
+  /// No description provided for @whoHeadForAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Head circumference-for-age'**
+  String get whoHeadForAge;
+
+  /// No description provided for @whoGenderBoy.
+  ///
+  /// In en, this message translates to:
+  /// **'Boy'**
+  String get whoGenderBoy;
+
+  /// No description provided for @whoGenderGirl.
+  ///
+  /// In en, this message translates to:
+  /// **'Girl'**
+  String get whoGenderGirl;
+
+  /// No description provided for @whoNoData.
+  ///
+  /// In en, this message translates to:
+  /// **'No measurements logged yet.\nLog weight from a day\'s entries to see the chart.'**
+  String get whoNoData;
+
+  /// No description provided for @whoPercentileLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'P{p}'**
+  String whoPercentileLabel(String p);
+
+  /// No description provided for @whoYourBaby.
+  ///
+  /// In en, this message translates to:
+  /// **'Your baby'**
+  String get whoYourBaby;
+
+  /// No description provided for @whoAgeMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} mo'**
+  String whoAgeMonths(int n);
+
+  /// No description provided for @whoNoBirthDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Set baby\'s date of birth in the profile to see age-based charts.'**
+  String get whoNoBirthDate;
+
+  /// No description provided for @notifTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders'**
+  String get notifTitle;
+
+  /// No description provided for @notifFeedingReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Feeding reminder'**
+  String get notifFeedingReminder;
+
+  /// No description provided for @notifFeedingReminderDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me after {hours}h if no feed logged'**
+  String notifFeedingReminderDesc(int hours);
+
+  /// No description provided for @notifDiaperReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Diaper reminder'**
+  String get notifDiaperReminder;
+
+  /// No description provided for @notifDiaperReminderDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me after {hours}h if no diaper logged'**
+  String notifDiaperReminderDesc(int hours);
+
+  /// No description provided for @notifMedicationReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication reminder'**
+  String get notifMedicationReminder;
+
+  /// No description provided for @notifEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications enabled'**
+  String get notifEnabled;
+
+  /// No description provided for @notifDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications disabled'**
+  String get notifDisabled;
+
+  /// No description provided for @notifPermissionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enable notifications in your device settings.'**
+  String get notifPermissionRequired;
+
+  /// No description provided for @exportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Export & backup'**
+  String get exportTitle;
+
+  /// No description provided for @exportJson.
+  ///
+  /// In en, this message translates to:
+  /// **'Export as JSON'**
+  String get exportJson;
+
+  /// No description provided for @exportPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Export as PDF'**
+  String get exportPdf;
+
+  /// No description provided for @exportPdfDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Human-readable summary for your paediatrician'**
+  String get exportPdfDesc;
+
+  /// No description provided for @exportGoogleDrive.
+  ///
+  /// In en, this message translates to:
+  /// **'Back up to Google Drive'**
+  String get exportGoogleDrive;
+
+  /// No description provided for @exportGenerating.
+  ///
+  /// In en, this message translates to:
+  /// **'Generating report...'**
+  String get exportGenerating;
+
+  /// No description provided for @milestoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestones'**
+  String get milestoneTitle;
+
+  /// No description provided for @milestoneTabAchieved.
+  ///
+  /// In en, this message translates to:
+  /// **'Achieved'**
+  String get milestoneTabAchieved;
+
+  /// No description provided for @milestoneTabUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get milestoneTabUpcoming;
+
+  /// No description provided for @milestoneCustomAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom milestone'**
+  String get milestoneCustomAdd;
+
+  /// No description provided for @milestoneDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete milestone?'**
+  String get milestoneDeleteTitle;
+
+  /// No description provided for @milestoneEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit milestone'**
+  String get milestoneEdit;
+
+  /// No description provided for @milestoneAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add milestone'**
+  String get milestoneAdd;
+
+  /// No description provided for @milestoneName.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone name *'**
+  String get milestoneName;
+
+  /// No description provided for @milestoneDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date achieved'**
+  String get milestoneDate;
+
+  /// No description provided for @milestoneNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (optional)'**
+  String get milestoneNotes;
+
+  /// No description provided for @milestoneNotesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Any details worth remembering...'**
+  String get milestoneNotesHint;
+
+  /// No description provided for @milestoneNoAchieved.
+  ///
+  /// In en, this message translates to:
+  /// **'No milestones logged yet.'**
+  String get milestoneNoAchieved;
+
+  /// No description provided for @milestoneAllDone.
+  ///
+  /// In en, this message translates to:
+  /// **'All preset milestones achieved! 🎉'**
+  String get milestoneAllDone;
+
+  /// No description provided for @milestoneFirstSmile.
+  ///
+  /// In en, this message translates to:
+  /// **'😊 First smile'**
+  String get milestoneFirstSmile;
+
+  /// No description provided for @milestoneFirstLaugh.
+  ///
+  /// In en, this message translates to:
+  /// **'😂 First laugh'**
+  String get milestoneFirstLaugh;
+
+  /// No description provided for @milestoneFirstTooth.
+  ///
+  /// In en, this message translates to:
+  /// **'🦷 First tooth'**
+  String get milestoneFirstTooth;
+
+  /// No description provided for @milestoneRolledBackTummy.
+  ///
+  /// In en, this message translates to:
+  /// **'🔄 Rolled back → tummy'**
+  String get milestoneRolledBackTummy;
+
+  /// No description provided for @milestoneRolledTummyBack.
+  ///
+  /// In en, this message translates to:
+  /// **'🔄 Rolled tummy → back'**
+  String get milestoneRolledTummyBack;
+
+  /// No description provided for @milestoneSatUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'🧸 Sat unsupported'**
+  String get milestoneSatUnsupported;
+
+  /// No description provided for @milestoneStartedCrawling.
+  ///
+  /// In en, this message translates to:
+  /// **'🐣 Started crawling'**
+  String get milestoneStartedCrawling;
+
+  /// No description provided for @milestonePulledToStand.
+  ///
+  /// In en, this message translates to:
+  /// **'🏋️ Pulled to stand'**
+  String get milestonePulledToStand;
+
+  /// No description provided for @milestoneFirstSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'👣 First steps'**
+  String get milestoneFirstSteps;
+
+  /// No description provided for @milestoneFirstWord.
+  ///
+  /// In en, this message translates to:
+  /// **'💬 First word'**
+  String get milestoneFirstWord;
+
+  /// No description provided for @milestoneFirstSolidFood.
+  ///
+  /// In en, this message translates to:
+  /// **'🥣 First solid food'**
+  String get milestoneFirstSolidFood;
+
+  /// No description provided for @milestoneFirstHaircut.
+  ///
+  /// In en, this message translates to:
+  /// **'✂️ First haircut'**
+  String get milestoneFirstHaircut;
+
+  /// No description provided for @milestoneSleptThroughNight.
+  ///
+  /// In en, this message translates to:
+  /// **'🌙 Slept through the night'**
+  String get milestoneSleptThroughNight;
+
+  /// No description provided for @milestoneWavedBye.
+  ///
+  /// In en, this message translates to:
+  /// **'👋 Waved bye-bye'**
+  String get milestoneWavedBye;
+
+  /// No description provided for @milestoneClappedHands.
+  ///
+  /// In en, this message translates to:
+  /// **'👏 Clapped hands'**
+  String get milestoneClappedHands;
+
+  /// No description provided for @milestoneFirstBirthday.
+  ///
+  /// In en, this message translates to:
+  /// **'🎂 First birthday'**
+  String get milestoneFirstBirthday;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:
@@ -959,6 +1739,18 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get settingsLanguage;
 
+  /// No description provided for @settingsNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications & reminders'**
+  String get settingsNotifications;
+
+  /// No description provided for @settingsExport.
+  ///
+  /// In en, this message translates to:
+  /// **'Export & backup'**
+  String get settingsExport;
+
   /// No description provided for @settingsTips.
   ///
   /// In en, this message translates to:
@@ -989,6 +1781,12 @@ abstract class AppLocalizations {
   /// **'Works on day tiles and individual entries.'**
   String get tipSwipeDeleteDesc;
 
+  /// No description provided for @tipTapToEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap any entry to edit it'**
+  String get tipTapToEdit;
+
   /// No description provided for @tipMultipleFeeds.
   ///
   /// In en, this message translates to:
@@ -1012,12 +1810,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Use the share icon on Home to export all data as JSON.'**
   String get tipExportDataDesc;
-
-  /// No description provided for @tipTapToEdit.
-  ///
-  /// In en, this message translates to:
-  /// **'Tap any entry to edit it'**
-  String get tipTapToEdit;
 
   /// No description provided for @babiesTitle.
   ///
@@ -1114,6 +1906,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Health'**
   String get graphsTabHealth;
+
+  /// No description provided for @graphsTabWho.
+  ///
+  /// In en, this message translates to:
+  /// **'WHO Charts'**
+  String get graphsTabWho;
 
   /// No description provided for @graphsTotalFeeds.
   ///
@@ -1222,12 +2020,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No colour recorded'**
   String get noColourRecorded;
-
-  /// No description provided for @noDetails.
-  ///
-  /// In en, this message translates to:
-  /// **'No details'**
-  String get noDetails;
 
   /// No description provided for @ageDay.
   ///
