@@ -18,7 +18,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get navGraphs => 'Grafikler';
 
   @override
-  String get navMilestones => 'Milestones';
+  String get navMilestones => 'Gelişim Aşamaları';
 
   @override
   String get navSettings => 'Ayarlar';
@@ -45,40 +45,40 @@ class AppLocalizationsTr extends AppLocalizations {
   String get actionClose => 'Kapat';
 
   @override
-  String get actionExport => 'Verileri Dışa Aktar';
+  String get actionExport => 'Verileri dışa aktar';
 
   @override
-  String get actionAddDay => 'Gün Ekle';
+  String get actionAddDay => 'Gün ekle';
 
   @override
-  String get actionLog => 'Log';
+  String get actionLog => 'Kaydet';
 
   @override
-  String get cannotUndo => 'Bu işlem geri alınamaz';
+  String get cannotUndo => 'Bu işlem geri alınamaz.';
 
   @override
   String get noData => 'Veri yok';
 
   @override
-  String get noNotes => 'No notes';
+  String get noNotes => 'Not yok';
 
   @override
   String get noDetails => 'Detay yok';
 
   @override
-  String get optional => '(optional)';
+  String get optional => '(isteğe bağlı)';
 
   @override
   String get homeTitle => 'Takip';
 
   @override
-  String get feedsToday => 'Bugünkü Beslemeler';
+  String get feedsToday => 'Bugünkü beslenmeler';
 
   @override
-  String get diapersToday => 'Bugünkü Bebek Bezleri';
+  String get diapersToday => 'Bugünkü bezler';
 
   @override
-  String get sleepToday => 'Bugünkü Uyku';
+  String get sleepToday => 'Bugünkü uyku';
 
   @override
   String todayLabel(String date) {
@@ -92,7 +92,7 @@ class AppLocalizationsTr extends AppLocalizations {
       locale: localeName,
       other: '$count olay',
       one: '1 olay',
-      zero: 'Olay yok',
+      zero: 'olay yok',
     );
     return '$_temp0';
   }
@@ -102,26 +102,26 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String deleteDayContent(String date) {
-    return '$date ve tüm girişleri silinsin mi? Bu işlem geri alınamaz';
+    return '$date ve içindeki tüm kayıtlar silinsin mi? Bu işlem geri alınamaz.';
   }
 
   @override
   String get rashRecorded => 'Pişik kaydedildi';
 
   @override
-  String get noEntriesYet => 'Henüz giriş yok';
+  String get noEntriesYet => 'Henüz kayıt yok';
 
   @override
-  String get addEntry => 'Giriş Ekle';
+  String get addEntry => 'Kayıt ekle';
 
   @override
-  String get deleteEntryTitle => 'Giriş silinsin mi?';
+  String get deleteEntryTitle => 'Kayıt silinsin mi?';
 
   @override
-  String get entryTypeDiaper => 'Bez Değiştirme';
+  String get entryTypeDiaper => 'Bez değiştirme';
 
   @override
-  String get entryTypeFeeding => 'Besleme';
+  String get entryTypeFeeding => 'Beslenme';
 
   @override
   String get entryTypeSleep => 'Uyku';
@@ -133,37 +133,37 @@ class AppLocalizationsTr extends AppLocalizations {
   String get entryTypeWeight => 'Kilo';
 
   @override
-  String get entryTypeTummyTime => 'Tummy time';
+  String get entryTypeTummyTime => 'Yüzüstü zaman';
 
   @override
-  String get entryTypeMedication => 'Medication';
+  String get entryTypeMedication => 'İlaç';
 
   @override
-  String get entryTypeDoctorVisit => 'Doctor visit';
+  String get entryTypeDoctorVisit => 'Doktor ziyareti';
 
   @override
-  String get entryTypeNote => 'Daily note / journal';
+  String get entryTypeNote => 'Günlük not / günlük';
 
   @override
-  String get entryTypePumping => 'Pumping session';
+  String get entryTypePumping => 'Sağma seansı';
 
   @override
-  String get entryTypeBath => 'Bath';
+  String get entryTypeBath => 'Banyo';
 
   @override
   String get diaperPeePoo => 'Bez — çiş + kaka';
 
   @override
-  String get diaperPee => 'Bez — sadece çiş';
+  String get diaperPee => 'Bez — çiş';
 
   @override
-  String get diaperPoo => 'Bez — sadece kaka';
+  String get diaperPoo => 'Bez — kaka';
 
   @override
-  String get diaperChange => 'Bez Değiştirme';
+  String get diaperChange => 'Bez değiştir';
 
   @override
-  String get editDiaper => 'Bezi Düzenle';
+  String get editDiaper => 'Bezi düzenle';
 
   @override
   String get diaperContents => 'İçerik';
@@ -184,16 +184,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get diaperConsistency => 'Kıvam';
 
   @override
-  String get consistencyHard => 'Sert / Topaklı';
+  String get consistencyHard => 'Sert / topaklı';
 
   @override
   String get consistencyHardHint => 'Kabızlık';
 
   @override
-  String get consistencyFirm => 'Şekilli';
+  String get consistencyFirm => 'Katı';
 
   @override
-  String get consistencyFirmHint => 'Hafif sert';
+  String get consistencyFirmHint => 'Hafif katı';
 
   @override
   String get consistencyNormal => 'Normal';
@@ -208,10 +208,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get consistencySoftHint => 'Hafif yumuşak';
 
   @override
-  String get consistencyLoose => 'Macunsu / Yarı sıvı';
+  String get consistencyLoose => 'Sulu / lapa gibi';
 
   @override
-  String get consistencyLooseHint => 'Takip et';
+  String get consistencyLooseHint => 'İzle';
 
   @override
   String get consistencyWatery => 'Sulu';
@@ -220,13 +220,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get consistencyWateryHint => 'İshal';
 
   @override
-  String get warnConstipation => 'Kabızlık belirtileri — yakından izle';
+  String get warnConstipation => 'Kabızlık belirtileri — yakından izleyin';
 
   @override
-  String get warnDiarrhea => 'İshal belirtileri — yakından izle';
+  String get warnDiarrhea => 'İshal belirtileri — yakından izleyin';
 
   @override
-  String get pooColourLabel => 'Renk (seçmek için dokun)';
+  String get pooColourLabel => 'Renk (seçmek için dokunun)';
 
   @override
   String get pooColourAbnormal => '⚠️ Anormal (soluk)';
@@ -240,7 +240,7 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get diaperSize => 'Bez Numarası';
+  String get diaperSize => 'Bez bedeni';
 
   @override
   String get diaperBrand => 'Marka';
@@ -255,7 +255,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get rashPresentHint => 'Kızarıklık, tahriş veya pişik';
 
   @override
-  String get rashCreamUsed => 'Krem kullanıldı';
+  String get rashCreamUsed => 'Pişik kremi kullanıldı';
 
   @override
   String get rashCreamCustomLabel => 'Krem / merhem adı';
@@ -264,7 +264,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get rashFollowUpTitle => '⚠️ Pişik takibi';
 
   @override
-  String get rashFollowUpQuestion => 'Son bezde pişik kaydedildi. İyileşme oldu mu?';
+  String get rashFollowUpQuestion => 'Son bezde pişik kaydedilmişti. İyileşti mi?';
 
   @override
   String get rashImproved => 'Evet, iyileşti';
@@ -273,14 +273,14 @@ class AppLocalizationsTr extends AppLocalizations {
   String get rashNoChange => 'Değişiklik yok / kötüleşti';
 
   @override
-  String get addFeeding => 'Besleme Ekle';
+  String get addFeeding => 'Beslenme ekle';
 
   @override
-  String get editFeeding => 'Beslemeyi Düzenle';
+  String get editFeeding => 'Beslenmeyi düzenle';
 
   @override
   String feedLabel(int number) {
-    return 'Besleme $number';
+    return 'Beslenme $number';
   }
 
   @override
@@ -299,34 +299,34 @@ class AppLocalizationsTr extends AppLocalizations {
   String get feedBreastMilk => 'Anne sütü';
 
   @override
-  String get feedFormula => 'Mama';
+  String get feedFormula => 'Formül mama';
 
   @override
-  String get feedFormulaBrand => 'Mama markası';
+  String get feedFormulaBrand => 'Formül mama markası';
 
   @override
-  String get feedFormulaBrandCustom => 'Marka adı';
+  String get feedFormulaBrandCustom => 'Formül mama marka adı';
 
   @override
   String get feedDurationMinutes => 'Süre (dakika)';
 
   @override
-  String get addAnotherFeed => 'Başka bir besleme ekle';
+  String get addAnotherFeed => 'Başka bir beslenme ekle';
 
   @override
   String get bottleBreastMilk => 'Biberon — anne sütü';
 
   @override
-  String get bottleFormula => 'Biberon — mama';
+  String get bottleFormula => 'Biberon — formül mama';
 
   @override
-  String get breastfeedingSuckle => 'Emzirme (direkt)';
+  String get breastfeedingSuckle => 'Emzirme (direkt memeden)';
 
   @override
-  String get logSleep => 'Uyku Kaydet';
+  String get logSleep => 'Uyku kaydet';
 
   @override
-  String get editSleep => 'Uykuyu Düzenle';
+  String get editSleep => 'Uykuyu düzenle';
 
   @override
   String get sleepStart => 'Uyku başlangıcı';
@@ -343,42 +343,42 @@ class AppLocalizationsTr extends AppLocalizations {
   String get sleepInvalidTimes => 'Geçersiz saatler';
 
   @override
-  String get sleepWrapsNextDay => '(ertesi güne geçer)';
+  String get sleepWrapsNextDay => '(ertesi güne sarar)';
 
   @override
   String get sleepNotes => 'Notlar (isteğe bağlı)';
 
   @override
-  String get sleepNotesHint => 'Örn: huzursuz, kısa süreli uyanma...';
+  String get sleepNotesHint => 'örn. huzursuz, kısa süreli uyandı...';
 
   @override
   String get sleepNoNotes => 'Not yok';
 
   @override
   String sleepHoursShort(int h, int m) {
-    return '${h}s ${m}dk';
+    return '${h}s ${m}d';
   }
 
   @override
-  String get logTemperature => 'Ateş Kaydet';
+  String get logTemperature => 'Ateş kaydet';
 
   @override
-  String get editTemperature => 'Ateşi Düzenle';
+  String get editTemperature => 'Ateşi düzenle';
 
   @override
   String get temperatureLabel => 'Ateş';
 
   @override
-  String get tempSeverityLow => 'Düşük ateş — izle';
+  String get tempSeverityLow => 'Düşük ateş — izleyin';
 
   @override
   String get tempSeverityNormal => 'Normal ateş';
 
   @override
-  String get tempSeverityElevated => 'Hafif yüksek — yakından izle';
+  String get tempSeverityElevated => 'Hafif yüksek — yakından izleyin';
 
   @override
-  String get tempSeverityFever => 'Ateş — doktora danış';
+  String get tempSeverityFever => 'Ateş — doktorunuza danışın';
 
   @override
   String get tempReference => 'Ateş referansı';
@@ -396,7 +396,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get tempRefFever => '≥ 38,5 °C / 101,3 °F';
 
   @override
-  String get tempFeverWarning => '⚠️ 3 aydan küçük bebeklerde ateş durumunda mutlaka çocuk doktoruna danışın';
+  String get tempFeverWarning => '⚠️ 3 aydan küçük bebeklerde ateş durumunda mutlaka çocuk doktorunuza danışın.';
 
   @override
   String get tempLow => 'Düşük';
@@ -426,15 +426,16 @@ class AppLocalizationsTr extends AppLocalizations {
       locale: localeName,
       other: '$count gün',
       one: '1 gün',
+      zero: 'gün yok',
     );
     return '$_temp0';
   }
 
   @override
-  String get logWeight => 'Kilo Kaydet';
+  String get logWeight => 'Kilo kaydet';
 
   @override
-  String get editWeight => 'Kiloyu Düzenle';
+  String get editWeight => 'Kiloyu düzenle';
 
   @override
   String get weightLabel => 'Kilo';
@@ -446,7 +447,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String weightLoss(String amount) {
-    return '−$amount azalma';
+    return '−$amount kayıp';
   }
 
   @override
@@ -456,7 +457,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String weightLastRecorded(String weight, String date) {
-    return 'Son kayıt: $weight ($date)';
+    return 'Son kayıt: $weight, $date';
   }
 
   @override
@@ -464,225 +465,225 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String weightOverPeriod(String sign, String amount) {
-    return '$sign$amount bu dönemde';
+    return '$sign$amount süre içinde';
   }
 
   @override
-  String get tummyTimeLog => 'Log tummy time';
+  String get tummyTimeLog => 'Yüzüstü zaman kaydet';
 
   @override
-  String get tummyTimeEdit => 'Edit tummy time';
+  String get tummyTimeEdit => 'Yüzüstü zamanı düzenle';
 
   @override
-  String get tummyTimeStart => 'Start time';
+  String get tummyTimeStart => 'Başlangıç saati';
 
   @override
-  String get tummyTimeEnd => 'End time';
+  String get tummyTimeEnd => 'Bitiş saati';
 
   @override
-  String get tummyTimeTip => 'Tummy time strengthens neck and shoulder muscles.';
+  String get tummyTimeTip => 'Yüzüstü zaman boyun ve omuz kaslarını güçlendirir.';
 
   @override
-  String get medicationLog => 'Log medication';
+  String get medicationLog => 'İlaç kaydet';
 
   @override
-  String get medicationEdit => 'Edit medication';
+  String get medicationEdit => 'İlacı düzenle';
 
   @override
-  String get medicationName => 'Medication name *';
+  String get medicationName => 'İlaç adı *';
 
   @override
-  String get medicationDose => 'Dose';
+  String get medicationDose => 'Doz';
 
   @override
-  String get medicationUnit => 'Unit';
+  String get medicationUnit => 'Birim';
 
   @override
-  String get medicationCommon => 'Common medications';
+  String get medicationCommon => 'Yaygın ilaçlar';
 
   @override
-  String get medicationWarning => 'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.';
+  String get medicationWarning => 'Dozaj talimatlarını daima kilo/yaşa göre izleyin. Önerilen sıklığı aşmayın.';
 
   @override
-  String get medicationNotes => 'Notes (optional)';
+  String get medicationNotes => 'Notlar (isteğe bağlı)';
 
   @override
-  String get medicationNotesHint => 'e.g. reason, reaction...';
+  String get medicationNotesHint => 'örn. neden, reaksiyon...';
 
   @override
-  String get doctorVisitLog => 'Doctor visit';
+  String get doctorVisitLog => 'Doktor ziyareti';
 
   @override
-  String get doctorVisitEdit => 'Edit doctor visit';
+  String get doctorVisitEdit => 'Doktor ziyaretini düzenle';
 
   @override
-  String get doctorName => 'Doctor / clinic name';
+  String get doctorName => 'Doktor / klinik adı';
 
   @override
-  String get doctorVisitReason => 'Reason for visit';
+  String get doctorVisitReason => 'Ziyaret nedeni';
 
   @override
-  String get doctorVisitMeasurements => 'Measurements (optional)';
+  String get doctorVisitMeasurements => 'Ölçümler (isteğe bağlı)';
 
   @override
-  String get doctorVisitNotes => 'Notes';
+  String get doctorVisitNotes => 'Notlar';
 
   @override
-  String get doctorVisitNotesHint => 'e.g. vaccinations given, doctor recommendations...';
+  String get doctorVisitNotesHint => 'örn. yapılan aşılar, doktor önerileri...';
 
   @override
-  String get measurementWeightKg => 'Weight (kg)';
+  String get measurementWeightKg => 'Kilo (kg)';
 
   @override
-  String get measurementWeightLbs => 'Weight (lbs)';
+  String get measurementWeightLbs => 'Kilo (lbs)';
 
   @override
-  String get measurementHeightCm => 'Length / height (cm)';
+  String get measurementHeightCm => 'Boy / uzunluk (cm)';
 
   @override
-  String get measurementHeadCm => 'Head circumference (cm)';
+  String get measurementHeadCm => 'Baş çevresi (cm)';
 
   @override
-  String get dailyNoteLog => 'Daily note';
+  String get dailyNoteLog => 'Günlük not';
 
   @override
-  String get dailyNoteEdit => 'Edit note';
+  String get dailyNoteEdit => 'Notu düzenle';
 
   @override
-  String get dailyNoteTitle => 'Title (optional)';
+  String get dailyNoteTitle => 'Başlık (isteğe bağlı)';
 
   @override
-  String get dailyNoteText => 'Note';
+  String get dailyNoteText => 'Not';
 
   @override
-  String get dailyNoteHint => 'What happened today? First time rolling? Fussy morning?';
+  String get dailyNoteHint => 'Bugün ne oldu? İlk kez döndü mü? Huzursuz sabah?';
 
   @override
-  String get dailyNoteTags => 'Quick tags';
+  String get dailyNoteTags => 'Hızlı etiketler';
 
   @override
-  String get pumpingLog => 'Log pumping session';
+  String get pumpingLog => 'Sağma seansı kaydet';
 
   @override
-  String get pumpingEdit => 'Edit pumping session';
+  String get pumpingEdit => 'Sağma seansını düzenle';
 
   @override
-  String get pumpingLeft => 'Left breast (ml)';
+  String get pumpingLeft => 'Sol göğüs (ml)';
 
   @override
-  String get pumpingRight => 'Right breast (ml)';
+  String get pumpingRight => 'Sağ göğüs (ml)';
 
   @override
-  String get pumpingTotal => 'Total pumped';
+  String get pumpingTotal => 'Toplam sağılan';
 
   @override
-  String get pumpingDuration => 'Duration (minutes)';
+  String get pumpingDuration => 'Süre (dakika)';
 
   @override
-  String get pumpingStored => 'Stored / frozen';
+  String get pumpingStored => 'Saklanan / dondurulan';
 
   @override
-  String get pumpingNotes => 'Notes (optional)';
+  String get pumpingNotes => 'Notlar (isteğe bağlı)';
 
   @override
-  String get pumpingSessionTitle => 'Pumping';
+  String get pumpingSessionTitle => 'Sağma';
 
   @override
   String pumpingTotalMl(int ml) {
-    return '$ml ml total';
+    return 'Toplam $ml ml';
   }
 
   @override
-  String get bathLog => 'Log bath';
+  String get bathLog => 'Banyo kaydet';
 
   @override
-  String get bathEdit => 'Edit bath';
+  String get bathEdit => 'Banyoyu düzenle';
 
   @override
-  String get bathType => 'Bath type';
+  String get bathType => 'Banyo türü';
 
   @override
-  String get bathTypeSponge => 'Sponge bath';
+  String get bathTypeSponge => 'Sünger banyosu';
 
   @override
-  String get bathTypeTub => 'Tub bath';
+  String get bathTypeTub => 'Küvet banyosu';
 
   @override
-  String get bathTypeShower => 'Shower';
+  String get bathTypeShower => 'Duş';
 
   @override
-  String get bathNotes => 'Notes (optional)';
+  String get bathNotes => 'Notlar (isteğe bağlı)';
 
   @override
-  String get bathProducts => 'Products used (optional)';
+  String get bathProducts => 'Kullanılan ürünler (isteğe bağlı)';
 
   @override
-  String get vaccineTitle => 'Vaccinations';
+  String get vaccineTitle => 'Aşılar';
 
   @override
-  String get vaccineTabGiven => 'Given';
+  String get vaccineTabGiven => 'Yapılanlar';
 
   @override
-  String get vaccineTabSchedule => 'Schedule';
+  String get vaccineTabSchedule => 'Takvim';
 
   @override
-  String get vaccineLog => 'Log vaccine';
+  String get vaccineLog => 'Aşı kaydet';
 
   @override
-  String get vaccineEdit => 'Edit vaccine';
+  String get vaccineEdit => 'Aşıyı düzenle';
 
   @override
-  String get vaccineName => 'Vaccine name';
+  String get vaccineName => 'Aşı adı';
 
   @override
-  String get vaccineBrand => 'Brand / manufacturer (optional)';
+  String get vaccineBrand => 'Marka / üretici (isteğe bağlı)';
 
   @override
-  String get vaccineDate => 'Date given';
+  String get vaccineDate => 'Yapıldığı tarih';
 
   @override
-  String get vaccineDose => 'Dose number (optional)';
+  String get vaccineDose => 'Doz numarası (isteğe bağlı)';
 
   @override
-  String get vaccineSite => 'Injection site (optional)';
+  String get vaccineSite => 'Enjeksiyon bölgesi (isteğe bağlı)';
 
   @override
-  String get vaccineNotes => 'Notes / reactions';
+  String get vaccineNotes => 'Notlar / reaksiyonlar';
 
   @override
   String vaccineDue(String age) {
-    return 'Due at $age';
+    return '$age yaşında yapılacak';
   }
 
   @override
-  String get vaccineGiven => 'Given';
+  String get vaccineGiven => 'Yapıldı';
 
   @override
-  String get vaccineNoGiven => 'No vaccines logged yet.';
+  String get vaccineNoGiven => 'Henüz aşı kaydedilmedi.';
 
   @override
-  String get vaccineMarkGiven => 'Mark as given';
+  String get vaccineMarkGiven => 'Yapıldı olarak işaretle';
 
   @override
-  String get whoChartTitle => 'WHO Growth Charts';
+  String get whoChartTitle => 'WHO Büyüme Eğrileri';
 
   @override
-  String get whoWeightForAge => 'Weight-for-age';
+  String get whoWeightForAge => 'Yaşa göre kilo';
 
   @override
-  String get whoHeightForAge => 'Length/Height-for-age';
+  String get whoHeightForAge => 'Yaşa göre boy/uzunluk';
 
   @override
-  String get whoHeadForAge => 'Head circumference-for-age';
+  String get whoHeadForAge => 'Yaşa göre baş çevresi';
 
   @override
-  String get whoGenderBoy => 'Boy';
+  String get whoGenderBoy => 'Erkek';
 
   @override
-  String get whoGenderGirl => 'Girl';
+  String get whoGenderGirl => 'Kız';
 
   @override
-  String get whoNoData => 'No measurements logged yet.\nLog weight from a day\'s entries to see the chart.';
+  String get whoNoData => 'Henüz ölçüm kaydedilmedi.\nGrafiği görmek için bir günün kayıtlarından kilo girin.';
 
   @override
   String whoPercentileLabel(String p) {
@@ -690,151 +691,151 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get whoYourBaby => 'Your baby';
+  String get whoYourBaby => 'Bebeğiniz';
 
   @override
   String whoAgeMonths(int n) {
-    return '$n mo';
+    return '$n ay';
   }
 
   @override
-  String get whoNoBirthDate => 'Set baby\'s date of birth in the profile to see age-based charts.';
+  String get whoNoBirthDate => 'Yaşa dayalı grafikleri görmek için profilde bebeğin doğum tarihini ayarlayın.';
 
   @override
-  String get notifTitle => 'Reminders';
+  String get notifTitle => 'Hatırlatıcılar';
 
   @override
-  String get notifFeedingReminder => 'Feeding reminder';
+  String get notifFeedingReminder => 'Beslenme hatırlatıcısı';
 
   @override
   String notifFeedingReminderDesc(int hours) {
-    return 'Remind me after ${hours}h if no feed logged';
+    return '$hours saat sonra beslenme kaydedilmemişse hatırlat';
   }
 
   @override
-  String get notifDiaperReminder => 'Diaper reminder';
+  String get notifDiaperReminder => 'Bez hatırlatıcısı';
 
   @override
   String notifDiaperReminderDesc(int hours) {
-    return 'Remind me after ${hours}h if no diaper logged';
+    return '$hours saat sonra bez kaydedilmemişse hatırlat';
   }
 
   @override
-  String get notifMedicationReminder => 'Medication reminder';
+  String get notifMedicationReminder => 'İlaç hatırlatıcısı';
 
   @override
-  String get notifEnabled => 'Notifications enabled';
+  String get notifEnabled => 'Bildirimler etkin';
 
   @override
-  String get notifDisabled => 'Notifications disabled';
+  String get notifDisabled => 'Bildirimler devre dışı';
 
   @override
-  String get notifPermissionRequired => 'Please enable notifications in your device settings.';
+  String get notifPermissionRequired => 'Lütfen cihaz ayarlarınızdan bildirimleri etkinleştirin.';
 
   @override
-  String get exportTitle => 'Export & backup';
+  String get exportTitle => 'Dışa aktarma ve yedekleme';
 
   @override
-  String get exportJson => 'Export as JSON';
+  String get exportJson => 'JSON olarak dışa aktar';
 
   @override
-  String get exportPdf => 'Export as PDF';
+  String get exportPdf => 'PDF olarak dışa aktar';
 
   @override
-  String get exportPdfDesc => 'Human-readable summary for your paediatrician';
+  String get exportPdfDesc => 'Doktorunuz için okunabilir özet';
 
   @override
-  String get exportGoogleDrive => 'Back up to Google Drive';
+  String get exportGoogleDrive => 'Google Drive\'a yedekle';
 
   @override
-  String get exportGenerating => 'Generating report...';
+  String get exportGenerating => 'Rapor oluşturuluyor...';
 
   @override
-  String get milestoneTitle => 'Milestones';
+  String get milestoneTitle => 'Gelişim Aşamaları';
 
   @override
-  String get milestoneTabAchieved => 'Achieved';
+  String get milestoneTabAchieved => 'Tamamlananlar';
 
   @override
-  String get milestoneTabUpcoming => 'Upcoming';
+  String get milestoneTabUpcoming => 'Yaklaşanlar';
 
   @override
-  String get milestoneCustomAdd => 'Custom milestone';
+  String get milestoneCustomAdd => 'Özel aşama';
 
   @override
-  String get milestoneDeleteTitle => 'Delete milestone?';
+  String get milestoneDeleteTitle => 'Aşama silinsin mi?';
 
   @override
-  String get milestoneEdit => 'Edit milestone';
+  String get milestoneEdit => 'Aşamayı düzenle';
 
   @override
-  String get milestoneAdd => 'Add milestone';
+  String get milestoneAdd => 'Aşama ekle';
 
   @override
-  String get milestoneName => 'Milestone name *';
+  String get milestoneName => 'Aşama adı *';
 
   @override
-  String get milestoneDate => 'Date achieved';
+  String get milestoneDate => 'Tamamlanma tarihi';
 
   @override
-  String get milestoneNotes => 'Notes (optional)';
+  String get milestoneNotes => 'Notlar (isteğe bağlı)';
 
   @override
-  String get milestoneNotesHint => 'Any details worth remembering...';
+  String get milestoneNotesHint => 'Hatırlamaya değer detaylar...';
 
   @override
-  String get milestoneNoAchieved => 'No milestones logged yet.';
+  String get milestoneNoAchieved => 'Henüz aşama kaydedilmedi.';
 
   @override
-  String get milestoneAllDone => 'All preset milestones achieved! 🎉';
+  String get milestoneAllDone => 'Tüm ön tanımlı aşamalar tamamlandı! 🎉';
 
   @override
-  String get milestoneFirstSmile => '😊 First smile';
+  String get milestoneFirstSmile => '😊 İlk gülümseme';
 
   @override
-  String get milestoneFirstLaugh => '😂 First laugh';
+  String get milestoneFirstLaugh => '😂 İlk kahkaha';
 
   @override
-  String get milestoneFirstTooth => '🦷 First tooth';
+  String get milestoneFirstTooth => '🦷 İlk diş';
 
   @override
-  String get milestoneRolledBackTummy => '🔄 Rolled back → tummy';
+  String get milestoneRolledBackTummy => '🔄 Sırttan yüze döndü';
 
   @override
-  String get milestoneRolledTummyBack => '🔄 Rolled tummy → back';
+  String get milestoneRolledTummyBack => '🔄 Yüzden sırta döndü';
 
   @override
-  String get milestoneSatUnsupported => '🧸 Sat unsupported';
+  String get milestoneSatUnsupported => '🧸 Desteksiz oturdu';
 
   @override
-  String get milestoneStartedCrawling => '🐣 Started crawling';
+  String get milestoneStartedCrawling => '🐣 Emeklemeye başladı';
 
   @override
-  String get milestonePulledToStand => '🏋️ Pulled to stand';
+  String get milestonePulledToStand => '🏋️ Tutunarak ayağa kalktı';
 
   @override
-  String get milestoneFirstSteps => '👣 First steps';
+  String get milestoneFirstSteps => '👣 İlk adımlar';
 
   @override
-  String get milestoneFirstWord => '💬 First word';
+  String get milestoneFirstWord => '💬 İlk kelime';
 
   @override
-  String get milestoneFirstSolidFood => '🥣 First solid food';
+  String get milestoneFirstSolidFood => '🥣 İlk katı gıda';
 
   @override
-  String get milestoneFirstHaircut => '✂️ First haircut';
+  String get milestoneFirstHaircut => '✂️ İlk saç kesimi';
 
   @override
-  String get milestoneSleptThroughNight => '🌙 Slept through the night';
+  String get milestoneSleptThroughNight => '🌙 Gece boyunca uyudu';
 
   @override
-  String get milestoneWavedBye => '👋 Waved bye-bye';
+  String get milestoneWavedBye => '👋 El sallayarak veda etti';
 
   @override
-  String get milestoneClappedHands => '👏 Clapped hands';
+  String get milestoneClappedHands => '👏 Ellerini çırptı';
 
   @override
-  String get milestoneFirstBirthday => '🎂 First birthday';
+  String get milestoneFirstBirthday => '🎂 İlk doğum günü';
 
   @override
   String get settingsTitle => 'Ayarlar';
@@ -858,55 +859,55 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsWeightUnit => 'Kilo birimi';
 
   @override
-  String get settingsTempUnit => 'Ateş birimi';
+  String get settingsTempUnit => 'Sıcaklık birimi';
 
   @override
   String get settingsLanguage => 'Dil';
 
   @override
-  String get settingsNotifications => 'Notifications & reminders';
+  String get settingsNotifications => 'Bildirimler ve hatırlatıcılar';
 
   @override
-  String get settingsExport => 'Export & backup';
+  String get settingsExport => 'Dışa aktarma ve yedekleme';
 
   @override
   String get settingsTips => 'İpuçları';
 
   @override
-  String get tipSwitchBabies => 'Bebek değiştir';
+  String get tipSwitchBabies => 'Bebekleri değiştir';
 
   @override
-  String get tipSwitchBabiesDesc => 'Bebek değiştirmek veya profil eklemek için üstteki bebek avatarına dokun';
+  String get tipSwitchBabiesDesc => 'Üstteki bebek avatarına dokunarak bebek değiştirebilir veya yeni profil ekleyebilirsiniz.';
 
   @override
-  String get tipSwipeDelete => 'Silmek için sola kaydır';
+  String get tipSwipeDelete => 'Silmek için sola kaydırın';
 
   @override
-  String get tipSwipeDeleteDesc => 'Gün kartlarında ve tek tek girişlerde çalışır';
+  String get tipSwipeDeleteDesc => 'Gün kutucukları ve tek tek kayıtlarda çalışır.';
 
   @override
-  String get tipTapToEdit => 'Düzenlemek için herhangi bir girişe dokun';
+  String get tipTapToEdit => 'Düzenlemek için herhangi bir kayda dokunun';
 
   @override
-  String get tipMultipleFeeds => 'Birden fazla besleme kaydet';
+  String get tipMultipleFeeds => 'Birden fazla beslenme kaydetme';
 
   @override
-  String get tipMultipleFeedsDesc => 'Besleme formunda \"Başka bir besleme ekle\"ye dokunarak emzirme ve biberonu tek seferde kaydedebilirsin';
+  String get tipMultipleFeedsDesc => 'Beslenme formunda \"Başka bir beslenme ekle\"ye dokunarak emzirme + biberonu tek seferde kaydedebilirsiniz.';
 
   @override
   String get tipExportData => 'Verileri dışa aktar';
 
   @override
-  String get tipExportDataDesc => 'Ana sayfadaki paylaş simgesini kullanarak tüm verileri JSON olarak dışa aktar';
+  String get tipExportDataDesc => 'Ana sayfadaki paylaş simgesini kullanarak tüm verilerinizi JSON olarak dışa aktarabilirsiniz.';
 
   @override
   String get babiesTitle => 'Bebekler';
 
   @override
-  String get addBaby => 'Bebek Ekle';
+  String get addBaby => 'Bebek ekle';
 
   @override
-  String get editProfile => 'Profili Düzenle';
+  String get editProfile => 'Profili düzenle';
 
   @override
   String get babyNameRequired => 'İsim *';
@@ -916,7 +917,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String babyBornOn(String date) {
-    return '$date doğumlu';
+    return '$date doğdu';
   }
 
   @override
@@ -929,7 +930,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get genderGirl => 'Kız';
 
   @override
-  String get cannotDeleteOnlyProfile => 'Tek bebek profili silinemez';
+  String get cannotDeleteOnlyProfile => 'Tek bebek profili silinemez.';
 
   @override
   String deleteProfileTitle(String name) {
@@ -937,7 +938,7 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get deleteProfileContent => 'Bu bebeğin tüm verileri kalıcı olarak silinecek';
+  String get deleteProfileContent => 'Bu bebeğe ait tüm veriler kalıcı olarak silinecektir.';
 
   @override
   String get graphsTitle => 'Grafikler';
@@ -952,16 +953,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get graphsTabHealth => 'Sağlık';
 
   @override
-  String get graphsTabWho => 'WHO Charts';
+  String get graphsTabWho => 'WHO Eğrileri';
 
   @override
-  String get graphsTotalFeeds => 'Toplam besleme';
+  String get graphsTotalFeeds => 'Toplam beslenme';
 
   @override
-  String get graphsAvgPerDay => 'Günlük ort.';
+  String get graphsAvgPerDay => 'Ortalama/gün';
 
   @override
-  String get graphsTotalDiapers => 'Bez sayısı';
+  String get graphsTotalDiapers => 'Bezler';
 
   @override
   String get graphsTotalMilk => 'Toplam süt';
@@ -970,25 +971,25 @@ class AppLocalizationsTr extends AppLocalizations {
   String get graphsTotalSleep => 'Toplam uyku';
 
   @override
-  String get graphsAvgSleep => 'Günlük uyku ort.';
+  String get graphsAvgSleep => 'Ortalama uyku/gün';
 
   @override
-  String get graphsFeedsPerDay => 'Günde besleme sayısı';
+  String get graphsFeedsPerDay => 'Günlük beslenme sayısı';
 
   @override
-  String get graphsDiapersPerDay => 'Günde bez sayısı';
+  String get graphsDiapersPerDay => 'Günlük bez sayısı';
 
   @override
-  String get graphsMilkPerDay => 'Günde süt (ml)';
+  String get graphsMilkPerDay => 'Günlük süt miktarı (ml)';
 
   @override
-  String get graphsSleepPerDay => 'Günde uyku (saat)';
+  String get graphsSleepPerDay => 'Günlük uyku (saat)';
 
   @override
-  String get graphsWeightOverTime => 'Zamanla kilo değişimi';
+  String get graphsWeightOverTime => 'Zaman içinde kilo';
 
   @override
-  String get graphsTempOverTime => 'Zamanla ateş değişimi';
+  String get graphsTempOverTime => 'Zaman içinde ateş';
 
   @override
   String graphsMaxLabel(String value) {
@@ -1001,10 +1002,10 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get graphsNoWeightData => 'Henüz kilo girişi yok\nBir günün girişlerinden kilo ekleyin';
+  String get graphsNoWeightData => 'Henüz kilo kaydı yok.\nBir günün kayıtlarından kilo girin.';
 
   @override
-  String get graphsNoTempData => 'Henüz ateş girişi yok\nBir günden ateş ekleyin';
+  String get graphsNoTempData => 'Henüz ateş kaydı yok.\nBir günün kayıtlarından ateş girin.';
 
   @override
   String get timeLabel => 'Saat';
@@ -1019,6 +1020,7 @@ class AppLocalizationsTr extends AppLocalizations {
       locale: localeName,
       other: '$count günlük',
       one: '1 günlük',
+      zero: 'yenidoğan',
     );
     return '$_temp0';
   }
@@ -1030,6 +1032,7 @@ class AppLocalizationsTr extends AppLocalizations {
       locale: localeName,
       other: '$count aylık',
       one: '1 aylık',
+      zero: '1 aydan küçük',
     );
     return '$_temp0';
   }

@@ -18,7 +18,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get navGraphs => 'Diagram';
 
   @override
-  String get navMilestones => 'Milestones';
+  String get navMilestones => 'Milstolpar';
 
   @override
   String get navSettings => 'Inställningar';
@@ -51,34 +51,34 @@ class AppLocalizationsSv extends AppLocalizations {
   String get actionAddDay => 'Lägg till dag';
 
   @override
-  String get actionLog => 'Log';
+  String get actionLog => 'Logga';
 
   @override
-  String get cannotUndo => 'Den här åtgärden kan inte ångras';
+  String get cannotUndo => 'Detta kan inte ångras.';
 
   @override
   String get noData => 'Inga data';
 
   @override
-  String get noNotes => 'No notes';
+  String get noNotes => 'Inga anteckningar';
 
   @override
   String get noDetails => 'Inga detaljer';
 
   @override
-  String get optional => '(optional)';
+  String get optional => '(valfritt)';
 
   @override
-  String get homeTitle => 'Spårare';
+  String get homeTitle => 'Tracker';
 
   @override
-  String get feedsToday => 'Dagens matningar';
+  String get feedsToday => 'Matningar idag';
 
   @override
-  String get diapersToday => 'Dagens blöjor';
+  String get diapersToday => 'Blöjor idag';
 
   @override
-  String get sleepToday => 'Dagens sömn';
+  String get sleepToday => 'Sömn idag';
 
   @override
   String todayLabel(String date) {
@@ -92,21 +92,21 @@ class AppLocalizationsSv extends AppLocalizations {
       locale: localeName,
       other: '$count händelser',
       one: '1 händelse',
-      zero: 'Inga händelser',
+      zero: 'inga händelser',
     );
     return '$_temp0';
   }
 
   @override
-  String get deleteDayTitle => 'Radera den här dagen?';
+  String get deleteDayTitle => 'Radera dagen?';
 
   @override
   String deleteDayContent(String date) {
-    return 'Radera $date och alla dess poster? Den här åtgärden kan inte ångras';
+    return 'Ta bort $date och alla dess poster? Detta kan inte ångras.';
   }
 
   @override
-  String get rashRecorded => 'Utslag registrerat';
+  String get rashRecorded => 'Blöjeksem registrerat';
 
   @override
   String get noEntriesYet => 'Inga poster ännu';
@@ -115,7 +115,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get addEntry => 'Lägg till post';
 
   @override
-  String get deleteEntryTitle => 'Radera den här posten?';
+  String get deleteEntryTitle => 'Radera post?';
 
   @override
   String get entryTypeDiaper => 'Blöjbyte';
@@ -133,31 +133,31 @@ class AppLocalizationsSv extends AppLocalizations {
   String get entryTypeWeight => 'Vikt';
 
   @override
-  String get entryTypeTummyTime => 'Tummy time';
+  String get entryTypeTummyTime => 'Mage-tid';
 
   @override
-  String get entryTypeMedication => 'Medication';
+  String get entryTypeMedication => 'Medicin';
 
   @override
-  String get entryTypeDoctorVisit => 'Doctor visit';
+  String get entryTypeDoctorVisit => 'Läkarbesök';
 
   @override
-  String get entryTypeNote => 'Daily note / journal';
+  String get entryTypeNote => 'Daglig anteckning / journal';
 
   @override
-  String get entryTypePumping => 'Pumping session';
+  String get entryTypePumping => 'Pumpningssession';
 
   @override
-  String get entryTypeBath => 'Bath';
+  String get entryTypeBath => 'Bad';
 
   @override
   String get diaperPeePoo => 'Blöja — kiss + bajs';
 
   @override
-  String get diaperPee => 'Blöja — bara kiss';
+  String get diaperPee => 'Blöja — kiss';
 
   @override
-  String get diaperPoo => 'Blöja — bara bajs';
+  String get diaperPoo => 'Blöja — bajs';
 
   @override
   String get diaperChange => 'Blöjbyte';
@@ -184,7 +184,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get diaperConsistency => 'Konsistens';
 
   @override
-  String get consistencyHard => 'Hård / Klikkig';
+  String get consistencyHard => 'Hård / pellets';
 
   @override
   String get consistencyHardHint => 'Förstoppning';
@@ -193,7 +193,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get consistencyFirm => 'Fast';
 
   @override
-  String get consistencyFirmHint => 'Lätt fast';
+  String get consistencyFirmHint => 'Något fast';
 
   @override
   String get consistencyNormal => 'Normal';
@@ -205,10 +205,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String get consistencySoft => 'Mjuk';
 
   @override
-  String get consistencySoftHint => 'Lätt mjuk';
+  String get consistencySoftHint => 'Något mjuk';
 
   @override
-  String get consistencyLoose => 'Grötlik / Halvflytande';
+  String get consistencyLoose => 'Lös / grötig';
 
   @override
   String get consistencyLooseHint => 'Observera';
@@ -220,10 +220,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String get consistencyWateryHint => 'Diarré';
 
   @override
-  String get warnConstipation => 'Tecken på förstoppning — övervaka noga';
+  String get warnConstipation => 'Tecken på förstoppning — övervaka noggrant';
 
   @override
-  String get warnDiarrhea => 'Tecken på diarré — övervaka noga';
+  String get warnDiarrhea => 'Tecken på diarré — övervaka noggrant';
 
   @override
   String get pooColourLabel => 'Färg (tryck för att välja)';
@@ -249,28 +249,28 @@ class AppLocalizationsSv extends AppLocalizations {
   String get diaperBrandCustomLabel => 'Märkesnamn';
 
   @override
-  String get rashPresent => 'Blöjutslag förekommer';
+  String get rashPresent => 'Blöjeksem finns';
 
   @override
-  String get rashPresentHint => 'Rodnad, irritation eller blöjutslag';
+  String get rashPresentHint => 'Rodnad, irritation eller blöjeksem';
 
   @override
-  String get rashCreamUsed => 'Kräm använd';
+  String get rashCreamUsed => 'Eksemkräm använd';
 
   @override
-  String get rashCreamCustomLabel => 'Kräm/salvas namn';
+  String get rashCreamCustomLabel => 'Kräm / salva namn';
 
   @override
-  String get rashFollowUpTitle => '⚠️ Uppföljning av utslag';
+  String get rashFollowUpTitle => '⚠️ Uppföljning av eksem';
 
   @override
-  String get rashFollowUpQuestion => 'Den senaste blöjan registrerade utslag. Har det förbättrats?';
+  String get rashFollowUpQuestion => 'Den senaste blöjan hade ett noterat eksem. Har det förbättrats?';
 
   @override
-  String get rashImproved => 'Ja, förbättrats';
+  String get rashImproved => 'Ja, förbättrades';
 
   @override
-  String get rashNoChange => 'Ingen förändring / förvärrats';
+  String get rashNoChange => 'Ingen förändring / sämre';
 
   @override
   String get addFeeding => 'Lägg till matning';
@@ -287,7 +287,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get feedModeBottle => 'Flaska';
 
   @override
-  String get feedModeSuckle => 'Amning';
+  String get feedModeSuckle => 'Amma';
 
   @override
   String get feedAmountMl => 'Mängd (ml)';
@@ -299,16 +299,16 @@ class AppLocalizationsSv extends AppLocalizations {
   String get feedBreastMilk => 'Bröstmjölk';
 
   @override
-  String get feedFormula => 'Ersättning';
+  String get feedFormula => 'Modersmjölksersättning';
 
   @override
-  String get feedFormulaBrand => 'Ersättningsmärke';
+  String get feedFormulaBrand => 'Märke för ersättning';
 
   @override
-  String get feedFormulaBrandCustom => 'Märkesnamn';
+  String get feedFormulaBrandCustom => 'Märkesnamn för ersättning';
 
   @override
-  String get feedDurationMinutes => 'Varaktighet (minuter)';
+  String get feedDurationMinutes => 'Längd (minuter)';
 
   @override
   String get addAnotherFeed => 'Lägg till en matning till';
@@ -320,10 +320,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String get bottleFormula => 'Flaska — ersättning';
 
   @override
-  String get breastfeedingSuckle => 'Amning (direkt)';
+  String get breastfeedingSuckle => 'Amning (vid bröstet)';
 
   @override
-  String get logSleep => 'Registrera sömn';
+  String get logSleep => 'Logga sömn';
 
   @override
   String get editSleep => 'Redigera sömn';
@@ -332,35 +332,35 @@ class AppLocalizationsSv extends AppLocalizations {
   String get sleepStart => 'Sömnstart';
 
   @override
-  String get sleepWakeUp => 'Uppvaknande';
+  String get sleepWakeUp => 'Vakna';
 
   @override
   String sleepDuration(String duration) {
-    return 'Varaktighet: $duration';
+    return 'Längd: $duration';
   }
 
   @override
   String get sleepInvalidTimes => 'Ogiltiga tider';
 
   @override
-  String get sleepWrapsNextDay => '(slutar följande dag)';
+  String get sleepWrapsNextDay => '(slutar nästa dag)';
 
   @override
   String get sleepNotes => 'Anteckningar (valfritt)';
 
   @override
-  String get sleepNotesHint => 'T.ex.: orolig, vaknade kort...';
+  String get sleepNotesHint => 't.ex. rastlös, vaknade kort...';
 
   @override
   String get sleepNoNotes => 'Inga anteckningar';
 
   @override
   String sleepHoursShort(int h, int m) {
-    return '${h}t ${m}min';
+    return '${h}h ${m}m';
   }
 
   @override
-  String get logTemperature => 'Registrera temperatur';
+  String get logTemperature => 'Logga temperatur';
 
   @override
   String get editTemperature => 'Redigera temperatur';
@@ -369,16 +369,16 @@ class AppLocalizationsSv extends AppLocalizations {
   String get temperatureLabel => 'Temperatur';
 
   @override
-  String get tempSeverityLow => 'Låg temperatur — observera';
+  String get tempSeverityLow => 'Låg temperatur — övervaka';
 
   @override
   String get tempSeverityNormal => 'Normal temperatur';
 
   @override
-  String get tempSeverityElevated => 'Lätt förhöjd — övervaka noga';
+  String get tempSeverityElevated => 'Något förhöjd — övervaka noggrant';
 
   @override
-  String get tempSeverityFever => 'Feber — kontakta läkare';
+  String get tempSeverityFever => 'Feber — kontakta din läkare';
 
   @override
   String get tempReference => 'Temperaturreferens';
@@ -396,7 +396,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get tempRefFever => '≥ 38,5 °C / 101,3 °F';
 
   @override
-  String get tempFeverWarning => '⚠️ Vid feber hos spädbarn under 3 månader, kontakta alltid en barnläkare';
+  String get tempFeverWarning => '⚠️ Kontakta alltid din barnläkare vid feber hos spädbarn under 3 månader.';
 
   @override
   String get tempLow => 'Låg';
@@ -411,7 +411,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get tempFever => 'Feber';
 
   @override
-  String get tempLatest => 'Senaste temperaturen';
+  String get tempLatest => 'Senaste temperatur';
 
   @override
   String get tempSummary => 'Temperatursammanfattning';
@@ -426,12 +426,13 @@ class AppLocalizationsSv extends AppLocalizations {
       locale: localeName,
       other: '$count dagar',
       one: '1 dag',
+      zero: 'inga dagar',
     );
     return '$_temp0';
   }
 
   @override
-  String get logWeight => 'Registrera vikt';
+  String get logWeight => 'Logga vikt';
 
   @override
   String get editWeight => 'Redigera vikt';
@@ -456,11 +457,11 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String weightLastRecorded(String weight, String date) {
-    return 'Senaste registrering: $weight den $date';
+    return 'Senast registrerad: $weight den $date';
   }
 
   @override
-  String get weightLatest => 'Senaste vikten';
+  String get weightLatest => 'Senaste vikt';
 
   @override
   String weightOverPeriod(String sign, String amount) {
@@ -468,221 +469,221 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get tummyTimeLog => 'Log tummy time';
+  String get tummyTimeLog => 'Logga mage-tid';
 
   @override
-  String get tummyTimeEdit => 'Edit tummy time';
+  String get tummyTimeEdit => 'Redigera mage-tid';
 
   @override
-  String get tummyTimeStart => 'Start time';
+  String get tummyTimeStart => 'Starttid';
 
   @override
-  String get tummyTimeEnd => 'End time';
+  String get tummyTimeEnd => 'Sluttid';
 
   @override
-  String get tummyTimeTip => 'Tummy time strengthens neck and shoulder muscles.';
+  String get tummyTimeTip => 'Mage-tid stärker nack- och axelmuskler.';
 
   @override
-  String get medicationLog => 'Log medication';
+  String get medicationLog => 'Logga medicin';
 
   @override
-  String get medicationEdit => 'Edit medication';
+  String get medicationEdit => 'Redigera medicin';
 
   @override
-  String get medicationName => 'Medication name *';
+  String get medicationName => 'Medicinens namn *';
 
   @override
-  String get medicationDose => 'Dose';
+  String get medicationDose => 'Dos';
 
   @override
-  String get medicationUnit => 'Unit';
+  String get medicationUnit => 'Enhet';
 
   @override
-  String get medicationCommon => 'Common medications';
+  String get medicationCommon => 'Vanliga mediciner';
 
   @override
-  String get medicationWarning => 'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.';
+  String get medicationWarning => 'Följ alltid doseringsinstruktioner baserat på vikt/ålder. Överskrid inte rekommenderad frekvens.';
 
   @override
-  String get medicationNotes => 'Notes (optional)';
+  String get medicationNotes => 'Anteckningar (valfritt)';
 
   @override
-  String get medicationNotesHint => 'e.g. reason, reaction...';
+  String get medicationNotesHint => 't.ex. anledning, reaktion...';
 
   @override
-  String get doctorVisitLog => 'Doctor visit';
+  String get doctorVisitLog => 'Läkarbesök';
 
   @override
-  String get doctorVisitEdit => 'Edit doctor visit';
+  String get doctorVisitEdit => 'Redigera läkarbesök';
 
   @override
-  String get doctorName => 'Doctor / clinic name';
+  String get doctorName => 'Läkare / kliniknamn';
 
   @override
-  String get doctorVisitReason => 'Reason for visit';
+  String get doctorVisitReason => 'Anledning till besöket';
 
   @override
-  String get doctorVisitMeasurements => 'Measurements (optional)';
+  String get doctorVisitMeasurements => 'Mätningar (valfritt)';
 
   @override
-  String get doctorVisitNotes => 'Notes';
+  String get doctorVisitNotes => 'Anteckningar';
 
   @override
-  String get doctorVisitNotesHint => 'e.g. vaccinations given, doctor recommendations...';
+  String get doctorVisitNotesHint => 't.ex. givna vaccinationer, läkares rekommendationer...';
 
   @override
-  String get measurementWeightKg => 'Weight (kg)';
+  String get measurementWeightKg => 'Vikt (kg)';
 
   @override
-  String get measurementWeightLbs => 'Weight (lbs)';
+  String get measurementWeightLbs => 'Vikt (lbs)';
 
   @override
-  String get measurementHeightCm => 'Length / height (cm)';
+  String get measurementHeightCm => 'Längd / höjd (cm)';
 
   @override
-  String get measurementHeadCm => 'Head circumference (cm)';
+  String get measurementHeadCm => 'Huvudomkrets (cm)';
 
   @override
-  String get dailyNoteLog => 'Daily note';
+  String get dailyNoteLog => 'Daglig anteckning';
 
   @override
-  String get dailyNoteEdit => 'Edit note';
+  String get dailyNoteEdit => 'Redigera anteckning';
 
   @override
-  String get dailyNoteTitle => 'Title (optional)';
+  String get dailyNoteTitle => 'Titel (valfritt)';
 
   @override
-  String get dailyNoteText => 'Note';
+  String get dailyNoteText => 'Anteckning';
 
   @override
-  String get dailyNoteHint => 'What happened today? First time rolling? Fussy morning?';
+  String get dailyNoteHint => 'Vad hände idag? Första gången att rulla på sig? Tröttsam morgon?';
 
   @override
-  String get dailyNoteTags => 'Quick tags';
+  String get dailyNoteTags => 'Snabbtaggar';
 
   @override
-  String get pumpingLog => 'Log pumping session';
+  String get pumpingLog => 'Logga pumpningssession';
 
   @override
-  String get pumpingEdit => 'Edit pumping session';
+  String get pumpingEdit => 'Redigera pumpningssession';
 
   @override
-  String get pumpingLeft => 'Left breast (ml)';
+  String get pumpingLeft => 'Vänster bröst (ml)';
 
   @override
-  String get pumpingRight => 'Right breast (ml)';
+  String get pumpingRight => 'Höger bröst (ml)';
 
   @override
-  String get pumpingTotal => 'Total pumped';
+  String get pumpingTotal => 'Totalt pumpat';
 
   @override
-  String get pumpingDuration => 'Duration (minutes)';
+  String get pumpingDuration => 'Längd (minuter)';
 
   @override
-  String get pumpingStored => 'Stored / frozen';
+  String get pumpingStored => 'Förvarad / fryst';
 
   @override
-  String get pumpingNotes => 'Notes (optional)';
+  String get pumpingNotes => 'Anteckningar (valfritt)';
 
   @override
-  String get pumpingSessionTitle => 'Pumping';
+  String get pumpingSessionTitle => 'Pumpning';
 
   @override
   String pumpingTotalMl(int ml) {
-    return '$ml ml total';
+    return '$ml ml totalt';
   }
 
   @override
-  String get bathLog => 'Log bath';
+  String get bathLog => 'Logga bad';
 
   @override
-  String get bathEdit => 'Edit bath';
+  String get bathEdit => 'Redigera bad';
 
   @override
-  String get bathType => 'Bath type';
+  String get bathType => 'Badtyp';
 
   @override
-  String get bathTypeSponge => 'Sponge bath';
+  String get bathTypeSponge => 'Svampbad';
 
   @override
-  String get bathTypeTub => 'Tub bath';
+  String get bathTypeTub => 'Baljebad';
 
   @override
-  String get bathTypeShower => 'Shower';
+  String get bathTypeShower => 'Dusch';
 
   @override
-  String get bathNotes => 'Notes (optional)';
+  String get bathNotes => 'Anteckningar (valfritt)';
 
   @override
-  String get bathProducts => 'Products used (optional)';
+  String get bathProducts => 'Produkter som använts (valfritt)';
 
   @override
-  String get vaccineTitle => 'Vaccinations';
+  String get vaccineTitle => 'Vaccinationer';
 
   @override
-  String get vaccineTabGiven => 'Given';
+  String get vaccineTabGiven => 'Givna';
 
   @override
-  String get vaccineTabSchedule => 'Schedule';
+  String get vaccineTabSchedule => 'Schema';
 
   @override
-  String get vaccineLog => 'Log vaccine';
+  String get vaccineLog => 'Logga vaccin';
 
   @override
-  String get vaccineEdit => 'Edit vaccine';
+  String get vaccineEdit => 'Redigera vaccin';
 
   @override
-  String get vaccineName => 'Vaccine name';
+  String get vaccineName => 'Vaccinets namn';
 
   @override
-  String get vaccineBrand => 'Brand / manufacturer (optional)';
+  String get vaccineBrand => 'Märke / tillverkare (valfritt)';
 
   @override
-  String get vaccineDate => 'Date given';
+  String get vaccineDate => 'Datum för givande';
 
   @override
-  String get vaccineDose => 'Dose number (optional)';
+  String get vaccineDose => 'Dosnummer (valfritt)';
 
   @override
-  String get vaccineSite => 'Injection site (optional)';
+  String get vaccineSite => 'Injektionsställe (valfritt)';
 
   @override
-  String get vaccineNotes => 'Notes / reactions';
+  String get vaccineNotes => 'Anteckningar / reaktioner';
 
   @override
   String vaccineDue(String age) {
-    return 'Due at $age';
+    return 'Planerad vid $age';
   }
 
   @override
   String get vaccineGiven => 'Given';
 
   @override
-  String get vaccineNoGiven => 'No vaccines logged yet.';
+  String get vaccineNoGiven => 'Inga vacciner har loggats än.';
 
   @override
-  String get vaccineMarkGiven => 'Mark as given';
+  String get vaccineMarkGiven => 'Markera som given';
 
   @override
-  String get whoChartTitle => 'WHO Growth Charts';
+  String get whoChartTitle => 'WHO:s tillväxtdiagram';
 
   @override
-  String get whoWeightForAge => 'Weight-for-age';
+  String get whoWeightForAge => 'Vikt för ålder';
 
   @override
-  String get whoHeightForAge => 'Length/Height-for-age';
+  String get whoHeightForAge => 'Längd/höjd för ålder';
 
   @override
-  String get whoHeadForAge => 'Head circumference-for-age';
+  String get whoHeadForAge => 'Huvudomkrets för ålder';
 
   @override
-  String get whoGenderBoy => 'Boy';
+  String get whoGenderBoy => 'Pojke';
 
   @override
-  String get whoGenderGirl => 'Girl';
+  String get whoGenderGirl => 'Flicka';
 
   @override
-  String get whoNoData => 'No measurements logged yet.\nLog weight from a day\'s entries to see the chart.';
+  String get whoNoData => 'Inga mätningar har loggats än.\nLogga vikt från dagens poster för att se diagrammet.';
 
   @override
   String whoPercentileLabel(String p) {
@@ -690,151 +691,151 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get whoYourBaby => 'Your baby';
+  String get whoYourBaby => 'Ditt barn';
 
   @override
   String whoAgeMonths(int n) {
-    return '$n mo';
+    return '$n mån';
   }
 
   @override
-  String get whoNoBirthDate => 'Set baby\'s date of birth in the profile to see age-based charts.';
+  String get whoNoBirthDate => 'Ange barnets födelsedatum i profilen för att se åldersbaserade diagram.';
 
   @override
-  String get notifTitle => 'Reminders';
+  String get notifTitle => 'Påminnelser';
 
   @override
-  String get notifFeedingReminder => 'Feeding reminder';
+  String get notifFeedingReminder => 'Påminnelse om matning';
 
   @override
   String notifFeedingReminderDesc(int hours) {
-    return 'Remind me after ${hours}h if no feed logged';
+    return 'Påminn mig efter $hours timmar om ingen matning har loggats';
   }
 
   @override
-  String get notifDiaperReminder => 'Diaper reminder';
+  String get notifDiaperReminder => 'Påminnelse om blöja';
 
   @override
   String notifDiaperReminderDesc(int hours) {
-    return 'Remind me after ${hours}h if no diaper logged';
+    return 'Påminn mig efter $hours timmar om ingen blöja har loggats';
   }
 
   @override
-  String get notifMedicationReminder => 'Medication reminder';
+  String get notifMedicationReminder => 'Påminnelse om medicin';
 
   @override
-  String get notifEnabled => 'Notifications enabled';
+  String get notifEnabled => 'Aviseringar aktiverade';
 
   @override
-  String get notifDisabled => 'Notifications disabled';
+  String get notifDisabled => 'Aviseringar inaktiverade';
 
   @override
-  String get notifPermissionRequired => 'Please enable notifications in your device settings.';
+  String get notifPermissionRequired => 'Aktivera aviseringar i din enhets inställningar.';
 
   @override
-  String get exportTitle => 'Export & backup';
+  String get exportTitle => 'Export och säkerhetskopiering';
 
   @override
-  String get exportJson => 'Export as JSON';
+  String get exportJson => 'Exportera som JSON';
 
   @override
-  String get exportPdf => 'Export as PDF';
+  String get exportPdf => 'Exportera som PDF';
 
   @override
-  String get exportPdfDesc => 'Human-readable summary for your paediatrician';
+  String get exportPdfDesc => 'Läsbar sammanfattning för din barnläkare';
 
   @override
-  String get exportGoogleDrive => 'Back up to Google Drive';
+  String get exportGoogleDrive => 'Säkerhetskopiera till Google Drive';
 
   @override
-  String get exportGenerating => 'Generating report...';
+  String get exportGenerating => 'Genererar rapport...';
 
   @override
-  String get milestoneTitle => 'Milestones';
+  String get milestoneTitle => 'Milstolpar';
 
   @override
-  String get milestoneTabAchieved => 'Achieved';
+  String get milestoneTabAchieved => 'Uppnådda';
 
   @override
-  String get milestoneTabUpcoming => 'Upcoming';
+  String get milestoneTabUpcoming => 'Kommande';
 
   @override
-  String get milestoneCustomAdd => 'Custom milestone';
+  String get milestoneCustomAdd => 'Anpassad milstolpe';
 
   @override
-  String get milestoneDeleteTitle => 'Delete milestone?';
+  String get milestoneDeleteTitle => 'Radera milstolpe?';
 
   @override
-  String get milestoneEdit => 'Edit milestone';
+  String get milestoneEdit => 'Redigera milstolpe';
 
   @override
-  String get milestoneAdd => 'Add milestone';
+  String get milestoneAdd => 'Lägg till milstolpe';
 
   @override
-  String get milestoneName => 'Milestone name *';
+  String get milestoneName => 'Milstolpens namn *';
 
   @override
-  String get milestoneDate => 'Date achieved';
+  String get milestoneDate => 'Datum för uppnående';
 
   @override
-  String get milestoneNotes => 'Notes (optional)';
+  String get milestoneNotes => 'Anteckningar (valfritt)';
 
   @override
-  String get milestoneNotesHint => 'Any details worth remembering...';
+  String get milestoneNotesHint => 'Alla detaljer värda att komma ihåg...';
 
   @override
-  String get milestoneNoAchieved => 'No milestones logged yet.';
+  String get milestoneNoAchieved => 'Inga milstolpar har loggats än.';
 
   @override
-  String get milestoneAllDone => 'All preset milestones achieved! 🎉';
+  String get milestoneAllDone => 'Alla förinställda milstolpar uppnådda! 🎉';
 
   @override
-  String get milestoneFirstSmile => '😊 First smile';
+  String get milestoneFirstSmile => '😊 Första leendet';
 
   @override
-  String get milestoneFirstLaugh => '😂 First laugh';
+  String get milestoneFirstLaugh => '😂 Första skrattet';
 
   @override
-  String get milestoneFirstTooth => '🦷 First tooth';
+  String get milestoneFirstTooth => '🦷 Första tanden';
 
   @override
-  String get milestoneRolledBackTummy => '🔄 Rolled back → tummy';
+  String get milestoneRolledBackTummy => '🔄 Rullade från rygg till mage';
 
   @override
-  String get milestoneRolledTummyBack => '🔄 Rolled tummy → back';
+  String get milestoneRolledTummyBack => '🔄 Rullade från mage till rygg';
 
   @override
-  String get milestoneSatUnsupported => '🧸 Sat unsupported';
+  String get milestoneSatUnsupported => '🧸 Satt utan stöd';
 
   @override
-  String get milestoneStartedCrawling => '🐣 Started crawling';
+  String get milestoneStartedCrawling => '🐣 Började krypa';
 
   @override
-  String get milestonePulledToStand => '🏋️ Pulled to stand';
+  String get milestonePulledToStand => '🏋️ Drog sig upp till stående';
 
   @override
-  String get milestoneFirstSteps => '👣 First steps';
+  String get milestoneFirstSteps => '👣 Första stegen';
 
   @override
-  String get milestoneFirstWord => '💬 First word';
+  String get milestoneFirstWord => '💬 Första ordet';
 
   @override
-  String get milestoneFirstSolidFood => '🥣 First solid food';
+  String get milestoneFirstSolidFood => '🥣 Första fasta födan';
 
   @override
-  String get milestoneFirstHaircut => '✂️ First haircut';
+  String get milestoneFirstHaircut => '✂️ Första klippningen';
 
   @override
-  String get milestoneSleptThroughNight => '🌙 Slept through the night';
+  String get milestoneSleptThroughNight => '🌙 Sov hela natten';
 
   @override
-  String get milestoneWavedBye => '👋 Waved bye-bye';
+  String get milestoneWavedBye => '👋 Vinkade hejdå';
 
   @override
-  String get milestoneClappedHands => '👏 Clapped hands';
+  String get milestoneClappedHands => '👏 Klappade händerna';
 
   @override
-  String get milestoneFirstBirthday => '🎂 First birthday';
+  String get milestoneFirstBirthday => '🎂 Första födelsedagen';
 
   @override
   String get settingsTitle => 'Inställningar';
@@ -858,46 +859,46 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settingsWeightUnit => 'Viktenhet';
 
   @override
-  String get settingsTempUnit => 'Temperatur enhet';
+  String get settingsTempUnit => 'Temperaturenhet';
 
   @override
   String get settingsLanguage => 'Språk';
 
   @override
-  String get settingsNotifications => 'Notifications & reminders';
+  String get settingsNotifications => 'Aviseringar och påminnelser';
 
   @override
-  String get settingsExport => 'Export & backup';
+  String get settingsExport => 'Export och säkerhetskopiering';
 
   @override
   String get settingsTips => 'Tips';
 
   @override
-  String get tipSwitchBabies => 'Byt barn';
+  String get tipSwitchBabies => 'Växla mellan barn';
 
   @override
-  String get tipSwitchBabiesDesc => 'Tryck på barnets avatar högst upp för att byta eller lägga till en profil';
+  String get tipSwitchBabiesDesc => 'Tryck på barnets avatar högst upp för att byta eller lägga till en barnprofil.';
 
   @override
   String get tipSwipeDelete => 'Svep åt vänster för att radera';
 
   @override
-  String get tipSwipeDeleteDesc => 'Fungerar på dagskort och enskilda poster';
+  String get tipSwipeDeleteDesc => 'Fungerar på dagskakel och enskilda poster.';
 
   @override
   String get tipTapToEdit => 'Tryck på valfri post för att redigera den';
 
   @override
-  String get tipMultipleFeeds => 'Registrera flera matningar';
+  String get tipMultipleFeeds => 'Logga flera matningar';
 
   @override
-  String get tipMultipleFeedsDesc => 'I matningsformuläret, tryck på \"Lägg till en matning till\" för att registrera amning och flaska på en gång';
+  String get tipMultipleFeedsDesc => 'I matningsformuläret, tryck på \"Lägg till en matning till\" för att logga amning + flaska i ett svep.';
 
   @override
   String get tipExportData => 'Exportera data';
 
   @override
-  String get tipExportDataDesc => 'Använd delningsikonen på Hem för att exportera all data som JSON';
+  String get tipExportDataDesc => 'Använd delningsikonen på Hem för att exportera all data som JSON.';
 
   @override
   String get babiesTitle => 'Barn';
@@ -920,7 +921,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get genderUnknown => 'Ej angivet';
+  String get genderUnknown => 'Okänd';
 
   @override
   String get genderBoy => 'Pojke';
@@ -929,7 +930,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get genderGirl => 'Flicka';
 
   @override
-  String get cannotDeleteOnlyProfile => 'Kan inte radera den enda barnprofilen';
+  String get cannotDeleteOnlyProfile => 'Kan inte radera den enda barnprofilen.';
 
   @override
   String deleteProfileTitle(String name) {
@@ -937,13 +938,13 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get deleteProfileContent => 'All data för detta barn kommer att raderas permanent';
+  String get deleteProfileContent => 'All data för detta barn kommer att raderas permanent.';
 
   @override
   String get graphsTitle => 'Diagram';
 
   @override
-  String get graphsTabDaily => 'Dagligen';
+  String get graphsTabDaily => 'Dagligt';
 
   @override
   String get graphsTabGrowth => 'Tillväxt';
@@ -952,13 +953,13 @@ class AppLocalizationsSv extends AppLocalizations {
   String get graphsTabHealth => 'Hälsa';
 
   @override
-  String get graphsTabWho => 'WHO Charts';
+  String get graphsTabWho => 'WHO-diagram';
 
   @override
   String get graphsTotalFeeds => 'Totalt antal matningar';
 
   @override
-  String get graphsAvgPerDay => 'Medel/dag';
+  String get graphsAvgPerDay => 'Genomsnitt/dag';
 
   @override
   String get graphsTotalDiapers => 'Blöjor';
@@ -1001,10 +1002,10 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get graphsNoWeightData => 'Inga viktposter ännu\nRegistrera vikt från en dags poster';
+  String get graphsNoWeightData => 'Inga viktposter än.\nLogga vikt från dagens poster.';
 
   @override
-  String get graphsNoTempData => 'Inga temperaturposter ännu\nRegistrera temperatur från en dag';
+  String get graphsNoTempData => 'Inga temperaturposter än.\nLogga temperatur från en dag.';
 
   @override
   String get timeLabel => 'Tid';
@@ -1019,6 +1020,7 @@ class AppLocalizationsSv extends AppLocalizations {
       locale: localeName,
       other: '$count dagar',
       one: '1 dag',
+      zero: 'nyfödd',
     );
     return '$_temp0';
   }
@@ -1030,12 +1032,13 @@ class AppLocalizationsSv extends AppLocalizations {
       locale: localeName,
       other: '$count månader',
       one: '1 månad',
+      zero: 'under 1 månad',
     );
     return '$_temp0';
   }
 
   @override
   String ageYearMonth(int years, int months) {
-    return '$years år $months månader';
+    return '$years år $months mån';
   }
 }
