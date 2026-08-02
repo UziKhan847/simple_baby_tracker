@@ -15,11 +15,8 @@ class AppTheme {
   static const _seed = Color(0xFFB4477F);
 
   static ThemeData light() => _build(
-    scheme:
-        ColorScheme.fromSeed(
-          seedColor: _seed,
-          brightness: Brightness.light,
-        ).copyWith(
+    scheme: ColorScheme.fromSeed(seedColor: _seed, brightness: Brightness.light)
+        .copyWith(
           surface: const Color(0xFFFBF1FE),
           surfaceContainerHighest: const Color(0xFFFFFAFF),
           surfaceContainerHigh: const Color(0xFFFFFAFF),
@@ -41,11 +38,8 @@ class AppTheme {
   );
 
   static ThemeData dark() => _build(
-    scheme:
-        ColorScheme.fromSeed(
-          seedColor: _seed,
-          brightness: Brightness.dark,
-        ).copyWith(
+    scheme: ColorScheme.fromSeed(seedColor: _seed, brightness: Brightness.dark)
+        .copyWith(
           surface: const Color(0xFF100B11),
           surfaceContainerHighest: const Color(0xFF1B161D),
           surfaceContainerHigh: const Color(0xFF1B161D),
@@ -70,11 +64,8 @@ class AppTheme {
   /// faint lift so they're still distinguishable from the page, without
   /// breaking the OLED "per-pixel off" promise for the bulk of the screen.
   static ThemeData oled() => _build(
-    scheme:
-        ColorScheme.fromSeed(
-          seedColor: _seed,
-          brightness: Brightness.dark,
-        ).copyWith(
+    scheme: ColorScheme.fromSeed(seedColor: _seed, brightness: Brightness.dark)
+        .copyWith(
           surface: const Color(0xFF000000),
           surfaceContainerHighest: const Color(0xFF0F0C10),
           surfaceContainerHigh: const Color(0xFF0F0C10),
@@ -220,9 +211,7 @@ class AppTheme {
         ),
         showCheckmark: false,
         side: BorderSide(color: scheme.outlineVariant),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -261,6 +250,17 @@ class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       ),
       listTileTheme: ListTileThemeData(
+        // Horizontal only — explicit rather than relying on Material's
+        // implicit start:16/end:24 default, so the inset from the settings
+        // card edge to the row's icon badge is one obvious number. Vertical
+        // padding is left to Material's own single-line/two-line sizing:
+        // an explicit vertical value here would *add* to that intrinsic
+        // height rather than replace it, over-inflating every row (see
+        // settings.dart's per-row override on the three subtitle-less
+        // rows for the actual single-vs-two-line fix).
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+        minLeadingWidth: 34,
+        horizontalTitleGap: 14,
         titleTextStyle: textTheme.bodyLarge?.copyWith(
           fontSize: 15.5,
           fontWeight: FontWeight.w600,

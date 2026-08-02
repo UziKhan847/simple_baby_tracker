@@ -14,6 +14,17 @@ import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
 import 'package:simple_baby_tracker/widgets/section_header.dart';
 import 'package:simple_baby_tracker/widgets/settings_group.dart';
 
+/// Extra vertical padding for rows with no subtitle (Language, Weight/
+/// Temperature unit). Material sizes a subtitle-less [ListTile] to 56dp vs.
+/// 72dp for a two-line one, so without this the 34px icon badge fills a
+/// visibly bigger share of the shorter tile than it does in the switch
+/// rows above, and reads as cramped even though the horizontal inset is
+/// identical. This is a small top-up over the theme's own contentPadding,
+/// not a replacement for it — keep it modest, since ListTile's minimum-
+/// inset behavior means padding here layers on top of the tile's existing
+/// sizing rather than overriding it.
+const _singleLinePadding = EdgeInsets.symmetric(horizontal: 16, vertical: 6);
+
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
 
@@ -114,6 +125,7 @@ class _SettingsPageState extends State<SettingsPage> {
           AppSettingsGroup(
             children: [
               ListTile(
+                contentPadding: isRtl(currentCode) ? null : _singleLinePadding,
                 leading: _RowBadge(
                   icon: Icons.language,
                   color: colors.neutralStrong,
@@ -136,6 +148,7 @@ class _SettingsPageState extends State<SettingsPage> {
           AppSettingsGroup(
             children: [
               ListTile(
+                contentPadding: _singleLinePadding,
                 leading: _RowBadge(
                   icon: Icons.monitor_weight_outlined,
                   color: colors.weightStrong,
@@ -156,6 +169,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
               ListTile(
+                contentPadding: _singleLinePadding,
                 leading: _RowBadge(
                   icon: Icons.thermostat_outlined,
                   color: colors.temperatureStrong,
