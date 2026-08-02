@@ -803,5 +803,58 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "medicationLabel": "दवाई: {name}",
+    "@medicationLabel": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitDefaultReason": "विज़िट",
+    "@doctorVisitDefaultReason": {},
+    "doctorVisitLabel": "डॉक्टर का दौरा — {reason}",
+    "@doctorVisitLabel": {
+        "placeholders": {
+            "reason": {
+                "type": "String"
+            }
+        }
+    },
+    "noteDefaultTitle": "📝 नोट",
+    "@noteDefaultTitle": {},
+    "noteLabel": "📝 {title}",
+    "@noteLabel": {
+        "placeholders": {
+            "title": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitWithDoctor": "डॉ: {doctor}",
+    "@doctorVisitWithDoctor": {
+        "placeholders": {
+            "doctor": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitNoDoctorRecorded": "कोई डॉक्टर दर्ज नहीं",
+    "@doctorVisitNoDoctorRecorded": {},
+    "summaryPoosLabel": "मल",
+    "@summaryPoosLabel": {},
+    "summaryPeesLabel": "पेशाब",
+    "@summaryPeesLabel": {},
+    "summaryMilkLabel": "दूध मिली",
+    "@summaryMilkLabel": {},
+    "summaryBreastLabel": "स्तनपान मि",
+    "@summaryBreastLabel": {},
+    "summarySleepLabel": "नींद",
+    "settingsOledMode": "OLED (शुद्ध काला)",
+    "settingsOledModeDesc": "OLED स्क्रीन पर बैटरी बचाने के लिए शुद्ध काली पृष्ठभूमि का उपयोग करें",
+    "settingsImmersiveMode": "इमर्सिव मोड",
+    "settingsImmersiveModeDesc": "सिस्टम स्टेटस और नेविगेशन बार छुपाएं",
+    "navVaccinationsEntry": "टीकाकरण",
+    "whoChartsEntry": "WHO विकास चार्ट"
 }

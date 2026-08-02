@@ -743,5 +743,50 @@
       "years": { "type": "int" },
       "months": { "type": "int" }
     }
-  }
+  },
+  "medicationLabel": "ঔষধ: {name}",
+  "@medicationLabel": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "doctorVisitDefaultReason": "ভিজিট",
+  "@doctorVisitDefaultReason": {},
+  "doctorVisitLabel": "ডাক্তারের দেখা — {reason}",
+  "@doctorVisitLabel": {
+    "placeholders": {
+      "reason": { "type": "String" }
+    }
+  },
+  "noteDefaultTitle": "📝 নোট",
+  "@noteDefaultTitle": {},
+  "noteLabel": "📝 {title}",
+  "@noteLabel": {
+    "placeholders": {
+      "title": { "type": "String" }
+    }
+  },
+  "doctorVisitWithDoctor": "ডাঃ {doctor}",
+  "@doctorVisitWithDoctor": {
+    "placeholders": {
+      "doctor": { "type": "String" }
+    }
+  },
+  "doctorVisitNoDoctorRecorded": "কোনো ডাক্তার লেখা হয়নি",
+  "@doctorVisitNoDoctorRecorded": {},
+  "summaryPoosLabel": "পায়খানা",
+  "@summaryPoosLabel": {},
+  "summaryPeesLabel": "পেশাব",
+  "@summaryPeesLabel": {},
+  "summaryMilkLabel": "দুধ মিলি",
+  "@summaryMilkLabel": {},
+  "summaryBreastLabel": "স্তন্যপান মি",
+  "@summaryBreastLabel": {},
+  "summarySleepLabel": "ঘুম",
+  "settingsOledMode": "OLED (নিখাদ কালো)",
+  "settingsOledModeDesc": "OLED স্ক্রিনে ব্যাটারি সাশ্রয়ে সম্পূর্ণ কালো ব্যাকগ্রাউন্ড ব্যবহার করুন",
+  "settingsImmersiveMode": "ইমারসিভ মোড",
+  "settingsImmersiveModeDesc": "সিস্টেম স্ট্যাটাস ও নেভিগেশন বার লুকান",
+  "navVaccinationsEntry": "টিকাদান",
+  "whoChartsEntry": "WHO বৃদ্ধি চার্ট"
 }

@@ -1041,4 +1041,66 @@ class AppLocalizationsAr extends AppLocalizations {
   String ageYearMonth(int years, int months) {
     return '$years سنة و $months شهراً';
   }
+
+  @override
+  String medicationLabel(String name) {
+    return 'دواء: $name';
+  }
+
+  @override
+  String get doctorVisitDefaultReason => 'زيارة';
+
+  @override
+  String doctorVisitLabel(String reason) {
+    return 'زيارة طبيب — $reason';
+  }
+
+  @override
+  String get noteDefaultTitle => '📝 ملاحظة';
+
+  @override
+  String noteLabel(String title) {
+    return '📝 $title';
+  }
+
+  @override
+  String doctorVisitWithDoctor(String doctor) {
+    return 'د: $doctor';
+  }
+
+  @override
+  String get doctorVisitNoDoctorRecorded => 'لم يُسجَّل طبيب';
+
+  @override
+  String get summaryPoosLabel => 'البراز';
+
+  @override
+  String get summaryPeesLabel => 'البول';
+
+  @override
+  String get summaryMilkLabel => 'الحليب مل';
+
+  @override
+  String get summaryBreastLabel => 'رضاعة د';
+
+  @override
+  String get summarySleepLabel => 'نوم';
+
+  @override
+  String get settingsOledMode => 'OLED (أسود نقي)';
+
+  @override
+  String get settingsOledModeDesc => 'استخدام خلفية سوداء نقية لتوفير البطارية على شاشات OLED';
+
+  @override
+  String get settingsImmersiveMode => 'الوضع الغامر';
+
+  @override
+  String get settingsImmersiveModeDesc => 'إخفاء شريطي الحالة والتنقل في النظام';
+
+  @override
+  String get navVaccinationsEntry => 'التطعيمات';
+
+  @override
+  String get whoChartsEntry => 'مخططات نمو منظمة الصحة العالمية';
 }

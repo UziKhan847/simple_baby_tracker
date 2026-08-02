@@ -803,5 +803,58 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "medicationLabel": "İlaç: {name}",
+    "@medicationLabel": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitDefaultReason": "Ziyaret",
+    "@doctorVisitDefaultReason": {},
+    "doctorVisitLabel": "Doktor ziyareti — {reason}",
+    "@doctorVisitLabel": {
+        "placeholders": {
+            "reason": {
+                "type": "String"
+            }
+        }
+    },
+    "noteDefaultTitle": "📝 Not",
+    "@noteDefaultTitle": {},
+    "noteLabel": "📝 {title}",
+    "@noteLabel": {
+        "placeholders": {
+            "title": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitWithDoctor": "Dr: {doctor}",
+    "@doctorVisitWithDoctor": {
+        "placeholders": {
+            "doctor": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitNoDoctorRecorded": "Doktor kaydedilmedi",
+    "@doctorVisitNoDoctorRecorded": {},
+    "summaryPoosLabel": "Kaka",
+    "@summaryPoosLabel": {},
+    "summaryPeesLabel": "Çiş",
+    "@summaryPeesLabel": {},
+    "summaryMilkLabel": "Süt ml",
+    "@summaryMilkLabel": {},
+    "summaryBreastLabel": "Emzirme dk",
+    "@summaryBreastLabel": {},
+    "summarySleepLabel": "Uyku",
+    "settingsOledMode": "OLED (tam siyah)",
+    "settingsOledModeDesc": "OLED ekranlarda pil tasarrufu için tam siyah arka plan kullan",
+    "settingsImmersiveMode": "Sürükleyici mod",
+    "settingsImmersiveModeDesc": "Sistem durum ve gezinme çubuklarını gizle",
+    "navVaccinationsEntry": "Aşılar",
+    "whoChartsEntry": "DSÖ büyüme grafikleri"
 }

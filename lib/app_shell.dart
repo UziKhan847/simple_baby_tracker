@@ -6,6 +6,7 @@ import 'package:simple_baby_tracker/pages/homepage.dart';
 import 'package:simple_baby_tracker/pages/milestones.dart';
 import 'package:simple_baby_tracker/pages/settings.dart';
 import 'package:simple_baby_tracker/storage.dart';
+import 'package:simple_baby_tracker/theme/app_colors.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 
 class AppShell extends StatefulWidget {
@@ -324,30 +325,35 @@ class _AppShellState extends State<AppShell> {
 
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 12,
+        titleSpacing: 16,
+        toolbarHeight: 52,
         title: InkWell(
           onTap: _showProfileSheet,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(999),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CircleAvatar(
-                  radius: 16,
-                  backgroundColor: Theme.of(
-                    context,
-                  ).colorScheme.primaryContainer,
+                Container(
+                  width: 36,
+                  height: 36,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).extension<AppColors>()!.accentSolid,
+                    shape: BoxShape.circle,
+                  ),
                   child: Text(
                     profile?.initials ?? '?',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                    style: const TextStyle(
+                      fontFamily: 'Quicksand',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
                     ),
                   ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -356,23 +362,27 @@ class _AppShellState extends State<AppShell> {
                       children: [
                         Text(
                           profile?.name ?? 'Baby',
-                          style: const TextStyle(
+                          style: TextStyle(
+                            fontFamily: 'Quicksand',
                             fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                         const SizedBox(width: 2),
-                        const Icon(Icons.arrow_drop_down, size: 18),
+                        Icon(
+                          Icons.keyboard_arrow_down,
+                          size: 18,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
                       ],
                     ),
                     if (profile?.ageString.isNotEmpty == true)
                       Text(
                         profile!.ageString,
                         style: TextStyle(
-                          fontSize: 11,
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onSurface.withAlpha(140),
+                          fontSize: 11.5,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                       ),
                   ],
@@ -396,31 +406,45 @@ class _AppShellState extends State<AppShell> {
           const SettingsPage(),
         ],
       ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _currentIndex,
-        onDestinationSelected: (i) => setState(() => _currentIndex = i),
-        destinations: [
-          NavigationDestination(
-            icon: const Icon(Icons.home_outlined),
-            selectedIcon: const Icon(Icons.home),
-            label: l.navHome,
+      // NavigationBar does not itself consume the bottom system-gesture
+      // inset, and Scaffold.bottomNavigationBar does not auto-wrap its
+      // child in a SafeArea — without this, destination labels can sit
+      // under/behind the Android system nav bar.
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border(
+              top: BorderSide(color: Theme.of(context).dividerColor),
+            ),
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.bar_chart_outlined),
-            selectedIcon: const Icon(Icons.bar_chart),
-            label: l.navGraphs,
+          child: NavigationBar(
+            selectedIndex: _currentIndex,
+            onDestinationSelected: (i) => setState(() => _currentIndex = i),
+            destinations: [
+              NavigationDestination(
+                icon: const Icon(Icons.home_outlined),
+                selectedIcon: const Icon(Icons.home),
+                label: l.navHome,
+              ),
+              NavigationDestination(
+                icon: const Icon(Icons.bar_chart_outlined),
+                selectedIcon: const Icon(Icons.bar_chart),
+                label: l.navGraphs,
+              ),
+              NavigationDestination(
+                icon: const Icon(Icons.star_outline),
+                selectedIcon: const Icon(Icons.star),
+                label: l.navMilestones,
+              ),
+              NavigationDestination(
+                icon: const Icon(Icons.settings_outlined),
+                selectedIcon: const Icon(Icons.settings),
+                label: l.navSettings,
+              ),
+            ],
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.star_outline),
-            selectedIcon: const Icon(Icons.star),
-            label: 'Milestones',
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.settings_outlined),
-            selectedIcon: const Icon(Icons.settings),
-            label: l.navSettings,
-          ),
-        ],
+        ),
       ),
     );
   }

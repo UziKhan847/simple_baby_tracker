@@ -803,5 +803,58 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "medicationLabel": "Farmaco: {name}",
+    "@medicationLabel": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitDefaultReason": "Visita",
+    "@doctorVisitDefaultReason": {},
+    "doctorVisitLabel": "Visita dal medico — {reason}",
+    "@doctorVisitLabel": {
+        "placeholders": {
+            "reason": {
+                "type": "String"
+            }
+        }
+    },
+    "noteDefaultTitle": "📝 Nota",
+    "@noteDefaultTitle": {},
+    "noteLabel": "📝 {title}",
+    "@noteLabel": {
+        "placeholders": {
+            "title": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitWithDoctor": "Dott.: {doctor}",
+    "@doctorVisitWithDoctor": {
+        "placeholders": {
+            "doctor": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitNoDoctorRecorded": "Nessun medico registrato",
+    "@doctorVisitNoDoctorRecorded": {},
+    "summaryPoosLabel": "Cacca",
+    "@summaryPoosLabel": {},
+    "summaryPeesLabel": "Pipì",
+    "@summaryPeesLabel": {},
+    "summaryMilkLabel": "Latte ml",
+    "@summaryMilkLabel": {},
+    "summaryBreastLabel": "Allatt. min",
+    "@summaryBreastLabel": {},
+    "summarySleepLabel": "Sonno",
+    "settingsOledMode": "OLED (nero puro)",
+    "settingsOledModeDesc": "Usa sfondi neri puri per risparmiare batteria sugli schermi OLED",
+    "settingsImmersiveMode": "Modalità immersiva",
+    "settingsImmersiveModeDesc": "Nascondi le barre di stato e di navigazione del sistema",
+    "navVaccinationsEntry": "Vaccinazioni",
+    "whoChartsEntry": "Grafici di crescita OMS"
 }

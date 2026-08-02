@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
+import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
 
 const _diaperBrands = [
   'Pampers',
@@ -145,337 +147,296 @@ class _DiaperFormState extends State<DiaperForm> {
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
-    final media = MediaQuery.of(context);
-    final bottomPad = media.viewInsets.bottom > 0
-        ? media.viewInsets.bottom
-        : media.padding.bottom + 16;
 
-    return Padding(
-      padding: EdgeInsets.only(bottom: bottomPad),
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header
-            Row(
-              children: [
-                Text(
-                  _isEditing ? l.editDiaper : l.diaperChange,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const Spacer(),
-                TextButton.icon(
-                  onPressed: _pickTime,
-                  icon: const Icon(Icons.access_time, size: 18),
-                  label: Text(_time.format(context)),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-
-            // Rash follow-up
-            if (widget.previousRash && !_isEditing) ...[
-              Card(
-                color: Theme.of(context).colorScheme.errorContainer,
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        l.rashFollowUpTitle,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.onErrorContainer,
-                        ),
+    return AppFormScaffold(
+      title: _isEditing ? l.editDiaper : l.diaperChange,
+      time: _time,
+      onTimeChanged: (t) => setState(() => _time = t),
+      ctaLabel: _isEditing ? l.actionUpdate : l.actionSave,
+      onSubmit: _save,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Rash follow-up
+          if (widget.previousRash && !_isEditing) ...[
+            Card(
+              color: Theme.of(context).colorScheme.errorContainer,
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l.rashFollowUpTitle,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onErrorContainer,
                       ),
-                      const SizedBox(height: 8),
-                      Text(
-                        l.rashFollowUpQuestion,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onErrorContainer,
-                        ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      l.rashFollowUpQuestion,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onErrorContainer,
                       ),
-                      const SizedBox(height: 8),
-                      SegmentedButton<bool?>(
-                        emptySelectionAllowed: true,
-                        segments: [
-                          ButtonSegment(
-                            value: true,
-                            label: Text(l.rashImproved),
-                          ),
-                          ButtonSegment(
-                            value: false,
-                            label: Text(l.rashNoChange),
-                          ),
-                        ],
-                        selected: {_rashImproved},
-                        onSelectionChanged: (s) =>
-                            setState(() => _rashImproved = s.first),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 12),
-            ],
-
-            // Contents
-            Text(
-              l.diaperContents,
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
-            const SizedBox(height: 6),
-            SegmentedButton<String>(
-              segments: [
-                ButtonSegment(value: 'none', label: Text(l.diaperNone)),
-                ButtonSegment(
-                  value: 'pee',
-                  label: Text(l.diaperPeeLabel),
-                  icon: const Icon(Icons.water_drop, size: 14),
-                ),
-                ButtonSegment(
-                  value: 'poo',
-                  label: Text(l.diaperPooLabel),
-                  icon: const Icon(Icons.baby_changing_station, size: 14),
-                ),
-                ButtonSegment(value: 'both', label: Text(l.diaperBoth)),
-              ],
-              selected: {_type},
-              onSelectionChanged: (s) => setState(() => _type = s.first),
-            ),
-
-            // Poo-specific fields
-            if (_hasPoo) ...[
-              const SizedBox(height: 16),
-
-              // Consistency
-              Text(
-                l.diaperConsistency,
-                style: Theme.of(context).textTheme.labelLarge,
-              ),
-              const SizedBox(height: 6),
-              Wrap(
-                spacing: 6,
-                runSpacing: 4,
-                children: _consistencyIds.map((id) {
-                  final selected = _consistency == id;
-                  final color = Color(_consistencyColors[id] ?? 0xFF000000);
-                  final (label, hint) = _consistencyStrings(id, l);
-                  return FilterChip(
-                    label: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          label,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: selected ? Colors.white : null,
-                          ),
-                        ),
-                        Text(
-                          hint,
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: selected ? Colors.white70 : Colors.grey,
-                          ),
+                    ),
+                    const SizedBox(height: 8),
+                    SegmentedButton<bool?>(
+                      emptySelectionAllowed: true,
+                      segments: [
+                        ButtonSegment(value: true, label: Text(l.rashImproved)),
+                        ButtonSegment(
+                          value: false,
+                          label: Text(l.rashNoChange),
                         ),
                       ],
+                      selected: {_rashImproved},
+                      onSelectionChanged: (s) =>
+                          setState(() => _rashImproved = s.first),
                     ),
-                    selected: selected,
-                    selectedColor: color,
-                    checkmarkColor: Colors.white,
-                    onSelected: (_) =>
-                        setState(() => _consistency = selected ? null : id),
-                  );
-                }).toList(),
-              ),
-
-              // Constipation / diarrhea warning
-              if (_consistency == 'hard' ||
-                  _consistency == 'watery' ||
-                  _consistency == 'loose')
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.warning_amber_rounded,
-                        color: Colors.orange.shade700,
-                        size: 18,
-                      ),
-                      const SizedBox(width: 6),
-                      Text(
-                        _consistency == 'hard'
-                            ? l.warnConstipation
-                            : l.warnDiarrhea,
-                        style: TextStyle(
-                          color: Colors.orange.shade700,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
+                  ],
                 ),
-
-              const SizedBox(height: 16),
-
-              // Colour chart
-              Text(
-                l.pooColourLabel,
-                style: Theme.of(context).textTheme.labelLarge,
               ),
-              const SizedBox(height: 6),
-              _buildColorGroup(l.pooColourAbnormal, true, l),
-              const SizedBox(height: 10),
-              _buildColorGroup(l.pooColourNormal, false, l),
-              if (_pooColor != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 6),
-                  child: Text(
-                    l.pooColourSelected(_optionLabel(_pooColor!)),
-                    style: const TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
+            ),
+            const SizedBox(height: 12),
+          ],
+
+          // Contents
+          Text(l.diaperContents, style: Theme.of(context).textTheme.labelLarge),
+          const SizedBox(height: 6),
+          PillSegmentedControl<String>(
+            options: [
+              PillSegmentedOption(value: 'none', label: l.diaperNone),
+              PillSegmentedOption(
+                value: 'pee',
+                label: l.diaperPeeLabel,
+                icon: Icons.water_drop,
+              ),
+              PillSegmentedOption(
+                value: 'poo',
+                label: l.diaperPooLabel,
+                icon: Icons.baby_changing_station,
+              ),
+              PillSegmentedOption(value: 'both', label: l.diaperBoth),
             ],
+            selected: _type,
+            onChanged: (v) => setState(() => _type = v),
+          ),
 
+          // Poo-specific fields
+          if (_hasPoo) ...[
             const SizedBox(height: 16),
 
-            // Diaper size
-            Text(l.diaperSize, style: Theme.of(context).textTheme.labelLarge),
-            const SizedBox(height: 6),
-            Wrap(
-              spacing: 6,
-              children: _diaperSizes
-                  .map(
-                    (s) => ChoiceChip(
-                      label: Text(s),
-                      selected: _size == s,
-                      onSelected: (_) =>
-                          setState(() => _size = _size == s ? null : s),
-                    ),
-                  )
-                  .toList(),
+            // Consistency
+            Text(
+              l.diaperConsistency,
+              style: Theme.of(context).textTheme.labelLarge,
             ),
-
-            const SizedBox(height: 12),
-
-            // Brand
-            Text(l.diaperBrand, style: Theme.of(context).textTheme.labelLarge),
             const SizedBox(height: 6),
             Wrap(
               spacing: 6,
               runSpacing: 4,
-              children: _diaperBrands.map((b) {
-                final isOther = b == 'Other';
-                final selected = isOther ? _customBrand : _brand == b;
+              children: _consistencyIds.map((id) {
+                final selected = _consistency == id;
+                final color = Color(_consistencyColors[id] ?? 0xFF000000);
+                final (label, hint) = _consistencyStrings(id, l);
+                return FilterChip(
+                  label: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        label,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: selected ? Colors.white : null,
+                        ),
+                      ),
+                      Text(
+                        hint,
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: selected ? Colors.white70 : Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                  selected: selected,
+                  selectedColor: color,
+                  checkmarkColor: Colors.white,
+                  onSelected: (_) =>
+                      setState(() => _consistency = selected ? null : id),
+                );
+              }).toList(),
+            ),
+
+            // Constipation / diarrhea warning
+            if (_consistency == 'hard' ||
+                _consistency == 'watery' ||
+                _consistency == 'loose')
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.warning_amber_rounded,
+                      color: Colors.orange.shade700,
+                      size: 18,
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      _consistency == 'hard'
+                          ? l.warnConstipation
+                          : l.warnDiarrhea,
+                      style: TextStyle(
+                        color: Colors.orange.shade700,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+            const SizedBox(height: 16),
+
+            // Colour chart
+            Text(
+              l.pooColourLabel,
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
+            const SizedBox(height: 6),
+            _buildColorGroup(l.pooColourAbnormal, true, l),
+            const SizedBox(height: 10),
+            _buildColorGroup(l.pooColourNormal, false, l),
+            if (_pooColor != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: Text(
+                  l.pooColourSelected(_optionLabel(_pooColor!)),
+                  style: const TextStyle(
+                    fontStyle: FontStyle.italic,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+          ],
+
+          const SizedBox(height: 16),
+
+          // Diaper size
+          Text(l.diaperSize, style: Theme.of(context).textTheme.labelLarge),
+          const SizedBox(height: 6),
+          Wrap(
+            spacing: 6,
+            children: _diaperSizes
+                .map(
+                  (s) => ChoiceChip(
+                    label: Text(s),
+                    selected: _size == s,
+                    onSelected: (_) =>
+                        setState(() => _size = _size == s ? null : s),
+                  ),
+                )
+                .toList(),
+          ),
+
+          const SizedBox(height: 12),
+
+          // Brand
+          Text(l.diaperBrand, style: Theme.of(context).textTheme.labelLarge),
+          const SizedBox(height: 6),
+          Wrap(
+            spacing: 6,
+            runSpacing: 4,
+            children: _diaperBrands.map((b) {
+              final isOther = b == 'Other';
+              final selected = isOther ? _customBrand : _brand == b;
+              return ChoiceChip(
+                label: Text(b),
+                selected: selected,
+                onSelected: (_) => setState(() {
+                  if (isOther) {
+                    _customBrand = !_customBrand;
+                    if (!_customBrand) _brandCtrl.clear();
+                    _brand = null;
+                  } else {
+                    _brand = selected ? null : b;
+                    _customBrand = false;
+                    _brandCtrl.clear();
+                  }
+                }),
+              );
+            }).toList(),
+          ),
+          if (_customBrand)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: TextField(
+                controller: _brandCtrl,
+                decoration: InputDecoration(
+                  labelText: l.diaperBrandCustomLabel,
+                  border: const OutlineInputBorder(),
+                  isDense: true,
+                ),
+              ),
+            ),
+
+          const SizedBox(height: 16),
+
+          // Rash toggle
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(l.rashPresent),
+            subtitle: Text(l.rashPresentHint),
+            value: _rash,
+            onChanged: (v) => setState(() => _rash = v),
+          ),
+
+          if (_rash) ...[
+            Text(
+              l.rashCreamUsed,
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
+            const SizedBox(height: 6),
+            Wrap(
+              spacing: 6,
+              runSpacing: 4,
+              children: _rashCreams.map((c) {
+                final isOther = c == 'Other';
+                final selected = isOther ? _customCream : _rashCream == c;
                 return ChoiceChip(
-                  label: Text(b),
+                  label: Text(c),
                   selected: selected,
                   onSelected: (_) => setState(() {
                     if (isOther) {
-                      _customBrand = !_customBrand;
-                      if (!_customBrand) _brandCtrl.clear();
-                      _brand = null;
+                      _customCream = !_customCream;
+                      if (!_customCream) _creamCtrl.clear();
+                      _rashCream = null;
                     } else {
-                      _brand = selected ? null : b;
-                      _customBrand = false;
-                      _brandCtrl.clear();
+                      _rashCream = selected ? null : c;
+                      _customCream = false;
+                      _creamCtrl.clear();
                     }
                   }),
                 );
               }).toList(),
             ),
-            if (_customBrand)
+            if (_customCream)
               Padding(
-                padding: const EdgeInsets.only(top: 8),
+                padding: const EdgeInsets.only(top: 8, bottom: 4),
                 child: TextField(
-                  controller: _brandCtrl,
+                  controller: _creamCtrl,
                   decoration: InputDecoration(
-                    labelText: l.diaperBrandCustomLabel,
+                    labelText: l.rashCreamCustomLabel,
                     border: const OutlineInputBorder(),
                     isDense: true,
                   ),
                 ),
               ),
-
-            const SizedBox(height: 16),
-
-            // Rash toggle
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l.rashPresent),
-              subtitle: Text(l.rashPresentHint),
-              value: _rash,
-              onChanged: (v) => setState(() => _rash = v),
-            ),
-
-            if (_rash) ...[
-              Text(
-                l.rashCreamUsed,
-                style: Theme.of(context).textTheme.labelLarge,
-              ),
-              const SizedBox(height: 6),
-              Wrap(
-                spacing: 6,
-                runSpacing: 4,
-                children: _rashCreams.map((c) {
-                  final isOther = c == 'Other';
-                  final selected = isOther ? _customCream : _rashCream == c;
-                  return ChoiceChip(
-                    label: Text(c),
-                    selected: selected,
-                    onSelected: (_) => setState(() {
-                      if (isOther) {
-                        _customCream = !_customCream;
-                        if (!_customCream) _creamCtrl.clear();
-                        _rashCream = null;
-                      } else {
-                        _rashCream = selected ? null : c;
-                        _customCream = false;
-                        _creamCtrl.clear();
-                      }
-                    }),
-                  );
-                }).toList(),
-              ),
-              if (_customCream)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 4),
-                  child: TextField(
-                    controller: _creamCtrl,
-                    decoration: InputDecoration(
-                      labelText: l.rashCreamCustomLabel,
-                      border: const OutlineInputBorder(),
-                      isDense: true,
-                    ),
-                  ),
-                ),
-              const SizedBox(height: 8),
-            ],
-
-            const SizedBox(height: 16),
-            Align(
-              alignment: Alignment.centerRight,
-              child: FilledButton(
-                onPressed: _save,
-                child: Text(_isEditing ? l.actionUpdate : l.actionSave),
-              ),
-            ),
+            const SizedBox(height: 8),
           ],
-        ),
+        ],
       ),
     );
-  }
-
-  Future<void> _pickTime() async {
-    final t = await showTimePicker(context: context, initialTime: _time);
-    if (t != null) setState(() => _time = t);
   }
 
   Widget _buildColorGroup(String title, bool abnormal, AppLocalizations l) {
@@ -511,11 +472,11 @@ class _DiaperFormState extends State<DiaperForm> {
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 150),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(14),
                   border: Border.all(
                     color: selected
                         ? Theme.of(context).colorScheme.primary
-                        : Colors.grey.shade300,
+                        : Theme.of(context).colorScheme.outlineVariant,
                     width: selected ? 3.5 : 1.5,
                   ),
                   boxShadow: selected
@@ -530,11 +491,11 @@ class _DiaperFormState extends State<DiaperForm> {
                       : null,
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(12),
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
-                      Image.asset('assets/$id.png', fit: BoxFit.cover),
+                      Image.asset('assets/$id.jpg', fit: BoxFit.cover),
                       if (selected)
                         Container(color: Colors.black.withAlpha(50)),
                       if (selected)

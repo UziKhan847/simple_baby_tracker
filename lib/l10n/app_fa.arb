@@ -803,5 +803,58 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "medicationLabel": "دارو: {name}",
+    "@medicationLabel": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitDefaultReason": "ویزیت",
+    "@doctorVisitDefaultReason": {},
+    "doctorVisitLabel": "مراجعه به پزشک — {reason}",
+    "@doctorVisitLabel": {
+        "placeholders": {
+            "reason": {
+                "type": "String"
+            }
+        }
+    },
+    "noteDefaultTitle": "📝 یادداشت",
+    "@noteDefaultTitle": {},
+    "noteLabel": "📝 {title}",
+    "@noteLabel": {
+        "placeholders": {
+            "title": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitWithDoctor": "دکتر: {doctor}",
+    "@doctorVisitWithDoctor": {
+        "placeholders": {
+            "doctor": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitNoDoctorRecorded": "پزشکی ثبت نشده",
+    "@doctorVisitNoDoctorRecorded": {},
+    "summaryPoosLabel": "مدفوع",
+    "@summaryPoosLabel": {},
+    "summaryPeesLabel": "ادرار",
+    "@summaryPeesLabel": {},
+    "summaryMilkLabel": "شیر میلی‌لیتر",
+    "@summaryMilkLabel": {},
+    "summaryBreastLabel": "شیردهی دقیقه",
+    "@summaryBreastLabel": {},
+    "summarySleepLabel": "خواب",
+    "settingsOledMode": "OLED (سیاه مطلق)",
+    "settingsOledModeDesc": "استفاده از پس‌زمینه سیاه مطلق برای صرفه‌جویی باتری در صفحه‌های OLED",
+    "settingsImmersiveMode": "حالت غوطه‌ور",
+    "settingsImmersiveModeDesc": "پنهان کردن نوار وضعیت و ناوبری سیستم",
+    "navVaccinationsEntry": "واکسیناسیون",
+    "whoChartsEntry": "نمودارهای رشد WHO"
 }

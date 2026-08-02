@@ -2038,6 +2038,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{years}yr {months}mo old'**
   String ageYearMonth(int years, int months);
+
+  /// No description provided for @medicationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication: {name}'**
+  String medicationLabel(String name);
+
+  /// No description provided for @doctorVisitDefaultReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit'**
+  String get doctorVisitDefaultReason;
+
+  /// No description provided for @doctorVisitLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor visit — {reason}'**
+  String doctorVisitLabel(String reason);
+
+  /// No description provided for @noteDefaultTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'📝 Note'**
+  String get noteDefaultTitle;
+
+  /// No description provided for @noteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'📝 {title}'**
+  String noteLabel(String title);
+
+  /// No description provided for @doctorVisitWithDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Dr: {doctor}'**
+  String doctorVisitWithDoctor(String doctor);
+
+  /// No description provided for @doctorVisitNoDoctorRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'No doctor recorded'**
+  String get doctorVisitNoDoctorRecorded;
+
+  /// No description provided for @summaryPoosLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Poos'**
+  String get summaryPoosLabel;
+
+  /// No description provided for @summaryPeesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pees'**
+  String get summaryPeesLabel;
+
+  /// No description provided for @summaryMilkLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Milk ml'**
+  String get summaryMilkLabel;
+
+  /// No description provided for @summaryBreastLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Breast m'**
+  String get summaryBreastLabel;
+
+  /// No description provided for @summarySleepLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep'**
+  String get summarySleepLabel;
+
+  /// No description provided for @settingsOledMode.
+  ///
+  /// In en, this message translates to:
+  /// **'OLED (true black)'**
+  String get settingsOledMode;
+
+  /// No description provided for @settingsOledModeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use pure black backgrounds to save battery on OLED screens'**
+  String get settingsOledModeDesc;
+
+  /// No description provided for @settingsImmersiveMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Immersive mode'**
+  String get settingsImmersiveMode;
+
+  /// No description provided for @settingsImmersiveModeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide system status and navigation bars'**
+  String get settingsImmersiveModeDesc;
+
+  /// No description provided for @navVaccinationsEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccinations'**
+  String get navVaccinationsEntry;
+
+  /// No description provided for @whoChartsEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'WHO growth charts'**
+  String get whoChartsEntry;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

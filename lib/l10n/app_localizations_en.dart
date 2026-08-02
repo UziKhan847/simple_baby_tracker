@@ -1037,4 +1037,66 @@ class AppLocalizationsEn extends AppLocalizations {
   String ageYearMonth(int years, int months) {
     return '${years}yr ${months}mo old';
   }
+
+  @override
+  String medicationLabel(String name) {
+    return 'Medication: $name';
+  }
+
+  @override
+  String get doctorVisitDefaultReason => 'Visit';
+
+  @override
+  String doctorVisitLabel(String reason) {
+    return 'Doctor visit — $reason';
+  }
+
+  @override
+  String get noteDefaultTitle => '📝 Note';
+
+  @override
+  String noteLabel(String title) {
+    return '📝 $title';
+  }
+
+  @override
+  String doctorVisitWithDoctor(String doctor) {
+    return 'Dr: $doctor';
+  }
+
+  @override
+  String get doctorVisitNoDoctorRecorded => 'No doctor recorded';
+
+  @override
+  String get summaryPoosLabel => 'Poos';
+
+  @override
+  String get summaryPeesLabel => 'Pees';
+
+  @override
+  String get summaryMilkLabel => 'Milk ml';
+
+  @override
+  String get summaryBreastLabel => 'Breast m';
+
+  @override
+  String get summarySleepLabel => 'Sleep';
+
+  @override
+  String get settingsOledMode => 'OLED (true black)';
+
+  @override
+  String get settingsOledModeDesc => 'Use pure black backgrounds to save battery on OLED screens';
+
+  @override
+  String get settingsImmersiveMode => 'Immersive mode';
+
+  @override
+  String get settingsImmersiveModeDesc => 'Hide system status and navigation bars';
+
+  @override
+  String get navVaccinationsEntry => 'Vaccinations';
+
+  @override
+  String get whoChartsEntry => 'WHO growth charts';
 }

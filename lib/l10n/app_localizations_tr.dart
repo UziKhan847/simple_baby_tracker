@@ -1041,4 +1041,66 @@ class AppLocalizationsTr extends AppLocalizations {
   String ageYearMonth(int years, int months) {
     return '$years yaş $months ay';
   }
+
+  @override
+  String medicationLabel(String name) {
+    return 'İlaç: $name';
+  }
+
+  @override
+  String get doctorVisitDefaultReason => 'Ziyaret';
+
+  @override
+  String doctorVisitLabel(String reason) {
+    return 'Doktor ziyareti — $reason';
+  }
+
+  @override
+  String get noteDefaultTitle => '📝 Not';
+
+  @override
+  String noteLabel(String title) {
+    return '📝 $title';
+  }
+
+  @override
+  String doctorVisitWithDoctor(String doctor) {
+    return 'Dr: $doctor';
+  }
+
+  @override
+  String get doctorVisitNoDoctorRecorded => 'Doktor kaydedilmedi';
+
+  @override
+  String get summaryPoosLabel => 'Kaka';
+
+  @override
+  String get summaryPeesLabel => 'Çiş';
+
+  @override
+  String get summaryMilkLabel => 'Süt ml';
+
+  @override
+  String get summaryBreastLabel => 'Emzirme dk';
+
+  @override
+  String get summarySleepLabel => 'Uyku';
+
+  @override
+  String get settingsOledMode => 'OLED (tam siyah)';
+
+  @override
+  String get settingsOledModeDesc => 'OLED ekranlarda pil tasarrufu için tam siyah arka plan kullan';
+
+  @override
+  String get settingsImmersiveMode => 'Sürükleyici mod';
+
+  @override
+  String get settingsImmersiveModeDesc => 'Sistem durum ve gezinme çubuklarını gizle';
+
+  @override
+  String get navVaccinationsEntry => 'Aşılar';
+
+  @override
+  String get whoChartsEntry => 'DSÖ büyüme grafikleri';
 }

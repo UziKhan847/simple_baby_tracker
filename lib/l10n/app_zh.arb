@@ -803,5 +803,58 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "medicationLabel": "用药：{name}",
+    "@medicationLabel": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitDefaultReason": "就诊",
+    "@doctorVisitDefaultReason": {},
+    "doctorVisitLabel": "看医生 — {reason}",
+    "@doctorVisitLabel": {
+        "placeholders": {
+            "reason": {
+                "type": "String"
+            }
+        }
+    },
+    "noteDefaultTitle": "📝 笔记",
+    "@noteDefaultTitle": {},
+    "noteLabel": "📝 {title}",
+    "@noteLabel": {
+        "placeholders": {
+            "title": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitWithDoctor": "医生：{doctor}",
+    "@doctorVisitWithDoctor": {
+        "placeholders": {
+            "doctor": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitNoDoctorRecorded": "未记录医生",
+    "@doctorVisitNoDoctorRecorded": {},
+    "summaryPoosLabel": "便",
+    "@summaryPoosLabel": {},
+    "summaryPeesLabel": "尿",
+    "@summaryPeesLabel": {},
+    "summaryMilkLabel": "奶 ml",
+    "@summaryMilkLabel": {},
+    "summaryBreastLabel": "亲喂分钟",
+    "@summaryBreastLabel": {},
+    "summarySleepLabel": "睡眠",
+    "settingsOledMode": "OLED（纯黑）",
+    "settingsOledModeDesc": "使用纯黑背景以节省 OLED 屏幕电量",
+    "settingsImmersiveMode": "沉浸模式",
+    "settingsImmersiveModeDesc": "隐藏系统状态栏和导航栏",
+    "navVaccinationsEntry": "疫苗接种",
+    "whoChartsEntry": "WHO 生长曲线图"
 }

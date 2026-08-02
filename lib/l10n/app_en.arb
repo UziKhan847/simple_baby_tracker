@@ -803,5 +803,65 @@
         "type": "int"
       }
     }
-  }
+  },
+  "medicationLabel": "Medication: {name}",
+  "@medicationLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "doctorVisitDefaultReason": "Visit",
+  "@doctorVisitDefaultReason": {},
+  "doctorVisitLabel": "Doctor visit — {reason}",
+  "@doctorVisitLabel": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "noteDefaultTitle": "📝 Note",
+  "@noteDefaultTitle": {},
+  "noteLabel": "📝 {title}",
+  "@noteLabel": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "doctorVisitWithDoctor": "Dr: {doctor}",
+  "@doctorVisitWithDoctor": {
+    "placeholders": {
+      "doctor": {
+        "type": "String"
+      }
+    }
+  },
+  "doctorVisitNoDoctorRecorded": "No doctor recorded",
+  "@doctorVisitNoDoctorRecorded": {},
+  "summaryPoosLabel": "Poos",
+  "@summaryPoosLabel": {},
+  "summaryPeesLabel": "Pees",
+  "@summaryPeesLabel": {},
+  "summaryMilkLabel": "Milk ml",
+  "@summaryMilkLabel": {},
+  "summaryBreastLabel": "Breast m",
+  "@summaryBreastLabel": {},
+  "summarySleepLabel": "Sleep",
+  "@summarySleepLabel": {},
+  "settingsOledMode": "OLED (true black)",
+  "@settingsOledMode": {},
+  "settingsOledModeDesc": "Use pure black backgrounds to save battery on OLED screens",
+  "@settingsOledModeDesc": {},
+  "settingsImmersiveMode": "Immersive mode",
+  "@settingsImmersiveMode": {},
+  "settingsImmersiveModeDesc": "Hide system status and navigation bars",
+  "@settingsImmersiveModeDesc": {},
+  "navVaccinationsEntry": "Vaccinations",
+  "@navVaccinationsEntry": {},
+  "whoChartsEntry": "WHO growth charts",
+  "@whoChartsEntry": {}
 }

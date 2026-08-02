@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/helpers.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/models/milestone_entry.dart';
+import 'package:simple_baby_tracker/pages/vaccinations.dart';
 import 'package:simple_baby_tracker/storage.dart';
+import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/widgets/entry_row.dart';
+import 'package:simple_baby_tracker/widgets/gradient_pill_button.dart';
 
 /// Human-readable titles for each preset milestone key (English fallback).
 /// Replace with l10n lookup once milestone keys are added to the ARB files.
@@ -48,10 +53,8 @@ class _MilestonesPageState extends State<MilestonesPage>
   late final TabController _tabs;
 
   // Keys that have already been logged
-  Set<String> get _achievedPresets => _milestones
-      .where((m) => m.isPreset)
-      .map((m) => m.title)
-      .toSet();
+  Set<String> get _achievedPresets =>
+      _milestones.where((m) => m.isPreset).map((m) => m.title).toSet();
 
   @override
   void initState() {
@@ -90,8 +93,7 @@ class _MilestonesPageState extends State<MilestonesPage>
     final titleCtrl = TextEditingController(
       text: existing?.title ?? (isPreset ? presetKey : ''),
     );
-    final notesCtrl =
-        TextEditingController(text: existing?.notes ?? '');
+    final notesCtrl = TextEditingController(text: existing?.notes ?? '');
     DateTime pickedDate = existing?.date ?? DateTime.now();
 
     final result = await showDialog<MilestoneEntry>(
@@ -102,8 +104,8 @@ class _MilestonesPageState extends State<MilestonesPage>
             existing != null
                 ? 'Edit milestone'
                 : isPreset
-                    ? _presetTitle(presetKey)
-                    : 'Add milestone',
+                ? _presetTitle(presetKey)
+                : 'Add milestone',
           ),
           content: SingleChildScrollView(
             child: Column(
@@ -155,9 +157,7 @@ class _MilestonesPageState extends State<MilestonesPage>
             ),
             FilledButton(
               onPressed: () {
-                final title = isPreset
-                    ? presetKey
-                    : titleCtrl.text.trim();
+                final title = isPreset ? presetKey : titleCtrl.text.trim();
                 if (title.isEmpty) return;
                 Navigator.pop(
                   ctx,
@@ -200,11 +200,13 @@ class _MilestonesPageState extends State<MilestonesPage>
         content: const Text('This cannot be undone.'),
         actions: [
           TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: const Text('Cancel')),
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
           FilledButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: const Text('Delete')),
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Delete'),
+          ),
         ],
       ),
     );
@@ -219,23 +221,42 @@ class _MilestonesPageState extends State<MilestonesPage>
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.babyName} — Milestones'),
+        title: Text(l.navMilestones),
         automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.vaccines_outlined),
+            tooltip: l.navVaccinationsEntry,
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => VaccinationsPage(
+                  babyId: widget.babyId,
+                  babyName: widget.babyName,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+        ],
         bottom: TabBar(
           controller: _tabs,
+          isScrollable: true,
+          tabAlignment: TabAlignment.start,
           tabs: const [
-            Tab(icon: Icon(Icons.star), text: 'Achieved'),
-            Tab(icon: Icon(Icons.pending_outlined), text: 'Upcoming'),
+            Tab(text: 'Achieved'),
+            Tab(text: 'Upcoming'),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        heroTag: 'milestones_fab',
+      floatingActionButton: GradientPillButton(
+        label: 'Custom milestone',
+        icon: Icons.add,
+        expand: false,
         onPressed: () => _showMilestoneDialog(),
-        icon: const Icon(Icons.add),
-        label: const Text('Custom milestone'),
       ),
       body: _loading
           ? const Center(child: CircularProgressIndicator())
@@ -249,8 +270,7 @@ class _MilestonesPageState extends State<MilestonesPage>
                 ),
                 _UpcomingTab(
                   achieved: _achievedPresets,
-                  onLog: (key) =>
-                      _showMilestoneDialog(presetKey: key),
+                  onLog: (key) => _showMilestoneDialog(presetKey: key),
                 ),
               ],
             ),
@@ -273,21 +293,36 @@ class _AchievedTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.extension<AppColors>()!;
+
     if (milestones.isEmpty) {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.star_border,
-                size: 64, color: Colors.grey.shade400),
-            const SizedBox(height: 12),
-            const Text('No milestones logged yet.',
-                style: TextStyle(color: Colors.grey)),
-            const SizedBox(height: 8),
-            const Text(
-              'Tap "Upcoming" to log a preset,\nor use the + button for a custom one.',
+            Icon(
+              Icons.star_border,
+              size: 52,
+              color: theme.colorScheme.outlineVariant,
+            ),
+            const SizedBox(height: 14),
+            Text(
+              'No milestones logged yet.',
+              style: theme.textTheme.bodyLarge?.copyWith(
+                fontSize: 15,
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Tap "Upcoming" to log a preset,\nor use the button below for a custom one.',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey, fontSize: 13),
+              style: theme.textTheme.bodyMedium?.copyWith(
+                fontSize: 13.5,
+                height: 1.5,
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
             ),
           ],
         ),
@@ -295,12 +330,11 @@ class _AchievedTab extends StatelessWidget {
     }
 
     return ListView.builder(
-      padding: const EdgeInsets.fromLTRB(12, 8, 12, 88),
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 96),
       itemCount: milestones.length,
       itemBuilder: (context, i) {
         final m = milestones[i];
-        final title =
-            m.isPreset ? _presetTitle(m.title) : m.title;
+        final title = m.isPreset ? _presetTitle(m.title) : m.title;
 
         return Dismissible(
           key: ValueKey(m.id),
@@ -312,66 +346,69 @@ class _AchievedTab extends StatelessWidget {
               content: const Text('This cannot be undone.'),
               actions: [
                 TextButton(
-                    onPressed: () => Navigator.pop(context, false),
-                    child: const Text('Cancel')),
+                  onPressed: () => Navigator.pop(context, false),
+                  child: const Text('Cancel'),
+                ),
                 FilledButton(
-                    onPressed: () => Navigator.pop(context, true),
-                    child: const Text('Delete')),
+                  onPressed: () => Navigator.pop(context, true),
+                  child: const Text('Delete'),
+                ),
               ],
             ),
           ),
           onDismissed: (_) => onDelete(m),
           background: Container(
+            margin: const EdgeInsets.symmetric(vertical: 5),
             alignment: Alignment.centerRight,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
             decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(12),
+              color: theme.colorScheme.error,
+              borderRadius: BorderRadius.circular(18),
             ),
-            child: const Icon(Icons.delete, color: Colors.white),
+            child: Icon(Icons.delete, color: theme.colorScheme.onError),
           ),
-          child: Card(
-            margin: const EdgeInsets.symmetric(vertical: 4),
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.amber.withAlpha(40),
-                child: const Icon(Icons.star, color: Colors.amber),
-              ),
-              title: Text(title,
-                  style: const TextStyle(fontWeight: FontWeight.w600)),
-              subtitle: Text(fullDate(m.date)),
-              trailing: IconButton(
-                icon: const Icon(Icons.edit_outlined, size: 18),
-                onPressed: () => onEdit(m),
-              ),
-              onTap: m.notes != null
-                  ? () => showDialog(
-                        context: context,
-                        builder: (_) => AlertDialog(
-                          title: Text(title),
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(fullDate(m.date),
-                                  style: const TextStyle(
-                                      color: Colors.grey)),
-                              if (m.notes != null) ...[
-                                const SizedBox(height: 8),
-                                Text(m.notes!),
-                              ],
-                            ],
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: const Text('Close'),
-                            ),
-                          ],
-                        ),
-                      )
-                  : null,
+          child: EntryRow(
+            margin: const EdgeInsets.symmetric(vertical: 5),
+            icon: Icons.check,
+            color: colors.feedingStrong,
+            softColor: colors.feedingSoft,
+            title: title,
+            subtitle: fullDate(m.date),
+            trailing: IconButton(
+              icon: const Icon(Icons.edit_outlined, size: 16),
+              color: theme.colorScheme.onSurfaceVariant,
+              onPressed: () => onEdit(m),
             ),
+            onTap: m.notes != null
+                ? () => showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: Text(title),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            fullDate(m.date),
+                            style: TextStyle(
+                              color: theme.colorScheme.onSurfaceVariant,
+                            ),
+                          ),
+                          if (m.notes != null) ...[
+                            const SizedBox(height: 8),
+                            Text(m.notes!),
+                          ],
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text('Close'),
+                        ),
+                      ],
+                    ),
+                  )
+                : null,
           ),
         );
       },
@@ -393,6 +430,9 @@ class _UpcomingTab extends StatelessWidget {
         .where((k) => !achieved.contains(k))
         .toList();
 
+    final theme = Theme.of(context);
+    final colors = theme.extension<AppColors>()!;
+
     if (remaining.isEmpty) {
       return Center(
         child: Column(
@@ -400,38 +440,64 @@ class _UpcomingTab extends StatelessWidget {
           children: [
             const Text('🎉', style: TextStyle(fontSize: 48)),
             const SizedBox(height: 12),
-            const Text('All preset milestones achieved!',
-                style: TextStyle(color: Colors.grey)),
+            Text(
+              'All preset milestones achieved!',
+              style: theme.textTheme.bodyLarge?.copyWith(
+                fontSize: 15,
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
           ],
         ),
       );
     }
 
     return ListView.builder(
-      padding: const EdgeInsets.fromLTRB(12, 8, 12, 24),
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 96),
       itemCount: remaining.length,
       itemBuilder: (context, i) {
         final key = remaining[i];
-        return Card(
-          margin: const EdgeInsets.symmetric(vertical: 4),
-          child: ListTile(
-            leading: CircleAvatar(
-              backgroundColor:
-                  Theme.of(context).colorScheme.secondaryContainer,
-              child: Icon(Icons.pending_outlined,
-                  color: Theme.of(context)
-                      .colorScheme
-                      .onSecondaryContainer,
-                  size: 20),
-            ),
-            title: Text(_presetTitle(key)),
-            trailing: FilledButton.tonal(
-              onPressed: () => onLog(key),
-              child: const Text('Log'),
-            ),
-          ),
+        return EntryRow(
+          margin: const EdgeInsets.symmetric(vertical: 5),
+          icon: Icons.circle,
+          color: colors.neutralStrong,
+          softColor: colors.neutralSoft,
+          title: _presetTitle(key),
+          trailing: _LogPill(onTap: () => onLog(key)),
         );
       },
+    );
+  }
+}
+
+/// The mockup's "Log" affordance: an accent-soft pill, not a Material
+/// tonal button (which would pick up the scheme's secondary container).
+class _LogPill extends StatelessWidget {
+  const _LogPill({required this.onTap});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Material(
+      color: theme.colorScheme.primaryContainer,
+      borderRadius: BorderRadius.circular(999),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
+          child: Text(
+            'Log',
+            style: theme.textTheme.labelMedium?.copyWith(
+              fontSize: 13.5,
+              fontWeight: FontWeight.w700,
+              color: theme.colorScheme.onPrimaryContainer,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

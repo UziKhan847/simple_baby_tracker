@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
+import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
 
 const _formulaBrands = [
   'Similac',
@@ -9,6 +12,7 @@ const _formulaBrands = [
   "Earth's Best",
   'HiPP',
   'Holle',
+  'Kendamil',
   'Bobbie',
   'Store brand',
   'Other',
@@ -19,6 +23,7 @@ class _FeedEntry {
   String method = 'breast';
   String formulaBrand = '';
   bool customFormulaBrand = false;
+  bool amountInMl = true;
 
   final TextEditingController amountCtrl = TextEditingController();
   final TextEditingController durationCtrl = TextEditingController();
@@ -101,13 +106,15 @@ class _FeedingFormState extends State<FeedingForm> {
       final effectiveBrand = f.customFormulaBrand
           ? (f.brandCtrl.text.trim().isEmpty ? null : f.brandCtrl.text.trim())
           : (f.formulaBrand.isEmpty ? null : f.formulaBrand);
+      final rawAmount = double.tryParse(f.amountCtrl.text) ?? 0;
+      final amountMl = f.amountInMl ? rawAmount : ozToMl(rawAmount);
       return TrackerEvent(
         type: 'feeding',
         time: dt,
         data: {
           'isBottle': isBottle,
           if (isBottle) 'method': f.method,
-          'amountMl': isBottle ? (int.tryParse(f.amountCtrl.text) ?? 0) : 0,
+          'amountMl': isBottle ? amountMl.round() : 0,
           if (!isBottle) 'durationMin': int.tryParse(f.durationCtrl.text) ?? 0,
           if (isBottle && f.method == 'formula' && effectiveBrand != null)
             'formulaBrand': effectiveBrand,
@@ -136,69 +143,36 @@ class _FeedingFormState extends State<FeedingForm> {
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
-    final media = MediaQuery.of(context);
-    final bottomPad = media.viewInsets.bottom > 0
-        ? media.viewInsets.bottom
-        : media.padding.bottom + 16;
 
-    return Padding(
-      padding: EdgeInsets.only(bottom: bottomPad),
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  _isEditing ? l.editFeeding : l.addFeeding,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const Spacer(),
-                TextButton.icon(
-                  onPressed: () async {
-                    final t = await showTimePicker(
-                      context: context,
-                      initialTime: _time,
-                    );
-                    if (t != null) setState(() => _time = t);
-                  },
-                  icon: const Icon(Icons.access_time, size: 18),
-                  label: Text(_time.format(context)),
-                ),
-              ],
+    return AppFormScaffold(
+      title: _isEditing ? l.editFeeding : l.addFeeding,
+      time: _time,
+      onTimeChanged: (t) => setState(() => _time = t),
+      ctaLabel: _isEditing ? l.actionUpdate : l.actionSave,
+      onSubmit: _save,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ..._feeds.asMap().entries.map(
+            (e) => _FeedCard(
+              key: ValueKey(e.key),
+              entry: e.value,
+              index: e.key,
+              canRemove: _feeds.length > 1,
+              onRemove: () => _removeFeed(e.key),
+              onChanged: () => setState(() {}),
             ),
-            const SizedBox(height: 8),
-            ..._feeds.asMap().entries.map(
-              (e) => _FeedCard(
-                key: ValueKey(e.key),
-                entry: e.value,
-                index: e.key,
-                canRemove: _feeds.length > 1,
-                onRemove: () => _removeFeed(e.key),
-                onChanged: () => setState(() {}),
+          ),
+          if (!_isEditing)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6),
+              child: OutlinedButton.icon(
+                onPressed: _addFeed,
+                icon: const Icon(Icons.add),
+                label: Text(l.addAnotherFeed),
               ),
             ),
-            if (!_isEditing)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 6),
-                child: OutlinedButton.icon(
-                  onPressed: _addFeed,
-                  icon: const Icon(Icons.add),
-                  label: Text(l.addAnotherFeed),
-                ),
-              ),
-            const SizedBox(height: 8),
-            Align(
-              alignment: Alignment.centerRight,
-              child: FilledButton(
-                onPressed: _save,
-                child: Text(_isEditing ? l.actionUpdate : l.actionSave),
-              ),
-            ),
-          ],
-        ),
+        ],
       ),
     );
   }
@@ -255,22 +229,22 @@ class _FeedCardState extends State<_FeedCard> {
             const SizedBox(height: 8),
 
             // Bottle vs suckle
-            SegmentedButton<String>(
-              segments: [
-                ButtonSegment(
+            PillSegmentedControl<String>(
+              options: [
+                PillSegmentedOption(
                   value: 'bottle',
-                  label: Text(l.feedModeBottle),
-                  icon: const Icon(Icons.local_drink, size: 14),
+                  label: l.feedModeBottle,
+                  icon: Icons.local_drink,
                 ),
-                ButtonSegment(
+                PillSegmentedOption(
                   value: 'suckle',
-                  label: Text(l.feedModeSuckle),
-                  icon: const Icon(Icons.child_care, size: 14),
+                  label: l.feedModeSuckle,
+                  icon: Icons.child_care,
                 ),
               ],
-              selected: {f.feedMode},
-              onSelectionChanged: (s) {
-                setState(() => f.feedMode = s.first);
+              selected: f.feedMode,
+              onChanged: (v) {
+                setState(() => f.feedMode = v);
                 widget.onChanged();
               },
             ),
@@ -278,13 +252,24 @@ class _FeedCardState extends State<_FeedCard> {
 
             if (f.feedMode == 'bottle') ...[
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     child: TextField(
                       controller: f.amountCtrl,
-                      keyboardType: TextInputType.number,
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
                       decoration: InputDecoration(
                         labelText: l.feedAmountMl,
+                        suffixText: f.amountInMl ? 'ml' : 'oz',
+                        helperText: () {
+                          final v = double.tryParse(f.amountCtrl.text);
+                          if (v == null) return null;
+                          return f.amountInMl
+                              ? '(${mlToOz(v).toStringAsFixed(1)} oz)'
+                              : '(${ozToMl(v).round()} ml)';
+                        }(),
                         border: const OutlineInputBorder(),
                         isDense: true,
                       ),
@@ -292,31 +277,52 @@ class _FeedCardState extends State<_FeedCard> {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  Expanded(
-                    child: DropdownButtonFormField<String>(
-                      initialValue: f.method,
-                      decoration: InputDecoration(
-                        labelText: l.feedType,
-                        border: const OutlineInputBorder(),
-                        isDense: true,
-                      ),
-                      items: [
-                        DropdownMenuItem(
-                          value: 'breast',
-                          child: Text(l.feedBreastMilk),
-                        ),
-                        DropdownMenuItem(
-                          value: 'formula',
-                          child: Text(l.feedFormula),
-                        ),
+                  SizedBox(
+                    width: 116,
+                    child: PillSegmentedControl<bool>(
+                      options: const [
+                        PillSegmentedOption(value: true, label: 'ml'),
+                        PillSegmentedOption(value: false, label: 'oz'),
                       ],
+                      selected: f.amountInMl,
                       onChanged: (v) {
-                        setState(() => f.method = v ?? 'breast');
+                        final current = double.tryParse(f.amountCtrl.text);
+                        setState(() {
+                          if (current != null) {
+                            f.amountCtrl.text = f.amountInMl
+                                ? mlToOz(current).toStringAsFixed(1)
+                                : ozToMl(current).round().toString();
+                          }
+                          f.amountInMl = v;
+                        });
                         widget.onChanged();
                       },
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(height: 10),
+              DropdownButtonFormField<String>(
+                initialValue: f.method,
+                decoration: InputDecoration(
+                  labelText: l.feedType,
+                  border: const OutlineInputBorder(),
+                  isDense: true,
+                ),
+                items: [
+                  DropdownMenuItem(
+                    value: 'breast',
+                    child: Text(l.feedBreastMilk),
+                  ),
+                  DropdownMenuItem(
+                    value: 'formula',
+                    child: Text(l.feedFormula),
+                  ),
+                ],
+                onChanged: (v) {
+                  setState(() => f.method = v ?? 'breast');
+                  widget.onChanged();
+                },
               ),
 
               // Formula brand picker

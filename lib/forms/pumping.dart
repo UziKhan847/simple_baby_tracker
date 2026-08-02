@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/helpers.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/theme/app_colors.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
 
 class PumpingForm extends StatefulWidget {
   final DateTime initialDate;
@@ -51,149 +55,117 @@ class _PumpingFormState extends State<PumpingForm> {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQuery.of(context);
-    final bottomPad = media.viewInsets.bottom > 0
-        ? media.viewInsets.bottom
-        : media.padding.bottom + 16;
+    final l = AppLocalizations.of(context)!;
 
-    return Padding(
-      padding: EdgeInsets.only(bottom: bottomPad),
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  _isEditing ? 'Edit pumping session' : 'Log pumping session',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const Spacer(),
-                TextButton.icon(
-                  onPressed: () async {
-                    final t = await showTimePicker(
-                      context: context,
-                      initialTime: _time,
-                    );
-                    if (t != null) setState(() => _time = t);
-                  },
-                  icon: const Icon(Icons.access_time, size: 18),
-                  label: Text(_time.format(context)),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-
-            // Left / Right breast amounts
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _leftCtrl,
-                    keyboardType: TextInputType.number,
-                    onChanged: (_) => setState(() {}),
-                    decoration: const InputDecoration(
-                      labelText: 'Left breast (ml)',
-                      prefixIcon: Icon(Icons.arrow_back),
-                      border: OutlineInputBorder(),
-                      isDense: true,
-                    ),
+    return AppFormScaffold(
+      title: _isEditing ? l.pumpingEdit : l.pumpingLog,
+      time: _time,
+      onTimeChanged: (t) => setState(() => _time = t),
+      ctaLabel: _isEditing ? l.actionUpdate : l.actionSave,
+      onSubmit: _save,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Left / Right breast amounts
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _leftCtrl,
+                  keyboardType: TextInputType.number,
+                  onChanged: (_) => setState(() {}),
+                  decoration: InputDecoration(
+                    labelText: l.pumpingLeft,
+                    prefixIcon: const Icon(Icons.arrow_back),
+                    border: const OutlineInputBorder(),
+                    isDense: true,
                   ),
                 ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: TextField(
-                    controller: _rightCtrl,
-                    keyboardType: TextInputType.number,
-                    onChanged: (_) => setState(() {}),
-                    decoration: const InputDecoration(
-                      labelText: 'Right breast (ml)',
-                      prefixIcon: Icon(Icons.arrow_forward),
-                      border: OutlineInputBorder(),
-                      isDense: true,
-                    ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: TextField(
+                  controller: _rightCtrl,
+                  keyboardType: TextInputType.number,
+                  onChanged: (_) => setState(() {}),
+                  decoration: InputDecoration(
+                    labelText: l.pumpingRight,
+                    prefixIcon: const Icon(Icons.arrow_forward),
+                    border: const OutlineInputBorder(),
+                    isDense: true,
                   ),
-                ),
-              ],
-            ),
-
-            // Total display
-            if (_totalMl > 0) ...[
-              const SizedBox(height: 10),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 10,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.purple.withAlpha(20),
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.purple.withAlpha(80)),
-                ),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.water_drop,
-                      color: Colors.purple,
-                      size: 18,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Total: $_totalMl ml',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.purple,
-                      ),
-                    ),
-                  ],
                 ),
               ),
             ],
+          ),
 
-            const SizedBox(height: 12),
-
-            TextField(
-              controller: _durationCtrl,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                labelText: 'Duration (minutes)',
-                border: OutlineInputBorder(),
-                isDense: true,
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: const Text('Stored / frozen'),
-              subtitle: const Text('Milk was stored for later use'),
-              value: _stored,
-              onChanged: (v) => setState(() => _stored = v),
-            ),
-
-            TextField(
-              controller: _notesCtrl,
-              decoration: const InputDecoration(
-                labelText: 'Notes (optional)',
-                hintText: 'e.g. letdown issues, supply notes...',
-                border: OutlineInputBorder(),
-                isDense: true,
-              ),
-            ),
-
-            const SizedBox(height: 16),
-            Align(
-              alignment: Alignment.centerRight,
-              child: FilledButton(
-                onPressed: _save,
-                child: Text(_isEditing ? 'Update' : 'Save'),
-              ),
+          // Total display
+          if (_totalMl > 0) ...[
+            const SizedBox(height: 10),
+            Builder(
+              builder: (context) {
+                final accent = Theme.of(
+                  context,
+                ).extension<AppColors>()!.miscStrong;
+                return Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    color: accent.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: accent.withValues(alpha: 0.3)),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.water_drop, color: accent, size: 18),
+                      const SizedBox(width: 8),
+                      Text(
+                        '${l.pumpingTotalMl(_totalMl)} '
+                        '(${mlToOz(_totalMl.toDouble()).toStringAsFixed(1)} oz)',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: accent,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
           ],
-        ),
+
+          const SizedBox(height: 12),
+
+          TextField(
+            controller: _durationCtrl,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              labelText: l.pumpingDuration,
+              border: const OutlineInputBorder(),
+              isDense: true,
+            ),
+          ),
+
+          const SizedBox(height: 12),
+
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(l.pumpingStored),
+            value: _stored,
+            onChanged: (v) => setState(() => _stored = v),
+          ),
+
+          TextField(
+            controller: _notesCtrl,
+            decoration: InputDecoration(
+              labelText: l.pumpingNotes,
+              border: const OutlineInputBorder(),
+              isDense: true,
+            ),
+          ),
+        ],
       ),
     );
   }

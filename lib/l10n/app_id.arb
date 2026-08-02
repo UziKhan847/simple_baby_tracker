@@ -803,5 +803,58 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "medicationLabel": "Obat: {name}",
+    "@medicationLabel": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitDefaultReason": "Kunjungan",
+    "@doctorVisitDefaultReason": {},
+    "doctorVisitLabel": "Kunjungan dokter — {reason}",
+    "@doctorVisitLabel": {
+        "placeholders": {
+            "reason": {
+                "type": "String"
+            }
+        }
+    },
+    "noteDefaultTitle": "📝 Catatan",
+    "@noteDefaultTitle": {},
+    "noteLabel": "📝 {title}",
+    "@noteLabel": {
+        "placeholders": {
+            "title": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitWithDoctor": "Dr: {doctor}",
+    "@doctorVisitWithDoctor": {
+        "placeholders": {
+            "doctor": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitNoDoctorRecorded": "Dokter tidak dicatat",
+    "@doctorVisitNoDoctorRecorded": {},
+    "summaryPoosLabel": "Pup",
+    "@summaryPoosLabel": {},
+    "summaryPeesLabel": "Pipis",
+    "@summaryPeesLabel": {},
+    "summaryMilkLabel": "ASI ml",
+    "@summaryMilkLabel": {},
+    "summaryBreastLabel": "Menyusui mnt",
+    "@summaryBreastLabel": {},
+    "summarySleepLabel": "Tidur",
+    "settingsOledMode": "OLED (hitam pekat)",
+    "settingsOledModeDesc": "Gunakan latar hitam pekat untuk menghemat baterai di layar OLED",
+    "settingsImmersiveMode": "Mode imersif",
+    "settingsImmersiveModeDesc": "Sembunyikan bilah status dan navigasi sistem",
+    "navVaccinationsEntry": "Vaksinasi",
+    "whoChartsEntry": "Grafik pertumbuhan WHO"
 }

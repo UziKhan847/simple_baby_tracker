@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/widgets/category_icon_badge.dart';
 
+/// Home-screen summary tile: rounded-square tinted badge, muted label, then
+/// the value in large Quicksand — matching the mockup's "Feeds today" /
+/// "Diapers today" cards.
 class StatCard extends StatelessWidget {
   const StatCard({
     super.key,
@@ -7,53 +11,62 @@ class StatCard extends StatelessWidget {
     required this.value,
     required this.icon,
     required this.color,
+    this.softColor,
   });
 
   final String title;
   final String value;
   final IconData icon;
   final Color color;
+  final Color? softColor;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: color.withAlpha(30),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(icon, size: 28, color: color),
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: theme.cardTheme.color ?? theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(22),
+        boxShadow: [
+          BoxShadow(
+            color: color.withValues(alpha: 0.30),
+            blurRadius: 18,
+            offset: const Offset(0, 8),
+            spreadRadius: -10,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CategoryIconBadge(
+            icon: icon,
+            color: color,
+            softColor: softColor,
+            size: 34,
+            squircle: true,
+          ),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            softWrap: true,
+            style: theme.textTheme.labelMedium?.copyWith(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: theme.colorScheme.onSurfaceVariant,
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    softWrap: true,
-                    style: const TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    value,
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            value,
+            style: theme.textTheme.headlineSmall?.copyWith(
+              fontSize: 26,
+              fontWeight: FontWeight.w700,
+              height: 1.15,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

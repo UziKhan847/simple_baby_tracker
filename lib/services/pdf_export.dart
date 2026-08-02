@@ -197,7 +197,7 @@ class PdfExportService {
             pw.SizedBox(width: 16),
             _statChip('Sleep', sleepStr),
             pw.SizedBox(width: 16),
-            _statChip('Milk', '${totalMilk}ml'),
+            _statChip('Milk', formatMilkMl(totalMilk)),
           ]),
         ],
       ),
@@ -307,13 +307,13 @@ class PdfExportService {
       case 'feeding':
         final isBottle = (e.data['isBottle'] as bool?) ?? true;
         if (isBottle) {
-          final ml = e.data['amountMl'] ?? 0;
+          final ml = (e.data['amountMl'] as num?) ?? 0;
           final method = e.data['method'] == 'formula'
               ? 'Formula'
               : 'Breast milk';
           final brand = e.data['formulaBrand'] as String?;
           return ('🍼', 'Bottle ($method)',
-              '$ml ml${brand != null ? '  ·  $brand' : ''}');
+              '${formatMilkMl(ml)}${brand != null ? '  ·  $brand' : ''}');
         }
         final dur = e.data['durationMin'] ?? 0;
         return ('🤱', 'Breastfeeding', '$dur min');
@@ -379,7 +379,7 @@ class PdfExportService {
                 (e.data['rightMl'] as num? ?? 0))
             .toInt();
         final stored = e.data['stored'] == true ? '  (stored)' : '';
-        return ('🥛', 'Pumping', '$total ml$stored');
+        return ('🥛', 'Pumping', '${formatMilkMl(total)}$stored');
 
       case 'bath':
         final type = e.data['bathType'] as String? ?? 'tub';

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/stat.dart';
+import 'package:simple_baby_tracker/theme/app_colors.dart';
 
 class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
   final int poos;
@@ -38,47 +40,49 @@ class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
     bool overlapsContent,
   ) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
+    final colors = theme.extension<AppColors>()!;
 
     return Container(
       color: theme.scaffoldBackgroundColor,
       padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
       child: Material(
-        elevation: overlapsContent ? 6 : 2,
-        borderRadius: BorderRadius.circular(16),
-        color: theme.colorScheme.surfaceContainerHighest,
+        elevation: 0,
+        borderRadius: BorderRadius.circular(20),
+        color: theme.cardTheme.color ?? theme.colorScheme.surface,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Stat(
-                color: Colors.brown,
+                color: colors.diaperStrong,
                 icon: Icons.baby_changing_station,
-                label: 'Poos',
+                label: l.summaryPoosLabel,
                 value: poos,
               ),
               Stat(
-                color: Colors.blue,
+                color: colors.diaperStrong,
                 icon: Icons.water_drop,
-                label: 'Pees',
+                label: l.summaryPeesLabel,
                 value: pees,
               ),
               Stat(
-                color: Colors.pink,
+                color: colors.feedingStrong,
                 icon: Icons.local_drink,
-                label: 'Milk ml',
+                label: l.summaryMilkLabel,
                 value: milk,
               ),
               Stat(
-                color: Colors.deepPurple,
+                color: colors.miscStrong,
                 icon: Icons.child_care,
-                label: 'Breast m',
+                label: l.summaryBreastLabel,
                 value: breastMinutes,
               ),
               StatLabel(
-                color: Colors.indigo,
+                color: colors.sleepStrong,
                 icon: Icons.bedtime,
-                label: 'Sleep',
+                label: l.summarySleepLabel,
                 text: _sleepLabel(),
               ),
             ],

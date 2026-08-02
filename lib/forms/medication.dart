@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
 
 const _commonMeds = [
   'Tylenol / Panadol',
@@ -61,174 +62,139 @@ class _MedicationFormState extends State<MedicationForm> {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQuery.of(context);
-    final bottomPad = media.viewInsets.bottom > 0
-        ? media.viewInsets.bottom
-        : media.padding.bottom + 16;
+    return AppFormScaffold(
+      title: _isEditing ? 'Edit medication' : 'Log medication',
+      time: _time,
+      onTimeChanged: (t) => setState(() => _time = t),
+      ctaLabel: _isEditing ? 'Update' : 'Save',
+      onSubmit: _nameCtrl.text.trim().isNotEmpty ? _save : () {},
+      ctaEnabled: _nameCtrl.text.trim().isNotEmpty,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Quick-pick common medications
+          Text(
+            'Common medications',
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
+          const SizedBox(height: 6),
+          Wrap(
+            spacing: 6,
+            runSpacing: 4,
+            children: _commonMeds.map((med) {
+              final isOther = med == 'Other';
+              final selected = _selectedPreset == med;
+              return ChoiceChip(
+                label: Text(med, style: const TextStyle(fontSize: 12)),
+                selected: selected,
+                onSelected: (_) => setState(() {
+                  if (isOther) {
+                    _selectedPreset = med;
+                    _nameCtrl.clear();
+                  } else {
+                    _selectedPreset = selected ? null : med;
+                    if (!selected) _nameCtrl.text = med;
+                  }
+                }),
+              );
+            }).toList(),
+          ),
 
-    return Padding(
-      padding: EdgeInsets.only(bottom: bottomPad),
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  _isEditing ? 'Edit medication' : 'Log medication',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const Spacer(),
-                TextButton.icon(
-                  onPressed: () async {
-                    final t = await showTimePicker(
-                      context: context,
-                      initialTime: _time,
-                    );
-                    if (t != null) setState(() => _time = t);
-                  },
-                  icon: const Icon(Icons.access_time, size: 18),
-                  label: Text(_time.format(context)),
-                ),
-              ],
+          const SizedBox(height: 12),
+
+          // Custom name field (shown when "Other" picked or no preset)
+          TextField(
+            controller: _nameCtrl,
+            textCapitalization: TextCapitalization.sentences,
+            decoration: const InputDecoration(
+              labelText: 'Medication name *',
+              border: OutlineInputBorder(),
+              isDense: true,
             ),
-            const SizedBox(height: 12),
+          ),
 
-            // Quick-pick common medications
-            Text(
-              'Common medications',
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
-            const SizedBox(height: 6),
-            Wrap(
-              spacing: 6,
-              runSpacing: 4,
-              children: _commonMeds.map((med) {
-                final isOther = med == 'Other';
-                final selected = _selectedPreset == med;
-                return ChoiceChip(
-                  label: Text(med, style: const TextStyle(fontSize: 12)),
-                  selected: selected,
-                  onSelected: (_) => setState(() {
-                    if (isOther) {
-                      _selectedPreset = med;
-                      _nameCtrl.clear();
-                    } else {
-                      _selectedPreset = selected ? null : med;
-                      if (!selected) _nameCtrl.text = med;
-                    }
-                  }),
-                );
-              }).toList(),
-            ),
+          const SizedBox(height: 12),
 
-            const SizedBox(height: 12),
-
-            // Custom name field (shown when "Other" picked or no preset)
-            TextField(
-              controller: _nameCtrl,
-              textCapitalization: TextCapitalization.sentences,
-              decoration: const InputDecoration(
-                labelText: 'Medication name *',
-                border: OutlineInputBorder(),
-                isDense: true,
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            // Dose + unit
-            Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: TextField(
-                    controller: _doseCtrl,
-                    keyboardType: const TextInputType.numberWithOptions(
-                      decimal: true,
-                    ),
-                    decoration: const InputDecoration(
-                      labelText: 'Dose',
-                      border: OutlineInputBorder(),
-                      isDense: true,
-                    ),
+          // Dose + unit
+          Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: TextField(
+                  controller: _doseCtrl,
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                  decoration: const InputDecoration(
+                    labelText: 'Dose',
+                    border: OutlineInputBorder(),
+                    isDense: true,
                   ),
                 ),
-                const SizedBox(width: 10),
-                Expanded(
-                  flex: 3,
-                  child: DropdownButtonFormField<String>(
-                    initialValue: _unit,
-                    decoration: const InputDecoration(
-                      labelText: 'Unit',
-                      border: OutlineInputBorder(),
-                      isDense: true,
-                    ),
-                    items: _doseUnits
-                        .map((u) => DropdownMenuItem(value: u, child: Text(u)))
-                        .toList(),
-                    onChanged: (v) => setState(() => _unit = v ?? 'ml'),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                flex: 3,
+                child: DropdownButtonFormField<String>(
+                  initialValue: _unit,
+                  decoration: const InputDecoration(
+                    labelText: 'Unit',
+                    border: OutlineInputBorder(),
+                    isDense: true,
                   ),
+                  items: _doseUnits
+                      .map((u) => DropdownMenuItem(value: u, child: Text(u)))
+                      .toList(),
+                  onChanged: (v) => setState(() => _unit = v ?? 'ml'),
                 ),
-              ],
-            ),
+              ),
+            ],
+          ),
 
-            const SizedBox(height: 12),
+          const SizedBox(height: 12),
 
-            // Warning banner for common OTC pain relievers
-            if (_nameCtrl.text.toLowerCase().contains('tylenol') ||
-                _nameCtrl.text.toLowerCase().contains('panadol') ||
-                _nameCtrl.text.toLowerCase().contains('advil') ||
-                _nameCtrl.text.toLowerCase().contains('nurofen') ||
-                _nameCtrl.text.toLowerCase().contains('ibuprofen'))
-              Container(
-                padding: const EdgeInsets.all(10),
-                margin: const EdgeInsets.only(bottom: 10),
-                decoration: BoxDecoration(
-                  color: Colors.orange.withAlpha(30),
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.orange.withAlpha(80)),
-                ),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.warning_amber_rounded,
-                      color: Colors.orange,
-                      size: 18,
+          // Warning banner for common OTC pain relievers
+          if (_nameCtrl.text.toLowerCase().contains('tylenol') ||
+              _nameCtrl.text.toLowerCase().contains('panadol') ||
+              _nameCtrl.text.toLowerCase().contains('advil') ||
+              _nameCtrl.text.toLowerCase().contains('nurofen') ||
+              _nameCtrl.text.toLowerCase().contains('ibuprofen'))
+            Container(
+              padding: const EdgeInsets.all(10),
+              margin: const EdgeInsets.only(bottom: 10),
+              decoration: BoxDecoration(
+                color: Colors.orange.withAlpha(30),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.orange.withAlpha(80)),
+              ),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.warning_amber_rounded,
+                    color: Colors.orange,
+                    size: 18,
+                  ),
+                  const SizedBox(width: 8),
+                  const Expanded(
+                    child: Text(
+                      'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.',
+                      style: TextStyle(fontSize: 12, color: Colors.orange),
                     ),
-                    const SizedBox(width: 8),
-                    const Expanded(
-                      child: Text(
-                        'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.',
-                        style: TextStyle(fontSize: 12, color: Colors.orange),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-            TextField(
-              controller: _notesCtrl,
-              decoration: const InputDecoration(
-                labelText: 'Notes (optional)',
-                hintText: 'e.g. reason, reaction...',
-                border: OutlineInputBorder(),
-                isDense: true,
+                  ),
+                ],
               ),
             ),
 
-            const SizedBox(height: 16),
-            Align(
-              alignment: Alignment.centerRight,
-              child: FilledButton(
-                onPressed: _nameCtrl.text.trim().isNotEmpty ? _save : null,
-                child: Text(_isEditing ? 'Update' : 'Save'),
-              ),
+          TextField(
+            controller: _notesCtrl,
+            decoration: const InputDecoration(
+              labelText: 'Notes (optional)',
+              hintText: 'e.g. reason, reaction...',
+              border: OutlineInputBorder(),
+              isDense: true,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

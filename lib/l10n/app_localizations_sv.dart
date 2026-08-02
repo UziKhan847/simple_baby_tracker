@@ -1041,4 +1041,66 @@ class AppLocalizationsSv extends AppLocalizations {
   String ageYearMonth(int years, int months) {
     return '$years år $months mån';
   }
+
+  @override
+  String medicationLabel(String name) {
+    return 'Medicin: $name';
+  }
+
+  @override
+  String get doctorVisitDefaultReason => 'Besök';
+
+  @override
+  String doctorVisitLabel(String reason) {
+    return 'Läkarbesök — $reason';
+  }
+
+  @override
+  String get noteDefaultTitle => '📝 Anteckning';
+
+  @override
+  String noteLabel(String title) {
+    return '📝 $title';
+  }
+
+  @override
+  String doctorVisitWithDoctor(String doctor) {
+    return 'Dr: $doctor';
+  }
+
+  @override
+  String get doctorVisitNoDoctorRecorded => 'Ingen läkare angiven';
+
+  @override
+  String get summaryPoosLabel => 'Bajs';
+
+  @override
+  String get summaryPeesLabel => 'Kiss';
+
+  @override
+  String get summaryMilkLabel => 'Mjölk ml';
+
+  @override
+  String get summaryBreastLabel => 'Amning min';
+
+  @override
+  String get summarySleepLabel => 'Sömn';
+
+  @override
+  String get settingsOledMode => 'OLED (helsvart)';
+
+  @override
+  String get settingsOledModeDesc => 'Använd helsvart bakgrund för att spara batteri på OLED-skärmar';
+
+  @override
+  String get settingsImmersiveMode => 'Immersivt läge';
+
+  @override
+  String get settingsImmersiveModeDesc => 'Dölj systemets status- och navigeringsfält';
+
+  @override
+  String get navVaccinationsEntry => 'Vaccinationer';
+
+  @override
+  String get whoChartsEntry => 'WHO-tillväxtkurvor';
 }

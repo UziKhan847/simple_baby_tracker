@@ -1013,4 +1013,66 @@ class AppLocalizationsTh extends AppLocalizations {
   String ageYearMonth(int years, int months) {
     return '$years ปี $months เดือน';
   }
+
+  @override
+  String medicationLabel(String name) {
+    return 'ยา: $name';
+  }
+
+  @override
+  String get doctorVisitDefaultReason => 'การนัดพบ';
+
+  @override
+  String doctorVisitLabel(String reason) {
+    return 'พบแพทย์ — $reason';
+  }
+
+  @override
+  String get noteDefaultTitle => '📝 บันทึก';
+
+  @override
+  String noteLabel(String title) {
+    return '📝 $title';
+  }
+
+  @override
+  String doctorVisitWithDoctor(String doctor) {
+    return 'แพทย์: $doctor';
+  }
+
+  @override
+  String get doctorVisitNoDoctorRecorded => 'ไม่ได้บันทึกแพทย์';
+
+  @override
+  String get summaryPoosLabel => 'อุจจาระ';
+
+  @override
+  String get summaryPeesLabel => 'ปัสสาวะ';
+
+  @override
+  String get summaryMilkLabel => 'นม มล.';
+
+  @override
+  String get summaryBreastLabel => 'นมแม่ นาที';
+
+  @override
+  String get summarySleepLabel => 'การนอน';
+
+  @override
+  String get settingsOledMode => 'OLED (ดำสนิท)';
+
+  @override
+  String get settingsOledModeDesc => 'ใช้พื้นหลังสีดำสนิทเพื่อประหยัดแบตเตอรี่บนหน้าจอ OLED';
+
+  @override
+  String get settingsImmersiveMode => 'โหมดเต็มหน้าจอ';
+
+  @override
+  String get settingsImmersiveModeDesc => 'ซ่อนแถบสถานะและแถบนำทางของระบบ';
+
+  @override
+  String get navVaccinationsEntry => 'วัคซีน';
+
+  @override
+  String get whoChartsEntry => 'กราฟการเจริญเติบโตของ WHO';
 }

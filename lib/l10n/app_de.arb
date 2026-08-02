@@ -803,5 +803,58 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "medicationLabel": "Medikament: {name}",
+    "@medicationLabel": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitDefaultReason": "Besuch",
+    "@doctorVisitDefaultReason": {},
+    "doctorVisitLabel": "Arztbesuch — {reason}",
+    "@doctorVisitLabel": {
+        "placeholders": {
+            "reason": {
+                "type": "String"
+            }
+        }
+    },
+    "noteDefaultTitle": "📝 Notiz",
+    "@noteDefaultTitle": {},
+    "noteLabel": "📝 {title}",
+    "@noteLabel": {
+        "placeholders": {
+            "title": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitWithDoctor": "Dr.: {doctor}",
+    "@doctorVisitWithDoctor": {
+        "placeholders": {
+            "doctor": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitNoDoctorRecorded": "Kein Arzt erfasst",
+    "@doctorVisitNoDoctorRecorded": {},
+    "summaryPoosLabel": "Stuhl",
+    "@summaryPoosLabel": {},
+    "summaryPeesLabel": "Urin",
+    "@summaryPeesLabel": {},
+    "summaryMilkLabel": "Milch ml",
+    "@summaryMilkLabel": {},
+    "summaryBreastLabel": "Stillen Min",
+    "@summaryBreastLabel": {},
+    "summarySleepLabel": "Schlaf",
+    "settingsOledMode": "OLED (reines Schwarz)",
+    "settingsOledModeDesc": "Reines Schwarz verwenden, um Akku auf OLED-Displays zu sparen",
+    "settingsImmersiveMode": "Immersiver Modus",
+    "settingsImmersiveModeDesc": "Status- und Navigationsleiste des Systems ausblenden",
+    "navVaccinationsEntry": "Impfungen",
+    "whoChartsEntry": "WHO-Wachstumskurven"
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/theme/app_colors.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
 
 class TummyTimeForm extends StatefulWidget {
   final DateTime initialDate;
@@ -65,110 +67,72 @@ class _TummyTimeFormState extends State<TummyTimeForm> {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQuery.of(context);
-    final bottomPad = media.viewInsets.bottom > 0
-        ? media.viewInsets.bottom
-        : media.padding.bottom + 16;
+    final accent = Theme.of(context).extension<AppColors>()!.growthStrong;
 
-    return Padding(
-      padding: EdgeInsets.only(bottom: bottomPad),
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              _isEditing ? 'Edit tummy time' : 'Log tummy time',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Tummy time strengthens neck and shoulder muscles.',
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: Colors.grey),
-            ),
-            const SizedBox(height: 16),
+    return AppFormScaffold(
+      title: _isEditing ? 'Edit tummy time' : 'Log tummy time',
+      time: _startTime,
+      onTimeChanged: (t) => setState(() => _startTime = t),
+      ctaLabel: _isEditing ? 'Update' : 'Save',
+      onSubmit: _durationMinutes > 0 ? _save : () {},
+      ctaEnabled: _durationMinutes > 0,
+      accentColor: accent,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Tummy time strengthens neck and shoulder muscles.',
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: Colors.grey),
+          ),
+          const SizedBox(height: 16),
 
-            Row(
+          _TimePicker(
+            label: 'End time',
+            time: _endTime,
+            onTap: () async {
+              final t = await showTimePicker(
+                context: context,
+                initialTime: _endTime,
+              );
+              if (t != null) setState(() => _endTime = t);
+            },
+          ),
+
+          const SizedBox(height: 12),
+
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            decoration: BoxDecoration(
+              color: accent.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: accent.withValues(alpha: 0.3)),
+            ),
+            child: Row(
               children: [
-                Expanded(
-                  child: _TimePicker(
-                    label: 'Start time',
-                    time: _startTime,
-                    onTap: () async {
-                      final t = await showTimePicker(
-                        context: context,
-                        initialTime: _startTime,
-                      );
-                      if (t != null) setState(() => _startTime = t);
-                    },
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _TimePicker(
-                    label: 'End time',
-                    time: _endTime,
-                    onTap: () async {
-                      final t = await showTimePicker(
-                        context: context,
-                        initialTime: _endTime,
-                      );
-                      if (t != null) setState(() => _endTime = t);
-                    },
-                  ),
+                Icon(Icons.child_care, color: accent),
+                const SizedBox(width: 8),
+                Text(
+                  'Duration: ${_durationLabel()}',
+                  style: TextStyle(fontWeight: FontWeight.bold, color: accent),
                 ),
               ],
             ),
+          ),
 
-            const SizedBox(height: 12),
+          const SizedBox(height: 12),
 
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.green.withAlpha(25),
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.green.withAlpha(80)),
-              ),
-              child: Row(
-                children: [
-                  const Icon(Icons.child_care, color: Colors.green),
-                  const SizedBox(width: 8),
-                  Text(
-                    'Duration: ${_durationLabel()}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green,
-                    ),
-                  ),
-                ],
-              ),
+          TextField(
+            controller: _notesCtrl,
+            decoration: const InputDecoration(
+              labelText: 'Notes (optional)',
+              hintText: 'e.g. enjoyed it, fussy...',
+              border: OutlineInputBorder(),
+              isDense: true,
             ),
-
-            const SizedBox(height: 12),
-
-            TextField(
-              controller: _notesCtrl,
-              decoration: const InputDecoration(
-                labelText: 'Notes (optional)',
-                hintText: 'e.g. enjoyed it, fussy...',
-                border: OutlineInputBorder(),
-                isDense: true,
-              ),
-            ),
-
-            const SizedBox(height: 16),
-            Align(
-              alignment: Alignment.centerRight,
-              child: FilledButton(
-                onPressed: _durationMinutes > 0 ? _save : null,
-                child: Text(_isEditing ? 'Update' : 'Save'),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

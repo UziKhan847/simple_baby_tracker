@@ -1041,4 +1041,66 @@ class AppLocalizationsUr extends AppLocalizations {
   String ageYearMonth(int years, int months) {
     return '$years سال $months ماہ کی عمر';
   }
+
+  @override
+  String medicationLabel(String name) {
+    return 'دوائی: $name';
+  }
+
+  @override
+  String get doctorVisitDefaultReason => 'دورہ';
+
+  @override
+  String doctorVisitLabel(String reason) {
+    return 'ڈاکٹر کا دورہ — $reason';
+  }
+
+  @override
+  String get noteDefaultTitle => '📝 نوٹ';
+
+  @override
+  String noteLabel(String title) {
+    return '📝 $title';
+  }
+
+  @override
+  String doctorVisitWithDoctor(String doctor) {
+    return 'ڈاکٹر: $doctor';
+  }
+
+  @override
+  String get doctorVisitNoDoctorRecorded => 'کوئی ڈاکٹر درج نہیں';
+
+  @override
+  String get summaryPoosLabel => 'پاخانہ';
+
+  @override
+  String get summaryPeesLabel => 'پیشاب';
+
+  @override
+  String get summaryMilkLabel => 'دودھ ملی';
+
+  @override
+  String get summaryBreastLabel => 'دودھ پلانا من';
+
+  @override
+  String get summarySleepLabel => 'نیند';
+
+  @override
+  String get settingsOledMode => 'OLED (خالص سیاہ)';
+
+  @override
+  String get settingsOledModeDesc => 'OLED اسکرینوں پر بیٹری بچانے کے لیے خالص سیاہ پس منظر استعمال کریں';
+
+  @override
+  String get settingsImmersiveMode => 'امرسیو موڈ';
+
+  @override
+  String get settingsImmersiveModeDesc => 'سسٹم اسٹیٹس اور نیویگیشن بار چھپائیں';
+
+  @override
+  String get navVaccinationsEntry => 'ویکسینیشن';
+
+  @override
+  String get whoChartsEntry => 'WHO نمو کے چارٹس';
 }

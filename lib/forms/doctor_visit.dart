@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
 
 const _visitReasons = [
   'Routine check-up',
@@ -63,144 +64,107 @@ class _DoctorVisitFormState extends State<DoctorVisitForm> {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQuery.of(context);
-    final bottomPad = media.viewInsets.bottom > 0
-        ? media.viewInsets.bottom
-        : media.padding.bottom + 16;
     final useKg = SettingsProvider.of(context).settings.useKg;
 
-    return Padding(
-      padding: EdgeInsets.only(bottom: bottomPad),
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  _isEditing ? 'Edit doctor visit' : 'Doctor visit',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const Spacer(),
-                TextButton.icon(
-                  onPressed: () async {
-                    final t = await showTimePicker(
-                      context: context,
-                      initialTime: _time,
-                    );
-                    if (t != null) setState(() => _time = t);
-                  },
-                  icon: const Icon(Icons.access_time, size: 18),
-                  label: Text(_time.format(context)),
-                ),
-              ],
+    return AppFormScaffold(
+      title: _isEditing ? 'Edit doctor visit' : 'Doctor visit',
+      time: _time,
+      onTimeChanged: (t) => setState(() => _time = t),
+      ctaLabel: _isEditing ? 'Update' : 'Save',
+      onSubmit: _save,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Doctor name
+          TextField(
+            controller: _doctorCtrl,
+            textCapitalization: TextCapitalization.words,
+            decoration: const InputDecoration(
+              labelText: 'Doctor / clinic name',
+              prefixIcon: Icon(Icons.local_hospital_outlined),
+              border: OutlineInputBorder(),
+              isDense: true,
             ),
-            const SizedBox(height: 12),
+          ),
+          const SizedBox(height: 12),
 
-            // Doctor name
-            TextField(
-              controller: _doctorCtrl,
-              textCapitalization: TextCapitalization.words,
-              decoration: const InputDecoration(
-                labelText: 'Doctor / clinic name',
-                prefixIcon: Icon(Icons.local_hospital_outlined),
-                border: OutlineInputBorder(),
-                isDense: true,
-              ),
+          // Visit reason
+          DropdownButtonFormField<String>(
+            initialValue: _reason,
+            decoration: const InputDecoration(
+              labelText: 'Reason for visit',
+              border: OutlineInputBorder(),
+              isDense: true,
             ),
-            const SizedBox(height: 12),
+            items: _visitReasons
+                .map((r) => DropdownMenuItem(value: r, child: Text(r)))
+                .toList(),
+            onChanged: (v) => setState(() => _reason = v ?? _reason),
+          ),
+          const SizedBox(height: 16),
 
-            // Visit reason
-            DropdownButtonFormField<String>(
-              initialValue: _reason,
-              decoration: const InputDecoration(
-                labelText: 'Reason for visit',
-                border: OutlineInputBorder(),
-                isDense: true,
-              ),
-              items: _visitReasons
-                  .map((r) => DropdownMenuItem(value: r, child: Text(r)))
-                  .toList(),
-              onChanged: (v) => setState(() => _reason = v ?? _reason),
-            ),
-            const SizedBox(height: 16),
-
-            // Measurements section
-            Text(
-              'Measurements (optional)',
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _weightCtrl,
-                    keyboardType: const TextInputType.numberWithOptions(
-                      decimal: true,
-                    ),
-                    decoration: InputDecoration(
-                      labelText: useKg ? 'Weight (kg)' : 'Weight (lbs)',
-                      border: const OutlineInputBorder(),
-                      isDense: true,
-                    ),
+          // Measurements section
+          Text(
+            'Measurements (optional)',
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _weightCtrl,
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                  decoration: InputDecoration(
+                    labelText: useKg ? 'Weight (kg)' : 'Weight (lbs)',
+                    border: const OutlineInputBorder(),
+                    isDense: true,
                   ),
                 ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: TextField(
-                    controller: _heightCtrl,
-                    keyboardType: const TextInputType.numberWithOptions(
-                      decimal: true,
-                    ),
-                    decoration: const InputDecoration(
-                      labelText: 'Length / height (cm)',
-                      border: OutlineInputBorder(),
-                      isDense: true,
-                    ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: TextField(
+                  controller: _heightCtrl,
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                  decoration: const InputDecoration(
+                    labelText: 'Length / height (cm)',
+                    border: OutlineInputBorder(),
+                    isDense: true,
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: _headCtrl,
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
               ),
-              decoration: const InputDecoration(
-                labelText: 'Head circumference (cm)',
-                border: OutlineInputBorder(),
-                isDense: true,
-              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          TextField(
+            controller: _headCtrl,
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            decoration: const InputDecoration(
+              labelText: 'Head circumference (cm)',
+              border: OutlineInputBorder(),
+              isDense: true,
             ),
-            const SizedBox(height: 12),
+          ),
+          const SizedBox(height: 12),
 
-            // Notes
-            TextField(
-              controller: _notesCtrl,
-              minLines: 2,
-              maxLines: 5,
-              decoration: const InputDecoration(
-                labelText: 'Notes',
-                hintText: 'e.g. vaccinations given, doctor recommendations...',
-                border: OutlineInputBorder(),
-                isDense: true,
-              ),
+          // Notes
+          TextField(
+            controller: _notesCtrl,
+            minLines: 2,
+            maxLines: 5,
+            decoration: const InputDecoration(
+              labelText: 'Notes',
+              hintText: 'e.g. vaccinations given, doctor recommendations...',
+              border: OutlineInputBorder(),
+              isDense: true,
             ),
-
-            const SizedBox(height: 16),
-            Align(
-              alignment: Alignment.centerRight,
-              child: FilledButton(
-                onPressed: _save,
-                child: Text(_isEditing ? 'Update' : 'Save'),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

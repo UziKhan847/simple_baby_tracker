@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/baby_profile.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/pages/who_charts.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
+import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 
 class GraphsPage extends StatefulWidget {
@@ -90,16 +93,14 @@ class _GraphsPageState extends State<GraphsPage>
     final stats = _buildStats();
     final settings = SettingsProvider.of(context).settings;
 
-    final title = widget.profile != null
-        ? '${widget.profile!.name} — ${l.graphsTitle}'
-        : l.graphsTitle;
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(l.graphsTitle),
         automaticallyImplyLeading: false,
         bottom: TabBar(
           controller: _tabs,
+          isScrollable: true,
+          tabAlignment: TabAlignment.start,
           tabs: [
             Tab(text: l.graphsTabDaily),
             Tab(text: l.graphsTabGrowth),
@@ -110,15 +111,15 @@ class _GraphsPageState extends State<GraphsPage>
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-            child: SegmentedButton<int>(
-              segments: const [
-                ButtonSegment(value: 7, label: Text('7 days')),
-                ButtonSegment(value: 14, label: Text('14 days')),
-                ButtonSegment(value: 30, label: Text('30 days')),
+            padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
+            child: PillSegmentedControl<int>(
+              options: const [
+                PillSegmentedOption(value: 7, label: '7 days'),
+                PillSegmentedOption(value: 14, label: '14 days'),
+                PillSegmentedOption(value: 30, label: '30 days'),
               ],
-              selected: {_rangeDays},
-              onSelectionChanged: (s) => setState(() => _rangeDays = s.first),
+              selected: _rangeDays,
+              onChanged: (v) => setState(() => _rangeDays = v),
             ),
           ),
           const SizedBox(height: 8),
@@ -127,7 +128,13 @@ class _GraphsPageState extends State<GraphsPage>
               controller: _tabs,
               children: [
                 _DailyTab(stats: stats, l: l),
-                _GrowthTab(stats: stats, settings: settings, l: l),
+                _GrowthTab(
+                  stats: stats,
+                  settings: settings,
+                  l: l,
+                  data: widget.data,
+                  profile: widget.profile,
+                ),
                 _HealthTab(stats: stats, settings: settings, l: l),
               ],
             ),
@@ -147,6 +154,7 @@ class _DailyTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     final totalFeeds = stats.fold(0, (s, d) => s + d.feeds);
     final totalDiapers = stats.fold(0, (s, d) => s + d.diapers);
     final totalMilk = stats.fold(0, (s, d) => s + d.milk);
@@ -164,13 +172,13 @@ class _DailyTab extends StatelessWidget {
               label: l.graphsTotalFeeds,
               value: '$totalFeeds',
               icon: Icons.local_drink,
-              color: Colors.pink,
+              color: colors.feedingStrong,
             ),
             _SummaryItem(
               label: l.graphsAvgPerDay,
               value: avgFeeds.toStringAsFixed(1),
               icon: Icons.trending_up,
-              color: Colors.orange,
+              color: colors.temperatureStrong,
             ),
           ],
         ),
@@ -181,13 +189,13 @@ class _DailyTab extends StatelessWidget {
               label: l.graphsTotalDiapers,
               value: '$totalDiapers',
               icon: Icons.baby_changing_station,
-              color: Colors.brown,
+              color: colors.diaperStrong,
             ),
             _SummaryItem(
               label: l.graphsTotalMilk,
-              value: '${totalMilk}ml',
+              value: formatMilkMl(totalMilk),
               icon: Icons.opacity,
-              color: Colors.blue,
+              color: colors.feedingStrong,
             ),
           ],
         ),
@@ -198,13 +206,13 @@ class _DailyTab extends StatelessWidget {
               label: l.graphsTotalSleep,
               value: '${(totalSleep / 60).toStringAsFixed(1)}h',
               icon: Icons.bedtime,
-              color: Colors.indigo,
+              color: colors.sleepStrong,
             ),
             _SummaryItem(
               label: l.graphsAvgSleep,
               value: '${avgSleepH.toStringAsFixed(1)}h',
               icon: Icons.bedtime_outlined,
-              color: Colors.deepPurple,
+              color: colors.sleepStrong,
             ),
           ],
         ),
@@ -212,7 +220,7 @@ class _DailyTab extends StatelessWidget {
         _BarChartCard(
           title: l.graphsFeedsPerDay,
           stats: stats,
-          color: Colors.pink,
+          color: colors.feedingStrong,
           getValue: (s) => s.feeds.toDouble(),
           formatLabel: (v) => v.toInt().toString(),
           maxLabel: (v) => l.graphsMaxLabel(v.toInt().toString()),
@@ -221,7 +229,7 @@ class _DailyTab extends StatelessWidget {
         _BarChartCard(
           title: l.graphsDiapersPerDay,
           stats: stats,
-          color: Colors.brown,
+          color: colors.diaperStrong,
           getValue: (s) => s.diapers.toDouble(),
           formatLabel: (v) => v.toInt().toString(),
           maxLabel: (v) => l.graphsMaxLabel(v.toInt().toString()),
@@ -230,7 +238,7 @@ class _DailyTab extends StatelessWidget {
         _BarChartCard(
           title: l.graphsMilkPerDay,
           stats: stats,
-          color: Colors.blue,
+          color: colors.feedingStrong,
           getValue: (s) => s.milk.toDouble(),
           formatLabel: (v) => '${v.toInt()}ml',
           maxLabel: (v) => l.graphsMaxLabel('${v.toInt()}ml'),
@@ -239,7 +247,7 @@ class _DailyTab extends StatelessWidget {
         _BarChartCard(
           title: l.graphsSleepPerDay,
           stats: stats,
-          color: Colors.indigo,
+          color: colors.sleepStrong,
           getValue: (s) => s.sleepMin / 60,
           formatLabel: (v) => '${v.toStringAsFixed(1)}h',
           maxLabel: (v) => l.graphsMaxLabel('${v.toStringAsFixed(1)}h'),
@@ -255,14 +263,19 @@ class _GrowthTab extends StatelessWidget {
   final List<_DayStat> stats;
   final dynamic settings;
   final AppLocalizations l;
+  final Map<String, List<TrackerEvent>> data;
+  final BabyProfile? profile;
   const _GrowthTab({
     required this.stats,
     required this.settings,
     required this.l,
+    required this.data,
+    required this.profile,
   });
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     final weightPoints = stats.where((s) => s.weightKg != null).toList();
 
     if (weightPoints.isEmpty) {
@@ -286,7 +299,7 @@ class _GrowthTab extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [
-                const Icon(Icons.monitor_weight, color: Colors.teal, size: 36),
+                Icon(Icons.monitor_weight, color: colors.weightStrong, size: 36),
                 const SizedBox(width: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -332,7 +345,7 @@ class _GrowthTab extends StatelessWidget {
         _LineChartCard(
           title: l.graphsWeightOverTime,
           points: weightPoints,
-          color: Colors.teal,
+          color: colors.weightStrong,
           getValue: (s) => useKg ? s.weightKg! : kgToLbs(s.weightKg!),
           minLabel: (v) => l.graphsMinLabel(
             useKg ? '${v.toStringAsFixed(2)}kg' : '${v.toStringAsFixed(1)}lbs',
@@ -340,6 +353,17 @@ class _GrowthTab extends StatelessWidget {
           maxLabel: (v) => l.graphsMaxLabel(
             useKg ? '${v.toStringAsFixed(2)}kg' : '${v.toStringAsFixed(1)}lbs',
           ),
+        ),
+        const SizedBox(height: 12),
+        OutlinedButton.icon(
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => WhoChartsPage(data: data, profile: profile),
+            ),
+          ),
+          icon: const Icon(Icons.show_chart),
+          label: Text(l.whoChartsEntry),
         ),
       ],
     );
@@ -360,6 +384,7 @@ class _HealthTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     final tempPoints = stats.where((s) => s.tempC != null).toList();
     final useCelsius = settings.useCelsius as bool? ?? true;
 
@@ -425,7 +450,7 @@ class _HealthTab extends StatelessWidget {
         _LineChartCard(
           title: l.graphsTempOverTime,
           points: tempPoints,
-          color: Colors.orange,
+          color: colors.temperatureStrong,
           getValue: (s) =>
               useCelsius ? s.tempC! : celsiusToFahrenheit(s.tempC!),
           minLabel: (v) => l.graphsMinLabel(

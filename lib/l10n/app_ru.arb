@@ -803,5 +803,58 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "medicationLabel": "Лекарство: {name}",
+    "@medicationLabel": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitDefaultReason": "Визит",
+    "@doctorVisitDefaultReason": {},
+    "doctorVisitLabel": "Визит к врачу — {reason}",
+    "@doctorVisitLabel": {
+        "placeholders": {
+            "reason": {
+                "type": "String"
+            }
+        }
+    },
+    "noteDefaultTitle": "📝 Заметка",
+    "@noteDefaultTitle": {},
+    "noteLabel": "📝 {title}",
+    "@noteLabel": {
+        "placeholders": {
+            "title": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitWithDoctor": "Врач: {doctor}",
+    "@doctorVisitWithDoctor": {
+        "placeholders": {
+            "doctor": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitNoDoctorRecorded": "Врач не указан",
+    "@doctorVisitNoDoctorRecorded": {},
+    "summaryPoosLabel": "Кал",
+    "@summaryPoosLabel": {},
+    "summaryPeesLabel": "Моча",
+    "@summaryPeesLabel": {},
+    "summaryMilkLabel": "Молоко мл",
+    "@summaryMilkLabel": {},
+    "summaryBreastLabel": "Гр. вскармл. мин",
+    "@summaryBreastLabel": {},
+    "summarySleepLabel": "Сон",
+    "settingsOledMode": "OLED (чистый чёрный)",
+    "settingsOledModeDesc": "Использовать чистый чёрный фон для экономии заряда на OLED-экранах",
+    "settingsImmersiveMode": "Полноэкранный режим",
+    "settingsImmersiveModeDesc": "Скрыть системные панели состояния и навигации",
+    "navVaccinationsEntry": "Вакцинация",
+    "whoChartsEntry": "Графики роста ВОЗ"
 }

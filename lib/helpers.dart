@@ -58,3 +58,15 @@ String tempSeverity(double celsius) {
   if (celsius <= 38.4) return 'elevated';
   return 'fever';
 }
+
+// ─── Milk volume ──────────────────────────────────────────────────────────
+
+const double _mlPerOz = 29.5735;
+
+double mlToOz(double ml) => ml / _mlPerOz;
+double ozToMl(double oz) => oz * _mlPerOz;
+
+/// Formats a milk amount given in ml, with the equivalent oz shown alongside
+/// in brackets, e.g. "150 ml (5.1 oz)".
+String formatMilkMl(num ml) =>
+    '$ml ml (${mlToOz(ml.toDouble()).toStringAsFixed(1)} oz)';

@@ -803,5 +803,58 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "medicationLabel": "약: {name}",
+    "@medicationLabel": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitDefaultReason": "방문",
+    "@doctorVisitDefaultReason": {},
+    "doctorVisitLabel": "병원 방문 — {reason}",
+    "@doctorVisitLabel": {
+        "placeholders": {
+            "reason": {
+                "type": "String"
+            }
+        }
+    },
+    "noteDefaultTitle": "📝 메모",
+    "@noteDefaultTitle": {},
+    "noteLabel": "📝 {title}",
+    "@noteLabel": {
+        "placeholders": {
+            "title": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitWithDoctor": "의사: {doctor}",
+    "@doctorVisitWithDoctor": {
+        "placeholders": {
+            "doctor": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitNoDoctorRecorded": "등록된 의사 없음",
+    "@doctorVisitNoDoctorRecorded": {},
+    "summaryPoosLabel": "대변",
+    "@summaryPoosLabel": {},
+    "summaryPeesLabel": "소변",
+    "@summaryPeesLabel": {},
+    "summaryMilkLabel": "우유 ml",
+    "@summaryMilkLabel": {},
+    "summaryBreastLabel": "수유 분",
+    "@summaryBreastLabel": {},
+    "summarySleepLabel": "수면",
+    "settingsOledMode": "OLED(완전한 검정)",
+    "settingsOledModeDesc": "OLED 화면에서 배터리를 절약하기 위해 완전한 검정 배경을 사용합니다",
+    "settingsImmersiveMode": "몰입 모드",
+    "settingsImmersiveModeDesc": "시스템 상태 표시줄과 탐색 표시줄을 숨깁니다",
+    "navVaccinationsEntry": "예방접종",
+    "whoChartsEntry": "WHO 성장 차트"
 }

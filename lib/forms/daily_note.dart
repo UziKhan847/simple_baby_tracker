@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
 
 class DailyNoteForm extends StatefulWidget {
   final DateTime initialDate;
@@ -62,95 +63,60 @@ class _DailyNoteFormState extends State<DailyNoteForm> {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQuery.of(context);
-    final bottomPad = media.viewInsets.bottom > 0
-        ? media.viewInsets.bottom
-        : media.padding.bottom + 16;
-
-    return Padding(
-      padding: EdgeInsets.only(bottom: bottomPad),
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  _isEditing ? 'Edit note' : 'Daily note',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const Spacer(),
-                TextButton.icon(
-                  onPressed: () async {
-                    final t = await showTimePicker(
-                      context: context,
-                      initialTime: _time,
-                    );
-                    if (t != null) setState(() => _time = t);
-                  },
-                  icon: const Icon(Icons.access_time, size: 18),
-                  label: Text(_time.format(context)),
-                ),
-              ],
+    return AppFormScaffold(
+      title: _isEditing ? 'Edit note' : 'Daily note',
+      time: _time,
+      onTimeChanged: (t) => setState(() => _time = t),
+      ctaLabel: _isEditing ? 'Update' : 'Save',
+      onSubmit: _textCtrl.text.trim().isNotEmpty ? _save : () {},
+      ctaEnabled: _textCtrl.text.trim().isNotEmpty,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Title (optional)
+          TextField(
+            controller: _titleCtrl,
+            textCapitalization: TextCapitalization.sentences,
+            decoration: const InputDecoration(
+              labelText: 'Title (optional)',
+              border: OutlineInputBorder(),
+              isDense: true,
             ),
-            const SizedBox(height: 12),
+          ),
+          const SizedBox(height: 10),
 
-            // Title (optional)
-            TextField(
-              controller: _titleCtrl,
-              textCapitalization: TextCapitalization.sentences,
-              decoration: const InputDecoration(
-                labelText: 'Title (optional)',
-                border: OutlineInputBorder(),
-                isDense: true,
-              ),
-            ),
-            const SizedBox(height: 10),
+          // Quick tags
+          Text('Quick tags', style: Theme.of(context).textTheme.labelSmall),
+          const SizedBox(height: 4),
+          Wrap(
+            spacing: 6,
+            runSpacing: 4,
+            children: _tags
+                .map(
+                  (tag) => ActionChip(
+                    label: Text(tag, style: const TextStyle(fontSize: 12)),
+                    onPressed: () => _appendTag(tag),
+                  ),
+                )
+                .toList(),
+          ),
+          const SizedBox(height: 10),
 
-            // Quick tags
-            Text('Quick tags', style: Theme.of(context).textTheme.labelSmall),
-            const SizedBox(height: 4),
-            Wrap(
-              spacing: 6,
-              runSpacing: 4,
-              children: _tags
-                  .map(
-                    (tag) => ActionChip(
-                      label: Text(tag, style: const TextStyle(fontSize: 12)),
-                      onPressed: () => _appendTag(tag),
-                    ),
-                  )
-                  .toList(),
+          // Main text
+          TextField(
+            controller: _textCtrl,
+            minLines: 4,
+            maxLines: 10,
+            textCapitalization: TextCapitalization.sentences,
+            decoration: const InputDecoration(
+              labelText: 'Note',
+              hintText:
+                  'What happened today? First time rolling? Fussy morning? Doctor notes?',
+              border: OutlineInputBorder(),
+              alignLabelWithHint: true,
             ),
-            const SizedBox(height: 10),
-
-            // Main text
-            TextField(
-              controller: _textCtrl,
-              minLines: 4,
-              maxLines: 10,
-              textCapitalization: TextCapitalization.sentences,
-              decoration: const InputDecoration(
-                labelText: 'Note',
-                hintText:
-                    'What happened today? First time rolling? Fussy morning? Doctor notes?',
-                border: OutlineInputBorder(),
-                alignLabelWithHint: true,
-              ),
-            ),
-
-            const SizedBox(height: 16),
-            Align(
-              alignment: Alignment.centerRight,
-              child: FilledButton(
-                onPressed: _textCtrl.text.trim().isNotEmpty ? _save : null,
-                child: Text(_isEditing ? 'Update' : 'Save'),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

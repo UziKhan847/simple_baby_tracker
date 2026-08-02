@@ -803,5 +803,58 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "medicationLabel": "ยา: {name}",
+    "@medicationLabel": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitDefaultReason": "การนัดพบ",
+    "@doctorVisitDefaultReason": {},
+    "doctorVisitLabel": "พบแพทย์ — {reason}",
+    "@doctorVisitLabel": {
+        "placeholders": {
+            "reason": {
+                "type": "String"
+            }
+        }
+    },
+    "noteDefaultTitle": "📝 บันทึก",
+    "@noteDefaultTitle": {},
+    "noteLabel": "📝 {title}",
+    "@noteLabel": {
+        "placeholders": {
+            "title": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitWithDoctor": "แพทย์: {doctor}",
+    "@doctorVisitWithDoctor": {
+        "placeholders": {
+            "doctor": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitNoDoctorRecorded": "ไม่ได้บันทึกแพทย์",
+    "@doctorVisitNoDoctorRecorded": {},
+    "summaryPoosLabel": "อุจจาระ",
+    "@summaryPoosLabel": {},
+    "summaryPeesLabel": "ปัสสาวะ",
+    "@summaryPeesLabel": {},
+    "summaryMilkLabel": "นม มล.",
+    "@summaryMilkLabel": {},
+    "summaryBreastLabel": "นมแม่ นาที",
+    "@summaryBreastLabel": {},
+    "summarySleepLabel": "การนอน",
+    "settingsOledMode": "OLED (ดำสนิท)",
+    "settingsOledModeDesc": "ใช้พื้นหลังสีดำสนิทเพื่อประหยัดแบตเตอรี่บนหน้าจอ OLED",
+    "settingsImmersiveMode": "โหมดเต็มหน้าจอ",
+    "settingsImmersiveModeDesc": "ซ่อนแถบสถานะและแถบนำทางของระบบ",
+    "navVaccinationsEntry": "วัคซีน",
+    "whoChartsEntry": "กราฟการเจริญเติบโตของ WHO"
 }

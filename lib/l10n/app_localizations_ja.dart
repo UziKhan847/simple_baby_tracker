@@ -1041,4 +1041,66 @@ class AppLocalizationsJa extends AppLocalizations {
   String ageYearMonth(int years, int months) {
     return '$years歳$monthsヶ月';
   }
+
+  @override
+  String medicationLabel(String name) {
+    return '薬: $name';
+  }
+
+  @override
+  String get doctorVisitDefaultReason => '受診';
+
+  @override
+  String doctorVisitLabel(String reason) {
+    return '受診 — $reason';
+  }
+
+  @override
+  String get noteDefaultTitle => '📝 メモ';
+
+  @override
+  String noteLabel(String title) {
+    return '📝 $title';
+  }
+
+  @override
+  String doctorVisitWithDoctor(String doctor) {
+    return '医師: $doctor';
+  }
+
+  @override
+  String get doctorVisitNoDoctorRecorded => '医師の記録なし';
+
+  @override
+  String get summaryPoosLabel => 'うんち';
+
+  @override
+  String get summaryPeesLabel => 'おしっこ';
+
+  @override
+  String get summaryMilkLabel => 'ミルクml';
+
+  @override
+  String get summaryBreastLabel => '授乳分';
+
+  @override
+  String get summarySleepLabel => '睡眠';
+
+  @override
+  String get settingsOledMode => 'OLED（純黒）';
+
+  @override
+  String get settingsOledModeDesc => 'OLED画面のバッテリーを節約するため純黒の背景を使用します';
+
+  @override
+  String get settingsImmersiveMode => 'イマーシブモード';
+
+  @override
+  String get settingsImmersiveModeDesc => 'システムのステータスバーとナビゲーションバーを非表示にします';
+
+  @override
+  String get navVaccinationsEntry => '予防接種';
+
+  @override
+  String get whoChartsEntry => 'WHO成長曲線';
 }

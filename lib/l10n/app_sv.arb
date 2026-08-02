@@ -803,5 +803,58 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "medicationLabel": "Medicin: {name}",
+    "@medicationLabel": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitDefaultReason": "Besök",
+    "@doctorVisitDefaultReason": {},
+    "doctorVisitLabel": "Läkarbesök — {reason}",
+    "@doctorVisitLabel": {
+        "placeholders": {
+            "reason": {
+                "type": "String"
+            }
+        }
+    },
+    "noteDefaultTitle": "📝 Anteckning",
+    "@noteDefaultTitle": {},
+    "noteLabel": "📝 {title}",
+    "@noteLabel": {
+        "placeholders": {
+            "title": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitWithDoctor": "Dr: {doctor}",
+    "@doctorVisitWithDoctor": {
+        "placeholders": {
+            "doctor": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitNoDoctorRecorded": "Ingen läkare angiven",
+    "@doctorVisitNoDoctorRecorded": {},
+    "summaryPoosLabel": "Bajs",
+    "@summaryPoosLabel": {},
+    "summaryPeesLabel": "Kiss",
+    "@summaryPeesLabel": {},
+    "summaryMilkLabel": "Mjölk ml",
+    "@summaryMilkLabel": {},
+    "summaryBreastLabel": "Amning min",
+    "@summaryBreastLabel": {},
+    "summarySleepLabel": "Sömn",
+    "settingsOledMode": "OLED (helsvart)",
+    "settingsOledModeDesc": "Använd helsvart bakgrund för att spara batteri på OLED-skärmar",
+    "settingsImmersiveMode": "Immersivt läge",
+    "settingsImmersiveModeDesc": "Dölj systemets status- och navigeringsfält",
+    "navVaccinationsEntry": "Vaccinationer",
+    "whoChartsEntry": "WHO-tillväxtkurvor"
 }

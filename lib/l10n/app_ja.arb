@@ -803,5 +803,58 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "medicationLabel": "薬: {name}",
+    "@medicationLabel": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitDefaultReason": "受診",
+    "@doctorVisitDefaultReason": {},
+    "doctorVisitLabel": "受診 — {reason}",
+    "@doctorVisitLabel": {
+        "placeholders": {
+            "reason": {
+                "type": "String"
+            }
+        }
+    },
+    "noteDefaultTitle": "📝 メモ",
+    "@noteDefaultTitle": {},
+    "noteLabel": "📝 {title}",
+    "@noteLabel": {
+        "placeholders": {
+            "title": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitWithDoctor": "医師: {doctor}",
+    "@doctorVisitWithDoctor": {
+        "placeholders": {
+            "doctor": {
+                "type": "String"
+            }
+        }
+    },
+    "doctorVisitNoDoctorRecorded": "医師の記録なし",
+    "@doctorVisitNoDoctorRecorded": {},
+    "summaryPoosLabel": "うんち",
+    "@summaryPoosLabel": {},
+    "summaryPeesLabel": "おしっこ",
+    "@summaryPeesLabel": {},
+    "summaryMilkLabel": "ミルクml",
+    "@summaryMilkLabel": {},
+    "summaryBreastLabel": "授乳分",
+    "@summaryBreastLabel": {},
+    "summarySleepLabel": "睡眠",
+    "settingsOledMode": "OLED（純黒）",
+    "settingsOledModeDesc": "OLED画面のバッテリーを節約するため純黒の背景を使用します",
+    "settingsImmersiveMode": "イマーシブモード",
+    "settingsImmersiveModeDesc": "システムのステータスバーとナビゲーションバーを非表示にします",
+    "navVaccinationsEntry": "予防接種",
+    "whoChartsEntry": "WHO成長曲線"
 }

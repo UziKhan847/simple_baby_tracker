@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
 
 class SleepForm extends StatefulWidget {
   final DateTime initialDate;
   final TrackerEvent? existingEvent;
 
-  const SleepForm({
-    super.key,
-    required this.initialDate,
-    this.existingEvent,
-  });
+  const SleepForm({super.key, required this.initialDate, this.existingEvent});
 
   @override
   State<SleepForm> createState() => _SleepFormState();
@@ -46,9 +43,13 @@ class _SleepFormState extends State<SleepForm> {
   int get _durationMinutes {
     final d = widget.initialDate;
     var start = DateTime(
-        d.year, d.month, d.day, _startTime.hour, _startTime.minute);
-    var end =
-        DateTime(d.year, d.month, d.day, _endTime.hour, _endTime.minute);
+      d.year,
+      d.month,
+      d.day,
+      _startTime.hour,
+      _startTime.minute,
+    );
+    var end = DateTime(d.year, d.month, d.day, _endTime.hour, _endTime.minute);
     if (end.isBefore(start)) end = end.add(const Duration(days: 1));
     return end.difference(start).inMinutes;
   }
@@ -62,125 +63,87 @@ class _SleepFormState extends State<SleepForm> {
     final durStr = h == 0
         ? '${rem}min'
         : rem == 0
-            ? '${h}h'
-            : '${h}h ${rem}min';
+        ? '${h}h'
+        : '${h}h ${rem}min';
     return l.sleepDuration(durStr);
   }
 
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
-    final media = MediaQuery.of(context);
-    final bottomPad = media.viewInsets.bottom > 0
-        ? media.viewInsets.bottom
-        : media.padding.bottom + 16;
 
-    return Padding(
-      padding: EdgeInsets.only(bottom: bottomPad),
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              _isEditing ? l.editSleep : l.logSleep,
-              style: Theme.of(context).textTheme.titleLarge,
+    return AppFormScaffold(
+      title: _isEditing ? l.editSleep : l.logSleep,
+      time: _startTime,
+      onTimeChanged: (t) => setState(() => _startTime = t),
+      ctaLabel: _isEditing ? l.actionUpdate : l.actionSave,
+      onSubmit: _durationMinutes > 0 ? _save : () {},
+      ctaEnabled: _durationMinutes > 0,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Wake-up time (start time is set via the header time pill)
+          _TimePicker(
+            label: l.sleepWakeUp,
+            time: _endTime,
+            onTap: () async {
+              final t = await showTimePicker(
+                context: context,
+                initialTime: _endTime,
+              );
+              if (t != null) setState(() => _endTime = t);
+            },
+          ),
+
+          const SizedBox(height: 12),
+
+          // Duration display
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            decoration: BoxDecoration(
+              color: Theme.of(
+                context,
+              ).colorScheme.secondaryContainer.withAlpha(100),
+              borderRadius: BorderRadius.circular(10),
             ),
-            const SizedBox(height: 16),
-
-            // Start / end time pickers
-            Row(
+            child: Row(
               children: [
-                Expanded(
-                  child: _TimePicker(
-                    label: l.sleepStart,
-                    time: _startTime,
-                    onTap: () async {
-                      final t = await showTimePicker(
-                          context: context, initialTime: _startTime);
-                      if (t != null) setState(() => _startTime = t);
-                    },
+                Icon(
+                  Icons.bedtime,
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  _durationLabel(l),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onSecondaryContainer,
                   ),
                 ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _TimePicker(
-                    label: l.sleepWakeUp,
-                    time: _endTime,
-                    onTap: () async {
-                      final t = await showTimePicker(
-                          context: context, initialTime: _endTime);
-                      if (t != null) setState(() => _endTime = t);
-                    },
+                if (_durationMinutes <= 0)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Text(
+                      l.sleepWrapsNextDay,
+                      style: const TextStyle(fontSize: 11, color: Colors.grey),
+                    ),
                   ),
-                ),
               ],
             ),
+          ),
 
-            const SizedBox(height: 12),
+          const SizedBox(height: 12),
 
-            // Duration display
-            Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              decoration: BoxDecoration(
-                color: Theme.of(context)
-                    .colorScheme
-                    .secondaryContainer
-                    .withAlpha(100),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                children: [
-                  Icon(Icons.bedtime,
-                      color: Theme.of(context).colorScheme.secondary),
-                  const SizedBox(width: 8),
-                  Text(
-                    _durationLabel(l),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context)
-                          .colorScheme
-                          .onSecondaryContainer,
-                    ),
-                  ),
-                  if (_durationMinutes <= 0)
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Text(
-                        l.sleepWrapsNextDay,
-                        style: const TextStyle(
-                            fontSize: 11, color: Colors.grey),
-                      ),
-                    ),
-                ],
-              ),
+          TextField(
+            controller: _notesCtrl,
+            decoration: InputDecoration(
+              labelText: l.sleepNotes,
+              hintText: l.sleepNotesHint,
+              border: const OutlineInputBorder(),
+              isDense: true,
             ),
-
-            const SizedBox(height: 12),
-
-            TextField(
-              controller: _notesCtrl,
-              decoration: InputDecoration(
-                labelText: l.sleepNotes,
-                hintText: l.sleepNotesHint,
-                border: const OutlineInputBorder(),
-                isDense: true,
-              ),
-            ),
-
-            const SizedBox(height: 16),
-            Align(
-              alignment: Alignment.centerRight,
-              child: FilledButton(
-                onPressed: _durationMinutes > 0 ? _save : null,
-                child:
-                    Text(_isEditing ? l.actionUpdate : l.actionSave),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -188,9 +151,19 @@ class _SleepFormState extends State<SleepForm> {
   void _save() {
     final d = widget.initialDate;
     final startDt = DateTime(
-        d.year, d.month, d.day, _startTime.hour, _startTime.minute);
-    var endDt =
-        DateTime(d.year, d.month, d.day, _endTime.hour, _endTime.minute);
+      d.year,
+      d.month,
+      d.day,
+      _startTime.hour,
+      _startTime.minute,
+    );
+    var endDt = DateTime(
+      d.year,
+      d.month,
+      d.day,
+      _endTime.hour,
+      _endTime.minute,
+    );
     if (endDt.isBefore(startDt)) endDt = endDt.add(const Duration(days: 1));
 
     Navigator.pop(
@@ -216,8 +189,11 @@ class _TimePicker extends StatelessWidget {
   final TimeOfDay time;
   final VoidCallback onTap;
 
-  const _TimePicker(
-      {required this.label, required this.time, required this.onTap});
+  const _TimePicker({
+    required this.label,
+    required this.time,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -225,18 +201,18 @@ class _TimePicker extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(8),
       child: Container(
-        padding:
-            const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
         decoration: BoxDecoration(
-          border:
-              Border.all(color: Theme.of(context).colorScheme.outline),
+          border: Border.all(color: Theme.of(context).colorScheme.outline),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(label,
-                style: const TextStyle(fontSize: 11, color: Colors.grey)),
+            Text(
+              label,
+              style: const TextStyle(fontSize: 11, color: Colors.grey),
+            ),
             const SizedBox(height: 4),
             Row(
               children: [
@@ -245,7 +221,9 @@ class _TimePicker extends StatelessWidget {
                 Text(
                   time.format(context),
                   style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),

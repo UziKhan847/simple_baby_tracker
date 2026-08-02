@@ -1041,4 +1041,66 @@ class AppLocalizationsMs extends AppLocalizations {
   String ageYearMonth(int years, int months) {
     return '$years tahun $months bulan';
   }
+
+  @override
+  String medicationLabel(String name) {
+    return 'Ubat: $name';
+  }
+
+  @override
+  String get doctorVisitDefaultReason => 'Lawatan';
+
+  @override
+  String doctorVisitLabel(String reason) {
+    return 'Lawatan doktor — $reason';
+  }
+
+  @override
+  String get noteDefaultTitle => '📝 Catatan';
+
+  @override
+  String noteLabel(String title) {
+    return '📝 $title';
+  }
+
+  @override
+  String doctorVisitWithDoctor(String doctor) {
+    return 'Dr: $doctor';
+  }
+
+  @override
+  String get doctorVisitNoDoctorRecorded => 'Tiada doktor direkodkan';
+
+  @override
+  String get summaryPoosLabel => 'Berak';
+
+  @override
+  String get summaryPeesLabel => 'Kencing';
+
+  @override
+  String get summaryMilkLabel => 'Susu ml';
+
+  @override
+  String get summaryBreastLabel => 'Susu ibu min';
+
+  @override
+  String get summarySleepLabel => 'Tidur';
+
+  @override
+  String get settingsOledMode => 'OLED (hitam pekat)';
+
+  @override
+  String get settingsOledModeDesc => 'Gunakan latar belakang hitam pekat untuk menjimatkan bateri pada skrin OLED';
+
+  @override
+  String get settingsImmersiveMode => 'Mod mendalam';
+
+  @override
+  String get settingsImmersiveModeDesc => 'Sembunyikan bar status dan navigasi sistem';
+
+  @override
+  String get navVaccinationsEntry => 'Vaksinasi';
+
+  @override
+  String get whoChartsEntry => 'Carta pertumbuhan WHO';
 }

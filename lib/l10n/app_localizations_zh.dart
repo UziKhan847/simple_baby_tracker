@@ -1041,4 +1041,66 @@ class AppLocalizationsZh extends AppLocalizations {
   String ageYearMonth(int years, int months) {
     return '$years岁$months个月';
   }
+
+  @override
+  String medicationLabel(String name) {
+    return '用药：$name';
+  }
+
+  @override
+  String get doctorVisitDefaultReason => '就诊';
+
+  @override
+  String doctorVisitLabel(String reason) {
+    return '看医生 — $reason';
+  }
+
+  @override
+  String get noteDefaultTitle => '📝 笔记';
+
+  @override
+  String noteLabel(String title) {
+    return '📝 $title';
+  }
+
+  @override
+  String doctorVisitWithDoctor(String doctor) {
+    return '医生：$doctor';
+  }
+
+  @override
+  String get doctorVisitNoDoctorRecorded => '未记录医生';
+
+  @override
+  String get summaryPoosLabel => '便';
+
+  @override
+  String get summaryPeesLabel => '尿';
+
+  @override
+  String get summaryMilkLabel => '奶 ml';
+
+  @override
+  String get summaryBreastLabel => '亲喂分钟';
+
+  @override
+  String get summarySleepLabel => '睡眠';
+
+  @override
+  String get settingsOledMode => 'OLED（纯黑）';
+
+  @override
+  String get settingsOledModeDesc => '使用纯黑背景以节省 OLED 屏幕电量';
+
+  @override
+  String get settingsImmersiveMode => '沉浸模式';
+
+  @override
+  String get settingsImmersiveModeDesc => '隐藏系统状态栏和导航栏';
+
+  @override
+  String get navVaccinationsEntry => '疫苗接种';
+
+  @override
+  String get whoChartsEntry => 'WHO 生长曲线图';
 }

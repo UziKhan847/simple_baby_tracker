@@ -1049,4 +1049,66 @@ class AppLocalizationsRu extends AppLocalizations {
   String ageYearMonth(int years, int months) {
     return '$years г $months мес';
   }
+
+  @override
+  String medicationLabel(String name) {
+    return 'Лекарство: $name';
+  }
+
+  @override
+  String get doctorVisitDefaultReason => 'Визит';
+
+  @override
+  String doctorVisitLabel(String reason) {
+    return 'Визит к врачу — $reason';
+  }
+
+  @override
+  String get noteDefaultTitle => '📝 Заметка';
+
+  @override
+  String noteLabel(String title) {
+    return '📝 $title';
+  }
+
+  @override
+  String doctorVisitWithDoctor(String doctor) {
+    return 'Врач: $doctor';
+  }
+
+  @override
+  String get doctorVisitNoDoctorRecorded => 'Врач не указан';
+
+  @override
+  String get summaryPoosLabel => 'Кал';
+
+  @override
+  String get summaryPeesLabel => 'Моча';
+
+  @override
+  String get summaryMilkLabel => 'Молоко мл';
+
+  @override
+  String get summaryBreastLabel => 'Гр. вскармл. мин';
+
+  @override
+  String get summarySleepLabel => 'Сон';
+
+  @override
+  String get settingsOledMode => 'OLED (чистый чёрный)';
+
+  @override
+  String get settingsOledModeDesc => 'Использовать чистый чёрный фон для экономии заряда на OLED-экранах';
+
+  @override
+  String get settingsImmersiveMode => 'Полноэкранный режим';
+
+  @override
+  String get settingsImmersiveModeDesc => 'Скрыть системные панели состояния и навигации';
+
+  @override
+  String get navVaccinationsEntry => 'Вакцинация';
+
+  @override
+  String get whoChartsEntry => 'Графики роста ВОЗ';
 }

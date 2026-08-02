@@ -1041,4 +1041,66 @@ class AppLocalizationsFa extends AppLocalizations {
   String ageYearMonth(int years, int months) {
     return '$years سال و $months ماهه';
   }
+
+  @override
+  String medicationLabel(String name) {
+    return 'دارو: $name';
+  }
+
+  @override
+  String get doctorVisitDefaultReason => 'ویزیت';
+
+  @override
+  String doctorVisitLabel(String reason) {
+    return 'مراجعه به پزشک — $reason';
+  }
+
+  @override
+  String get noteDefaultTitle => '📝 یادداشت';
+
+  @override
+  String noteLabel(String title) {
+    return '📝 $title';
+  }
+
+  @override
+  String doctorVisitWithDoctor(String doctor) {
+    return 'دکتر: $doctor';
+  }
+
+  @override
+  String get doctorVisitNoDoctorRecorded => 'پزشکی ثبت نشده';
+
+  @override
+  String get summaryPoosLabel => 'مدفوع';
+
+  @override
+  String get summaryPeesLabel => 'ادرار';
+
+  @override
+  String get summaryMilkLabel => 'شیر میلی‌لیتر';
+
+  @override
+  String get summaryBreastLabel => 'شیردهی دقیقه';
+
+  @override
+  String get summarySleepLabel => 'خواب';
+
+  @override
+  String get settingsOledMode => 'OLED (سیاه مطلق)';
+
+  @override
+  String get settingsOledModeDesc => 'استفاده از پس‌زمینه سیاه مطلق برای صرفه‌جویی باتری در صفحه‌های OLED';
+
+  @override
+  String get settingsImmersiveMode => 'حالت غوطه‌ور';
+
+  @override
+  String get settingsImmersiveModeDesc => 'پنهان کردن نوار وضعیت و ناوبری سیستم';
+
+  @override
+  String get navVaccinationsEntry => 'واکسیناسیون';
+
+  @override
+  String get whoChartsEntry => 'نمودارهای رشد WHO';
 }

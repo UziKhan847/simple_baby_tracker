@@ -18,16 +18,19 @@ class StatLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon, color: color),
+        Icon(icon, color: color, size: 20),
         const SizedBox(height: 4),
+        Text(text, style: theme.textTheme.titleSmall),
         Text(
-          text,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          label,
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
         ),
-        Text(label, style: const TextStyle(fontSize: 11, color: Colors.grey)),
       ],
     );
   }
@@ -49,16 +52,19 @@ class Stat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon, color: color),
+        Icon(icon, color: color, size: 20),
         const SizedBox(height: 4),
+        Text(value.toString(), style: theme.textTheme.titleSmall),
         Text(
-          value.toString(),
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          label,
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
         ),
-        Text(label, style: const TextStyle(fontSize: 11, color: Colors.grey)),
       ],
     );
   }

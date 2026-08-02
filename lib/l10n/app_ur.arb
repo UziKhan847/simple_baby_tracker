@@ -743,5 +743,50 @@
       "years": { "type": "int" },
       "months": { "type": "int" }
     }
-  }
+  },
+  "medicationLabel": "دوائی: {name}",
+  "@medicationLabel": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "doctorVisitDefaultReason": "دورہ",
+  "@doctorVisitDefaultReason": {},
+  "doctorVisitLabel": "ڈاکٹر کا دورہ — {reason}",
+  "@doctorVisitLabel": {
+    "placeholders": {
+      "reason": { "type": "String" }
+    }
+  },
+  "noteDefaultTitle": "📝 نوٹ",
+  "@noteDefaultTitle": {},
+  "noteLabel": "📝 {title}",
+  "@noteLabel": {
+    "placeholders": {
+      "title": { "type": "String" }
+    }
+  },
+  "doctorVisitWithDoctor": "ڈاکٹر: {doctor}",
+  "@doctorVisitWithDoctor": {
+    "placeholders": {
+      "doctor": { "type": "String" }
+    }
+  },
+  "doctorVisitNoDoctorRecorded": "کوئی ڈاکٹر درج نہیں",
+  "@doctorVisitNoDoctorRecorded": {},
+  "summaryPoosLabel": "پاخانہ",
+  "@summaryPoosLabel": {},
+  "summaryPeesLabel": "پیشاب",
+  "@summaryPeesLabel": {},
+  "summaryMilkLabel": "دودھ ملی",
+  "@summaryMilkLabel": {},
+  "summaryBreastLabel": "دودھ پلانا من",
+  "@summaryBreastLabel": {},
+  "summarySleepLabel": "نیند",
+  "settingsOledMode": "OLED (خالص سیاہ)",
+  "settingsOledModeDesc": "OLED اسکرینوں پر بیٹری بچانے کے لیے خالص سیاہ پس منظر استعمال کریں",
+  "settingsImmersiveMode": "امرسیو موڈ",
+  "settingsImmersiveModeDesc": "سسٹم اسٹیٹس اور نیویگیشن بار چھپائیں",
+  "navVaccinationsEntry": "ویکسینیشن",
+  "whoChartsEntry": "WHO نمو کے چارٹس"
 }

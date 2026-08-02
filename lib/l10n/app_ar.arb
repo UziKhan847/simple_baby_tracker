@@ -743,5 +743,50 @@
       "years": { "type": "int" },
       "months": { "type": "int" }
     }
-  }
+  },
+  "medicationLabel": "دواء: {name}",
+  "@medicationLabel": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "doctorVisitDefaultReason": "زيارة",
+  "@doctorVisitDefaultReason": {},
+  "doctorVisitLabel": "زيارة طبيب — {reason}",
+  "@doctorVisitLabel": {
+    "placeholders": {
+      "reason": { "type": "String" }
+    }
+  },
+  "noteDefaultTitle": "📝 ملاحظة",
+  "@noteDefaultTitle": {},
+  "noteLabel": "📝 {title}",
+  "@noteLabel": {
+    "placeholders": {
+      "title": { "type": "String" }
+    }
+  },
+  "doctorVisitWithDoctor": "د: {doctor}",
+  "@doctorVisitWithDoctor": {
+    "placeholders": {
+      "doctor": { "type": "String" }
+    }
+  },
+  "doctorVisitNoDoctorRecorded": "لم يُسجَّل طبيب",
+  "@doctorVisitNoDoctorRecorded": {},
+  "summaryPoosLabel": "البراز",
+  "@summaryPoosLabel": {},
+  "summaryPeesLabel": "البول",
+  "@summaryPeesLabel": {},
+  "summaryMilkLabel": "الحليب مل",
+  "@summaryMilkLabel": {},
+  "summaryBreastLabel": "رضاعة د",
+  "@summaryBreastLabel": {},
+  "summarySleepLabel": "نوم",
+  "settingsOledMode": "OLED (أسود نقي)",
+  "settingsOledModeDesc": "استخدام خلفية سوداء نقية لتوفير البطارية على شاشات OLED",
+  "settingsImmersiveMode": "الوضع الغامر",
+  "settingsImmersiveModeDesc": "إخفاء شريطي الحالة والتنقل في النظام",
+  "navVaccinationsEntry": "التطعيمات",
+  "whoChartsEntry": "مخططات نمو منظمة الصحة العالمية"
 }

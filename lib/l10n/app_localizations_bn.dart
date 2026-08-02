@@ -1041,4 +1041,66 @@ class AppLocalizationsBn extends AppLocalizations {
   String ageYearMonth(int years, int months) {
     return '$years বছর $months মাস';
   }
+
+  @override
+  String medicationLabel(String name) {
+    return 'ঔষধ: $name';
+  }
+
+  @override
+  String get doctorVisitDefaultReason => 'ভিজিট';
+
+  @override
+  String doctorVisitLabel(String reason) {
+    return 'ডাক্তারের দেখা — $reason';
+  }
+
+  @override
+  String get noteDefaultTitle => '📝 নোট';
+
+  @override
+  String noteLabel(String title) {
+    return '📝 $title';
+  }
+
+  @override
+  String doctorVisitWithDoctor(String doctor) {
+    return 'ডাঃ $doctor';
+  }
+
+  @override
+  String get doctorVisitNoDoctorRecorded => 'কোনো ডাক্তার লেখা হয়নি';
+
+  @override
+  String get summaryPoosLabel => 'পায়খানা';
+
+  @override
+  String get summaryPeesLabel => 'পেশাব';
+
+  @override
+  String get summaryMilkLabel => 'দুধ মিলি';
+
+  @override
+  String get summaryBreastLabel => 'স্তন্যপান মি';
+
+  @override
+  String get summarySleepLabel => 'ঘুম';
+
+  @override
+  String get settingsOledMode => 'OLED (নিখাদ কালো)';
+
+  @override
+  String get settingsOledModeDesc => 'OLED স্ক্রিনে ব্যাটারি সাশ্রয়ে সম্পূর্ণ কালো ব্যাকগ্রাউন্ড ব্যবহার করুন';
+
+  @override
+  String get settingsImmersiveMode => 'ইমারসিভ মোড';
+
+  @override
+  String get settingsImmersiveModeDesc => 'সিস্টেম স্ট্যাটাস ও নেভিগেশন বার লুকান';
+
+  @override
+  String get navVaccinationsEntry => 'টিকাদান';
+
+  @override
+  String get whoChartsEntry => 'WHO বৃদ্ধি চার্ট';
 }

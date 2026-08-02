@@ -1041,4 +1041,66 @@ class AppLocalizationsKo extends AppLocalizations {
   String ageYearMonth(int years, int months) {
     return '$years세 $months개월';
   }
+
+  @override
+  String medicationLabel(String name) {
+    return '약: $name';
+  }
+
+  @override
+  String get doctorVisitDefaultReason => '방문';
+
+  @override
+  String doctorVisitLabel(String reason) {
+    return '병원 방문 — $reason';
+  }
+
+  @override
+  String get noteDefaultTitle => '📝 메모';
+
+  @override
+  String noteLabel(String title) {
+    return '📝 $title';
+  }
+
+  @override
+  String doctorVisitWithDoctor(String doctor) {
+    return '의사: $doctor';
+  }
+
+  @override
+  String get doctorVisitNoDoctorRecorded => '등록된 의사 없음';
+
+  @override
+  String get summaryPoosLabel => '대변';
+
+  @override
+  String get summaryPeesLabel => '소변';
+
+  @override
+  String get summaryMilkLabel => '우유 ml';
+
+  @override
+  String get summaryBreastLabel => '수유 분';
+
+  @override
+  String get summarySleepLabel => '수면';
+
+  @override
+  String get settingsOledMode => 'OLED(완전한 검정)';
+
+  @override
+  String get settingsOledModeDesc => 'OLED 화면에서 배터리를 절약하기 위해 완전한 검정 배경을 사용합니다';
+
+  @override
+  String get settingsImmersiveMode => '몰입 모드';
+
+  @override
+  String get settingsImmersiveModeDesc => '시스템 상태 표시줄과 탐색 표시줄을 숨깁니다';
+
+  @override
+  String get navVaccinationsEntry => '예방접종';
+
+  @override
+  String get whoChartsEntry => 'WHO 성장 차트';
 }

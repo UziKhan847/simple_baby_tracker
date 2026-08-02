@@ -6,6 +6,8 @@ class ThemeProvider extends InheritedWidget {
     required this.themeMode,
     required this.toggleTheme,
     required this.isDarkResolved,
+    required this.oledEnabled,
+    required this.toggleOled,
     required super.child,
   });
 
@@ -18,6 +20,10 @@ class ThemeProvider extends InheritedWidget {
   /// the user actually sees on screen.
   final bool isDarkResolved;
 
+  /// Whether true-black (OLED) styling should be used while in dark mode.
+  final bool oledEnabled;
+  final VoidCallback toggleOled;
+
   bool get isDark => isDarkResolved;
 
   static ThemeProvider of(BuildContext context) =>
@@ -25,5 +31,7 @@ class ThemeProvider extends InheritedWidget {
 
   @override
   bool updateShouldNotify(ThemeProvider old) =>
-      old.themeMode != themeMode || old.isDarkResolved != isDarkResolved;
+      old.themeMode != themeMode ||
+      old.isDarkResolved != isDarkResolved ||
+      old.oledEnabled != oledEnabled;
 }

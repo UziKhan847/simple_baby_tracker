@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
 
 class BathForm extends StatefulWidget {
   final DateTime initialDate;
   final TrackerEvent? existingEvent;
 
-  const BathForm({
-    super.key,
-    required this.initialDate,
-    this.existingEvent,
-  });
+  const BathForm({super.key, required this.initialDate, this.existingEvent});
 
   @override
   State<BathForm> createState() => _BathFormState();
@@ -43,99 +41,64 @@ class _BathFormState extends State<BathForm> {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQuery.of(context);
-    final bottomPad = media.viewInsets.bottom > 0
-        ? media.viewInsets.bottom
-        : media.padding.bottom + 16;
+    final l = AppLocalizations.of(context)!;
 
-    return Padding(
-      padding: EdgeInsets.only(bottom: bottomPad),
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  _isEditing ? 'Edit bath' : 'Log bath',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const Spacer(),
-                TextButton.icon(
-                  onPressed: () async {
-                    final t = await showTimePicker(
-                        context: context, initialTime: _time);
-                    if (t != null) setState(() => _time = t);
-                  },
-                  icon: const Icon(Icons.access_time, size: 18),
-                  label: Text(_time.format(context)),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-
-            Text('Bath type', style: Theme.of(context).textTheme.labelLarge),
-            const SizedBox(height: 8),
-            SegmentedButton<String>(
-              segments: const [
-                ButtonSegment(
-                  value: 'sponge',
-                  label: Text('Sponge'),
-                  icon: Icon(Icons.cleaning_services, size: 14),
-                ),
-                ButtonSegment(
-                  value: 'tub',
-                  label: Text('Tub'),
-                  icon: Icon(Icons.bathtub, size: 14),
-                ),
-                ButtonSegment(
-                  value: 'shower',
-                  label: Text('Shower'),
-                  icon: Icon(Icons.shower, size: 14),
-                ),
-              ],
-              selected: {_bathType},
-              onSelectionChanged: (s) =>
-                  setState(() => _bathType = s.first),
-            ),
-
-            const SizedBox(height: 12),
-
-            TextField(
-              controller: _productsCtrl,
-              textCapitalization: TextCapitalization.sentences,
-              decoration: const InputDecoration(
-                labelText: 'Products used (optional)',
-                hintText: "e.g. Baby Dove wash, Johnson's shampoo...",
-                border: OutlineInputBorder(),
-                isDense: true,
+    return AppFormScaffold(
+      title: _isEditing ? l.bathEdit : l.bathLog,
+      time: _time,
+      onTimeChanged: (t) => setState(() => _time = t),
+      ctaLabel: _isEditing ? l.actionUpdate : l.actionSave,
+      onSubmit: _save,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(l.bathType, style: Theme.of(context).textTheme.labelLarge),
+          const SizedBox(height: 8),
+          SegmentedButton<String>(
+            segments: [
+              ButtonSegment(
+                value: 'sponge',
+                label: Text(l.bathTypeSponge),
+                icon: const Icon(Icons.cleaning_services, size: 14),
               ),
-            ),
-
-            const SizedBox(height: 12),
-
-            TextField(
-              controller: _notesCtrl,
-              decoration: const InputDecoration(
-                labelText: 'Notes (optional)',
-                hintText: 'e.g. loved it, fussy, umbilical care...',
-                border: OutlineInputBorder(),
-                isDense: true,
+              ButtonSegment(
+                value: 'tub',
+                label: Text(l.bathTypeTub),
+                icon: const Icon(Icons.bathtub, size: 14),
               ),
-            ),
-
-            const SizedBox(height: 16),
-            Align(
-              alignment: Alignment.centerRight,
-              child: FilledButton(
-                onPressed: _save,
-                child: Text(_isEditing ? 'Update' : 'Save'),
+              ButtonSegment(
+                value: 'shower',
+                label: Text(l.bathTypeShower),
+                icon: const Icon(Icons.shower, size: 14),
               ),
+            ],
+            selected: {_bathType},
+            onSelectionChanged: (s) => setState(() => _bathType = s.first),
+          ),
+
+          const SizedBox(height: 12),
+
+          TextField(
+            controller: _productsCtrl,
+            textCapitalization: TextCapitalization.sentences,
+            decoration: InputDecoration(
+              labelText: l.bathProducts,
+              border: const OutlineInputBorder(),
+              isDense: true,
             ),
-          ],
-        ),
+          ),
+
+          const SizedBox(height: 12),
+
+          TextField(
+            controller: _notesCtrl,
+            decoration: InputDecoration(
+              labelText: l.bathNotes,
+              border: const OutlineInputBorder(),
+              isDense: true,
+            ),
+          ),
+        ],
       ),
     );
   }

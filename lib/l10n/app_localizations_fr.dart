@@ -1041,4 +1041,66 @@ class AppLocalizationsFr extends AppLocalizations {
   String ageYearMonth(int years, int months) {
     return '$years an(s) $months mois';
   }
+
+  @override
+  String medicationLabel(String name) {
+    return 'Médicament : $name';
+  }
+
+  @override
+  String get doctorVisitDefaultReason => 'Visite';
+
+  @override
+  String doctorVisitLabel(String reason) {
+    return 'Visite chez le médecin — $reason';
+  }
+
+  @override
+  String get noteDefaultTitle => '📝 Note';
+
+  @override
+  String noteLabel(String title) {
+    return '📝 $title';
+  }
+
+  @override
+  String doctorVisitWithDoctor(String doctor) {
+    return 'Dr : $doctor';
+  }
+
+  @override
+  String get doctorVisitNoDoctorRecorded => 'Aucun médecin enregistré';
+
+  @override
+  String get summaryPoosLabel => 'Caca';
+
+  @override
+  String get summaryPeesLabel => 'Pipi';
+
+  @override
+  String get summaryMilkLabel => 'Lait ml';
+
+  @override
+  String get summaryBreastLabel => 'Allait. min';
+
+  @override
+  String get summarySleepLabel => 'Sommeil';
+
+  @override
+  String get settingsOledMode => 'OLED (noir pur)';
+
+  @override
+  String get settingsOledModeDesc => 'Utiliser un fond noir pur pour économiser la batterie sur les écrans OLED';
+
+  @override
+  String get settingsImmersiveMode => 'Mode immersif';
+
+  @override
+  String get settingsImmersiveModeDesc => 'Masquer les barres d\'état et de navigation du système';
+
+  @override
+  String get navVaccinationsEntry => 'Vaccinations';
+
+  @override
+  String get whoChartsEntry => 'Courbes de croissance OMS';
 }
