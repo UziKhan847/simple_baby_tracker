@@ -113,16 +113,35 @@ class _HomePageState extends State<HomePage> {
       firstDate: DateTime(2000),
       lastDate: DateTime(DateTime.now().year + 5),
     );
-    if (picked == null) return;
+    if (picked == null || !mounted) return;
 
     final dateOnly = DateTime(picked.year, picked.month, picked.day);
     final key = dateKey(dateOnly);
-    if (widget.data.containsKey(key)) return;
 
-    final updated = Map<String, List<TrackerEvent>>.from(widget.data)
-      ..[key] = [];
-    await Storage.saveAll(widget.babyId, updated);
-    widget.onDataChanged(updated);
+    // Create the (empty) day if it doesn't exist yet; if it does, this is
+    // just picking a day to jump to. Either way land the parent straight in
+    // it — previously, picking a date that already had entries silently did
+    // nothing, which looked broken, and creating a new day left the parent
+    // to go find it themselves in the list below instead of opening it.
+    var data = widget.data;
+    if (!data.containsKey(key)) {
+      data = Map<String, List<TrackerEvent>>.from(data)..[key] = [];
+      await Storage.saveAll(widget.babyId, data);
+      widget.onDataChanged(data);
+    }
+    if (!mounted) return;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => DayPage(
+          date: dateOnly,
+          babyId: widget.babyId,
+          data: data,
+          onDataChanged: widget.onDataChanged,
+        ),
+      ),
+    );
   }
 
   Future<void> _removeTile(DateTime d) async {
@@ -431,6 +450,16 @@ class _HomePageState extends State<HomePage> {
         title: Text(l.homeTitle),
         automaticallyImplyLeading: false,
         actions: [
+          // General "add any day" entry point — the FAB below is a fast
+          // path for *today* only, and "+ Add day" next to a month header
+          // only exists once that month already has something logged, so
+          // this is the only way to start a day in a month with nothing in
+          // it yet (e.g. backfilling last month).
+          IconButton(
+            icon: const Icon(Icons.calendar_month_outlined),
+            tooltip: l.actionAddDay,
+            onPressed: () => _addTileForDate(),
+          ),
           IconButton(
             icon: const Icon(Icons.medication_outlined),
             tooltip: l.medicationsTitle,
