@@ -39,6 +39,8 @@ CategoryStyle categoryStyleFor(String eventType, AppColors c) {
       return CategoryStyle(Icons.edit_note, c.noteStrong, c.noteSoft);
     case 'bath':
       return CategoryStyle(Icons.bathtub, c.miscStrong, c.miscSoft);
+    case 'solids':
+      return CategoryStyle(Icons.restaurant, c.growthStrong, c.growthSoft);
     default:
       return CategoryStyle(Icons.circle, c.neutralStrong, c.neutralSoft);
   }

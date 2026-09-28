@@ -575,10 +575,28 @@
   "@exportTitle": {},
   "exportJson": "Export as JSON",
   "@exportJson": {},
+  "exportJsonDesc": "Raw data for backup",
+  "@exportJsonDesc": {},
   "exportPdf": "Export as PDF",
   "@exportPdf": {},
   "exportPdfDesc": "Human-readable summary for your paediatrician",
   "@exportPdfDesc": {},
+  "importJson": "Import from JSON",
+  "@importJson": {},
+  "importJsonDesc": "Restore from a backup file",
+  "@importJsonDesc": {},
+  "importDialogTitle": "Import data?",
+  "@importDialogTitle": {},
+  "importDialogBody": "Merge adds the file's entries alongside your existing data. Replace all deletes your existing data first.",
+  "@importDialogBody": {},
+  "importMerge": "Merge",
+  "@importMerge": {},
+  "importReplaceAll": "Replace all",
+  "@importReplaceAll": {},
+  "importSuccess": "Import complete",
+  "@importSuccess": {},
+  "importInvalidFile": "This doesn't look like a Baby Tracker export file.",
+  "@importInvalidFile": {},
   "exportGoogleDrive": "Back up to Google Drive",
   "@exportGoogleDrive": {},
   "exportGenerating": "Generating report...",
@@ -657,6 +675,8 @@
   "@settingsWeightUnit": {},
   "settingsTempUnit": "Temperature unit",
   "@settingsTempUnit": {},
+  "settingsVolumeUnit": "Milk volume unit",
+  "@settingsVolumeUnit": {},
   "settingsLanguage": "Language",
   "@settingsLanguage": {},
   "settingsNotifications": "Notifications & reminders",
@@ -747,6 +767,10 @@
   "@graphsDiapersPerDay": {},
   "graphsMilkPerDay": "Milk per day (ml)",
   "@graphsMilkPerDay": {},
+  "graphsMilkPerDayMl": "Milk per day (ml)",
+  "@graphsMilkPerDayMl": {},
+  "graphsMilkPerDayOz": "Milk per day (oz)",
+  "@graphsMilkPerDayOz": {},
   "graphsSleepPerDay": "Sleep per day (hours)",
   "@graphsSleepPerDay": {},
   "graphsWeightOverTime": "Weight over time",
@@ -848,6 +872,10 @@
   "@summaryPeesLabel": {},
   "summaryMilkLabel": "Milk ml",
   "@summaryMilkLabel": {},
+  "summaryMilkLabelMl": "Milk ml",
+  "@summaryMilkLabelMl": {},
+  "summaryMilkLabelOz": "Milk oz",
+  "@summaryMilkLabelOz": {},
   "summaryBreastLabel": "Breast m",
   "@summaryBreastLabel": {},
   "summarySleepLabel": "Sleep",
@@ -863,5 +891,347 @@
   "navVaccinationsEntry": "Vaccinations",
   "@navVaccinationsEntry": {},
   "whoChartsEntry": "WHO growth charts",
-  "@whoChartsEntry": {}
+  "@whoChartsEntry": {},
+  "medicationEditTitle": "Edit medication",
+  "@medicationEditTitle": {},
+  "medicationLogTitle": "Log medication",
+  "@medicationLogTitle": {},
+  "medicationYourCourses": "Your courses",
+  "@medicationYourCourses": {},
+  "medicationManageCourses": "Manage courses",
+  "@medicationManageCourses": {},
+  "medicationNameRequired": "Medication name *",
+  "@medicationNameRequired": {},
+  "medicationDosageWarning": "Always follow dosage instructions for weight/age. Do not exceed recommended frequency.",
+  "@medicationDosageWarning": {},
+  "medicationNotesOptional": "Notes (optional)",
+  "@medicationNotesOptional": {},
+  "timeAgoMinutes": "{count, plural, one{1 minute ago} other{{count} minutes ago}}",
+  "@timeAgoMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoHours": "{count, plural, one{1 hour ago} other{{count} hours ago}}",
+  "@timeAgoHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoDays": "{count, plural, one{1 day ago} other{{count} days ago}}",
+  "@timeAgoDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "medicationLastGivenAgo": "Last given {ago}",
+  "@medicationLastGivenAgo": {
+    "placeholders": {
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "medicationNeverGiven": "Not given yet",
+  "@medicationNeverGiven": {},
+  "medicationDosesToday": "{count, plural, =0{No doses today} one{1 dose today} other{{count} doses today}}",
+  "@medicationDosesToday": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "medicationTooSoonWarning": "Next dose isn't due for {hours}h after the last one",
+  "@medicationTooSoonWarning": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "medicationMaxPerDayWarning": "Already at the {max}/day limit for this course",
+  "@medicationMaxPerDayWarning": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "medicationEditCourse": "Edit course",
+  "@medicationEditCourse": {},
+  "medicationNewCourse": "New course",
+  "@medicationNewCourse": {},
+  "medicationReasonOptional": "Reason (optional)",
+  "@medicationReasonOptional": {},
+  "medicationIntervalHoursOptional": "Repeat every (hours, optional)",
+  "@medicationIntervalHoursOptional": {},
+  "medicationMaxPerDayOptional": "Max doses/day (optional)",
+  "@medicationMaxPerDayOptional": {},
+  "medicationRemindNextDose": "Remind me when the next dose is due",
+  "@medicationRemindNextDose": {},
+  "medicationEndCourseTitle": "End {name}?",
+  "@medicationEndCourseTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "medicationEndCoursePrompt": "How did it go?",
+  "@medicationEndCoursePrompt": {},
+  "medicationDeleteCourseTitle": "Delete this course?",
+  "@medicationDeleteCourseTitle": {},
+  "medicationResultWorked": "Worked",
+  "@medicationResultWorked": {},
+  "medicationResultPartlyWorked": "Partly worked",
+  "@medicationResultPartlyWorked": {},
+  "medicationResultDidntWork": "Didn't work",
+  "@medicationResultDidntWork": {},
+  "medicationResultSideEffects": "Side effects",
+  "@medicationResultSideEffects": {},
+  "medicationResultNone": "Not rated",
+  "@medicationResultNone": {},
+  "medicationsTitle": "Medications",
+  "@medicationsTitle": {},
+  "medicationActiveTab": "Active ({count})",
+  "@medicationActiveTab": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "medicationPastTab": "Past ({count})",
+  "@medicationPastTab": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "medicationNoActiveCourses": "No active medication courses.\nStart one with the + button.",
+  "@medicationNoActiveCourses": {},
+  "medicationNoPastCourses": "No past courses yet.",
+  "@medicationNoPastCourses": {},
+  "medicationTimesGiven": "Given {count}×",
+  "@medicationTimesGiven": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "medicationLastGivenShort": "Last: {date}",
+  "@medicationLastGivenShort": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "medicationNextDueShort": "Next due {time}",
+  "@medicationNextDueShort": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "medicationEndCourse": "End course",
+  "@medicationEndCourse": {},
+  "feedLastSideHint": "Last time: {side}",
+  "@feedLastSideHint": {
+    "placeholders": {
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "feedSideLeft": "Left",
+  "@feedSideLeft": {},
+  "feedSideRight": "Right",
+  "@feedSideRight": {},
+  "feedSideBoth": "Both",
+  "@feedSideBoth": {},
+  "feedSideLeftMinutes": "Left (min)",
+  "@feedSideLeftMinutes": {},
+  "feedSideRightMinutes": "Right (min)",
+  "@feedSideRightMinutes": {},
+  "timeAgoJustNow": "Just now",
+  "@timeAgoJustNow": {},
+  "timeUntilOverdue": "Overdue",
+  "@timeUntilOverdue": {},
+  "timeUntilMinutes": "in {count}m",
+  "@timeUntilMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeUntilHours": "in {count}h",
+  "@timeUntilHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeUntilDays": "in {count}d",
+  "@timeUntilDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timerDiscardTitle": "Discard this timer?",
+  "@timerDiscardTitle": {},
+  "timerDiscard": "Discard",
+  "@timerDiscard": {},
+  "timerFeedingRunning": "Feeding · {side}",
+  "@timerFeedingRunning": {
+    "placeholders": {
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "timerSleepRunning": "Sleep timer running",
+  "@timerSleepRunning": {},
+  "timerSwitchSide": "Switch side",
+  "@timerSwitchSide": {},
+  "timerStop": "Stop",
+  "@timerStop": {},
+  "sinceLastFeed": "Last feed",
+  "@sinceLastFeed": {},
+  "sinceLastDiaper": "Last diaper",
+  "@sinceLastDiaper": {},
+  "sinceAwake": "Awake",
+  "@sinceAwake": {},
+  "sinceAsleep": "Asleep",
+  "@sinceAsleep": {},
+  "nextDoseDue": "{name} due",
+  "@nextDoseDue": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "weighConditionNaked": "Naked",
+  "@weighConditionNaked": {},
+  "weighConditionDiaper": "Diaper only",
+  "@weighConditionDiaper": {},
+  "weighConditionLightClothes": "Light clothes",
+  "@weighConditionLightClothes": {},
+  "weighConditionDressed": "Dressed",
+  "@weighConditionDressed": {},
+  "weighCondition": "Weighed wearing",
+  "@weighCondition": {},
+  "growthMeasurementsOptional": "Other measurements (optional)",
+  "@growthMeasurementsOptional": {},
+  "growthHeightCm": "Height (cm)",
+  "@growthHeightCm": {},
+  "growthHeadCm": "Head circumference (cm)",
+  "@growthHeadCm": {},
+  "weighConditionChangedWarning": "Last time was weighed {condition} — the difference may not be just growth",
+  "@weighConditionChangedWarning": {
+    "placeholders": {
+      "condition": {
+        "type": "String"
+      }
+    }
+  },
+  "growthHeightValue": "{cm} cm",
+  "@growthHeightValue": {
+    "placeholders": {
+      "cm": {
+        "type": "String"
+      }
+    }
+  },
+  "growthHeadValue": "Head {cm} cm",
+  "@growthHeadValue": {
+    "placeholders": {
+      "cm": {
+        "type": "String"
+      }
+    }
+  },
+  "growthHeightOverTime": "Height over time",
+  "@growthHeightOverTime": {},
+  "growthHeadOverTime": "Head circumference over time",
+  "@growthHeadOverTime": {},
+  "graphsRecentWeighIns": "Recent weigh-ins",
+  "@graphsRecentWeighIns": {},
+  "solidsAmountFewSpoons": "A few spoons",
+  "@solidsAmountFewSpoons": {},
+  "solidsAmountHalf": "Half a portion",
+  "@solidsAmountHalf": {},
+  "solidsAmountFull": "Full portion",
+  "@solidsAmountFull": {},
+  "solidsAmountTaste": "Just a taste",
+  "@solidsAmountTaste": {},
+  "solidsReactionMild": "Mild reaction",
+  "@solidsReactionMild": {},
+  "solidsReactionAllergic": "Allergic reaction",
+  "@solidsReactionAllergic": {},
+  "solidsReactionNone": "No reaction",
+  "@solidsReactionNone": {},
+  "solidsEditTitle": "Edit solid food",
+  "@solidsEditTitle": {},
+  "solidsLogTitle": "Log solid food",
+  "@solidsLogTitle": {},
+  "solidsFoodsLabel": "Foods",
+  "@solidsFoodsLabel": {},
+  "solidsAddFoodHint": "Add a food",
+  "@solidsAddFoodHint": {},
+  "solidsAmount": "Amount",
+  "@solidsAmount": {},
+  "solidsLiked": "How did they like it?",
+  "@solidsLiked": {},
+  "solidsReaction": "Reaction",
+  "@solidsReaction": {},
+  "solidsNotesOptional": "Notes (optional)",
+  "@solidsNotesOptional": {},
+  "foodsTitle": "Foods tried",
+  "@foodsTitle": {},
+  "foodsEmpty": "No solid foods logged yet.",
+  "@foodsEmpty": {},
+  "foodsAllergensNotYet": "Common allergens not yet introduced",
+  "@foodsAllergensNotYet": {},
+  "foodsTriedCount": "{count} foods tried",
+  "@foodsTriedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "foodsFirstTried": "First: {date}",
+  "@foodsFirstTried": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "foodsTimesEaten": "{count}×",
+  "@foodsTimesEaten": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "entryTypeSolids": "Solid food",
+  "@entryTypeSolids": {}
 }

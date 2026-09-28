@@ -1487,6 +1487,12 @@ abstract class AppLocalizations {
   /// **'Export as JSON'**
   String get exportJson;
 
+  /// No description provided for @exportJsonDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Raw data for backup'**
+  String get exportJsonDesc;
+
   /// No description provided for @exportPdf.
   ///
   /// In en, this message translates to:
@@ -1498,6 +1504,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Human-readable summary for your paediatrician'**
   String get exportPdfDesc;
+
+  /// No description provided for @importJson.
+  ///
+  /// In en, this message translates to:
+  /// **'Import from JSON'**
+  String get importJson;
+
+  /// No description provided for @importJsonDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore from a backup file'**
+  String get importJsonDesc;
+
+  /// No description provided for @importDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Import data?'**
+  String get importDialogTitle;
+
+  /// No description provided for @importDialogBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Merge adds the file\'s entries alongside your existing data. Replace all deletes your existing data first.'**
+  String get importDialogBody;
+
+  /// No description provided for @importMerge.
+  ///
+  /// In en, this message translates to:
+  /// **'Merge'**
+  String get importMerge;
+
+  /// No description provided for @importReplaceAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace all'**
+  String get importReplaceAll;
+
+  /// No description provided for @importSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Import complete'**
+  String get importSuccess;
+
+  /// No description provided for @importInvalidFile.
+  ///
+  /// In en, this message translates to:
+  /// **'This doesn\'t look like a Baby Tracker export file.'**
+  String get importInvalidFile;
 
   /// No description provided for @exportGoogleDrive.
   ///
@@ -1733,6 +1787,12 @@ abstract class AppLocalizations {
   /// **'Temperature unit'**
   String get settingsTempUnit;
 
+  /// No description provided for @settingsVolumeUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'Milk volume unit'**
+  String get settingsVolumeUnit;
+
   /// No description provided for @settingsLanguage.
   ///
   /// In en, this message translates to:
@@ -1967,6 +2027,18 @@ abstract class AppLocalizations {
   /// **'Milk per day (ml)'**
   String get graphsMilkPerDay;
 
+  /// No description provided for @graphsMilkPerDayMl.
+  ///
+  /// In en, this message translates to:
+  /// **'Milk per day (ml)'**
+  String get graphsMilkPerDayMl;
+
+  /// No description provided for @graphsMilkPerDayOz.
+  ///
+  /// In en, this message translates to:
+  /// **'Milk per day (oz)'**
+  String get graphsMilkPerDayOz;
+
   /// No description provided for @graphsSleepPerDay.
   ///
   /// In en, this message translates to:
@@ -2099,6 +2171,18 @@ abstract class AppLocalizations {
   /// **'Milk ml'**
   String get summaryMilkLabel;
 
+  /// No description provided for @summaryMilkLabelMl.
+  ///
+  /// In en, this message translates to:
+  /// **'Milk ml'**
+  String get summaryMilkLabelMl;
+
+  /// No description provided for @summaryMilkLabelOz.
+  ///
+  /// In en, this message translates to:
+  /// **'Milk oz'**
+  String get summaryMilkLabelOz;
+
   /// No description provided for @summaryBreastLabel.
   ///
   /// In en, this message translates to:
@@ -2146,6 +2230,582 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'WHO growth charts'**
   String get whoChartsEntry;
+
+  /// No description provided for @medicationEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit medication'**
+  String get medicationEditTitle;
+
+  /// No description provided for @medicationLogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log medication'**
+  String get medicationLogTitle;
+
+  /// No description provided for @medicationYourCourses.
+  ///
+  /// In en, this message translates to:
+  /// **'Your courses'**
+  String get medicationYourCourses;
+
+  /// No description provided for @medicationManageCourses.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage courses'**
+  String get medicationManageCourses;
+
+  /// No description provided for @medicationNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication name *'**
+  String get medicationNameRequired;
+
+  /// No description provided for @medicationDosageWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.'**
+  String get medicationDosageWarning;
+
+  /// No description provided for @medicationNotesOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (optional)'**
+  String get medicationNotesOptional;
+
+  /// No description provided for @timeAgoMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{1 minute ago} other{{count} minutes ago}}'**
+  String timeAgoMinutes(int count);
+
+  /// No description provided for @timeAgoHours.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{1 hour ago} other{{count} hours ago}}'**
+  String timeAgoHours(int count);
+
+  /// No description provided for @timeAgoDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{1 day ago} other{{count} days ago}}'**
+  String timeAgoDays(int count);
+
+  /// No description provided for @medicationLastGivenAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'Last given {ago}'**
+  String medicationLastGivenAgo(String ago);
+
+  /// No description provided for @medicationNeverGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'Not given yet'**
+  String get medicationNeverGiven;
+
+  /// No description provided for @medicationDosesToday.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No doses today} one{1 dose today} other{{count} doses today}}'**
+  String medicationDosesToday(int count);
+
+  /// No description provided for @medicationTooSoonWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Next dose isn\'t due for {hours}h after the last one'**
+  String medicationTooSoonWarning(int hours);
+
+  /// No description provided for @medicationMaxPerDayWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Already at the {max}/day limit for this course'**
+  String medicationMaxPerDayWarning(int max);
+
+  /// No description provided for @medicationEditCourse.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit course'**
+  String get medicationEditCourse;
+
+  /// No description provided for @medicationNewCourse.
+  ///
+  /// In en, this message translates to:
+  /// **'New course'**
+  String get medicationNewCourse;
+
+  /// No description provided for @medicationReasonOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason (optional)'**
+  String get medicationReasonOptional;
+
+  /// No description provided for @medicationIntervalHoursOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat every (hours, optional)'**
+  String get medicationIntervalHoursOptional;
+
+  /// No description provided for @medicationMaxPerDayOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Max doses/day (optional)'**
+  String get medicationMaxPerDayOptional;
+
+  /// No description provided for @medicationRemindNextDose.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me when the next dose is due'**
+  String get medicationRemindNextDose;
+
+  /// No description provided for @medicationEndCourseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End {name}?'**
+  String medicationEndCourseTitle(String name);
+
+  /// No description provided for @medicationEndCoursePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'How did it go?'**
+  String get medicationEndCoursePrompt;
+
+  /// No description provided for @medicationDeleteCourseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this course?'**
+  String get medicationDeleteCourseTitle;
+
+  /// No description provided for @medicationResultWorked.
+  ///
+  /// In en, this message translates to:
+  /// **'Worked'**
+  String get medicationResultWorked;
+
+  /// No description provided for @medicationResultPartlyWorked.
+  ///
+  /// In en, this message translates to:
+  /// **'Partly worked'**
+  String get medicationResultPartlyWorked;
+
+  /// No description provided for @medicationResultDidntWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t work'**
+  String get medicationResultDidntWork;
+
+  /// No description provided for @medicationResultSideEffects.
+  ///
+  /// In en, this message translates to:
+  /// **'Side effects'**
+  String get medicationResultSideEffects;
+
+  /// No description provided for @medicationResultNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Not rated'**
+  String get medicationResultNone;
+
+  /// No description provided for @medicationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Medications'**
+  String get medicationsTitle;
+
+  /// No description provided for @medicationActiveTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Active ({count})'**
+  String medicationActiveTab(int count);
+
+  /// No description provided for @medicationPastTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Past ({count})'**
+  String medicationPastTab(int count);
+
+  /// No description provided for @medicationNoActiveCourses.
+  ///
+  /// In en, this message translates to:
+  /// **'No active medication courses.\nStart one with the + button.'**
+  String get medicationNoActiveCourses;
+
+  /// No description provided for @medicationNoPastCourses.
+  ///
+  /// In en, this message translates to:
+  /// **'No past courses yet.'**
+  String get medicationNoPastCourses;
+
+  /// No description provided for @medicationTimesGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'Given {count}×'**
+  String medicationTimesGiven(int count);
+
+  /// No description provided for @medicationLastGivenShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Last: {date}'**
+  String medicationLastGivenShort(String date);
+
+  /// No description provided for @medicationNextDueShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Next due {time}'**
+  String medicationNextDueShort(String time);
+
+  /// No description provided for @medicationEndCourse.
+  ///
+  /// In en, this message translates to:
+  /// **'End course'**
+  String get medicationEndCourse;
+
+  /// No description provided for @feedLastSideHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Last time: {side}'**
+  String feedLastSideHint(String side);
+
+  /// No description provided for @feedSideLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Left'**
+  String get feedSideLeft;
+
+  /// No description provided for @feedSideRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Right'**
+  String get feedSideRight;
+
+  /// No description provided for @feedSideBoth.
+  ///
+  /// In en, this message translates to:
+  /// **'Both'**
+  String get feedSideBoth;
+
+  /// No description provided for @feedSideLeftMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Left (min)'**
+  String get feedSideLeftMinutes;
+
+  /// No description provided for @feedSideRightMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Right (min)'**
+  String get feedSideRightMinutes;
+
+  /// No description provided for @timeAgoJustNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get timeAgoJustNow;
+
+  /// No description provided for @timeUntilOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'Overdue'**
+  String get timeUntilOverdue;
+
+  /// No description provided for @timeUntilMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'in {count}m'**
+  String timeUntilMinutes(int count);
+
+  /// No description provided for @timeUntilHours.
+  ///
+  /// In en, this message translates to:
+  /// **'in {count}h'**
+  String timeUntilHours(int count);
+
+  /// No description provided for @timeUntilDays.
+  ///
+  /// In en, this message translates to:
+  /// **'in {count}d'**
+  String timeUntilDays(int count);
+
+  /// No description provided for @timerDiscardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard this timer?'**
+  String get timerDiscardTitle;
+
+  /// No description provided for @timerDiscard.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard'**
+  String get timerDiscard;
+
+  /// No description provided for @timerFeedingRunning.
+  ///
+  /// In en, this message translates to:
+  /// **'Feeding · {side}'**
+  String timerFeedingRunning(String side);
+
+  /// No description provided for @timerSleepRunning.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep timer running'**
+  String get timerSleepRunning;
+
+  /// No description provided for @timerSwitchSide.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch side'**
+  String get timerSwitchSide;
+
+  /// No description provided for @timerStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get timerStop;
+
+  /// No description provided for @sinceLastFeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Last feed'**
+  String get sinceLastFeed;
+
+  /// No description provided for @sinceLastDiaper.
+  ///
+  /// In en, this message translates to:
+  /// **'Last diaper'**
+  String get sinceLastDiaper;
+
+  /// No description provided for @sinceAwake.
+  ///
+  /// In en, this message translates to:
+  /// **'Awake'**
+  String get sinceAwake;
+
+  /// No description provided for @sinceAsleep.
+  ///
+  /// In en, this message translates to:
+  /// **'Asleep'**
+  String get sinceAsleep;
+
+  /// No description provided for @nextDoseDue.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} due'**
+  String nextDoseDue(String name);
+
+  /// No description provided for @weighConditionNaked.
+  ///
+  /// In en, this message translates to:
+  /// **'Naked'**
+  String get weighConditionNaked;
+
+  /// No description provided for @weighConditionDiaper.
+  ///
+  /// In en, this message translates to:
+  /// **'Diaper only'**
+  String get weighConditionDiaper;
+
+  /// No description provided for @weighConditionLightClothes.
+  ///
+  /// In en, this message translates to:
+  /// **'Light clothes'**
+  String get weighConditionLightClothes;
+
+  /// No description provided for @weighConditionDressed.
+  ///
+  /// In en, this message translates to:
+  /// **'Dressed'**
+  String get weighConditionDressed;
+
+  /// No description provided for @weighCondition.
+  ///
+  /// In en, this message translates to:
+  /// **'Weighed wearing'**
+  String get weighCondition;
+
+  /// No description provided for @growthMeasurementsOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Other measurements (optional)'**
+  String get growthMeasurementsOptional;
+
+  /// No description provided for @growthHeightCm.
+  ///
+  /// In en, this message translates to:
+  /// **'Height (cm)'**
+  String get growthHeightCm;
+
+  /// No description provided for @growthHeadCm.
+  ///
+  /// In en, this message translates to:
+  /// **'Head circumference (cm)'**
+  String get growthHeadCm;
+
+  /// No description provided for @weighConditionChangedWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Last time was weighed {condition} — the difference may not be just growth'**
+  String weighConditionChangedWarning(String condition);
+
+  /// No description provided for @growthHeightValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{cm} cm'**
+  String growthHeightValue(String cm);
+
+  /// No description provided for @growthHeadValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Head {cm} cm'**
+  String growthHeadValue(String cm);
+
+  /// No description provided for @growthHeightOverTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Height over time'**
+  String get growthHeightOverTime;
+
+  /// No description provided for @growthHeadOverTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Head circumference over time'**
+  String get growthHeadOverTime;
+
+  /// No description provided for @graphsRecentWeighIns.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent weigh-ins'**
+  String get graphsRecentWeighIns;
+
+  /// No description provided for @solidsAmountFewSpoons.
+  ///
+  /// In en, this message translates to:
+  /// **'A few spoons'**
+  String get solidsAmountFewSpoons;
+
+  /// No description provided for @solidsAmountHalf.
+  ///
+  /// In en, this message translates to:
+  /// **'Half a portion'**
+  String get solidsAmountHalf;
+
+  /// No description provided for @solidsAmountFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full portion'**
+  String get solidsAmountFull;
+
+  /// No description provided for @solidsAmountTaste.
+  ///
+  /// In en, this message translates to:
+  /// **'Just a taste'**
+  String get solidsAmountTaste;
+
+  /// No description provided for @solidsReactionMild.
+  ///
+  /// In en, this message translates to:
+  /// **'Mild reaction'**
+  String get solidsReactionMild;
+
+  /// No description provided for @solidsReactionAllergic.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergic reaction'**
+  String get solidsReactionAllergic;
+
+  /// No description provided for @solidsReactionNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No reaction'**
+  String get solidsReactionNone;
+
+  /// No description provided for @solidsEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit solid food'**
+  String get solidsEditTitle;
+
+  /// No description provided for @solidsLogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log solid food'**
+  String get solidsLogTitle;
+
+  /// No description provided for @solidsFoodsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Foods'**
+  String get solidsFoodsLabel;
+
+  /// No description provided for @solidsAddFoodHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a food'**
+  String get solidsAddFoodHint;
+
+  /// No description provided for @solidsAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get solidsAmount;
+
+  /// No description provided for @solidsLiked.
+  ///
+  /// In en, this message translates to:
+  /// **'How did they like it?'**
+  String get solidsLiked;
+
+  /// No description provided for @solidsReaction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reaction'**
+  String get solidsReaction;
+
+  /// No description provided for @solidsNotesOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (optional)'**
+  String get solidsNotesOptional;
+
+  /// No description provided for @foodsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Foods tried'**
+  String get foodsTitle;
+
+  /// No description provided for @foodsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No solid foods logged yet.'**
+  String get foodsEmpty;
+
+  /// No description provided for @foodsAllergensNotYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Common allergens not yet introduced'**
+  String get foodsAllergensNotYet;
+
+  /// No description provided for @foodsTriedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} foods tried'**
+  String foodsTriedCount(int count);
+
+  /// No description provided for @foodsFirstTried.
+  ///
+  /// In en, this message translates to:
+  /// **'First: {date}'**
+  String foodsFirstTried(String date);
+
+  /// No description provided for @foodsTimesEaten.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}×'**
+  String foodsTimesEaten(int count);
+
+  /// No description provided for @entryTypeSolids.
+  ///
+  /// In en, this message translates to:
+  /// **'Solid food'**
+  String get entryTypeSolids;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

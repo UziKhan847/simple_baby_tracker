@@ -162,6 +162,10 @@ class _VaccinationsPageState extends State<VaccinationsPage>
         ),
       ),
     );
+    nameCtrl.dispose();
+    brandCtrl.dispose();
+    siteCtrl.dispose();
+    notesCtrl.dispose();
 
     if (result != null) {
       if (existing != null) {

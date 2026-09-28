@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/helpers.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/models/medication_course.dart';
+import 'package:simple_baby_tracker/services/medication_stats.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
-
-const _commonMeds = [
-  'Tylenol / Panadol',
-  'Advil / Nurofen',
-  'Infacol',
-  'Gripe Water',
-  'Vitamin D',
-  'Iron drops',
-  'Antibiotic',
-  'Probiotic',
-  'Other',
-];
-
-const _doseUnits = ['ml', 'mg', 'drops', 'tablets'];
+import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
 
 class MedicationForm extends StatefulWidget {
   final DateTime initialDate;
   final TrackerEvent? existingEvent;
 
+  /// Ongoing courses, offered as quick-pick chips so a routine dose takes
+  /// one tap instead of retyping the name/dose/unit every time.
+  final List<MedicationCourse> activeCourses;
+
+  /// The full (all-days) event map, used only to show "last given Xh ago"
+  /// and today's dose count against whichever course is selected.
+  final Map<String, List<TrackerEvent>> data;
+
+  final VoidCallback? onManageCourses;
+
   const MedicationForm({
     super.key,
     required this.initialDate,
     this.existingEvent,
+    this.activeCourses = const [],
+    this.data = const {},
+    this.onManageCourses,
   });
 
   @override
@@ -36,7 +40,7 @@ class _MedicationFormState extends State<MedicationForm> {
   final _notesCtrl = TextEditingController();
   String _unit = 'ml';
   TimeOfDay _time = TimeOfDay.now();
-  String? _selectedPreset;
+  String? _courseId;
   bool get _isEditing => widget.existingEvent != null;
 
   @override
@@ -48,6 +52,7 @@ class _MedicationFormState extends State<MedicationForm> {
       _doseCtrl.text = e.data['dose']?.toString() ?? '';
       _unit = e.data['unit'] as String? ?? 'ml';
       _notesCtrl.text = e.data['notes'] as String? ?? '';
+      _courseId = e.data['courseId'] as String?;
       _time = TimeOfDay(hour: e.time.hour, minute: e.time.minute);
     }
   }
@@ -60,74 +65,107 @@ class _MedicationFormState extends State<MedicationForm> {
     super.dispose();
   }
 
+  MedicationCourse? get _selectedCourse {
+    if (_courseId == null) return null;
+    for (final c in widget.activeCourses) {
+      if (c.id == _courseId) return c;
+    }
+    return null;
+  }
+
+  void _pickCourse(MedicationCourse course) {
+    setState(() {
+      _courseId = course.id;
+      _nameCtrl.text = course.name;
+      _doseCtrl.text = _formatDose(course.dose);
+      _unit = course.unit;
+    });
+  }
+
+  static String _formatDose(double d) =>
+      d == d.roundToDouble() ? d.toInt().toString() : d.toString();
+
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final course = _selectedCourse;
+    final stats = course == null
+        ? null
+        : computeDoseStats(course, widget.data);
+
     return AppFormScaffold(
-      title: _isEditing ? 'Edit medication' : 'Log medication',
+      title: _isEditing ? l.medicationEditTitle : l.medicationLogTitle,
       time: _time,
       onTimeChanged: (t) => setState(() => _time = t),
-      ctaLabel: _isEditing ? 'Update' : 'Save',
-      onSubmit: _nameCtrl.text.trim().isNotEmpty ? _save : () {},
+      ctaLabel: _isEditing ? l.actionUpdate : l.actionSave,
+      onSubmit: _save,
       ctaEnabled: _nameCtrl.text.trim().isNotEmpty,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Quick-pick common medications
-          Text(
-            'Common medications',
-            style: Theme.of(context).textTheme.labelLarge,
-          ),
-          const SizedBox(height: 6),
-          Wrap(
-            spacing: 6,
-            runSpacing: 4,
-            children: _commonMeds.map((med) {
-              final isOther = med == 'Other';
-              final selected = _selectedPreset == med;
-              return ChoiceChip(
-                label: Text(med, style: const TextStyle(fontSize: 12)),
-                selected: selected,
-                onSelected: (_) => setState(() {
-                  if (isOther) {
-                    _selectedPreset = med;
-                    _nameCtrl.clear();
-                  } else {
-                    _selectedPreset = selected ? null : med;
-                    if (!selected) _nameCtrl.text = med;
-                  }
-                }),
-              );
-            }).toList(),
-          ),
+          if (widget.activeCourses.isNotEmpty) ...[
+            Row(
+              children: [
+                Text(l.medicationYourCourses, style: Theme.of(context).textTheme.labelLarge),
+                const Spacer(),
+                if (widget.onManageCourses != null)
+                  TextButton(
+                    onPressed: widget.onManageCourses,
+                    child: Text(l.medicationManageCourses),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 4),
+            Wrap(
+              spacing: 6,
+              runSpacing: 4,
+              children: widget.activeCourses.map((c) {
+                final selected = c.id == _courseId;
+                return ChoiceChip(
+                  label: Text(
+                    '${c.name} · ${_formatDose(c.dose)}${c.unit}',
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                  selected: selected,
+                  onSelected: (_) => _pickCourse(c),
+                );
+              }).toList(),
+            ),
+            const SizedBox(height: 12),
+          ],
 
-          const SizedBox(height: 12),
-
-          // Custom name field (shown when "Other" picked or no preset)
+          // Custom name field
           TextField(
             controller: _nameCtrl,
             textCapitalization: TextCapitalization.sentences,
-            decoration: const InputDecoration(
-              labelText: 'Medication name *',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l.medicationNameRequired,
+              border: const OutlineInputBorder(),
               isDense: true,
             ),
+            onChanged: (v) {
+              setState(() {
+                // A hand-edited name no longer matches the picked course,
+                // so stop attributing this dose (and its warnings) to it.
+                if (course != null && v != course.name) _courseId = null;
+              });
+            },
           ),
 
           const SizedBox(height: 12),
 
           // Dose + unit
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 flex: 2,
                 child: TextField(
                   controller: _doseCtrl,
-                  keyboardType: const TextInputType.numberWithOptions(
-                    decimal: true,
-                  ),
-                  decoration: const InputDecoration(
-                    labelText: 'Dose',
-                    border: OutlineInputBorder(),
+                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  decoration: InputDecoration(
+                    labelText: l.medicationDose,
+                    border: const OutlineInputBorder(),
                     isDense: true,
                   ),
                 ),
@@ -135,21 +173,21 @@ class _MedicationFormState extends State<MedicationForm> {
               const SizedBox(width: 10),
               Expanded(
                 flex: 3,
-                child: DropdownButtonFormField<String>(
-                  initialValue: _unit,
-                  decoration: const InputDecoration(
-                    labelText: 'Unit',
-                    border: OutlineInputBorder(),
-                    isDense: true,
-                  ),
-                  items: _doseUnits
-                      .map((u) => DropdownMenuItem(value: u, child: Text(u)))
+                child: PillSegmentedControl<String>(
+                  options: medicationDoseUnits
+                      .map((u) => PillSegmentedOption(value: u, label: u))
                       .toList(),
-                  onChanged: (v) => setState(() => _unit = v ?? 'ml'),
+                  selected: _unit,
+                  onChanged: (v) => setState(() => _unit = v),
                 ),
               ),
             ],
           ),
+
+          if (stats != null) ...[
+            const SizedBox(height: 12),
+            _DoseStatusCard(course: course!, stats: stats, l: l),
+          ],
 
           const SizedBox(height: 12),
 
@@ -169,16 +207,12 @@ class _MedicationFormState extends State<MedicationForm> {
               ),
               child: Row(
                 children: [
-                  const Icon(
-                    Icons.warning_amber_rounded,
-                    color: Colors.orange,
-                    size: 18,
-                  ),
+                  const Icon(Icons.warning_amber_rounded, color: Colors.orange, size: 18),
                   const SizedBox(width: 8),
-                  const Expanded(
+                  Expanded(
                     child: Text(
-                      'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.',
-                      style: TextStyle(fontSize: 12, color: Colors.orange),
+                      l.medicationDosageWarning,
+                      style: const TextStyle(fontSize: 12, color: Colors.orange),
                     ),
                   ),
                 ],
@@ -187,10 +221,10 @@ class _MedicationFormState extends State<MedicationForm> {
 
           TextField(
             controller: _notesCtrl,
-            decoration: const InputDecoration(
-              labelText: 'Notes (optional)',
-              hintText: 'e.g. reason, reaction...',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l.medicationNotesOptional,
+              hintText: l.medicationNotesHint,
+              border: const OutlineInputBorder(),
               isDense: true,
             ),
           ),
@@ -212,10 +246,70 @@ class _MedicationFormState extends State<MedicationForm> {
           'name': _nameCtrl.text.trim(),
           'dose': double.tryParse(_doseCtrl.text) ?? 0,
           'unit': _unit,
-          'notes': _notesCtrl.text.trim().isEmpty
-              ? null
-              : _notesCtrl.text.trim(),
+          'courseId': ?_courseId,
+          'notes': _notesCtrl.text.trim().isEmpty ? null : _notesCtrl.text.trim(),
         },
+      ),
+    );
+  }
+}
+
+/// "Last given" / next-due / today's-count read-out shown once a dose is
+/// tied to a course — the same numbers a warning about dosing too soon or
+/// too often is based on.
+class _DoseStatusCard extends StatelessWidget {
+  final MedicationCourse course;
+  final MedicationDoseStats stats;
+  final AppLocalizations l;
+
+  const _DoseStatusCard({required this.course, required this.stats, required this.l});
+
+  @override
+  Widget build(BuildContext context) {
+    final warnEarly = course.intervalHours != null &&
+        stats.lastGiven != null &&
+        DateTime.now().isBefore(
+          stats.lastGiven!.add(Duration(hours: course.intervalHours!)),
+        );
+    final warnMax = stats.overMaxToday(course);
+    final warn = warnEarly || warnMax;
+
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: (warn ? Colors.orange : Theme.of(context).colorScheme.primary)
+            .withAlpha(warn ? 30 : 18),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: (warn ? Colors.orange : Theme.of(context).colorScheme.primary)
+              .withAlpha(80),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (stats.lastGiven != null)
+            Text(l.medicationLastGivenAgo(timeAgo(stats.lastGiven!, l)))
+          else
+            Text(l.medicationNeverGiven),
+          Text(l.medicationDosesToday(stats.dosesToday)),
+          if (warnEarly)
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: Text(
+                l.medicationTooSoonWarning(course.intervalHours!),
+                style: const TextStyle(color: Colors.orange, fontWeight: FontWeight.w600),
+              ),
+            ),
+          if (warnMax)
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: Text(
+                l.medicationMaxPerDayWarning(course.maxPerDay!),
+                style: const TextStyle(color: Colors.orange, fontWeight: FontWeight.w600),
+              ),
+            ),
+        ],
       ),
     );
   }

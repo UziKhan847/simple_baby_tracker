@@ -67,6 +67,7 @@ class _AppShellState extends State<AppShell> {
 
   Future<void> _switchProfile(String id) async {
     await Storage.setActiveProfileId(id);
+    if (!mounted) return;
     setState(() {
       _activeId = id;
       _data = {};
@@ -83,7 +84,7 @@ class _AppShellState extends State<AppShell> {
     DateTime? bd = existing?.birthDate;
     String? gender = existing?.gender;
 
-    return showDialog<BabyProfile>(
+    final result = await showDialog<BabyProfile>(
       context: context,
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, set) => AlertDialog(
@@ -156,6 +157,8 @@ class _AppShellState extends State<AppShell> {
         ),
       ),
     );
+    nameCtrl.dispose();
+    return result;
   }
 
   Future<void> _addProfile() async {
@@ -176,7 +179,7 @@ class _AppShellState extends State<AppShell> {
       if (i != -1) {
         _profiles[i] = updated;
         await Storage.saveProfiles(_profiles);
-        setState(() {});
+        if (mounted) setState(() {});
       }
     }
   }
@@ -234,7 +237,7 @@ class _AppShellState extends State<AppShell> {
               width: 40,
               height: 4,
               decoration: BoxDecoration(
-                color: Colors.grey.shade400,
+                color: Theme.of(context).colorScheme.outlineVariant,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
@@ -340,7 +343,9 @@ class _AppShellState extends State<AppShell> {
                   height: 36,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).extension<AppColors>()!.accentSolid,
+                    color: Theme.of(
+                      context,
+                    ).extension<AppColors>()!.accentSolid,
                     shape: BoxShape.circle,
                   ),
                   child: Text(
@@ -395,15 +400,14 @@ class _AppShellState extends State<AppShell> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          HomePage(
-            babyId: activeId,
-            data: _data,
-            onDataChanged: _onDataChanged,
-            onReload: _loadData,
-          ),
+          HomePage(babyId: activeId, data: _data, onDataChanged: _onDataChanged),
           GraphsPage(data: _data, profile: profile),
-          MilestonesPage(babyId: activeId, babyName: profile?.name ?? 'Baby'),
-          const SettingsPage(),
+          MilestonesPage(
+            babyId: activeId,
+            babyName: profile?.name ?? 'Baby',
+            data: _data,
+          ),
+          SettingsPage(onDataImported: _loadData),
         ],
       ),
       // NavigationBar does not itself consume the bottom system-gesture

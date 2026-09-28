@@ -67,7 +67,10 @@ class _WhoChartsPageState extends State<WhoChartsPage>
     final points = <(double, double)>[];
     for (final entry in widget.data.entries) {
       for (final e in entry.value) {
-        if (e.type != 'doctor_visit') continue;
+        // Height can come from a doctor visit or from a growth ('weight')
+        // entry — the growth form gained its own optional height/head
+        // fields, not just doctor visits.
+        if (e.type != 'doctor_visit' && e.type != 'weight') continue;
         final cm = (e.data['heightCm'] as num?)?.toDouble();
         if (cm == null) continue;
         final ageMonths = birth != null
@@ -87,7 +90,7 @@ class _WhoChartsPageState extends State<WhoChartsPage>
     final points = <(double, double)>[];
     for (final entry in widget.data.entries) {
       for (final e in entry.value) {
-        if (e.type != 'doctor_visit') continue;
+        if (e.type != 'doctor_visit' && e.type != 'weight') continue;
         final cm = (e.data['headCm'] as num?)?.toDouble();
         if (cm == null) continue;
         final ageMonths = birth != null

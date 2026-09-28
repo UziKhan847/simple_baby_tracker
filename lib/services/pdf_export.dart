@@ -7,6 +7,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import 'package:simple_baby_tracker/baby_profile.dart';
 import 'package:simple_baby_tracker/helpers.dart';
+import 'package:simple_baby_tracker/models/medication_course.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 
 class PdfExportService {
@@ -21,9 +22,15 @@ class PdfExportService {
     required Map<String, List<TrackerEvent>> data,
     bool useKg = true,
     bool useCelsius = true,
+    List<MedicationCourse> medicationCourses = const [],
   }) async {
-    final bytes =
-        await _buildPdf(profile: profile, data: data, useKg: useKg, useCelsius: useCelsius);
+    final bytes = await _buildPdf(
+      profile: profile,
+      data: data,
+      useKg: useKg,
+      useCelsius: useCelsius,
+      medicationCourses: medicationCourses,
+    );
     await Printing.sharePdf(
       bytes: bytes,
       filename: 'baby_report_${profile.name.replaceAll(' ', '_')}.pdf',
@@ -36,9 +43,14 @@ class PdfExportService {
     required Map<String, List<TrackerEvent>> data,
     bool useKg = true,
     bool useCelsius = true,
-  }) =>
-      _buildPdf(
-          profile: profile, data: data, useKg: useKg, useCelsius: useCelsius);
+    List<MedicationCourse> medicationCourses = const [],
+  }) => _buildPdf(
+    profile: profile,
+    data: data,
+    useKg: useKg,
+    useCelsius: useCelsius,
+    medicationCourses: medicationCourses,
+  );
 
   // ─── Builder ──────────────────────────────────────────────────────────────
 
@@ -47,6 +59,7 @@ class PdfExportService {
     required Map<String, List<TrackerEvent>> data,
     required bool useKg,
     required bool useCelsius,
+    List<MedicationCourse> medicationCourses = const [],
   }) async {
     final doc = pw.Document(
       title: '${profile.name} — Baby Tracker Report',
@@ -88,6 +101,10 @@ class PdfExportService {
             totalMilk: totalMilk,
             dayCount: data.length,
           ),
+          if (medicationCourses.isNotEmpty) ...[
+            pw.SizedBox(height: 16),
+            _medicationsSection(medicationCourses),
+          ],
           pw.SizedBox(height: 16),
 
           // Day-by-day entries
@@ -215,6 +232,67 @@ class PdfExportService {
             style: pw.TextStyle(
                 fontSize: 13, fontWeight: pw.FontWeight.bold)),
       ],
+    );
+  }
+
+  // ─── Medications ──────────────────────────────────────────────────────────
+
+  pw.Widget _medicationsSection(List<MedicationCourse> courses) {
+    String resultLabel(MedicationResult r) => switch (r) {
+      MedicationResult.worked => 'Worked',
+      MedicationResult.partlyWorked => 'Partly worked',
+      MedicationResult.didntWork => "Didn't work",
+      MedicationResult.sideEffects => 'Side effects',
+      MedicationResult.none => 'Not rated',
+    };
+
+    return pw.Container(
+      padding: const pw.EdgeInsets.all(12),
+      decoration: pw.BoxDecoration(
+        color: PdfColors.purple50,
+        borderRadius: pw.BorderRadius.circular(6),
+        border: pw.Border.all(color: PdfColors.purple200),
+      ),
+      child: pw.Column(
+        crossAxisAlignment: pw.CrossAxisAlignment.start,
+        children: [
+          pw.Text(
+            'Medications',
+            style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 12),
+          ),
+          pw.SizedBox(height: 6),
+          for (final c in courses)
+            pw.Padding(
+              padding: const pw.EdgeInsets.symmetric(vertical: 2),
+              child: pw.RichText(
+                text: pw.TextSpan(
+                  children: [
+                    pw.TextSpan(
+                      text: '${c.name}  ',
+                      style: pw.TextStyle(
+                        fontSize: 10,
+                        fontWeight: pw.FontWeight.bold,
+                      ),
+                    ),
+                    pw.TextSpan(
+                      text: [
+                        '${c.dose} ${c.unit}',
+                        if (c.reason != null) c.reason!,
+                        if (c.intervalHours != null) 'every ${c.intervalHours}h',
+                        fullDate(c.startDate),
+                        c.isActive ? 'ongoing' : resultLabel(c.result),
+                      ].join('  ·  '),
+                      style: const pw.TextStyle(
+                        fontSize: 10,
+                        color: PdfColors.grey700,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 
@@ -391,6 +469,14 @@ class PdfExportService {
         final preview =
             text.length > 80 ? '${text.substring(0, 80)}…' : text;
         return ('📝', title ?? 'Note', preview);
+
+      case 'solids':
+        final foods = (e.data['foods'] as List?)?.cast<String>() ?? [];
+        final reaction = e.data['reaction'] as String?;
+        final reactionStr = (reaction != null && reaction != 'none')
+            ? '  ⚠️ $reaction'
+            : '';
+        return ('🥣', 'Solids$reactionStr', foods.join(', '));
 
       default:
         return ('•', e.type, '');

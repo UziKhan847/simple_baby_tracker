@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 
 // ─── Date ─────────────────────────────────────────────────────────────────
 
@@ -70,3 +71,41 @@ double ozToMl(double oz) => oz * _mlPerOz;
 /// in brackets, e.g. "150 ml (5.1 oz)".
 String formatMilkMl(num ml) =>
     '$ml ml (${mlToOz(ml.toDouble()).toStringAsFixed(1)} oz)';
+
+/// Formats a milk amount given in ml, showing only the unit the user picked
+/// in Settings (ml or oz) rather than always both — used everywhere an
+/// amount is a headline value rather than a reference conversion.
+String formatMilk(num ml, {required bool useMl}) {
+  if (useMl) return '${ml.round()} ml';
+  return '${mlToOz(ml.toDouble()).toStringAsFixed(1)} oz';
+}
+
+// ─── Relative time ────────────────────────────────────────────────────────
+
+/// A human "X ago" string — shared by the Home "since last" strip and the
+/// medication dose form/list, so both describe elapsed time the same way.
+String timeAgo(DateTime t, AppLocalizations l) {
+  final diff = DateTime.now().difference(t);
+  if (diff.inMinutes < 1) return l.timeAgoJustNow;
+  if (diff.inMinutes < 60) return l.timeAgoMinutes(diff.inMinutes);
+  if (diff.inHours < 24) return l.timeAgoHours(diff.inHours);
+  return l.timeAgoDays(diff.inDays);
+}
+
+/// A human "in X" string for a moment in the future (e.g. next dose due),
+/// or "overdue"/"now" once it's passed.
+String timeUntil(DateTime t, AppLocalizations l) {
+  final diff = t.difference(DateTime.now());
+  if (diff.inMinutes <= 0) return l.timeUntilOverdue;
+  if (diff.inMinutes < 60) return l.timeUntilMinutes(diff.inMinutes);
+  if (diff.inHours < 24) return l.timeUntilHours(diff.inHours);
+  return l.timeUntilDays(diff.inDays);
+}
+
+/// A compact "Hh MMm" / "MMm" duration label, e.g. for a running timer.
+String formatDuration(Duration d) {
+  final h = d.inHours;
+  final m = d.inMinutes % 60;
+  if (h == 0) return '${m}m';
+  return '${h}h ${m.toString().padLeft(2, '0')}m';
+}

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/forms/bath.dart';
 import 'package:simple_baby_tracker/forms/daily_note.dart';
@@ -7,12 +9,16 @@ import 'package:simple_baby_tracker/forms/feeding.dart';
 import 'package:simple_baby_tracker/forms/medication.dart';
 import 'package:simple_baby_tracker/forms/pumping.dart';
 import 'package:simple_baby_tracker/forms/sleep.dart';
+import 'package:simple_baby_tracker/forms/solids.dart';
 import 'package:simple_baby_tracker/forms/temperature.dart';
 import 'package:simple_baby_tracker/forms/tummy_time.dart';
 import 'package:simple_baby_tracker/forms/weight.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/pages/foods.dart';
+import 'package:simple_baby_tracker/pages/medications.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
+import 'package:simple_baby_tracker/services/notification.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/summary_header_delegate.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
@@ -23,31 +29,44 @@ import 'package:simple_baby_tracker/widgets/entry_row.dart';
 import 'package:simple_baby_tracker/widgets/gradient_pill_button.dart';
 
 class DayPage extends StatefulWidget {
-  const DayPage({super.key, required this.date, required this.babyId});
+  const DayPage({
+    super.key,
+    required this.date,
+    required this.babyId,
+    required this.data,
+    required this.onDataChanged,
+    this.autoOpenAddSheet = false,
+  });
 
   final DateTime date;
   final String babyId;
+
+  /// The full (all-days) data map, owned by the caller — [AppShell] already
+  /// holds it in memory, so this page works on it directly instead of
+  /// re-decoding it from [Storage] a second time on open and a third time
+  /// on pop.
+  final Map<String, List<TrackerEvent>> data;
+  final void Function(Map<String, List<TrackerEvent>>) onDataChanged;
+
+  /// Opens the add-entry sheet right away — used by Home's fast-add FAB, so
+  /// tapping it goes straight to "pick a type" instead of landing on an
+  /// empty day the parent then has to tap + on again.
+  final bool autoOpenAddSheet;
 
   @override
   State<DayPage> createState() => _DayPageState();
 }
 
 class _DayPageState extends State<DayPage> {
-  Map<String, List<TrackerEvent>> _data = {};
-  bool _loading = true;
+  late Map<String, List<TrackerEvent>> _data;
 
   @override
   void initState() {
     super.initState();
-    _load();
-  }
-
-  Future<void> _load() async {
-    final loaded = await Storage.loadAll(widget.babyId);
-    if (mounted) {
-      setState(() {
-        _data = loaded;
-        _loading = false;
+    _data = Map<String, List<TrackerEvent>>.from(widget.data);
+    if (widget.autoOpenAddSheet) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _showAddSheet();
       });
     }
   }
@@ -59,7 +78,9 @@ class _DayPageState extends State<DayPage> {
 
   Future<void> _save() async {
     await Storage.saveAll(widget.babyId, _data);
-    if (mounted) await _load();
+    widget.onDataChanged(_data);
+    unawaited(maybeRescheduleReminders(_data));
+    if (mounted) setState(() {});
   }
 
   Map<String, int> _totals(List<TrackerEvent> events) {
@@ -88,7 +109,7 @@ class _DayPageState extends State<DayPage> {
     };
   }
 
-  ({double kg, DateTime date})? _lastWeight() {
+  ({double kg, DateTime date, String? condition})? _lastWeight() {
     final allEvents =
         _data.entries
             .expand((e) => e.value)
@@ -96,10 +117,32 @@ class _DayPageState extends State<DayPage> {
             .where((e) => dateKey(e.time) != dateKey(widget.date))
             .toList()
           ..sort((a, b) => b.time.compareTo(a.time));
-    if (allEvents.isEmpty) return null;
-    final kg = (allEvents.first.data['valueKg'] as num?)?.toDouble();
-    if (kg == null) return null;
-    return (kg: kg, date: allEvents.first.time);
+    // The most recent 'weight' event might only have carried a height/head
+    // measurement (both are optional on a growth entry) — keep looking
+    // further back for one that actually has a weight to compare against.
+    for (final e in allEvents) {
+      final kg = (e.data['valueKg'] as num?)?.toDouble();
+      if (kg != null) {
+        return (kg: kg, date: e.time, condition: e.data['condition'] as String?);
+      }
+    }
+    return null;
+  }
+
+  /// The side of the most recent breastfeeding session across every day —
+  /// used to suggest starting on the other side next time.
+  String? _lastBreastSide() {
+    final allFeeds =
+        _data.entries
+            .expand((e) => e.value)
+            .where(
+              (e) =>
+                  e.type == 'feeding' && (e.data['isBottle'] as bool?) == false,
+            )
+            .toList()
+          ..sort((a, b) => b.time.compareTo(a.time));
+    if (allFeeds.isEmpty) return null;
+    return allFeeds.first.data['side'] as String?;
   }
 
   bool _lastDiaperHadRash() {
@@ -115,13 +158,21 @@ class _DayPageState extends State<DayPage> {
 
   // ─── Add/edit routing ─────────────────────────────────────────────────────
 
-  Future<void> _add(String type, {TrackerEvent? existing, int? index}) async {
+  Future<void> _add(String type, {TrackerEvent? existing}) async {
     final key = dateKey(widget.date);
     _data.putIfAbsent(key, () => []);
 
     void insertOrReplace(TrackerEvent result) {
-      if (existing != null && index != null) {
-        _data[key]![index] = result;
+      // Look up by id rather than a list position: the list on screen is a
+      // *sorted* copy (see `_events()`), so a position from it doesn't line
+      // up with this unsorted stored list whenever events aren't already in
+      // time order — using it here could silently overwrite a different
+      // event than the one being edited.
+      final i = existing == null
+          ? -1
+          : _data[key]!.indexWhere((e) => e.id == existing.id);
+      if (i != -1) {
+        _data[key]![i] = result;
       } else {
         _data[key]!.add(result);
       }
@@ -148,8 +199,11 @@ class _DayPageState extends State<DayPage> {
         final result = await Navigator.push<dynamic>(
           context,
           MaterialPageRoute(
-            builder: (_) =>
-                FeedingForm(initialDate: widget.date, existingEvent: existing),
+            builder: (_) => FeedingForm(
+              initialDate: widget.date,
+              existingEvent: existing,
+              lastBreastSide: existing == null ? _lastBreastSide() : null,
+            ),
           ),
         );
         if (result == null) return;
@@ -215,6 +269,7 @@ class _DayPageState extends State<DayPage> {
               existingEvent: existing,
               lastWeightKg: lw?.kg,
               lastWeightDate: lw?.date,
+              lastCondition: lw?.condition,
             ),
           ),
         );
@@ -239,12 +294,28 @@ class _DayPageState extends State<DayPage> {
         }
 
       case 'medication':
+        final courses = await Storage.loadMedicationCourses(widget.babyId);
+        if (!mounted) return;
         final result = await Navigator.push<TrackerEvent>(
           context,
           MaterialPageRoute(
             builder: (_) => MedicationForm(
               initialDate: widget.date,
               existingEvent: existing,
+              activeCourses: courses.where((c) => c.isActive).toList(),
+              data: _data,
+              onManageCourses: () {
+                Navigator.pop(context); // close the form
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => MedicationsPage(
+                      babyId: widget.babyId,
+                      data: _data,
+                    ),
+                  ),
+                );
+              },
             ),
           ),
         );
@@ -295,49 +366,41 @@ class _DayPageState extends State<DayPage> {
           insertOrReplace(result);
           await _save();
         }
+
+      case 'solids':
+        final result = await Navigator.push<TrackerEvent>(
+          context,
+          MaterialPageRoute(
+            builder: (_) => SolidsForm(
+              initialDate: widget.date,
+              existingEvent: existing,
+              triedFoods: triedFoodNames(_data, before: widget.date),
+            ),
+          ),
+        );
+        if (result != null) {
+          insertOrReplace(result);
+          await _save();
+        }
     }
   }
 
-  Future<void> _deleteEvent(TrackerEvent event) async {
-    final l = AppLocalizations.of(context)!;
-    final ok = await showDialog<bool>(
-      context: context,
-      builder: (_) => AlertDialog(
-        title: Text(l.deleteEntryTitle),
-        content: Text(l.cannotUndo),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: Text(l.actionCancel),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: Text(l.actionDelete),
-          ),
-        ],
-      ),
-    );
-    if (ok == true) {
-      final key = dateKey(widget.date);
-      _data[key]?.remove(event);
-      if (_data[key]?.isEmpty ?? false) _data.remove(key);
-      await _save();
-    }
+  /// Removes [event] without asking for confirmation — the [Dismissible]'s
+  /// own `confirmDismiss` already asked once; asking again here (as the
+  /// previous, dialog-showing version of this method did) meant cancelling
+  /// left a dismissed `Dismissible` in the tree, which raises a framework
+  /// assertion.
+  Future<void> _removeEvent(TrackerEvent event) async {
+    final key = dateKey(widget.date);
+    _data[key]?.remove(event);
+    if (_data[key]?.isEmpty ?? false) _data.remove(key);
+    await _save();
   }
 
   // ─── Build ────────────────────────────────────────────────────────────────
 
   @override
   Widget build(BuildContext context) {
-    if (_loading) {
-      return const Directionality(
-        textDirection: TextDirection.ltr,
-        child: Scaffold(body: Center(child: CircularProgressIndicator())),
-      );
-    }
-
-    // Only look up inherited providers after the loading guard —
-    // the new route's context is fully wired up by this point.
     final l = AppLocalizations.of(context)!;
     final events = _events();
     final totals = _totals(events);
@@ -381,6 +444,7 @@ class _DayPageState extends State<DayPage> {
                     poos: totals['poos']!,
                     pees: totals['pees']!,
                     milk: totals['milk']!,
+                    useMl: (settings.useMl as bool?) ?? true,
                     breastMinutes: totals['breastMinutes']!,
                     sleepMinutes: totals['sleepMinutes']!,
                   ),
@@ -414,7 +478,7 @@ class _DayPageState extends State<DayPage> {
                             ],
                           ),
                         ),
-                        onDismissed: (_) => _deleteEvent(e),
+                        onDismissed: (_) => _removeEvent(e),
                         background: Container(
                           margin: const EdgeInsets.symmetric(vertical: 5),
                           alignment: Alignment.centerRight,
@@ -439,7 +503,7 @@ class _DayPageState extends State<DayPage> {
                               subtitle:
                                   '${_subtitle(e, l, settings)}  •  ${formatTime(e.time)}',
                               trailing: const Icon(Icons.chevron_right),
-                              onTap: () => _add(e.type, existing: e, index: i),
+                              onTap: () => _add(e.type, existing: e),
                             );
                           },
                         ),
@@ -467,7 +531,7 @@ class _DayPageState extends State<DayPage> {
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
+                  color: Theme.of(context).colorScheme.outlineVariant,
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -486,6 +550,7 @@ class _DayPageState extends State<DayPage> {
               _SheetTile(l.entryTypeDoctorVisit, 'doctor_visit'),
               _SheetTile(l.entryTypeNote, 'note'),
               _SheetTile(l.entryTypeBath, 'bath'),
+              _SheetTile(l.entryTypeSolids, 'solids'),
               const SizedBox(height: 8),
             ],
           ),
@@ -567,6 +632,9 @@ class _DayPageState extends State<DayPage> {
           'shower' => l.bathTypeShower,
           _ => l.bathTypeTub,
         };
+      case 'solids':
+        final foods = (e.data['foods'] as List?)?.cast<String>() ?? [];
+        return foods.isEmpty ? l.entryTypeSolids : foods.join(', ');
       default:
         final isBottle = (e.data['isBottle'] as bool?) ?? true;
         if (isBottle) {
@@ -594,7 +662,7 @@ class _DayPageState extends State<DayPage> {
         if (isBottle) {
           final ml = (e.data['amountMl'] as num?) ?? 0;
           final brand = e.data['formulaBrand'] as String?;
-          final amount = formatMilkMl(ml);
+          final amount = formatMilk(ml, useMl: (settings.useMl as bool?) ?? true);
           return brand != null ? '$amount  •  $brand' : amount;
         }
         return '${e.data['durationMin'] ?? 0} min';
@@ -611,12 +679,18 @@ class _DayPageState extends State<DayPage> {
           return '${c.toStringAsFixed(1)} °C';
         }
       case 'weight':
-        final kg = (e.data['valueKg'] as num?)?.toDouble() ?? 0.0;
-        try {
-          return formatWeight(kg, useKg: (settings.useKg as bool?) ?? true);
-        } catch (_) {
-          return '${kg.toStringAsFixed(3)} kg';
-        }
+        final kg = (e.data['valueKg'] as num?)?.toDouble();
+        final heightCm = (e.data['heightCm'] as num?)?.toDouble();
+        final headCm = (e.data['headCm'] as num?)?.toDouble();
+        final condition = e.data['condition'] as String?;
+        final useKg = (settings.useKg as bool?) ?? true;
+        final parts = <String>[
+          if (kg != null) formatWeight(kg, useKg: useKg),
+          if (kg != null && condition != null) weighConditionLabel(condition, l),
+          if (heightCm != null) l.growthHeightValue(heightCm.toStringAsFixed(1)),
+          if (headCm != null) l.growthHeadValue(headCm.toStringAsFixed(1)),
+        ];
+        return parts.isEmpty ? l.noDetails : parts.join('  •  ');
       case 'tummy_time':
         return (e.data['notes'] as String?) ?? l.noNotes;
       case 'medication':
@@ -635,11 +709,19 @@ class _DayPageState extends State<DayPage> {
         final total =
             ((e.data['leftMl'] as num?) ?? 0) +
             ((e.data['rightMl'] as num?) ?? 0);
-        return formatMilkMl(total);
+        return formatMilk(total, useMl: (settings.useMl as bool?) ?? true);
       case 'bath':
         final products = e.data['products'] as String?;
         final notes = e.data['notes'] as String?;
         return [?products, ?notes].join('  •  ');
+      case 'solids':
+        final amount = e.data['amount'] as String? ?? 'taste';
+        final reaction = e.data['reaction'] as String? ?? 'none';
+        final parts = [
+          solidsAmountLabel(amount, l),
+          if (reaction != 'none') solidsReactionLabel(reaction, l),
+        ];
+        return parts.join('  •  ');
       default:
         return '';
     }

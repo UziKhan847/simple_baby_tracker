@@ -11,7 +11,12 @@ class AppSettingsGroup extends StatelessWidget {
     super.key,
     required this.children,
     this.margin = const EdgeInsets.symmetric(horizontal: 20),
-    this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+    // Horizontal is 0 here deliberately: each row's own ListTile already
+    // carries a 16px horizontal contentPadding (set in the theme), which is
+    // the mockup's full card-edge-to-badge inset on its own. Adding more
+    // here would double up on top of that (this was tried — margin(20) +
+    // group(12) + row(16) = 48px total read as noticeably over-padded).
+    this.padding = const EdgeInsets.symmetric(vertical: 4),
   });
 
   final List<Widget> children;
@@ -38,9 +43,7 @@ class AppSettingsGroup extends StatelessWidget {
 
     return Container(
       margin: margin,
-      padding: padding,
       decoration: BoxDecoration(
-        color: theme.cardTheme.color ?? theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
@@ -51,7 +54,21 @@ class AppSettingsGroup extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(mainAxisSize: MainAxisSize.min, children: rows),
+      // A ListTile paints its background/ink splashes on the nearest
+      // Material ancestor. Without this, the plain Container above (with its
+      // own background color) sits between every row and its Material, which
+      // throws "ListTile background color or ink splashes may be invisible"
+      // — a framework assertion that fires (and used to) on every Settings
+      // page build.
+      child: Material(
+        color: theme.cardTheme.color ?? theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(18),
+        clipBehavior: Clip.antiAlias,
+        child: Padding(
+          padding: padding,
+          child: Column(mainAxisSize: MainAxisSize.min, children: rows),
+        ),
+      ),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
@@ -26,7 +27,13 @@ import 'package:simple_baby_tracker/widgets/settings_group.dart';
 const _singleLinePadding = EdgeInsets.symmetric(horizontal: 16, vertical: 6);
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+  const SettingsPage({super.key, this.onDataImported});
+
+  /// Called after a JSON import completes, so the caller can reload the
+  /// active baby's in-memory data — [SettingsPage] writes straight to
+  /// [Storage] and has no way to tell [AppShell]'s already-loaded [Map] to
+  /// refresh itself otherwise.
+  final Future<void> Function()? onDataImported;
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -54,6 +61,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Future<void> _updateNotif(NotifSettings s) async {
     await NotificationService.instance.saveSettings(s);
+    if (!mounted) return;
     setState(() => _notifSettings = s);
   }
 
@@ -189,6 +197,27 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
               ),
+              ListTile(
+                contentPadding: _singleLinePadding,
+                leading: _RowBadge(
+                  icon: Icons.local_drink_outlined,
+                  color: colors.feedingStrong,
+                  softColor: colors.feedingSoft,
+                ),
+                title: Text(l.settingsVolumeUnit),
+                trailing: SizedBox(
+                  width: 130,
+                  child: PillSegmentedControl<bool>(
+                    options: const [
+                      PillSegmentedOption(value: true, label: 'ml'),
+                      PillSegmentedOption(value: false, label: 'oz'),
+                    ],
+                    selected: settings.useMl,
+                    onChanged: (v) =>
+                        sp.updateSettings(settings.copyWith(useMl: v)),
+                  ),
+                ),
+              ),
             ],
           ),
 
@@ -289,9 +318,20 @@ class _SettingsPageState extends State<SettingsPage> {
                   softColor: colors.neutralSoft,
                 ),
                 title: Text(l.exportJson),
-                subtitle: const Text('Raw data for backup'),
+                subtitle: Text(l.exportJsonDesc),
                 trailing: const Icon(Icons.chevron_right, size: 18),
                 onTap: () => _exportJson(context),
+              ),
+              ListTile(
+                leading: _RowBadge(
+                  icon: Icons.file_upload_outlined,
+                  color: colors.neutralStrong,
+                  softColor: colors.neutralSoft,
+                ),
+                title: Text(l.importJson),
+                subtitle: Text(l.importJsonDesc),
+                trailing: const Icon(Icons.chevron_right, size: 18),
+                onTap: () => _importJson(context),
               ),
             ],
           ),
@@ -410,6 +450,7 @@ class _SettingsPageState extends State<SettingsPage> {
       orElse: () => profiles.first,
     );
     final data = await Storage.loadAll(id);
+    final medicationCourses = await Storage.loadMedicationCourses(id);
 
     if (!context.mounted) return;
     ScaffoldMessenger.of(
@@ -421,6 +462,7 @@ class _SettingsPageState extends State<SettingsPage> {
       data: data,
       useKg: settings.useKg,
       useCelsius: settings.useCelsius,
+      medicationCourses: medicationCourses,
     );
   }
 
@@ -468,6 +510,62 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
     );
   }
+
+  Future<void> _importJson(BuildContext context) async {
+    final l = AppLocalizations.of(context)!;
+
+    final picked = await openFile(
+      acceptedTypeGroups: const [
+        XTypeGroup(label: 'JSON', extensions: ['json']),
+      ],
+    );
+    if (picked == null) return;
+
+    final raw = await picked.readAsString();
+    final imported = Storage.tryParseImportJson(raw);
+    if (imported == null) {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l.importInvalidFile)));
+      return;
+    }
+
+    if (!context.mounted) return;
+    final merge = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l.importDialogTitle),
+        content: Text(l.importDialogBody),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: Text(l.actionCancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(l.importReplaceAll),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: Text(l.importMerge),
+          ),
+        ],
+      ),
+    );
+    if (merge == null) return;
+
+    final profiles = await Storage.loadProfiles();
+    if (profiles.isEmpty) return;
+    final id = await Storage.getActiveProfileId() ?? profiles.first.id;
+    await Storage.importData(id, imported, merge: merge);
+    await widget.onDataImported?.call();
+
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(l.importSuccess)));
+  }
 }
 
 // ─── Helper widgets ────────────────────────────────────────────────────────
@@ -500,14 +598,37 @@ class _RowBadge extends StatelessWidget {
   }
 }
 
-class _HoursSlider extends StatelessWidget {
+/// Slider for the feeding/diaper reminder interval.
+///
+/// Dragging updates its own local state (so the track and "Nh" label track
+/// the finger live), but [onChanged] — which persists to SharedPreferences
+/// *and* re-schedules the OS notification — only fires once, from
+/// `onChangeEnd`. Wiring it to `Slider.onChanged` instead (as this used to
+/// do) meant every intermediate tick during a single drag did a handful of
+/// SharedPreferences writes plus a cancel-and-reschedule round trip to the
+/// notifications plugin.
+class _HoursSlider extends StatefulWidget {
   final int value;
   final ValueChanged<int> onChanged;
 
   const _HoursSlider({required this.value, required this.onChanged});
 
   @override
+  State<_HoursSlider> createState() => _HoursSliderState();
+}
+
+class _HoursSliderState extends State<_HoursSlider> {
+  late double _dragValue = widget.value.toDouble();
+
+  @override
+  void didUpdateWidget(covariant _HoursSlider old) {
+    super.didUpdateWidget(old);
+    if (old.value != widget.value) _dragValue = widget.value.toDouble();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final display = _dragValue.round();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
@@ -515,18 +636,19 @@ class _HoursSlider extends StatelessWidget {
           const Text('1h', style: TextStyle(fontSize: 12)),
           Expanded(
             child: Slider(
-              value: value.toDouble(),
+              value: _dragValue,
               min: 1,
               max: 8,
               divisions: 7,
-              label: '${value}h',
-              onChanged: (v) => onChanged(v.round()),
+              label: '${display}h',
+              onChanged: (v) => setState(() => _dragValue = v),
+              onChangeEnd: (v) => widget.onChanged(v.round()),
             ),
           ),
           const Text('8h', style: TextStyle(fontSize: 12)),
           const SizedBox(width: 8),
           Text(
-            '${value}h',
+            '${display}h',
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
           ),
         ],

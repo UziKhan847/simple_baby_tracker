@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -7,13 +9,32 @@ import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/providers/locale.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
 import 'package:simple_baby_tracker/providers/theme.dart';
+import 'package:simple_baby_tracker/services/notification.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/theme/app_theme.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:uuid/uuid.dart';
 
-void main() => runApp(const MyApp());
-
 final uuid = Uuid();
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // The timezone database backs every `zonedSchedule` call in
+  // NotificationService — without it, `tz.local` throws a
+  // LateInitializationError the first time a reminder is scheduled, which
+  // was previously being swallowed by a catch block, silently disabling
+  // every reminder. `initializeTimeZones()` seeds the IANA database; the
+  // platform's local timezone is picked up automatically as the engine's
+  // default local location.
+  tz.initializeTimeZones();
+  await NotificationService.instance.init();
+  // Re-arm any reminders the user had enabled, based on the most recent
+  // logged event — previously reminders only (re)scheduled when the
+  // Settings toggle itself was touched, so they went dark on every app
+  // restart until the user revisited Settings.
+  unawaited(NotificationService.instance.rescheduleFromLatestEvents());
+  runApp(const MyApp());
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -25,7 +46,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   ThemeMode? _themeMode;
   AppSettings _settings = const AppSettings();
-  bool _immersiveApplied = false;
 
   @override
   void initState() {
@@ -52,6 +72,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       _settings = s;
       _themeMode = _themeModeFromOverride(s.themeModeOverride);
     });
+    // Applied here, once, right after the real persisted value has loaded —
+    // not from build()'s first pass, which runs synchronously against the
+    // *default* AppSettings() (immersiveMode: false) before this Future
+    // resolves. Doing it there consumed a "have we applied it yet" flag
+    // with the wrong value, so the real setting from disk never took effect
+    // on startup even though it displayed correctly as enabled in Settings.
+    _applyImmersiveMode(s.immersiveMode);
   }
 
   ThemeMode? _themeModeFromOverride(String override) {
@@ -92,8 +119,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return MediaQuery.platformBrightnessOf(context) == Brightness.dark;
   }
 
-  void _updateSettings(AppSettings s) async {
+  Future<void> _updateSettings(AppSettings s) async {
     await Storage.saveSettings(s);
+    if (!mounted) return;
     setState(() => _settings = s);
   }
 
@@ -110,15 +138,12 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         statusBarIconBrightness: isDark ? Brightness.light : Brightness.dark,
         statusBarBrightness: isDark ? Brightness.dark : Brightness.light,
         systemNavigationBarColor: Colors.transparent,
-        systemNavigationBarIconBrightness:
-            isDark ? Brightness.light : Brightness.dark,
+        systemNavigationBarIconBrightness: isDark
+            ? Brightness.light
+            : Brightness.dark,
         systemNavigationBarContrastEnforced: false,
       ),
     );
-    if (!_immersiveApplied) {
-      _immersiveApplied = true;
-      _applyImmersiveMode(_settings.immersiveMode);
-    }
   }
 
   @override

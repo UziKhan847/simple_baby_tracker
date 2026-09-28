@@ -2,44 +2,47 @@ import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/models/milestone_entry.dart';
+import 'package:simple_baby_tracker/pages/foods.dart';
 import 'package:simple_baby_tracker/pages/vaccinations.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/entry_row.dart';
 import 'package:simple_baby_tracker/widgets/gradient_pill_button.dart';
 
-/// Human-readable titles for each preset milestone key (English fallback).
-/// Replace with l10n lookup once milestone keys are added to the ARB files.
-String _presetTitle(String key) {
-  const titles = {
-    'first_smile': '😊 First smile',
-    'first_laugh': '😂 First laugh',
-    'first_tooth': '🦷 First tooth',
-    'rolled_back_to_tummy': '🔄 Rolled back → tummy',
-    'rolled_tummy_to_back': '🔄 Rolled tummy → back',
-    'sat_unsupported': '🧸 Sat unsupported',
-    'started_crawling': '🐣 Started crawling',
-    'pulled_to_stand': '🏋️ Pulled to stand',
-    'first_steps': '👣 First steps',
-    'first_word': '💬 First word',
-    'first_solid_food': '🥣 First solid food',
-    'first_haircut': '✂️ First haircut',
-    'slept_through_night': '🌙 Slept through the night',
-    'waved_bye': '👋 Waved bye-bye',
-    'clapped_hands': '👏 Clapped hands',
-    'first_birthday': '🎂 First birthday',
-  };
-  return titles[key] ?? key;
-}
+/// Human-readable, localized title for each preset milestone key. These ARB
+/// keys already existed (milestoneFirstSmile, etc.) but this page was still
+/// reading from a hardcoded English-only map instead of them.
+String _presetTitle(String key, AppLocalizations l) => switch (key) {
+  'first_smile' => l.milestoneFirstSmile,
+  'first_laugh' => l.milestoneFirstLaugh,
+  'first_tooth' => l.milestoneFirstTooth,
+  'rolled_back_to_tummy' => l.milestoneRolledBackTummy,
+  'rolled_tummy_to_back' => l.milestoneRolledTummyBack,
+  'sat_unsupported' => l.milestoneSatUnsupported,
+  'started_crawling' => l.milestoneStartedCrawling,
+  'pulled_to_stand' => l.milestonePulledToStand,
+  'first_steps' => l.milestoneFirstSteps,
+  'first_word' => l.milestoneFirstWord,
+  'first_solid_food' => l.milestoneFirstSolidFood,
+  'first_haircut' => l.milestoneFirstHaircut,
+  'slept_through_night' => l.milestoneSleptThroughNight,
+  'waved_bye' => l.milestoneWavedBye,
+  'clapped_hands' => l.milestoneClappedHands,
+  'first_birthday' => l.milestoneFirstBirthday,
+  _ => key,
+};
 
 class MilestonesPage extends StatefulWidget {
   final String babyId;
   final String babyName;
+  final Map<String, List<TrackerEvent>> data;
 
   const MilestonesPage({
     super.key,
     required this.babyId,
     required this.babyName,
+    required this.data,
   });
 
   @override
@@ -89,6 +92,7 @@ class _MilestonesPageState extends State<MilestonesPage>
     MilestoneEntry? existing,
     String? presetKey,
   }) async {
+    final l = AppLocalizations.of(context)!;
     final isPreset = presetKey != null;
     final titleCtrl = TextEditingController(
       text: existing?.title ?? (isPreset ? presetKey : ''),
@@ -104,7 +108,7 @@ class _MilestonesPageState extends State<MilestonesPage>
             existing != null
                 ? 'Edit milestone'
                 : isPreset
-                ? _presetTitle(presetKey)
+                ? _presetTitle(presetKey, l)
                 : 'Add milestone',
           ),
           content: SingleChildScrollView(
@@ -178,6 +182,8 @@ class _MilestonesPageState extends State<MilestonesPage>
         ),
       ),
     );
+    titleCtrl.dispose();
+    notesCtrl.dispose();
 
     if (result != null) {
       if (existing != null) {
@@ -227,6 +233,16 @@ class _MilestonesPageState extends State<MilestonesPage>
         title: Text(l.navMilestones),
         automaticallyImplyLeading: false,
         actions: [
+          IconButton(
+            icon: const Icon(Icons.restaurant_outlined),
+            tooltip: l.foodsTitle,
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => FoodsPage(data: widget.data),
+              ),
+            ),
+          ),
           IconButton(
             icon: const Icon(Icons.vaccines_outlined),
             tooltip: l.navVaccinationsEntry,
@@ -294,6 +310,7 @@ class _AchievedTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
     final colors = theme.extension<AppColors>()!;
 
     if (milestones.isEmpty) {
@@ -334,7 +351,7 @@ class _AchievedTab extends StatelessWidget {
       itemCount: milestones.length,
       itemBuilder: (context, i) {
         final m = milestones[i];
-        final title = m.isPreset ? _presetTitle(m.title) : m.title;
+        final title = m.isPreset ? _presetTitle(m.title, l) : m.title;
 
         return Dismissible(
           key: ValueKey(m.id),
@@ -431,6 +448,7 @@ class _UpcomingTab extends StatelessWidget {
         .toList();
 
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
     final colors = theme.extension<AppColors>()!;
 
     if (remaining.isEmpty) {
@@ -462,7 +480,7 @@ class _UpcomingTab extends StatelessWidget {
           icon: Icons.circle,
           color: colors.neutralStrong,
           softColor: colors.neutralSoft,
-          title: _presetTitle(key),
+          title: _presetTitle(key, l),
           trailing: _LogPill(onTap: () => onLog(key)),
         );
       },

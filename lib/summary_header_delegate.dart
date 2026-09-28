@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/stat.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
@@ -7,6 +8,7 @@ class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
   final int poos;
   final int pees;
   final int milk;
+  final bool useMl;
   final int breastMinutes;
   final int sleepMinutes;
 
@@ -14,6 +16,7 @@ class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
     required this.poos,
     required this.pees,
     required this.milk,
+    required this.useMl,
     required this.breastMinutes,
     required this.sleepMinutes,
   });
@@ -67,11 +70,13 @@ class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
                 label: l.summaryPeesLabel,
                 value: pees,
               ),
-              Stat(
+              StatLabel(
                 color: colors.feedingStrong,
                 icon: Icons.local_drink,
-                label: l.summaryMilkLabel,
-                value: milk,
+                label: useMl ? l.summaryMilkLabelMl : l.summaryMilkLabelOz,
+                text: useMl
+                    ? '$milk'
+                    : mlToOz(milk.toDouble()).toStringAsFixed(1),
               ),
               Stat(
                 color: colors.miscStrong,
@@ -97,6 +102,7 @@ class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
       old.poos != poos ||
       old.pees != pees ||
       old.milk != milk ||
+      old.useMl != useMl ||
       old.breastMinutes != breastMinutes ||
       old.sleepMinutes != sleepMinutes;
 }

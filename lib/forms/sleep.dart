@@ -7,7 +7,17 @@ class SleepForm extends StatefulWidget {
   final DateTime initialDate;
   final TrackerEvent? existingEvent;
 
-  const SleepForm({super.key, required this.initialDate, this.existingEvent});
+  /// Set when this form was opened by stopping a running sleep timer on
+  /// Home: pre-fills the start time from when the timer began, with the end
+  /// time left at "now" (sleep just ended).
+  final DateTime? initialTimerStart;
+
+  const SleepForm({
+    super.key,
+    required this.initialDate,
+    this.existingEvent,
+    this.initialTimerStart,
+  });
 
   @override
   State<SleepForm> createState() => _SleepFormState();
@@ -31,6 +41,9 @@ class _SleepFormState extends State<SleepForm> {
         _endTime = TimeOfDay(hour: end.hour, minute: end.minute);
       }
       _notesCtrl.text = e.data['notes'] as String? ?? '';
+    } else if (widget.initialTimerStart != null) {
+      _startTime = TimeOfDay.fromDateTime(widget.initialTimerStart!);
+      _endTime = TimeOfDay.now();
     }
   }
 

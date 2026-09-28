@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/baby_profile.dart';
+import 'package:simple_baby_tracker/forms/weight.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/pages/who_charts.dart';
@@ -127,9 +128,8 @@ class _GraphsPageState extends State<GraphsPage>
             child: TabBarView(
               controller: _tabs,
               children: [
-                _DailyTab(stats: stats, l: l),
+                _DailyTab(stats: stats, l: l, useMl: settings.useMl),
                 _GrowthTab(
-                  stats: stats,
                   settings: settings,
                   l: l,
                   data: widget.data,
@@ -150,7 +150,8 @@ class _GraphsPageState extends State<GraphsPage>
 class _DailyTab extends StatelessWidget {
   final List<_DayStat> stats;
   final AppLocalizations l;
-  const _DailyTab({required this.stats, required this.l});
+  final bool useMl;
+  const _DailyTab({required this.stats, required this.l, required this.useMl});
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +194,7 @@ class _DailyTab extends StatelessWidget {
             ),
             _SummaryItem(
               label: l.graphsTotalMilk,
-              value: formatMilkMl(totalMilk),
+              value: formatMilk(totalMilk, useMl: useMl),
               icon: Icons.opacity,
               color: colors.feedingStrong,
             ),
@@ -236,12 +237,16 @@ class _DailyTab extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         _BarChartCard(
-          title: l.graphsMilkPerDay,
+          title: useMl ? l.graphsMilkPerDayMl : l.graphsMilkPerDayOz,
           stats: stats,
           color: colors.feedingStrong,
-          getValue: (s) => s.milk.toDouble(),
-          formatLabel: (v) => '${v.toInt()}ml',
-          maxLabel: (v) => l.graphsMaxLabel('${v.toInt()}ml'),
+          getValue: (s) =>
+              useMl ? s.milk.toDouble() : mlToOz(s.milk.toDouble()),
+          formatLabel: (v) =>
+              useMl ? '${v.toInt()}ml' : '${v.toStringAsFixed(1)}oz',
+          maxLabel: (v) => l.graphsMaxLabel(
+            useMl ? '${v.toInt()}ml' : '${v.toStringAsFixed(1)}oz',
+          ),
         ),
         const SizedBox(height: 12),
         _BarChartCard(
@@ -259,14 +264,37 @@ class _DailyTab extends StatelessWidget {
 
 // ─── Tab: Growth ───────────────────────────────────────────────────────────
 
+/// A single growth-entry data point. Weight, height and head are each
+/// optional per entry (a growth log doesn't require all three), so each
+/// chart below filters this same list down to the points that actually
+/// carry the measurement it's charting.
+typedef _GrowthPoint =
+    ({DateTime date, double? kg, double? heightCm, double? headCm, String? condition});
+
+List<_GrowthPoint> _allGrowthPoints(Map<String, List<TrackerEvent>> data) {
+  final points = data.values
+      .expand((events) => events)
+      .where((e) => e.type == 'weight')
+      .map<_GrowthPoint>(
+        (e) => (
+          date: e.time,
+          kg: (e.data['valueKg'] as num?)?.toDouble(),
+          heightCm: (e.data['heightCm'] as num?)?.toDouble(),
+          headCm: (e.data['headCm'] as num?)?.toDouble(),
+          condition: e.data['condition'] as String?,
+        ),
+      )
+      .toList();
+  points.sort((a, b) => a.date.compareTo(b.date));
+  return points;
+}
+
 class _GrowthTab extends StatelessWidget {
-  final List<_DayStat> stats;
   final dynamic settings;
   final AppLocalizations l;
   final Map<String, List<TrackerEvent>> data;
   final BabyProfile? profile;
   const _GrowthTab({
-    required this.stats,
     required this.settings,
     required this.l,
     required this.data,
@@ -276,9 +304,17 @@ class _GrowthTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).extension<AppColors>()!;
-    final weightPoints = stats.where((s) => s.weightKg != null).toList();
+    // Unlike the Daily/Health tabs, Growth always looks at the baby's whole
+    // history rather than the shared 7/14/30-day range pill — weigh-ins are
+    // sparse (days or weeks apart), so bounding them to a short window used
+    // to mean "no weight data" the moment nothing was logged in the last
+    // week, even with months of history sitting just outside it.
+    final allPoints = _allGrowthPoints(data);
+    final weightPoints = allPoints.where((p) => p.kg != null).toList();
+    final heightPoints = allPoints.where((p) => p.heightCm != null).toList();
+    final headPoints = allPoints.where((p) => p.headCm != null).toList();
 
-    if (weightPoints.isEmpty) {
+    if (weightPoints.isEmpty && heightPoints.isEmpty && headPoints.isEmpty) {
       return _EmptyState(
         icon: Icons.monitor_weight_outlined,
         message: l.graphsNoWeightData,
@@ -286,75 +322,117 @@ class _GrowthTab extends StatelessWidget {
     }
 
     final useKg = settings.useKg as bool? ?? true;
-    final first = weightPoints.first.weightKg!;
-    final last = weightPoints.last.weightKg!;
-    final diff = last - first;
-    final isGain = diff >= 0;
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
       children: [
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                Icon(Icons.monitor_weight, color: colors.weightStrong, size: 36),
-                const SizedBox(width: 12),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      l.weightLatest,
-                      style: const TextStyle(color: Colors.grey, fontSize: 12),
-                    ),
-                    Text(
-                      formatWeight(last, useKg: useKg),
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
+        if (weightPoints.isNotEmpty) ...[
+          Builder(
+            builder: (context) {
+              final first = weightPoints.first.kg!;
+              final last = weightPoints.last.kg!;
+              final diff = last - first;
+              final isGain = diff >= 0;
+              return Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.monitor_weight,
+                        color: colors.weightStrong,
+                        size: 36,
                       ),
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          isGain ? Icons.arrow_upward : Icons.arrow_downward,
-                          size: 14,
-                          color: isGain ? Colors.green : Colors.red,
-                        ),
-                        const SizedBox(width: 2),
-                        Text(
-                          l.weightOverPeriod(
-                            isGain ? '+' : '−',
-                            formatWeight(diff.abs(), useKg: useKg),
+                      const SizedBox(width: 12),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            l.weightLatest,
+                            style: const TextStyle(color: Colors.grey, fontSize: 12),
                           ),
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: isGain ? Colors.green : Colors.red,
+                          Text(
+                            formatWeight(last, useKg: useKg),
+                            style: const TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          if (weightPoints.length > 1)
+                            Row(
+                              children: [
+                                Icon(
+                                  isGain ? Icons.arrow_upward : Icons.arrow_downward,
+                                  size: 14,
+                                  color: isGain ? Colors.green : Colors.red,
+                                ),
+                                const SizedBox(width: 2),
+                                Text(
+                                  l.weightOverPeriod(
+                                    isGain ? '+' : '−',
+                                    formatWeight(diff.abs(), useKg: useKg),
+                                  ),
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: isGain ? Colors.green : Colors.red,
+                                  ),
+                                ),
+                              ],
+                            ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ],
+              );
+            },
+          ),
+          const SizedBox(height: 12),
+          _LineChartCard<_GrowthPoint>(
+            title: l.graphsWeightOverTime,
+            points: weightPoints,
+            color: colors.weightStrong,
+            dateOf: (p) => p.date,
+            getValue: (p) => useKg ? p.kg! : kgToLbs(p.kg!),
+            minLabel: (v) => l.graphsMinLabel(
+              useKg ? '${v.toStringAsFixed(2)}kg' : '${v.toStringAsFixed(1)}lbs',
+            ),
+            maxLabel: (v) => l.graphsMaxLabel(
+              useKg ? '${v.toStringAsFixed(2)}kg' : '${v.toStringAsFixed(1)}lbs',
             ),
           ),
-        ),
-        const SizedBox(height: 12),
-        _LineChartCard(
-          title: l.graphsWeightOverTime,
-          points: weightPoints,
-          color: colors.weightStrong,
-          getValue: (s) => useKg ? s.weightKg! : kgToLbs(s.weightKg!),
-          minLabel: (v) => l.graphsMinLabel(
-            useKg ? '${v.toStringAsFixed(2)}kg' : '${v.toStringAsFixed(1)}lbs',
+          const SizedBox(height: 12),
+          _WeighInHistory(
+            points: weightPoints.reversed.take(8).toList(),
+            useKg: useKg,
+            l: l,
           ),
-          maxLabel: (v) => l.graphsMaxLabel(
-            useKg ? '${v.toStringAsFixed(2)}kg' : '${v.toStringAsFixed(1)}lbs',
+          const SizedBox(height: 12),
+        ],
+        if (heightPoints.isNotEmpty) ...[
+          _LineChartCard<_GrowthPoint>(
+            title: l.growthHeightOverTime,
+            points: heightPoints,
+            color: colors.growthStrong,
+            dateOf: (p) => p.date,
+            getValue: (p) => p.heightCm!,
+            minLabel: (v) => l.graphsMinLabel('${v.toStringAsFixed(1)}cm'),
+            maxLabel: (v) => l.graphsMaxLabel('${v.toStringAsFixed(1)}cm'),
           ),
-        ),
-        const SizedBox(height: 12),
+          const SizedBox(height: 12),
+        ],
+        if (headPoints.isNotEmpty) ...[
+          _LineChartCard<_GrowthPoint>(
+            title: l.growthHeadOverTime,
+            points: headPoints,
+            color: colors.miscStrong,
+            dateOf: (p) => p.date,
+            getValue: (p) => p.headCm!,
+            minLabel: (v) => l.graphsMinLabel('${v.toStringAsFixed(1)}cm'),
+            maxLabel: (v) => l.graphsMaxLabel('${v.toStringAsFixed(1)}cm'),
+          ),
+          const SizedBox(height: 12),
+        ],
         OutlinedButton.icon(
           onPressed: () => Navigator.push(
             context,
@@ -366,6 +444,62 @@ class _GrowthTab extends StatelessWidget {
           label: Text(l.whoChartsEntry),
         ),
       ],
+    );
+  }
+}
+
+/// The last few weigh-ins as a compact list, each showing what the baby was
+/// wearing — the numeric chart alone can't show that a jump or dip was
+/// really just "diaper only" vs. "fully dressed" on different days.
+class _WeighInHistory extends StatelessWidget {
+  final List<_GrowthPoint> points;
+  final bool useKg;
+  final AppLocalizations l;
+
+  const _WeighInHistory({required this.points, required this.useKg, required this.l});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Text(l.graphsRecentWeighIns, style: Theme.of(context).textTheme.titleSmall),
+            ),
+            for (final p in points)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 78,
+                      child: Text(
+                        '${p.date.month}/${p.date.day}',
+                        style: const TextStyle(fontSize: 12.5, color: Colors.grey),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        formatWeight(p.kg!, useKg: useKg),
+                        style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                      ),
+                    ),
+                    if (p.condition != null)
+                      Text(
+                        weighConditionLabel(p.condition!, l),
+                        style: const TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                  ],
+                ),
+              ),
+            const SizedBox(height: 4),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -447,10 +581,11 @@ class _HealthTab extends StatelessWidget {
         const SizedBox(height: 12),
         _FeverZoneCard(tempPoints: tempPoints, l: l),
         const SizedBox(height: 12),
-        _LineChartCard(
+        _LineChartCard<_DayStat>(
           title: l.graphsTempOverTime,
           points: tempPoints,
           color: colors.temperatureStrong,
+          dateOf: (s) => s.date,
           getValue: (s) =>
               useCelsius ? s.tempC! : celsiusToFahrenheit(s.tempC!),
           minLabel: (v) => l.graphsMinLabel(
@@ -688,11 +823,12 @@ class _BarChartCard extends StatelessWidget {
   }
 }
 
-class _LineChartCard extends StatelessWidget {
+class _LineChartCard<T> extends StatelessWidget {
   final String title;
-  final List<_DayStat> points;
+  final List<T> points;
   final Color color;
-  final double Function(_DayStat) getValue;
+  final double Function(T) getValue;
+  final DateTime Function(T) dateOf;
   final String Function(double) minLabel;
   final String Function(double) maxLabel;
   final double? thresholdValue;
@@ -703,6 +839,7 @@ class _LineChartCard extends StatelessWidget {
     required this.points,
     required this.color,
     required this.getValue,
+    required this.dateOf,
     required this.minLabel,
     required this.maxLabel,
     this.thresholdValue,
@@ -729,7 +866,10 @@ class _LineChartCard extends StatelessWidget {
                   values: values,
                   color: color,
                   labels: points
-                      .map((s) => '${s.date.month}/${s.date.day}')
+                      .map((s) {
+                        final d = dateOf(s);
+                        return '${d.month}/${d.day}';
+                      })
                       .toList(),
                   context: context,
                   thresholdValue: thresholdValue,

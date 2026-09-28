@@ -155,8 +155,11 @@ class AppColors extends ThemeExtension<AppColors> {
     accentSolid: Color(0xFFD389BA),
     accentGradientStart: Color(0xFFD389BA),
     accentGradientEnd: Color(0xFFA28ACD),
-    todayGradientStart: Color(0xFF4C2B42),
-    todayGradientEnd: Color(0xFF193D4D),
+    // Brighter/more saturated than the dark neutrals around them — the
+    // "today" card is meant to pop as the mockup's hero row, and the
+    // previous values (close to the page background) read as dull.
+    todayGradientStart: Color(0xFF7A3A68),
+    todayGradientEnd: Color(0xFF1E5670),
     innerDivider: Color(0xFF2D262F),
   );
 
@@ -175,8 +178,8 @@ class AppColors extends ThemeExtension<AppColors> {
     miscSoft: const Color(0xFF001C1E),
     noteSoft: const Color(0xFF241001),
     neutralSoft: const Color(0xFF191419),
-    todayGradientStart: const Color(0xFF311228),
-    todayGradientEnd: const Color(0xFF06222E),
+    todayGradientStart: const Color(0xFF5A2049),
+    todayGradientEnd: const Color(0xFF0C3A4E),
     innerDivider: const Color(0xFF1C171E),
   );
 

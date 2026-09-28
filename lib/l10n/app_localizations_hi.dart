@@ -739,10 +739,37 @@ class AppLocalizationsHi extends AppLocalizations {
   String get exportJson => 'JSON के रूप में निर्यात करें';
 
   @override
+  String get exportJsonDesc => 'बैकअप के लिए रॉ डेटा';
+
+  @override
   String get exportPdf => 'PDF के रूप में निर्यात करें';
 
   @override
   String get exportPdfDesc => 'आपके बाल रोग विशेषज्ञ के लिए पठनीय सारांश';
+
+  @override
+  String get importJson => 'JSON से आयात करें';
+
+  @override
+  String get importJsonDesc => 'बैकअप फ़ाइल से पुनर्स्थापित करें';
+
+  @override
+  String get importDialogTitle => 'डेटा आयात करें?';
+
+  @override
+  String get importDialogBody => 'मर्ज करने से फ़ाइल की प्रविष्टियाँ आपके मौजूदा डेटा के साथ जुड़ जाती हैं। सभी बदलें से पहले आपका मौजूदा डेटा हटा दिया जाता है।';
+
+  @override
+  String get importMerge => 'मर्ज करें';
+
+  @override
+  String get importReplaceAll => 'सभी बदलें';
+
+  @override
+  String get importSuccess => 'आयात पूर्ण हुआ';
+
+  @override
+  String get importInvalidFile => 'यह Baby Tracker एक्सपोर्ट फ़ाइल जैसी नहीं लगती।';
 
   @override
   String get exportGoogleDrive => 'Google Drive पर बैकअप लें';
@@ -860,6 +887,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get settingsTempUnit => 'तापमान इकाई';
+
+  @override
+  String get settingsVolumeUnit => 'Milk volume unit';
 
   @override
   String get settingsLanguage => 'भाषा';
@@ -983,6 +1013,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get graphsMilkPerDay => 'प्रति दिन दूध (मिलीलीटर)';
 
   @override
+  String get graphsMilkPerDayMl => 'Milk per day (ml)';
+
+  @override
+  String get graphsMilkPerDayOz => 'Milk per day (oz)';
+
+  @override
   String get graphsSleepPerDay => 'प्रति दिन नींद (घंटे)';
 
   @override
@@ -1081,6 +1117,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get summaryMilkLabel => 'दूध मिली';
 
   @override
+  String get summaryMilkLabelMl => 'Milk ml';
+
+  @override
+  String get summaryMilkLabelOz => 'Milk oz';
+
+  @override
   String get summaryBreastLabel => 'स्तनपान मि';
 
   @override
@@ -1103,4 +1145,367 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get whoChartsEntry => 'WHO विकास चार्ट';
+
+  @override
+  String get medicationEditTitle => 'Edit medication';
+
+  @override
+  String get medicationLogTitle => 'Log medication';
+
+  @override
+  String get medicationYourCourses => 'Your courses';
+
+  @override
+  String get medicationManageCourses => 'Manage courses';
+
+  @override
+  String get medicationNameRequired => 'Medication name *';
+
+  @override
+  String get medicationDosageWarning => 'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.';
+
+  @override
+  String get medicationNotesOptional => 'Notes (optional)';
+
+  @override
+  String timeAgoMinutes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count minutes ago',
+      one: '1 minute ago',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String timeAgoHours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hours ago',
+      one: '1 hour ago',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String timeAgoDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days ago',
+      one: '1 day ago',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String medicationLastGivenAgo(String ago) {
+    return 'Last given $ago';
+  }
+
+  @override
+  String get medicationNeverGiven => 'Not given yet';
+
+  @override
+  String medicationDosesToday(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count doses today',
+      one: '1 dose today',
+      zero: 'No doses today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String medicationTooSoonWarning(int hours) {
+    return 'Next dose isn\'t due for ${hours}h after the last one';
+  }
+
+  @override
+  String medicationMaxPerDayWarning(int max) {
+    return 'Already at the $max/day limit for this course';
+  }
+
+  @override
+  String get medicationEditCourse => 'Edit course';
+
+  @override
+  String get medicationNewCourse => 'New course';
+
+  @override
+  String get medicationReasonOptional => 'Reason (optional)';
+
+  @override
+  String get medicationIntervalHoursOptional => 'Repeat every (hours, optional)';
+
+  @override
+  String get medicationMaxPerDayOptional => 'Max doses/day (optional)';
+
+  @override
+  String get medicationRemindNextDose => 'Remind me when the next dose is due';
+
+  @override
+  String medicationEndCourseTitle(String name) {
+    return 'End $name?';
+  }
+
+  @override
+  String get medicationEndCoursePrompt => 'How did it go?';
+
+  @override
+  String get medicationDeleteCourseTitle => 'Delete this course?';
+
+  @override
+  String get medicationResultWorked => 'Worked';
+
+  @override
+  String get medicationResultPartlyWorked => 'Partly worked';
+
+  @override
+  String get medicationResultDidntWork => 'Didn\'t work';
+
+  @override
+  String get medicationResultSideEffects => 'Side effects';
+
+  @override
+  String get medicationResultNone => 'Not rated';
+
+  @override
+  String get medicationsTitle => 'Medications';
+
+  @override
+  String medicationActiveTab(int count) {
+    return 'Active ($count)';
+  }
+
+  @override
+  String medicationPastTab(int count) {
+    return 'Past ($count)';
+  }
+
+  @override
+  String get medicationNoActiveCourses => 'No active medication courses.\nStart one with the + button.';
+
+  @override
+  String get medicationNoPastCourses => 'No past courses yet.';
+
+  @override
+  String medicationTimesGiven(int count) {
+    return 'Given $count×';
+  }
+
+  @override
+  String medicationLastGivenShort(String date) {
+    return 'Last: $date';
+  }
+
+  @override
+  String medicationNextDueShort(String time) {
+    return 'Next due $time';
+  }
+
+  @override
+  String get medicationEndCourse => 'End course';
+
+  @override
+  String feedLastSideHint(String side) {
+    return 'Last time: $side';
+  }
+
+  @override
+  String get feedSideLeft => 'Left';
+
+  @override
+  String get feedSideRight => 'Right';
+
+  @override
+  String get feedSideBoth => 'Both';
+
+  @override
+  String get feedSideLeftMinutes => 'Left (min)';
+
+  @override
+  String get feedSideRightMinutes => 'Right (min)';
+
+  @override
+  String get timeAgoJustNow => 'Just now';
+
+  @override
+  String get timeUntilOverdue => 'Overdue';
+
+  @override
+  String timeUntilMinutes(int count) {
+    return 'in ${count}m';
+  }
+
+  @override
+  String timeUntilHours(int count) {
+    return 'in ${count}h';
+  }
+
+  @override
+  String timeUntilDays(int count) {
+    return 'in ${count}d';
+  }
+
+  @override
+  String get timerDiscardTitle => 'Discard this timer?';
+
+  @override
+  String get timerDiscard => 'Discard';
+
+  @override
+  String timerFeedingRunning(String side) {
+    return 'Feeding · $side';
+  }
+
+  @override
+  String get timerSleepRunning => 'Sleep timer running';
+
+  @override
+  String get timerSwitchSide => 'Switch side';
+
+  @override
+  String get timerStop => 'Stop';
+
+  @override
+  String get sinceLastFeed => 'Last feed';
+
+  @override
+  String get sinceLastDiaper => 'Last diaper';
+
+  @override
+  String get sinceAwake => 'Awake';
+
+  @override
+  String get sinceAsleep => 'Asleep';
+
+  @override
+  String nextDoseDue(String name) {
+    return '$name due';
+  }
+
+  @override
+  String get weighConditionNaked => 'Naked';
+
+  @override
+  String get weighConditionDiaper => 'Diaper only';
+
+  @override
+  String get weighConditionLightClothes => 'Light clothes';
+
+  @override
+  String get weighConditionDressed => 'Dressed';
+
+  @override
+  String get weighCondition => 'Weighed wearing';
+
+  @override
+  String get growthMeasurementsOptional => 'Other measurements (optional)';
+
+  @override
+  String get growthHeightCm => 'Height (cm)';
+
+  @override
+  String get growthHeadCm => 'Head circumference (cm)';
+
+  @override
+  String weighConditionChangedWarning(String condition) {
+    return 'Last time was weighed $condition — the difference may not be just growth';
+  }
+
+  @override
+  String growthHeightValue(String cm) {
+    return '$cm cm';
+  }
+
+  @override
+  String growthHeadValue(String cm) {
+    return 'Head $cm cm';
+  }
+
+  @override
+  String get growthHeightOverTime => 'Height over time';
+
+  @override
+  String get growthHeadOverTime => 'Head circumference over time';
+
+  @override
+  String get graphsRecentWeighIns => 'Recent weigh-ins';
+
+  @override
+  String get solidsAmountFewSpoons => 'A few spoons';
+
+  @override
+  String get solidsAmountHalf => 'Half a portion';
+
+  @override
+  String get solidsAmountFull => 'Full portion';
+
+  @override
+  String get solidsAmountTaste => 'Just a taste';
+
+  @override
+  String get solidsReactionMild => 'Mild reaction';
+
+  @override
+  String get solidsReactionAllergic => 'Allergic reaction';
+
+  @override
+  String get solidsReactionNone => 'No reaction';
+
+  @override
+  String get solidsEditTitle => 'Edit solid food';
+
+  @override
+  String get solidsLogTitle => 'Log solid food';
+
+  @override
+  String get solidsFoodsLabel => 'Foods';
+
+  @override
+  String get solidsAddFoodHint => 'Add a food';
+
+  @override
+  String get solidsAmount => 'Amount';
+
+  @override
+  String get solidsLiked => 'How did they like it?';
+
+  @override
+  String get solidsReaction => 'Reaction';
+
+  @override
+  String get solidsNotesOptional => 'Notes (optional)';
+
+  @override
+  String get foodsTitle => 'Foods tried';
+
+  @override
+  String get foodsEmpty => 'No solid foods logged yet.';
+
+  @override
+  String get foodsAllergensNotYet => 'Common allergens not yet introduced';
+
+  @override
+  String foodsTriedCount(int count) {
+    return '$count foods tried';
+  }
+
+  @override
+  String foodsFirstTried(String date) {
+    return 'First: $date';
+  }
+
+  @override
+  String foodsTimesEaten(int count) {
+    return '$count×';
+  }
+
+  @override
+  String get entryTypeSolids => 'Solid food';
 }
