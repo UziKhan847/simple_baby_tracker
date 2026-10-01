@@ -3,7 +3,9 @@ import 'package:simple_baby_tracker/forms/solids.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 import 'package:simple_baby_tracker/widgets/entry_row.dart';
 
 /// Every distinct food name (lowercased) logged before [before] — the
@@ -56,7 +58,10 @@ class FoodsPage extends StatelessWidget {
       final reaction = e.data['reaction'] as String? ?? 'none';
       for (final food in foods) {
         final key = food.toLowerCase();
-        final summary = byName.putIfAbsent(key, () => _FoodSummary(food, e.time));
+        final summary = byName.putIfAbsent(
+          key,
+          () => _FoodSummary(food, e.time),
+        );
         summary.timesEaten++;
         summary.lastTried = e.time;
         if (reaction != 'none') summary.lastReaction = reaction;
@@ -85,9 +90,16 @@ class FoodsPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.restaurant, size: 56, color: Colors.grey.shade400),
+                  AppIcon(
+                    AppIcons.solidFood,
+                    size: 56,
+                    color: Colors.grey.shade400,
+                  ),
                   const SizedBox(height: 12),
-                  Text(l.foodsEmpty, style: TextStyle(color: Colors.grey.shade600)),
+                  Text(
+                    l.foodsEmpty,
+                    style: TextStyle(color: Colors.grey.shade600),
+                  ),
                 ],
               ),
             )
@@ -101,13 +113,23 @@ class FoodsPage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(l.foodsAllergensNotYet, style: Theme.of(context).textTheme.titleSmall),
+                          Text(
+                            l.foodsAllergensNotYet,
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
                           const SizedBox(height: 8),
                           Wrap(
                             spacing: 6,
                             runSpacing: 4,
                             children: notYetAllergens
-                                .map((a) => Chip(label: Text(a, style: const TextStyle(fontSize: 12))))
+                                .map(
+                                  (a) => Chip(
+                                    label: Text(
+                                      a,
+                                      style: const TextStyle(fontSize: 12),
+                                    ),
+                                  ),
+                                )
                                 .toList(),
                           ),
                         ],
@@ -124,9 +146,15 @@ class FoodsPage extends StatelessWidget {
                 for (final f in foods)
                   EntryRow(
                     margin: const EdgeInsets.symmetric(vertical: 4),
-                    icon: f.lastReaction != null ? Icons.warning_amber_rounded : Icons.restaurant,
-                    color: f.lastReaction != null ? Colors.orange : colors.noteStrong,
-                    softColor: f.lastReaction != null ? Colors.orange.withAlpha(30) : colors.noteSoft,
+                    icon: f.lastReaction != null
+                        ? AppIcons.warning
+                        : AppIcons.solidFood,
+                    color: f.lastReaction != null
+                        ? Colors.orange
+                        : colors.noteStrong,
+                    softColor: f.lastReaction != null
+                        ? Colors.orange.withAlpha(30)
+                        : colors.noteSoft,
                     title: f.name,
                     subtitle: [
                       l.foodsFirstTried(fullDate(f.firstTried)),

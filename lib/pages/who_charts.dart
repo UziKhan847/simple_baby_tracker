@@ -3,17 +3,15 @@ import 'package:simple_baby_tracker/baby_profile.dart';
 import 'package:simple_baby_tracker/data/who.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 
 class WhoChartsPage extends StatefulWidget {
   final Map<String, List<TrackerEvent>> data;
   final BabyProfile? profile;
 
-  const WhoChartsPage({
-    super.key,
-    required this.data,
-    this.profile,
-  });
+  const WhoChartsPage({super.key, required this.data, this.profile});
 
   @override
   State<WhoChartsPage> createState() => _WhoChartsPageState();
@@ -132,23 +130,23 @@ class _WhoChartsPageState extends State<WhoChartsPage>
             padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
             child: Row(
               children: [
-                const Text('Chart for:',
-                    style: TextStyle(fontSize: 13)),
+                const Text('Chart for:', style: TextStyle(fontSize: 13)),
                 const SizedBox(width: 10),
                 SegmentedButton<bool>(
                   segments: const [
                     ButtonSegment(
-                        value: true,
-                        label: Text('Boy'),
-                        icon: Icon(Icons.boy, size: 16)),
+                      value: true,
+                      label: Text('Boy'),
+                      icon: AppIcon(AppIcons.boy, size: 16),
+                    ),
                     ButtonSegment(
-                        value: false,
-                        label: Text('Girl'),
-                        icon: Icon(Icons.girl, size: 16)),
+                      value: false,
+                      label: Text('Girl'),
+                      icon: AppIcon(AppIcons.girl, size: 16),
+                    ),
                   ],
                   selected: {_showBoy},
-                  onSelectionChanged: (s) =>
-                      setState(() => _showBoy = s.first),
+                  onSelectionChanged: (s) => setState(() => _showBoy = s.first),
                 ),
               ],
             ),
@@ -165,14 +163,17 @@ class _WhoChartsPageState extends State<WhoChartsPage>
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.info_outline,
-                        color: Colors.orange, size: 16),
+                    const AppIcon(
+                      AppIcons.info,
+                      style: AppIconStyle.line,
+                      color: Colors.orange,
+                      size: 16,
+                    ),
                     const SizedBox(width: 8),
                     const Expanded(
                       child: Text(
                         'Set baby\'s date of birth in the profile to see age-based placement on the chart.',
-                        style:
-                            TextStyle(fontSize: 12, color: Colors.orange),
+                        style: TextStyle(fontSize: 12, color: Colors.orange),
                       ),
                     ),
                   ],
@@ -189,9 +190,7 @@ class _WhoChartsPageState extends State<WhoChartsPage>
                   whoData: _showBoy ? whoWeightBoys : whoWeightGirls,
                   babyPoints: _weightPoints(),
                   yLabel: settings.useKg ? 'kg' : 'lbs',
-                  convertY: settings.useKg
-                      ? (v) => v
-                      : (v) => kgToLbs(v),
+                  convertY: settings.useKg ? (v) => v : (v) => kgToLbs(v),
                   formatY: (v) => settings.useKg
                       ? v.toStringAsFixed(1)
                       : v.toStringAsFixed(1),
@@ -245,8 +244,7 @@ class _GrowthChartTab extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
       children: [
-        Text(title,
-            style: Theme.of(context).textTheme.titleSmall),
+        Text(title, style: Theme.of(context).textTheme.titleSmall),
         const SizedBox(height: 10),
 
         // The chart
@@ -283,10 +281,9 @@ class _GrowthChartTab extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: Theme.of(context)
-                  .colorScheme
-                  .secondaryContainer
-                  .withAlpha(80),
+              color: Theme.of(
+                context,
+              ).colorScheme.secondaryContainer.withAlpha(80),
               borderRadius: BorderRadius.circular(10),
             ),
             child: const Text(
@@ -340,10 +337,8 @@ class _PercentileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final latest = babyPoints.last;
-    final percentileStr =
-        _estimatePercentile(latest.$1, convertY(latest.$2));
-    final ageStr =
-        '${latest.$1.toStringAsFixed(1)} months old';
+    final percentileStr = _estimatePercentile(latest.$1, convertY(latest.$2));
+    final ageStr = '${latest.$1.toStringAsFixed(1)} months old';
 
     return Card(
       child: Padding(
@@ -351,12 +346,14 @@ class _PercentileCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Latest measurement',
-                style: Theme.of(context).textTheme.labelLarge),
+            Text(
+              'Latest measurement',
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
             const SizedBox(height: 6),
             Row(
               children: [
-                const Icon(Icons.child_care, color: Colors.blue),
+                const AppIcon(AppIcons.growthSpurt, color: Colors.blue),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Column(
@@ -365,12 +362,16 @@ class _PercentileCard extends StatelessWidget {
                       Text(
                         '${formatY(convertY(latest.$2))} $yLabel  ·  $ageStr',
                         style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
                       ),
                       Text(
                         'Approximate percentile: $percentileStr',
                         style: const TextStyle(
-                            fontSize: 13, color: Colors.grey),
+                          fontSize: 13,
+                          color: Colors.grey,
+                        ),
                       ),
                     ],
                   ),
@@ -380,8 +381,7 @@ class _PercentileCard extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               '⚠️ These charts are for informational purposes. Always consult your paediatrician for clinical interpretation.',
-              style: TextStyle(
-                  fontSize: 11, color: Colors.grey.shade600),
+              style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
             ),
           ],
         ),
@@ -399,12 +399,13 @@ class _Legend extends StatelessWidget {
       spacing: 16,
       runSpacing: 4,
       children: [
-        _LegendItem(color: Color(whoPercentileColors[2]),
-            label: 'P50 (median)', bold: true),
-        _LegendItem(color: Color(whoPercentileColors[1]),
-            label: 'P15 / P85'),
-        _LegendItem(color: Color(whoPercentileColors[0]),
-            label: 'P3 / P97'),
+        _LegendItem(
+          color: Color(whoPercentileColors[2]),
+          label: 'P50 (median)',
+          bold: true,
+        ),
+        _LegendItem(color: Color(whoPercentileColors[1]), label: 'P15 / P85'),
+        _LegendItem(color: Color(whoPercentileColors[0]), label: 'P3 / P97'),
         _LegendItem(color: Colors.red, label: 'Your baby', isDot: true),
       ],
     );
@@ -433,24 +434,18 @@ class _LegendItem extends StatelessWidget {
             ? Container(
                 width: 10,
                 height: 10,
-                decoration: BoxDecoration(
-                    color: color, shape: BoxShape.circle),
+                decoration: BoxDecoration(color: color, shape: BoxShape.circle),
               )
-            : Container(
-                width: 24,
-                height: bold ? 3 : 1.5,
-                color: color,
-              ),
+            : Container(width: 24, height: bold ? 3 : 1.5, color: color),
         const SizedBox(width: 4),
-        Text(label,
-            style: TextStyle(
-                fontSize: 11,
-                fontWeight:
-                    bold ? FontWeight.bold : FontWeight.normal,
-                color: Theme.of(context)
-                    .colorScheme
-                    .onSurface
-                    .withAlpha(180))),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 11,
+            fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+            color: Theme.of(context).colorScheme.onSurface.withAlpha(180),
+          ),
+        ),
       ],
     );
   }
@@ -489,9 +484,7 @@ class _WhoChartPainter extends CustomPainter {
 
     Offset toCanvas(double ageMonths, double value) {
       final x = leftPad + (ageMonths / maxAge) * chartW;
-      final y = topPad +
-          chartH -
-          ((value - minY) / (maxY - minY)) * chartH;
+      final y = topPad + chartH - ((value - minY) / (maxY - minY)) * chartH;
       return Offset(x, y);
     }
 
@@ -510,14 +503,12 @@ class _WhoChartPainter extends CustomPainter {
       ..strokeWidth = 0.5;
     for (int m = 0; m <= 24; m += 3) {
       final x = leftPad + (m / 24) * chartW;
-      canvas.drawLine(Offset(x, topPad),
-          Offset(x, topPad + chartH), gridPaint);
+      canvas.drawLine(Offset(x, topPad), Offset(x, topPad + chartH), gridPaint);
       final tp = TextPainter(
         text: TextSpan(text: '$m', style: textStyle),
         textDirection: TextDirection.ltr,
       )..layout();
-      tp.paint(canvas,
-          Offset(x - tp.width / 2, topPad + chartH + 6));
+      tp.paint(canvas, Offset(x - tp.width / 2, topPad + chartH + 6));
     }
 
     // Draw WHO percentile curves
@@ -550,12 +541,12 @@ class _WhoChartPainter extends CustomPainter {
       final labelPt = toCanvas(lastMonth.toDouble(), lastVal);
       final tp = TextPainter(
         text: TextSpan(
-            text: whoPercentileLabels[pi],
-            style: textStyle.copyWith(color: color)),
+          text: whoPercentileLabels[pi],
+          style: textStyle.copyWith(color: color),
+        ),
         textDirection: TextDirection.ltr,
       )..layout();
-      tp.paint(canvas,
-          Offset(labelPt.dx + 2, labelPt.dy - tp.height / 2));
+      tp.paint(canvas, Offset(labelPt.dx + 2, labelPt.dy - tp.height / 2));
     }
 
     // Draw baby's data points
@@ -569,8 +560,7 @@ class _WhoChartPainter extends CustomPainter {
       if (babyPoints.length > 1) {
         final linePath = Path();
         for (int i = 0; i < babyPoints.length; i++) {
-          final pt = toCanvas(
-              babyPoints[i].$1, convertY(babyPoints[i].$2));
+          final pt = toCanvas(babyPoints[i].$1, convertY(babyPoints[i].$2));
           i == 0
               ? linePath.moveTo(pt.dx, pt.dy)
               : linePath.lineTo(pt.dx, pt.dy);
@@ -582,22 +572,27 @@ class _WhoChartPainter extends CustomPainter {
         final pt = toCanvas(point.$1, convertY(point.$2));
         canvas.drawCircle(pt, 4, dotPaint);
         canvas.drawCircle(
-            pt,
-            4,
-            Paint()
-              ..color = Colors.white
-              ..strokeWidth = 1.5
-              ..style = PaintingStyle.stroke);
+          pt,
+          4,
+          Paint()
+            ..color = Colors.white
+            ..strokeWidth = 1.5
+            ..style = PaintingStyle.stroke,
+        );
       }
     }
 
     // Y-axis
-    canvas.drawLine(Offset(leftPad, topPad),
-        Offset(leftPad, topPad + chartH), axisPaint);
     canvas.drawLine(
-        Offset(leftPad, topPad + chartH),
-        Offset(leftPad + chartW, topPad + chartH),
-        axisPaint);
+      Offset(leftPad, topPad),
+      Offset(leftPad, topPad + chartH),
+      axisPaint,
+    );
+    canvas.drawLine(
+      Offset(leftPad, topPad + chartH),
+      Offset(leftPad + chartW, topPad + chartH),
+      axisPaint,
+    );
   }
 
   @override

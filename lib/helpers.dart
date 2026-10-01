@@ -109,3 +109,18 @@ String formatDuration(Duration d) {
   if (h == 0) return '${m}m';
   return '${h}h ${m.toString().padLeft(2, '0')}m';
 }
+
+/// The baby's age on [date], e.g. "12 days", "3 mo 2 d", "1 yr 2 mo" —
+/// shown on every photo in the growth timeline.
+String ageAt(DateTime birth, DateTime date, AppLocalizations l) {
+  final b = DateTime(birth.year, birth.month, birth.day);
+  final d = DateTime(date.year, date.month, date.day);
+  if (d.isBefore(b)) return l.ageBeforeBirth;
+  var months = (d.year - b.year) * 12 + d.month - b.month;
+  if (d.day < b.day) months--;
+  if (months <= 0) return l.ageDays(d.difference(b).inDays);
+  final monthAnniversary = DateTime(b.year, b.month + months, b.day);
+  final days = d.difference(monthAnniversary).inDays;
+  if (months < 24) return l.ageMonthsDays(months, days);
+  return l.ageYearsMonths(months ~/ 12, months % 12);
+}

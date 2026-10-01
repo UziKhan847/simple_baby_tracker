@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
+import 'package:simple_baby_tracker/theme/category_style.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_avatar.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
 
 class DailyNoteForm extends StatefulWidget {
@@ -23,16 +27,17 @@ class _DailyNoteFormState extends State<DailyNoteForm> {
   bool get _isEditing => widget.existingEvent != null;
 
   // Quick-tag suggestions to inspire journaling
+  // (icon, colour pair, text) — the text is what gets appended to the note.
   static const _tags = [
-    '😊 Happy day',
-    '😴 Slept well',
-    '😢 Fussy',
-    '🤒 Not feeling well',
-    '🌟 First time!',
-    '💊 Medication',
-    '🦷 Teething',
-    '📈 Growth spurt',
-    '🎉 Milestone',
+    (AppIcons.faceHappy, 'feeding', 'Happy day'),
+    (AppIcons.faceSleepy, 'sleep', 'Slept well'),
+    (AppIcons.faceSad, 'weight', 'Fussy'),
+    (AppIcons.faceSick, 'temperature', 'Not feeling well'),
+    (AppIcons.milestones, 'note', 'First time!'),
+    (AppIcons.medication, 'medication', 'Medication'),
+    (AppIcons.tooth, 'misc', 'Teething'),
+    (AppIcons.growthSpurt, 'growth', 'Growth spurt'),
+    (AppIcons.celebrate, 'diaper', 'Milestone'),
   ];
 
   @override
@@ -91,14 +96,18 @@ class _DailyNoteFormState extends State<DailyNoteForm> {
           Wrap(
             spacing: 6,
             runSpacing: 4,
-            children: _tags
-                .map(
-                  (tag) => ActionChip(
-                    label: Text(tag, style: const TextStyle(fontSize: 12)),
-                    onPressed: () => _appendTag(tag),
-                  ),
-                )
-                .toList(),
+            children: _tags.map((tag) {
+              final (icon, pairName, text) = tag;
+              final (strong, soft) = colorPairNamed(
+                pairName,
+                Theme.of(context).extension<AppColors>()!,
+              );
+              return ActionChip(
+                avatar: AppAvatar(icon, strong: strong, soft: soft, size: 24),
+                label: Text(text, style: const TextStyle(fontSize: 12)),
+                onPressed: () => _appendTag(text),
+              );
+            }).toList(),
           ),
           const SizedBox(height: 10),
 

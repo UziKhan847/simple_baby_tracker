@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 
 /// The mockup's primary call-to-action: a full-width pill filled with the
 /// accent gradient and lifted by a soft accent-tinted shadow.
@@ -18,7 +20,7 @@ class GradientPillButton extends StatelessWidget {
 
   final String label;
   final VoidCallback? onPressed;
-  final IconData? icon;
+  final String? icon;
 
   /// Stretch to the available width (the form CTA) vs. hug the label
   /// (the "Custom milestone" button).
@@ -63,7 +65,12 @@ class GradientPillButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   if (icon != null) ...[
-                    Icon(icon, size: 19, color: Colors.white),
+                    AppIcon(
+                      icon!,
+                      style: AppIconStyle.line,
+                      size: 19,
+                      color: Colors.white,
+                    ),
                     const SizedBox(width: 8),
                   ],
                   Flexible(
@@ -94,13 +101,13 @@ class GradientFab extends StatelessWidget {
   const GradientFab({
     super.key,
     required this.onPressed,
-    this.icon = Icons.add,
+    this.icon = AppIcons.add,
     this.tooltip,
     this.size = 56,
   });
 
   final VoidCallback onPressed;
-  final IconData icon;
+  final String icon;
   final String? tooltip;
   final double size;
 
@@ -129,13 +136,18 @@ class GradientFab extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: onPressed,
-          child: Icon(icon, color: Colors.white, size: size * 0.4),
+          child: Center(
+            child: AppIcon(
+              icon,
+              style: AppIconStyle.line,
+              color: Colors.white,
+              size: size * 0.42,
+            ),
+          ),
         ),
       ),
     );
 
-    return tooltip == null
-        ? button
-        : Tooltip(message: tooltip!, child: button);
+    return tooltip == null ? button : Tooltip(message: tooltip!, child: button);
   }
 }

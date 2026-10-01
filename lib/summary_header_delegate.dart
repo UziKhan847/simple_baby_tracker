@@ -3,6 +3,7 @@ import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/stat.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 
 class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
   final int poos;
@@ -60,19 +61,19 @@ class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
             children: [
               Stat(
                 color: colors.diaperStrong,
-                icon: Icons.baby_changing_station,
+                icon: AppIcons.poo,
                 label: l.summaryPoosLabel,
                 value: poos,
               ),
               Stat(
                 color: colors.diaperStrong,
-                icon: Icons.water_drop,
+                icon: AppIcons.pee,
                 label: l.summaryPeesLabel,
                 value: pees,
               ),
               StatLabel(
                 color: colors.feedingStrong,
-                icon: Icons.local_drink,
+                icon: AppIcons.bottle,
                 label: useMl ? l.summaryMilkLabelMl : l.summaryMilkLabelOz,
                 text: useMl
                     ? '$milk'
@@ -80,13 +81,13 @@ class SummaryHeaderDelegate extends SliverPersistentHeaderDelegate {
               ),
               Stat(
                 color: colors.miscStrong,
-                icon: Icons.child_care,
+                icon: AppIcons.breastfeeding,
                 label: l.summaryBreastLabel,
                 value: breastMinutes,
               ),
               StatLabel(
                 color: colors.sleepStrong,
-                icon: Icons.bedtime,
+                icon: AppIcons.sleep,
                 label: l.summarySleepLabel,
                 text: _sleepLabel(),
               ),

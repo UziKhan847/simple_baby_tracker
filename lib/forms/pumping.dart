@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 
 class PumpingForm extends StatefulWidget {
   final DateTime initialDate;
@@ -76,7 +78,7 @@ class _PumpingFormState extends State<PumpingForm> {
                   onChanged: (_) => setState(() {}),
                   decoration: InputDecoration(
                     labelText: l.pumpingLeft,
-                    prefixIcon: const Icon(Icons.arrow_back),
+                    prefixIcon: const AppIcon(AppIcons.sideLeft),
                     border: const OutlineInputBorder(),
                     isDense: true,
                   ),
@@ -90,7 +92,7 @@ class _PumpingFormState extends State<PumpingForm> {
                   onChanged: (_) => setState(() {}),
                   decoration: InputDecoration(
                     labelText: l.pumpingRight,
-                    prefixIcon: const Icon(Icons.arrow_forward),
+                    prefixIcon: const AppIcon(AppIcons.sideRight),
                     border: const OutlineInputBorder(),
                     isDense: true,
                   ),
@@ -119,7 +121,7 @@ class _PumpingFormState extends State<PumpingForm> {
                   ),
                   child: Row(
                     children: [
-                      Icon(Icons.water_drop, color: accent, size: 18),
+                      AppIcon(AppIcons.milkTotal, color: accent, size: 18),
                       const SizedBox(width: 8),
                       Text(
                         '${l.pumpingTotalMl(_totalMl)} '

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/models/vaccination_entry.dart';
 import 'package:simple_baby_tracker/storage.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 
 class VaccinationsPage extends StatefulWidget {
   final String babyId;
@@ -94,7 +96,11 @@ class _VaccinationsPageState extends State<VaccinationsPage>
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   dense: true,
-                  leading: const Icon(Icons.calendar_today, size: 20),
+                  leading: const AppIcon(
+                    AppIcons.calendar,
+                    style: AppIconStyle.line,
+                    size: 20,
+                  ),
                   title: Text(fullDate(pickedDate)),
                   subtitle: const Text('Date given'),
                   onTap: () async {
@@ -214,15 +220,18 @@ class _VaccinationsPageState extends State<VaccinationsPage>
         bottom: TabBar(
           controller: _tabs,
           tabs: const [
-            Tab(icon: Icon(Icons.check_circle), text: 'Given'),
-            Tab(icon: Icon(Icons.schedule), text: 'Schedule'),
+            Tab(
+              icon: AppIcon(AppIcons.given, style: AppIconStyle.line),
+              text: 'Given',
+            ),
+            Tab(icon: AppIcon(AppIcons.upcoming), text: 'Schedule'),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         heroTag: 'vaccinations_fab',
         onPressed: () => _showVaccineDialog(),
-        icon: const Icon(Icons.add),
+        icon: const AppIcon(AppIcons.add, style: AppIconStyle.line),
         label: const Text('Log vaccine'),
       ),
       body: _loading
@@ -263,11 +272,7 @@ class _GivenTab extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.vaccines_outlined,
-              size: 64,
-              color: Colors.grey.shade400,
-            ),
+            AppIcon(AppIcons.vaccine, size: 64, color: Colors.grey.shade400),
             const SizedBox(height: 12),
             const Text(
               'No vaccines logged yet.',
@@ -317,14 +322,22 @@ class _GivenTab extends StatelessWidget {
               color: Colors.red,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: const Icon(Icons.delete, color: Colors.white),
+            child: const AppIcon(
+              AppIcons.delete,
+              style: AppIconStyle.line,
+              color: Colors.white,
+            ),
           ),
           child: Card(
             margin: const EdgeInsets.symmetric(vertical: 4),
             child: ListTile(
               leading: CircleAvatar(
                 backgroundColor: Colors.green.withAlpha(30),
-                child: const Icon(Icons.check, color: Colors.green),
+                child: const AppIcon(
+                  AppIcons.check,
+                  style: AppIconStyle.line,
+                  color: Colors.green,
+                ),
               ),
               title: Text(
                 v.name,
@@ -336,7 +349,11 @@ class _GivenTab extends StatelessWidget {
                 '${v.site != null ? '  ·  ${v.site}' : ''}',
               ),
               trailing: IconButton(
-                icon: const Icon(Icons.edit_outlined, size: 18),
+                icon: const AppIcon(
+                  AppIcons.edit,
+                  style: AppIconStyle.line,
+                  size: 18,
+                ),
                 onPressed: () => onEdit(v),
               ),
               onTap: v.notes != null
@@ -386,8 +403,8 @@ class _ScheduleTab extends StatelessWidget {
               backgroundColor: isGiven
                   ? Colors.green.withAlpha(30)
                   : Theme.of(context).colorScheme.secondaryContainer,
-              child: Icon(
-                isGiven ? Icons.check : Icons.schedule,
+              child: AppIcon(
+                isGiven ? AppIcons.check : AppIcons.upcoming,
                 color: isGiven
                     ? Colors.green
                     : Theme.of(context).colorScheme.onSecondaryContainer,
@@ -404,7 +421,12 @@ class _ScheduleTab extends StatelessWidget {
             ),
             subtitle: Text('Due: $age'),
             trailing: isGiven
-                ? const Icon(Icons.check_circle, color: Colors.green, size: 20)
+                ? const AppIcon(
+                    AppIcons.given,
+                    style: AppIconStyle.line,
+                    color: Colors.green,
+                    size: 20,
+                  )
                 : FilledButton.tonal(
                     onPressed: () => onLog(name),
                     child: const Text('Mark given'),

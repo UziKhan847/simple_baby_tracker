@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Home-screen widget colours, taken from lib/theme/app_colors.dart and
+     app_theme.dart (light theme). values-night/colors.xml has the dark ones. -->
+<resources>
+    <color name="widget_background">#FFFFFAFF</color>
+    <color name="widget_text_primary">#FF3A2E3C</color>
+    <color name="widget_text_secondary">#FF867D88</color>
+    <color name="widget_accent">#FFDD92C4</color>
+    <color name="widget_feed_bg">#FFFACFEB</color>
+    <color name="widget_feed_text">#FFAB6595</color>
+    <color name="widget_diaper_bg">#FFFDD4C6</color>
+    <color name="widget_diaper_text">#FF9A614D</color>
+    <color name="widget_sleep_bg">#FFEAD4FC</color>
+    <color name="widget_sleep_text">#FF8C69A7</color>
+</resources>

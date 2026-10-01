@@ -1,12 +1,13 @@
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_baby_tracker/app_settings.dart';
 import 'package:simple_baby_tracker/baby_profile.dart';
+import 'package:simple_baby_tracker/models/bottle.dart';
 import 'package:simple_baby_tracker/models/medication_course.dart';
 import 'package:simple_baby_tracker/models/milestone_entry.dart';
+import 'package:simple_baby_tracker/models/photo_entry.dart';
+import 'package:simple_baby_tracker/models/skin_condition.dart';
 import 'package:simple_baby_tracker/models/vaccination_entry.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 
@@ -15,6 +16,9 @@ class Storage {
   static const _kMilestonesPrefix = 'baby_tracker_milestones_';
   static const _kVaccinesPrefix = 'baby_tracker_vaccines_';
   static const _kMedicationsPrefix = 'baby_tracker_medication_courses_';
+  static const _kBottles = 'baby_tracker_bottles';
+  static const _kPhotosPrefix = 'baby_tracker_photos_';
+  static const _kSkinPrefix = 'baby_tracker_skin_';
   static const _kLegacyKey = 'baby_tracker_data_v2';
   static const _kProfiles = 'baby_profiles';
   static const _kActiveProfile = 'active_baby_id';
@@ -100,30 +104,35 @@ class Storage {
     await sp.setString('$_kDataPrefix$babyId', json.encode(encoded));
   }
 
-  /// Writes the full backup envelope — events *and* milestones, vaccinations
-  /// and medication courses — so a JSON export/import round trip doesn't
-  /// silently drop anything. The events themselves stay at the top level in
-  /// the original `{dateKey: [event, ...]}` shape (under `"events"`) for
-  /// compatibility with older exports, which [parseImportJson] below still
-  /// reads directly as a bare `{dateKey: [...]}` map.
-  static Future<File> exportToFile(
+  /// The full backup envelope for one baby — events *and* milestones,
+  /// vaccinations, medication courses, bottles, photo metadata and skin
+  /// conditions — so a backup round trip doesn't silently drop anything.
+  /// Events stay in the original `{dateKey: [event, ...]}` shape (under
+  /// `"events"`); [parseImportJson] still reads old bare-map exports too.
+  /// Photo *files* are added alongside this by `BackupService` in a .zip.
+  static Future<Map<String, dynamic>> buildBackupEnvelope(
     String babyId,
     Map<String, List<TrackerEvent>> data,
   ) async {
-    final dir = await getApplicationDocumentsDirectory();
-    final file = File('${dir.path}/baby_tracker_export_$babyId.json');
     final milestones = await loadMilestones(babyId);
     final vaccines = await loadVaccinations(babyId);
     final medications = await loadMedicationCourses(babyId);
-    final envelope = {
-      'version': 2,
-      'events': data.map((k, v) => MapEntry(k, v.map((e) => e.toJson()).toList())),
+    final bottles = await loadBottles();
+    final photos = await loadPhotos(babyId);
+    final skin = await loadSkinConditions(babyId);
+    return {
+      'version': 3,
+      'babyId': babyId,
+      'events': data.map(
+        (k, v) => MapEntry(k, v.map((e) => e.toJson()).toList()),
+      ),
       'milestones': milestones.map((m) => m.toJson()).toList(),
       'vaccinations': vaccines.map((v) => v.toJson()).toList(),
       'medicationCourses': medications.map((m) => m.toJson()).toList(),
+      'bottles': bottles.map((b) => b.toJson()).toList(),
+      'photos': photos.map((p) => p.toJson()).toList(),
+      'skinConditions': skin.map((c) => c.toJson()).toList(),
     };
-    await file.writeAsString(json.encode(envelope));
-    return file;
   }
 
   /// Parses either shape a Baby Tracker export can be in: the legacy bare
@@ -143,7 +152,8 @@ class Storage {
       throw const FormatException('Expected a JSON object of date → events');
     }
 
-    final isEnvelope = decoded.containsKey('events') && decoded['version'] != null;
+    final isEnvelope =
+        decoded.containsKey('events') && decoded['version'] != null;
     final eventsRaw = isEnvelope ? decoded['events'] : decoded;
     if (eventsRaw is! Map) {
       throw const FormatException('Expected a JSON object of date → events');
@@ -165,16 +175,29 @@ class Storage {
     if (!isEnvelope) return ImportBundle(events: events);
 
     final milestones = (decoded['milestones'] as List? ?? [])
-        .map((e) => MilestoneEntry.fromJson(Map<String, dynamic>.from(e as Map)))
+        .map(
+          (e) => MilestoneEntry.fromJson(Map<String, dynamic>.from(e as Map)),
+        )
         .toList();
     final vaccinations = (decoded['vaccinations'] as List? ?? [])
-        .map((e) => VaccinationEntry.fromJson(Map<String, dynamic>.from(e as Map)))
+        .map(
+          (e) => VaccinationEntry.fromJson(Map<String, dynamic>.from(e as Map)),
+        )
         .toList();
     final medicationCourses = (decoded['medicationCourses'] as List? ?? [])
         .map(
-          (e) =>
-              MedicationCourse.fromJson(Map<String, dynamic>.from(e as Map)),
+          (e) => MedicationCourse.fromJson(Map<String, dynamic>.from(e as Map)),
         )
+        .toList();
+
+    final bottles = (decoded['bottles'] as List? ?? [])
+        .map((e) => Bottle.fromJson(Map<String, dynamic>.from(e as Map)))
+        .toList();
+    final photos = (decoded['photos'] as List? ?? [])
+        .map((e) => PhotoEntry.fromJson(Map<String, dynamic>.from(e as Map)))
+        .toList();
+    final skinConditions = (decoded['skinConditions'] as List? ?? [])
+        .map((e) => SkinCondition.fromJson(Map<String, dynamic>.from(e as Map)))
         .toList();
 
     return ImportBundle(
@@ -182,6 +205,9 @@ class Storage {
       milestones: milestones,
       vaccinations: vaccinations,
       medicationCourses: medicationCourses,
+      bottles: bottles,
+      photos: photos,
+      skinConditions: skinConditions,
     );
   }
 
@@ -218,6 +244,11 @@ class Storage {
       await saveMilestones(babyId, imported.milestones);
       await saveVaccinations(babyId, imported.vaccinations);
       await saveMedicationCourses(babyId, imported.medicationCourses);
+      await savePhotos(babyId, imported.photos);
+      await saveSkinConditions(babyId, imported.skinConditions);
+      // Bottles are shared across babies, so even a "replace" import only
+      // adds bottles rather than wiping the household's list.
+      await _mergeBottles(imported.bottles);
       return imported.events;
     }
 
@@ -266,6 +297,19 @@ class Storage {
       imported.medicationCourses,
       (m) => m.id,
     );
+    await mergeById<PhotoEntry>(
+      () => loadPhotos(babyId),
+      (v) => savePhotos(babyId, v),
+      imported.photos,
+      (p) => p.id,
+    );
+    await mergeById<SkinCondition>(
+      () => loadSkinConditions(babyId),
+      (v) => saveSkinConditions(babyId, v),
+      imported.skinConditions,
+      (c) => c.id,
+    );
+    await _mergeBottles(imported.bottles);
 
     return mergedEvents;
   }
@@ -276,6 +320,8 @@ class Storage {
     await sp.remove('$_kMilestonesPrefix$babyId');
     await sp.remove('$_kVaccinesPrefix$babyId');
     await sp.remove('$_kMedicationsPrefix$babyId');
+    await sp.remove('$_kPhotosPrefix$babyId');
+    await sp.remove('$_kSkinPrefix$babyId');
   }
 
   // ─── Milestones ───────────────────────────────────────────────────────────
@@ -336,8 +382,7 @@ class Storage {
     if (raw == null) return [];
     return (json.decode(raw) as List)
         .map(
-          (e) =>
-              MedicationCourse.fromJson(Map<String, dynamic>.from(e as Map)),
+          (e) => MedicationCourse.fromJson(Map<String, dynamic>.from(e as Map)),
         )
         .toList();
   }
@@ -351,6 +396,76 @@ class Storage {
       '$_kMedicationsPrefix$babyId',
       json.encode(courses.map((c) => c.toJson()).toList()),
     );
+  }
+
+  // ─── Daily photos (metadata; the image files live in PhotoStore) ─────────
+
+  static Future<List<PhotoEntry>> loadPhotos(String babyId) async {
+    final sp = await SharedPreferences.getInstance();
+    final raw = sp.getString('$_kPhotosPrefix$babyId');
+    if (raw == null) return [];
+    return (json.decode(raw) as List)
+        .map((e) => PhotoEntry.fromJson(Map<String, dynamic>.from(e as Map)))
+        .toList();
+  }
+
+  static Future<void> savePhotos(String babyId, List<PhotoEntry> photos) async {
+    final sp = await SharedPreferences.getInstance();
+    await sp.setString(
+      '$_kPhotosPrefix$babyId',
+      json.encode(photos.map((p) => p.toJson()).toList()),
+    );
+  }
+
+  // ─── Skin conditions ──────────────────────────────────────────────────────
+
+  static Future<List<SkinCondition>> loadSkinConditions(String babyId) async {
+    final sp = await SharedPreferences.getInstance();
+    final raw = sp.getString('$_kSkinPrefix$babyId');
+    if (raw == null) return [];
+    return (json.decode(raw) as List)
+        .map((e) => SkinCondition.fromJson(Map<String, dynamic>.from(e as Map)))
+        .toList();
+  }
+
+  static Future<void> saveSkinConditions(
+    String babyId,
+    List<SkinCondition> conditions,
+  ) async {
+    final sp = await SharedPreferences.getInstance();
+    await sp.setString(
+      '$_kSkinPrefix$babyId',
+      json.encode(conditions.map((c) => c.toJson()).toList()),
+    );
+  }
+
+  // ─── Bottles (app-wide, shared across babies) ─────────────────────────────
+
+  static Future<List<Bottle>> loadBottles() async {
+    final sp = await SharedPreferences.getInstance();
+    final raw = sp.getString(_kBottles);
+    if (raw == null) return [];
+    return (json.decode(raw) as List)
+        .map((e) => Bottle.fromJson(Map<String, dynamic>.from(e as Map)))
+        .toList();
+  }
+
+  static Future<void> saveBottles(List<Bottle> bottles) async {
+    final sp = await SharedPreferences.getInstance();
+    await sp.setString(
+      _kBottles,
+      json.encode(bottles.map((b) => b.toJson()).toList()),
+    );
+  }
+
+  static Future<void> _mergeBottles(List<Bottle> incoming) async {
+    if (incoming.isEmpty) return;
+    final current = await loadBottles();
+    final ids = current.map((b) => b.id).toSet();
+    await saveBottles([
+      ...current,
+      ...incoming.where((b) => !ids.contains(b.id)),
+    ]);
   }
 
   // ─── Settings ─────────────────────────────────────────────────────────────
@@ -377,11 +492,40 @@ class ImportBundle {
   final List<MilestoneEntry> milestones;
   final List<VaccinationEntry> vaccinations;
   final List<MedicationCourse> medicationCourses;
+  final List<Bottle> bottles;
+  final List<PhotoEntry> photos;
+  final List<SkinCondition> skinConditions;
 
   const ImportBundle({
     required this.events,
     this.milestones = const [],
     this.vaccinations = const [],
     this.medicationCourses = const [],
+    this.bottles = const [],
+    this.photos = const [],
+    this.skinConditions = const [],
   });
+
+  /// Every photo file this backup refers to (relative paths).
+  Iterable<String> get photoPaths => [
+    ...photos.map((p) => p.relativePath),
+    for (final c in skinConditions)
+      for (final u in c.updates) ?u.photoPath,
+  ];
+
+  /// Points every photo path at [babyId]'s folder — a backup made from one
+  /// baby profile can be restored into another, whose photos live under a
+  /// different `photos/<babyId>/` directory.
+  void retargetPhotos(String babyId) {
+    String fix(String p) =>
+        p.replaceFirst(RegExp(r'^photos/[^/]+/'), 'photos/$babyId/');
+    for (final p in photos) {
+      p.relativePath = fix(p.relativePath);
+    }
+    for (final c in skinConditions) {
+      for (final u in c.updates) {
+        if (u.photoPath != null) u.photoPath = fix(u.photoPath!);
+      }
+    }
+  }
 }

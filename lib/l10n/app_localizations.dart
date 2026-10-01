@@ -1484,13 +1484,13 @@ abstract class AppLocalizations {
   /// No description provided for @exportJson.
   ///
   /// In en, this message translates to:
-  /// **'Export as JSON'**
+  /// **'Export backup'**
   String get exportJson;
 
   /// No description provided for @exportJsonDesc.
   ///
   /// In en, this message translates to:
-  /// **'Raw data for backup'**
+  /// **'All data and photos in one .zip file'**
   String get exportJsonDesc;
 
   /// No description provided for @exportPdf.
@@ -1508,13 +1508,13 @@ abstract class AppLocalizations {
   /// No description provided for @importJson.
   ///
   /// In en, this message translates to:
-  /// **'Import from JSON'**
+  /// **'Restore backup'**
   String get importJson;
 
   /// No description provided for @importJsonDesc.
   ///
   /// In en, this message translates to:
-  /// **'Restore from a backup file'**
+  /// **'From a .zip backup (or an older .json export)'**
   String get importJsonDesc;
 
   /// No description provided for @importDialogTitle.
@@ -1640,103 +1640,103 @@ abstract class AppLocalizations {
   /// No description provided for @milestoneAllDone.
   ///
   /// In en, this message translates to:
-  /// **'All preset milestones achieved! 🎉'**
+  /// **'All preset milestones achieved!'**
   String get milestoneAllDone;
 
   /// No description provided for @milestoneFirstSmile.
   ///
   /// In en, this message translates to:
-  /// **'😊 First smile'**
+  /// **'First smile'**
   String get milestoneFirstSmile;
 
   /// No description provided for @milestoneFirstLaugh.
   ///
   /// In en, this message translates to:
-  /// **'😂 First laugh'**
+  /// **'First laugh'**
   String get milestoneFirstLaugh;
 
   /// No description provided for @milestoneFirstTooth.
   ///
   /// In en, this message translates to:
-  /// **'🦷 First tooth'**
+  /// **'First tooth'**
   String get milestoneFirstTooth;
 
   /// No description provided for @milestoneRolledBackTummy.
   ///
   /// In en, this message translates to:
-  /// **'🔄 Rolled back → tummy'**
+  /// **'Rolled back → tummy'**
   String get milestoneRolledBackTummy;
 
   /// No description provided for @milestoneRolledTummyBack.
   ///
   /// In en, this message translates to:
-  /// **'🔄 Rolled tummy → back'**
+  /// **'Rolled tummy → back'**
   String get milestoneRolledTummyBack;
 
   /// No description provided for @milestoneSatUnsupported.
   ///
   /// In en, this message translates to:
-  /// **'🧸 Sat unsupported'**
+  /// **'Sat unsupported'**
   String get milestoneSatUnsupported;
 
   /// No description provided for @milestoneStartedCrawling.
   ///
   /// In en, this message translates to:
-  /// **'🐣 Started crawling'**
+  /// **'Started crawling'**
   String get milestoneStartedCrawling;
 
   /// No description provided for @milestonePulledToStand.
   ///
   /// In en, this message translates to:
-  /// **'🏋️ Pulled to stand'**
+  /// **'Pulled to stand'**
   String get milestonePulledToStand;
 
   /// No description provided for @milestoneFirstSteps.
   ///
   /// In en, this message translates to:
-  /// **'👣 First steps'**
+  /// **'First steps'**
   String get milestoneFirstSteps;
 
   /// No description provided for @milestoneFirstWord.
   ///
   /// In en, this message translates to:
-  /// **'💬 First word'**
+  /// **'First word'**
   String get milestoneFirstWord;
 
   /// No description provided for @milestoneFirstSolidFood.
   ///
   /// In en, this message translates to:
-  /// **'🥣 First solid food'**
+  /// **'First solid food'**
   String get milestoneFirstSolidFood;
 
   /// No description provided for @milestoneFirstHaircut.
   ///
   /// In en, this message translates to:
-  /// **'✂️ First haircut'**
+  /// **'First haircut'**
   String get milestoneFirstHaircut;
 
   /// No description provided for @milestoneSleptThroughNight.
   ///
   /// In en, this message translates to:
-  /// **'🌙 Slept through the night'**
+  /// **'Slept through the night'**
   String get milestoneSleptThroughNight;
 
   /// No description provided for @milestoneWavedBye.
   ///
   /// In en, this message translates to:
-  /// **'👋 Waved bye-bye'**
+  /// **'Waved bye-bye'**
   String get milestoneWavedBye;
 
   /// No description provided for @milestoneClappedHands.
   ///
   /// In en, this message translates to:
-  /// **'👏 Clapped hands'**
+  /// **'Clapped hands'**
   String get milestoneClappedHands;
 
   /// No description provided for @milestoneFirstBirthday.
   ///
   /// In en, this message translates to:
-  /// **'🎂 First birthday'**
+  /// **'First birthday'**
   String get milestoneFirstBirthday;
 
   /// No description provided for @settingsTitle.
@@ -2806,6 +2806,660 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Solid food'**
   String get entryTypeSolids;
+
+  /// No description provided for @feedAmountOz.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount (oz)'**
+  String get feedAmountOz;
+
+  /// No description provided for @notifFeedingReminderDescInterval.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me {interval} after the last feed'**
+  String notifFeedingReminderDescInterval(String interval);
+
+  /// No description provided for @notifDiaperReminderDescInterval.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me {interval} after the last diaper'**
+  String notifDiaperReminderDescInterval(String interval);
+
+  /// No description provided for @notifIntervalEvery.
+  ///
+  /// In en, this message translates to:
+  /// **'Every {interval}'**
+  String notifIntervalEvery(String interval);
+
+  /// No description provided for @notifIntervalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder interval'**
+  String get notifIntervalTitle;
+
+  /// No description provided for @notifIntervalHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Hours'**
+  String get notifIntervalHours;
+
+  /// No description provided for @notifIntervalMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Minutes'**
+  String get notifIntervalMinutes;
+
+  /// No description provided for @notifIntervalTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'At least {minutes} minutes'**
+  String notifIntervalTooShort(int minutes);
+
+  /// No description provided for @settingsFeeding.
+  ///
+  /// In en, this message translates to:
+  /// **'Feeding'**
+  String get settingsFeeding;
+
+  /// No description provided for @settingsTrackBottles.
+  ///
+  /// In en, this message translates to:
+  /// **'Track bottles'**
+  String get settingsTrackBottles;
+
+  /// No description provided for @settingsTrackBottlesDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick which bottle was used, and how much was prepared vs drunk'**
+  String get settingsTrackBottlesDesc;
+
+  /// No description provided for @bottlesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My bottles'**
+  String get bottlesTitle;
+
+  /// No description provided for @bottlesEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No bottles yet.\nAdd the bottles you use so you can pick one when logging a feed.'**
+  String get bottlesEmpty;
+
+  /// No description provided for @bottleAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add bottle'**
+  String get bottleAdd;
+
+  /// No description provided for @bottleEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit bottle'**
+  String get bottleEdit;
+
+  /// No description provided for @bottleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Label / number (e.g. #3)'**
+  String get bottleLabel;
+
+  /// No description provided for @bottleBrand.
+  ///
+  /// In en, this message translates to:
+  /// **'Brand / type (optional)'**
+  String get bottleBrand;
+
+  /// No description provided for @bottleCapacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Capacity (optional)'**
+  String get bottleCapacity;
+
+  /// No description provided for @bottleNipple.
+  ///
+  /// In en, this message translates to:
+  /// **'Nipple size / flow (optional)'**
+  String get bottleNipple;
+
+  /// No description provided for @bottleMaterial.
+  ///
+  /// In en, this message translates to:
+  /// **'Material'**
+  String get bottleMaterial;
+
+  /// No description provided for @bottleRetired.
+  ///
+  /// In en, this message translates to:
+  /// **'Retired'**
+  String get bottleRetired;
+
+  /// No description provided for @bottleRetire.
+  ///
+  /// In en, this message translates to:
+  /// **'Retire'**
+  String get bottleRetire;
+
+  /// No description provided for @bottleUnretire.
+  ///
+  /// In en, this message translates to:
+  /// **'Use again'**
+  String get bottleUnretire;
+
+  /// No description provided for @bottleDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {name}?'**
+  String bottleDeleteTitle(String name);
+
+  /// No description provided for @bottleDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Past feeds keep their amounts but will no longer show this bottle. To hide it from the picker but keep history, use Retire instead.'**
+  String get bottleDeleteBody;
+
+  /// No description provided for @feedPrepared.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepared'**
+  String get feedPrepared;
+
+  /// No description provided for @feedDrank.
+  ///
+  /// In en, this message translates to:
+  /// **'Drank'**
+  String get feedDrank;
+
+  /// No description provided for @feedLeftover.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} left over'**
+  String feedLeftover(String amount);
+
+  /// No description provided for @feedDrankMoreThanPrepared.
+  ///
+  /// In en, this message translates to:
+  /// **'More than was prepared?'**
+  String get feedDrankMoreThanPrepared;
+
+  /// No description provided for @feedWhichBottle.
+  ///
+  /// In en, this message translates to:
+  /// **'Which bottle?'**
+  String get feedWhichBottle;
+
+  /// No description provided for @feedNoBottlesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No bottles yet — add them in Settings → My bottles.'**
+  String get feedNoBottlesYet;
+
+  /// No description provided for @photoPrivacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your photos stay on this phone'**
+  String get photoPrivacyTitle;
+
+  /// No description provided for @photoPrivacyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos are saved only inside this app on this device. The app has no internet access, so nothing is ever uploaded or shared unless you export a backup yourself.\n\nAndroid may ask for camera access the first time you take a photo.'**
+  String get photoPrivacyBody;
+
+  /// No description provided for @photoPrivacyContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get photoPrivacyContinue;
+
+  /// No description provided for @photoTakePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get photoTakePhoto;
+
+  /// No description provided for @photoChooseFromGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get photoChooseFromGallery;
+
+  /// No description provided for @photoCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Caption'**
+  String get photoCaption;
+
+  /// No description provided for @photoCompare.
+  ///
+  /// In en, this message translates to:
+  /// **'First vs latest'**
+  String get photoCompare;
+
+  /// No description provided for @photoAddOtherDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Add for another day'**
+  String get photoAddOtherDay;
+
+  /// No description provided for @photoEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No photos yet.\nTake one photo a day and watch your baby grow.'**
+  String get photoEmpty;
+
+  /// No description provided for @photoToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s photo'**
+  String get photoToday;
+
+  /// No description provided for @photoAddToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Add today\'s photo'**
+  String get photoAddToday;
+
+  /// No description provided for @photoReplace.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace'**
+  String get photoReplace;
+
+  /// No description provided for @photoDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this photo?'**
+  String get photoDeleteTitle;
+
+  /// No description provided for @ageBeforeBirth.
+  ///
+  /// In en, this message translates to:
+  /// **'Before birth'**
+  String get ageBeforeBirth;
+
+  /// No description provided for @ageDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Birth day} one{1 day old} other{{count} days old}}'**
+  String ageDays(int count);
+
+  /// No description provided for @ageMonthsDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{months} mo {days} d'**
+  String ageMonthsDays(int months, int days);
+
+  /// No description provided for @ageYearsMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'{years} yr {months} mo'**
+  String ageYearsMonths(int years, int months);
+
+  /// No description provided for @navMemories.
+  ///
+  /// In en, this message translates to:
+  /// **'Memories'**
+  String get navMemories;
+
+  /// No description provided for @memoriesTabPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos'**
+  String get memoriesTabPhotos;
+
+  /// No description provided for @milestoneNoAchievedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap \"Upcoming\" to log a preset,\nor use the button below for a custom one.'**
+  String get milestoneNoAchievedHint;
+
+  /// No description provided for @skinTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Skin conditions'**
+  String get skinTitle;
+
+  /// No description provided for @skinNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New skin condition'**
+  String get skinNew;
+
+  /// No description provided for @skinEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit skin condition'**
+  String get skinEdit;
+
+  /// No description provided for @skinTabActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active ({count})'**
+  String skinTabActive(int count);
+
+  /// No description provided for @skinTabHealed.
+  ///
+  /// In en, this message translates to:
+  /// **'Healed ({count})'**
+  String skinTabHealed(int count);
+
+  /// No description provided for @skinEmptyActive.
+  ///
+  /// In en, this message translates to:
+  /// **'No skin conditions being tracked.\nTap + to start one — you can add a photo each day to show the doctor how it\'s changing.'**
+  String get skinEmptyActive;
+
+  /// No description provided for @skinEmptyHealed.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing healed yet.'**
+  String get skinEmptyHealed;
+
+  /// No description provided for @skinUpdateDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Update today'**
+  String get skinUpdateDue;
+
+  /// No description provided for @skinSince.
+  ///
+  /// In en, this message translates to:
+  /// **'Since {date}'**
+  String skinSince(String date);
+
+  /// No description provided for @skinDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{1 day} other{{count} days}}'**
+  String skinDays(int count);
+
+  /// No description provided for @skinHealedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Healed {date}'**
+  String skinHealedOn(String date);
+
+  /// No description provided for @skinReminderAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily reminder at {time}'**
+  String skinReminderAt(String time);
+
+  /// No description provided for @skinSeverityTrend.
+  ///
+  /// In en, this message translates to:
+  /// **'Severity over time'**
+  String get skinSeverityTrend;
+
+  /// No description provided for @skinNoUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'No updates yet. Add today\'s to start the timeline.'**
+  String get skinNoUpdates;
+
+  /// No description provided for @skinExportPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Export for doctor (PDF)'**
+  String get skinExportPdf;
+
+  /// No description provided for @skinMarkHealed.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark healed'**
+  String get skinMarkHealed;
+
+  /// No description provided for @skinReopen.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark active again'**
+  String get skinReopen;
+
+  /// No description provided for @skinUpdateToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Add today\'s update'**
+  String get skinUpdateToday;
+
+  /// No description provided for @skinEditToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit today\'s update'**
+  String get skinEditToday;
+
+  /// No description provided for @skinDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {name} and all its updates?'**
+  String skinDeleteTitle(String name);
+
+  /// No description provided for @skinDeleteUpdateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this update?'**
+  String get skinDeleteUpdateTitle;
+
+  /// No description provided for @skinTreatmentValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Treatment: {treatment}'**
+  String skinTreatmentValue(String treatment);
+
+  /// No description provided for @skinName.
+  ///
+  /// In en, this message translates to:
+  /// **'Condition *'**
+  String get skinName;
+
+  /// No description provided for @skinBodyArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Where on the body?'**
+  String get skinBodyArea;
+
+  /// No description provided for @skinBegan.
+  ///
+  /// In en, this message translates to:
+  /// **'Began on'**
+  String get skinBegan;
+
+  /// No description provided for @skinRemindDaily.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me to update it daily'**
+  String get skinRemindDaily;
+
+  /// No description provided for @skinReminderTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder time'**
+  String get skinReminderTime;
+
+  /// No description provided for @skinUpdateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Skin update'**
+  String get skinUpdateTitle;
+
+  /// No description provided for @skinSeverity.
+  ///
+  /// In en, this message translates to:
+  /// **'How does it look?'**
+  String get skinSeverity;
+
+  /// No description provided for @skinSeverity0.
+  ///
+  /// In en, this message translates to:
+  /// **'0 · Clear'**
+  String get skinSeverity0;
+
+  /// No description provided for @skinSeverity1.
+  ///
+  /// In en, this message translates to:
+  /// **'1 · Mild'**
+  String get skinSeverity1;
+
+  /// No description provided for @skinSeverity2.
+  ///
+  /// In en, this message translates to:
+  /// **'2 · Moderate'**
+  String get skinSeverity2;
+
+  /// No description provided for @skinSeverity3.
+  ///
+  /// In en, this message translates to:
+  /// **'3 · Severe'**
+  String get skinSeverity3;
+
+  /// No description provided for @skinSeverity4.
+  ///
+  /// In en, this message translates to:
+  /// **'4 · Very severe'**
+  String get skinSeverity4;
+
+  /// No description provided for @skinTreatment.
+  ///
+  /// In en, this message translates to:
+  /// **'Treatment (optional)'**
+  String get skinTreatment;
+
+  /// No description provided for @skinTreatmentHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. moisturiser, hydrocortisone 1%'**
+  String get skinTreatmentHint;
+
+  /// No description provided for @skinAddPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a photo'**
+  String get skinAddPhoto;
+
+  /// No description provided for @skinCardNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Track a rash, eczema or other skin condition day by day, with photos for the doctor'**
+  String get skinCardNone;
+
+  /// No description provided for @skinCardDue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{1 needs today\'s update} other{{count} need today\'s update}}'**
+  String skinCardDue(int count);
+
+  /// No description provided for @backupPreparing.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing backup…'**
+  String get backupPreparing;
+
+  /// No description provided for @backupFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t create the backup.'**
+  String get backupFailed;
+
+  /// No description provided for @backupSavedTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup saved to:'**
+  String get backupSavedTo;
+
+  /// No description provided for @backupShareSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Baby Tracker backup'**
+  String get backupShareSubject;
+
+  /// No description provided for @importIncludesPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{Includes 1 photo.} other{Includes {count} photos.}}'**
+  String importIncludesPhotos(int count);
+
+  /// No description provided for @widgetFeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Feed'**
+  String get widgetFeed;
+
+  /// No description provided for @widgetStopFeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop feed'**
+  String get widgetStopFeed;
+
+  /// No description provided for @widgetDiaper.
+  ///
+  /// In en, this message translates to:
+  /// **'Diaper'**
+  String get widgetDiaper;
+
+  /// No description provided for @widgetSleep.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep'**
+  String get widgetSleep;
+
+  /// No description provided for @widgetWakeUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Woke up'**
+  String get widgetWakeUp;
+
+  /// No description provided for @widgetFeedingFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Feeding {duration}'**
+  String widgetFeedingFor(String duration);
+
+  /// No description provided for @widgetFedAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'Fed {ago}'**
+  String widgetFedAgo(String ago);
+
+  /// No description provided for @widgetNoFeedsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No feeds yet'**
+  String get widgetNoFeedsYet;
+
+  /// No description provided for @widgetChangedAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'Changed {ago}'**
+  String widgetChangedAgo(String ago);
+
+  /// No description provided for @widgetNoDiapersYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No diapers yet'**
+  String get widgetNoDiapersYet;
+
+  /// No description provided for @widgetAsleepFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Asleep {duration}'**
+  String widgetAsleepFor(String duration);
+
+  /// No description provided for @widgetAwakeFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Awake since {ago}'**
+  String widgetAwakeFor(String ago);
+
+  /// No description provided for @widgetStopSleepFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop the sleep timer first'**
+  String get widgetStopSleepFirst;
+
+  /// No description provided for @widgetStopFeedFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop the feeding timer first'**
+  String get widgetStopFeedFirst;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

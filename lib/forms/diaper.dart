@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
 
 const _diaperBrands = [
@@ -210,12 +212,12 @@ class _DiaperFormState extends State<DiaperForm> {
               PillSegmentedOption(
                 value: 'pee',
                 label: l.diaperPeeLabel,
-                icon: Icons.water_drop,
+                icon: AppIcons.pee,
               ),
               PillSegmentedOption(
                 value: 'poo',
                 label: l.diaperPooLabel,
-                icon: Icons.baby_changing_station,
+                icon: AppIcons.poo,
               ),
               PillSegmentedOption(value: 'both', label: l.diaperBoth),
             ],
@@ -277,8 +279,9 @@ class _DiaperFormState extends State<DiaperForm> {
                 padding: const EdgeInsets.only(top: 8),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.warning_amber_rounded,
+                    AppIcon(
+                      AppIcons.warning,
+                      style: AppIconStyle.line,
                       color: Colors.orange.shade700,
                       size: 18,
                     ),
@@ -500,8 +503,9 @@ class _DiaperFormState extends State<DiaperForm> {
                         Container(color: Colors.black.withAlpha(50)),
                       if (selected)
                         const Center(
-                          child: Icon(
-                            Icons.check_circle,
+                          child: AppIcon(
+                            AppIcons.given,
+                            style: AppIconStyle.line,
                             color: Colors.white,
                             size: 28,
                           ),

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Text-only buttons: RemoteViews can't render the app's SVG icon pack
+     without converting every icon to a VectorDrawable. All strings shown
+     here are pushed from Dart (localized) by WidgetService; the defaults
+     below only appear before the first push. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/widget_root_bg"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:id="@+id/widget_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/widget_avatar"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:background="@drawable/widget_avatar_bg"
+            android:gravity="center"
+            android:text="B"
+            android:textColor="#FFFFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/widget_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Baby"
+            android:textColor="@color/widget_text_primary"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal">
+
+        <TextView android:id="@+id/widget_feed_status"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:maxLines="2" android:ellipsize="end" android:gravity="center"
+            android:textSize="11sp" android:textColor="@color/widget_text_secondary" android:text="—" />
+        <TextView android:id="@+id/widget_diaper_status"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:maxLines="2" android:ellipsize="end" android:gravity="center"
+            android:textSize="11sp" android:textColor="@color/widget_text_secondary" android:text="—" />
+        <TextView android:id="@+id/widget_sleep_status"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:maxLines="2" android:ellipsize="end" android:gravity="center"
+            android:textSize="11sp" android:textColor="@color/widget_text_secondary" android:text="—" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="6dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView android:id="@+id/btn_feed"
+            android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1"
+            android:layout_marginEnd="4dp" android:gravity="center"
+            android:background="@drawable/widget_btn_feed_bg" android:textColor="@color/widget_feed_text"
+            android:textSize="13sp" android:textStyle="bold" android:text="Feed" />
+        <TextView android:id="@+id/btn_diaper"
+            android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1"
+            android:layout_marginStart="4dp" android:layout_marginEnd="4dp" android:gravity="center"
+            android:background="@drawable/widget_btn_diaper_bg" android:textColor="@color/widget_diaper_text"
+            android:textSize="13sp" android:textStyle="bold" android:text="Diaper" />
+        <TextView android:id="@+id/btn_sleep"
+            android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1"
+            android:layout_marginStart="4dp" android:gravity="center"
+            android:background="@drawable/widget_btn_sleep_bg" android:textColor="@color/widget_sleep_text"
+            android:textSize="13sp" android:textStyle="bold" android:text="Sleep" />
+    </LinearLayout>
+</LinearLayout>

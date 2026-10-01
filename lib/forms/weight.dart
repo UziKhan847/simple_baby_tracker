@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
 
 /// What the baby was wearing when weighed — a plain number without this is
@@ -11,12 +13,13 @@ import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
 /// hundreds of grams.
 const weighConditions = ['naked', 'diaper', 'light_clothes', 'dressed'];
 
-String weighConditionLabel(String condition, AppLocalizations l) => switch (condition) {
-  'naked' => l.weighConditionNaked,
-  'diaper' => l.weighConditionDiaper,
-  'light_clothes' => l.weighConditionLightClothes,
-  _ => l.weighConditionDressed,
-};
+String weighConditionLabel(String condition, AppLocalizations l) =>
+    switch (condition) {
+      'naked' => l.weighConditionNaked,
+      'diaper' => l.weighConditionDiaper,
+      'light_clothes' => l.weighConditionLightClothes,
+      _ => l.weighConditionDressed,
+    };
 
 class WeightForm extends StatefulWidget {
   final DateTime initialDate;
@@ -147,9 +150,13 @@ class _WeightFormState extends State<WeightForm> {
                     setState(() {
                       if (current != null) {
                         if (!_inputInKg && v) {
-                          _weightCtrl.text = lbsToKg(current).toStringAsFixed(3);
+                          _weightCtrl.text = lbsToKg(
+                            current,
+                          ).toStringAsFixed(3);
                         } else if (_inputInKg && !v) {
-                          _weightCtrl.text = kgToLbs(current).toStringAsFixed(2);
+                          _weightCtrl.text = kgToLbs(
+                            current,
+                          ).toStringAsFixed(2);
                         }
                       }
                       _inputInKg = v;
@@ -187,7 +194,8 @@ class _WeightFormState extends State<WeightForm> {
               lastDate: widget.lastWeightDate,
               useKg: useKg,
               conditionChanged:
-                  widget.lastCondition != null && widget.lastCondition != _condition,
+                  widget.lastCondition != null &&
+                  widget.lastCondition != _condition,
               lastConditionLabel: widget.lastCondition != null
                   ? weighConditionLabel(widget.lastCondition!, l)
                   : null,
@@ -209,14 +217,19 @@ class _WeightFormState extends State<WeightForm> {
           ],
 
           const SizedBox(height: 16),
-          Text(l.growthMeasurementsOptional, style: Theme.of(context).textTheme.labelLarge),
+          Text(
+            l.growthMeasurementsOptional,
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
           const SizedBox(height: 8),
           Row(
             children: [
               Expanded(
                 child: TextField(
                   controller: _heightCtrl,
-                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   onChanged: (_) => setState(() {}),
                   decoration: InputDecoration(
                     labelText: l.growthHeightCm,
@@ -229,7 +242,9 @@ class _WeightFormState extends State<WeightForm> {
               Expanded(
                 child: TextField(
                   controller: _headCtrl,
-                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   onChanged: (_) => setState(() {}),
                   decoration: InputDecoration(
                     labelText: l.growthHeadCm,
@@ -290,7 +305,7 @@ class _WeightComparison extends StatelessWidget {
     final diff = currentKg - lastKg;
     final isGain = diff >= 0;
     final color = isGain ? Colors.green : Colors.red;
-    final arrow = isGain ? Icons.arrow_upward : Icons.arrow_downward;
+    final arrow = isGain ? AppIcons.arrowUp : AppIcons.arrowDown;
     final diffStr = formatWeight(diff.abs(), useKg: useKg);
     final gainLossLabel = isGain
         ? l.weightGain(diffStr)
@@ -312,7 +327,7 @@ class _WeightComparison extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(arrow, color: color),
+              AppIcon(arrow, color: color),
               const SizedBox(width: 8),
               Expanded(
                 child: Column(
@@ -320,7 +335,10 @@ class _WeightComparison extends StatelessWidget {
                   children: [
                     Text(
                       gainLossLabel,
-                      style: TextStyle(color: color, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: color,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     Text(
                       previousLabel,
@@ -335,12 +353,20 @@ class _WeightComparison extends StatelessWidget {
             const SizedBox(height: 6),
             Row(
               children: [
-                const Icon(Icons.info_outline, size: 14, color: Colors.orange),
+                const AppIcon(
+                  AppIcons.info,
+                  style: AppIconStyle.line,
+                  size: 14,
+                  color: Colors.orange,
+                ),
                 const SizedBox(width: 6),
                 Expanded(
                   child: Text(
                     l.weighConditionChangedWarning(lastConditionLabel!),
-                    style: const TextStyle(fontSize: 11.5, color: Colors.orange),
+                    style: const TextStyle(
+                      fontSize: 11.5,
+                      color: Colors.orange,
+                    ),
                   ),
                 ),
               ],

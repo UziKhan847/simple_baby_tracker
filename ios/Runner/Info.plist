@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Take daily photos of your baby and skin-condition photos. Photos are stored only on this device.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Choose existing photos for your baby's timeline or skin-condition log. Photos are stored only on this device.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

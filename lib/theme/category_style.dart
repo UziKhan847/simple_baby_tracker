@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 
 /// Icon + strong/soft color pair for a given tracker entry [type].
 ///
@@ -10,7 +11,8 @@ import 'package:simple_baby_tracker/theme/app_colors.dart';
 class CategoryStyle {
   const CategoryStyle(this.icon, this.strong, this.soft);
 
-  final IconData icon;
+  /// An [AppIcons] name, rendered with [AppIcon].
+  final String icon;
   final Color strong;
   final Color soft;
 }
@@ -18,30 +20,65 @@ class CategoryStyle {
 CategoryStyle categoryStyleFor(String eventType, AppColors c) {
   switch (eventType) {
     case 'diaper':
-      return CategoryStyle(Icons.baby_changing_station, c.diaperStrong, c.diaperSoft);
+      return CategoryStyle(AppIcons.diaper, c.diaperStrong, c.diaperSoft);
     case 'feeding':
-      return CategoryStyle(Icons.local_drink, c.feedingStrong, c.feedingSoft);
+      return CategoryStyle(AppIcons.bottle, c.feedingStrong, c.feedingSoft);
+    case 'breastfeeding':
+      return CategoryStyle(
+        AppIcons.breastfeeding,
+        c.feedingStrong,
+        c.feedingSoft,
+      );
     case 'pumping':
-      return CategoryStyle(Icons.water_drop, c.miscStrong, c.miscSoft);
+      return CategoryStyle(AppIcons.pumping, c.miscStrong, c.miscSoft);
     case 'sleep':
-      return CategoryStyle(Icons.bedtime, c.sleepStrong, c.sleepSoft);
+      return CategoryStyle(AppIcons.sleep, c.sleepStrong, c.sleepSoft);
     case 'temperature':
-      return CategoryStyle(Icons.thermostat, c.temperatureStrong, c.temperatureSoft);
+      return CategoryStyle(
+        AppIcons.temperature,
+        c.temperatureStrong,
+        c.temperatureSoft,
+      );
     case 'weight':
-      return CategoryStyle(Icons.monitor_weight, c.weightStrong, c.weightSoft);
+      return CategoryStyle(AppIcons.weight, c.weightStrong, c.weightSoft);
     case 'tummy_time':
-      return CategoryStyle(Icons.child_care, c.growthStrong, c.growthSoft);
+      return CategoryStyle(AppIcons.tummyTime, c.growthStrong, c.growthSoft);
     case 'medication':
-      return CategoryStyle(Icons.medication, c.medicationStrong, c.medicationSoft);
+      return CategoryStyle(
+        AppIcons.medication,
+        c.medicationStrong,
+        c.medicationSoft,
+      );
     case 'doctor_visit':
-      return CategoryStyle(Icons.local_hospital_outlined, c.miscStrong, c.miscSoft);
+      return CategoryStyle(AppIcons.doctorVisit, c.miscStrong, c.miscSoft);
     case 'note':
-      return CategoryStyle(Icons.edit_note, c.noteStrong, c.noteSoft);
+      return CategoryStyle(AppIcons.note, c.noteStrong, c.noteSoft);
     case 'bath':
-      return CategoryStyle(Icons.bathtub, c.miscStrong, c.miscSoft);
+      return CategoryStyle(AppIcons.bath, c.miscStrong, c.miscSoft);
     case 'solids':
-      return CategoryStyle(Icons.restaurant, c.growthStrong, c.growthSoft);
+      return CategoryStyle(AppIcons.solidFood, c.growthStrong, c.growthSoft);
+    case 'skin':
+      return CategoryStyle(
+        AppIcons.rash,
+        c.temperatureStrong,
+        c.temperatureSoft,
+      );
     default:
-      return CategoryStyle(Icons.circle, c.neutralStrong, c.neutralSoft);
+      return CategoryStyle(AppIcons.other, c.neutralStrong, c.neutralSoft);
   }
 }
+
+/// A named colour pair from [AppColors] — used by [AppIcons.milestoneColor],
+/// which refers to pairs by name ('feeding', 'sleep', …).
+(Color, Color) colorPairNamed(String name, AppColors c) => switch (name) {
+  'feeding' => (c.feedingStrong, c.feedingSoft),
+  'diaper' => (c.diaperStrong, c.diaperSoft),
+  'sleep' => (c.sleepStrong, c.sleepSoft),
+  'weight' => (c.weightStrong, c.weightSoft),
+  'temperature' => (c.temperatureStrong, c.temperatureSoft),
+  'growth' => (c.growthStrong, c.growthSoft),
+  'medication' => (c.medicationStrong, c.medicationSoft),
+  'misc' => (c.miscStrong, c.miscSoft),
+  'note' => (c.noteStrong, c.noteSoft),
+  _ => (c.neutralStrong, c.neutralSoft),
+};

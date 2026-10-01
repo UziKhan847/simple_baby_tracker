@@ -10,16 +10,26 @@ class EntryRow extends StatelessWidget {
     required this.icon,
     required this.color,
     this.softColor,
+    this.leading,
     required this.title,
+    this.titleBadge,
     this.subtitle,
     this.trailing,
     this.onTap,
     this.margin = const EdgeInsets.symmetric(vertical: 4),
   });
 
-  final IconData icon;
+  /// An [AppIcons] name.
+  final String icon;
   final Color color;
   final Color? softColor;
+
+  /// Replaces the default [CategoryIconBadge], e.g. a milestone [AppAvatar].
+  final Widget? leading;
+
+  /// A small marker shown right after the title (e.g. temperature severity
+  /// or a rash flag).
+  final Widget? titleBadge;
   final String title;
   final String? subtitle;
   final Widget? trailing;
@@ -53,13 +63,32 @@ class EntryRow extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
             child: Row(
               children: [
-                CategoryIconBadge(icon: icon, color: color, softColor: softColor),
+                leading ??
+                    CategoryIconBadge(
+                      icon: icon,
+                      color: color,
+                      softColor: softColor,
+                    ),
                 const SizedBox(width: 14),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(title, style: theme.textTheme.titleSmall),
+                      if (titleBadge == null)
+                        Text(title, style: theme.textTheme.titleSmall)
+                      else
+                        Row(
+                          children: [
+                            Flexible(
+                              child: Text(
+                                title,
+                                style: theme.textTheme.titleSmall,
+                              ),
+                            ),
+                            const SizedBox(width: 6),
+                            titleBadge!,
+                          ],
+                        ),
                       if (subtitle != null) ...[
                         const SizedBox(height: 1),
                         Text(

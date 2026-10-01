@@ -108,6 +108,14 @@ class TimerService extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Stops the 1-second UI tick without touching the timer itself. Used by
+  /// the home-screen widget's headless engine, which has no UI to refresh
+  /// and shouldn't keep waking up once a second after handling a tap.
+  void stopTicking() {
+    _ticker?.cancel();
+    _ticker = null;
+  }
+
   void _restartTicker() {
     _ticker?.cancel();
     _ticker = _active == null
@@ -137,7 +145,11 @@ class TimerService extends ChangeNotifier {
   Future<void> startFeeding(String babyId, {String side = 'left'}) async {
     _babyId = babyId;
     final startedAt = DateTime.now();
-    _active = ActiveTimer(kind: TimerKind.feeding, startedAt: startedAt, side: side);
+    _active = ActiveTimer(
+      kind: TimerKind.feeding,
+      startedAt: startedAt,
+      side: side,
+    );
     _restartTicker();
     await _persist();
     unawaited(_showNotification('Feeding timer running 🍼', startedAt));
@@ -163,8 +175,12 @@ class TimerService extends ChangeNotifier {
     _active = a.copyWith(
       startedAt: DateTime.now(),
       side: nextSide,
-      leftMinutes: a.side == 'left' ? a.leftMinutes + elapsedMin : a.leftMinutes,
-      rightMinutes: a.side == 'right' ? a.rightMinutes + elapsedMin : a.rightMinutes,
+      leftMinutes: a.side == 'left'
+          ? a.leftMinutes + elapsedMin
+          : a.leftMinutes,
+      rightMinutes: a.side == 'right'
+          ? a.rightMinutes + elapsedMin
+          : a.rightMinutes,
     );
     await _persist();
     notifyListeners();
@@ -186,8 +202,12 @@ class TimerService extends ChangeNotifier {
     if (a.kind != TimerKind.feeding) return a;
     final elapsedMin = a.currentSegmentElapsed.inMinutes;
     return a.copyWith(
-      leftMinutes: a.side == 'left' ? a.leftMinutes + elapsedMin : a.leftMinutes,
-      rightMinutes: a.side == 'right' ? a.rightMinutes + elapsedMin : a.rightMinutes,
+      leftMinutes: a.side == 'left'
+          ? a.leftMinutes + elapsedMin
+          : a.leftMinutes,
+      rightMinutes: a.side == 'right'
+          ? a.rightMinutes + elapsedMin
+          : a.rightMinutes,
     );
   }
 

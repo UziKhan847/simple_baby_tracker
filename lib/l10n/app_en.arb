@@ -573,17 +573,17 @@
   "@notifPermissionRequired": {},
   "exportTitle": "Export & backup",
   "@exportTitle": {},
-  "exportJson": "Export as JSON",
+  "exportJson": "Export backup",
   "@exportJson": {},
-  "exportJsonDesc": "Raw data for backup",
+  "exportJsonDesc": "All data and photos in one .zip file",
   "@exportJsonDesc": {},
   "exportPdf": "Export as PDF",
   "@exportPdf": {},
   "exportPdfDesc": "Human-readable summary for your paediatrician",
   "@exportPdfDesc": {},
-  "importJson": "Import from JSON",
+  "importJson": "Restore backup",
   "@importJson": {},
-  "importJsonDesc": "Restore from a backup file",
+  "importJsonDesc": "From a .zip backup (or an older .json export)",
   "@importJsonDesc": {},
   "importDialogTitle": "Import data?",
   "@importDialogTitle": {},
@@ -625,39 +625,39 @@
   "@milestoneNotesHint": {},
   "milestoneNoAchieved": "No milestones logged yet.",
   "@milestoneNoAchieved": {},
-  "milestoneAllDone": "All preset milestones achieved! 🎉",
+  "milestoneAllDone": "All preset milestones achieved!",
   "@milestoneAllDone": {},
-  "milestoneFirstSmile": "😊 First smile",
+  "milestoneFirstSmile": "First smile",
   "@milestoneFirstSmile": {},
-  "milestoneFirstLaugh": "😂 First laugh",
+  "milestoneFirstLaugh": "First laugh",
   "@milestoneFirstLaugh": {},
-  "milestoneFirstTooth": "🦷 First tooth",
+  "milestoneFirstTooth": "First tooth",
   "@milestoneFirstTooth": {},
-  "milestoneRolledBackTummy": "🔄 Rolled back → tummy",
+  "milestoneRolledBackTummy": "Rolled back → tummy",
   "@milestoneRolledBackTummy": {},
-  "milestoneRolledTummyBack": "🔄 Rolled tummy → back",
+  "milestoneRolledTummyBack": "Rolled tummy → back",
   "@milestoneRolledTummyBack": {},
-  "milestoneSatUnsupported": "🧸 Sat unsupported",
+  "milestoneSatUnsupported": "Sat unsupported",
   "@milestoneSatUnsupported": {},
-  "milestoneStartedCrawling": "🐣 Started crawling",
+  "milestoneStartedCrawling": "Started crawling",
   "@milestoneStartedCrawling": {},
-  "milestonePulledToStand": "🏋️ Pulled to stand",
+  "milestonePulledToStand": "Pulled to stand",
   "@milestonePulledToStand": {},
-  "milestoneFirstSteps": "👣 First steps",
+  "milestoneFirstSteps": "First steps",
   "@milestoneFirstSteps": {},
-  "milestoneFirstWord": "💬 First word",
+  "milestoneFirstWord": "First word",
   "@milestoneFirstWord": {},
-  "milestoneFirstSolidFood": "🥣 First solid food",
+  "milestoneFirstSolidFood": "First solid food",
   "@milestoneFirstSolidFood": {},
-  "milestoneFirstHaircut": "✂️ First haircut",
+  "milestoneFirstHaircut": "First haircut",
   "@milestoneFirstHaircut": {},
-  "milestoneSleptThroughNight": "🌙 Slept through the night",
+  "milestoneSleptThroughNight": "Slept through the night",
   "@milestoneSleptThroughNight": {},
-  "milestoneWavedBye": "👋 Waved bye-bye",
+  "milestoneWavedBye": "Waved bye-bye",
   "@milestoneWavedBye": {},
-  "milestoneClappedHands": "👏 Clapped hands",
+  "milestoneClappedHands": "Clapped hands",
   "@milestoneClappedHands": {},
-  "milestoneFirstBirthday": "🎂 First birthday",
+  "milestoneFirstBirthday": "First birthday",
   "@milestoneFirstBirthday": {},
   "settingsTitle": "Settings",
   "@settingsTitle": {},
@@ -1233,5 +1233,373 @@
     }
   },
   "entryTypeSolids": "Solid food",
-  "@entryTypeSolids": {}
+  "@entryTypeSolids": {},
+  "feedAmountOz": "Amount (oz)",
+  "@feedAmountOz": {},
+  "notifFeedingReminderDescInterval": "Remind me {interval} after the last feed",
+  "@notifFeedingReminderDescInterval": {
+    "placeholders": {
+      "interval": {
+        "type": "String"
+      }
+    }
+  },
+  "notifDiaperReminderDescInterval": "Remind me {interval} after the last diaper",
+  "@notifDiaperReminderDescInterval": {
+    "placeholders": {
+      "interval": {
+        "type": "String"
+      }
+    }
+  },
+  "notifIntervalEvery": "Every {interval}",
+  "@notifIntervalEvery": {
+    "placeholders": {
+      "interval": {
+        "type": "String"
+      }
+    }
+  },
+  "notifIntervalTitle": "Reminder interval",
+  "@notifIntervalTitle": {},
+  "notifIntervalHours": "Hours",
+  "@notifIntervalHours": {},
+  "notifIntervalMinutes": "Minutes",
+  "@notifIntervalMinutes": {},
+  "notifIntervalTooShort": "At least {minutes} minutes",
+  "@notifIntervalTooShort": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsFeeding": "Feeding",
+  "@settingsFeeding": {},
+  "settingsTrackBottles": "Track bottles",
+  "@settingsTrackBottles": {},
+  "settingsTrackBottlesDesc": "Pick which bottle was used, and how much was prepared vs drunk",
+  "@settingsTrackBottlesDesc": {},
+  "bottlesTitle": "My bottles",
+  "@bottlesTitle": {},
+  "bottlesEmpty": "No bottles yet.\nAdd the bottles you use so you can pick one when logging a feed.",
+  "@bottlesEmpty": {},
+  "bottleAdd": "Add bottle",
+  "@bottleAdd": {},
+  "bottleEdit": "Edit bottle",
+  "@bottleEdit": {},
+  "bottleLabel": "Label / number (e.g. #3)",
+  "@bottleLabel": {},
+  "bottleBrand": "Brand / type (optional)",
+  "@bottleBrand": {},
+  "bottleCapacity": "Capacity (optional)",
+  "@bottleCapacity": {},
+  "bottleNipple": "Nipple size / flow (optional)",
+  "@bottleNipple": {},
+  "bottleMaterial": "Material",
+  "@bottleMaterial": {},
+  "bottleRetired": "Retired",
+  "@bottleRetired": {},
+  "bottleRetire": "Retire",
+  "@bottleRetire": {},
+  "bottleUnretire": "Use again",
+  "@bottleUnretire": {},
+  "bottleDeleteTitle": "Delete {name}?",
+  "@bottleDeleteTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "bottleDeleteBody": "Past feeds keep their amounts but will no longer show this bottle. To hide it from the picker but keep history, use Retire instead.",
+  "@bottleDeleteBody": {},
+  "feedPrepared": "Prepared",
+  "@feedPrepared": {},
+  "feedDrank": "Drank",
+  "@feedDrank": {},
+  "feedLeftover": "{amount} left over",
+  "@feedLeftover": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "feedDrankMoreThanPrepared": "More than was prepared?",
+  "@feedDrankMoreThanPrepared": {},
+  "feedWhichBottle": "Which bottle?",
+  "@feedWhichBottle": {},
+  "feedNoBottlesYet": "No bottles yet — add them in Settings → My bottles.",
+  "@feedNoBottlesYet": {},
+  "photoPrivacyTitle": "Your photos stay on this phone",
+  "@photoPrivacyTitle": {},
+  "photoPrivacyBody": "Photos are saved only inside this app on this device. The app has no internet access, so nothing is ever uploaded or shared unless you export a backup yourself.\n\nAndroid may ask for camera access the first time you take a photo.",
+  "@photoPrivacyBody": {},
+  "photoPrivacyContinue": "Continue",
+  "@photoPrivacyContinue": {},
+  "photoTakePhoto": "Take a photo",
+  "@photoTakePhoto": {},
+  "photoChooseFromGallery": "Choose from gallery",
+  "@photoChooseFromGallery": {},
+  "photoCaption": "Caption",
+  "@photoCaption": {},
+  "photoCompare": "First vs latest",
+  "@photoCompare": {},
+  "photoAddOtherDay": "Add for another day",
+  "@photoAddOtherDay": {},
+  "photoEmpty": "No photos yet.\nTake one photo a day and watch your baby grow.",
+  "@photoEmpty": {},
+  "photoToday": "Today's photo",
+  "@photoToday": {},
+  "photoAddToday": "Add today's photo",
+  "@photoAddToday": {},
+  "photoReplace": "Replace",
+  "@photoReplace": {},
+  "photoDeleteTitle": "Delete this photo?",
+  "@photoDeleteTitle": {},
+  "ageBeforeBirth": "Before birth",
+  "@ageBeforeBirth": {},
+  "ageDays": "{count, plural, =0{Birth day} one{1 day old} other{{count} days old}}",
+  "@ageDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ageMonthsDays": "{months} mo {days} d",
+  "@ageMonthsDays": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "ageYearsMonths": "{years} yr {months} mo",
+  "@ageYearsMonths": {
+    "placeholders": {
+      "years": {
+        "type": "int"
+      },
+      "months": {
+        "type": "int"
+      }
+    }
+  },
+  "navMemories": "Memories",
+  "@navMemories": {},
+  "memoriesTabPhotos": "Photos",
+  "@memoriesTabPhotos": {},
+  "milestoneNoAchievedHint": "Tap \"Upcoming\" to log a preset,\nor use the button below for a custom one.",
+  "@milestoneNoAchievedHint": {},
+  "skinTitle": "Skin conditions",
+  "@skinTitle": {},
+  "skinNew": "New skin condition",
+  "@skinNew": {},
+  "skinEdit": "Edit skin condition",
+  "@skinEdit": {},
+  "skinTabActive": "Active ({count})",
+  "@skinTabActive": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "skinTabHealed": "Healed ({count})",
+  "@skinTabHealed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "skinEmptyActive": "No skin conditions being tracked.\nTap + to start one — you can add a photo each day to show the doctor how it's changing.",
+  "@skinEmptyActive": {},
+  "skinEmptyHealed": "Nothing healed yet.",
+  "@skinEmptyHealed": {},
+  "skinUpdateDue": "Update today",
+  "@skinUpdateDue": {},
+  "skinSince": "Since {date}",
+  "@skinSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "skinDays": "{count, plural, one{1 day} other{{count} days}}",
+  "@skinDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "skinHealedOn": "Healed {date}",
+  "@skinHealedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "skinReminderAt": "Daily reminder at {time}",
+  "@skinReminderAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "skinSeverityTrend": "Severity over time",
+  "@skinSeverityTrend": {},
+  "skinNoUpdates": "No updates yet. Add today's to start the timeline.",
+  "@skinNoUpdates": {},
+  "skinExportPdf": "Export for doctor (PDF)",
+  "@skinExportPdf": {},
+  "skinMarkHealed": "Mark healed",
+  "@skinMarkHealed": {},
+  "skinReopen": "Mark active again",
+  "@skinReopen": {},
+  "skinUpdateToday": "Add today's update",
+  "@skinUpdateToday": {},
+  "skinEditToday": "Edit today's update",
+  "@skinEditToday": {},
+  "skinDeleteTitle": "Delete {name} and all its updates?",
+  "@skinDeleteTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "skinDeleteUpdateTitle": "Delete this update?",
+  "@skinDeleteUpdateTitle": {},
+  "skinTreatmentValue": "Treatment: {treatment}",
+  "@skinTreatmentValue": {
+    "placeholders": {
+      "treatment": {
+        "type": "String"
+      }
+    }
+  },
+  "skinName": "Condition *",
+  "@skinName": {},
+  "skinBodyArea": "Where on the body?",
+  "@skinBodyArea": {},
+  "skinBegan": "Began on",
+  "@skinBegan": {},
+  "skinRemindDaily": "Remind me to update it daily",
+  "@skinRemindDaily": {},
+  "skinReminderTime": "Reminder time",
+  "@skinReminderTime": {},
+  "skinUpdateTitle": "Skin update",
+  "@skinUpdateTitle": {},
+  "skinSeverity": "How does it look?",
+  "@skinSeverity": {},
+  "skinSeverity0": "0 · Clear",
+  "@skinSeverity0": {},
+  "skinSeverity1": "1 · Mild",
+  "@skinSeverity1": {},
+  "skinSeverity2": "2 · Moderate",
+  "@skinSeverity2": {},
+  "skinSeverity3": "3 · Severe",
+  "@skinSeverity3": {},
+  "skinSeverity4": "4 · Very severe",
+  "@skinSeverity4": {},
+  "skinTreatment": "Treatment (optional)",
+  "@skinTreatment": {},
+  "skinTreatmentHint": "e.g. moisturiser, hydrocortisone 1%",
+  "@skinTreatmentHint": {},
+  "skinAddPhoto": "Add a photo",
+  "@skinAddPhoto": {},
+  "skinCardNone": "Track a rash, eczema or other skin condition day by day, with photos for the doctor",
+  "@skinCardNone": {},
+  "skinCardDue": "{count, plural, one{1 needs today's update} other{{count} need today's update}}",
+  "@skinCardDue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backupPreparing": "Preparing backup…",
+  "@backupPreparing": {},
+  "backupFailed": "Couldn't create the backup.",
+  "@backupFailed": {},
+  "backupSavedTo": "Backup saved to:",
+  "@backupSavedTo": {},
+  "backupShareSubject": "Baby Tracker backup",
+  "@backupShareSubject": {},
+  "importIncludesPhotos": "{count, plural, one{Includes 1 photo.} other{Includes {count} photos.}}",
+  "@importIncludesPhotos": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "widgetFeed": "Feed",
+  "@widgetFeed": {},
+  "widgetStopFeed": "Stop feed",
+  "@widgetStopFeed": {},
+  "widgetDiaper": "Diaper",
+  "@widgetDiaper": {},
+  "widgetSleep": "Sleep",
+  "@widgetSleep": {},
+  "widgetWakeUp": "Woke up",
+  "@widgetWakeUp": {},
+  "widgetFeedingFor": "Feeding {duration}",
+  "@widgetFeedingFor": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "widgetFedAgo": "Fed {ago}",
+  "@widgetFedAgo": {
+    "placeholders": {
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "widgetNoFeedsYet": "No feeds yet",
+  "@widgetNoFeedsYet": {},
+  "widgetChangedAgo": "Changed {ago}",
+  "@widgetChangedAgo": {
+    "placeholders": {
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "widgetNoDiapersYet": "No diapers yet",
+  "@widgetNoDiapersYet": {},
+  "widgetAsleepFor": "Asleep {duration}",
+  "@widgetAsleepFor": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "widgetAwakeFor": "Woke {ago}",
+  "@widgetAwakeFor": {
+    "placeholders": {
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "widgetStopSleepFirst": "Stop the sleep timer first",
+  "@widgetStopSleepFirst": {},
+  "widgetStopFeedFirst": "Stop the feeding timer first",
+  "@widgetStopFeedFirst": {}
 }

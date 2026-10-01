@@ -3,10 +3,15 @@ import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/models/milestone_entry.dart';
 import 'package:simple_baby_tracker/pages/foods.dart';
+import 'package:simple_baby_tracker/pages/photos.dart';
 import 'package:simple_baby_tracker/pages/vaccinations.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
+import 'package:simple_baby_tracker/theme/category_style.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_avatar.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 import 'package:simple_baby_tracker/widgets/entry_row.dart';
 import 'package:simple_baby_tracker/widgets/gradient_pill_button.dart';
 
@@ -38,11 +43,15 @@ class MilestonesPage extends StatefulWidget {
   final String babyName;
   final Map<String, List<TrackerEvent>> data;
 
+  /// For showing the baby's age on each photo in the Photos tab.
+  final DateTime? birthDate;
+
   const MilestonesPage({
     super.key,
     required this.babyId,
     required this.babyName,
     required this.data,
+    this.birthDate,
   });
 
   @override
@@ -62,7 +71,11 @@ class _MilestonesPageState extends State<MilestonesPage>
   @override
   void initState() {
     super.initState();
-    _tabs = TabController(length: 2, vsync: this);
+    _tabs = TabController(length: 3, vsync: this)
+      // The "Custom milestone" button only makes sense on milestone tabs.
+      ..addListener(() {
+        if (mounted) setState(() {});
+      });
     _load();
   }
 
@@ -106,10 +119,10 @@ class _MilestonesPageState extends State<MilestonesPage>
         builder: (ctx, set) => AlertDialog(
           title: Text(
             existing != null
-                ? 'Edit milestone'
+                ? l.milestoneEdit
                 : isPreset
                 ? _presetTitle(presetKey, l)
-                : 'Add milestone',
+                : l.milestoneAdd,
           ),
           content: SingleChildScrollView(
             child: Column(
@@ -119,8 +132,8 @@ class _MilestonesPageState extends State<MilestonesPage>
                   TextField(
                     controller: titleCtrl,
                     textCapitalization: TextCapitalization.sentences,
-                    decoration: const InputDecoration(
-                      labelText: 'Milestone name *',
+                    decoration: InputDecoration(
+                      labelText: l.milestoneName,
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -128,9 +141,13 @@ class _MilestonesPageState extends State<MilestonesPage>
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   dense: true,
-                  leading: const Icon(Icons.calendar_today, size: 20),
+                  leading: const AppIcon(
+                    AppIcons.calendar,
+                    style: AppIconStyle.line,
+                    size: 20,
+                  ),
                   title: Text(fullDate(pickedDate)),
-                  subtitle: const Text('Date achieved'),
+                  subtitle: Text(l.milestoneDate),
                   onTap: () async {
                     final p = await showDatePicker(
                       context: ctx,
@@ -145,9 +162,9 @@ class _MilestonesPageState extends State<MilestonesPage>
                 TextField(
                   controller: notesCtrl,
                   maxLines: 3,
-                  decoration: const InputDecoration(
-                    labelText: 'Notes (optional)',
-                    hintText: 'Any details worth remembering...',
+                  decoration: InputDecoration(
+                    labelText: l.milestoneNotes,
+                    hintText: l.milestoneNotesHint,
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -157,7 +174,7 @@ class _MilestonesPageState extends State<MilestonesPage>
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child: const Text('Cancel'),
+              child: Text(l.actionCancel),
             ),
             FilledButton(
               onPressed: () {
@@ -176,7 +193,7 @@ class _MilestonesPageState extends State<MilestonesPage>
                   ),
                 );
               },
-              child: const Text('Save'),
+              child: Text(l.actionSave),
             ),
           ],
         ),
@@ -199,19 +216,20 @@ class _MilestonesPageState extends State<MilestonesPage>
   }
 
   Future<void> _delete(MilestoneEntry m) async {
+    final l = AppLocalizations.of(context)!;
     final ok = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text('Delete milestone?'),
-        content: const Text('This cannot be undone.'),
+        title: Text(l.milestoneDeleteTitle),
+        content: Text(l.cannotUndo),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(l.actionCancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Delete'),
+            child: Text(l.actionDelete),
           ),
         ],
       ),
@@ -230,21 +248,19 @@ class _MilestonesPageState extends State<MilestonesPage>
     final l = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text(l.navMilestones),
+        title: Text(l.navMemories),
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: const Icon(Icons.restaurant_outlined),
+            icon: const AppIcon(AppIcons.foodsTried),
             tooltip: l.foodsTitle,
             onPressed: () => Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (_) => FoodsPage(data: widget.data),
-              ),
+              MaterialPageRoute(builder: (_) => FoodsPage(data: widget.data)),
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.vaccines_outlined),
+            icon: const AppIcon(AppIcons.vaccine),
             tooltip: l.navVaccinationsEntry,
             onPressed: () => Navigator.push(
               context,
@@ -262,18 +278,21 @@ class _MilestonesPageState extends State<MilestonesPage>
           controller: _tabs,
           isScrollable: true,
           tabAlignment: TabAlignment.start,
-          tabs: const [
-            Tab(text: 'Achieved'),
-            Tab(text: 'Upcoming'),
+          tabs: [
+            Tab(text: l.milestoneTabAchieved),
+            Tab(text: l.milestoneTabUpcoming),
+            Tab(text: l.memoriesTabPhotos),
           ],
         ),
       ),
-      floatingActionButton: GradientPillButton(
-        label: 'Custom milestone',
-        icon: Icons.add,
-        expand: false,
-        onPressed: () => _showMilestoneDialog(),
-      ),
+      floatingActionButton: _tabs.index == 2
+          ? null
+          : GradientPillButton(
+              label: l.milestoneCustomAdd,
+              icon: AppIcons.add,
+              expand: false,
+              onPressed: () => _showMilestoneDialog(),
+            ),
       body: _loading
           ? const Center(child: CircularProgressIndicator())
           : TabBarView(
@@ -288,6 +307,7 @@ class _MilestonesPageState extends State<MilestonesPage>
                   achieved: _achievedPresets,
                   onLog: (key) => _showMilestoneDialog(presetKey: key),
                 ),
+                PhotosView(babyId: widget.babyId, birthDate: widget.birthDate),
               ],
             ),
     );
@@ -318,14 +338,14 @@ class _AchievedTab extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.star_border,
+            AppIcon(
+              AppIcons.milestones,
               size: 52,
               color: theme.colorScheme.outlineVariant,
             ),
             const SizedBox(height: 14),
             Text(
-              'No milestones logged yet.',
+              l.milestoneNoAchieved,
               style: theme.textTheme.bodyLarge?.copyWith(
                 fontSize: 15,
                 color: theme.colorScheme.onSurfaceVariant,
@@ -333,7 +353,7 @@ class _AchievedTab extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'Tap "Upcoming" to log a preset,\nor use the button below for a custom one.',
+              l.milestoneNoAchievedHint,
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyMedium?.copyWith(
                 fontSize: 13.5,
@@ -359,16 +379,16 @@ class _AchievedTab extends StatelessWidget {
           confirmDismiss: (_) async => await showDialog<bool>(
             context: context,
             builder: (_) => AlertDialog(
-              title: const Text('Delete milestone?'),
-              content: const Text('This cannot be undone.'),
+              title: Text(l.milestoneDeleteTitle),
+              content: Text(l.cannotUndo),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context, false),
-                  child: const Text('Cancel'),
+                  child: Text(l.actionCancel),
                 ),
                 FilledButton(
                   onPressed: () => Navigator.pop(context, true),
-                  child: const Text('Delete'),
+                  child: Text(l.actionDelete),
                 ),
               ],
             ),
@@ -382,17 +402,30 @@ class _AchievedTab extends StatelessWidget {
               color: theme.colorScheme.error,
               borderRadius: BorderRadius.circular(18),
             ),
-            child: Icon(Icons.delete, color: theme.colorScheme.onError),
+            child: AppIcon(
+              AppIcons.delete,
+              style: AppIconStyle.line,
+              color: theme.colorScheme.onError,
+            ),
           ),
           child: EntryRow(
             margin: const EdgeInsets.symmetric(vertical: 5),
-            icon: Icons.check,
+            icon: AppIcons.check,
             color: colors.feedingStrong,
             softColor: colors.feedingSoft,
+            leading: _milestoneAvatar(
+              m.isPreset ? m.title : null,
+              colors,
+              achieved: true,
+            ),
             title: title,
             subtitle: fullDate(m.date),
             trailing: IconButton(
-              icon: const Icon(Icons.edit_outlined, size: 16),
+              icon: const AppIcon(
+                AppIcons.edit,
+                style: AppIconStyle.line,
+                size: 16,
+              ),
               color: theme.colorScheme.onSurfaceVariant,
               onPressed: () => onEdit(m),
             ),
@@ -420,7 +453,7 @@ class _AchievedTab extends StatelessWidget {
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: const Text('Close'),
+                          child: Text(l.actionClose),
                         ),
                       ],
                     ),
@@ -456,10 +489,16 @@ class _UpcomingTab extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('🎉', style: TextStyle(fontSize: 48)),
+            AppAvatar(
+              AppIcons.celebrate,
+              strong: colors.feedingStrong,
+              soft: colors.feedingSoft,
+              style: AppAvatarStyle.sticker,
+              size: 64,
+            ),
             const SizedBox(height: 12),
             Text(
-              'All preset milestones achieved!',
+              l.milestoneAllDone,
               style: theme.textTheme.bodyLarge?.copyWith(
                 fontSize: 15,
                 color: theme.colorScheme.onSurfaceVariant,
@@ -477,9 +516,10 @@ class _UpcomingTab extends StatelessWidget {
         final key = remaining[i];
         return EntryRow(
           margin: const EdgeInsets.symmetric(vertical: 5),
-          icon: Icons.circle,
+          icon: AppIcons.upcoming,
           color: colors.neutralStrong,
           softColor: colors.neutralSoft,
+          leading: _milestoneAvatar(key, colors, achieved: false),
           title: _presetTitle(key, l),
           trailing: _LogPill(onTap: () => onLog(key)),
         );
@@ -507,7 +547,7 @@ class _LogPill extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
           child: Text(
-            'Log',
+            AppLocalizations.of(context)!.actionLog,
             style: theme.textTheme.labelMedium?.copyWith(
               fontSize: 13.5,
               fontWeight: FontWeight.w700,
@@ -518,4 +558,26 @@ class _LogPill extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Each preset milestone's own icon and colour pair (custom milestones use
+/// the star on the feeding pair): a sticker once achieved, a coin while
+/// still upcoming.
+Widget _milestoneAvatar(
+  String? presetKey,
+  AppColors colors, {
+  required bool achieved,
+}) {
+  final icon = AppIcons.milestone[presetKey] ?? AppIcons.milestones;
+  final (strong, soft) = colorPairNamed(
+    AppIcons.milestoneColor[presetKey] ?? 'feeding',
+    colors,
+  );
+  return AppAvatar(
+    icon,
+    strong: strong,
+    soft: soft,
+    size: 40,
+    style: achieved ? AppAvatarStyle.sticker : AppAvatarStyle.coin,
+  );
 }

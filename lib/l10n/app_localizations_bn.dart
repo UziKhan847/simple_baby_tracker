@@ -814,55 +814,55 @@ class AppLocalizationsBn extends AppLocalizations {
   String get milestoneNoAchieved => 'এখনও কোনো মাইলস্টোন লগ করা হয়নি।';
 
   @override
-  String get milestoneAllDone => 'সমস্ত পূর্বনির্ধারিত মাইলস্টোন অর্জিত! 🎉';
+  String get milestoneAllDone => 'সমস্ত পূর্বনির্ধারিত মাইলস্টোন অর্জিত!';
 
   @override
-  String get milestoneFirstSmile => '😊 প্রথম হাসি';
+  String get milestoneFirstSmile => 'প্রথম হাসি';
 
   @override
-  String get milestoneFirstLaugh => '😂 প্রথম হাসি (সশব্দ)';
+  String get milestoneFirstLaugh => 'প্রথম হাসি (সশব্দ)';
 
   @override
-  String get milestoneFirstTooth => '🦷 প্রথম দাঁত';
+  String get milestoneFirstTooth => 'প্রথম দাঁত';
 
   @override
-  String get milestoneRolledBackTummy => '🔄 পিঠ থেকে পেটের ওপর গড়াল';
+  String get milestoneRolledBackTummy => 'পিঠ থেকে পেটের ওপর গড়াল';
 
   @override
-  String get milestoneRolledTummyBack => '🔄 পেট থেকে পিঠের ওপর গড়াল';
+  String get milestoneRolledTummyBack => 'পেট থেকে পিঠের ওপর গড়াল';
 
   @override
-  String get milestoneSatUnsupported => '🧸 সমর্থন ছাড়া বসল';
+  String get milestoneSatUnsupported => 'সমর্থন ছাড়া বসল';
 
   @override
-  String get milestoneStartedCrawling => '🐣 হামাগুড়ি শুরু';
+  String get milestoneStartedCrawling => 'হামাগুড়ি শুরু';
 
   @override
-  String get milestonePulledToStand => '🏋️ ধরে দাঁড়াল';
+  String get milestonePulledToStand => 'ধরে দাঁড়াল';
 
   @override
-  String get milestoneFirstSteps => '👣 প্রথম পদক্ষেপ';
+  String get milestoneFirstSteps => 'প্রথম পদক্ষেপ';
 
   @override
-  String get milestoneFirstWord => '💬 প্রথম কথা';
+  String get milestoneFirstWord => 'প্রথম কথা';
 
   @override
-  String get milestoneFirstSolidFood => '🥣 প্রথম কঠিন খাবার';
+  String get milestoneFirstSolidFood => 'প্রথম কঠিন খাবার';
 
   @override
-  String get milestoneFirstHaircut => '✂️ প্রথম চুল কাটা';
+  String get milestoneFirstHaircut => 'প্রথম চুল কাটা';
 
   @override
-  String get milestoneSleptThroughNight => '🌙 সারা রাত ঘুমিয়েছে';
+  String get milestoneSleptThroughNight => 'সারা রাত ঘুমিয়েছে';
 
   @override
-  String get milestoneWavedBye => '👋 হাত নাড়িয়ে বাই-বাই জানাল';
+  String get milestoneWavedBye => 'হাত নাড়িয়ে বাই-বাই জানাল';
 
   @override
-  String get milestoneClappedHands => '👏 হাততালি দিল';
+  String get milestoneClappedHands => 'হাততালি দিল';
 
   @override
-  String get milestoneFirstBirthday => '🎂 প্রথম জন্মদিন';
+  String get milestoneFirstBirthday => 'প্রথম জন্মদিন';
 
   @override
   String get settingsTitle => 'সেটিংস';
@@ -1508,4 +1508,404 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get entryTypeSolids => 'Solid food';
+
+  @override
+  String get feedAmountOz => 'Amount (oz)';
+
+  @override
+  String notifFeedingReminderDescInterval(String interval) {
+    return 'Remind me $interval after the last feed';
+  }
+
+  @override
+  String notifDiaperReminderDescInterval(String interval) {
+    return 'Remind me $interval after the last diaper';
+  }
+
+  @override
+  String notifIntervalEvery(String interval) {
+    return 'Every $interval';
+  }
+
+  @override
+  String get notifIntervalTitle => 'Reminder interval';
+
+  @override
+  String get notifIntervalHours => 'Hours';
+
+  @override
+  String get notifIntervalMinutes => 'Minutes';
+
+  @override
+  String notifIntervalTooShort(int minutes) {
+    return 'At least $minutes minutes';
+  }
+
+  @override
+  String get settingsFeeding => 'Feeding';
+
+  @override
+  String get settingsTrackBottles => 'Track bottles';
+
+  @override
+  String get settingsTrackBottlesDesc => 'Pick which bottle was used, and how much was prepared vs drunk';
+
+  @override
+  String get bottlesTitle => 'My bottles';
+
+  @override
+  String get bottlesEmpty => 'No bottles yet.\nAdd the bottles you use so you can pick one when logging a feed.';
+
+  @override
+  String get bottleAdd => 'Add bottle';
+
+  @override
+  String get bottleEdit => 'Edit bottle';
+
+  @override
+  String get bottleLabel => 'Label / number (e.g. #3)';
+
+  @override
+  String get bottleBrand => 'Brand / type (optional)';
+
+  @override
+  String get bottleCapacity => 'Capacity (optional)';
+
+  @override
+  String get bottleNipple => 'Nipple size / flow (optional)';
+
+  @override
+  String get bottleMaterial => 'Material';
+
+  @override
+  String get bottleRetired => 'Retired';
+
+  @override
+  String get bottleRetire => 'Retire';
+
+  @override
+  String get bottleUnretire => 'Use again';
+
+  @override
+  String bottleDeleteTitle(String name) {
+    return 'Delete $name?';
+  }
+
+  @override
+  String get bottleDeleteBody => 'Past feeds keep their amounts but will no longer show this bottle. To hide it from the picker but keep history, use Retire instead.';
+
+  @override
+  String get feedPrepared => 'Prepared';
+
+  @override
+  String get feedDrank => 'Drank';
+
+  @override
+  String feedLeftover(String amount) {
+    return '$amount left over';
+  }
+
+  @override
+  String get feedDrankMoreThanPrepared => 'More than was prepared?';
+
+  @override
+  String get feedWhichBottle => 'Which bottle?';
+
+  @override
+  String get feedNoBottlesYet => 'No bottles yet — add them in Settings → My bottles.';
+
+  @override
+  String get photoPrivacyTitle => 'Your photos stay on this phone';
+
+  @override
+  String get photoPrivacyBody => 'Photos are saved only inside this app on this device. The app has no internet access, so nothing is ever uploaded or shared unless you export a backup yourself.\n\nAndroid may ask for camera access the first time you take a photo.';
+
+  @override
+  String get photoPrivacyContinue => 'Continue';
+
+  @override
+  String get photoTakePhoto => 'Take a photo';
+
+  @override
+  String get photoChooseFromGallery => 'Choose from gallery';
+
+  @override
+  String get photoCaption => 'Caption';
+
+  @override
+  String get photoCompare => 'First vs latest';
+
+  @override
+  String get photoAddOtherDay => 'Add for another day';
+
+  @override
+  String get photoEmpty => 'No photos yet.\nTake one photo a day and watch your baby grow.';
+
+  @override
+  String get photoToday => 'Today\'s photo';
+
+  @override
+  String get photoAddToday => 'Add today\'s photo';
+
+  @override
+  String get photoReplace => 'Replace';
+
+  @override
+  String get photoDeleteTitle => 'Delete this photo?';
+
+  @override
+  String get ageBeforeBirth => 'Before birth';
+
+  @override
+  String ageDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days old',
+      one: '1 day old',
+      zero: 'Birth day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ageMonthsDays(int months, int days) {
+    return '$months mo $days d';
+  }
+
+  @override
+  String ageYearsMonths(int years, int months) {
+    return '$years yr $months mo';
+  }
+
+  @override
+  String get navMemories => 'Memories';
+
+  @override
+  String get memoriesTabPhotos => 'Photos';
+
+  @override
+  String get milestoneNoAchievedHint => 'Tap \"Upcoming\" to log a preset,\nor use the button below for a custom one.';
+
+  @override
+  String get skinTitle => 'Skin conditions';
+
+  @override
+  String get skinNew => 'New skin condition';
+
+  @override
+  String get skinEdit => 'Edit skin condition';
+
+  @override
+  String skinTabActive(int count) {
+    return 'Active ($count)';
+  }
+
+  @override
+  String skinTabHealed(int count) {
+    return 'Healed ($count)';
+  }
+
+  @override
+  String get skinEmptyActive => 'No skin conditions being tracked.\nTap + to start one — you can add a photo each day to show the doctor how it\'s changing.';
+
+  @override
+  String get skinEmptyHealed => 'Nothing healed yet.';
+
+  @override
+  String get skinUpdateDue => 'Update today';
+
+  @override
+  String skinSince(String date) {
+    return 'Since $date';
+  }
+
+  @override
+  String skinDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days',
+      one: '1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String skinHealedOn(String date) {
+    return 'Healed $date';
+  }
+
+  @override
+  String skinReminderAt(String time) {
+    return 'Daily reminder at $time';
+  }
+
+  @override
+  String get skinSeverityTrend => 'Severity over time';
+
+  @override
+  String get skinNoUpdates => 'No updates yet. Add today\'s to start the timeline.';
+
+  @override
+  String get skinExportPdf => 'Export for doctor (PDF)';
+
+  @override
+  String get skinMarkHealed => 'Mark healed';
+
+  @override
+  String get skinReopen => 'Mark active again';
+
+  @override
+  String get skinUpdateToday => 'Add today\'s update';
+
+  @override
+  String get skinEditToday => 'Edit today\'s update';
+
+  @override
+  String skinDeleteTitle(String name) {
+    return 'Delete $name and all its updates?';
+  }
+
+  @override
+  String get skinDeleteUpdateTitle => 'Delete this update?';
+
+  @override
+  String skinTreatmentValue(String treatment) {
+    return 'Treatment: $treatment';
+  }
+
+  @override
+  String get skinName => 'Condition *';
+
+  @override
+  String get skinBodyArea => 'Where on the body?';
+
+  @override
+  String get skinBegan => 'Began on';
+
+  @override
+  String get skinRemindDaily => 'Remind me to update it daily';
+
+  @override
+  String get skinReminderTime => 'Reminder time';
+
+  @override
+  String get skinUpdateTitle => 'Skin update';
+
+  @override
+  String get skinSeverity => 'How does it look?';
+
+  @override
+  String get skinSeverity0 => '0 · Clear';
+
+  @override
+  String get skinSeverity1 => '1 · Mild';
+
+  @override
+  String get skinSeverity2 => '2 · Moderate';
+
+  @override
+  String get skinSeverity3 => '3 · Severe';
+
+  @override
+  String get skinSeverity4 => '4 · Very severe';
+
+  @override
+  String get skinTreatment => 'Treatment (optional)';
+
+  @override
+  String get skinTreatmentHint => 'e.g. moisturiser, hydrocortisone 1%';
+
+  @override
+  String get skinAddPhoto => 'Add a photo';
+
+  @override
+  String get skinCardNone => 'Track a rash, eczema or other skin condition day by day, with photos for the doctor';
+
+  @override
+  String skinCardDue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count need today\'s update',
+      one: '1 needs today\'s update',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get backupPreparing => 'Preparing backup…';
+
+  @override
+  String get backupFailed => 'Couldn\'t create the backup.';
+
+  @override
+  String get backupSavedTo => 'Backup saved to:';
+
+  @override
+  String get backupShareSubject => 'Baby Tracker backup';
+
+  @override
+  String importIncludesPhotos(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Includes $count photos.',
+      one: 'Includes 1 photo.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get widgetFeed => 'Feed';
+
+  @override
+  String get widgetStopFeed => 'Stop feed';
+
+  @override
+  String get widgetDiaper => 'Diaper';
+
+  @override
+  String get widgetSleep => 'Sleep';
+
+  @override
+  String get widgetWakeUp => 'Woke up';
+
+  @override
+  String widgetFeedingFor(String duration) {
+    return 'Feeding $duration';
+  }
+
+  @override
+  String widgetFedAgo(String ago) {
+    return 'Fed $ago';
+  }
+
+  @override
+  String get widgetNoFeedsYet => 'No feeds yet';
+
+  @override
+  String widgetChangedAgo(String ago) {
+    return 'Changed $ago';
+  }
+
+  @override
+  String get widgetNoDiapersYet => 'No diapers yet';
+
+  @override
+  String widgetAsleepFor(String duration) {
+    return 'Asleep $duration';
+  }
+
+  @override
+  String widgetAwakeFor(String ago) {
+    return 'Awake since $ago';
+  }
+
+  @override
+  String get widgetStopSleepFirst => 'Stop the sleep timer first';
+
+  @override
+  String get widgetStopFeedFirst => 'Stop the feeding timer first';
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 import 'package:simple_baby_tracker/widgets/gradient_pill_button.dart';
 
 /// Shared full-screen chrome for all entry-editing forms: a close (X) +
@@ -43,7 +45,10 @@ class AppFormScaffold extends StatelessWidget {
               child: Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.close),
+                    icon: const AppIcon(
+                      AppIcons.close,
+                      style: AppIconStyle.line,
+                    ),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                   Expanded(
@@ -89,7 +94,11 @@ class AppFormScaffold extends StatelessWidget {
 }
 
 class _TimePill extends StatelessWidget {
-  const _TimePill({required this.time, required this.color, required this.onTap});
+  const _TimePill({
+    required this.time,
+    required this.color,
+    required this.onTap,
+  });
 
   final TimeOfDay time;
   final Color color;
@@ -110,7 +119,12 @@ class _TimePill extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.access_time, size: 15, color: color),
+            AppIcon(
+              AppIcons.time,
+              style: AppIconStyle.line,
+              size: 15,
+              color: color,
+            ),
             const SizedBox(width: 5),
             Text(
               time.format(context),

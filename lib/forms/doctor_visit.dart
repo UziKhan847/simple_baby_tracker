@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 
 const _visitReasons = [
   'Routine check-up',
@@ -81,7 +83,7 @@ class _DoctorVisitFormState extends State<DoctorVisitForm> {
             textCapitalization: TextCapitalization.words,
             decoration: const InputDecoration(
               labelText: 'Doctor / clinic name',
-              prefixIcon: Icon(Icons.local_hospital_outlined),
+              prefixIcon: AppIcon(AppIcons.doctorVisit),
               border: OutlineInputBorder(),
               isDense: true,
             ),

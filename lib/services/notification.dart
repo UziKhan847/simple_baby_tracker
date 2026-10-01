@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simple_baby_tracker/models/skin_condition.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -10,9 +11,11 @@ const _kDiaperNotifId = 1002;
 const _kTimerNotifId = 1003;
 
 const _kFeedingEnabled = 'notif_feeding_enabled';
-const _kFeedingHours = 'notif_feeding_hours';
+const _kFeedingHours = 'notif_feeding_hours'; // legacy, migrated to minutes
+const _kFeedingMinutes = 'notif_feeding_minutes';
 const _kDiaperEnabled = 'notif_diaper_enabled';
-const _kDiaperHours = 'notif_diaper_hours';
+const _kDiaperHours = 'notif_diaper_hours'; // legacy, migrated to minutes
+const _kDiaperMinutes = 'notif_diaper_minutes';
 
 const _kChannel = AndroidNotificationChannel(
   'baby_tracker_reminders',
@@ -25,6 +28,9 @@ const _kChannel = AndroidNotificationChannel(
 /// its own id, offset well past the fixed feeding/diaper ids above so the
 /// two never collide.
 int medicationNotifId(String courseId) => 2000 + (courseId.hashCode & 0xFFFF);
+
+/// Same idea for each skin condition's daily check-in reminder.
+int skinNotifId(String conditionId) => 70000 + (conditionId.hashCode & 0xFFFF);
 
 class NotificationService {
   NotificationService._();
@@ -120,24 +126,24 @@ class NotificationService {
 
   // ─── Scheduling ───────────────────────────────────────────────────────────
 
-  /// Schedules the feeding reminder for [hours] after [lastFeedingTime]
+  /// Schedules the feeding reminder for [interval] after [lastFeedingTime]
   /// (falling back to now if there's no prior feeding logged yet) — so the
   /// reminder tracks the actual last feed instead of just the moment the
   /// setting was last touched.
   Future<void> scheduleFeedingReminder(
-    int hours, {
+    Duration interval, {
     DateTime? lastFeedingTime,
   }) async {
     if (!_initialized) return;
     try {
       await _plugin.cancel(id: _kFeedingNotifId);
-      if (hours <= 0) return;
+      if (interval <= Duration.zero) return;
       final base = lastFeedingTime ?? DateTime.now();
       await _scheduleAt(
         id: _kFeedingNotifId,
         title: 'Time to feed! 🍼',
-        body: 'No feeding logged in the last ${hours}h.',
-        when: base.add(Duration(hours: hours)),
+        body: 'No feeding logged in the last ${formatInterval(interval)}.',
+        when: base.add(interval),
       );
     } catch (e) {
       debugPrint('scheduleFeedingReminder failed: $e');
@@ -145,19 +151,20 @@ class NotificationService {
   }
 
   Future<void> scheduleDiaperReminder(
-    int hours, {
+    Duration interval, {
     DateTime? lastDiaperTime,
   }) async {
     if (!_initialized) return;
     try {
       await _plugin.cancel(id: _kDiaperNotifId);
-      if (hours <= 0) return;
+      if (interval <= Duration.zero) return;
       final base = lastDiaperTime ?? DateTime.now();
       await _scheduleAt(
         id: _kDiaperNotifId,
         title: 'Diaper check! 👶',
-        body: 'No diaper change logged in the last ${hours}h.',
-        when: base.add(Duration(hours: hours)),
+        body:
+            'No diaper change logged in the last ${formatInterval(interval)}.',
+        when: base.add(interval),
       );
     } catch (e) {
       debugPrint('scheduleDiaperReminder failed: $e');
@@ -184,6 +191,48 @@ class NotificationService {
       );
     } catch (e) {
       debugPrint('scheduleMedicationReminder failed: $e');
+    }
+  }
+
+  /// Daily "how does it look today?" reminder for a skin condition, at its
+  /// chosen time of day. If today's update is already logged, the first one
+  /// fires tomorrow; either way it then repeats daily until cancelled (when
+  /// the condition is marked healed or deleted).
+  Future<void> scheduleSkinReminder(SkinCondition c) async {
+    if (!_initialized) return;
+    final id = skinNotifId(c.id);
+    try {
+      await _plugin.cancel(id: id);
+      if (!c.isActive || !c.remindDaily) return;
+      final now = DateTime.now();
+      var first = DateTime(
+        now.year,
+        now.month,
+        now.day,
+        c.reminderMinutes ~/ 60,
+        c.reminderMinutes % 60,
+      );
+      if (c.updatedToday || !first.isAfter(now)) {
+        first = first.add(const Duration(days: 1));
+      }
+      await _scheduleAt(
+        id: id,
+        title: 'Skin check: ${c.name}',
+        body: 'Add today\'s update (and a photo if you like).',
+        when: first,
+        repeat: DateTimeComponents.time,
+      );
+    } catch (e) {
+      debugPrint('scheduleSkinReminder failed: $e');
+    }
+  }
+
+  Future<void> cancelSkinReminder(String conditionId) async {
+    if (!_initialized) return;
+    try {
+      await _plugin.cancel(id: skinNotifId(conditionId));
+    } catch (e) {
+      debugPrint('cancelSkinReminder failed: $e');
     }
   }
 
@@ -275,6 +324,7 @@ class NotificationService {
     required String title,
     required String body,
     required DateTime when,
+    DateTimeComponents? repeat,
   }) async {
     // `tz.local` needs `initializeTimeZones()` to have run first (done once,
     // in `main()`) — otherwise this throws a LateInitializationError that,
@@ -319,6 +369,7 @@ class NotificationService {
         iOS: const DarwinNotificationDetails(),
       ),
       androidScheduleMode: mode,
+      matchDateTimeComponents: repeat,
     );
   }
 
@@ -331,6 +382,7 @@ class NotificationService {
   /// relaunched, since `zonedSchedule` calls don't survive that on their
   /// own without something re-issuing them.
   Future<void> rescheduleFromLatestEvents() async {
+    await _rescheduleSkinReminders();
     final settings = await loadSettings();
     if (!settings.feedingEnabled && !settings.diaperEnabled) return;
     if (!await init()) return;
@@ -342,15 +394,25 @@ class NotificationService {
 
     if (settings.feedingEnabled) {
       await scheduleFeedingReminder(
-        settings.feedingHours,
+        settings.feedingInterval,
         lastFeedingTime: latestEventTime(data, 'feeding'),
       );
     }
     if (settings.diaperEnabled) {
       await scheduleDiaperReminder(
-        settings.diaperHours,
+        settings.diaperInterval,
         lastDiaperTime: latestEventTime(data, 'diaper'),
       );
+    }
+  }
+
+  Future<void> _rescheduleSkinReminders() async {
+    if (!await init()) return;
+    final profiles = await Storage.loadProfiles();
+    for (final p in profiles) {
+      for (final c in await Storage.loadSkinConditions(p.id)) {
+        await scheduleSkinReminder(c);
+      }
     }
   }
 
@@ -361,9 +423,14 @@ class NotificationService {
       final sp = await SharedPreferences.getInstance();
       return NotifSettings(
         feedingEnabled: sp.getBool(_kFeedingEnabled) ?? false,
-        feedingHours: sp.getInt(_kFeedingHours) ?? 3,
+        // Older versions stored whole hours (1–8 via a slider); fall back
+        // to those so an existing reminder keeps its interval.
+        feedingMinutes:
+            sp.getInt(_kFeedingMinutes) ??
+            (sp.getInt(_kFeedingHours) ?? 3) * 60,
         diaperEnabled: sp.getBool(_kDiaperEnabled) ?? false,
-        diaperHours: sp.getInt(_kDiaperHours) ?? 4,
+        diaperMinutes:
+            sp.getInt(_kDiaperMinutes) ?? (sp.getInt(_kDiaperHours) ?? 4) * 60,
       );
     } catch (e) {
       return const NotifSettings();
@@ -378,16 +445,16 @@ class NotificationService {
     try {
       final sp = await SharedPreferences.getInstance();
       await sp.setBool(_kFeedingEnabled, s.feedingEnabled);
-      await sp.setInt(_kFeedingHours, s.feedingHours);
+      await sp.setInt(_kFeedingMinutes, s.feedingMinutes);
       await sp.setBool(_kDiaperEnabled, s.diaperEnabled);
-      await sp.setInt(_kDiaperHours, s.diaperHours);
+      await sp.setInt(_kDiaperMinutes, s.diaperMinutes);
     } catch (e) {
       debugPrint('saveSettings failed: $e');
     }
 
     if (s.feedingEnabled) {
       await scheduleFeedingReminder(
-        s.feedingHours,
+        s.feedingInterval,
         lastFeedingTime: lastFeedingTime,
       );
     } else {
@@ -396,7 +463,7 @@ class NotificationService {
 
     if (s.diaperEnabled) {
       await scheduleDiaperReminder(
-        s.diaperHours,
+        s.diaperInterval,
         lastDiaperTime: lastDiaperTime,
       );
     } else {
@@ -409,28 +476,41 @@ class NotificationService {
 
 class NotifSettings {
   final bool feedingEnabled;
-  final int feedingHours;
+  final int feedingMinutes;
   final bool diaperEnabled;
-  final int diaperHours;
+  final int diaperMinutes;
 
   const NotifSettings({
     this.feedingEnabled = false,
-    this.feedingHours = 3,
+    this.feedingMinutes = 180,
     this.diaperEnabled = false,
-    this.diaperHours = 4,
+    this.diaperMinutes = 240,
   });
+
+  Duration get feedingInterval => Duration(minutes: feedingMinutes);
+  Duration get diaperInterval => Duration(minutes: diaperMinutes);
 
   NotifSettings copyWith({
     bool? feedingEnabled,
-    int? feedingHours,
+    int? feedingMinutes,
     bool? diaperEnabled,
-    int? diaperHours,
+    int? diaperMinutes,
   }) => NotifSettings(
     feedingEnabled: feedingEnabled ?? this.feedingEnabled,
-    feedingHours: feedingHours ?? this.feedingHours,
+    feedingMinutes: feedingMinutes ?? this.feedingMinutes,
     diaperEnabled: diaperEnabled ?? this.diaperEnabled,
-    diaperHours: diaperHours ?? this.diaperHours,
+    diaperMinutes: diaperMinutes ?? this.diaperMinutes,
   );
+}
+
+/// "2 h 30 min" / "45 min" / "3 h" — a reminder interval in compact form,
+/// used both in notification text and in Settings.
+String formatInterval(Duration d) {
+  final h = d.inHours;
+  final m = d.inMinutes % 60;
+  if (h == 0) return '$m min';
+  if (m == 0) return '$h h';
+  return '$h h $m min';
 }
 
 /// Re-anchors any *enabled* feeding/diaper reminder to the latest event now
@@ -447,13 +527,13 @@ Future<void> maybeRescheduleReminders(
 
   if (settings.feedingEnabled) {
     await NotificationService.instance.scheduleFeedingReminder(
-      settings.feedingHours,
+      settings.feedingInterval,
       lastFeedingTime: latestEventTime(data, 'feeding'),
     );
   }
   if (settings.diaperEnabled) {
     await NotificationService.instance.scheduleDiaperReminder(
-      settings.diaperHours,
+      settings.diaperInterval,
       lastDiaperTime: latestEventTime(data, 'diaper'),
     );
   }

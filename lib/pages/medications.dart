@@ -6,7 +6,9 @@ import 'package:simple_baby_tracker/services/medication_stats.dart';
 import 'package:simple_baby_tracker/services/notification.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 import 'package:simple_baby_tracker/widgets/entry_row.dart';
 import 'package:simple_baby_tracker/widgets/gradient_pill_button.dart';
 
@@ -94,7 +96,9 @@ class _MedicationsPageState extends State<MedicationsPage>
       context: context,
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, set) => AlertDialog(
-          title: Text(existing != null ? l.medicationEditCourse : l.medicationNewCourse),
+          title: Text(
+            existing != null ? l.medicationEditCourse : l.medicationNewCourse,
+          ),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -140,7 +144,9 @@ class _MedicationsPageState extends State<MedicationsPage>
                     Expanded(
                       child: TextField(
                         controller: doseCtrl,
-                        keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                        keyboardType: const TextInputType.numberWithOptions(
+                          decimal: true,
+                        ),
                         decoration: InputDecoration(
                           labelText: l.medicationDose,
                           border: const OutlineInputBorder(),
@@ -151,7 +157,9 @@ class _MedicationsPageState extends State<MedicationsPage>
                     DropdownButton<String>(
                       value: unit,
                       items: medicationDoseUnits
-                          .map((u) => DropdownMenuItem(value: u, child: Text(u)))
+                          .map(
+                            (u) => DropdownMenuItem(value: u, child: Text(u)),
+                          )
                           .toList(),
                       onChanged: (v) => set(() => unit = v ?? 'ml'),
                     ),
@@ -215,7 +223,9 @@ class _MedicationsPageState extends State<MedicationsPage>
                   MedicationCourse(
                     id: existing?.id,
                     name: nameCtrl.text.trim(),
-                    reason: reasonCtrl.text.trim().isEmpty ? null : reasonCtrl.text.trim(),
+                    reason: reasonCtrl.text.trim().isEmpty
+                        ? null
+                        : reasonCtrl.text.trim(),
                     dose: dose,
                     unit: unit,
                     intervalHours: int.tryParse(intervalCtrl.text),
@@ -224,7 +234,9 @@ class _MedicationsPageState extends State<MedicationsPage>
                     endDate: existing?.endDate,
                     result: existing?.result ?? MedicationResult.none,
                     sideEffects: existing?.sideEffects,
-                    notes: notesCtrl.text.trim().isEmpty ? null : notesCtrl.text.trim(),
+                    notes: notesCtrl.text.trim().isEmpty
+                        ? null
+                        : notesCtrl.text.trim(),
                     remind: remind,
                   ),
                 );
@@ -280,7 +292,10 @@ class _MedicationsPageState extends State<MedicationsPage>
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: Text(l.actionCancel)),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: Text(l.actionCancel),
+          ),
         ],
       ),
     );
@@ -300,8 +315,14 @@ class _MedicationsPageState extends State<MedicationsPage>
         title: Text(l.medicationDeleteCourseTitle),
         content: Text(l.cannotUndo),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: Text(l.actionCancel)),
-          FilledButton(onPressed: () => Navigator.pop(context, true), child: Text(l.actionDelete)),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(l.actionCancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(l.actionDelete),
+          ),
         ],
       ),
     );
@@ -355,7 +376,7 @@ class _MedicationsPageState extends State<MedicationsPage>
                   onEdit: (c) => _showCourseDialog(existing: c),
                   onEnd: _endCourse,
                   onDelete: _delete,
-                  emptyIcon: Icons.medication_outlined,
+                  emptyIcon: AppIcons.medications,
                   emptyMessage: l.medicationNoActiveCourses,
                 ),
                 _CourseList(
@@ -366,7 +387,7 @@ class _MedicationsPageState extends State<MedicationsPage>
                   onEdit: (c) => _showCourseDialog(existing: c),
                   onEnd: null,
                   onDelete: _delete,
-                  emptyIcon: Icons.history,
+                  emptyIcon: AppIcons.time,
                   emptyMessage: l.medicationNoPastCourses,
                 ),
               ],
@@ -383,7 +404,7 @@ class _CourseList extends StatelessWidget {
   final void Function(MedicationCourse) onEdit;
   final void Function(MedicationCourse)? onEnd;
   final void Function(MedicationCourse) onDelete;
-  final IconData emptyIcon;
+  final String emptyIcon;
   final String emptyMessage;
 
   const _CourseList({
@@ -405,7 +426,7 @@ class _CourseList extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(emptyIcon, size: 56, color: Colors.grey.shade400),
+            AppIcon(emptyIcon, size: 56, color: Colors.grey.shade400),
             const SizedBox(height: 12),
             Text(
               emptyMessage,
@@ -463,11 +484,15 @@ class _CourseList extends StatelessWidget {
               color: Theme.of(context).colorScheme.error,
               borderRadius: BorderRadius.circular(18),
             ),
-            child: Icon(Icons.delete, color: Theme.of(context).colorScheme.onError),
+            child: AppIcon(
+              AppIcons.delete,
+              style: AppIconStyle.line,
+              color: Theme.of(context).colorScheme.onError,
+            ),
           ),
           child: EntryRow(
             margin: const EdgeInsets.symmetric(vertical: 5),
-            icon: Icons.medication,
+            icon: AppIcons.medication,
             color: colors.medicationStrong,
             softColor: colors.medicationSoft,
             title: c.reason != null ? '${c.name} · ${c.reason}' : c.name,
@@ -480,7 +505,10 @@ class _CourseList extends StatelessWidget {
               itemBuilder: (ctx) => [
                 PopupMenuItem(value: 'edit', child: Text(l.actionEdit)),
                 if (onEnd != null)
-                  PopupMenuItem(value: 'end', child: Text(l.medicationEndCourse)),
+                  PopupMenuItem(
+                    value: 'end',
+                    child: Text(l.medicationEndCourse),
+                  ),
               ],
             ),
           ),

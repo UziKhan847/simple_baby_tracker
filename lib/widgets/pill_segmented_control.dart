@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 
 /// A single option in a [PillSegmentedControl].
 class PillSegmentedOption<T> {
@@ -10,7 +11,9 @@ class PillSegmentedOption<T> {
 
   final T value;
   final String label;
-  final IconData? icon;
+
+  /// An [AppIcons] name.
+  final String? icon;
 }
 
 /// A pill-track segmented control with a sliding colored highlight behind
@@ -80,12 +83,19 @@ class PillSegmentedControl<T> extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             if (o.icon != null) ...[
-                              Icon(
-                                o.icon,
-                                size: 15,
+                              // Solid when selected, duo otherwise — the
+                              // icon pack's selected-state convention.
+                              AppIcon(
+                                o.icon!,
+                                style: isSelected
+                                    ? AppIconStyle.solid
+                                    : AppIconStyle.duo,
+                                size: 17,
                                 color: isSelected
                                     ? scheme.onPrimaryContainer
                                     : scheme.onSurfaceVariant,
+                                fill: scheme.surfaceContainerHighest,
+                                knockout: scheme.primaryContainer,
                               ),
                               const SizedBox(width: 4),
                             ],

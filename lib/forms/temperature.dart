@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
 
 class TemperatureForm extends StatefulWidget {
@@ -166,14 +168,14 @@ class _SeverityBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final (icon, label, color) = switch (severity) {
-      'low' => (Icons.thermostat, l.tempSeverityLow, Colors.blue),
-      'normal' => (Icons.check_circle, l.tempSeverityNormal, Colors.green),
+      'low' => (AppIcons.tempLow, l.tempSeverityLow, Colors.blue),
+      'normal' => (AppIcons.tempNormal, l.tempSeverityNormal, Colors.green),
       'elevated' => (
-        Icons.warning_amber_rounded,
+        AppIcons.tempElevated,
         l.tempSeverityElevated,
         Colors.orange,
       ),
-      _ => (Icons.local_fire_department, l.tempSeverityFever, Colors.red),
+      _ => (AppIcons.fever, l.tempSeverityFever, Colors.red),
     };
 
     return Container(
@@ -185,7 +187,7 @@ class _SeverityBanner extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(icon, color: color, size: 20),
+          AppIcon(icon, color: color, size: 20),
           const SizedBox(width: 8),
           Text(
             label,

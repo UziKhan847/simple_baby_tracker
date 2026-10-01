@@ -3,8 +3,10 @@ import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/models/medication_course.dart';
 import 'package:simple_baby_tracker/services/medication_stats.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
 
 class MedicationForm extends StatefulWidget {
@@ -89,9 +91,7 @@ class _MedicationFormState extends State<MedicationForm> {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final course = _selectedCourse;
-    final stats = course == null
-        ? null
-        : computeDoseStats(course, widget.data);
+    final stats = course == null ? null : computeDoseStats(course, widget.data);
 
     return AppFormScaffold(
       title: _isEditing ? l.medicationEditTitle : l.medicationLogTitle,
@@ -106,7 +106,10 @@ class _MedicationFormState extends State<MedicationForm> {
           if (widget.activeCourses.isNotEmpty) ...[
             Row(
               children: [
-                Text(l.medicationYourCourses, style: Theme.of(context).textTheme.labelLarge),
+                Text(
+                  l.medicationYourCourses,
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
                 const Spacer(),
                 if (widget.onManageCourses != null)
                   TextButton(
@@ -162,7 +165,9 @@ class _MedicationFormState extends State<MedicationForm> {
                 flex: 2,
                 child: TextField(
                   controller: _doseCtrl,
-                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   decoration: InputDecoration(
                     labelText: l.medicationDose,
                     border: const OutlineInputBorder(),
@@ -207,12 +212,20 @@ class _MedicationFormState extends State<MedicationForm> {
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.warning_amber_rounded, color: Colors.orange, size: 18),
+                  const AppIcon(
+                    AppIcons.warning,
+                    style: AppIconStyle.line,
+                    color: Colors.orange,
+                    size: 18,
+                  ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       l.medicationDosageWarning,
-                      style: const TextStyle(fontSize: 12, color: Colors.orange),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.orange,
+                      ),
                     ),
                   ),
                 ],
@@ -247,7 +260,9 @@ class _MedicationFormState extends State<MedicationForm> {
           'dose': double.tryParse(_doseCtrl.text) ?? 0,
           'unit': _unit,
           'courseId': ?_courseId,
-          'notes': _notesCtrl.text.trim().isEmpty ? null : _notesCtrl.text.trim(),
+          'notes': _notesCtrl.text.trim().isEmpty
+              ? null
+              : _notesCtrl.text.trim(),
         },
       ),
     );
@@ -262,11 +277,16 @@ class _DoseStatusCard extends StatelessWidget {
   final MedicationDoseStats stats;
   final AppLocalizations l;
 
-  const _DoseStatusCard({required this.course, required this.stats, required this.l});
+  const _DoseStatusCard({
+    required this.course,
+    required this.stats,
+    required this.l,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final warnEarly = course.intervalHours != null &&
+    final warnEarly =
+        course.intervalHours != null &&
         stats.lastGiven != null &&
         DateTime.now().isBefore(
           stats.lastGiven!.add(Duration(hours: course.intervalHours!)),
@@ -298,7 +318,10 @@ class _DoseStatusCard extends StatelessWidget {
               padding: const EdgeInsets.only(top: 4),
               child: Text(
                 l.medicationTooSoonWarning(course.intervalHours!),
-                style: const TextStyle(color: Colors.orange, fontWeight: FontWeight.w600),
+                style: const TextStyle(
+                  color: Colors.orange,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           if (warnMax)
@@ -306,7 +329,10 @@ class _DoseStatusCard extends StatelessWidget {
               padding: const EdgeInsets.only(top: 4),
               child: Text(
                 l.medicationMaxPerDayWarning(course.maxPerDay!),
-                style: const TextStyle(color: Colors.orange, fontWeight: FontWeight.w600),
+                style: const TextStyle(
+                  color: Colors.orange,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
         ],

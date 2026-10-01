@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 
 class BathForm extends StatefulWidget {
   final DateTime initialDate;
@@ -59,17 +61,17 @@ class _BathFormState extends State<BathForm> {
               ButtonSegment(
                 value: 'sponge',
                 label: Text(l.bathTypeSponge),
-                icon: const Icon(Icons.cleaning_services, size: 14),
+                icon: const AppIcon(AppIcons.sponge, size: 14),
               ),
               ButtonSegment(
                 value: 'tub',
                 label: Text(l.bathTypeTub),
-                icon: const Icon(Icons.bathtub, size: 14),
+                icon: const AppIcon(AppIcons.bath, size: 14),
               ),
               ButtonSegment(
                 value: 'shower',
                 label: Text(l.bathTypeShower),
-                icon: const Icon(Icons.shower, size: 14),
+                icon: const AppIcon(AppIcons.shower, size: 14),
               ),
             ],
             selected: {_bathType},

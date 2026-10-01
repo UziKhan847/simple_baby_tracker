@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 
 /// A stat column that displays a pre-formatted string instead of an int.
 /// Used for values like sleep duration "2h 15m" that aren't raw numbers.
@@ -11,7 +12,8 @@ class StatLabel extends StatelessWidget {
     required this.text,
   });
 
-  final IconData icon;
+  /// An [AppIcons] name.
+  final String icon;
   final String label;
   final String text;
   final Color color;
@@ -22,7 +24,15 @@ class StatLabel extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon, color: color, size: 20),
+        AppIcon(
+          icon,
+          color: color,
+          fill: Color.alphaBlend(
+            color.withValues(alpha: 0.22),
+            theme.cardTheme.color ?? theme.colorScheme.surface,
+          ),
+          size: 22,
+        ),
         const SizedBox(height: 4),
         Text(text, style: theme.textTheme.titleSmall),
         Text(
@@ -45,7 +55,8 @@ class Stat extends StatelessWidget {
     required this.value,
   });
 
-  final IconData icon;
+  /// An [AppIcons] name.
+  final String icon;
   final String label;
   final int value;
   final Color color;
@@ -56,7 +67,15 @@ class Stat extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon, color: color, size: 20),
+        AppIcon(
+          icon,
+          color: color,
+          fill: Color.alphaBlend(
+            color.withValues(alpha: 0.22),
+            theme.cardTheme.color ?? theme.colorScheme.surface,
+          ),
+          size: 22,
+        ),
         const SizedBox(height: 4),
         Text(value.toString(), style: theme.textTheme.titleSmall),
         Text(

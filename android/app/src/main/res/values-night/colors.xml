@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dark-theme widget colours (lib/theme/app_colors.dart AppColors.dark()). -->
+<resources>
+    <color name="widget_background">#FF1B161D</color>
+    <color name="widget_text_primary">#FFE8E2E9</color>
+    <color name="widget_text_secondary">#FFA9A2AB</color>
+    <color name="widget_accent">#FFD389BA</color>
+    <color name="widget_feed_bg">#FF391F31</color>
+    <color name="widget_feed_text">#FFE6A7D0</color>
+    <color name="widget_diaper_bg">#FF3E2015</color>
+    <color name="widget_diaper_text">#FFF1AA92</color>
+    <color name="widget_sleep_bg">#FF30223B</color>
+    <color name="widget_sleep_text">#FFD0AEEA</color>
+</resources>

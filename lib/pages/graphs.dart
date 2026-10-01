@@ -3,11 +3,17 @@ import 'package:simple_baby_tracker/baby_profile.dart';
 import 'package:simple_baby_tracker/forms/weight.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/models/skin_condition.dart';
+import 'package:simple_baby_tracker/pages/skin_conditions.dart';
 import 'package:simple_baby_tracker/pages/who_charts.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
+import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
-import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
+import 'package:simple_baby_tracker/widgets/category_icon_badge.dart';
+import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
 
 class GraphsPage extends StatefulWidget {
   const GraphsPage({super.key, required this.data, this.profile});
@@ -135,7 +141,12 @@ class _GraphsPageState extends State<GraphsPage>
                   data: widget.data,
                   profile: widget.profile,
                 ),
-                _HealthTab(stats: stats, settings: settings, l: l),
+                _HealthTab(
+                  stats: stats,
+                  settings: settings,
+                  l: l,
+                  profile: widget.profile,
+                ),
               ],
             ),
           ),
@@ -172,13 +183,13 @@ class _DailyTab extends StatelessWidget {
             _SummaryItem(
               label: l.graphsTotalFeeds,
               value: '$totalFeeds',
-              icon: Icons.local_drink,
+              icon: AppIcons.bottle,
               color: colors.feedingStrong,
             ),
             _SummaryItem(
               label: l.graphsAvgPerDay,
               value: avgFeeds.toStringAsFixed(1),
-              icon: Icons.trending_up,
+              icon: AppIcons.trendUp,
               color: colors.temperatureStrong,
             ),
           ],
@@ -189,13 +200,13 @@ class _DailyTab extends StatelessWidget {
             _SummaryItem(
               label: l.graphsTotalDiapers,
               value: '$totalDiapers',
-              icon: Icons.baby_changing_station,
+              icon: AppIcons.diaper,
               color: colors.diaperStrong,
             ),
             _SummaryItem(
               label: l.graphsTotalMilk,
               value: formatMilk(totalMilk, useMl: useMl),
-              icon: Icons.opacity,
+              icon: AppIcons.milkTotal,
               color: colors.feedingStrong,
             ),
           ],
@@ -206,13 +217,13 @@ class _DailyTab extends StatelessWidget {
             _SummaryItem(
               label: l.graphsTotalSleep,
               value: '${(totalSleep / 60).toStringAsFixed(1)}h',
-              icon: Icons.bedtime,
+              icon: AppIcons.sleep,
               color: colors.sleepStrong,
             ),
             _SummaryItem(
               label: l.graphsAvgSleep,
               value: '${avgSleepH.toStringAsFixed(1)}h',
-              icon: Icons.bedtime_outlined,
+              icon: AppIcons.avgSleep,
               color: colors.sleepStrong,
             ),
           ],
@@ -268,8 +279,13 @@ class _DailyTab extends StatelessWidget {
 /// optional per entry (a growth log doesn't require all three), so each
 /// chart below filters this same list down to the points that actually
 /// carry the measurement it's charting.
-typedef _GrowthPoint =
-    ({DateTime date, double? kg, double? heightCm, double? headCm, String? condition});
+typedef _GrowthPoint = ({
+  DateTime date,
+  double? kg,
+  double? heightCm,
+  double? headCm,
+  String? condition,
+});
 
 List<_GrowthPoint> _allGrowthPoints(Map<String, List<TrackerEvent>> data) {
   final points = data.values
@@ -315,10 +331,7 @@ class _GrowthTab extends StatelessWidget {
     final headPoints = allPoints.where((p) => p.headCm != null).toList();
 
     if (weightPoints.isEmpty && heightPoints.isEmpty && headPoints.isEmpty) {
-      return _EmptyState(
-        icon: Icons.monitor_weight_outlined,
-        message: l.graphsNoWeightData,
-      );
+      return _EmptyState(icon: AppIcons.weight, message: l.graphsNoWeightData);
     }
 
     final useKg = settings.useKg as bool? ?? true;
@@ -338,8 +351,8 @@ class _GrowthTab extends StatelessWidget {
                   padding: const EdgeInsets.all(16),
                   child: Row(
                     children: [
-                      Icon(
-                        Icons.monitor_weight,
+                      AppIcon(
+                        AppIcons.weight,
                         color: colors.weightStrong,
                         size: 36,
                       ),
@@ -349,7 +362,10 @@ class _GrowthTab extends StatelessWidget {
                         children: [
                           Text(
                             l.weightLatest,
-                            style: const TextStyle(color: Colors.grey, fontSize: 12),
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12,
+                            ),
                           ),
                           Text(
                             formatWeight(last, useKg: useKg),
@@ -361,8 +377,10 @@ class _GrowthTab extends StatelessWidget {
                           if (weightPoints.length > 1)
                             Row(
                               children: [
-                                Icon(
-                                  isGain ? Icons.arrow_upward : Icons.arrow_downward,
+                                AppIcon(
+                                  isGain
+                                      ? AppIcons.arrowUp
+                                      : AppIcons.arrowDown,
                                   size: 14,
                                   color: isGain ? Colors.green : Colors.red,
                                 ),
@@ -395,10 +413,14 @@ class _GrowthTab extends StatelessWidget {
             dateOf: (p) => p.date,
             getValue: (p) => useKg ? p.kg! : kgToLbs(p.kg!),
             minLabel: (v) => l.graphsMinLabel(
-              useKg ? '${v.toStringAsFixed(2)}kg' : '${v.toStringAsFixed(1)}lbs',
+              useKg
+                  ? '${v.toStringAsFixed(2)}kg'
+                  : '${v.toStringAsFixed(1)}lbs',
             ),
             maxLabel: (v) => l.graphsMaxLabel(
-              useKg ? '${v.toStringAsFixed(2)}kg' : '${v.toStringAsFixed(1)}lbs',
+              useKg
+                  ? '${v.toStringAsFixed(2)}kg'
+                  : '${v.toStringAsFixed(1)}lbs',
             ),
           ),
           const SizedBox(height: 12),
@@ -440,7 +462,7 @@ class _GrowthTab extends StatelessWidget {
               builder: (_) => WhoChartsPage(data: data, profile: profile),
             ),
           ),
-          icon: const Icon(Icons.show_chart),
+          icon: const AppIcon(AppIcons.whoChart),
           label: Text(l.whoChartsEntry),
         ),
       ],
@@ -456,7 +478,11 @@ class _WeighInHistory extends StatelessWidget {
   final bool useKg;
   final AppLocalizations l;
 
-  const _WeighInHistory({required this.points, required this.useKg, required this.l});
+  const _WeighInHistory({
+    required this.points,
+    required this.useKg,
+    required this.l,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -468,7 +494,10 @@ class _WeighInHistory extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
-              child: Text(l.graphsRecentWeighIns, style: Theme.of(context).textTheme.titleSmall),
+              child: Text(
+                l.graphsRecentWeighIns,
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
             ),
             for (final p in points)
               Padding(
@@ -479,19 +508,28 @@ class _WeighInHistory extends StatelessWidget {
                       width: 78,
                       child: Text(
                         '${p.date.month}/${p.date.day}',
-                        style: const TextStyle(fontSize: 12.5, color: Colors.grey),
+                        style: const TextStyle(
+                          fontSize: 12.5,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
                     Expanded(
                       child: Text(
                         formatWeight(p.kg!, useKg: useKg),
-                        style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 13,
+                        ),
                       ),
                     ),
                     if (p.condition != null)
                       Text(
                         weighConditionLabel(p.condition!, l),
-                        style: const TextStyle(fontSize: 12, color: Colors.grey),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
                       ),
                   ],
                 ),
@@ -510,10 +548,12 @@ class _HealthTab extends StatelessWidget {
   final List<_DayStat> stats;
   final dynamic settings;
   final AppLocalizations l;
+  final BabyProfile? profile;
   const _HealthTab({
     required this.stats,
     required this.settings,
     required this.l,
+    required this.profile,
   });
 
   @override
@@ -522,8 +562,20 @@ class _HealthTab extends StatelessWidget {
     final tempPoints = stats.where((s) => s.tempC != null).toList();
     final useCelsius = settings.useCelsius as bool? ?? true;
 
+    final skinCard = profile == null
+        ? null
+        : _SkinConditionsCard(profile: profile!);
+
     if (tempPoints.isEmpty) {
-      return _EmptyState(icon: Icons.thermostat, message: l.graphsNoTempData);
+      final empty = _EmptyState(
+        icon: AppIcons.temperature,
+        message: l.graphsNoTempData,
+      );
+      if (skinCard == null) return empty;
+      return ListView(
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+        children: [skinCard, const SizedBox(height: 48), empty],
+      );
     }
 
     final latest = tempPoints.last.tempC!;
@@ -544,12 +596,14 @@ class _HealthTab extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
       children: [
+        ?skinCard,
+        if (skinCard != null) const SizedBox(height: 12),
         Card(
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [
-                Icon(Icons.thermostat, color: severityColor, size: 36),
+                AppIcon(AppIcons.temperature, color: severityColor, size: 36),
                 const SizedBox(width: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -714,7 +768,7 @@ class _SummaryRow extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        Icon(item.icon, color: item.color, size: 22),
+                        AppIcon(item.icon, color: item.color, size: 22),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Column(
@@ -751,7 +805,7 @@ class _SummaryRow extends StatelessWidget {
 
 class _SummaryItem {
   final String label, value;
-  final IconData icon;
+  final String icon;
   final Color color;
   const _SummaryItem({
     required this.label,
@@ -865,12 +919,10 @@ class _LineChartCard<T> extends StatelessWidget {
                 painter: _LinePainter(
                   values: values,
                   color: color,
-                  labels: points
-                      .map((s) {
-                        final d = dateOf(s);
-                        return '${d.month}/${d.day}';
-                      })
-                      .toList(),
+                  labels: points.map((s) {
+                    final d = dateOf(s);
+                    return '${d.month}/${d.day}';
+                  }).toList(),
                   context: context,
                   thresholdValue: thresholdValue,
                   thresholdLabel: thresholdLabel,
@@ -906,7 +958,7 @@ Widget _noDataWidget() => const Padding(
 );
 
 class _EmptyState extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final String message;
   const _EmptyState({required this.icon, required this.message});
 
@@ -916,7 +968,7 @@ class _EmptyState extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 56, color: Colors.grey.shade400),
+          AppIcon(icon, size: 56, color: Colors.grey.shade400),
           const SizedBox(height: 12),
           Text(
             message,
@@ -1139,4 +1191,103 @@ class _DayStat {
     this.tempC,
     this.weightKg,
   });
+}
+
+/// Health tab entry point for skin-condition tracking: lists active
+/// conditions (flagging any without today's update) and opens the tracker.
+class _SkinConditionsCard extends StatefulWidget {
+  final BabyProfile profile;
+  const _SkinConditionsCard({required this.profile});
+
+  @override
+  State<_SkinConditionsCard> createState() => _SkinConditionsCardState();
+}
+
+class _SkinConditionsCardState extends State<_SkinConditionsCard> {
+  List<SkinCondition> _active = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  @override
+  void didUpdateWidget(covariant _SkinConditionsCard old) {
+    super.didUpdateWidget(old);
+    if (old.profile.id != widget.profile.id) _load();
+  }
+
+  Future<void> _load() async {
+    final all = await Storage.loadSkinConditions(widget.profile.id);
+    if (mounted) {
+      setState(() => _active = all.where((c) => c.isActive).toList());
+    }
+  }
+
+  Future<void> _open() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => SkinConditionsPage(profile: widget.profile),
+      ),
+    );
+    _load();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final colors = theme.extension<AppColors>()!;
+    final due = _active.where((c) => !c.updatedToday).length;
+    return Card(
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20),
+        onTap: _open,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              CategoryIconBadge(
+                icon: AppIcons.rash,
+                color: colors.temperatureStrong,
+                softColor: colors.temperatureSoft,
+                size: 42,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(l.skinTitle, style: theme.textTheme.titleSmall),
+                    Text(
+                      _active.isEmpty
+                          ? l.skinCardNone
+                          : [
+                              _active.map((c) => c.name).join(', '),
+                              if (due > 0) l.skinCardDue(due),
+                            ].join('  •  '),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: due > 0
+                            ? theme.colorScheme.error
+                            : theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const AppIcon(
+                AppIcons.chevronRight,
+                style: AppIconStyle.line,
+                size: 18,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

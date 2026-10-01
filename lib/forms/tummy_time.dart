@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 
 class TummyTimeForm extends StatefulWidget {
   final DateTime initialDate;
@@ -111,7 +113,7 @@ class _TummyTimeFormState extends State<TummyTimeForm> {
             ),
             child: Row(
               children: [
-                Icon(Icons.child_care, color: accent),
+                AppIcon(AppIcons.tummyTime, color: accent),
                 const SizedBox(width: 8),
                 Text(
                   'Duration: ${_durationLabel()}',
@@ -204,7 +206,11 @@ class _TimePicker extends StatelessWidget {
             const SizedBox(height: 4),
             Row(
               children: [
-                const Icon(Icons.access_time, size: 16),
+                const AppIcon(
+                  AppIcons.time,
+                  style: AppIconStyle.line,
+                  size: 16,
+                ),
                 const SizedBox(width: 4),
                 Text(
                   time.format(context),

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/baby_profile.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
@@ -5,9 +7,14 @@ import 'package:simple_baby_tracker/pages/graphs.dart';
 import 'package:simple_baby_tracker/pages/homepage.dart';
 import 'package:simple_baby_tracker/pages/milestones.dart';
 import 'package:simple_baby_tracker/pages/settings.dart';
+import 'package:simple_baby_tracker/services/photo_store.dart';
+import 'package:simple_baby_tracker/services/timer_service.dart';
+import 'package:simple_baby_tracker/services/widget_service.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
@@ -16,7 +23,7 @@ class AppShell extends StatefulWidget {
   State<AppShell> createState() => _AppShellState();
 }
 
-class _AppShellState extends State<AppShell> {
+class _AppShellState extends State<AppShell> with WidgetsBindingObserver {
   int _currentIndex = 0;
   List<BabyProfile> _profiles = [];
   String? _activeId;
@@ -35,7 +42,26 @@ class _AppShellState extends State<AppShell> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _init();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  /// The home-screen widget logs entries and starts/stops timers from a
+  /// separate background engine, writing straight to storage. Reload on
+  /// resume so anything it did while the app was in the background shows up
+  /// immediately — including the TimerService singleton, whose in-memory
+  /// state in *this* isolate would otherwise still show the old timer.
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed || _activeId == null) return;
+    _loadData();
+    TimerService.instance.load(_activeId!);
   }
 
   Future<void> _init() async {
@@ -74,6 +100,8 @@ class _AppShellState extends State<AppShell> {
       _currentIndex = 0;
     });
     await _loadData();
+    // The widget always shows whichever baby is active in the app.
+    unawaited(WidgetService.refresh(babyId: id, data: _data));
   }
 
   // ─── Profile dialog ────────────────────────────────────────────────────────
@@ -109,7 +137,11 @@ class _AppShellState extends State<AppShell> {
                       ? l.babyDobOptional
                       : l.babyBornOn('${bd!.day}/${bd!.month}/${bd!.year}'),
                 ),
-                trailing: const Icon(Icons.calendar_today, size: 18),
+                trailing: const AppIcon(
+                  AppIcons.calendar,
+                  style: AppIconStyle.line,
+                  size: 18,
+                ),
                 onTap: () async {
                   final p = await showDatePicker(
                     context: ctx,
@@ -217,6 +249,7 @@ class _AppShellState extends State<AppShell> {
 
     if (ok == true) {
       await Storage.deleteData(p.id);
+      await PhotoStore.deleteBaby(p.id);
       _profiles.removeWhere((x) => x.id == p.id);
       await Storage.saveProfiles(_profiles);
       await _switchProfile(_profiles.first.id);
@@ -252,7 +285,11 @@ class _AppShellState extends State<AppShell> {
                   const Spacer(),
                   FilledButton.icon(
                     onPressed: _addProfile,
-                    icon: const Icon(Icons.add, size: 16),
+                    icon: const AppIcon(
+                      AppIcons.add,
+                      style: AppIconStyle.line,
+                      size: 16,
+                    ),
                     label: Text(l.addBaby),
                   ),
                 ],
@@ -286,17 +323,26 @@ class _AppShellState extends State<AppShell> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     if (isActive)
-                      Icon(
-                        Icons.check_circle,
+                      AppIcon(
+                        AppIcons.given,
+                        style: AppIconStyle.line,
                         color: Theme.of(context).colorScheme.primary,
                       ),
                     IconButton(
-                      icon: const Icon(Icons.edit_outlined, size: 18),
+                      icon: const AppIcon(
+                        AppIcons.edit,
+                        style: AppIconStyle.line,
+                        size: 18,
+                      ),
                       onPressed: () => _editProfile(p),
                     ),
                     if (!isActive)
                       IconButton(
-                        icon: const Icon(Icons.delete_outline, size: 18),
+                        icon: const AppIcon(
+                          AppIcons.delete,
+                          style: AppIconStyle.line,
+                          size: 18,
+                        ),
                         onPressed: () => _deleteProfile(p),
                       ),
                   ],
@@ -324,6 +370,9 @@ class _AppShellState extends State<AppShell> {
 
     final l = AppLocalizations.of(context)!;
     final profile = _activeProfile;
+    // Solid nav icons cut their details out in the colour behind them —
+    // the selected tab's indicator pill.
+    final navPill = Theme.of(context).colorScheme.primaryContainer;
     final activeId = _activeId ?? '';
 
     return Scaffold(
@@ -400,12 +449,17 @@ class _AppShellState extends State<AppShell> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          HomePage(babyId: activeId, data: _data, onDataChanged: _onDataChanged),
+          HomePage(
+            babyId: activeId,
+            data: _data,
+            onDataChanged: _onDataChanged,
+          ),
           GraphsPage(data: _data, profile: profile),
           MilestonesPage(
             babyId: activeId,
             babyName: profile?.name ?? 'Baby',
             data: _data,
+            birthDate: profile?.birthDate,
           ),
           SettingsPage(onDataImported: _loadData),
         ],
@@ -427,23 +481,45 @@ class _AppShellState extends State<AppShell> {
             onDestinationSelected: (i) => setState(() => _currentIndex = i),
             destinations: [
               NavigationDestination(
-                icon: const Icon(Icons.home_outlined),
-                selectedIcon: const Icon(Icons.home),
+                icon: const AppIcon(AppIcons.home, style: AppIconStyle.line),
+                selectedIcon: AppIcon(
+                  AppIcons.home,
+                  style: AppIconStyle.solid,
+                  knockout: navPill,
+                ),
                 label: l.navHome,
               ),
               NavigationDestination(
-                icon: const Icon(Icons.bar_chart_outlined),
-                selectedIcon: const Icon(Icons.bar_chart),
+                icon: const AppIcon(AppIcons.graphs, style: AppIconStyle.line),
+                selectedIcon: AppIcon(
+                  AppIcons.graphs,
+                  style: AppIconStyle.solid,
+                  knockout: navPill,
+                ),
                 label: l.navGraphs,
               ),
               NavigationDestination(
-                icon: const Icon(Icons.star_outline),
-                selectedIcon: const Icon(Icons.star),
-                label: l.navMilestones,
+                icon: const AppIcon(
+                  AppIcons.milestones,
+                  style: AppIconStyle.line,
+                ),
+                selectedIcon: AppIcon(
+                  AppIcons.milestones,
+                  style: AppIconStyle.solid,
+                  knockout: navPill,
+                ),
+                label: l.navMemories,
               ),
               NavigationDestination(
-                icon: const Icon(Icons.settings_outlined),
-                selectedIcon: const Icon(Icons.settings),
+                icon: const AppIcon(
+                  AppIcons.settings,
+                  style: AppIconStyle.line,
+                ),
+                selectedIcon: AppIcon(
+                  AppIcons.settings,
+                  style: AppIconStyle.solid,
+                  knockout: navPill,
+                ),
                 label: l.navSettings,
               ),
             ],

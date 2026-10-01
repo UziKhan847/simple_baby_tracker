@@ -1,15 +1,19 @@
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/pages/bottles.dart';
 import 'package:simple_baby_tracker/providers/locale.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
 import 'package:simple_baby_tracker/providers/theme.dart';
+import 'package:simple_baby_tracker/services/backup_service.dart';
 import 'package:simple_baby_tracker/services/notification.dart';
 import 'package:simple_baby_tracker/services/pdf_export.dart';
+import 'package:simple_baby_tracker/services/widget_service.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 import 'package:simple_baby_tracker/widgets/category_icon_badge.dart';
 import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
 import 'package:simple_baby_tracker/widgets/section_header.dart';
@@ -87,7 +91,7 @@ class _SettingsPageState extends State<SettingsPage> {
             children: [
               SwitchListTile(
                 secondary: _RowBadge(
-                  icon: isDark ? Icons.dark_mode : Icons.light_mode,
+                  icon: isDark ? AppIcons.darkMode : AppIcons.lightMode,
                   color: colors.temperatureStrong,
                   softColor: colors.temperatureSoft,
                 ),
@@ -100,7 +104,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               SwitchListTile(
                 secondary: _RowBadge(
-                  icon: Icons.nightlight_round,
+                  icon: AppIcons.oledMode,
                   color: colors.sleepStrong,
                   softColor: colors.sleepSoft,
                 ),
@@ -111,7 +115,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               SwitchListTile(
                 secondary: _RowBadge(
-                  icon: Icons.fullscreen,
+                  icon: AppIcons.immersive,
                   color: colors.miscStrong,
                   softColor: colors.miscSoft,
                 ),
@@ -135,7 +139,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ListTile(
                 contentPadding: isRtl(currentCode) ? null : _singleLinePadding,
                 leading: _RowBadge(
-                  icon: Icons.language,
+                  icon: AppIcons.language,
                   color: colors.neutralStrong,
                   softColor: colors.neutralSoft,
                 ),
@@ -145,7 +149,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 subtitle: isRtl(currentCode)
                     ? const Text('RTL layout active')
                     : null,
-                trailing: const Icon(Icons.chevron_right, size: 18),
+                trailing: const AppIcon(
+                  AppIcons.chevronRight,
+                  style: AppIconStyle.line,
+                  size: 18,
+                ),
                 onTap: () => _pickLanguage(currentCode),
               ),
             ],
@@ -158,7 +166,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ListTile(
                 contentPadding: _singleLinePadding,
                 leading: _RowBadge(
-                  icon: Icons.monitor_weight_outlined,
+                  icon: AppIcons.weightUnit,
                   color: colors.weightStrong,
                   softColor: colors.weightSoft,
                 ),
@@ -179,7 +187,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ListTile(
                 contentPadding: _singleLinePadding,
                 leading: _RowBadge(
-                  icon: Icons.thermostat_outlined,
+                  icon: AppIcons.tempUnit,
                   color: colors.temperatureStrong,
                   softColor: colors.temperatureSoft,
                 ),
@@ -200,7 +208,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ListTile(
                 contentPadding: _singleLinePadding,
                 leading: _RowBadge(
-                  icon: Icons.local_drink_outlined,
+                  icon: AppIcons.milkUnit,
                   color: colors.feedingStrong,
                   softColor: colors.feedingSoft,
                 ),
@@ -221,6 +229,44 @@ class _SettingsPageState extends State<SettingsPage> {
             ],
           ),
 
+          // ── Feeding ───────────────────────────────────────────────────────
+          AppSectionHeader(l.settingsFeeding),
+          AppSettingsGroup(
+            children: [
+              SwitchListTile(
+                secondary: _RowBadge(
+                  icon: AppIcons.bottle,
+                  color: colors.feedingStrong,
+                  softColor: colors.feedingSoft,
+                ),
+                title: Text(l.settingsTrackBottles),
+                subtitle: Text(l.settingsTrackBottlesDesc),
+                value: settings.trackBottles,
+                onChanged: (v) =>
+                    sp.updateSettings(settings.copyWith(trackBottles: v)),
+              ),
+              if (settings.trackBottles)
+                ListTile(
+                  contentPadding: _singleLinePadding,
+                  leading: _RowBadge(
+                    icon: AppIcons.milkTotal,
+                    color: colors.feedingStrong,
+                    softColor: colors.feedingSoft,
+                  ),
+                  title: Text(l.bottlesTitle),
+                  trailing: const AppIcon(
+                    AppIcons.chevronRight,
+                    style: AppIconStyle.line,
+                    size: 18,
+                  ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const BottlesPage()),
+                  ),
+                ),
+            ],
+          ),
+
           // ── Notifications ─────────────────────────────────────────────────
           AppSectionHeader(l.settingsNotifications),
           if (!_notifLoaded)
@@ -233,13 +279,15 @@ class _SettingsPageState extends State<SettingsPage> {
               children: [
                 SwitchListTile(
                   secondary: _RowBadge(
-                    icon: Icons.local_drink_outlined,
+                    icon: AppIcons.reminderFeed,
                     color: colors.feedingStrong,
                     softColor: colors.feedingSoft,
                   ),
                   title: Text(l.notifFeedingReminder),
                   subtitle: Text(
-                    l.notifFeedingReminderDesc(_notifSettings.feedingHours),
+                    l.notifFeedingReminderDescInterval(
+                      formatInterval(_notifSettings.feedingInterval),
+                    ),
                   ),
                   value: _notifSettings.feedingEnabled,
                   onChanged: (v) async {
@@ -257,20 +305,23 @@ class _SettingsPageState extends State<SettingsPage> {
                   },
                 ),
                 if (_notifSettings.feedingEnabled)
-                  _HoursSlider(
-                    value: _notifSettings.feedingHours,
-                    onChanged: (v) =>
-                        _updateNotif(_notifSettings.copyWith(feedingHours: v)),
+                  _IntervalRow(
+                    minutes: _notifSettings.feedingMinutes,
+                    onChanged: (v) => _updateNotif(
+                      _notifSettings.copyWith(feedingMinutes: v),
+                    ),
                   ),
                 SwitchListTile(
                   secondary: _RowBadge(
-                    icon: Icons.baby_changing_station,
+                    icon: AppIcons.reminderDiaper,
                     color: colors.diaperStrong,
                     softColor: colors.diaperSoft,
                   ),
                   title: Text(l.notifDiaperReminder),
                   subtitle: Text(
-                    l.notifDiaperReminderDesc(_notifSettings.diaperHours),
+                    l.notifDiaperReminderDescInterval(
+                      formatInterval(_notifSettings.diaperInterval),
+                    ),
                   ),
                   value: _notifSettings.diaperEnabled,
                   onChanged: (v) async {
@@ -288,10 +339,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   },
                 ),
                 if (_notifSettings.diaperEnabled)
-                  _HoursSlider(
-                    value: _notifSettings.diaperHours,
+                  _IntervalRow(
+                    minutes: _notifSettings.diaperMinutes,
                     onChanged: (v) =>
-                        _updateNotif(_notifSettings.copyWith(diaperHours: v)),
+                        _updateNotif(_notifSettings.copyWith(diaperMinutes: v)),
                   ),
               ],
             ),
@@ -302,35 +353,47 @@ class _SettingsPageState extends State<SettingsPage> {
             children: [
               ListTile(
                 leading: _RowBadge(
-                  icon: Icons.picture_as_pdf,
+                  icon: AppIcons.exportPdf,
                   color: colors.neutralStrong,
                   softColor: colors.neutralSoft,
                 ),
                 title: Text(l.exportPdf),
                 subtitle: Text(l.exportPdfDesc),
-                trailing: const Icon(Icons.chevron_right, size: 18),
+                trailing: const AppIcon(
+                  AppIcons.chevronRight,
+                  style: AppIconStyle.line,
+                  size: 18,
+                ),
                 onTap: () => _exportPdf(context),
               ),
               ListTile(
                 leading: _RowBadge(
-                  icon: Icons.code,
+                  icon: AppIcons.exportJson,
                   color: colors.neutralStrong,
                   softColor: colors.neutralSoft,
                 ),
                 title: Text(l.exportJson),
                 subtitle: Text(l.exportJsonDesc),
-                trailing: const Icon(Icons.chevron_right, size: 18),
+                trailing: const AppIcon(
+                  AppIcons.chevronRight,
+                  style: AppIconStyle.line,
+                  size: 18,
+                ),
                 onTap: () => _exportJson(context),
               ),
               ListTile(
                 leading: _RowBadge(
-                  icon: Icons.file_upload_outlined,
+                  icon: AppIcons.importJson,
                   color: colors.neutralStrong,
                   softColor: colors.neutralSoft,
                 ),
                 title: Text(l.importJson),
                 subtitle: Text(l.importJsonDesc),
-                trailing: const Icon(Icons.chevron_right, size: 18),
+                trailing: const AppIcon(
+                  AppIcons.chevronRight,
+                  style: AppIconStyle.line,
+                  size: 18,
+                ),
                 onTap: () => _importJson(context),
               ),
             ],
@@ -341,22 +404,38 @@ class _SettingsPageState extends State<SettingsPage> {
           AppSettingsGroup(
             children: [
               ListTile(
-                leading: const Icon(Icons.swap_horiz_outlined, size: 20),
+                leading: const AppIcon(
+                  AppIcons.switchSide,
+                  style: AppIconStyle.line,
+                  size: 20,
+                ),
                 title: Text(l.tipSwitchBabies),
                 subtitle: Text(l.tipSwitchBabiesDesc),
                 isThreeLine: true,
               ),
               ListTile(
-                leading: const Icon(Icons.swipe_left_outlined, size: 20),
+                leading: const AppIcon(
+                  AppIcons.swipe,
+                  style: AppIconStyle.line,
+                  size: 20,
+                ),
                 title: Text(l.tipSwipeDelete),
                 subtitle: Text(l.tipSwipeDeleteDesc),
               ),
               ListTile(
-                leading: const Icon(Icons.edit_outlined, size: 20),
+                leading: const AppIcon(
+                  AppIcons.edit,
+                  style: AppIconStyle.line,
+                  size: 20,
+                ),
                 title: Text(l.tipTapToEdit),
               ),
               ListTile(
-                leading: const Icon(Icons.add_circle_outline, size: 20),
+                leading: const AppIcon(
+                  AppIcons.addCircle,
+                  style: AppIconStyle.line,
+                  size: 20,
+                ),
                 title: Text(l.tipMultipleFeeds),
                 subtitle: Text(l.tipMultipleFeedsDesc),
                 isThreeLine: true,
@@ -420,8 +499,9 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                     ),
                     trailing: selected
-                        ? Icon(
-                            Icons.check,
+                        ? AppIcon(
+                            AppIcons.check,
+                            style: AppIconStyle.line,
                             size: 18,
                             color: Theme.of(ctx).colorScheme.primary,
                           )
@@ -451,6 +531,7 @@ class _SettingsPageState extends State<SettingsPage> {
     );
     final data = await Storage.loadAll(id);
     final medicationCourses = await Storage.loadMedicationCourses(id);
+    final bottles = await Storage.loadBottles();
 
     if (!context.mounted) return;
     ScaffoldMessenger.of(
@@ -463,6 +544,7 @@ class _SettingsPageState extends State<SettingsPage> {
       useKg: settings.useKg,
       useCelsius: settings.useCelsius,
       medicationCourses: medicationCourses,
+      bottles: bottles,
     );
   }
 
@@ -471,44 +553,8 @@ class _SettingsPageState extends State<SettingsPage> {
     if (profiles.isEmpty) return;
     final id = await Storage.getActiveProfileId() ?? profiles.first.id;
     final data = await Storage.loadAll(id);
-    final file = await Storage.exportToFile(id, data);
-
     if (!context.mounted) return;
-
-    if (Theme.of(context).platform == TargetPlatform.linux) {
-      showDialog(
-        context: context,
-        builder: (_) => AlertDialog(
-          title: const Text('Export saved'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('File saved to:'),
-              const SizedBox(height: 8),
-              SelectableText(
-                file.path,
-                style: const TextStyle(fontFamily: 'monospace', fontSize: 12),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Close'),
-            ),
-          ],
-        ),
-      );
-      return;
-    }
-
-    await SharePlus.instance.share(
-      ShareParams(
-        files: [XFile(file.path)],
-        subject: 'Baby Tracker JSON export',
-      ),
-    );
+    await exportAndShareBackup(context, babyId: id, data: data);
   }
 
   Future<void> _importJson(BuildContext context) async {
@@ -516,14 +562,16 @@ class _SettingsPageState extends State<SettingsPage> {
 
     final picked = await openFile(
       acceptedTypeGroups: const [
-        XTypeGroup(label: 'JSON', extensions: ['json']),
+        XTypeGroup(label: 'Baby Tracker backup', extensions: ['zip', 'json']),
       ],
     );
     if (picked == null) return;
 
-    final raw = await picked.readAsString();
-    final imported = Storage.tryParseImportJson(raw);
-    if (imported == null) {
+    final pending = await BackupService.read(
+      picked.name,
+      await picked.readAsBytes(),
+    );
+    if (pending == null) {
       if (!context.mounted) return;
       ScaffoldMessenger.of(
         context,
@@ -536,7 +584,11 @@ class _SettingsPageState extends State<SettingsPage> {
       context: context,
       builder: (ctx) => AlertDialog(
         title: Text(l.importDialogTitle),
-        content: Text(l.importDialogBody),
+        content: Text(
+          pending.photoCount == 0
+              ? l.importDialogBody
+              : '${l.importDialogBody}\n\n${l.importIncludesPhotos(pending.photoCount)}',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
@@ -558,8 +610,12 @@ class _SettingsPageState extends State<SettingsPage> {
     final profiles = await Storage.loadProfiles();
     if (profiles.isEmpty) return;
     final id = await Storage.getActiveProfileId() ?? profiles.first.id;
-    await Storage.importData(id, imported, merge: merge);
+    await pending.restorePhotos(id, replace: !merge);
+    await Storage.importData(id, pending.bundle, merge: merge);
+    // Imported skin conditions may need their daily reminders armed.
+    await NotificationService.instance.rescheduleFromLatestEvents();
     await widget.onDataImported?.call();
+    await WidgetService.refreshActive();
 
     if (!context.mounted) return;
     ScaffoldMessenger.of(
@@ -579,7 +635,7 @@ class _RowBadge extends StatelessWidget {
     required this.softColor,
   });
 
-  final IconData icon;
+  final String icon;
   final Color color;
   final Color softColor;
 
@@ -598,61 +654,134 @@ class _RowBadge extends StatelessWidget {
   }
 }
 
-/// Slider for the feeding/diaper reminder interval.
-///
-/// Dragging updates its own local state (so the track and "Nh" label track
-/// the finger live), but [onChanged] — which persists to SharedPreferences
-/// *and* re-schedules the OS notification — only fires once, from
-/// `onChangeEnd`. Wiring it to `Slider.onChanged` instead (as this used to
-/// do) meant every intermediate tick during a single drag did a handful of
-/// SharedPreferences writes plus a cancel-and-reschedule round trip to the
-/// notifications plugin.
-class _HoursSlider extends StatefulWidget {
-  final int value;
+/// Shows a reminder's interval ("Every 2 h 30 min") and opens an hours +
+/// minutes picker on tap. Replaces a 1–8 h whole-hour slider, which couldn't
+/// express anything shorter than an hour, longer than 8, or in between.
+class _IntervalRow extends StatelessWidget {
+  final int minutes;
   final ValueChanged<int> onChanged;
 
-  const _HoursSlider({required this.value, required this.onChanged});
+  const _IntervalRow({required this.minutes, required this.onChanged});
 
-  @override
-  State<_HoursSlider> createState() => _HoursSliderState();
-}
-
-class _HoursSliderState extends State<_HoursSlider> {
-  late double _dragValue = widget.value.toDouble();
-
-  @override
-  void didUpdateWidget(covariant _HoursSlider old) {
-    super.didUpdateWidget(old);
-    if (old.value != widget.value) _dragValue = widget.value.toDouble();
+  Future<void> _pick(BuildContext context) async {
+    final picked = await showDialog<int>(
+      context: context,
+      builder: (_) => _IntervalPickerDialog(initialMinutes: minutes),
+    );
+    if (picked != null && picked != minutes) onChanged(picked);
   }
 
   @override
   Widget build(BuildContext context) {
-    final display = _dragValue.round();
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
+    final l = AppLocalizations.of(context)!;
+    return ListTile(
+      contentPadding: const EdgeInsets.only(left: 64, right: 16),
+      title: Text(
+        l.notifIntervalEvery(formatInterval(Duration(minutes: minutes))),
+      ),
+      trailing: const AppIcon(
+        AppIcons.chevronRight,
+        style: AppIconStyle.line,
+        size: 18,
+      ),
+      onTap: () => _pick(context),
+    );
+  }
+}
+
+class _IntervalPickerDialog extends StatefulWidget {
+  final int initialMinutes;
+  const _IntervalPickerDialog({required this.initialMinutes});
+
+  @override
+  State<_IntervalPickerDialog> createState() => _IntervalPickerDialogState();
+}
+
+class _IntervalPickerDialogState extends State<_IntervalPickerDialog> {
+  /// Shortest interval allowed — anything below this would re-fire almost
+  /// immediately after every logged event.
+  static const _minMinutes = 5;
+
+  late final _hoursCtrl = TextEditingController(
+    text: (widget.initialMinutes ~/ 60).toString(),
+  );
+  late final _minutesCtrl = TextEditingController(
+    text: (widget.initialMinutes % 60).toString(),
+  );
+
+  @override
+  void dispose() {
+    _hoursCtrl.dispose();
+    _minutesCtrl.dispose();
+    super.dispose();
+  }
+
+  int get _total =>
+      (int.tryParse(_hoursCtrl.text) ?? 0) * 60 +
+      (int.tryParse(_minutesCtrl.text) ?? 0);
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final valid = _total >= _minMinutes;
+    return AlertDialog(
+      title: Text(l.notifIntervalTitle),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('1h', style: TextStyle(fontSize: 12)),
-          Expanded(
-            child: Slider(
-              value: _dragValue,
-              min: 1,
-              max: 8,
-              divisions: 7,
-              label: '${display}h',
-              onChanged: (v) => setState(() => _dragValue = v),
-              onChangeEnd: (v) => widget.onChanged(v.round()),
-            ),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _hoursCtrl,
+                  autofocus: true,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  decoration: InputDecoration(labelText: l.notifIntervalHours),
+                  onChanged: (_) => setState(() {}),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: TextField(
+                  controller: _minutesCtrl,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  decoration: InputDecoration(
+                    labelText: l.notifIntervalMinutes,
+                  ),
+                  onChanged: (_) => setState(() {}),
+                ),
+              ),
+            ],
           ),
-          const Text('8h', style: TextStyle(fontSize: 12)),
-          const SizedBox(width: 8),
+          const SizedBox(height: 8),
           Text(
-            '${display}h',
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+            valid
+                ? l.notifIntervalEvery(
+                    formatInterval(Duration(minutes: _total)),
+                  )
+                : l.notifIntervalTooShort(_minMinutes),
+            style: TextStyle(
+              fontSize: 12.5,
+              color: valid
+                  ? Theme.of(context).colorScheme.onSurfaceVariant
+                  : Theme.of(context).colorScheme.error,
+            ),
           ),
         ],
       ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l.actionCancel),
+        ),
+        FilledButton(
+          onPressed: valid ? () => Navigator.pop(context, _total) : null,
+          child: Text(l.actionSave),
+        ),
+      ],
     );
   }
 }

@@ -1,10 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/models/bottle.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
 import 'package:simple_baby_tracker/services/timer_service.dart';
+import 'package:simple_baby_tracker/storage.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
 
 const _formulaBrands = [
@@ -30,13 +37,29 @@ class _FeedEntry {
   /// Breastfeeding only: which side(s) this feed covers.
   String side = 'left';
 
+  /// Bottle tracking only (Settings → Track bottles).
+  String? bottleId;
+
   final TextEditingController amountCtrl = TextEditingController();
   final TextEditingController durationCtrl = TextEditingController();
   final TextEditingController leftMinCtrl = TextEditingController();
   final TextEditingController rightMinCtrl = TextEditingController();
   final TextEditingController brandCtrl = TextEditingController();
+  final TextEditingController preparedCtrl = TextEditingController();
 
   _FeedEntry();
+
+  /// Converts both amount fields when the ml/oz toggle changes.
+  void convertUnits({required bool toMl}) {
+    for (final c in [amountCtrl, preparedCtrl]) {
+      final v = double.tryParse(c.text);
+      if (v == null) continue;
+      c.text = toMl
+          ? ozToMl(v).round().toString()
+          : mlToOz(v).toStringAsFixed(1);
+    }
+    amountInMl = toMl;
+  }
 
   void dispose() {
     amountCtrl.dispose();
@@ -44,6 +67,7 @@ class _FeedEntry {
     leftMinCtrl.dispose();
     rightMinCtrl.dispose();
     brandCtrl.dispose();
+    preparedCtrl.dispose();
   }
 }
 
@@ -75,6 +99,9 @@ class _FeedingFormState extends State<FeedingForm> {
   TimeOfDay _time = TimeOfDay.now();
   final List<_FeedEntry> _feeds = [];
 
+  /// Non-retired bottles, for the picker shown when bottle tracking is on.
+  List<Bottle> _bottles = [];
+
   bool get _isEditing => widget.existingEvent != null;
 
   @override
@@ -89,6 +116,8 @@ class _FeedingFormState extends State<FeedingForm> {
       entry.method = e.data['method'] as String? ?? 'breast';
       entry.amountCtrl.text = e.data['amountMl']?.toString() ?? '';
       entry.durationCtrl.text = e.data['durationMin']?.toString() ?? '';
+      entry.bottleId = e.data['bottleId'] as String?;
+      entry.preparedCtrl.text = e.data['preparedMl']?.toString() ?? '';
       entry.side = e.data['side'] as String? ?? 'left';
       final leftMin = e.data['leftMin'] as int?;
       final rightMin = e.data['rightMin'] as int?;
@@ -136,13 +165,33 @@ class _FeedingFormState extends State<FeedingForm> {
       if (useMl) return;
       setState(() {
         for (final f in _feeds) {
-          final current = double.tryParse(f.amountCtrl.text);
-          f.amountInMl = false;
-          if (current != null) {
-            f.amountCtrl.text = mlToOz(current).toStringAsFixed(1);
-          }
+          f.convertUnits(toMl: false);
         }
       });
+    });
+    _loadBottles();
+  }
+
+  static const _kLastBottle = 'last_bottle_id';
+
+  Future<void> _loadBottles() async {
+    final bottles = await Storage.loadBottles();
+    final sp = await SharedPreferences.getInstance();
+    final lastId = sp.getString(_kLastBottle);
+    if (!mounted) return;
+    setState(() {
+      // Keep a retired bottle visible if it's the one this feed used.
+      _bottles = bottles
+          .where((b) => !b.retired || _feeds.any((f) => f.bottleId == b.id))
+          .toList();
+      // New feeds start on the last-used bottle, if it's still active.
+      for (final f in _feeds) {
+        if (!_isEditing &&
+            f.bottleId == null &&
+            _bottles.any((b) => b.id == lastId && !b.retired)) {
+          f.bottleId = lastId;
+        }
+      }
     });
   }
 
@@ -154,7 +203,12 @@ class _FeedingFormState extends State<FeedingForm> {
     super.dispose();
   }
 
-  void _addFeed() => setState(() => _feeds.add(_FeedEntry()));
+  void _addFeed() => setState(() {
+    final entry = _FeedEntry();
+    final first = _feeds.isEmpty ? null : _feeds.first;
+    if (first != null && !first.amountInMl) entry.amountInMl = false;
+    _feeds.add(entry);
+  });
 
   void _removeFeed(int i) {
     if (_feeds.length > 1) {
@@ -165,6 +219,15 @@ class _FeedingFormState extends State<FeedingForm> {
 
   void _save() {
     if (_feeds.isEmpty) return;
+    final trackBottles = SettingsProvider.of(context).settings.trackBottles;
+    final lastBottle = _feeds.map((f) => f.bottleId).whereType<String>();
+    if (trackBottles && lastBottle.isNotEmpty) {
+      unawaited(
+        SharedPreferences.getInstance().then(
+          (sp) => sp.setString(_kLastBottle, lastBottle.last),
+        ),
+      );
+    }
     final d = widget.initialDate;
     final dt = DateTime(d.year, d.month, d.day, _time.hour, _time.minute);
 
@@ -175,6 +238,11 @@ class _FeedingFormState extends State<FeedingForm> {
           : (f.formulaBrand.isEmpty ? null : f.formulaBrand);
       final rawAmount = double.tryParse(f.amountCtrl.text) ?? 0;
       final amountMl = f.amountInMl ? rawAmount : ozToMl(rawAmount);
+      final rawPrepared = double.tryParse(f.preparedCtrl.text);
+      final preparedMl = rawPrepared == null
+          ? null
+          : (f.amountInMl ? rawPrepared : ozToMl(rawPrepared)).round();
+      final withBottle = trackBottles && isBottle && f.bottleId != null;
 
       int breastDurationMin = 0;
       int leftMin = 0;
@@ -206,6 +274,8 @@ class _FeedingFormState extends State<FeedingForm> {
           },
           if (isBottle && f.method == 'formula' && effectiveBrand != null)
             'formulaBrand': effectiveBrand,
+          if (withBottle) 'bottleId': f.bottleId,
+          if (withBottle && preparedMl != null) 'preparedMl': preparedMl,
         },
       );
     }
@@ -248,6 +318,9 @@ class _FeedingFormState extends State<FeedingForm> {
               index: e.key,
               canRemove: _feeds.length > 1,
               lastBreastSide: widget.lastBreastSide,
+              bottles: SettingsProvider.of(context).settings.trackBottles
+                  ? _bottles
+                  : null,
               onRemove: () => _removeFeed(e.key),
               onChanged: () => setState(() {}),
             ),
@@ -257,7 +330,7 @@ class _FeedingFormState extends State<FeedingForm> {
               padding: const EdgeInsets.symmetric(vertical: 6),
               child: OutlinedButton.icon(
                 onPressed: _addFeed,
-                icon: const Icon(Icons.add),
+                icon: const AppIcon(AppIcons.add, style: AppIconStyle.line),
                 label: Text(l.addAnotherFeed),
               ),
             ),
@@ -272,6 +345,9 @@ class _FeedCard extends StatefulWidget {
   final int index;
   final bool canRemove;
   final String? lastBreastSide;
+
+  /// Non-null only when bottle tracking is enabled.
+  final List<Bottle>? bottles;
   final VoidCallback onRemove;
   final VoidCallback onChanged;
 
@@ -281,6 +357,7 @@ class _FeedCard extends StatefulWidget {
     required this.index,
     required this.canRemove,
     this.lastBreastSide,
+    this.bottles,
     required this.onRemove,
     required this.onChanged,
   });
@@ -317,7 +394,11 @@ class _FeedCardState extends State<_FeedCard> {
                 const Spacer(),
                 if (widget.canRemove)
                   IconButton(
-                    icon: const Icon(Icons.close, size: 18),
+                    icon: const AppIcon(
+                      AppIcons.close,
+                      style: AppIconStyle.line,
+                      size: 18,
+                    ),
                     onPressed: widget.onRemove,
                     visualDensity: VisualDensity.compact,
                   ),
@@ -331,12 +412,12 @@ class _FeedCardState extends State<_FeedCard> {
                 PillSegmentedOption(
                   value: 'bottle',
                   label: l.feedModeBottle,
-                  icon: Icons.local_drink,
+                  icon: AppIcons.bottle,
                 ),
                 PillSegmentedOption(
                   value: 'suckle',
                   label: l.feedModeSuckle,
-                  icon: Icons.child_care,
+                  icon: AppIcons.breastfeeding,
                 ),
               ],
               selected: f.feedMode,
@@ -348,6 +429,34 @@ class _FeedCardState extends State<_FeedCard> {
             const SizedBox(height: 10),
 
             if (f.feedMode == 'bottle') ...[
+              if (widget.bottles != null) ...[
+                _BottlePicker(
+                  bottles: widget.bottles!,
+                  selectedId: f.bottleId,
+                  onChanged: (id) {
+                    setState(() => f.bottleId = id);
+                    widget.onChanged();
+                  },
+                ),
+                const SizedBox(height: 10),
+                TextField(
+                  controller: f.preparedCtrl,
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                  decoration: InputDecoration(
+                    labelText: l.feedPrepared,
+                    suffixText: f.amountInMl ? 'ml' : 'oz',
+                    border: const OutlineInputBorder(),
+                    isDense: true,
+                  ),
+                  onChanged: (_) {
+                    setState(() {});
+                    widget.onChanged();
+                  },
+                ),
+                const SizedBox(height: 10),
+              ],
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -358,7 +467,11 @@ class _FeedCardState extends State<_FeedCard> {
                         decimal: true,
                       ),
                       decoration: InputDecoration(
-                        labelText: l.feedAmountMl,
+                        labelText: widget.bottles != null
+                            ? l.feedDrank
+                            : f.amountInMl
+                            ? l.feedAmountMl
+                            : l.feedAmountOz,
                         suffixText: f.amountInMl ? 'ml' : 'oz',
                         // Always occupies a line (a plain space when there's
                         // nothing to convert yet) rather than only appearing
@@ -369,6 +482,17 @@ class _FeedCardState extends State<_FeedCard> {
                         helperText: () {
                           final v = double.tryParse(f.amountCtrl.text);
                           if (v == null) return ' ';
+                          final prepared = double.tryParse(f.preparedCtrl.text);
+                          if (widget.bottles != null && prepared != null) {
+                            final unit = f.amountInMl ? 'ml' : 'oz';
+                            final left = prepared - v;
+                            final fmt = f.amountInMl
+                                ? left.round().toString()
+                                : left.toStringAsFixed(1);
+                            return left < 0
+                                ? l.feedDrankMoreThanPrepared
+                                : l.feedLeftover('$fmt $unit');
+                          }
                           return f.amountInMl
                               ? '(${mlToOz(v).toStringAsFixed(1)} oz)'
                               : '(${ozToMl(v).round()} ml)';
@@ -376,7 +500,10 @@ class _FeedCardState extends State<_FeedCard> {
                         border: const OutlineInputBorder(),
                         isDense: true,
                       ),
-                      onChanged: (_) => widget.onChanged(),
+                      onChanged: (_) {
+                        setState(() {});
+                        widget.onChanged();
+                      },
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -389,15 +516,8 @@ class _FeedCardState extends State<_FeedCard> {
                       ],
                       selected: f.amountInMl,
                       onChanged: (v) {
-                        final current = double.tryParse(f.amountCtrl.text);
-                        setState(() {
-                          if (current != null) {
-                            f.amountCtrl.text = f.amountInMl
-                                ? mlToOz(current).toStringAsFixed(1)
-                                : ozToMl(current).round().toString();
-                          }
-                          f.amountInMl = v;
-                        });
+                        if (v == f.amountInMl) return;
+                        setState(() => f.convertUnits(toMl: v));
                         widget.onChanged();
                       },
                     ),
@@ -539,6 +659,57 @@ class _FeedCardState extends State<_FeedCard> {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// Chips for the household's bottles (Settings → My bottles). Shown only
+/// when bottle tracking is on; points to the bottle list when it's empty.
+class _BottlePicker extends StatelessWidget {
+  final List<Bottle> bottles;
+  final String? selectedId;
+  final ValueChanged<String?> onChanged;
+
+  const _BottlePicker({
+    required this.bottles,
+    required this.selectedId,
+    required this.onChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    if (bottles.isEmpty) {
+      return Text(
+        l.feedNoBottlesYet,
+        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
+        ),
+      );
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(l.feedWhichBottle, style: Theme.of(context).textTheme.labelSmall),
+        const SizedBox(height: 4),
+        Wrap(
+          spacing: 6,
+          runSpacing: 4,
+          children: [
+            for (final b in bottles)
+              ChoiceChip(
+                label: Text(
+                  b.capacityMl == null
+                      ? b.displayName
+                      : '${b.displayName} · ${b.capacityMl} ml',
+                  style: const TextStyle(fontSize: 12),
+                ),
+                selected: b.id == selectedId,
+                onSelected: (sel) => onChanged(sel ? b.id : null),
+              ),
+          ],
+        ),
+      ],
     );
   }
 }

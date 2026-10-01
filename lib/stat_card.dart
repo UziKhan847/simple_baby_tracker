@@ -16,7 +16,9 @@ class StatCard extends StatelessWidget {
 
   final String title;
   final String value;
-  final IconData icon;
+
+  /// An [AppIcons] name.
+  final String icon;
   final Color color;
   final Color? softColor;
 

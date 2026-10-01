@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 import 'package:simple_baby_tracker/widgets/pill_segmented_control.dart';
 
 /// The allergens paediatric guidance most often names for early, deliberate
@@ -32,7 +34,13 @@ const commonFirstFoods = [
   'Pea',
 ];
 
-const solidsReactionSymptoms = ['Rash', 'Hives', 'Vomiting', 'Diarrhea', 'Swelling'];
+const solidsReactionSymptoms = [
+  'Rash',
+  'Hives',
+  'Vomiting',
+  'Diarrhea',
+  'Swelling',
+];
 
 String solidsAmountLabel(String amount, AppLocalizations l) => switch (amount) {
   'few_spoons' => l.solidsAmountFewSpoons,
@@ -41,11 +49,12 @@ String solidsAmountLabel(String amount, AppLocalizations l) => switch (amount) {
   _ => l.solidsAmountTaste,
 };
 
-String solidsReactionLabel(String reaction, AppLocalizations l) => switch (reaction) {
-  'mild' => l.solidsReactionMild,
-  'allergic' => l.solidsReactionAllergic,
-  _ => l.solidsReactionNone,
-};
+String solidsReactionLabel(String reaction, AppLocalizations l) =>
+    switch (reaction) {
+      'mild' => l.solidsReactionMild,
+      'allergic' => l.solidsReactionAllergic,
+      _ => l.solidsReactionNone,
+    };
 
 class SolidsForm extends StatefulWidget {
   final DateTime initialDate;
@@ -143,14 +152,20 @@ class _SolidsFormState extends State<SolidsForm> {
               children: _foods.map((food) {
                 final firstTime = _isFirstTime(food);
                 return InputChip(
-                  label: Text(firstTime ? '$food ✨' : food),
+                  avatar: firstTime
+                      ? const AppIcon(AppIcons.sparkle, size: 16)
+                      : null,
+                  label: Text(food),
                   onDeleted: () => _toggleFood(food),
                 );
               }).toList(),
             ),
             const SizedBox(height: 10),
           ],
-          Text(l.solidsFoodsLabel, style: Theme.of(context).textTheme.labelLarge),
+          Text(
+            l.solidsFoodsLabel,
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
           const SizedBox(height: 6),
           Wrap(
             spacing: 6,
@@ -179,7 +194,7 @@ class _SolidsFormState extends State<SolidsForm> {
               ),
               const SizedBox(width: 8),
               IconButton.filledTonal(
-                icon: const Icon(Icons.add),
+                icon: const AppIcon(AppIcons.add, style: AppIconStyle.line),
                 onPressed: _addCustomFood,
               ),
             ],
@@ -191,7 +206,10 @@ class _SolidsFormState extends State<SolidsForm> {
           PillSegmentedControl<String>(
             options: [
               PillSegmentedOption(value: 'taste', label: l.solidsAmountTaste),
-              PillSegmentedOption(value: 'few_spoons', label: l.solidsAmountFewSpoons),
+              PillSegmentedOption(
+                value: 'few_spoons',
+                label: l.solidsAmountFewSpoons,
+              ),
               PillSegmentedOption(value: 'half', label: l.solidsAmountHalf),
               PillSegmentedOption(value: 'full', label: l.solidsAmountFull),
             ],
@@ -204,11 +222,23 @@ class _SolidsFormState extends State<SolidsForm> {
           const SizedBox(height: 6),
           Row(
             children: [
-              _LikedButton(emoji: '😋', selected: _liked == 'liked', onTap: () => setState(() => _liked = 'liked')),
+              _LikedButton(
+                icon: AppIcons.faceYum,
+                selected: _liked == 'liked',
+                onTap: () => setState(() => _liked = 'liked'),
+              ),
               const SizedBox(width: 8),
-              _LikedButton(emoji: '😐', selected: _liked == 'neutral', onTap: () => setState(() => _liked = 'neutral')),
+              _LikedButton(
+                icon: AppIcons.faceMeh,
+                selected: _liked == 'neutral',
+                onTap: () => setState(() => _liked = 'neutral'),
+              ),
               const SizedBox(width: 8),
-              _LikedButton(emoji: '😖', selected: _liked == 'disliked', onTap: () => setState(() => _liked = 'disliked')),
+              _LikedButton(
+                icon: AppIcons.faceYuck,
+                selected: _liked == 'disliked',
+                onTap: () => setState(() => _liked = 'disliked'),
+              ),
             ],
           ),
 
@@ -219,7 +249,10 @@ class _SolidsFormState extends State<SolidsForm> {
             options: [
               PillSegmentedOption(value: 'none', label: l.solidsReactionNone),
               PillSegmentedOption(value: 'mild', label: l.solidsReactionMild),
-              PillSegmentedOption(value: 'allergic', label: l.solidsReactionAllergic),
+              PillSegmentedOption(
+                value: 'allergic',
+                label: l.solidsReactionAllergic,
+              ),
             ],
             selected: _reaction,
             onChanged: (v) => setState(() => _reaction = v),
@@ -271,7 +304,9 @@ class _SolidsFormState extends State<SolidsForm> {
           'liked': _liked,
           'reaction': _reaction,
           'symptoms': _symptoms.toList(),
-          'notes': _notesCtrl.text.trim().isEmpty ? null : _notesCtrl.text.trim(),
+          'notes': _notesCtrl.text.trim().isEmpty
+              ? null
+              : _notesCtrl.text.trim(),
         },
       ),
     );
@@ -279,11 +314,15 @@ class _SolidsFormState extends State<SolidsForm> {
 }
 
 class _LikedButton extends StatelessWidget {
-  final String emoji;
+  final String icon;
   final bool selected;
   final VoidCallback onTap;
 
-  const _LikedButton({required this.emoji, required this.selected, required this.onTap});
+  const _LikedButton({
+    required this.icon,
+    required this.selected,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -296,10 +335,18 @@ class _LikedButton extends StatelessWidget {
         height: 52,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: selected ? scheme.primaryContainer : scheme.surfaceContainerHighest,
+          color: selected
+              ? scheme.primaryContainer
+              : scheme.surfaceContainerHighest,
           borderRadius: BorderRadius.circular(14),
         ),
-        child: Text(emoji, style: const TextStyle(fontSize: 22)),
+        child: AppIcon(
+          icon,
+          style: selected ? AppIconStyle.solid : AppIconStyle.duo,
+          color: selected ? scheme.onPrimaryContainer : scheme.onSurfaceVariant,
+          knockout: scheme.primaryContainer,
+          size: 28,
+        ),
       ),
     );
   }

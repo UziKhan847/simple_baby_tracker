@@ -1,20 +1,27 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:simple_baby_tracker/pages/day.dart';
 import 'package:simple_baby_tracker/extensions.dart';
 import 'package:simple_baby_tracker/forms/feeding.dart';
 import 'package:simple_baby_tracker/forms/sleep.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/models/medication_course.dart';
+import 'package:simple_baby_tracker/pages/day.dart';
 import 'package:simple_baby_tracker/pages/medications.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
+import 'package:simple_baby_tracker/services/backup_service.dart';
 import 'package:simple_baby_tracker/services/medication_stats.dart';
+import 'package:simple_baby_tracker/services/notification.dart';
 import 'package:simple_baby_tracker/services/timer_service.dart';
+import 'package:simple_baby_tracker/services/widget_service.dart';
 import 'package:simple_baby_tracker/stat_card.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_avatar.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 import 'package:simple_baby_tracker/widgets/gradient_pill_button.dart';
 import 'package:simple_baby_tracker/widgets/section_header.dart';
 
@@ -77,7 +84,9 @@ class _HomePageState extends State<HomePage> {
   Future<void> _loadMedicationCourses() async {
     final courses = await Storage.loadMedicationCourses(widget.babyId);
     if (mounted) {
-      setState(() => _activeCourses = courses.where((c) => c.isActive).toList());
+      setState(
+        () => _activeCourses = courses.where((c) => c.isActive).toList(),
+      );
     }
   }
 
@@ -215,7 +224,8 @@ class _HomePageState extends State<HomePage> {
   /// The active course whose next dose is soonest (or most overdue) — the
   /// one worth a parent's attention on Home, rather than listing every
   /// course's countdown.
-  ({MedicationCourse course, MedicationDoseStats stats})? _mostUrgentMedication() {
+  ({MedicationCourse course, MedicationDoseStats stats})?
+  _mostUrgentMedication() {
     ({MedicationCourse course, MedicationDoseStats stats})? best;
     for (final c in _activeCourses) {
       if (c.intervalHours == null) continue;
@@ -316,7 +326,11 @@ class _HomePageState extends State<HomePage> {
           color: theme.colorScheme.error,
           borderRadius: BorderRadius.circular(20),
         ),
-        child: Icon(Icons.delete, color: theme.colorScheme.onError),
+        child: AppIcon(
+          AppIcons.delete,
+          style: AppIconStyle.line,
+          color: theme.colorScheme.onError,
+        ),
       ),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),
@@ -395,9 +409,11 @@ class _HomePageState extends State<HomePage> {
                               const SizedBox(width: 6),
                               Tooltip(
                                 message: l.rashRecorded,
-                                child: const Text(
-                                  '🔴',
-                                  style: TextStyle(fontSize: 12),
+                                child: AppAvatar(
+                                  AppIcons.rash,
+                                  strong: colors.temperatureStrong,
+                                  soft: colors.temperatureSoft,
+                                  size: 20,
                                 ),
                               ),
                             ],
@@ -456,17 +472,17 @@ class _HomePageState extends State<HomePage> {
           // this is the only way to start a day in a month with nothing in
           // it yet (e.g. backfilling last month).
           IconButton(
-            icon: const Icon(Icons.calendar_month_outlined),
+            icon: const AppIcon(AppIcons.calendar, style: AppIconStyle.line),
             tooltip: l.actionAddDay,
             onPressed: () => _addTileForDate(),
           ),
           IconButton(
-            icon: const Icon(Icons.medication_outlined),
+            icon: const AppIcon(AppIcons.medications),
             tooltip: l.medicationsTitle,
             onPressed: _openMedications,
           ),
           IconButton(
-            icon: const Icon(Icons.share),
+            icon: const AppIcon(AppIcons.share, style: AppIconStyle.line),
             tooltip: l.actionExport,
             onPressed: _export,
           ),
@@ -482,7 +498,13 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          if (runningTimer != null) _TimerCard(timer: runningTimer, onSwitch: () => TimerService.instance.switchSide(), onStop: () => _stopTimer(runningTimer), onDiscard: _confirmDiscardTimer),
+          if (runningTimer != null)
+            _TimerCard(
+              timer: runningTimer,
+              onSwitch: () => TimerService.instance.switchSide(),
+              onStop: () => _stopTimer(runningTimer),
+              onDiscard: _confirmDiscardTimer,
+            ),
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 4, 20, 4),
             child: Column(
@@ -498,7 +520,7 @@ class _HomePageState extends State<HomePage> {
                         child: StatCard(
                           title: l.feedsToday,
                           value: '${_totalFeedsToday()}',
-                          icon: Icons.local_drink,
+                          icon: AppIcons.bottle,
                           color: colors.feedingStrong,
                           softColor: colors.feedingSoft,
                         ),
@@ -508,7 +530,7 @@ class _HomePageState extends State<HomePage> {
                         child: StatCard(
                           title: l.diapersToday,
                           value: '${_totalDiapersToday()}',
-                          icon: Icons.baby_changing_station,
+                          icon: AppIcons.diaper,
                           color: colors.diaperStrong,
                           softColor: colors.diaperSoft,
                         ),
@@ -521,7 +543,7 @@ class _HomePageState extends State<HomePage> {
                   StatCard(
                     title: l.sleepToday,
                     value: _sleepLabel(sleepToday),
-                    icon: Icons.bedtime,
+                    icon: AppIcons.sleep,
                     color: colors.sleepStrong,
                     softColor: colors.sleepSoft,
                   ),
@@ -533,13 +555,9 @@ class _HomePageState extends State<HomePage> {
                   lastSleepEnd: _lastSleepEnd(),
                   sleeping: runningTimer?.kind == TimerKind.sleep,
                   urgentMedication: urgentMed,
-                  onTapFeed: runningTimer == null
-                      ? () => TimerService.instance.startFeeding(widget.babyId)
-                      : null,
+                  onTapFeed: runningTimer == null ? _startFeedingTimer : null,
                   onTapDiaper: _quickAdd,
-                  onTapSleep: runningTimer == null
-                      ? () => TimerService.instance.startSleep(widget.babyId)
-                      : null,
+                  onTapSleep: runningTimer == null ? _startSleepTimer : null,
                   onTapMedication: _openMedications,
                 ),
               ],
@@ -676,6 +694,24 @@ class _HomePageState extends State<HomePage> {
     updated.putIfAbsent(key, () => []).add(event);
     await Storage.saveAll(widget.babyId, updated);
     widget.onDataChanged(updated);
+    unawaited(maybeRescheduleReminders(updated));
+    unawaited(WidgetService.refresh(babyId: widget.babyId, data: updated));
+  }
+
+  /// Keeps the home-screen widget's "Feeding…/Asleep…" state in step with
+  /// timers started, stopped or discarded from inside the app.
+  void _refreshWidget() => unawaited(
+    WidgetService.refresh(babyId: widget.babyId, data: widget.data),
+  );
+
+  Future<void> _startFeedingTimer() async {
+    await TimerService.instance.startFeeding(widget.babyId);
+    _refreshWidget();
+  }
+
+  Future<void> _startSleepTimer() async {
+    await TimerService.instance.startSleep(widget.babyId);
+    _refreshWidget();
   }
 
   Future<void> _confirmDiscardTimer() async {
@@ -697,11 +733,15 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-    if (ok == true) await TimerService.instance.discard();
+    if (ok == true) {
+      await TimerService.instance.discard();
+      _refreshWidget();
+    }
   }
 
   Future<void> _stopTimer(ActiveTimer timer) async {
     final result = await TimerService.instance.stop();
+    _refreshWidget();
     if (result == null || !mounted) return;
 
     if (result.kind == TimerKind.feeding) {
@@ -729,45 +769,8 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  Future<void> _export() async {
-    final l = AppLocalizations.of(context)!;
-    final file = await Storage.exportToFile(widget.babyId, widget.data);
-
-    // share_plus does not support file sharing on Linux.
-    // Show the file path in a dialog instead so the user can open it manually.
-    if (!mounted) return;
-    if (Theme.of(context).platform == TargetPlatform.linux) {
-      showDialog(
-        context: context,
-        builder: (_) => AlertDialog(
-          title: Text(l.actionExport),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('File saved to:'),
-              const SizedBox(height: 8),
-              SelectableText(
-                file.path,
-                style: const TextStyle(fontFamily: 'monospace', fontSize: 12),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text(l.actionClose),
-            ),
-          ],
-        ),
-      );
-      return;
-    }
-
-    await SharePlus.instance.share(
-      ShareParams(files: [XFile(file.path)], subject: l.actionExport),
-    );
-  }
+  Future<void> _export() =>
+      exportAndShareBackup(context, babyId: widget.babyId, data: widget.data);
 }
 
 enum _RowKind { today, divider, year, month, day }
@@ -782,11 +785,27 @@ class _HomeRow {
   final int? month;
   final DateTime? date;
 
-  const _HomeRow.today() : kind = _RowKind.today, year = null, month = null, date = null;
-  const _HomeRow.divider() : kind = _RowKind.divider, year = null, month = null, date = null;
-  const _HomeRow.year(this.year) : kind = _RowKind.year, month = null, date = null;
-  const _HomeRow.month(this.year, this.month) : kind = _RowKind.month, date = null;
-  const _HomeRow.day(this.date) : kind = _RowKind.day, year = null, month = null;
+  const _HomeRow.today()
+    : kind = _RowKind.today,
+      year = null,
+      month = null,
+      date = null;
+  const _HomeRow.divider()
+    : kind = _RowKind.divider,
+      year = null,
+      month = null,
+      date = null;
+  const _HomeRow.year(this.year)
+    : kind = _RowKind.year,
+      month = null,
+      date = null;
+  const _HomeRow.month(this.year, this.month)
+    : kind = _RowKind.month,
+      date = null;
+  const _HomeRow.day(this.date)
+    : kind = _RowKind.day,
+      year = null,
+      month = null;
 }
 
 /// The event-count chip on a day tile. Outlined on ordinary rows; a solid
@@ -874,10 +893,12 @@ class _TimerCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(
-            isFeeding ? Icons.child_care : Icons.bedtime,
+          AppIcon(
+            isFeeding ? AppIcons.breastfeeding : AppIcons.sleep,
+            style: AppIconStyle.solid,
             color: Colors.white,
-            size: 26,
+            knockout: colors.accentGradientStart,
+            size: 28,
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -907,7 +928,11 @@ class _TimerCard extends StatelessWidget {
           ),
           if (isFeeding)
             IconButton(
-              icon: const Icon(Icons.swap_horiz, color: Colors.white),
+              icon: const AppIcon(
+                AppIcons.switchSide,
+                style: AppIconStyle.line,
+                color: Colors.white,
+              ),
               tooltip: l.timerSwitchSide,
               onPressed: onSwitch,
             ),
@@ -933,7 +958,12 @@ class _TimerCard extends StatelessWidget {
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.close, color: Colors.white70, size: 18),
+            icon: const AppIcon(
+              AppIcons.close,
+              style: AppIconStyle.line,
+              color: Colors.white70,
+              size: 18,
+            ),
             tooltip: l.timerDiscard,
             onPressed: onDiscard,
             visualDensity: VisualDensity.compact,
@@ -965,7 +995,8 @@ class _SinceLastStrip extends StatelessWidget {
   final TrackerEvent? lastDiaper;
   final DateTime? lastSleepEnd;
   final bool sleeping;
-  final ({MedicationCourse course, MedicationDoseStats stats})? urgentMedication;
+  final ({MedicationCourse course, MedicationDoseStats stats})?
+  urgentMedication;
   final VoidCallback? onTapFeed;
   final VoidCallback? onTapDiaper;
   final VoidCallback? onTapSleep;
@@ -993,7 +1024,7 @@ class _SinceLastStrip extends StatelessWidget {
 
     final chips = <Widget>[
       _StripChip(
-        icon: Icons.local_drink,
+        icon: AppIcons.bottle,
         color: colors.feedingStrong,
         label: l.sinceLastFeed,
         value: lastFeed == null ? '—' : timeAgo(lastFeed!.time, l),
@@ -1001,14 +1032,14 @@ class _SinceLastStrip extends StatelessWidget {
         onTap: onTapFeed,
       ),
       _StripChip(
-        icon: Icons.baby_changing_station,
+        icon: AppIcons.diaper,
         color: colors.diaperStrong,
         label: l.sinceLastDiaper,
         value: lastDiaper == null ? '—' : timeAgo(lastDiaper!.time, l),
         onTap: onTapDiaper,
       ),
       _StripChip(
-        icon: Icons.bedtime,
+        icon: AppIcons.sleep,
         color: colors.sleepStrong,
         label: sleeping ? l.sinceAsleep : l.sinceAwake,
         value: sleeping || lastSleepEnd == null
@@ -1018,7 +1049,7 @@ class _SinceLastStrip extends StatelessWidget {
       ),
       if (med != null)
         _StripChip(
-          icon: Icons.medication,
+          icon: AppIcons.medication,
           color: colors.medicationStrong,
           label: l.nextDoseDue(med.course.name),
           value: timeUntil(med.stats.nextDue!, l),
@@ -1051,7 +1082,7 @@ class _StripChip extends StatelessWidget {
     this.onTap,
   });
 
-  final IconData icon;
+  final String icon;
   final Color color;
   final String label;
   final String value;
@@ -1095,7 +1126,7 @@ class _StripChip extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Icon(icon, size: 14, color: color),
+                    AppIcon(icon, size: 14, color: color),
                     const SizedBox(width: 5),
                     Expanded(
                       child: Text(

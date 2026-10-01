@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:simple_baby_tracker/app_settings.dart';
 import 'package:simple_baby_tracker/app_shell.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
@@ -10,8 +12,11 @@ import 'package:simple_baby_tracker/providers/locale.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
 import 'package:simple_baby_tracker/providers/theme.dart';
 import 'package:simple_baby_tracker/services/notification.dart';
+import 'package:simple_baby_tracker/services/widget_callback.dart';
+import 'package:simple_baby_tracker/services/widget_service.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/theme/app_theme.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:uuid/uuid.dart';
 
@@ -33,6 +38,17 @@ Future<void> main() async {
   // Settings toggle itself was touched, so they went dark on every app
   // restart until the user revisited Settings.
   unawaited(NotificationService.instance.rescheduleFromLatestEvents());
+  // Loads every icon SVG once so AppIcon can render synchronously.
+  await AppIconCache.preload();
+  // Lets the home-screen widget's buttons run widgetBackgroundCallback in a
+  // headless engine. Re-registered on every launch so the stored callback
+  // handle never goes stale.
+  if (defaultTargetPlatform == TargetPlatform.android) {
+    unawaited(
+      HomeWidget.registerInteractivityCallback(widgetBackgroundCallback),
+    );
+    unawaited(WidgetService.refreshActive());
+  }
   runApp(const MyApp());
 }
 

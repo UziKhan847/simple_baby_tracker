@@ -31,6 +31,29 @@
             android:name="flutterEmbedding"
             android:value="2" />
 
+        <!-- Home-screen widget (see BabyTrackerWidgetProvider.kt). -->
+        <receiver
+            android:name=".BabyTrackerWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_baby_tracker_info" />
+        </receiver>
+
+        <!-- Required by home_widget for the widget's button taps (runs the
+             Dart callback in the background). The plugin's own manifest does
+             NOT declare this — without it every tap silently does nothing. -->
+        <receiver
+            android:name="es.antonborri.home_widget.HomeWidgetBackgroundReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="es.antonborri.home_widget.action.BACKGROUND" />
+            </intent-filter>
+        </receiver>
+
         <!-- flutter_local_notifications: without these two receivers, a
              scheduled `zonedSchedule` alarm fires with nothing registered to
              actually show the notification, and any reminder outstanding at
@@ -57,6 +80,11 @@
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
+        </intent>
+        <!-- Lets image_picker find the system camera app on Android 11+
+             (package visibility) for "Take a photo". -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE"/>
         </intent>
     </queries>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>

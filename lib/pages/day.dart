@@ -15,15 +15,20 @@ import 'package:simple_baby_tracker/forms/tummy_time.dart';
 import 'package:simple_baby_tracker/forms/weight.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/models/bottle.dart';
 import 'package:simple_baby_tracker/pages/foods.dart';
 import 'package:simple_baby_tracker/pages/medications.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
 import 'package:simple_baby_tracker/services/notification.dart';
+import 'package:simple_baby_tracker/services/widget_service.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/summary_header_delegate.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/theme/category_style.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
+import 'package:simple_baby_tracker/widgets/app_avatar.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 import 'package:simple_baby_tracker/widgets/category_icon_badge.dart';
 import 'package:simple_baby_tracker/widgets/entry_row.dart';
 import 'package:simple_baby_tracker/widgets/gradient_pill_button.dart';
@@ -57,18 +62,42 @@ class DayPage extends StatefulWidget {
   State<DayPage> createState() => _DayPageState();
 }
 
-class _DayPageState extends State<DayPage> {
+class _DayPageState extends State<DayPage> with WidgetsBindingObserver {
   late Map<String, List<TrackerEvent>> _data;
+
+  /// Bottle id → bottle, for showing which bottle a feed used.
+  Map<String, Bottle> _bottles = {};
 
   @override
   void initState() {
     super.initState();
     _data = Map<String, List<TrackerEvent>>.from(widget.data);
+    WidgetsBinding.instance.addObserver(this);
+    Storage.loadBottles().then((list) {
+      if (mounted) setState(() => _bottles = {for (final b in list) b.id: b});
+    });
     if (widget.autoOpenAddSheet) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) _showAddSheet();
       });
     }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  /// Entries may have been added from the home-screen widget while this page
+  /// sat in the background. Reload, so the list is current and a later save
+  /// here doesn't write back a stale copy over them.
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) return;
+    Storage.loadAll(widget.babyId).then((fresh) {
+      if (mounted) setState(() => _data = fresh);
+    });
   }
 
   List<TrackerEvent> _events() {
@@ -80,6 +109,7 @@ class _DayPageState extends State<DayPage> {
     await Storage.saveAll(widget.babyId, _data);
     widget.onDataChanged(_data);
     unawaited(maybeRescheduleReminders(_data));
+    unawaited(WidgetService.refresh(babyId: widget.babyId, data: _data));
     if (mounted) setState(() {});
   }
 
@@ -123,7 +153,11 @@ class _DayPageState extends State<DayPage> {
     for (final e in allEvents) {
       final kg = (e.data['valueKg'] as num?)?.toDouble();
       if (kg != null) {
-        return (kg: kg, date: e.time, condition: e.data['condition'] as String?);
+        return (
+          kg: kg,
+          date: e.time,
+          condition: e.data['condition'] as String?,
+        );
       }
     }
     return null;
@@ -220,10 +254,8 @@ class _DayPageState extends State<DayPage> {
         final result = await Navigator.push<TrackerEvent>(
           context,
           MaterialPageRoute(
-            builder: (_) => PumpingForm(
-              initialDate: widget.date,
-              existingEvent: existing,
-            ),
+            builder: (_) =>
+                PumpingForm(initialDate: widget.date, existingEvent: existing),
           ),
         );
         if (result != null) {
@@ -309,10 +341,8 @@ class _DayPageState extends State<DayPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => MedicationsPage(
-                      babyId: widget.babyId,
-                      data: _data,
-                    ),
+                    builder: (_) =>
+                        MedicationsPage(babyId: widget.babyId, data: _data),
                   ),
                 );
               },
@@ -410,9 +440,9 @@ class _DayPageState extends State<DayPage> {
       appBar: AppBar(
         // Smaller than the tab screens' 28px heading — the mockup gives
         // the day detail a 19px title next to a circular back button.
-        titleTextStyle: Theme.of(context).appBarTheme.titleTextStyle?.copyWith(
-          fontSize: 19,
-        ),
+        titleTextStyle: Theme.of(
+          context,
+        ).appBarTheme.titleTextStyle?.copyWith(fontSize: 19),
         title: Text(displayDate(widget.date)),
       ),
       body: events.isEmpty
@@ -420,8 +450,8 @@ class _DayPageState extends State<DayPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.event_note,
+                  AppIcon(
+                    AppIcons.noEvents,
                     size: 64,
                     color: Theme.of(context).colorScheme.outline,
                   ),
@@ -430,7 +460,7 @@ class _DayPageState extends State<DayPage> {
                   const SizedBox(height: 8),
                   FilledButton.icon(
                     onPressed: _showAddSheet,
-                    icon: const Icon(Icons.add),
+                    icon: const AppIcon(AppIcons.add, style: AppIconStyle.line),
                     label: Text(l.addEntry),
                   ),
                 ],
@@ -487,8 +517,9 @@ class _DayPageState extends State<DayPage> {
                             color: Theme.of(context).colorScheme.error,
                             borderRadius: BorderRadius.circular(18),
                           ),
-                          child: Icon(
-                            Icons.delete,
+                          child: AppIcon(
+                            AppIcons.delete,
+                            style: AppIconStyle.line,
                             color: Theme.of(context).colorScheme.onError,
                           ),
                         ),
@@ -500,9 +531,13 @@ class _DayPageState extends State<DayPage> {
                               color: style.strong,
                               softColor: style.soft,
                               title: _title(e, l, settings),
+                              titleBadge: _titleBadge(context, e),
                               subtitle:
                                   '${_subtitle(e, l, settings)}  •  ${formatTime(e.time)}',
-                              trailing: const Icon(Icons.chevron_right),
+                              trailing: const AppIcon(
+                                AppIcons.chevronRight,
+                                style: AppIconStyle.line,
+                              ),
                               onTap: () => _add(e.type, existing: e),
                             );
                           },
@@ -569,7 +604,7 @@ class _DayPageState extends State<DayPage> {
     if (e.type == 'feeding') {
       final isBottle = (e.data['isBottle'] as bool?) ?? true;
       return CategoryStyle(
-        isBottle ? Icons.local_drink : Icons.child_care,
+        isBottle ? AppIcons.bottle : AppIcons.breastfeeding,
         colors.feedingStrong,
         colors.feedingSoft,
       );
@@ -577,12 +612,41 @@ class _DayPageState extends State<DayPage> {
     return categoryStyleFor(e.type, colors);
   }
 
+  /// Rash flag on diapers, severity marker on temperatures — icons from the
+  /// custom pack, replacing the 🔴/🟠/🔵/🟢 emoji that used to be appended
+  /// to the title text.
+  Widget? _titleBadge(BuildContext context, TrackerEvent e) {
+    final c = Theme.of(context).extension<AppColors>()!;
+    if (e.type == 'diaper' && e.data['rash'] == true) {
+      return AppAvatar(
+        AppIcons.rash,
+        strong: c.temperatureStrong,
+        soft: c.temperatureSoft,
+        size: 22,
+      );
+    }
+    if (e.type == 'temperature') {
+      final celsius = (e.data['valueCelsius'] as num?)?.toDouble() ?? 0;
+      final (icon, strong, soft) = switch (tempSeverity(celsius)) {
+        'fever' => (AppIcons.fever, c.temperatureStrong, c.temperatureSoft),
+        'elevated' => (
+          AppIcons.tempElevated,
+          c.medicationStrong,
+          c.medicationSoft,
+        ),
+        'low' => (AppIcons.tempLow, c.miscStrong, c.miscSoft),
+        _ => (AppIcons.tempNormal, c.growthStrong, c.growthSoft),
+      };
+      return AppAvatar(icon, strong: strong, soft: soft, size: 22);
+    }
+    return null;
+  }
+
   String _title(TrackerEvent e, AppLocalizations l, dynamic settings) {
     switch (e.type) {
       case 'diaper':
         final pee = e.data['pee'] == true;
         final poo = e.data['poo'] == true;
-        final rash = e.data['rash'] == true;
         final base = (pee && poo)
             ? l.diaperPeePoo
             : pee
@@ -590,21 +654,14 @@ class _DayPageState extends State<DayPage> {
             : poo
             ? l.diaperPoo
             : l.diaperChange;
-        return rash ? '$base  🔴' : base;
+        return base;
       case 'sleep':
         final min = (e.data['durationMin'] as num?)?.toInt() ?? 0;
         final h = min ~/ 60;
         final rem = min % 60;
         return '${l.entryTypeSleep}  (${h > 0 ? '${h}h ${rem}m' : '${rem}m'})';
       case 'temperature':
-        final c = (e.data['valueCelsius'] as num?)?.toDouble() ?? 0;
-        final dot = switch (tempSeverity(c)) {
-          'fever' => '🔴',
-          'elevated' => '🟠',
-          'low' => '🔵',
-          _ => '🟢',
-        };
-        return '${l.entryTypeTemperature}  $dot';
+        return l.entryTypeTemperature;
       case 'weight':
         return l.entryTypeWeight;
       case 'tummy_time':
@@ -662,7 +719,16 @@ class _DayPageState extends State<DayPage> {
         if (isBottle) {
           final ml = (e.data['amountMl'] as num?) ?? 0;
           final brand = e.data['formulaBrand'] as String?;
-          final amount = formatMilk(ml, useMl: (settings.useMl as bool?) ?? true);
+          final useMl = (settings.useMl as bool?) ?? true;
+          final prepared = e.data['preparedMl'] as num?;
+          // "90 / 120 ml" (drank / prepared) when a bottle's prepared amount
+          // was recorded, otherwise just the amount drunk.
+          var amount = prepared == null
+              ? formatMilk(ml, useMl: useMl)
+              : '${useMl ? ml.round() : mlToOz(ml.toDouble()).toStringAsFixed(1)}'
+                    ' / ${formatMilk(prepared, useMl: useMl)}';
+          final bottle = _bottles[e.data['bottleId']];
+          if (bottle != null) amount = '${bottle.displayName}  •  $amount';
           return brand != null ? '$amount  •  $brand' : amount;
         }
         return '${e.data['durationMin'] ?? 0} min';
@@ -686,8 +752,10 @@ class _DayPageState extends State<DayPage> {
         final useKg = (settings.useKg as bool?) ?? true;
         final parts = <String>[
           if (kg != null) formatWeight(kg, useKg: useKg),
-          if (kg != null && condition != null) weighConditionLabel(condition, l),
-          if (heightCm != null) l.growthHeightValue(heightCm.toStringAsFixed(1)),
+          if (kg != null && condition != null)
+            weighConditionLabel(condition, l),
+          if (heightCm != null)
+            l.growthHeightValue(heightCm.toStringAsFixed(1)),
           if (headCm != null) l.growthHeadValue(headCm.toStringAsFixed(1)),
         ];
         return parts.isEmpty ? l.noDetails : parts.join('  •  ');

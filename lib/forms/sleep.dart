@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
+import 'package:simple_baby_tracker/widgets/app_icon.dart';
 
 class SleepForm extends StatefulWidget {
   final DateTime initialDate;
@@ -121,8 +123,8 @@ class _SleepFormState extends State<SleepForm> {
             ),
             child: Row(
               children: [
-                Icon(
-                  Icons.bedtime,
+                AppIcon(
+                  AppIcons.sleep,
                   color: Theme.of(context).colorScheme.secondary,
                 ),
                 const SizedBox(width: 8),
@@ -229,7 +231,11 @@ class _TimePicker extends StatelessWidget {
             const SizedBox(height: 4),
             Row(
               children: [
-                const Icon(Icons.access_time, size: 16),
+                const AppIcon(
+                  AppIcons.time,
+                  style: AppIconStyle.line,
+                  size: 16,
+                ),
                 const SizedBox(width: 4),
                 Text(
                   time.format(context),
