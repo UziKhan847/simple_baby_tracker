@@ -18,6 +18,7 @@ import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/models/bottle.dart';
 import 'package:simple_baby_tracker/pages/foods.dart';
 import 'package:simple_baby_tracker/pages/medications.dart';
+import 'package:simple_baby_tracker/pages/quick_add.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
 import 'package:simple_baby_tracker/services/notification.dart';
 import 'package:simple_baby_tracker/services/widget_service.dart';
@@ -41,6 +42,8 @@ class DayPage extends StatefulWidget {
     required this.data,
     required this.onDataChanged,
     this.autoOpenAddSheet = false,
+    this.quickAdd = false,
+    this.babyName,
   });
 
   final DateTime date;
@@ -57,6 +60,14 @@ class DayPage extends StatefulWidget {
   /// tapping it goes straight to "pick a type" instead of landing on an
   /// empty day the parent then has to tap + on again.
   final bool autoOpenAddSheet;
+
+  /// Opened from the home-screen widget's "+" (see pages/quick_add.dart):
+  /// the page draws nothing itself — only the add-entry menu, floating over
+  /// the home screen, with [babyName] as its title and an "Open the app"
+  /// row. The popup closes once an entry is saved or the menu is dismissed;
+  /// backing out of a form returns to the menu.
+  final bool quickAdd;
+  final String? babyName;
 
   @override
   State<DayPage> createState() => _DayPageState();
@@ -95,7 +106,9 @@ class _DayPageState extends State<DayPage> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state != AppLifecycleState.resumed) return;
-    Storage.loadAll(widget.babyId).then((fresh) {
+    Storage.reloadFromDisk().then((_) => Storage.loadAll(widget.babyId)).then((
+      fresh,
+    ) {
       if (mounted) setState(() => _data = fresh);
     });
   }
@@ -108,9 +121,38 @@ class _DayPageState extends State<DayPage> with WidgetsBindingObserver {
   Future<void> _save() async {
     await Storage.saveAll(widget.babyId, _data);
     widget.onDataChanged(_data);
-    unawaited(maybeRescheduleReminders(_data));
-    unawaited(WidgetService.refresh(babyId: widget.babyId, data: _data));
+    final sideEffects = Future.wait([
+      maybeRescheduleReminders(_data),
+      WidgetService.refresh(babyId: widget.babyId, data: _data),
+    ]);
+    if (widget.quickAdd) {
+      // The popup closes right after saving, which shuts down its engine —
+      // finish updating reminders and the widget first.
+      await sideEffects;
+      _quickAddSaved = true;
+    } else {
+      unawaited(sideEffects);
+    }
     if (mounted) setState(() {});
+  }
+
+  /// Set by [_save] in quick-add mode, so [_afterQuickAddPick] can tell a
+  /// saved form from one that was backed out of.
+  bool _quickAddSaved = false;
+
+  static const _openAppAction = 'open_app';
+
+  Future<void> _afterQuickAddPick(String? type) async {
+    if (type == null) return QuickAddChannel.close();
+    if (type == _openAppAction) return QuickAddChannel.openApp();
+    _quickAddSaved = false;
+    await _add(type);
+    if (!mounted) return;
+    if (_quickAddSaved) {
+      await QuickAddChannel.close();
+    } else {
+      await _showAddSheet();
+    }
   }
 
   Map<String, int> _totals(List<TrackerEvent> events) {
@@ -436,6 +478,10 @@ class _DayPageState extends State<DayPage> with WidgetsBindingObserver {
     final totals = _totals(events);
     final settings = SettingsProvider.of(context).settings;
 
+    if (widget.quickAdd) {
+      return const Scaffold(backgroundColor: Colors.transparent);
+    }
+
     return Scaffold(
       appBar: AppBar(
         // Smaller than the tab screens' 28px heading — the mockup gives
@@ -571,6 +617,14 @@ class _DayPageState extends State<DayPage> with WidgetsBindingObserver {
                 ),
               ),
               const SizedBox(height: 4),
+              if (widget.quickAdd)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
+                  child: Text(
+                    l.quickAddTitle(widget.babyName ?? ''),
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ),
               // Core tracking
               _SheetTile(l.entryTypeDiaper, 'diaper'),
               _SheetTile(l.entryTypeFeeding, 'feeding'),
@@ -586,12 +640,21 @@ class _DayPageState extends State<DayPage> with WidgetsBindingObserver {
               _SheetTile(l.entryTypeNote, 'note'),
               _SheetTile(l.entryTypeBath, 'bath'),
               _SheetTile(l.entryTypeSolids, 'solids'),
+              if (widget.quickAdd) ...[
+                const Divider(height: 1),
+                _SheetTile(
+                  l.quickAddOpenApp,
+                  _openAppAction,
+                  icon: AppIcons.home,
+                ),
+              ],
               const SizedBox(height: 8),
             ],
           ),
         ),
       ),
     );
+    if (widget.quickAdd) return _afterQuickAddPick(type);
     if (type != null) _add(type);
   }
 
@@ -801,12 +864,19 @@ class _SheetTile extends StatelessWidget {
   final String label;
   final String type;
 
-  const _SheetTile(this.label, this.type);
+  /// For rows that aren't an entry type (e.g. "Open the app"): shown in the
+  /// app's primary colours instead of a category's.
+  final String? icon;
+
+  const _SheetTile(this.label, this.type, {this.icon});
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).extension<AppColors>()!;
-    final style = categoryStyleFor(type, colors);
+    final scheme = Theme.of(context).colorScheme;
+    final style = icon == null
+        ? categoryStyleFor(type, colors)
+        : CategoryStyle(icon!, scheme.primary, scheme.primaryContainer);
     return InkWell(
       onTap: () => Navigator.pop(context, type),
       child: Padding(

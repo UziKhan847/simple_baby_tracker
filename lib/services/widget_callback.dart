@@ -25,6 +25,10 @@ Future<void> widgetBackgroundCallback(Uri? uri) async {
   WidgetsFlutterBinding.ensureInitialized();
   tz.initializeTimeZones();
   await NotificationService.instance.init();
+  // This engine stays cached between taps, so its SharedPreferences copy can
+  // be older than what the app saved since — reload, or this tap would save
+  // a stale copy over entries added in the app.
+  await Storage.reloadFromDisk();
 
   final profiles = await Storage.loadProfiles();
   if (profiles.isEmpty) return; // widget tapped before the app was ever opened

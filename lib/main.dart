@@ -8,6 +8,7 @@ import 'package:home_widget/home_widget.dart';
 import 'package:simple_baby_tracker/app_settings.dart';
 import 'package:simple_baby_tracker/app_shell.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/pages/quick_add.dart';
 import 'package:simple_baby_tracker/providers/locale.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
 import 'package:simple_baby_tracker/providers/theme.dart';
@@ -52,8 +53,27 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
+/// Entry point of the home-screen widget's "+" popup — QuickAddActivity.kt
+/// runs this instead of [main], in its own engine. Only what saving an entry
+/// needs is set up here; the rest of [main] (re-arming every reminder, the
+/// widget callback registration) is the app's job.
+///
+/// `vm:entry-point` keeps release builds from tree-shaking it away, since
+/// nothing in Dart calls it.
+@pragma('vm:entry-point')
+Future<void> quickAddMain() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  tz.initializeTimeZones();
+  await NotificationService.instance.init();
+  await AppIconCache.preload();
+  runApp(const MyApp(quickAdd: true));
+}
+
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, this.quickAdd = false});
+
+  /// Running as the widget's quick-add popup (see [quickAddMain]).
+  final bool quickAdd;
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -94,7 +114,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     // resolves. Doing it there consumed a "have we applied it yet" flag
     // with the wrong value, so the real setting from disk never took effect
     // on startup even though it displayed correctly as enabled in Settings.
-    _applyImmersiveMode(s.immersiveMode);
+    if (!widget.quickAdd) _applyImmersiveMode(s.immersiveMode);
   }
 
   ThemeMode? _themeModeFromOverride(String override) {
@@ -169,7 +189,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         ? (_settings.oledDarkMode ? AppTheme.oled() : AppTheme.dark())
         : AppTheme.light();
 
-    _syncSystemUi(isDark);
+    // The quick-add popup sits on a dark scrim over the home screen in
+    // either theme, so it always wants light status/nav bar icons.
+    _syncSystemUi(widget.quickAdd || isDark);
 
     return MaterialApp(
       title: 'Baby Tracker',
@@ -210,7 +232,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           ),
         ),
       ),
-      home: const AppShell(),
+      home: widget.quickAdd ? const QuickAddScreen() : const AppShell(),
     );
   }
 }

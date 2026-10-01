@@ -1601,5 +1601,15 @@
   "widgetStopSleepFirst": "Stop the sleep timer first",
   "@widgetStopSleepFirst": {},
   "widgetStopFeedFirst": "Stop the feeding timer first",
-  "@widgetStopFeedFirst": {}
+  "@widgetStopFeedFirst": {},
+  "quickAddTitle": "Add for {name}",
+  "@quickAddTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "quickAddOpenApp": "Open the app",
+  "@quickAddOpenApp": {}
 }

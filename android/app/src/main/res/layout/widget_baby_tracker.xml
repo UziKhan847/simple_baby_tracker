@@ -83,8 +83,15 @@
             android:textSize="13sp" android:textStyle="bold" android:text="Diaper" />
         <TextView android:id="@+id/btn_sleep"
             android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1"
-            android:layout_marginStart="4dp" android:gravity="center"
+            android:layout_marginStart="4dp" android:layout_marginEnd="4dp" android:gravity="center"
             android:background="@drawable/widget_btn_sleep_bg" android:textColor="@color/widget_sleep_text"
             android:textSize="13sp" android:textStyle="bold" android:text="Sleep" />
+        <!-- Opens the quick-add popup with every entry type. -->
+        <TextView android:id="@+id/btn_add"
+            android:layout_width="38dp" android:layout_height="38dp"
+            android:layout_marginStart="4dp" android:gravity="center"
+            android:background="@drawable/widget_btn_add_bg" android:textColor="#FFFFFFFF"
+            android:textSize="22sp" android:textStyle="bold" android:text="+"
+            android:contentDescription="@string/widget_add_description" />
     </LinearLayout>
 </LinearLayout>

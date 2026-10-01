@@ -11,7 +11,8 @@ import es.antonborri.home_widget.HomeWidgetProvider
 
 /**
  * Home-screen widget: baby name, "last feed / diaper / sleep" status, and
- * three quick-log buttons.
+ * three quick-log buttons, plus "+" which opens [QuickAddActivity] (every
+ * entry type, over the home screen).
  *
  * Every button tap is a broadcast handled by home_widget's
  * HomeWidgetBackgroundReceiver, which runs `widgetBackgroundCallback` in
@@ -43,6 +44,11 @@ class BabyTrackerWidgetProvider : HomeWidgetProvider() {
                 setOnClickPendingIntent(
                     R.id.widget_header,
                     HomeWidgetLaunchIntent.getActivity(context, MainActivity::class.java),
+                )
+                // "+" floats the add-entry menu over the home screen.
+                setOnClickPendingIntent(
+                    R.id.btn_add,
+                    HomeWidgetLaunchIntent.getActivity(context, QuickAddActivity::class.java),
                 )
                 setOnClickPendingIntent(
                     R.id.btn_feed,

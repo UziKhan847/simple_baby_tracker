@@ -1900,7 +1900,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String widgetAwakeFor(String ago) {
-    return 'Awake since $ago';
+    return 'Woke $ago';
   }
 
   @override
@@ -1908,4 +1908,12 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get widgetStopFeedFirst => 'Stop the feeding timer first';
+
+  @override
+  String quickAddTitle(String name) {
+    return 'Add for $name';
+  }
+
+  @override
+  String get quickAddOpenApp => 'Open the app';
 }

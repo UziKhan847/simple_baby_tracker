@@ -24,6 +24,17 @@ class Storage {
   static const _kActiveProfile = 'active_baby_id';
   static const _kSettings = 'app_settings';
 
+  /// Re-reads every value from disk.
+  ///
+  /// `SharedPreferences.getInstance()` loads all values once per Dart engine
+  /// and serves reads from that in-memory copy afterwards. The home-screen
+  /// widget and the quick-add popup run in *separate* engines that write
+  /// straight to disk, so without this the app keeps showing — and can even
+  /// save back over — its stale copy until the process restarts.
+  static Future<void> reloadFromDisk() async {
+    await (await SharedPreferences.getInstance()).reload();
+  }
+
   // ─── Profiles ─────────────────────────────────────────────────────────────
 
   static Future<List<BabyProfile>> loadProfiles() async {

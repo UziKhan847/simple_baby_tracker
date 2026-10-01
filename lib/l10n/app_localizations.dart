@@ -3446,7 +3446,7 @@ abstract class AppLocalizations {
   /// No description provided for @widgetAwakeFor.
   ///
   /// In en, this message translates to:
-  /// **'Awake since {ago}'**
+  /// **'Woke {ago}'**
   String widgetAwakeFor(String ago);
 
   /// No description provided for @widgetStopSleepFirst.
@@ -3460,6 +3460,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Stop the feeding timer first'**
   String get widgetStopFeedFirst;
+
+  /// No description provided for @quickAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add for {name}'**
+  String quickAddTitle(String name);
+
+  /// No description provided for @quickAddOpenApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the app'**
+  String get quickAddOpenApp;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

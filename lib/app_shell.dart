@@ -52,16 +52,21 @@ class _AppShellState extends State<AppShell> with WidgetsBindingObserver {
     super.dispose();
   }
 
-  /// The home-screen widget logs entries and starts/stops timers from a
-  /// separate background engine, writing straight to storage. Reload on
-  /// resume so anything it did while the app was in the background shows up
-  /// immediately — including the TimerService singleton, whose in-memory
+  /// The home-screen widget and quick-add popup log entries and start/stop
+  /// timers from separate engines, writing straight to disk. Reload on
+  /// resume so anything they did while the app was in the background shows
+  /// up immediately — including the TimerService singleton, whose in-memory
   /// state in *this* isolate would otherwise still show the old timer.
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state != AppLifecycleState.resumed || _activeId == null) return;
-    _loadData();
-    TimerService.instance.load(_activeId!);
+    _reloadAfterResume();
+  }
+
+  Future<void> _reloadAfterResume() async {
+    await Storage.reloadFromDisk();
+    await _loadData();
+    if (_activeId != null) await TimerService.instance.load(_activeId!);
   }
 
   Future<void> _init() async {
