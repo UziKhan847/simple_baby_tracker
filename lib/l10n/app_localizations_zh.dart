@@ -736,10 +736,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get exportTitle => '导出与备份';
 
   @override
-  String get exportJson => '导出为 JSON';
+  String get exportJson => '导出备份';
 
   @override
-  String get exportJsonDesc => '用于备份的原始数据';
+  String get exportJsonDesc => '所有数据和照片打包为一个 .zip 文件';
 
   @override
   String get exportPdf => '导出为 PDF';
@@ -748,10 +748,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get exportPdfDesc => '适合给儿科医生看的可读摘要';
 
   @override
-  String get importJson => '从 JSON 导入';
+  String get importJson => '恢复备份';
 
   @override
-  String get importJsonDesc => '从备份文件恢复';
+  String get importJsonDesc => '从 .zip 备份(或旧版 .json 导出)恢复';
 
   @override
   String get importDialogTitle => '导入数据？';
@@ -889,7 +889,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsTempUnit => '温度单位';
 
   @override
-  String get settingsVolumeUnit => 'Milk volume unit';
+  String get settingsVolumeUnit => '奶量单位';
 
   @override
   String get settingsLanguage => '语言';
@@ -928,7 +928,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tipExportData => '导出数据';
 
   @override
-  String get tipExportDataDesc => '使用首页的分享图标将所有数据导出为 JSON 格式。';
+  String get tipExportDataDesc => '使用首页的分享图标,将所有数据和照片备份到一个文件中。';
 
   @override
   String get babiesTitle => '宝宝';
@@ -1013,10 +1013,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get graphsMilkPerDay => '每日奶量（毫升）';
 
   @override
-  String get graphsMilkPerDayMl => 'Milk per day (ml)';
+  String get graphsMilkPerDayMl => '每日奶量(ml)';
 
   @override
-  String get graphsMilkPerDayOz => 'Milk per day (oz)';
+  String get graphsMilkPerDayOz => '每日奶量(oz)';
 
   @override
   String get graphsSleepPerDay => '每日睡眠（小时）';
@@ -1117,10 +1117,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get summaryMilkLabel => '奶 ml';
 
   @override
-  String get summaryMilkLabelMl => 'Milk ml';
+  String get summaryMilkLabelMl => '奶量 ml';
 
   @override
-  String get summaryMilkLabelOz => 'Milk oz';
+  String get summaryMilkLabelOz => '奶量 oz';
 
   @override
   String get summaryBreastLabel => '亲喂分钟';
@@ -1147,33 +1147,33 @@ class AppLocalizationsZh extends AppLocalizations {
   String get whoChartsEntry => 'WHO 生长曲线图';
 
   @override
-  String get medicationEditTitle => 'Edit medication';
+  String get medicationEditTitle => '编辑用药';
 
   @override
-  String get medicationLogTitle => 'Log medication';
+  String get medicationLogTitle => '记录用药';
 
   @override
-  String get medicationYourCourses => 'Your courses';
+  String get medicationYourCourses => '你的疗程';
 
   @override
-  String get medicationManageCourses => 'Manage courses';
+  String get medicationManageCourses => '管理疗程';
 
   @override
-  String get medicationNameRequired => 'Medication name *';
+  String get medicationNameRequired => '药品名称 *';
 
   @override
-  String get medicationDosageWarning => 'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.';
+  String get medicationDosageWarning => '请始终按体重/年龄用药,不要超过建议的次数。';
 
   @override
-  String get medicationNotesOptional => 'Notes (optional)';
+  String get medicationNotesOptional => '备注(可选)';
 
   @override
   String timeAgoMinutes(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count minutes ago',
-      one: '1 minute ago',
+      other: '$count 分钟前',
+      one: '1 分钟前',
     );
     return '$_temp0';
   }
@@ -1183,8 +1183,8 @@ class AppLocalizationsZh extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count hours ago',
-      one: '1 hour ago',
+      other: '$count 小时前',
+      one: '1 小时前',
     );
     return '$_temp0';
   }
@@ -1194,228 +1194,228 @@ class AppLocalizationsZh extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days ago',
-      one: '1 day ago',
+      other: '$count 天前',
+      one: '1 天前',
     );
     return '$_temp0';
   }
 
   @override
   String medicationLastGivenAgo(String ago) {
-    return 'Last given $ago';
+    return '上次用药 $ago';
   }
 
   @override
-  String get medicationNeverGiven => 'Not given yet';
+  String get medicationNeverGiven => '尚未用药';
 
   @override
   String medicationDosesToday(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count doses today',
-      one: '1 dose today',
-      zero: 'No doses today',
+      other: '今天 $count 次',
+      one: '今天 1 次',
+      zero: '今天未用药',
     );
     return '$_temp0';
   }
 
   @override
   String medicationTooSoonWarning(int hours) {
-    return 'Next dose isn\'t due for ${hours}h after the last one';
+    return '下一次用药需在上一次之后 $hours 小时';
   }
 
   @override
   String medicationMaxPerDayWarning(int max) {
-    return 'Already at the $max/day limit for this course';
+    return '已达到该疗程每天 $max 次的上限';
   }
 
   @override
-  String get medicationEditCourse => 'Edit course';
+  String get medicationEditCourse => '编辑疗程';
 
   @override
-  String get medicationNewCourse => 'New course';
+  String get medicationNewCourse => '新疗程';
 
   @override
-  String get medicationReasonOptional => 'Reason (optional)';
+  String get medicationReasonOptional => '原因(可选)';
 
   @override
-  String get medicationIntervalHoursOptional => 'Repeat every (hours, optional)';
+  String get medicationIntervalHoursOptional => '间隔(小时,可选)';
 
   @override
-  String get medicationMaxPerDayOptional => 'Max doses/day (optional)';
+  String get medicationMaxPerDayOptional => '每天最多次数(可选)';
 
   @override
-  String get medicationRemindNextDose => 'Remind me when the next dose is due';
+  String get medicationRemindNextDose => '到下一次用药时间时提醒我';
 
   @override
   String medicationEndCourseTitle(String name) {
-    return 'End $name?';
+    return '结束 $name?';
   }
 
   @override
-  String get medicationEndCoursePrompt => 'How did it go?';
+  String get medicationEndCoursePrompt => '效果如何?';
 
   @override
-  String get medicationDeleteCourseTitle => 'Delete this course?';
+  String get medicationDeleteCourseTitle => '删除此疗程?';
 
   @override
-  String get medicationResultWorked => 'Worked';
+  String get medicationResultWorked => '有效';
 
   @override
-  String get medicationResultPartlyWorked => 'Partly worked';
+  String get medicationResultPartlyWorked => '部分有效';
 
   @override
-  String get medicationResultDidntWork => 'Didn\'t work';
+  String get medicationResultDidntWork => '无效';
 
   @override
-  String get medicationResultSideEffects => 'Side effects';
+  String get medicationResultSideEffects => '有副作用';
 
   @override
-  String get medicationResultNone => 'Not rated';
+  String get medicationResultNone => '未评价';
 
   @override
-  String get medicationsTitle => 'Medications';
+  String get medicationsTitle => '用药';
 
   @override
   String medicationActiveTab(int count) {
-    return 'Active ($count)';
+    return '进行中($count)';
   }
 
   @override
   String medicationPastTab(int count) {
-    return 'Past ($count)';
+    return '已结束($count)';
   }
 
   @override
-  String get medicationNoActiveCourses => 'No active medication courses.\nStart one with the + button.';
+  String get medicationNoActiveCourses => '没有进行中的疗程。\n点 + 开始一个。';
 
   @override
-  String get medicationNoPastCourses => 'No past courses yet.';
+  String get medicationNoPastCourses => '还没有已结束的疗程。';
 
   @override
   String medicationTimesGiven(int count) {
-    return 'Given $count×';
+    return '已用 $count 次';
   }
 
   @override
   String medicationLastGivenShort(String date) {
-    return 'Last: $date';
+    return '上次:$date';
   }
 
   @override
   String medicationNextDueShort(String time) {
-    return 'Next due $time';
+    return '下次 $time';
   }
 
   @override
-  String get medicationEndCourse => 'End course';
+  String get medicationEndCourse => '结束疗程';
 
   @override
   String feedLastSideHint(String side) {
-    return 'Last time: $side';
+    return '上次:$side';
   }
 
   @override
-  String get feedSideLeft => 'Left';
+  String get feedSideLeft => '左侧';
 
   @override
-  String get feedSideRight => 'Right';
+  String get feedSideRight => '右侧';
 
   @override
-  String get feedSideBoth => 'Both';
+  String get feedSideBoth => '两侧';
 
   @override
-  String get feedSideLeftMinutes => 'Left (min)';
+  String get feedSideLeftMinutes => '左侧(分钟)';
 
   @override
-  String get feedSideRightMinutes => 'Right (min)';
+  String get feedSideRightMinutes => '右侧(分钟)';
 
   @override
-  String get timeAgoJustNow => 'Just now';
+  String get timeAgoJustNow => '刚刚';
 
   @override
-  String get timeUntilOverdue => 'Overdue';
+  String get timeUntilOverdue => '已超时';
 
   @override
   String timeUntilMinutes(int count) {
-    return 'in ${count}m';
+    return '$count 分钟后';
   }
 
   @override
   String timeUntilHours(int count) {
-    return 'in ${count}h';
+    return '$count 小时后';
   }
 
   @override
   String timeUntilDays(int count) {
-    return 'in ${count}d';
+    return '$count 天后';
   }
 
   @override
-  String get timerDiscardTitle => 'Discard this timer?';
+  String get timerDiscardTitle => '放弃此计时?';
 
   @override
-  String get timerDiscard => 'Discard';
+  String get timerDiscard => '放弃';
 
   @override
   String timerFeedingRunning(String side) {
-    return 'Feeding · $side';
+    return '喂奶中 · $side';
   }
 
   @override
-  String get timerSleepRunning => 'Sleep timer running';
+  String get timerSleepRunning => '睡眠计时中';
 
   @override
-  String get timerSwitchSide => 'Switch side';
+  String get timerSwitchSide => '换边';
 
   @override
-  String get timerStop => 'Stop';
+  String get timerStop => '停止';
 
   @override
-  String get sinceLastFeed => 'Last feed';
+  String get sinceLastFeed => '上次喂奶';
 
   @override
-  String get sinceLastDiaper => 'Last diaper';
+  String get sinceLastDiaper => '上次换尿布';
 
   @override
-  String get sinceAwake => 'Awake';
+  String get sinceAwake => '醒着';
 
   @override
-  String get sinceAsleep => 'Asleep';
+  String get sinceAsleep => '睡着';
 
   @override
   String nextDoseDue(String name) {
-    return '$name due';
+    return '该用 $name 了';
   }
 
   @override
-  String get weighConditionNaked => 'Naked';
+  String get weighConditionNaked => '光着身子';
 
   @override
-  String get weighConditionDiaper => 'Diaper only';
+  String get weighConditionDiaper => '只穿尿布';
 
   @override
-  String get weighConditionLightClothes => 'Light clothes';
+  String get weighConditionLightClothes => '穿薄衣服';
 
   @override
-  String get weighConditionDressed => 'Dressed';
+  String get weighConditionDressed => '穿着衣服';
 
   @override
-  String get weighCondition => 'Weighed wearing';
+  String get weighCondition => '称重时穿着';
 
   @override
-  String get growthMeasurementsOptional => 'Other measurements (optional)';
+  String get growthMeasurementsOptional => '其他测量(可选)';
 
   @override
-  String get growthHeightCm => 'Height (cm)';
+  String get growthHeightCm => '身高(cm)';
 
   @override
-  String get growthHeadCm => 'Head circumference (cm)';
+  String get growthHeadCm => '头围(cm)';
 
   @override
   String weighConditionChangedWarning(String condition) {
-    return 'Last time was weighed $condition — the difference may not be just growth';
+    return '上次称重时为「$condition」——差异可能不只是因为生长';
   }
 
   @override
@@ -1425,299 +1425,299 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String growthHeadValue(String cm) {
-    return 'Head $cm cm';
+    return '头围 $cm cm';
   }
 
   @override
-  String get growthHeightOverTime => 'Height over time';
+  String get growthHeightOverTime => '身高变化';
 
   @override
-  String get growthHeadOverTime => 'Head circumference over time';
+  String get growthHeadOverTime => '头围变化';
 
   @override
-  String get graphsRecentWeighIns => 'Recent weigh-ins';
+  String get graphsRecentWeighIns => '最近称重';
 
   @override
-  String get solidsAmountFewSpoons => 'A few spoons';
+  String get solidsAmountFewSpoons => '几勺';
 
   @override
-  String get solidsAmountHalf => 'Half a portion';
+  String get solidsAmountHalf => '半份';
 
   @override
-  String get solidsAmountFull => 'Full portion';
+  String get solidsAmountFull => '一整份';
 
   @override
-  String get solidsAmountTaste => 'Just a taste';
+  String get solidsAmountTaste => '只尝了尝';
 
   @override
-  String get solidsReactionMild => 'Mild reaction';
+  String get solidsReactionMild => '轻微反应';
 
   @override
-  String get solidsReactionAllergic => 'Allergic reaction';
+  String get solidsReactionAllergic => '过敏反应';
 
   @override
-  String get solidsReactionNone => 'No reaction';
+  String get solidsReactionNone => '无反应';
 
   @override
-  String get solidsEditTitle => 'Edit solid food';
+  String get solidsEditTitle => '编辑辅食';
 
   @override
-  String get solidsLogTitle => 'Log solid food';
+  String get solidsLogTitle => '记录辅食';
 
   @override
-  String get solidsFoodsLabel => 'Foods';
+  String get solidsFoodsLabel => '食物';
 
   @override
-  String get solidsAddFoodHint => 'Add a food';
+  String get solidsAddFoodHint => '添加食物';
 
   @override
-  String get solidsAmount => 'Amount';
+  String get solidsAmount => '份量';
 
   @override
-  String get solidsLiked => 'How did they like it?';
+  String get solidsLiked => '喜欢吗?';
 
   @override
-  String get solidsReaction => 'Reaction';
+  String get solidsReaction => '反应';
 
   @override
-  String get solidsNotesOptional => 'Notes (optional)';
+  String get solidsNotesOptional => '备注(可选)';
 
   @override
-  String get foodsTitle => 'Foods tried';
+  String get foodsTitle => '已尝试的食物';
 
   @override
-  String get foodsEmpty => 'No solid foods logged yet.';
+  String get foodsEmpty => '还没有记录辅食。';
 
   @override
-  String get foodsAllergensNotYet => 'Common allergens not yet introduced';
+  String get foodsAllergensNotYet => '尚未尝试的常见过敏原';
 
   @override
   String foodsTriedCount(int count) {
-    return '$count foods tried';
+    return '已尝试 $count 种食物';
   }
 
   @override
   String foodsFirstTried(String date) {
-    return 'First: $date';
+    return '首次:$date';
   }
 
   @override
   String foodsTimesEaten(int count) {
-    return '$count×';
+    return '$count 次';
   }
 
   @override
-  String get entryTypeSolids => 'Solid food';
+  String get entryTypeSolids => '辅食';
 
   @override
-  String get feedAmountOz => 'Amount (oz)';
+  String get feedAmountOz => '奶量(oz)';
 
   @override
   String notifFeedingReminderDescInterval(String interval) {
-    return 'Remind me $interval after the last feed';
+    return '上次喂奶 $interval 后提醒我';
   }
 
   @override
   String notifDiaperReminderDescInterval(String interval) {
-    return 'Remind me $interval after the last diaper';
+    return '上次换尿布 $interval 后提醒我';
   }
 
   @override
   String notifIntervalEvery(String interval) {
-    return 'Every $interval';
+    return '每 $interval';
   }
 
   @override
-  String get notifIntervalTitle => 'Reminder interval';
+  String get notifIntervalTitle => '提醒间隔';
 
   @override
-  String get notifIntervalHours => 'Hours';
+  String get notifIntervalHours => '小时';
 
   @override
-  String get notifIntervalMinutes => 'Minutes';
+  String get notifIntervalMinutes => '分钟';
 
   @override
   String notifIntervalTooShort(int minutes) {
-    return 'At least $minutes minutes';
+    return '至少 $minutes 分钟';
   }
 
   @override
-  String get settingsFeeding => 'Feeding';
+  String get settingsFeeding => '喂养';
 
   @override
-  String get settingsTrackBottles => 'Track bottles';
+  String get settingsTrackBottles => '记录奶瓶';
 
   @override
-  String get settingsTrackBottlesDesc => 'Pick which bottle was used, and how much was prepared vs drunk';
+  String get settingsTrackBottlesDesc => '选择使用的奶瓶,以及冲调量和喝下的量';
 
   @override
-  String get bottlesTitle => 'My bottles';
+  String get bottlesTitle => '我的奶瓶';
 
   @override
-  String get bottlesEmpty => 'No bottles yet.\nAdd the bottles you use so you can pick one when logging a feed.';
+  String get bottlesEmpty => '还没有奶瓶。\n添加你使用的奶瓶,记录喂奶时即可选择。';
 
   @override
-  String get bottleAdd => 'Add bottle';
+  String get bottleAdd => '添加奶瓶';
 
   @override
-  String get bottleEdit => 'Edit bottle';
+  String get bottleEdit => '编辑奶瓶';
 
   @override
-  String get bottleLabel => 'Label / number (e.g. #3)';
+  String get bottleLabel => '标签 / 编号(如 #3)';
 
   @override
-  String get bottleBrand => 'Brand / type (optional)';
+  String get bottleBrand => '品牌 / 类型(可选)';
 
   @override
-  String get bottleCapacity => 'Capacity (optional)';
+  String get bottleCapacity => '容量(可选)';
 
   @override
-  String get bottleNipple => 'Nipple size / flow (optional)';
+  String get bottleNipple => '奶嘴尺寸 / 流量(可选)';
 
   @override
-  String get bottleMaterial => 'Material';
+  String get bottleMaterial => '材质';
 
   @override
-  String get bottleRetired => 'Retired';
+  String get bottleRetired => '已停用';
 
   @override
-  String get bottleRetire => 'Retire';
+  String get bottleRetire => '停用';
 
   @override
-  String get bottleUnretire => 'Use again';
+  String get bottleUnretire => '重新使用';
 
   @override
   String bottleDeleteTitle(String name) {
-    return 'Delete $name?';
+    return '删除 $name?';
   }
 
   @override
-  String get bottleDeleteBody => 'Past feeds keep their amounts but will no longer show this bottle. To hide it from the picker but keep history, use Retire instead.';
+  String get bottleDeleteBody => '以前的喂奶记录会保留奶量,但不再显示此奶瓶。如果想从列表中隐藏但保留记录,请改用「停用」。';
 
   @override
-  String get feedPrepared => 'Prepared';
+  String get feedPrepared => '冲调量';
 
   @override
-  String get feedDrank => 'Drank';
+  String get feedDrank => '喝下';
 
   @override
   String feedLeftover(String amount) {
-    return '$amount left over';
+    return '剩余 $amount';
   }
 
   @override
-  String get feedDrankMoreThanPrepared => 'More than was prepared?';
+  String get feedDrankMoreThanPrepared => '比冲调的还多?';
 
   @override
-  String get feedWhichBottle => 'Which bottle?';
+  String get feedWhichBottle => '哪个奶瓶?';
 
   @override
-  String get feedNoBottlesYet => 'No bottles yet — add them in Settings → My bottles.';
+  String get feedNoBottlesYet => '还没有奶瓶 — 请在 设置 → 我的奶瓶 中添加。';
 
   @override
-  String get photoPrivacyTitle => 'Your photos stay on this phone';
+  String get photoPrivacyTitle => '你的照片只保存在这部手机上';
 
   @override
-  String get photoPrivacyBody => 'Photos are saved only inside this app on this device. The app has no internet access, so nothing is ever uploaded or shared unless you export a backup yourself.\n\nAndroid may ask for camera access the first time you take a photo.';
+  String get photoPrivacyBody => '照片只保存在本设备上的这个应用中。应用没有联网权限,除非你自己导出备份,否则不会上传或分享任何内容。\n\n第一次拍照时,Android 可能会请求相机权限。';
 
   @override
-  String get photoPrivacyContinue => 'Continue';
+  String get photoPrivacyContinue => '继续';
 
   @override
-  String get photoTakePhoto => 'Take a photo';
+  String get photoTakePhoto => '拍照';
 
   @override
-  String get photoChooseFromGallery => 'Choose from gallery';
+  String get photoChooseFromGallery => '从相册选择';
 
   @override
-  String get photoCaption => 'Caption';
+  String get photoCaption => '说明';
 
   @override
-  String get photoCompare => 'First vs latest';
+  String get photoCompare => '第一张与最新';
 
   @override
-  String get photoAddOtherDay => 'Add for another day';
+  String get photoAddOtherDay => '为其他日期添加';
 
   @override
-  String get photoEmpty => 'No photos yet.\nTake one photo a day and watch your baby grow.';
+  String get photoEmpty => '还没有照片。\n每天拍一张,看着宝宝长大。';
 
   @override
-  String get photoToday => 'Today\'s photo';
+  String get photoToday => '今日照片';
 
   @override
-  String get photoAddToday => 'Add today\'s photo';
+  String get photoAddToday => '添加今日照片';
 
   @override
-  String get photoReplace => 'Replace';
+  String get photoReplace => '替换';
 
   @override
-  String get photoDeleteTitle => 'Delete this photo?';
+  String get photoDeleteTitle => '删除这张照片?';
 
   @override
-  String get ageBeforeBirth => 'Before birth';
+  String get ageBeforeBirth => '出生前';
 
   @override
   String ageDays(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days old',
-      one: '1 day old',
-      zero: 'Birth day',
+      other: '出生 $count 天',
+      one: '出生 1 天',
+      zero: '出生当天',
     );
     return '$_temp0';
   }
 
   @override
   String ageMonthsDays(int months, int days) {
-    return '$months mo $days d';
+    return '$months 个月 $days 天';
   }
 
   @override
   String ageYearsMonths(int years, int months) {
-    return '$years yr $months mo';
+    return '$years 岁 $months 个月';
   }
 
   @override
-  String get navMemories => 'Memories';
+  String get navMemories => '回忆';
 
   @override
-  String get memoriesTabPhotos => 'Photos';
+  String get memoriesTabPhotos => '照片';
 
   @override
-  String get milestoneNoAchievedHint => 'Tap \"Upcoming\" to log a preset,\nor use the button below for a custom one.';
+  String get milestoneNoAchievedHint => '点击「即将到来」记录预设的里程碑,\n或使用下方按钮添加自定义里程碑。';
 
   @override
-  String get skinTitle => 'Skin conditions';
+  String get skinTitle => '皮肤问题';
 
   @override
-  String get skinNew => 'New skin condition';
+  String get skinNew => '新的皮肤问题';
 
   @override
-  String get skinEdit => 'Edit skin condition';
+  String get skinEdit => '编辑皮肤问题';
 
   @override
   String skinTabActive(int count) {
-    return 'Active ($count)';
+    return '进行中($count)';
   }
 
   @override
   String skinTabHealed(int count) {
-    return 'Healed ($count)';
+    return '已痊愈($count)';
   }
 
   @override
-  String get skinEmptyActive => 'No skin conditions being tracked.\nTap + to start one — you can add a photo each day to show the doctor how it\'s changing.';
+  String get skinEmptyActive => '没有正在跟踪的皮肤问题。\n点 + 开始——每天可以添加一张照片,让医生看到变化。';
 
   @override
-  String get skinEmptyHealed => 'Nothing healed yet.';
+  String get skinEmptyHealed => '还没有痊愈的。';
 
   @override
-  String get skinUpdateDue => 'Update today';
+  String get skinUpdateDue => '今天需更新';
 
   @override
   String skinSince(String date) {
-    return 'Since $date';
+    return '自 $date 起';
   }
 
   @override
@@ -1725,195 +1725,550 @@ class AppLocalizationsZh extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days',
-      one: '1 day',
+      other: '$count 天',
+      one: '1 天',
     );
     return '$_temp0';
   }
 
   @override
   String skinHealedOn(String date) {
-    return 'Healed $date';
+    return '$date 痊愈';
   }
 
   @override
   String skinReminderAt(String time) {
-    return 'Daily reminder at $time';
+    return '每天 $time 提醒';
   }
 
   @override
-  String get skinSeverityTrend => 'Severity over time';
+  String get skinSeverityTrend => '严重程度变化';
 
   @override
-  String get skinNoUpdates => 'No updates yet. Add today\'s to start the timeline.';
+  String get skinNoUpdates => '还没有记录。添加今天的记录以开始时间线。';
 
   @override
-  String get skinExportPdf => 'Export for doctor (PDF)';
+  String get skinExportPdf => '导出给医生(PDF)';
 
   @override
-  String get skinMarkHealed => 'Mark healed';
+  String get skinMarkHealed => '标记为已痊愈';
 
   @override
-  String get skinReopen => 'Mark active again';
+  String get skinReopen => '重新标记为进行中';
 
   @override
-  String get skinUpdateToday => 'Add today\'s update';
+  String get skinUpdateToday => '添加今天的记录';
 
   @override
-  String get skinEditToday => 'Edit today\'s update';
+  String get skinEditToday => '编辑今天的记录';
 
   @override
   String skinDeleteTitle(String name) {
-    return 'Delete $name and all its updates?';
+    return '删除 $name 及其所有记录?';
   }
 
   @override
-  String get skinDeleteUpdateTitle => 'Delete this update?';
+  String get skinDeleteUpdateTitle => '删除这条记录?';
 
   @override
   String skinTreatmentValue(String treatment) {
-    return 'Treatment: $treatment';
+    return '治疗:$treatment';
   }
 
   @override
-  String get skinName => 'Condition *';
+  String get skinName => '问题 *';
 
   @override
-  String get skinBodyArea => 'Where on the body?';
+  String get skinBodyArea => '在身体哪个部位?';
 
   @override
-  String get skinBegan => 'Began on';
+  String get skinBegan => '开始于';
 
   @override
-  String get skinRemindDaily => 'Remind me to update it daily';
+  String get skinRemindDaily => '每天提醒我更新';
 
   @override
-  String get skinReminderTime => 'Reminder time';
+  String get skinReminderTime => '提醒时间';
 
   @override
-  String get skinUpdateTitle => 'Skin update';
+  String get skinUpdateTitle => '皮肤记录';
 
   @override
-  String get skinSeverity => 'How does it look?';
+  String get skinSeverity => '看起来怎么样?';
 
   @override
-  String get skinSeverity0 => '0 · Clear';
+  String get skinSeverity0 => '0 · 已消退';
 
   @override
-  String get skinSeverity1 => '1 · Mild';
+  String get skinSeverity1 => '1 · 轻微';
 
   @override
-  String get skinSeverity2 => '2 · Moderate';
+  String get skinSeverity2 => '2 · 中度';
 
   @override
-  String get skinSeverity3 => '3 · Severe';
+  String get skinSeverity3 => '3 · 严重';
 
   @override
-  String get skinSeverity4 => '4 · Very severe';
+  String get skinSeverity4 => '4 · 非常严重';
 
   @override
-  String get skinTreatment => 'Treatment (optional)';
+  String get skinTreatment => '治疗(可选)';
 
   @override
-  String get skinTreatmentHint => 'e.g. moisturiser, hydrocortisone 1%';
+  String get skinTreatmentHint => '如 保湿霜、1% 氢化可的松';
 
   @override
-  String get skinAddPhoto => 'Add a photo';
+  String get skinAddPhoto => '添加照片';
 
   @override
-  String get skinCardNone => 'Track a rash, eczema or other skin condition day by day, with photos for the doctor';
+  String get skinCardNone => '逐日跟踪皮疹、湿疹等皮肤问题,并附照片给医生看';
 
   @override
   String skinCardDue(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count need today\'s update',
-      one: '1 needs today\'s update',
+      other: '$count 项需要今天更新',
+      one: '1 项需要今天更新',
     );
     return '$_temp0';
   }
 
   @override
-  String get backupPreparing => 'Preparing backup…';
+  String get backupPreparing => '正在准备备份…';
 
   @override
-  String get backupFailed => 'Couldn\'t create the backup.';
+  String get backupFailed => '无法创建备份。';
 
   @override
-  String get backupSavedTo => 'Backup saved to:';
+  String get backupSavedTo => '备份已保存到:';
 
   @override
-  String get backupShareSubject => 'Baby Tracker backup';
+  String get backupShareSubject => 'Baby Tracker 备份';
 
   @override
   String importIncludesPhotos(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Includes $count photos.',
-      one: 'Includes 1 photo.',
+      other: '包含 $count 张照片。',
+      one: '包含 1 张照片。',
     );
     return '$_temp0';
   }
 
   @override
-  String get widgetFeed => 'Feed';
+  String get widgetFeed => '喂奶';
 
   @override
-  String get widgetStopFeed => 'Stop feed';
+  String get widgetStopFeed => '结束喂奶';
 
   @override
-  String get widgetDiaper => 'Diaper';
+  String get widgetDiaper => '尿布';
 
   @override
-  String get widgetSleep => 'Sleep';
+  String get widgetSleep => '睡眠';
 
   @override
-  String get widgetWakeUp => 'Woke up';
+  String get widgetWakeUp => '醒了';
 
   @override
   String widgetFeedingFor(String duration) {
-    return 'Feeding $duration';
+    return '已喂 $duration';
   }
 
   @override
   String widgetFedAgo(String ago) {
-    return 'Fed $ago';
+    return '喂奶 $ago';
   }
 
   @override
-  String get widgetNoFeedsYet => 'No feeds yet';
+  String get widgetNoFeedsYet => '暂无喂奶记录';
 
   @override
   String widgetChangedAgo(String ago) {
-    return 'Changed $ago';
+    return '换尿布 $ago';
   }
 
   @override
-  String get widgetNoDiapersYet => 'No diapers yet';
+  String get widgetNoDiapersYet => '暂无尿布记录';
 
   @override
   String widgetAsleepFor(String duration) {
-    return 'Asleep $duration';
+    return '已睡 $duration';
   }
 
   @override
   String widgetAwakeFor(String ago) {
-    return 'Woke $ago';
+    return '醒来 $ago';
   }
 
   @override
-  String get widgetStopSleepFirst => 'Stop the sleep timer first';
+  String get widgetStopSleepFirst => '请先停止睡眠计时';
 
   @override
-  String get widgetStopFeedFirst => 'Stop the feeding timer first';
+  String get widgetStopFeedFirst => '请先停止喂奶计时';
 
   @override
   String quickAddTitle(String name) {
-    return 'Add for $name';
+    return '为 $name 添加';
   }
 
   @override
-  String get quickAddOpenApp => 'Open the app';
+  String get quickAddOpenApp => '打开应用';
+
+  @override
+  String get foodPeanut => '花生';
+
+  @override
+  String get foodEgg => '鸡蛋';
+
+  @override
+  String get foodDairy => '乳制品';
+
+  @override
+  String get foodWheat => '小麦';
+
+  @override
+  String get foodSoy => '大豆';
+
+  @override
+  String get foodFish => '鱼';
+
+  @override
+  String get foodShellfish => '贝类和虾蟹';
+
+  @override
+  String get foodTreeNuts => '坚果';
+
+  @override
+  String get foodSesame => '芝麻';
+
+  @override
+  String get foodBanana => '香蕉';
+
+  @override
+  String get foodAvocado => '牛油果';
+
+  @override
+  String get foodSweetPotato => '红薯';
+
+  @override
+  String get foodRiceCereal => '米粉';
+
+  @override
+  String get foodOatmeal => '燕麦粥';
+
+  @override
+  String get foodCarrot => '胡萝卜';
+
+  @override
+  String get foodApple => '苹果';
+
+  @override
+  String get foodPea => '豌豆';
+
+  @override
+  String get symptomRash => '皮疹';
+
+  @override
+  String get symptomHives => '荨麻疹';
+
+  @override
+  String get symptomVomiting => '呕吐';
+
+  @override
+  String get symptomDiarrhea => '腹泻';
+
+  @override
+  String get symptomSwelling => '肿胀';
+
+  @override
+  String get doseUnitDrops => '滴';
+
+  @override
+  String get doseUnitTablets => '片';
+
+  @override
+  String get bottleMaterialPlastic => '塑料';
+
+  @override
+  String get bottleMaterialGlass => '玻璃';
+
+  @override
+  String get bottleMaterialSilicone => '硅胶';
+
+  @override
+  String get bottleMaterialSteel => '不锈钢';
+
+  @override
+  String get visitReasonRoutine => '常规体检';
+
+  @override
+  String get visitReasonSick => '看病';
+
+  @override
+  String get visitReasonVaccination => '接种疫苗';
+
+  @override
+  String get visitReasonSpecialist => '专科';
+
+  @override
+  String get visitReasonFollowUp => '复诊';
+
+  @override
+  String get visitReasonOther => '其他';
+
+  @override
+  String get pooColourPale => '浅色';
+
+  @override
+  String get noteTagHappyDay => '开心的一天';
+
+  @override
+  String get noteTagSleptWell => '睡得好';
+
+  @override
+  String get noteTagFussy => '闹脾气';
+
+  @override
+  String get noteTagNotWell => '不太舒服';
+
+  @override
+  String get noteTagFirstTime => '第一次!';
+
+  @override
+  String get noteTagTeething => '长牙';
+
+  @override
+  String get noteTagGrowthSpurt => '猛长期';
+
+  @override
+  String get noteTagMilestone => '里程碑';
+
+  @override
+  String get tummyTimeNotesHint => '如 很开心、有点闹……';
+
+  @override
+  String get skinSuggestEczema => '湿疹';
+
+  @override
+  String get skinSuggestDiaperRash => '尿布疹';
+
+  @override
+  String get skinSuggestCradleCap => '乳痂';
+
+  @override
+  String get skinSuggestBabyAcne => '新生儿痤疮';
+
+  @override
+  String get skinSuggestHeatRash => '痱子';
+
+  @override
+  String get skinSuggestDrySkin => '皮肤干燥';
+
+  @override
+  String get bodyFace => '脸';
+
+  @override
+  String get bodyScalp => '头皮';
+
+  @override
+  String get bodyNeck => '脖子';
+
+  @override
+  String get bodyChest => '胸部';
+
+  @override
+  String get bodyBack => '背部';
+
+  @override
+  String get bodyArms => '手臂';
+
+  @override
+  String get bodyHands => '手';
+
+  @override
+  String get bodyDiaperArea => '尿布区';
+
+  @override
+  String get bodyLegs => '腿';
+
+  @override
+  String get bodyFeet => '脚';
+
+  @override
+  String get medSuggestGripeWater => '驱风水(Gripe water)';
+
+  @override
+  String get medSuggestVitaminD => '维生素 D';
+
+  @override
+  String get medSuggestIronDrops => '铁剂滴剂';
+
+  @override
+  String get medSuggestAntibiotic => '抗生素';
+
+  @override
+  String get medSuggestProbiotic => '益生菌';
+
+  @override
+  String vaccinePageTitle(String name) {
+    return '$name — 疫苗接种';
+  }
+
+  @override
+  String get vaccineDeleteTitle => '删除这条疫苗记录?';
+
+  @override
+  String get vaccineSiteHint => '如 左大腿';
+
+  @override
+  String get vaccineNotesHint => '如 低烧、烦躁、无反应……';
+
+  @override
+  String get vaccineNoGivenHint => '使用 + 按钮,或在「接种计划」标签页点击「标记为已接种」。';
+
+  @override
+  String get vaccineAgeBirth => '出生时';
+
+  @override
+  String vaccineAgeMonths(String range) {
+    return '$range 月龄';
+  }
+
+  @override
+  String vaccineAgeMonthsAnnual(String range) {
+    return '$range 月龄(每年)';
+  }
+
+  @override
+  String get whoTabHeight => '身高';
+
+  @override
+  String get whoTabHead => '头围';
+
+  @override
+  String get whoChartFor => '曲线:';
+
+  @override
+  String whoAgeRange(String title) {
+    return '$title(0–24 个月)';
+  }
+
+  @override
+  String get whoNoDataPoints => '暂无数据。记录测量值即可在曲线上看到宝宝。';
+
+  @override
+  String get whoLatestMeasurement => '最近一次测量';
+
+  @override
+  String whoApproxPercentile(String value) {
+    return '大约百分位:$value';
+  }
+
+  @override
+  String whoBetween(String low, String high) {
+    return '介于 $low 和 $high 之间';
+  }
+
+  @override
+  String whoMonthsOld(String months) {
+    return '$months 个月大';
+  }
+
+  @override
+  String get whoDisclaimer => '这些曲线仅供参考,请务必由儿科医生解读。';
+
+  @override
+  String get whoMedian => 'P50(中位数)';
+
+  @override
+  String get notifChannelName => 'Baby Tracker 提醒';
+
+  @override
+  String get notifChannelDesc => '喂奶、尿布、用药和皮肤检查提醒';
+
+  @override
+  String get notifFeedTitle => '该喂奶了!';
+
+  @override
+  String notifFeedBody(String interval) {
+    return '过去 $interval 没有喂奶记录。';
+  }
+
+  @override
+  String get notifDiaperTitle => '检查尿布!';
+
+  @override
+  String notifDiaperBody(String interval) {
+    return '过去 $interval 没有换尿布记录。';
+  }
+
+  @override
+  String notifDoseTitle(String name) {
+    return '该用药了:$name';
+  }
+
+  @override
+  String notifDoseBody(String name) {
+    return '到了 $name 下一次用药的时间。';
+  }
+
+  @override
+  String notifSkinTitle(String name) {
+    return '皮肤检查:$name';
+  }
+
+  @override
+  String get notifSkinBody => '添加今天的记录(愿意的话也拍张照片)。';
+
+  @override
+  String get timerFeedingNotif => '喂奶计时中';
+
+  @override
+  String intervalMinutes(String m) {
+    return '$m 分钟';
+  }
+
+  @override
+  String intervalHours(String h) {
+    return '$h 小时';
+  }
+
+  @override
+  String intervalHoursMinutes(String h, String m) {
+    return '$h 小时 $m 分钟';
+  }
+
+  @override
+  String get settingsRtlActive => '已启用从右到左布局';
+
+  @override
+  String get measurementHeightIn => '身长 / 身高(英寸)';
+
+  @override
+  String get measurementHeadIn => '头围(英寸)';
+
+  @override
+  String get growthHeightIn => '身高(英寸)';
+
+  @override
+  String get growthHeadIn => '头围(英寸)';
+
+  @override
+  String growthHeightValueIn(String value) {
+    return '$value 英寸';
+  }
+
+  @override
+  String growthHeadValueIn(String value) {
+    return '头围 $value 英寸';
+  }
+
+  @override
+  String get settingsLengthUnitNote => '长度单位跟随体重单位(kg 用 cm,lbs 用英寸)';
+
+  @override
+  String get formulaStoreBrand => '超市自有品牌';
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/labels.dart';
 import 'package:simple_baby_tracker/models/bottle.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
 import 'package:simple_baby_tracker/services/timer_service.dart';
@@ -562,7 +563,10 @@ class _FeedCardState extends State<_FeedCard> {
                         ? f.customFormulaBrand
                         : f.formulaBrand == b;
                     return ChoiceChip(
-                      label: Text(b, style: const TextStyle(fontSize: 12)),
+                      label: Text(
+                        brandLabel(b, l),
+                        style: const TextStyle(fontSize: 12),
+                      ),
                       selected: selected,
                       onSelected: (_) => setState(() {
                         if (isOther) {

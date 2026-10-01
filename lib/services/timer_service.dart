@@ -96,14 +96,7 @@ class TimerService extends ChangeNotifier {
         : ActiveTimer.fromJson(json.decode(raw) as Map<String, dynamic>);
     _restartTicker();
     if (_active case final a?) {
-      unawaited(
-        _showNotification(
-          a.kind == TimerKind.feeding
-              ? 'Feeding timer running 🍼'
-              : 'Sleep timer running 😴',
-          a.startedAt,
-        ),
-      );
+      unawaited(_showNotification(a.kind, a.startedAt));
     }
     notifyListeners();
   }
@@ -133,10 +126,13 @@ class TimerService extends ChangeNotifier {
     }
   }
 
-  Future<void> _showNotification(String title, DateTime startedAt) async {
+  Future<void> _showNotification(TimerKind kind, DateTime startedAt) async {
     if (await NotificationService.instance.init()) {
+      final l = await loadAppStrings();
       await NotificationService.instance.showTimerNotification(
-        title: title,
+        title: kind == TimerKind.feeding
+            ? '${l.timerFeedingNotif} 🍼'
+            : '${l.timerSleepRunning} 😴',
         startedAt: startedAt,
       );
     }
@@ -152,7 +148,7 @@ class TimerService extends ChangeNotifier {
     );
     _restartTicker();
     await _persist();
-    unawaited(_showNotification('Feeding timer running 🍼', startedAt));
+    unawaited(_showNotification(TimerKind.feeding, startedAt));
     notifyListeners();
   }
 
@@ -162,7 +158,7 @@ class TimerService extends ChangeNotifier {
     _active = ActiveTimer(kind: TimerKind.sleep, startedAt: startedAt);
     _restartTicker();
     await _persist();
-    unawaited(_showNotification('Sleep timer running 😴', startedAt));
+    unawaited(_showNotification(TimerKind.sleep, startedAt));
     notifyListeners();
   }
 

@@ -1,3 +1,4 @@
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/main.dart';
 
 class BabyProfile {
@@ -6,35 +7,43 @@ class BabyProfile {
   DateTime? birthDate;
   String? gender; // 'male' | 'female' | null
 
-  BabyProfile({
-    String? id,
-    required this.name,
-    this.birthDate,
-    this.gender,
-  }) : id = id ?? uuid.v4();
+  BabyProfile({String? id, required this.name, this.birthDate, this.gender})
+    : id = id ?? uuid.v4();
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'birthDate': birthDate?.toIso8601String(),
-        'gender': gender,
-      };
+    'id': id,
+    'name': name,
+    'birthDate': birthDate?.toIso8601String(),
+    'gender': gender,
+  };
 
   factory BabyProfile.fromJson(Map<String, dynamic> j) => BabyProfile(
-        id: j['id'] as String,
-        name: j['name'] as String,
-        birthDate: j['birthDate'] != null
-            ? DateTime.parse(j['birthDate'] as String)
-            : null,
-        gender: j['gender'] as String?,
-      );
+    id: j['id'] as String,
+    name: j['name'] as String,
+    birthDate: j['birthDate'] != null
+        ? DateTime.parse(j['birthDate'] as String)
+        : null,
+    gender: j['gender'] as String?,
+  );
 
+  /// Age in the app's language, e.g. "3 months old" ('' without a birth
+  /// date).
+  String ageLabel(AppLocalizations l) {
+    if (birthDate == null) return '';
+    final now = DateTime.now();
+    final months =
+        (now.year - birthDate!.year) * 12 + now.month - birthDate!.month;
+    if (months < 1) return l.ageDay(now.difference(birthDate!).inDays);
+    if (months < 24) return l.ageMonth(months);
+    return l.ageYearMonth(months ~/ 12, months % 12);
+  }
+
+  /// English age, for the (English-only) PDF report.
   String get ageString {
     if (birthDate == null) return '';
     final now = DateTime.now();
-    final months = (now.year - birthDate!.year) * 12 +
-        now.month -
-        birthDate!.month;
+    final months =
+        (now.year - birthDate!.year) * 12 + now.month - birthDate!.month;
     if (months < 1) {
       final days = now.difference(birthDate!).inDays;
       return '$days day${days == 1 ? '' : 's'} old';

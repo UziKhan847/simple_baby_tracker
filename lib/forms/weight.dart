@@ -68,17 +68,19 @@ class _WeightFormState extends State<WeightForm> {
       if (!mounted) return;
       final useKg = SettingsProvider.of(context).settings.useKg;
       final e = widget.existingEvent;
-      if (e != null && !useKg) {
+      setState(() {
+        _inputInKg = useKg;
+        if (e == null || useKg) return;
+        // Imperial: show the stored kg / cm values as lbs / inches.
         final kg = (e.data['valueKg'] as num?)?.toDouble();
-        if (kg != null) {
-          setState(() {
-            _inputInKg = false;
-            _weightCtrl.text = kgToLbs(kg).toStringAsFixed(2);
-          });
-          return;
+        if (kg != null) _weightCtrl.text = kgToLbs(kg).toStringAsFixed(2);
+        final heightCm = (e.data['heightCm'] as num?)?.toDouble();
+        if (heightCm != null) {
+          _heightCtrl.text = lengthValue(heightCm, useCm: false);
         }
-      }
-      setState(() => _inputInKg = useKg);
+        final headCm = (e.data['headCm'] as num?)?.toDouble();
+        if (headCm != null) _headCtrl.text = lengthValue(headCm, useCm: false);
+      });
     });
   }
 
@@ -96,8 +98,15 @@ class _WeightFormState extends State<WeightForm> {
     return _inputInKg ? v : lbsToKg(v);
   }
 
-  double? get _heightCm => double.tryParse(_heightCtrl.text);
-  double? get _headCm => double.tryParse(_headCtrl.text);
+  /// Height and head follow the weight unit: inches alongside lbs.
+  double? _lengthCm(TextEditingController c) {
+    final v = double.tryParse(c.text);
+    if (v == null) return null;
+    return _inputInKg ? v : inToCm(v);
+  }
+
+  double? get _heightCm => _lengthCm(_heightCtrl);
+  double? get _headCm => _lengthCm(_headCtrl);
 
   bool get _hasAnyMeasurement =>
       _valueKg != null || _heightCm != null || _headCm != null;
@@ -232,7 +241,7 @@ class _WeightFormState extends State<WeightForm> {
                   ),
                   onChanged: (_) => setState(() {}),
                   decoration: InputDecoration(
-                    labelText: l.growthHeightCm,
+                    labelText: _inputInKg ? l.growthHeightCm : l.growthHeightIn,
                     border: const OutlineInputBorder(),
                     isDense: true,
                   ),
@@ -247,7 +256,7 @@ class _WeightFormState extends State<WeightForm> {
                   ),
                   onChanged: (_) => setState(() {}),
                   decoration: InputDecoration(
-                    labelText: l.growthHeadCm,
+                    labelText: _inputInKg ? l.growthHeadCm : l.growthHeadIn,
                     border: const OutlineInputBorder(),
                     isDense: true,
                   ),

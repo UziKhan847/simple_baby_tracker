@@ -1,3 +1,4 @@
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/main.dart';
 
 /// How a course of medication turned out — set once there's enough doses to
@@ -80,39 +81,38 @@ class MedicationCourse {
     'remind': remind,
   };
 
-  factory MedicationCourse.fromJson(Map<String, dynamic> j) =>
-      MedicationCourse(
-        id: j['id'] as String,
-        name: j['name'] as String,
-        reason: j['reason'] as String?,
-        dose: (j['dose'] as num?)?.toDouble() ?? 0,
-        unit: j['unit'] as String? ?? 'ml',
-        intervalHours: j['intervalHours'] as int?,
-        maxPerDay: j['maxPerDay'] as int?,
-        startDate: j['startDate'] != null
-            ? DateTime.parse(j['startDate'] as String)
-            : DateTime.now(),
-        endDate: j['endDate'] != null
-            ? DateTime.parse(j['endDate'] as String)
-            : null,
-        result: MedicationResult.fromName(j['result'] as String?),
-        sideEffects: j['sideEffects'] as String?,
-        notes: j['notes'] as String?,
-        remind: j['remind'] as bool? ?? false,
-      );
+  factory MedicationCourse.fromJson(Map<String, dynamic> j) => MedicationCourse(
+    id: j['id'] as String,
+    name: j['name'] as String,
+    reason: j['reason'] as String?,
+    dose: (j['dose'] as num?)?.toDouble() ?? 0,
+    unit: j['unit'] as String? ?? 'ml',
+    intervalHours: j['intervalHours'] as int?,
+    maxPerDay: j['maxPerDay'] as int?,
+    startDate: j['startDate'] != null
+        ? DateTime.parse(j['startDate'] as String)
+        : DateTime.now(),
+    endDate: j['endDate'] != null
+        ? DateTime.parse(j['endDate'] as String)
+        : null,
+    result: MedicationResult.fromName(j['result'] as String?),
+    sideEffects: j['sideEffects'] as String?,
+    notes: j['notes'] as String?,
+    remind: j['remind'] as bool? ?? false,
+  );
 }
 
 /// A handful of common over-the-counter medications, offered as quick-pick
 /// chips when starting a new course.
-const commonMedicationNames = [
+List<String> commonMedicationNames(AppLocalizations l) => [
   'Tylenol / Panadol',
   'Advil / Nurofen',
   'Infacol',
-  'Gripe Water',
-  'Vitamin D',
-  'Iron drops',
-  'Antibiotic',
-  'Probiotic',
+  l.medSuggestGripeWater,
+  l.medSuggestVitaminD,
+  l.medSuggestIronDrops,
+  l.medSuggestAntibiotic,
+  l.medSuggestProbiotic,
 ];
 
 const medicationDoseUnits = ['ml', 'mg', 'drops', 'tablets'];

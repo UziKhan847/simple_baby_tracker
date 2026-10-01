@@ -33,6 +33,7 @@ class PdfExportService {
     bool useCelsius = true,
     List<MedicationCourse> medicationCourses = const [],
     List<Bottle> bottles = const [],
+    List<SkinCondition> skinConditions = const [],
   }) async {
     final bytes = await _buildPdf(
       profile: profile,
@@ -41,6 +42,7 @@ class PdfExportService {
       useCelsius: useCelsius,
       medicationCourses: medicationCourses,
       bottles: bottles,
+      skinConditions: skinConditions,
     );
     await Printing.sharePdf(
       bytes: bytes,
@@ -64,6 +66,17 @@ class PdfExportService {
   );
 
   // ─── Skin condition report ────────────────────────────────────────────────
+
+  static const _weighConditionNames = {
+    'naked': 'naked',
+    'diaper': 'diaper only',
+    'light_clothes': 'light clothes',
+    'dressed': 'dressed',
+  };
+
+  /// A stored cm value in the report's unit (inches alongside lbs).
+  static String _length(double cm, bool useCm) =>
+      '${lengthValue(cm, useCm: useCm)} ${useCm ? 'cm' : 'in'}';
 
   static const _severityNames = [
     'Clear',
@@ -247,6 +260,7 @@ class PdfExportService {
     required bool useCelsius,
     List<MedicationCourse> medicationCourses = const [],
     List<Bottle> bottles = const [],
+    List<SkinCondition> skinConditions = const [],
   }) async {
     _bottles = {for (final b in bottles) b.id: b};
     final doc = pw.Document(
@@ -290,6 +304,10 @@ class PdfExportService {
           if (medicationCourses.isNotEmpty) ...[
             pw.SizedBox(height: 16),
             _medicationsSection(medicationCourses),
+          ],
+          if (skinConditions.isNotEmpty) ...[
+            pw.SizedBox(height: 16),
+            _skinSection(skinConditions),
           ],
           pw.SizedBox(height: 16),
 
@@ -480,6 +498,71 @@ class PdfExportService {
     );
   }
 
+  // ─── Skin conditions ──────────────────────────────────────────────────────
+
+  /// One line per condition — the full timeline with photos is the separate
+  /// per-condition report (Graphs → Health → Skin conditions).
+  pw.Widget _skinSection(List<SkinCondition> conditions) {
+    final sorted = [...conditions]
+      ..sort((a, b) {
+        if (a.isActive != b.isActive) return a.isActive ? -1 : 1;
+        return b.startDate.compareTo(a.startDate);
+      });
+    return pw.Container(
+      padding: const pw.EdgeInsets.all(12),
+      decoration: pw.BoxDecoration(
+        color: PdfColors.orange50,
+        borderRadius: pw.BorderRadius.circular(6),
+        border: pw.Border.all(color: PdfColors.orange200),
+      ),
+      child: pw.Column(
+        crossAxisAlignment: pw.CrossAxisAlignment.start,
+        children: [
+          pw.Text(
+            'Skin conditions',
+            style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 12),
+          ),
+          pw.SizedBox(height: 6),
+          for (final c in sorted)
+            pw.Padding(
+              padding: const pw.EdgeInsets.symmetric(vertical: 2),
+              child: pw.RichText(
+                text: pw.TextSpan(
+                  children: [
+                    pw.TextSpan(
+                      text:
+                          '${c.name}${c.bodyArea != null ? ' (${c.bodyArea})' : ''}  ',
+                      style: pw.TextStyle(
+                        fontSize: 10,
+                        fontWeight: pw.FontWeight.bold,
+                      ),
+                    ),
+                    pw.TextSpan(
+                      text: [
+                        'since ${fullDate(c.startDate)}',
+                        c.endDate != null
+                            ? 'healed ${fullDate(c.endDate!)}'
+                            : 'ongoing',
+                        if (c.latest case final u?)
+                          'latest: ${_severityNames[u.severity.clamp(0, 4)].toLowerCase()} '
+                              '(${u.severity}/4) on ${fullDate(u.date)}',
+                        if (c.latest?.treatment case final t?) 'treatment: $t',
+                        '${c.updates.length} update${c.updates.length == 1 ? '' : 's'}',
+                      ].join('  ·  '),
+                      style: const pw.TextStyle(
+                        fontSize: 10,
+                        color: PdfColors.grey700,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
   // ─── Day header ───────────────────────────────────────────────────────────
 
   pw.Widget _dayHeader(String dateKey) {
@@ -629,8 +712,22 @@ class PdfExportService {
         );
 
       case 'weight':
-        final kg = (e.data['valueKg'] as num?)?.toDouble() ?? 0;
-        return ('weight', 'Weight', formatWeight(kg, useKg: useKg));
+        // A growth entry can hold any of weight, height and head.
+        final kg = (e.data['valueKg'] as num?)?.toDouble();
+        final heightCm = (e.data['heightCm'] as num?)?.toDouble();
+        final headCm = (e.data['headCm'] as num?)?.toDouble();
+        final condition = e.data['condition'] as String?;
+        return (
+          'weight',
+          'Growth',
+          [
+            if (kg != null)
+              '${formatWeight(kg, useKg: useKg)}'
+                  '${condition != null ? ' (${_weighConditionNames[condition] ?? condition})' : ''}',
+            if (heightCm != null) '${_length(heightCm, useKg)} height',
+            if (headCm != null) '${_length(headCm, useKg)} head',
+          ].join('  ·  '),
+        );
 
       case 'tummy_time':
         final min = (e.data['durationMin'] as num?)?.toInt() ?? 0;
@@ -654,8 +751,8 @@ class PdfExportService {
         final headCm = (e.data['headCm'] as num?)?.toDouble();
         final measurements = [
           if (weightKg != null) formatWeight(weightKg, useKg: useKg),
-          if (heightCm != null) '${heightCm}cm height',
-          if (headCm != null) '${headCm}cm head',
+          if (heightCm != null) '${_length(heightCm, useKg)} height',
+          if (headCm != null) '${_length(headCm, useKg)} head',
         ].join('  ·  ');
         return (
           'doctor_visit',

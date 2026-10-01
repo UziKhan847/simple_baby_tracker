@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/helpers.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/models/vaccination_entry.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/theme/app_icons.dart';
@@ -67,11 +68,12 @@ class _VaccinationsPageState extends State<VaccinationsPage>
     DateTime pickedDate = existing?.date ?? DateTime.now();
     int? dose = existing?.doseNumber;
 
+    final l = AppLocalizations.of(context)!;
     final result = await showDialog<VaccinationEntry>(
       context: context,
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, set) => AlertDialog(
-          title: Text(existing != null ? 'Edit vaccine' : 'Log vaccine'),
+          title: Text(existing != null ? l.vaccineEdit : l.vaccineLog),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -79,17 +81,17 @@ class _VaccinationsPageState extends State<VaccinationsPage>
                 TextField(
                   controller: nameCtrl,
                   textCapitalization: TextCapitalization.words,
-                  decoration: const InputDecoration(
-                    labelText: 'Vaccine name *',
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    labelText: '${l.vaccineName} *',
+                    border: const OutlineInputBorder(),
                   ),
                 ),
                 const SizedBox(height: 10),
                 TextField(
                   controller: brandCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Brand / manufacturer (optional)',
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    labelText: l.vaccineBrand,
+                    border: const OutlineInputBorder(),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -102,7 +104,7 @@ class _VaccinationsPageState extends State<VaccinationsPage>
                     size: 20,
                   ),
                   title: Text(fullDate(pickedDate)),
-                  subtitle: const Text('Date given'),
+                  subtitle: Text(l.vaccineDate),
                   onTap: () async {
                     final p = await showDatePicker(
                       context: ctx,
@@ -116,20 +118,20 @@ class _VaccinationsPageState extends State<VaccinationsPage>
                 const SizedBox(height: 8),
                 TextField(
                   controller: siteCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Injection site (optional)',
-                    hintText: 'e.g. left thigh',
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    labelText: l.vaccineSite,
+                    hintText: l.vaccineSiteHint,
+                    border: const OutlineInputBorder(),
                   ),
                 ),
                 const SizedBox(height: 10),
                 TextField(
                   controller: notesCtrl,
                   maxLines: 2,
-                  decoration: const InputDecoration(
-                    labelText: 'Notes / reactions',
-                    hintText: 'e.g. mild fever, fussiness, no reaction...',
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    labelText: l.vaccineNotes,
+                    hintText: l.vaccineNotesHint,
+                    border: const OutlineInputBorder(),
                   ),
                 ),
               ],
@@ -138,7 +140,7 @@ class _VaccinationsPageState extends State<VaccinationsPage>
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child: const Text('Cancel'),
+              child: Text(l.actionCancel),
             ),
             FilledButton(
               onPressed: () {
@@ -162,7 +164,7 @@ class _VaccinationsPageState extends State<VaccinationsPage>
                   ),
                 );
               },
-              child: const Text('Save'),
+              child: Text(l.actionSave),
             ),
           ],
         ),
@@ -187,19 +189,20 @@ class _VaccinationsPageState extends State<VaccinationsPage>
   }
 
   Future<void> _delete(VaccinationEntry v) async {
+    final l = AppLocalizations.of(context)!;
     final ok = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text('Delete vaccine record?'),
-        content: const Text('This cannot be undone.'),
+        title: Text(l.vaccineDeleteTitle),
+        content: Text(l.cannotUndo),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(l.actionCancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Delete'),
+            child: Text(l.actionDelete),
           ),
         ],
       ),
@@ -213,18 +216,22 @@ class _VaccinationsPageState extends State<VaccinationsPage>
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.babyName} — Vaccinations'),
+        title: Text(l.vaccinePageTitle(widget.babyName)),
         automaticallyImplyLeading: false,
         bottom: TabBar(
           controller: _tabs,
-          tabs: const [
+          tabs: [
             Tab(
-              icon: AppIcon(AppIcons.given, style: AppIconStyle.line),
-              text: 'Given',
+              icon: const AppIcon(AppIcons.given, style: AppIconStyle.line),
+              text: l.vaccineTabGiven,
             ),
-            Tab(icon: AppIcon(AppIcons.upcoming), text: 'Schedule'),
+            Tab(
+              icon: const AppIcon(AppIcons.upcoming),
+              text: l.vaccineTabSchedule,
+            ),
           ],
         ),
       ),
@@ -232,7 +239,7 @@ class _VaccinationsPageState extends State<VaccinationsPage>
         heroTag: 'vaccinations_fab',
         onPressed: () => _showVaccineDialog(),
         icon: const AppIcon(AppIcons.add, style: AppIconStyle.line),
-        label: const Text('Log vaccine'),
+        label: Text(l.vaccineLog),
       ),
       body: _loading
           ? const Center(child: CircularProgressIndicator())
@@ -267,6 +274,7 @@ class _GivenTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     if (given.isEmpty) {
       return Center(
         child: Column(
@@ -274,15 +282,12 @@ class _GivenTab extends StatelessWidget {
           children: [
             AppIcon(AppIcons.vaccine, size: 64, color: Colors.grey.shade400),
             const SizedBox(height: 12),
-            const Text(
-              'No vaccines logged yet.',
-              style: TextStyle(color: Colors.grey),
-            ),
+            Text(l.vaccineNoGiven, style: const TextStyle(color: Colors.grey)),
             const SizedBox(height: 8),
-            const Text(
-              'Use the + button or tap "Mark as given" in the Schedule tab.',
+            Text(
+              l.vaccineNoGivenHint,
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey, fontSize: 13),
+              style: const TextStyle(color: Colors.grey, fontSize: 13),
             ),
           ],
         ),
@@ -300,16 +305,16 @@ class _GivenTab extends StatelessWidget {
           confirmDismiss: (_) async => showDialog<bool>(
             context: context,
             builder: (_) => AlertDialog(
-              title: const Text('Delete vaccine record?'),
-              content: const Text('This cannot be undone.'),
+              title: Text(l.vaccineDeleteTitle),
+              content: Text(l.cannotUndo),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context, false),
-                  child: const Text('Cancel'),
+                  child: Text(l.actionCancel),
                 ),
                 FilledButton(
                   onPressed: () => Navigator.pop(context, true),
-                  child: const Text('Delete'),
+                  child: Text(l.actionDelete),
                 ),
               ],
             ),
@@ -365,7 +370,7 @@ class _GivenTab extends StatelessWidget {
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(context),
-                            child: const Text('Close'),
+                            child: Text(l.actionClose),
                           ),
                         ],
                       ),
@@ -387,13 +392,14 @@ class _ScheduleTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return ListView.builder(
       padding: const EdgeInsets.fromLTRB(12, 8, 12, 24),
       itemCount: vaccineSchedule.length,
       itemBuilder: (context, i) {
         final v = vaccineSchedule[i];
         final name = v['name'] as String;
-        final age = v['ageLabel'] as String;
+        final age = vaccineAgeLabel(v, l);
         final isGiven = givenNames.contains(name);
 
         return Card(
@@ -419,7 +425,7 @@ class _ScheduleTab extends StatelessWidget {
                 color: isGiven ? Colors.grey : null,
               ),
             ),
-            subtitle: Text('Due: $age'),
+            subtitle: Text(l.vaccineDue(age)),
             trailing: isGiven
                 ? const AppIcon(
                     AppIcons.given,
@@ -429,11 +435,20 @@ class _ScheduleTab extends StatelessWidget {
                   )
                 : FilledButton.tonal(
                     onPressed: () => onLog(name),
-                    child: const Text('Mark given'),
+                    child: Text(l.vaccineMarkGiven),
                   ),
           ),
         );
       },
     );
   }
+}
+
+/// "Birth", "2 months", "6 months (yearly)" … for a [vaccineSchedule] entry.
+String vaccineAgeLabel(Map<String, dynamic> entry, AppLocalizations l) {
+  final range = entry['ageRange'] as String;
+  if (range.isEmpty) return l.vaccineAgeBirth;
+  return entry['annual'] == true
+      ? l.vaccineAgeMonthsAnnual(range)
+      : l.vaccineAgeMonths(range);
 }

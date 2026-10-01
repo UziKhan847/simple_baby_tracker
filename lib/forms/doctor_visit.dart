@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/helpers.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/labels.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
 import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
 import 'package:simple_baby_tracker/widgets/app_icon.dart';
 
+/// Stored in English (see labels.dart), shown via [visitReasonLabel].
 const _visitReasons = [
   'Routine check-up',
   'Sick visit',
@@ -54,6 +57,24 @@ class _DoctorVisitFormState extends State<DoctorVisitForm> {
     }
   }
 
+  bool _unitsApplied = false;
+
+  /// Imperial users see (and type) lbs and inches; storage is kg / cm.
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_unitsApplied) return;
+    _unitsApplied = true;
+    final e = widget.existingEvent;
+    if (e == null || SettingsProvider.of(context).settings.useKg) return;
+    final kg = (e.data['weightKg'] as num?)?.toDouble();
+    if (kg != null) _weightCtrl.text = kgToLbs(kg).toStringAsFixed(2);
+    final height = (e.data['heightCm'] as num?)?.toDouble();
+    if (height != null) _heightCtrl.text = lengthValue(height, useCm: false);
+    final head = (e.data['headCm'] as num?)?.toDouble();
+    if (head != null) _headCtrl.text = lengthValue(head, useCm: false);
+  }
+
   @override
   void dispose() {
     _doctorCtrl.dispose();
@@ -66,13 +87,20 @@ class _DoctorVisitFormState extends State<DoctorVisitForm> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final useKg = SettingsProvider.of(context).settings.useKg;
+    // Reasons typed in before they were fixed ids (or any unknown value)
+    // still need to be selectable, or the dropdown asserts.
+    final reasons = [
+      ..._visitReasons,
+      if (!_visitReasons.contains(_reason)) _reason,
+    ];
 
     return AppFormScaffold(
-      title: _isEditing ? 'Edit doctor visit' : 'Doctor visit',
+      title: _isEditing ? l.doctorVisitEdit : l.doctorVisitLog,
       time: _time,
       onTimeChanged: (t) => setState(() => _time = t),
-      ctaLabel: _isEditing ? 'Update' : 'Save',
+      ctaLabel: _isEditing ? l.actionUpdate : l.actionSave,
       onSubmit: _save,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,10 +109,10 @@ class _DoctorVisitFormState extends State<DoctorVisitForm> {
           TextField(
             controller: _doctorCtrl,
             textCapitalization: TextCapitalization.words,
-            decoration: const InputDecoration(
-              labelText: 'Doctor / clinic name',
-              prefixIcon: AppIcon(AppIcons.doctorVisit),
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l.doctorName,
+              prefixIcon: const AppIcon(AppIcons.doctorVisit),
+              border: const OutlineInputBorder(),
               isDense: true,
             ),
           ),
@@ -93,13 +121,18 @@ class _DoctorVisitFormState extends State<DoctorVisitForm> {
           // Visit reason
           DropdownButtonFormField<String>(
             initialValue: _reason,
-            decoration: const InputDecoration(
-              labelText: 'Reason for visit',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l.doctorVisitReason,
+              border: const OutlineInputBorder(),
               isDense: true,
             ),
-            items: _visitReasons
-                .map((r) => DropdownMenuItem(value: r, child: Text(r)))
+            items: reasons
+                .map(
+                  (r) => DropdownMenuItem(
+                    value: r,
+                    child: Text(visitReasonLabel(r, l)),
+                  ),
+                )
                 .toList(),
             onChanged: (v) => setState(() => _reason = v ?? _reason),
           ),
@@ -107,7 +140,7 @@ class _DoctorVisitFormState extends State<DoctorVisitForm> {
 
           // Measurements section
           Text(
-            'Measurements (optional)',
+            l.doctorVisitMeasurements,
             style: Theme.of(context).textTheme.labelLarge,
           ),
           const SizedBox(height: 8),
@@ -120,7 +153,9 @@ class _DoctorVisitFormState extends State<DoctorVisitForm> {
                     decimal: true,
                   ),
                   decoration: InputDecoration(
-                    labelText: useKg ? 'Weight (kg)' : 'Weight (lbs)',
+                    labelText: useKg
+                        ? l.measurementWeightKg
+                        : l.measurementWeightLbs,
                     border: const OutlineInputBorder(),
                     isDense: true,
                   ),
@@ -133,9 +168,11 @@ class _DoctorVisitFormState extends State<DoctorVisitForm> {
                   keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
                   ),
-                  decoration: const InputDecoration(
-                    labelText: 'Length / height (cm)',
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    labelText: useKg
+                        ? l.measurementHeightCm
+                        : l.measurementHeightIn,
+                    border: const OutlineInputBorder(),
                     isDense: true,
                   ),
                 ),
@@ -146,9 +183,9 @@ class _DoctorVisitFormState extends State<DoctorVisitForm> {
           TextField(
             controller: _headCtrl,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            decoration: const InputDecoration(
-              labelText: 'Head circumference (cm)',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: useKg ? l.measurementHeadCm : l.measurementHeadIn,
+              border: const OutlineInputBorder(),
               isDense: true,
             ),
           ),
@@ -159,10 +196,10 @@ class _DoctorVisitFormState extends State<DoctorVisitForm> {
             controller: _notesCtrl,
             minLines: 2,
             maxLines: 5,
-            decoration: const InputDecoration(
-              labelText: 'Notes',
-              hintText: 'e.g. vaccinations given, doctor recommendations...',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l.doctorVisitNotes,
+              hintText: l.doctorVisitNotesHint,
+              border: const OutlineInputBorder(),
               isDense: true,
             ),
           ),
@@ -180,6 +217,14 @@ class _DoctorVisitFormState extends State<DoctorVisitForm> {
     double? weightKg;
     final wv = double.tryParse(_weightCtrl.text);
     if (wv != null) weightKg = useKg ? wv : lbsToKg(wv);
+    double? toCm(String text) {
+      final v = double.tryParse(text);
+      if (v == null) return null;
+      return useKg ? v : inToCm(v);
+    }
+
+    final heightCm = toCm(_heightCtrl.text);
+    final headCm = toCm(_headCtrl.text);
 
     Navigator.pop(
       context,
@@ -196,10 +241,8 @@ class _DoctorVisitFormState extends State<DoctorVisitForm> {
               ? null
               : _notesCtrl.text.trim(),
           'weightKg': ?weightKg,
-          if (double.tryParse(_heightCtrl.text) != null)
-            'heightCm': double.parse(_heightCtrl.text),
-          if (double.tryParse(_headCtrl.text) != null)
-            'headCm': double.parse(_headCtrl.text),
+          'heightCm': ?heightCm,
+          'headCm': ?headCm,
         },
       ),
     );

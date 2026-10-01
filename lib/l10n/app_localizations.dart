@@ -1868,7 +1868,7 @@ abstract class AppLocalizations {
   /// No description provided for @tipExportDataDesc.
   ///
   /// In en, this message translates to:
-  /// **'Use the share icon on Home to export all data as JSON.'**
+  /// **'Use the share icon on Home to back up all data and photos in one file.'**
   String get tipExportDataDesc;
 
   /// No description provided for @babiesTitle.
@@ -3472,6 +3472,648 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open the app'**
   String get quickAddOpenApp;
+
+  /// No description provided for @foodPeanut.
+  ///
+  /// In en, this message translates to:
+  /// **'Peanut'**
+  String get foodPeanut;
+
+  /// No description provided for @foodEgg.
+  ///
+  /// In en, this message translates to:
+  /// **'Egg'**
+  String get foodEgg;
+
+  /// No description provided for @foodDairy.
+  ///
+  /// In en, this message translates to:
+  /// **'Dairy'**
+  String get foodDairy;
+
+  /// No description provided for @foodWheat.
+  ///
+  /// In en, this message translates to:
+  /// **'Wheat'**
+  String get foodWheat;
+
+  /// No description provided for @foodSoy.
+  ///
+  /// In en, this message translates to:
+  /// **'Soy'**
+  String get foodSoy;
+
+  /// No description provided for @foodFish.
+  ///
+  /// In en, this message translates to:
+  /// **'Fish'**
+  String get foodFish;
+
+  /// No description provided for @foodShellfish.
+  ///
+  /// In en, this message translates to:
+  /// **'Shellfish'**
+  String get foodShellfish;
+
+  /// No description provided for @foodTreeNuts.
+  ///
+  /// In en, this message translates to:
+  /// **'Tree nuts'**
+  String get foodTreeNuts;
+
+  /// No description provided for @foodSesame.
+  ///
+  /// In en, this message translates to:
+  /// **'Sesame'**
+  String get foodSesame;
+
+  /// No description provided for @foodBanana.
+  ///
+  /// In en, this message translates to:
+  /// **'Banana'**
+  String get foodBanana;
+
+  /// No description provided for @foodAvocado.
+  ///
+  /// In en, this message translates to:
+  /// **'Avocado'**
+  String get foodAvocado;
+
+  /// No description provided for @foodSweetPotato.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweet potato'**
+  String get foodSweetPotato;
+
+  /// No description provided for @foodRiceCereal.
+  ///
+  /// In en, this message translates to:
+  /// **'Rice cereal'**
+  String get foodRiceCereal;
+
+  /// No description provided for @foodOatmeal.
+  ///
+  /// In en, this message translates to:
+  /// **'Oatmeal'**
+  String get foodOatmeal;
+
+  /// No description provided for @foodCarrot.
+  ///
+  /// In en, this message translates to:
+  /// **'Carrot'**
+  String get foodCarrot;
+
+  /// No description provided for @foodApple.
+  ///
+  /// In en, this message translates to:
+  /// **'Apple'**
+  String get foodApple;
+
+  /// No description provided for @foodPea.
+  ///
+  /// In en, this message translates to:
+  /// **'Pea'**
+  String get foodPea;
+
+  /// No description provided for @symptomRash.
+  ///
+  /// In en, this message translates to:
+  /// **'Rash'**
+  String get symptomRash;
+
+  /// No description provided for @symptomHives.
+  ///
+  /// In en, this message translates to:
+  /// **'Hives'**
+  String get symptomHives;
+
+  /// No description provided for @symptomVomiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Vomiting'**
+  String get symptomVomiting;
+
+  /// No description provided for @symptomDiarrhea.
+  ///
+  /// In en, this message translates to:
+  /// **'Diarrhea'**
+  String get symptomDiarrhea;
+
+  /// No description provided for @symptomSwelling.
+  ///
+  /// In en, this message translates to:
+  /// **'Swelling'**
+  String get symptomSwelling;
+
+  /// No description provided for @doseUnitDrops.
+  ///
+  /// In en, this message translates to:
+  /// **'drops'**
+  String get doseUnitDrops;
+
+  /// No description provided for @doseUnitTablets.
+  ///
+  /// In en, this message translates to:
+  /// **'tablets'**
+  String get doseUnitTablets;
+
+  /// No description provided for @bottleMaterialPlastic.
+  ///
+  /// In en, this message translates to:
+  /// **'Plastic'**
+  String get bottleMaterialPlastic;
+
+  /// No description provided for @bottleMaterialGlass.
+  ///
+  /// In en, this message translates to:
+  /// **'Glass'**
+  String get bottleMaterialGlass;
+
+  /// No description provided for @bottleMaterialSilicone.
+  ///
+  /// In en, this message translates to:
+  /// **'Silicone'**
+  String get bottleMaterialSilicone;
+
+  /// No description provided for @bottleMaterialSteel.
+  ///
+  /// In en, this message translates to:
+  /// **'Stainless steel'**
+  String get bottleMaterialSteel;
+
+  /// No description provided for @visitReasonRoutine.
+  ///
+  /// In en, this message translates to:
+  /// **'Routine check-up'**
+  String get visitReasonRoutine;
+
+  /// No description provided for @visitReasonSick.
+  ///
+  /// In en, this message translates to:
+  /// **'Sick visit'**
+  String get visitReasonSick;
+
+  /// No description provided for @visitReasonVaccination.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccination'**
+  String get visitReasonVaccination;
+
+  /// No description provided for @visitReasonSpecialist.
+  ///
+  /// In en, this message translates to:
+  /// **'Specialist'**
+  String get visitReasonSpecialist;
+
+  /// No description provided for @visitReasonFollowUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow-up'**
+  String get visitReasonFollowUp;
+
+  /// No description provided for @visitReasonOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get visitReasonOther;
+
+  /// No description provided for @pooColourPale.
+  ///
+  /// In en, this message translates to:
+  /// **'Pale'**
+  String get pooColourPale;
+
+  /// No description provided for @noteTagHappyDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Happy day'**
+  String get noteTagHappyDay;
+
+  /// No description provided for @noteTagSleptWell.
+  ///
+  /// In en, this message translates to:
+  /// **'Slept well'**
+  String get noteTagSleptWell;
+
+  /// No description provided for @noteTagFussy.
+  ///
+  /// In en, this message translates to:
+  /// **'Fussy'**
+  String get noteTagFussy;
+
+  /// No description provided for @noteTagNotWell.
+  ///
+  /// In en, this message translates to:
+  /// **'Not feeling well'**
+  String get noteTagNotWell;
+
+  /// No description provided for @noteTagFirstTime.
+  ///
+  /// In en, this message translates to:
+  /// **'First time!'**
+  String get noteTagFirstTime;
+
+  /// No description provided for @noteTagTeething.
+  ///
+  /// In en, this message translates to:
+  /// **'Teething'**
+  String get noteTagTeething;
+
+  /// No description provided for @noteTagGrowthSpurt.
+  ///
+  /// In en, this message translates to:
+  /// **'Growth spurt'**
+  String get noteTagGrowthSpurt;
+
+  /// No description provided for @noteTagMilestone.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone'**
+  String get noteTagMilestone;
+
+  /// No description provided for @tummyTimeNotesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. enjoyed it, fussy...'**
+  String get tummyTimeNotesHint;
+
+  /// No description provided for @skinSuggestEczema.
+  ///
+  /// In en, this message translates to:
+  /// **'Eczema'**
+  String get skinSuggestEczema;
+
+  /// No description provided for @skinSuggestDiaperRash.
+  ///
+  /// In en, this message translates to:
+  /// **'Diaper rash'**
+  String get skinSuggestDiaperRash;
+
+  /// No description provided for @skinSuggestCradleCap.
+  ///
+  /// In en, this message translates to:
+  /// **'Cradle cap'**
+  String get skinSuggestCradleCap;
+
+  /// No description provided for @skinSuggestBabyAcne.
+  ///
+  /// In en, this message translates to:
+  /// **'Baby acne'**
+  String get skinSuggestBabyAcne;
+
+  /// No description provided for @skinSuggestHeatRash.
+  ///
+  /// In en, this message translates to:
+  /// **'Heat rash'**
+  String get skinSuggestHeatRash;
+
+  /// No description provided for @skinSuggestDrySkin.
+  ///
+  /// In en, this message translates to:
+  /// **'Dry skin'**
+  String get skinSuggestDrySkin;
+
+  /// No description provided for @bodyFace.
+  ///
+  /// In en, this message translates to:
+  /// **'Face'**
+  String get bodyFace;
+
+  /// No description provided for @bodyScalp.
+  ///
+  /// In en, this message translates to:
+  /// **'Scalp'**
+  String get bodyScalp;
+
+  /// No description provided for @bodyNeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Neck'**
+  String get bodyNeck;
+
+  /// No description provided for @bodyChest.
+  ///
+  /// In en, this message translates to:
+  /// **'Chest'**
+  String get bodyChest;
+
+  /// No description provided for @bodyBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get bodyBack;
+
+  /// No description provided for @bodyArms.
+  ///
+  /// In en, this message translates to:
+  /// **'Arms'**
+  String get bodyArms;
+
+  /// No description provided for @bodyHands.
+  ///
+  /// In en, this message translates to:
+  /// **'Hands'**
+  String get bodyHands;
+
+  /// No description provided for @bodyDiaperArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Diaper area'**
+  String get bodyDiaperArea;
+
+  /// No description provided for @bodyLegs.
+  ///
+  /// In en, this message translates to:
+  /// **'Legs'**
+  String get bodyLegs;
+
+  /// No description provided for @bodyFeet.
+  ///
+  /// In en, this message translates to:
+  /// **'Feet'**
+  String get bodyFeet;
+
+  /// No description provided for @medSuggestGripeWater.
+  ///
+  /// In en, this message translates to:
+  /// **'Gripe water'**
+  String get medSuggestGripeWater;
+
+  /// No description provided for @medSuggestVitaminD.
+  ///
+  /// In en, this message translates to:
+  /// **'Vitamin D'**
+  String get medSuggestVitaminD;
+
+  /// No description provided for @medSuggestIronDrops.
+  ///
+  /// In en, this message translates to:
+  /// **'Iron drops'**
+  String get medSuggestIronDrops;
+
+  /// No description provided for @medSuggestAntibiotic.
+  ///
+  /// In en, this message translates to:
+  /// **'Antibiotic'**
+  String get medSuggestAntibiotic;
+
+  /// No description provided for @medSuggestProbiotic.
+  ///
+  /// In en, this message translates to:
+  /// **'Probiotic'**
+  String get medSuggestProbiotic;
+
+  /// No description provided for @vaccinePageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} — Vaccinations'**
+  String vaccinePageTitle(String name);
+
+  /// No description provided for @vaccineDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete vaccine record?'**
+  String get vaccineDeleteTitle;
+
+  /// No description provided for @vaccineSiteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. left thigh'**
+  String get vaccineSiteHint;
+
+  /// No description provided for @vaccineNotesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. mild fever, fussiness, no reaction...'**
+  String get vaccineNotesHint;
+
+  /// No description provided for @vaccineNoGivenHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the + button or tap \"Mark as given\" in the Schedule tab.'**
+  String get vaccineNoGivenHint;
+
+  /// No description provided for @vaccineAgeBirth.
+  ///
+  /// In en, this message translates to:
+  /// **'Birth'**
+  String get vaccineAgeBirth;
+
+  /// No description provided for @vaccineAgeMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'{range} months'**
+  String vaccineAgeMonths(String range);
+
+  /// No description provided for @vaccineAgeMonthsAnnual.
+  ///
+  /// In en, this message translates to:
+  /// **'{range} months (yearly)'**
+  String vaccineAgeMonthsAnnual(String range);
+
+  /// No description provided for @whoTabHeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Height'**
+  String get whoTabHeight;
+
+  /// No description provided for @whoTabHead.
+  ///
+  /// In en, this message translates to:
+  /// **'Head'**
+  String get whoTabHead;
+
+  /// No description provided for @whoChartFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Chart for:'**
+  String get whoChartFor;
+
+  /// No description provided for @whoAgeRange.
+  ///
+  /// In en, this message translates to:
+  /// **'{title} (0–24 months)'**
+  String whoAgeRange(String title);
+
+  /// No description provided for @whoNoDataPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'No data points yet. Log measurements to see your baby on the chart.'**
+  String get whoNoDataPoints;
+
+  /// No description provided for @whoLatestMeasurement.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest measurement'**
+  String get whoLatestMeasurement;
+
+  /// No description provided for @whoApproxPercentile.
+  ///
+  /// In en, this message translates to:
+  /// **'Approximate percentile: {value}'**
+  String whoApproxPercentile(String value);
+
+  /// No description provided for @whoBetween.
+  ///
+  /// In en, this message translates to:
+  /// **'between {low} and {high}'**
+  String whoBetween(String low, String high);
+
+  /// No description provided for @whoMonthsOld.
+  ///
+  /// In en, this message translates to:
+  /// **'{months} months old'**
+  String whoMonthsOld(String months);
+
+  /// No description provided for @whoDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'These charts are for information only. Always ask your paediatrician to interpret them.'**
+  String get whoDisclaimer;
+
+  /// No description provided for @whoMedian.
+  ///
+  /// In en, this message translates to:
+  /// **'P50 (median)'**
+  String get whoMedian;
+
+  /// No description provided for @notifChannelName.
+  ///
+  /// In en, this message translates to:
+  /// **'Baby Tracker reminders'**
+  String get notifChannelName;
+
+  /// No description provided for @notifChannelDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Feeding, diaper, medication and skin check reminders'**
+  String get notifChannelDesc;
+
+  /// No description provided for @notifFeedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to feed!'**
+  String get notifFeedTitle;
+
+  /// No description provided for @notifFeedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'No feeding logged in the last {interval}.'**
+  String notifFeedBody(String interval);
+
+  /// No description provided for @notifDiaperTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Diaper check!'**
+  String get notifDiaperTitle;
+
+  /// No description provided for @notifDiaperBody.
+  ///
+  /// In en, this message translates to:
+  /// **'No diaper change logged in the last {interval}.'**
+  String notifDiaperBody(String interval);
+
+  /// No description provided for @notifDoseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dose due: {name}'**
+  String notifDoseTitle(String name);
+
+  /// No description provided for @notifDoseBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s time for the next dose of {name}.'**
+  String notifDoseBody(String name);
+
+  /// No description provided for @notifSkinTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Skin check: {name}'**
+  String notifSkinTitle(String name);
+
+  /// No description provided for @notifSkinBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add today\'s update (and a photo if you like).'**
+  String get notifSkinBody;
+
+  /// No description provided for @timerFeedingNotif.
+  ///
+  /// In en, this message translates to:
+  /// **'Feeding timer running'**
+  String get timerFeedingNotif;
+
+  /// No description provided for @intervalMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{m} min'**
+  String intervalMinutes(String m);
+
+  /// No description provided for @intervalHours.
+  ///
+  /// In en, this message translates to:
+  /// **'{h} h'**
+  String intervalHours(String h);
+
+  /// No description provided for @intervalHoursMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{h} h {m} min'**
+  String intervalHoursMinutes(String h, String m);
+
+  /// No description provided for @settingsRtlActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Right-to-left layout active'**
+  String get settingsRtlActive;
+
+  /// No description provided for @measurementHeightIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Length / height (in)'**
+  String get measurementHeightIn;
+
+  /// No description provided for @measurementHeadIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Head circumference (in)'**
+  String get measurementHeadIn;
+
+  /// No description provided for @growthHeightIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Height (in)'**
+  String get growthHeightIn;
+
+  /// No description provided for @growthHeadIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Head circumference (in)'**
+  String get growthHeadIn;
+
+  /// No description provided for @growthHeightValueIn.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} in'**
+  String growthHeightValueIn(String value);
+
+  /// No description provided for @growthHeadValueIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Head {value} in'**
+  String growthHeadValueIn(String value);
+
+  /// No description provided for @settingsLengthUnitNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Length follows the weight unit (cm with kg, inches with lbs)'**
+  String get settingsLengthUnitNote;
+
+  /// No description provided for @formulaStoreBrand.
+  ///
+  /// In en, this message translates to:
+  /// **'Store brand'**
+  String get formulaStoreBrand;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -41,6 +41,18 @@ String formatWeight(double kg, {required bool useKg}) {
   return '${kgToLbs(kg).toStringAsFixed(1)} lbs';
 }
 
+// ─── Length (height / head) ───────────────────────────────────────────────
+// Stored in cm. Shown in inches when the weight unit is lbs — there's no
+// separate length setting.
+
+double cmToIn(double cm) => cm / 2.54;
+double inToCm(double inches) => inches * 2.54;
+
+/// The number only, in the unit to show ("52.0" / "20.5") — callers add
+/// the unit through a localized label.
+String lengthValue(double cm, {required bool useCm}) =>
+    (useCm ? cm : cmToIn(cm)).toStringAsFixed(1);
+
 // ─── Temperature ──────────────────────────────────────────────────────────
 
 double celsiusToFahrenheit(double c) => c * 9 / 5 + 32;

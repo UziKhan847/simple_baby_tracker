@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart' show Locale;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/models/skin_condition.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
@@ -17,12 +19,19 @@ const _kDiaperEnabled = 'notif_diaper_enabled';
 const _kDiaperHours = 'notif_diaper_hours'; // legacy, migrated to minutes
 const _kDiaperMinutes = 'notif_diaper_minutes';
 
-const _kChannel = AndroidNotificationChannel(
-  'baby_tracker_reminders',
-  'Baby Tracker Reminders',
-  description: 'Feeding and diaper change reminders',
-  importance: Importance.high,
-);
+const _kChannelId = 'baby_tracker_reminders';
+
+/// The app's strings in the language chosen in Settings, for code that runs
+/// outside the widget tree (notifications, the home-screen widget). Falls
+/// back to English if the stored language can't be loaded.
+Future<AppLocalizations> loadAppStrings() async {
+  try {
+    final settings = await Storage.loadSettings();
+    return lookupAppLocalizations(Locale(settings.languageCode));
+  } catch (_) {
+    return lookupAppLocalizations(const Locale('en'));
+  }
+}
 
 /// A course's "next dose due" reminder is scheduled with an id derived from
 /// its own id, offset well past the fixed feeding/diaper ids above so the
@@ -38,6 +47,14 @@ class NotificationService {
 
   final _plugin = FlutterLocalNotificationsPlugin();
   bool _initialized = false;
+
+  /// Named in the app's language at [init] (the name shows in Android's
+  /// notification settings); Android keeps the id, so renaming is safe.
+  AndroidNotificationChannel _channel = const AndroidNotificationChannel(
+    _kChannelId,
+    'Baby Tracker reminders',
+    importance: Importance.high,
+  );
 
   // ─── Init ─────────────────────────────────────────────────────────────────
 
@@ -71,11 +88,18 @@ class NotificationService {
       // The channel must exist before anything is scheduled on it, but
       // creating it needs the plugin to already be initialized — so this
       // has to come after `initialize`, not before it (the previous order).
+      final l = await loadAppStrings();
+      _channel = AndroidNotificationChannel(
+        _kChannelId,
+        l.notifChannelName,
+        description: l.notifChannelDesc,
+        importance: Importance.high,
+      );
       await _plugin
           .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin
           >()
-          ?.createNotificationChannel(_kChannel);
+          ?.createNotificationChannel(_channel);
     } catch (e) {
       debugPrint('NotificationService.init failed: $e');
       _initialized = false;
@@ -139,10 +163,11 @@ class NotificationService {
       await _plugin.cancel(id: _kFeedingNotifId);
       if (interval <= Duration.zero) return;
       final base = lastFeedingTime ?? DateTime.now();
+      final l = await loadAppStrings();
       await _scheduleAt(
         id: _kFeedingNotifId,
-        title: 'Time to feed! 🍼',
-        body: 'No feeding logged in the last ${formatInterval(interval)}.',
+        title: '${l.notifFeedTitle} 🍼',
+        body: l.notifFeedBody(formatInterval(interval, l)),
         when: base.add(interval),
       );
     } catch (e) {
@@ -159,11 +184,11 @@ class NotificationService {
       await _plugin.cancel(id: _kDiaperNotifId);
       if (interval <= Duration.zero) return;
       final base = lastDiaperTime ?? DateTime.now();
+      final l = await loadAppStrings();
       await _scheduleAt(
         id: _kDiaperNotifId,
-        title: 'Diaper check! 👶',
-        body:
-            'No diaper change logged in the last ${formatInterval(interval)}.',
+        title: '${l.notifDiaperTitle} 👶',
+        body: l.notifDiaperBody(formatInterval(interval, l)),
         when: base.add(interval),
       );
     } catch (e) {
@@ -183,10 +208,11 @@ class NotificationService {
     try {
       await _plugin.cancel(id: id);
       if (when == null) return;
+      final l = await loadAppStrings();
       await _scheduleAt(
         id: id,
-        title: 'Dose due: $name 💊',
-        body: 'It\'s time for the next dose of $name.',
+        title: '${l.notifDoseTitle(name)} 💊',
+        body: l.notifDoseBody(name),
         when: when,
       );
     } catch (e) {
@@ -215,10 +241,11 @@ class NotificationService {
       if (c.updatedToday || !first.isAfter(now)) {
         first = first.add(const Duration(days: 1));
       }
+      final l = await loadAppStrings();
       await _scheduleAt(
         id: id,
-        title: 'Skin check: ${c.name}',
-        body: 'Add today\'s update (and a photo if you like).',
+        title: l.notifSkinTitle(c.name),
+        body: l.notifSkinBody,
         when: first,
         repeat: DateTimeComponents.time,
       );
@@ -287,9 +314,9 @@ class NotificationService {
         title: title,
         notificationDetails: NotificationDetails(
           android: AndroidNotificationDetails(
-            _kChannel.id,
-            _kChannel.name,
-            channelDescription: _kChannel.description,
+            _channel.id,
+            _channel.name,
+            channelDescription: _channel.description,
             ongoing: true,
             autoCancel: false,
             usesChronometer: true,
@@ -359,9 +386,9 @@ class NotificationService {
       scheduledDate: tzWhen,
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
-          _kChannel.id,
-          _kChannel.name,
-          channelDescription: _kChannel.description,
+          _channel.id,
+          _channel.name,
+          channelDescription: _channel.description,
           importance: Importance.high,
           priority: Priority.high,
           icon: '@drawable/ic_launcher_monochrome',
@@ -503,14 +530,20 @@ class NotifSettings {
   );
 }
 
-/// "2 h 30 min" / "45 min" / "3 h" — a reminder interval in compact form,
-/// used both in notification text and in Settings.
-String formatInterval(Duration d) {
+/// "2 h 30 min" / "45 min" / "3 h" — a duration in compact form, used in
+/// notification text, Settings and the day list. In English when [l] is
+/// omitted.
+String formatInterval(Duration d, [AppLocalizations? l]) {
   final h = d.inHours;
   final m = d.inMinutes % 60;
-  if (h == 0) return '$m min';
-  if (m == 0) return '$h h';
-  return '$h h $m min';
+  if (l == null) {
+    if (h == 0) return '$m min';
+    if (m == 0) return '$h h';
+    return '$h h $m min';
+  }
+  if (h == 0) return l.intervalMinutes('$m');
+  if (m == 0) return l.intervalHours('$h');
+  return l.intervalHoursMinutes('$h', '$m');
 }
 
 /// Re-anchors any *enabled* feeding/diaper reminder to the latest event now

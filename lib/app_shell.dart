@@ -323,7 +323,7 @@ class _AppShellState extends State<AppShell> with WidgetsBindingObserver {
                     fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
                   ),
                 ),
-                subtitle: p.ageString.isNotEmpty ? Text(p.ageString) : null,
+                subtitle: p.ageLabel(l).isNotEmpty ? Text(p.ageLabel(l)) : null,
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -436,9 +436,9 @@ class _AppShellState extends State<AppShell> with WidgetsBindingObserver {
                         ),
                       ],
                     ),
-                    if (profile?.ageString.isNotEmpty == true)
+                    if (profile?.ageLabel(l).isNotEmpty == true)
                       Text(
-                        profile!.ageString,
+                        profile!.ageLabel(l),
                         style: TextStyle(
                           fontSize: 11.5,
                           color: Theme.of(context).colorScheme.onSurfaceVariant,

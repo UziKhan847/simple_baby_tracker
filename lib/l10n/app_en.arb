@@ -701,7 +701,7 @@
   "@tipMultipleFeedsDesc": {},
   "tipExportData": "Export data",
   "@tipExportData": {},
-  "tipExportDataDesc": "Use the share icon on Home to export all data as JSON.",
+  "tipExportDataDesc": "Use the share icon on Home to back up all data and photos in one file.",
   "@tipExportDataDesc": {},
   "babiesTitle": "Babies",
   "@babiesTitle": {},
@@ -1611,5 +1611,327 @@
     }
   },
   "quickAddOpenApp": "Open the app",
-  "@quickAddOpenApp": {}
+  "@quickAddOpenApp": {},
+  "foodPeanut": "Peanut",
+  "@foodPeanut": {},
+  "foodEgg": "Egg",
+  "@foodEgg": {},
+  "foodDairy": "Dairy",
+  "@foodDairy": {},
+  "foodWheat": "Wheat",
+  "@foodWheat": {},
+  "foodSoy": "Soy",
+  "@foodSoy": {},
+  "foodFish": "Fish",
+  "@foodFish": {},
+  "foodShellfish": "Shellfish",
+  "@foodShellfish": {},
+  "foodTreeNuts": "Tree nuts",
+  "@foodTreeNuts": {},
+  "foodSesame": "Sesame",
+  "@foodSesame": {},
+  "foodBanana": "Banana",
+  "@foodBanana": {},
+  "foodAvocado": "Avocado",
+  "@foodAvocado": {},
+  "foodSweetPotato": "Sweet potato",
+  "@foodSweetPotato": {},
+  "foodRiceCereal": "Rice cereal",
+  "@foodRiceCereal": {},
+  "foodOatmeal": "Oatmeal",
+  "@foodOatmeal": {},
+  "foodCarrot": "Carrot",
+  "@foodCarrot": {},
+  "foodApple": "Apple",
+  "@foodApple": {},
+  "foodPea": "Pea",
+  "@foodPea": {},
+  "symptomRash": "Rash",
+  "@symptomRash": {},
+  "symptomHives": "Hives",
+  "@symptomHives": {},
+  "symptomVomiting": "Vomiting",
+  "@symptomVomiting": {},
+  "symptomDiarrhea": "Diarrhea",
+  "@symptomDiarrhea": {},
+  "symptomSwelling": "Swelling",
+  "@symptomSwelling": {},
+  "doseUnitDrops": "drops",
+  "@doseUnitDrops": {},
+  "doseUnitTablets": "tablets",
+  "@doseUnitTablets": {},
+  "bottleMaterialPlastic": "Plastic",
+  "@bottleMaterialPlastic": {},
+  "bottleMaterialGlass": "Glass",
+  "@bottleMaterialGlass": {},
+  "bottleMaterialSilicone": "Silicone",
+  "@bottleMaterialSilicone": {},
+  "bottleMaterialSteel": "Stainless steel",
+  "@bottleMaterialSteel": {},
+  "visitReasonRoutine": "Routine check-up",
+  "@visitReasonRoutine": {},
+  "visitReasonSick": "Sick visit",
+  "@visitReasonSick": {},
+  "visitReasonVaccination": "Vaccination",
+  "@visitReasonVaccination": {},
+  "visitReasonSpecialist": "Specialist",
+  "@visitReasonSpecialist": {},
+  "visitReasonFollowUp": "Follow-up",
+  "@visitReasonFollowUp": {},
+  "visitReasonOther": "Other",
+  "@visitReasonOther": {},
+  "pooColourPale": "Pale",
+  "@pooColourPale": {},
+  "noteTagHappyDay": "Happy day",
+  "@noteTagHappyDay": {},
+  "noteTagSleptWell": "Slept well",
+  "@noteTagSleptWell": {},
+  "noteTagFussy": "Fussy",
+  "@noteTagFussy": {},
+  "noteTagNotWell": "Not feeling well",
+  "@noteTagNotWell": {},
+  "noteTagFirstTime": "First time!",
+  "@noteTagFirstTime": {},
+  "noteTagTeething": "Teething",
+  "@noteTagTeething": {},
+  "noteTagGrowthSpurt": "Growth spurt",
+  "@noteTagGrowthSpurt": {},
+  "noteTagMilestone": "Milestone",
+  "@noteTagMilestone": {},
+  "tummyTimeNotesHint": "e.g. enjoyed it, fussy...",
+  "@tummyTimeNotesHint": {},
+  "skinSuggestEczema": "Eczema",
+  "@skinSuggestEczema": {},
+  "skinSuggestDiaperRash": "Diaper rash",
+  "@skinSuggestDiaperRash": {},
+  "skinSuggestCradleCap": "Cradle cap",
+  "@skinSuggestCradleCap": {},
+  "skinSuggestBabyAcne": "Baby acne",
+  "@skinSuggestBabyAcne": {},
+  "skinSuggestHeatRash": "Heat rash",
+  "@skinSuggestHeatRash": {},
+  "skinSuggestDrySkin": "Dry skin",
+  "@skinSuggestDrySkin": {},
+  "bodyFace": "Face",
+  "@bodyFace": {},
+  "bodyScalp": "Scalp",
+  "@bodyScalp": {},
+  "bodyNeck": "Neck",
+  "@bodyNeck": {},
+  "bodyChest": "Chest",
+  "@bodyChest": {},
+  "bodyBack": "Back",
+  "@bodyBack": {},
+  "bodyArms": "Arms",
+  "@bodyArms": {},
+  "bodyHands": "Hands",
+  "@bodyHands": {},
+  "bodyDiaperArea": "Diaper area",
+  "@bodyDiaperArea": {},
+  "bodyLegs": "Legs",
+  "@bodyLegs": {},
+  "bodyFeet": "Feet",
+  "@bodyFeet": {},
+  "medSuggestGripeWater": "Gripe water",
+  "@medSuggestGripeWater": {},
+  "medSuggestVitaminD": "Vitamin D",
+  "@medSuggestVitaminD": {},
+  "medSuggestIronDrops": "Iron drops",
+  "@medSuggestIronDrops": {},
+  "medSuggestAntibiotic": "Antibiotic",
+  "@medSuggestAntibiotic": {},
+  "medSuggestProbiotic": "Probiotic",
+  "@medSuggestProbiotic": {},
+  "vaccinePageTitle": "{name} — Vaccinations",
+  "@vaccinePageTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "vaccineDeleteTitle": "Delete vaccine record?",
+  "@vaccineDeleteTitle": {},
+  "vaccineSiteHint": "e.g. left thigh",
+  "@vaccineSiteHint": {},
+  "vaccineNotesHint": "e.g. mild fever, fussiness, no reaction...",
+  "@vaccineNotesHint": {},
+  "vaccineNoGivenHint": "Use the + button or tap \"Mark as given\" in the Schedule tab.",
+  "@vaccineNoGivenHint": {},
+  "vaccineAgeBirth": "Birth",
+  "@vaccineAgeBirth": {},
+  "vaccineAgeMonths": "{range} months",
+  "@vaccineAgeMonths": {
+    "placeholders": {
+      "range": {
+        "type": "String"
+      }
+    }
+  },
+  "vaccineAgeMonthsAnnual": "{range} months (yearly)",
+  "@vaccineAgeMonthsAnnual": {
+    "placeholders": {
+      "range": {
+        "type": "String"
+      }
+    }
+  },
+  "whoTabHeight": "Height",
+  "@whoTabHeight": {},
+  "whoTabHead": "Head",
+  "@whoTabHead": {},
+  "whoChartFor": "Chart for:",
+  "@whoChartFor": {},
+  "whoAgeRange": "{title} (0–24 months)",
+  "@whoAgeRange": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "whoNoDataPoints": "No data points yet. Log measurements to see your baby on the chart.",
+  "@whoNoDataPoints": {},
+  "whoLatestMeasurement": "Latest measurement",
+  "@whoLatestMeasurement": {},
+  "whoApproxPercentile": "Approximate percentile: {value}",
+  "@whoApproxPercentile": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "whoBetween": "between {low} and {high}",
+  "@whoBetween": {
+    "placeholders": {
+      "low": {
+        "type": "String"
+      },
+      "high": {
+        "type": "String"
+      }
+    }
+  },
+  "whoMonthsOld": "{months} months old",
+  "@whoMonthsOld": {
+    "placeholders": {
+      "months": {
+        "type": "String"
+      }
+    }
+  },
+  "whoDisclaimer": "These charts are for information only. Always ask your paediatrician to interpret them.",
+  "@whoDisclaimer": {},
+  "whoMedian": "P50 (median)",
+  "@whoMedian": {},
+  "notifChannelName": "Baby Tracker reminders",
+  "@notifChannelName": {},
+  "notifChannelDesc": "Feeding, diaper, medication and skin check reminders",
+  "@notifChannelDesc": {},
+  "notifFeedTitle": "Time to feed!",
+  "@notifFeedTitle": {},
+  "notifFeedBody": "No feeding logged in the last {interval}.",
+  "@notifFeedBody": {
+    "placeholders": {
+      "interval": {
+        "type": "String"
+      }
+    }
+  },
+  "notifDiaperTitle": "Diaper check!",
+  "@notifDiaperTitle": {},
+  "notifDiaperBody": "No diaper change logged in the last {interval}.",
+  "@notifDiaperBody": {
+    "placeholders": {
+      "interval": {
+        "type": "String"
+      }
+    }
+  },
+  "notifDoseTitle": "Dose due: {name}",
+  "@notifDoseTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notifDoseBody": "It's time for the next dose of {name}.",
+  "@notifDoseBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notifSkinTitle": "Skin check: {name}",
+  "@notifSkinTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notifSkinBody": "Add today's update (and a photo if you like).",
+  "@notifSkinBody": {},
+  "timerFeedingNotif": "Feeding timer running",
+  "@timerFeedingNotif": {},
+  "intervalMinutes": "{m} min",
+  "@intervalMinutes": {
+    "placeholders": {
+      "m": {
+        "type": "String"
+      }
+    }
+  },
+  "intervalHours": "{h} h",
+  "@intervalHours": {
+    "placeholders": {
+      "h": {
+        "type": "String"
+      }
+    }
+  },
+  "intervalHoursMinutes": "{h} h {m} min",
+  "@intervalHoursMinutes": {
+    "placeholders": {
+      "h": {
+        "type": "String"
+      },
+      "m": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsRtlActive": "Right-to-left layout active",
+  "@settingsRtlActive": {},
+  "measurementHeightIn": "Length / height (in)",
+  "@measurementHeightIn": {},
+  "measurementHeadIn": "Head circumference (in)",
+  "@measurementHeadIn": {},
+  "growthHeightIn": "Height (in)",
+  "@growthHeightIn": {},
+  "growthHeadIn": "Head circumference (in)",
+  "@growthHeadIn": {},
+  "growthHeightValueIn": "{value} in",
+  "@growthHeightValueIn": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "growthHeadValueIn": "Head {value} in",
+  "@growthHeadValueIn": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsLengthUnitNote": "Length follows the weight unit (cm with kg, inches with lbs)",
+  "@settingsLengthUnitNote": {},
+  "formulaStoreBrand": "Store brand",
+  "@formulaStoreBrand": {}
 }

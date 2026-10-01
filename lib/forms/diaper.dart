@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/labels.dart';
 import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
@@ -30,15 +31,15 @@ const _rashCreams = [
 const _diaperSizes = ['NB', '1', '2', '3', '4', '5', '6'];
 
 const _pooOptions = [
-  {'id': '1', 'label': '1', 'name': 'Pale 1', 'abnormal': true},
-  {'id': '2', 'label': '2', 'name': 'Pale 2', 'abnormal': true},
-  {'id': '3', 'label': '3', 'name': 'Pale 3', 'abnormal': true},
-  {'id': '4', 'label': '4', 'name': 'Pale 4', 'abnormal': true},
-  {'id': '5', 'label': '5', 'name': 'Pale 5', 'abnormal': true},
-  {'id': '6', 'label': '6', 'name': 'Pale 6', 'abnormal': true},
-  {'id': '7', 'label': '7', 'name': 'Normal 7', 'abnormal': false},
-  {'id': '8', 'label': '8', 'name': 'Normal 8', 'abnormal': false},
-  {'id': '9', 'label': '9', 'name': 'Normal 9', 'abnormal': false},
+  {'id': '1', 'label': '1', 'abnormal': true},
+  {'id': '2', 'label': '2', 'abnormal': true},
+  {'id': '3', 'label': '3', 'abnormal': true},
+  {'id': '4', 'label': '4', 'abnormal': true},
+  {'id': '5', 'label': '5', 'abnormal': true},
+  {'id': '6', 'label': '6', 'abnormal': true},
+  {'id': '7', 'label': '7', 'abnormal': false},
+  {'id': '8', 'label': '8', 'abnormal': false},
+  {'id': '9', 'label': '9', 'abnormal': false},
 ];
 
 // Consistency options — labels/hints are looked up from l10n in build().
@@ -314,7 +315,7 @@ class _DiaperFormState extends State<DiaperForm> {
               Padding(
                 padding: const EdgeInsets.only(top: 6),
                 child: Text(
-                  l.pooColourSelected(_optionLabel(_pooColor!)),
+                  l.pooColourSelected(_optionLabel(_pooColor!, l)),
                   style: const TextStyle(
                     fontStyle: FontStyle.italic,
                     fontSize: 12,
@@ -354,7 +355,7 @@ class _DiaperFormState extends State<DiaperForm> {
               final isOther = b == 'Other';
               final selected = isOther ? _customBrand : _brand == b;
               return ChoiceChip(
-                label: Text(b),
+                label: Text(brandLabel(b, l)),
                 selected: selected,
                 onSelected: (_) => setState(() {
                   if (isOther) {
@@ -407,7 +408,7 @@ class _DiaperFormState extends State<DiaperForm> {
                 final isOther = c == 'Other';
                 final selected = isOther ? _customCream : _rashCream == c;
                 return ChoiceChip(
-                  label: Text(c),
+                  label: Text(brandLabel(c, l)),
                   selected: selected,
                   onSelected: (_) => setState(() {
                     if (isOther) {
@@ -521,12 +522,16 @@ class _DiaperFormState extends State<DiaperForm> {
     );
   }
 
-  String _optionLabel(String id) {
+  String _optionLabel(String id, AppLocalizations l) {
     final found = _pooOptions.firstWhere(
       (o) => o['id'] == id,
       orElse: () => {},
     );
-    return found.isEmpty ? id : '${found['label']} — ${found['name']}';
+    if (found.isEmpty) return id;
+    final shade = found['abnormal'] == true
+        ? l.pooColourPale
+        : l.consistencyNormal;
+    return '${found['label']} — $shade';
   }
 
   void _save() {

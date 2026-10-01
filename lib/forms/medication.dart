@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/labels.dart';
 import 'package:simple_baby_tracker/models/medication_course.dart';
 import 'package:simple_baby_tracker/services/medication_stats.dart';
 import 'package:simple_baby_tracker/theme/app_icons.dart';
@@ -180,7 +181,12 @@ class _MedicationFormState extends State<MedicationForm> {
                 flex: 3,
                 child: PillSegmentedControl<String>(
                   options: medicationDoseUnits
-                      .map((u) => PillSegmentedOption(value: u, label: u))
+                      .map(
+                        (u) => PillSegmentedOption(
+                          value: u,
+                          label: doseUnitLabel(u, l),
+                        ),
+                      )
                       .toList(),
                   selected: _unit,
                   onChanged: (v) => setState(() => _unit = v),

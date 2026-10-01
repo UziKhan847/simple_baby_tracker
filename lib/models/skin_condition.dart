@@ -1,3 +1,4 @@
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/main.dart';
 
@@ -125,25 +126,27 @@ class SkinCondition {
   )..sortUpdates();
 }
 
-const skinConditionSuggestions = [
-  'Eczema',
-  'Diaper rash',
-  'Cradle cap',
-  'Baby acne',
-  'Heat rash',
-  'Dry skin',
-  'Hives',
+/// Quick-pick names and body areas, in the app's language. They fill in
+/// descriptive text (saved as shown), so unlike foods they aren't ids.
+List<String> skinConditionSuggestions(AppLocalizations l) => [
+  l.skinSuggestEczema,
+  l.skinSuggestDiaperRash,
+  l.skinSuggestCradleCap,
+  l.skinSuggestBabyAcne,
+  l.skinSuggestHeatRash,
+  l.skinSuggestDrySkin,
+  l.symptomHives,
 ];
 
-const skinBodyAreas = [
-  'Face',
-  'Scalp',
-  'Neck',
-  'Chest',
-  'Back',
-  'Arms',
-  'Hands',
-  'Diaper area',
-  'Legs',
-  'Feet',
+List<String> skinBodyAreas(AppLocalizations l) => [
+  l.bodyFace,
+  l.bodyScalp,
+  l.bodyNeck,
+  l.bodyChest,
+  l.bodyBack,
+  l.bodyArms,
+  l.bodyHands,
+  l.bodyDiaperArea,
+  l.bodyLegs,
+  l.bodyFeet,
 ];

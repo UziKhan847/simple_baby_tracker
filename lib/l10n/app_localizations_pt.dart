@@ -736,10 +736,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get exportTitle => 'Exportar e fazer backup';
 
   @override
-  String get exportJson => 'Exportar como JSON';
+  String get exportJson => 'Exportar backup';
 
   @override
-  String get exportJsonDesc => 'Dados brutos para cópia de segurança';
+  String get exportJsonDesc => 'Todos os dados e fotos em um arquivo .zip';
 
   @override
   String get exportPdf => 'Exportar como PDF';
@@ -748,10 +748,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get exportPdfDesc => 'Resumo legível para o seu pediatra';
 
   @override
-  String get importJson => 'Importar de JSON';
+  String get importJson => 'Restaurar backup';
 
   @override
-  String get importJsonDesc => 'Restaurar a partir de um ficheiro de cópia de segurança';
+  String get importJsonDesc => 'De um backup .zip (ou de uma exportação .json antiga)';
 
   @override
   String get importDialogTitle => 'Importar dados?';
@@ -889,7 +889,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settingsTempUnit => 'Unidade de temperatura';
 
   @override
-  String get settingsVolumeUnit => 'Milk volume unit';
+  String get settingsVolumeUnit => 'Unidade de volume do leite';
 
   @override
   String get settingsLanguage => 'Idioma';
@@ -928,7 +928,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get tipExportData => 'Exportar dados';
 
   @override
-  String get tipExportDataDesc => 'Use o ícone de compartilhar na Tela Inicial para exportar todos os dados como JSON.';
+  String get tipExportDataDesc => 'Use o ícone de compartilhar no Início para salvar todos os dados e fotos em um único arquivo.';
 
   @override
   String get babiesTitle => 'Bebês';
@@ -1013,10 +1013,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get graphsMilkPerDay => 'Leite por dia (ml)';
 
   @override
-  String get graphsMilkPerDayMl => 'Milk per day (ml)';
+  String get graphsMilkPerDayMl => 'Leite por dia (ml)';
 
   @override
-  String get graphsMilkPerDayOz => 'Milk per day (oz)';
+  String get graphsMilkPerDayOz => 'Leite por dia (oz)';
 
   @override
   String get graphsSleepPerDay => 'Sono por dia (horas)';
@@ -1117,10 +1117,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get summaryMilkLabel => 'Leite ml';
 
   @override
-  String get summaryMilkLabelMl => 'Milk ml';
+  String get summaryMilkLabelMl => 'Leite ml';
 
   @override
-  String get summaryMilkLabelOz => 'Milk oz';
+  String get summaryMilkLabelOz => 'Leite oz';
 
   @override
   String get summaryBreastLabel => 'Amament. min';
@@ -1147,33 +1147,33 @@ class AppLocalizationsPt extends AppLocalizations {
   String get whoChartsEntry => 'Gráficos de crescimento da OMS';
 
   @override
-  String get medicationEditTitle => 'Edit medication';
+  String get medicationEditTitle => 'Editar medicamento';
 
   @override
-  String get medicationLogTitle => 'Log medication';
+  String get medicationLogTitle => 'Registrar medicamento';
 
   @override
-  String get medicationYourCourses => 'Your courses';
+  String get medicationYourCourses => 'Seus tratamentos';
 
   @override
-  String get medicationManageCourses => 'Manage courses';
+  String get medicationManageCourses => 'Gerenciar tratamentos';
 
   @override
-  String get medicationNameRequired => 'Medication name *';
+  String get medicationNameRequired => 'Nome do medicamento *';
 
   @override
-  String get medicationDosageWarning => 'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.';
+  String get medicationDosageWarning => 'Siga sempre a dosagem indicada para peso/idade. Não ultrapasse a frequência recomendada.';
 
   @override
-  String get medicationNotesOptional => 'Notes (optional)';
+  String get medicationNotesOptional => 'Observações (opcional)';
 
   @override
   String timeAgoMinutes(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count minutes ago',
-      one: '1 minute ago',
+      other: 'há $count minutos',
+      one: 'há 1 minuto',
     );
     return '$_temp0';
   }
@@ -1183,8 +1183,8 @@ class AppLocalizationsPt extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count hours ago',
-      one: '1 hour ago',
+      other: 'há $count horas',
+      one: 'há 1 hora',
     );
     return '$_temp0';
   }
@@ -1194,228 +1194,228 @@ class AppLocalizationsPt extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days ago',
-      one: '1 day ago',
+      other: 'há $count dias',
+      one: 'há 1 dia',
     );
     return '$_temp0';
   }
 
   @override
   String medicationLastGivenAgo(String ago) {
-    return 'Last given $ago';
+    return 'Última dose $ago';
   }
 
   @override
-  String get medicationNeverGiven => 'Not given yet';
+  String get medicationNeverGiven => 'Ainda não dado';
 
   @override
   String medicationDosesToday(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count doses today',
-      one: '1 dose today',
-      zero: 'No doses today',
+      other: '$count doses hoje',
+      one: '1 dose hoje',
+      zero: 'Nenhuma dose hoje',
     );
     return '$_temp0';
   }
 
   @override
   String medicationTooSoonWarning(int hours) {
-    return 'Next dose isn\'t due for ${hours}h after the last one';
+    return 'A próxima dose só deve ser dada $hours h após a última';
   }
 
   @override
   String medicationMaxPerDayWarning(int max) {
-    return 'Already at the $max/day limit for this course';
+    return 'O limite de $max/dia deste tratamento já foi atingido';
   }
 
   @override
-  String get medicationEditCourse => 'Edit course';
+  String get medicationEditCourse => 'Editar tratamento';
 
   @override
-  String get medicationNewCourse => 'New course';
+  String get medicationNewCourse => 'Novo tratamento';
 
   @override
-  String get medicationReasonOptional => 'Reason (optional)';
+  String get medicationReasonOptional => 'Motivo (opcional)';
 
   @override
-  String get medicationIntervalHoursOptional => 'Repeat every (hours, optional)';
+  String get medicationIntervalHoursOptional => 'Repetir a cada (horas, opcional)';
 
   @override
-  String get medicationMaxPerDayOptional => 'Max doses/day (optional)';
+  String get medicationMaxPerDayOptional => 'Máx. de doses/dia (opcional)';
 
   @override
-  String get medicationRemindNextDose => 'Remind me when the next dose is due';
+  String get medicationRemindNextDose => 'Me avisar quando for a hora da próxima dose';
 
   @override
   String medicationEndCourseTitle(String name) {
-    return 'End $name?';
+    return 'Encerrar $name?';
   }
 
   @override
-  String get medicationEndCoursePrompt => 'How did it go?';
+  String get medicationEndCoursePrompt => 'Como foi?';
 
   @override
-  String get medicationDeleteCourseTitle => 'Delete this course?';
+  String get medicationDeleteCourseTitle => 'Excluir este tratamento?';
 
   @override
-  String get medicationResultWorked => 'Worked';
+  String get medicationResultWorked => 'Funcionou';
 
   @override
-  String get medicationResultPartlyWorked => 'Partly worked';
+  String get medicationResultPartlyWorked => 'Funcionou em parte';
 
   @override
-  String get medicationResultDidntWork => 'Didn\'t work';
+  String get medicationResultDidntWork => 'Não funcionou';
 
   @override
-  String get medicationResultSideEffects => 'Side effects';
+  String get medicationResultSideEffects => 'Efeitos colaterais';
 
   @override
-  String get medicationResultNone => 'Not rated';
+  String get medicationResultNone => 'Sem avaliação';
 
   @override
-  String get medicationsTitle => 'Medications';
+  String get medicationsTitle => 'Medicamentos';
 
   @override
   String medicationActiveTab(int count) {
-    return 'Active ($count)';
+    return 'Ativos ($count)';
   }
 
   @override
   String medicationPastTab(int count) {
-    return 'Past ($count)';
+    return 'Anteriores ($count)';
   }
 
   @override
-  String get medicationNoActiveCourses => 'No active medication courses.\nStart one with the + button.';
+  String get medicationNoActiveCourses => 'Nenhum tratamento ativo.\nComece um com o botão +.';
 
   @override
-  String get medicationNoPastCourses => 'No past courses yet.';
+  String get medicationNoPastCourses => 'Ainda não há tratamentos anteriores.';
 
   @override
   String medicationTimesGiven(int count) {
-    return 'Given $count×';
+    return 'Dado $count×';
   }
 
   @override
   String medicationLastGivenShort(String date) {
-    return 'Last: $date';
+    return 'Última: $date';
   }
 
   @override
   String medicationNextDueShort(String time) {
-    return 'Next due $time';
+    return 'Próxima $time';
   }
 
   @override
-  String get medicationEndCourse => 'End course';
+  String get medicationEndCourse => 'Encerrar tratamento';
 
   @override
   String feedLastSideHint(String side) {
-    return 'Last time: $side';
+    return 'Da última vez: $side';
   }
 
   @override
-  String get feedSideLeft => 'Left';
+  String get feedSideLeft => 'Esquerdo';
 
   @override
-  String get feedSideRight => 'Right';
+  String get feedSideRight => 'Direito';
 
   @override
-  String get feedSideBoth => 'Both';
+  String get feedSideBoth => 'Ambos';
 
   @override
-  String get feedSideLeftMinutes => 'Left (min)';
+  String get feedSideLeftMinutes => 'Esquerdo (min)';
 
   @override
-  String get feedSideRightMinutes => 'Right (min)';
+  String get feedSideRightMinutes => 'Direito (min)';
 
   @override
-  String get timeAgoJustNow => 'Just now';
+  String get timeAgoJustNow => 'Agora mesmo';
 
   @override
-  String get timeUntilOverdue => 'Overdue';
+  String get timeUntilOverdue => 'Atrasado';
 
   @override
   String timeUntilMinutes(int count) {
-    return 'in ${count}m';
+    return 'em $count min';
   }
 
   @override
   String timeUntilHours(int count) {
-    return 'in ${count}h';
+    return 'em $count h';
   }
 
   @override
   String timeUntilDays(int count) {
-    return 'in ${count}d';
+    return 'em $count d';
   }
 
   @override
-  String get timerDiscardTitle => 'Discard this timer?';
+  String get timerDiscardTitle => 'Descartar este cronômetro?';
 
   @override
-  String get timerDiscard => 'Discard';
+  String get timerDiscard => 'Descartar';
 
   @override
   String timerFeedingRunning(String side) {
-    return 'Feeding · $side';
+    return 'Mamada · $side';
   }
 
   @override
-  String get timerSleepRunning => 'Sleep timer running';
+  String get timerSleepRunning => 'Cronômetro de sono ativo';
 
   @override
-  String get timerSwitchSide => 'Switch side';
+  String get timerSwitchSide => 'Trocar de lado';
 
   @override
-  String get timerStop => 'Stop';
+  String get timerStop => 'Parar';
 
   @override
-  String get sinceLastFeed => 'Last feed';
+  String get sinceLastFeed => 'Última mamada';
 
   @override
-  String get sinceLastDiaper => 'Last diaper';
+  String get sinceLastDiaper => 'Última fralda';
 
   @override
-  String get sinceAwake => 'Awake';
+  String get sinceAwake => 'Acordado';
 
   @override
-  String get sinceAsleep => 'Asleep';
+  String get sinceAsleep => 'Dormindo';
 
   @override
   String nextDoseDue(String name) {
-    return '$name due';
+    return 'Hora de $name';
   }
 
   @override
-  String get weighConditionNaked => 'Naked';
+  String get weighConditionNaked => 'Sem roupa';
 
   @override
-  String get weighConditionDiaper => 'Diaper only';
+  String get weighConditionDiaper => 'Só de fralda';
 
   @override
-  String get weighConditionLightClothes => 'Light clothes';
+  String get weighConditionLightClothes => 'Roupa leve';
 
   @override
-  String get weighConditionDressed => 'Dressed';
+  String get weighConditionDressed => 'Vestido';
 
   @override
-  String get weighCondition => 'Weighed wearing';
+  String get weighCondition => 'Pesado com';
 
   @override
-  String get growthMeasurementsOptional => 'Other measurements (optional)';
+  String get growthMeasurementsOptional => 'Outras medidas (opcional)';
 
   @override
-  String get growthHeightCm => 'Height (cm)';
+  String get growthHeightCm => 'Altura (cm)';
 
   @override
-  String get growthHeadCm => 'Head circumference (cm)';
+  String get growthHeadCm => 'Perímetro cefálico (cm)';
 
   @override
   String weighConditionChangedWarning(String condition) {
-    return 'Last time was weighed $condition — the difference may not be just growth';
+    return 'Da última vez foi pesado: $condition — a diferença pode não ser só crescimento';
   }
 
   @override
@@ -1425,80 +1425,80 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String growthHeadValue(String cm) {
-    return 'Head $cm cm';
+    return 'Cabeça $cm cm';
   }
 
   @override
-  String get growthHeightOverTime => 'Height over time';
+  String get growthHeightOverTime => 'Altura ao longo do tempo';
 
   @override
-  String get growthHeadOverTime => 'Head circumference over time';
+  String get growthHeadOverTime => 'Perímetro cefálico ao longo do tempo';
 
   @override
-  String get graphsRecentWeighIns => 'Recent weigh-ins';
+  String get graphsRecentWeighIns => 'Pesagens recentes';
 
   @override
-  String get solidsAmountFewSpoons => 'A few spoons';
+  String get solidsAmountFewSpoons => 'Algumas colheres';
 
   @override
-  String get solidsAmountHalf => 'Half a portion';
+  String get solidsAmountHalf => 'Meia porção';
 
   @override
-  String get solidsAmountFull => 'Full portion';
+  String get solidsAmountFull => 'Porção inteira';
 
   @override
-  String get solidsAmountTaste => 'Just a taste';
+  String get solidsAmountTaste => 'Só provou';
 
   @override
-  String get solidsReactionMild => 'Mild reaction';
+  String get solidsReactionMild => 'Reação leve';
 
   @override
-  String get solidsReactionAllergic => 'Allergic reaction';
+  String get solidsReactionAllergic => 'Reação alérgica';
 
   @override
-  String get solidsReactionNone => 'No reaction';
+  String get solidsReactionNone => 'Sem reação';
 
   @override
-  String get solidsEditTitle => 'Edit solid food';
+  String get solidsEditTitle => 'Editar papinha';
 
   @override
-  String get solidsLogTitle => 'Log solid food';
+  String get solidsLogTitle => 'Registrar papinha';
 
   @override
-  String get solidsFoodsLabel => 'Foods';
+  String get solidsFoodsLabel => 'Alimentos';
 
   @override
-  String get solidsAddFoodHint => 'Add a food';
+  String get solidsAddFoodHint => 'Adicionar um alimento';
 
   @override
-  String get solidsAmount => 'Amount';
+  String get solidsAmount => 'Quantidade';
 
   @override
-  String get solidsLiked => 'How did they like it?';
+  String get solidsLiked => 'Gostou?';
 
   @override
-  String get solidsReaction => 'Reaction';
+  String get solidsReaction => 'Reação';
 
   @override
-  String get solidsNotesOptional => 'Notes (optional)';
+  String get solidsNotesOptional => 'Observações (opcional)';
 
   @override
-  String get foodsTitle => 'Foods tried';
+  String get foodsTitle => 'Alimentos provados';
 
   @override
-  String get foodsEmpty => 'No solid foods logged yet.';
+  String get foodsEmpty => 'Nenhuma papinha registrada ainda.';
 
   @override
-  String get foodsAllergensNotYet => 'Common allergens not yet introduced';
+  String get foodsAllergensNotYet => 'Alérgenos comuns ainda não introduzidos';
 
   @override
   String foodsTriedCount(int count) {
-    return '$count foods tried';
+    return '$count alimentos provados';
   }
 
   @override
   String foodsFirstTried(String date) {
-    return 'First: $date';
+    return 'Primeira vez: $date';
   }
 
   @override
@@ -1507,217 +1507,217 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get entryTypeSolids => 'Solid food';
+  String get entryTypeSolids => 'Alimento sólido';
 
   @override
-  String get feedAmountOz => 'Amount (oz)';
+  String get feedAmountOz => 'Quantidade (oz)';
 
   @override
   String notifFeedingReminderDescInterval(String interval) {
-    return 'Remind me $interval after the last feed';
+    return 'Me avisar $interval depois da última mamada';
   }
 
   @override
   String notifDiaperReminderDescInterval(String interval) {
-    return 'Remind me $interval after the last diaper';
+    return 'Me avisar $interval depois da última fralda';
   }
 
   @override
   String notifIntervalEvery(String interval) {
-    return 'Every $interval';
+    return 'A cada $interval';
   }
 
   @override
-  String get notifIntervalTitle => 'Reminder interval';
+  String get notifIntervalTitle => 'Intervalo do lembrete';
 
   @override
-  String get notifIntervalHours => 'Hours';
+  String get notifIntervalHours => 'Horas';
 
   @override
-  String get notifIntervalMinutes => 'Minutes';
+  String get notifIntervalMinutes => 'Minutos';
 
   @override
   String notifIntervalTooShort(int minutes) {
-    return 'At least $minutes minutes';
+    return 'No mínimo $minutes minutos';
   }
 
   @override
-  String get settingsFeeding => 'Feeding';
+  String get settingsFeeding => 'Alimentação';
 
   @override
-  String get settingsTrackBottles => 'Track bottles';
+  String get settingsTrackBottles => 'Registrar mamadeiras';
 
   @override
-  String get settingsTrackBottlesDesc => 'Pick which bottle was used, and how much was prepared vs drunk';
+  String get settingsTrackBottlesDesc => 'Escolher qual mamadeira foi usada e quanto foi preparado e bebido';
 
   @override
-  String get bottlesTitle => 'My bottles';
+  String get bottlesTitle => 'Minhas mamadeiras';
 
   @override
-  String get bottlesEmpty => 'No bottles yet.\nAdd the bottles you use so you can pick one when logging a feed.';
+  String get bottlesEmpty => 'Nenhuma mamadeira ainda.\nAdicione as que você usa para poder escolher uma ao registrar uma mamada.';
 
   @override
-  String get bottleAdd => 'Add bottle';
+  String get bottleAdd => 'Adicionar mamadeira';
 
   @override
-  String get bottleEdit => 'Edit bottle';
+  String get bottleEdit => 'Editar mamadeira';
 
   @override
-  String get bottleLabel => 'Label / number (e.g. #3)';
+  String get bottleLabel => 'Etiqueta / número (ex.: #3)';
 
   @override
-  String get bottleBrand => 'Brand / type (optional)';
+  String get bottleBrand => 'Marca / tipo (opcional)';
 
   @override
-  String get bottleCapacity => 'Capacity (optional)';
+  String get bottleCapacity => 'Capacidade (opcional)';
 
   @override
-  String get bottleNipple => 'Nipple size / flow (optional)';
+  String get bottleNipple => 'Tamanho / fluxo do bico (opcional)';
 
   @override
   String get bottleMaterial => 'Material';
 
   @override
-  String get bottleRetired => 'Retired';
+  String get bottleRetired => 'Aposentada';
 
   @override
-  String get bottleRetire => 'Retire';
+  String get bottleRetire => 'Aposentar';
 
   @override
-  String get bottleUnretire => 'Use again';
+  String get bottleUnretire => 'Usar de novo';
 
   @override
   String bottleDeleteTitle(String name) {
-    return 'Delete $name?';
+    return 'Excluir $name?';
   }
 
   @override
-  String get bottleDeleteBody => 'Past feeds keep their amounts but will no longer show this bottle. To hide it from the picker but keep history, use Retire instead.';
+  String get bottleDeleteBody => 'As mamadas anteriores mantêm as quantidades, mas deixarão de mostrar esta mamadeira. Para escondê-la da lista e manter o histórico, use Aposentar.';
 
   @override
-  String get feedPrepared => 'Prepared';
+  String get feedPrepared => 'Preparado';
 
   @override
-  String get feedDrank => 'Drank';
+  String get feedDrank => 'Bebeu';
 
   @override
   String feedLeftover(String amount) {
-    return '$amount left over';
+    return 'Sobraram $amount';
   }
 
   @override
-  String get feedDrankMoreThanPrepared => 'More than was prepared?';
+  String get feedDrankMoreThanPrepared => 'Mais do que foi preparado?';
 
   @override
-  String get feedWhichBottle => 'Which bottle?';
+  String get feedWhichBottle => 'Qual mamadeira?';
 
   @override
-  String get feedNoBottlesYet => 'No bottles yet — add them in Settings → My bottles.';
+  String get feedNoBottlesYet => 'Nenhuma mamadeira ainda — adicione em Configurações → Minhas mamadeiras.';
 
   @override
-  String get photoPrivacyTitle => 'Your photos stay on this phone';
+  String get photoPrivacyTitle => 'Suas fotos ficam neste celular';
 
   @override
-  String get photoPrivacyBody => 'Photos are saved only inside this app on this device. The app has no internet access, so nothing is ever uploaded or shared unless you export a backup yourself.\n\nAndroid may ask for camera access the first time you take a photo.';
+  String get photoPrivacyBody => 'As fotos são salvas somente dentro deste app, neste aparelho. O app não tem acesso à internet, então nada é enviado ou compartilhado, a não ser que você mesmo exporte um backup.\n\nO Android pode pedir acesso à câmera na primeira vez que você tirar uma foto.';
 
   @override
-  String get photoPrivacyContinue => 'Continue';
+  String get photoPrivacyContinue => 'Continuar';
 
   @override
-  String get photoTakePhoto => 'Take a photo';
+  String get photoTakePhoto => 'Tirar uma foto';
 
   @override
-  String get photoChooseFromGallery => 'Choose from gallery';
+  String get photoChooseFromGallery => 'Escolher da galeria';
 
   @override
-  String get photoCaption => 'Caption';
+  String get photoCaption => 'Legenda';
 
   @override
-  String get photoCompare => 'First vs latest';
+  String get photoCompare => 'Primeira x mais recente';
 
   @override
-  String get photoAddOtherDay => 'Add for another day';
+  String get photoAddOtherDay => 'Adicionar para outro dia';
 
   @override
-  String get photoEmpty => 'No photos yet.\nTake one photo a day and watch your baby grow.';
+  String get photoEmpty => 'Nenhuma foto ainda.\nTire uma foto por dia e veja seu bebê crescer.';
 
   @override
-  String get photoToday => 'Today\'s photo';
+  String get photoToday => 'Foto de hoje';
 
   @override
-  String get photoAddToday => 'Add today\'s photo';
+  String get photoAddToday => 'Adicionar a foto de hoje';
 
   @override
-  String get photoReplace => 'Replace';
+  String get photoReplace => 'Substituir';
 
   @override
-  String get photoDeleteTitle => 'Delete this photo?';
+  String get photoDeleteTitle => 'Excluir esta foto?';
 
   @override
-  String get ageBeforeBirth => 'Before birth';
+  String get ageBeforeBirth => 'Antes do nascimento';
 
   @override
   String ageDays(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days old',
-      one: '1 day old',
-      zero: 'Birth day',
+      other: '$count dias',
+      one: '1 dia',
+      zero: 'Dia do nascimento',
     );
     return '$_temp0';
   }
 
   @override
   String ageMonthsDays(int months, int days) {
-    return '$months mo $days d';
+    return '$months m $days d';
   }
 
   @override
   String ageYearsMonths(int years, int months) {
-    return '$years yr $months mo';
+    return '$years a $months m';
   }
 
   @override
-  String get navMemories => 'Memories';
+  String get navMemories => 'Memórias';
 
   @override
-  String get memoriesTabPhotos => 'Photos';
+  String get memoriesTabPhotos => 'Fotos';
 
   @override
-  String get milestoneNoAchievedHint => 'Tap \"Upcoming\" to log a preset,\nor use the button below for a custom one.';
+  String get milestoneNoAchievedHint => 'Toque em \"Próximos\" para registrar um marco sugerido,\nou use o botão abaixo para um personalizado.';
 
   @override
-  String get skinTitle => 'Skin conditions';
+  String get skinTitle => 'Problemas de pele';
 
   @override
-  String get skinNew => 'New skin condition';
+  String get skinNew => 'Novo problema de pele';
 
   @override
-  String get skinEdit => 'Edit skin condition';
+  String get skinEdit => 'Editar problema de pele';
 
   @override
   String skinTabActive(int count) {
-    return 'Active ($count)';
+    return 'Ativos ($count)';
   }
 
   @override
   String skinTabHealed(int count) {
-    return 'Healed ($count)';
+    return 'Curados ($count)';
   }
 
   @override
-  String get skinEmptyActive => 'No skin conditions being tracked.\nTap + to start one — you can add a photo each day to show the doctor how it\'s changing.';
+  String get skinEmptyActive => 'Nenhum problema de pele sendo acompanhado.\nToque em + para começar — você pode adicionar uma foto por dia para mostrar ao médico como está mudando.';
 
   @override
-  String get skinEmptyHealed => 'Nothing healed yet.';
+  String get skinEmptyHealed => 'Nada curado ainda.';
 
   @override
-  String get skinUpdateDue => 'Update today';
+  String get skinUpdateDue => 'Atualizar hoje';
 
   @override
   String skinSince(String date) {
-    return 'Since $date';
+    return 'Desde $date';
   }
 
   @override
@@ -1725,195 +1725,550 @@ class AppLocalizationsPt extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days',
-      one: '1 day',
+      other: '$count dias',
+      one: '1 dia',
     );
     return '$_temp0';
   }
 
   @override
   String skinHealedOn(String date) {
-    return 'Healed $date';
+    return 'Curado em $date';
   }
 
   @override
   String skinReminderAt(String time) {
-    return 'Daily reminder at $time';
+    return 'Lembrete diário às $time';
   }
 
   @override
-  String get skinSeverityTrend => 'Severity over time';
+  String get skinSeverityTrend => 'Gravidade ao longo do tempo';
 
   @override
-  String get skinNoUpdates => 'No updates yet. Add today\'s to start the timeline.';
+  String get skinNoUpdates => 'Nenhuma atualização ainda. Adicione a de hoje para começar o histórico.';
 
   @override
-  String get skinExportPdf => 'Export for doctor (PDF)';
+  String get skinExportPdf => 'Exportar para o médico (PDF)';
 
   @override
-  String get skinMarkHealed => 'Mark healed';
+  String get skinMarkHealed => 'Marcar como curado';
 
   @override
-  String get skinReopen => 'Mark active again';
+  String get skinReopen => 'Marcar como ativo de novo';
 
   @override
-  String get skinUpdateToday => 'Add today\'s update';
+  String get skinUpdateToday => 'Adicionar atualização de hoje';
 
   @override
-  String get skinEditToday => 'Edit today\'s update';
+  String get skinEditToday => 'Editar atualização de hoje';
 
   @override
   String skinDeleteTitle(String name) {
-    return 'Delete $name and all its updates?';
+    return 'Excluir $name e todas as atualizações?';
   }
 
   @override
-  String get skinDeleteUpdateTitle => 'Delete this update?';
+  String get skinDeleteUpdateTitle => 'Excluir esta atualização?';
 
   @override
   String skinTreatmentValue(String treatment) {
-    return 'Treatment: $treatment';
+    return 'Tratamento: $treatment';
   }
 
   @override
-  String get skinName => 'Condition *';
+  String get skinName => 'Problema *';
 
   @override
-  String get skinBodyArea => 'Where on the body?';
+  String get skinBodyArea => 'Em que parte do corpo?';
 
   @override
-  String get skinBegan => 'Began on';
+  String get skinBegan => 'Começou em';
 
   @override
-  String get skinRemindDaily => 'Remind me to update it daily';
+  String get skinRemindDaily => 'Lembrar de atualizar todo dia';
 
   @override
-  String get skinReminderTime => 'Reminder time';
+  String get skinReminderTime => 'Horário do lembrete';
 
   @override
-  String get skinUpdateTitle => 'Skin update';
+  String get skinUpdateTitle => 'Atualização da pele';
 
   @override
-  String get skinSeverity => 'How does it look?';
+  String get skinSeverity => 'Como está?';
 
   @override
-  String get skinSeverity0 => '0 · Clear';
+  String get skinSeverity0 => '0 · Limpa';
 
   @override
-  String get skinSeverity1 => '1 · Mild';
+  String get skinSeverity1 => '1 · Leve';
 
   @override
-  String get skinSeverity2 => '2 · Moderate';
+  String get skinSeverity2 => '2 · Moderado';
 
   @override
-  String get skinSeverity3 => '3 · Severe';
+  String get skinSeverity3 => '3 · Grave';
 
   @override
-  String get skinSeverity4 => '4 · Very severe';
+  String get skinSeverity4 => '4 · Muito grave';
 
   @override
-  String get skinTreatment => 'Treatment (optional)';
+  String get skinTreatment => 'Tratamento (opcional)';
 
   @override
-  String get skinTreatmentHint => 'e.g. moisturiser, hydrocortisone 1%';
+  String get skinTreatmentHint => 'ex.: hidratante, hidrocortisona 1%';
 
   @override
-  String get skinAddPhoto => 'Add a photo';
+  String get skinAddPhoto => 'Adicionar uma foto';
 
   @override
-  String get skinCardNone => 'Track a rash, eczema or other skin condition day by day, with photos for the doctor';
+  String get skinCardNone => 'Acompanhe dia a dia uma assadura, eczema ou outro problema de pele, com fotos para o médico';
 
   @override
   String skinCardDue(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count need today\'s update',
-      one: '1 needs today\'s update',
+      other: '$count precisam da atualização de hoje',
+      one: '1 precisa da atualização de hoje',
     );
     return '$_temp0';
   }
 
   @override
-  String get backupPreparing => 'Preparing backup…';
+  String get backupPreparing => 'Preparando backup…';
 
   @override
-  String get backupFailed => 'Couldn\'t create the backup.';
+  String get backupFailed => 'Não foi possível criar o backup.';
 
   @override
-  String get backupSavedTo => 'Backup saved to:';
+  String get backupSavedTo => 'Backup salvo em:';
 
   @override
-  String get backupShareSubject => 'Baby Tracker backup';
+  String get backupShareSubject => 'Backup do Baby Tracker';
 
   @override
   String importIncludesPhotos(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Includes $count photos.',
-      one: 'Includes 1 photo.',
+      other: 'Inclui $count fotos.',
+      one: 'Inclui 1 foto.',
     );
     return '$_temp0';
   }
 
   @override
-  String get widgetFeed => 'Feed';
+  String get widgetFeed => 'Mamada';
 
   @override
-  String get widgetStopFeed => 'Stop feed';
+  String get widgetStopFeed => 'Parar mamada';
 
   @override
-  String get widgetDiaper => 'Diaper';
+  String get widgetDiaper => 'Fralda';
 
   @override
-  String get widgetSleep => 'Sleep';
+  String get widgetSleep => 'Sono';
 
   @override
-  String get widgetWakeUp => 'Woke up';
+  String get widgetWakeUp => 'Acordou';
 
   @override
   String widgetFeedingFor(String duration) {
-    return 'Feeding $duration';
+    return 'Mamando há $duration';
   }
 
   @override
   String widgetFedAgo(String ago) {
-    return 'Fed $ago';
+    return 'Mamou $ago';
   }
 
   @override
-  String get widgetNoFeedsYet => 'No feeds yet';
+  String get widgetNoFeedsYet => 'Nenhuma mamada ainda';
 
   @override
   String widgetChangedAgo(String ago) {
-    return 'Changed $ago';
+    return 'Trocado $ago';
   }
 
   @override
-  String get widgetNoDiapersYet => 'No diapers yet';
+  String get widgetNoDiapersYet => 'Nenhuma fralda ainda';
 
   @override
   String widgetAsleepFor(String duration) {
-    return 'Asleep $duration';
+    return 'Dormindo há $duration';
   }
 
   @override
   String widgetAwakeFor(String ago) {
-    return 'Woke $ago';
+    return 'Acordou $ago';
   }
 
   @override
-  String get widgetStopSleepFirst => 'Stop the sleep timer first';
+  String get widgetStopSleepFirst => 'Pare primeiro o cronômetro de sono';
 
   @override
-  String get widgetStopFeedFirst => 'Stop the feeding timer first';
+  String get widgetStopFeedFirst => 'Pare primeiro o cronômetro da mamada';
 
   @override
   String quickAddTitle(String name) {
-    return 'Add for $name';
+    return 'Adicionar para $name';
   }
 
   @override
-  String get quickAddOpenApp => 'Open the app';
+  String get quickAddOpenApp => 'Abrir o app';
+
+  @override
+  String get foodPeanut => 'Amendoim';
+
+  @override
+  String get foodEgg => 'Ovo';
+
+  @override
+  String get foodDairy => 'Laticínios';
+
+  @override
+  String get foodWheat => 'Trigo';
+
+  @override
+  String get foodSoy => 'Soja';
+
+  @override
+  String get foodFish => 'Peixe';
+
+  @override
+  String get foodShellfish => 'Frutos do mar';
+
+  @override
+  String get foodTreeNuts => 'Castanhas';
+
+  @override
+  String get foodSesame => 'Gergelim';
+
+  @override
+  String get foodBanana => 'Banana';
+
+  @override
+  String get foodAvocado => 'Abacate';
+
+  @override
+  String get foodSweetPotato => 'Batata-doce';
+
+  @override
+  String get foodRiceCereal => 'Cereal de arroz';
+
+  @override
+  String get foodOatmeal => 'Aveia';
+
+  @override
+  String get foodCarrot => 'Cenoura';
+
+  @override
+  String get foodApple => 'Maçã';
+
+  @override
+  String get foodPea => 'Ervilha';
+
+  @override
+  String get symptomRash => 'Manchas na pele';
+
+  @override
+  String get symptomHives => 'Urticária';
+
+  @override
+  String get symptomVomiting => 'Vômito';
+
+  @override
+  String get symptomDiarrhea => 'Diarreia';
+
+  @override
+  String get symptomSwelling => 'Inchaço';
+
+  @override
+  String get doseUnitDrops => 'gotas';
+
+  @override
+  String get doseUnitTablets => 'comprimidos';
+
+  @override
+  String get bottleMaterialPlastic => 'Plástico';
+
+  @override
+  String get bottleMaterialGlass => 'Vidro';
+
+  @override
+  String get bottleMaterialSilicone => 'Silicone';
+
+  @override
+  String get bottleMaterialSteel => 'Aço inox';
+
+  @override
+  String get visitReasonRoutine => 'Consulta de rotina';
+
+  @override
+  String get visitReasonSick => 'Doença';
+
+  @override
+  String get visitReasonVaccination => 'Vacinação';
+
+  @override
+  String get visitReasonSpecialist => 'Especialista';
+
+  @override
+  String get visitReasonFollowUp => 'Retorno';
+
+  @override
+  String get visitReasonOther => 'Outro';
+
+  @override
+  String get pooColourPale => 'Pálido';
+
+  @override
+  String get noteTagHappyDay => 'Dia feliz';
+
+  @override
+  String get noteTagSleptWell => 'Dormiu bem';
+
+  @override
+  String get noteTagFussy => 'Agitado';
+
+  @override
+  String get noteTagNotWell => 'Não estava bem';
+
+  @override
+  String get noteTagFirstTime => 'Primeira vez!';
+
+  @override
+  String get noteTagTeething => 'Nascimento dos dentes';
+
+  @override
+  String get noteTagGrowthSpurt => 'Pico de crescimento';
+
+  @override
+  String get noteTagMilestone => 'Marco';
+
+  @override
+  String get tummyTimeNotesHint => 'ex.: gostou, agitado...';
+
+  @override
+  String get skinSuggestEczema => 'Eczema';
+
+  @override
+  String get skinSuggestDiaperRash => 'Assadura';
+
+  @override
+  String get skinSuggestCradleCap => 'Crosta láctea';
+
+  @override
+  String get skinSuggestBabyAcne => 'Acne neonatal';
+
+  @override
+  String get skinSuggestHeatRash => 'Brotoeja';
+
+  @override
+  String get skinSuggestDrySkin => 'Pele seca';
+
+  @override
+  String get bodyFace => 'Rosto';
+
+  @override
+  String get bodyScalp => 'Couro cabeludo';
+
+  @override
+  String get bodyNeck => 'Pescoço';
+
+  @override
+  String get bodyChest => 'Peito';
+
+  @override
+  String get bodyBack => 'Costas';
+
+  @override
+  String get bodyArms => 'Braços';
+
+  @override
+  String get bodyHands => 'Mãos';
+
+  @override
+  String get bodyDiaperArea => 'Área da fralda';
+
+  @override
+  String get bodyLegs => 'Pernas';
+
+  @override
+  String get bodyFeet => 'Pés';
+
+  @override
+  String get medSuggestGripeWater => 'Gripe water';
+
+  @override
+  String get medSuggestVitaminD => 'Vitamina D';
+
+  @override
+  String get medSuggestIronDrops => 'Gotas de ferro';
+
+  @override
+  String get medSuggestAntibiotic => 'Antibiótico';
+
+  @override
+  String get medSuggestProbiotic => 'Probiótico';
+
+  @override
+  String vaccinePageTitle(String name) {
+    return '$name — Vacinas';
+  }
+
+  @override
+  String get vaccineDeleteTitle => 'Excluir registro da vacina?';
+
+  @override
+  String get vaccineSiteHint => 'ex.: coxa esquerda';
+
+  @override
+  String get vaccineNotesHint => 'ex.: febre leve, irritação, sem reação...';
+
+  @override
+  String get vaccineNoGivenHint => 'Use o botão + ou toque em \"Marcar como aplicada\" na aba Calendário.';
+
+  @override
+  String get vaccineAgeBirth => 'Nascimento';
+
+  @override
+  String vaccineAgeMonths(String range) {
+    return '$range meses';
+  }
+
+  @override
+  String vaccineAgeMonthsAnnual(String range) {
+    return '$range meses (anual)';
+  }
+
+  @override
+  String get whoTabHeight => 'Altura';
+
+  @override
+  String get whoTabHead => 'Cabeça';
+
+  @override
+  String get whoChartFor => 'Curva para:';
+
+  @override
+  String whoAgeRange(String title) {
+    return '$title (0–24 meses)';
+  }
+
+  @override
+  String get whoNoDataPoints => 'Nenhum dado ainda. Registre medidas para ver seu bebê na curva.';
+
+  @override
+  String get whoLatestMeasurement => 'Última medição';
+
+  @override
+  String whoApproxPercentile(String value) {
+    return 'Percentil aproximado: $value';
+  }
+
+  @override
+  String whoBetween(String low, String high) {
+    return 'entre $low e $high';
+  }
+
+  @override
+  String whoMonthsOld(String months) {
+    return '$months meses';
+  }
+
+  @override
+  String get whoDisclaimer => 'Estas curvas são apenas informativas. Peça sempre ao pediatra para interpretá-las.';
+
+  @override
+  String get whoMedian => 'P50 (mediana)';
+
+  @override
+  String get notifChannelName => 'Lembretes do Baby Tracker';
+
+  @override
+  String get notifChannelDesc => 'Lembretes de mamadas, fraldas, medicamentos e cuidados com a pele';
+
+  @override
+  String get notifFeedTitle => 'Hora de mamar!';
+
+  @override
+  String notifFeedBody(String interval) {
+    return 'Nenhuma mamada registrada nas últimas $interval.';
+  }
+
+  @override
+  String get notifDiaperTitle => 'Hora de ver a fralda!';
+
+  @override
+  String notifDiaperBody(String interval) {
+    return 'Nenhuma troca de fralda registrada nas últimas $interval.';
+  }
+
+  @override
+  String notifDoseTitle(String name) {
+    return 'Hora da dose: $name';
+  }
+
+  @override
+  String notifDoseBody(String name) {
+    return 'Está na hora da próxima dose de $name.';
+  }
+
+  @override
+  String notifSkinTitle(String name) {
+    return 'Pele: $name';
+  }
+
+  @override
+  String get notifSkinBody => 'Adicione a atualização de hoje (e uma foto, se quiser).';
+
+  @override
+  String get timerFeedingNotif => 'Cronômetro de mamada ativo';
+
+  @override
+  String intervalMinutes(String m) {
+    return '$m min';
+  }
+
+  @override
+  String intervalHours(String h) {
+    return '$h h';
+  }
+
+  @override
+  String intervalHoursMinutes(String h, String m) {
+    return '$h h $m min';
+  }
+
+  @override
+  String get settingsRtlActive => 'Layout da direita para a esquerda ativo';
+
+  @override
+  String get measurementHeightIn => 'Comprimento / altura (in)';
+
+  @override
+  String get measurementHeadIn => 'Perímetro cefálico (in)';
+
+  @override
+  String get growthHeightIn => 'Altura (in)';
+
+  @override
+  String get growthHeadIn => 'Perímetro cefálico (in)';
+
+  @override
+  String growthHeightValueIn(String value) {
+    return '$value in';
+  }
+
+  @override
+  String growthHeadValueIn(String value) {
+    return 'Cabeça $value in';
+  }
+
+  @override
+  String get settingsLengthUnitNote => 'O comprimento segue a unidade de peso (cm com kg, polegadas com lbs)';
+
+  @override
+  String get formulaStoreBrand => 'Marca própria';
 }

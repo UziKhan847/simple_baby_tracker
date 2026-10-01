@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/services/notification.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
 import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
@@ -60,22 +62,22 @@ class _TummyTimeFormState extends State<TummyTimeForm> {
     return end.difference(start).inMinutes;
   }
 
-  String _durationLabel() {
+  String _durationLabel(AppLocalizations l) {
     final m = _durationMinutes;
-    if (m <= 0) return 'Invalid times';
-    if (m < 60) return '$m min';
-    return '${m ~/ 60}h ${m % 60}min';
+    if (m <= 0) return l.sleepInvalidTimes;
+    return formatInterval(Duration(minutes: m), l);
   }
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final accent = Theme.of(context).extension<AppColors>()!.growthStrong;
 
     return AppFormScaffold(
-      title: _isEditing ? 'Edit tummy time' : 'Log tummy time',
+      title: _isEditing ? l.tummyTimeEdit : l.tummyTimeLog,
       time: _startTime,
       onTimeChanged: (t) => setState(() => _startTime = t),
-      ctaLabel: _isEditing ? 'Update' : 'Save',
+      ctaLabel: _isEditing ? l.actionUpdate : l.actionSave,
       onSubmit: _durationMinutes > 0 ? _save : () {},
       ctaEnabled: _durationMinutes > 0,
       accentColor: accent,
@@ -83,7 +85,7 @@ class _TummyTimeFormState extends State<TummyTimeForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Tummy time strengthens neck and shoulder muscles.',
+            l.tummyTimeTip,
             style: Theme.of(
               context,
             ).textTheme.bodySmall?.copyWith(color: Colors.grey),
@@ -91,7 +93,7 @@ class _TummyTimeFormState extends State<TummyTimeForm> {
           const SizedBox(height: 16),
 
           _TimePicker(
-            label: 'End time',
+            label: l.tummyTimeEnd,
             time: _endTime,
             onTap: () async {
               final t = await showTimePicker(
@@ -116,7 +118,7 @@ class _TummyTimeFormState extends State<TummyTimeForm> {
                 AppIcon(AppIcons.tummyTime, color: accent),
                 const SizedBox(width: 8),
                 Text(
-                  'Duration: ${_durationLabel()}',
+                  l.sleepDuration(_durationLabel(l)),
                   style: TextStyle(fontWeight: FontWeight.bold, color: accent),
                 ),
               ],
@@ -127,10 +129,10 @@ class _TummyTimeFormState extends State<TummyTimeForm> {
 
           TextField(
             controller: _notesCtrl,
-            decoration: const InputDecoration(
-              labelText: 'Notes (optional)',
-              hintText: 'e.g. enjoyed it, fussy...',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l.sleepNotes,
+              hintText: l.tummyTimeNotesHint,
+              border: const OutlineInputBorder(),
               isDense: true,
             ),
           ),

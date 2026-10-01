@@ -437,9 +437,9 @@ class _GrowthTab extends StatelessWidget {
             points: heightPoints,
             color: colors.growthStrong,
             dateOf: (p) => p.date,
-            getValue: (p) => p.heightCm!,
-            minLabel: (v) => l.graphsMinLabel('${v.toStringAsFixed(1)}cm'),
-            maxLabel: (v) => l.graphsMaxLabel('${v.toStringAsFixed(1)}cm'),
+            getValue: (p) => useKg ? p.heightCm! : cmToIn(p.heightCm!),
+            minLabel: (v) => l.graphsMinLabel(_length(v, useKg)),
+            maxLabel: (v) => l.graphsMaxLabel(_length(v, useKg)),
           ),
           const SizedBox(height: 12),
         ],
@@ -449,9 +449,9 @@ class _GrowthTab extends StatelessWidget {
             points: headPoints,
             color: colors.miscStrong,
             dateOf: (p) => p.date,
-            getValue: (p) => p.headCm!,
-            minLabel: (v) => l.graphsMinLabel('${v.toStringAsFixed(1)}cm'),
-            maxLabel: (v) => l.graphsMaxLabel('${v.toStringAsFixed(1)}cm'),
+            getValue: (p) => useKg ? p.headCm! : cmToIn(p.headCm!),
+            minLabel: (v) => l.graphsMinLabel(_length(v, useKg)),
+            maxLabel: (v) => l.graphsMaxLabel(_length(v, useKg)),
           ),
           const SizedBox(height: 12),
         ],
@@ -1291,3 +1291,8 @@ class _SkinConditionsCardState extends State<_SkinConditionsCard> {
     );
   }
 }
+
+/// A chart min/max label for a length already converted to the display unit
+/// (inches when the weight unit is lbs).
+String _length(double v, bool useCm) =>
+    '${v.toStringAsFixed(1)}${useCm ? 'cm' : 'in'}';

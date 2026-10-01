@@ -736,10 +736,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get exportTitle => '내보내기 및 백업';
 
   @override
-  String get exportJson => 'JSON으로 내보내기';
+  String get exportJson => '백업 내보내기';
 
   @override
-  String get exportJsonDesc => '백업용 원본 데이터';
+  String get exportJsonDesc => '모든 데이터와 사진을 .zip 파일 하나로';
 
   @override
   String get exportPdf => 'PDF로 내보내기';
@@ -748,10 +748,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get exportPdfDesc => '소아과 의사를 위한 읽기 쉬운 요약본';
 
   @override
-  String get importJson => 'JSON에서 가져오기';
+  String get importJson => '백업 복원';
 
   @override
-  String get importJsonDesc => '백업 파일에서 복원';
+  String get importJsonDesc => '.zip 백업(또는 이전 .json 내보내기)에서';
 
   @override
   String get importDialogTitle => '데이터를 가져올까요?';
@@ -889,7 +889,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsTempUnit => '온도 단위';
 
   @override
-  String get settingsVolumeUnit => 'Milk volume unit';
+  String get settingsVolumeUnit => '수유량 단위';
 
   @override
   String get settingsLanguage => '언어';
@@ -928,7 +928,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get tipExportData => '데이터 내보내기';
 
   @override
-  String get tipExportDataDesc => '홈 화면의 공유 아이콘을 사용하여 모든 데이터를 JSON으로 내보낼 수 있습니다.';
+  String get tipExportDataDesc => '홈의 공유 아이콘으로 모든 데이터와 사진을 파일 하나에 백업하세요.';
 
   @override
   String get babiesTitle => '아기';
@@ -1013,10 +1013,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get graphsMilkPerDay => '일일 수유량 (ml)';
 
   @override
-  String get graphsMilkPerDayMl => 'Milk per day (ml)';
+  String get graphsMilkPerDayMl => '하루 수유량 (ml)';
 
   @override
-  String get graphsMilkPerDayOz => 'Milk per day (oz)';
+  String get graphsMilkPerDayOz => '하루 수유량 (oz)';
 
   @override
   String get graphsSleepPerDay => '일일 수면 시간 (시간)';
@@ -1117,10 +1117,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get summaryMilkLabel => '우유 ml';
 
   @override
-  String get summaryMilkLabelMl => 'Milk ml';
+  String get summaryMilkLabelMl => '수유 ml';
 
   @override
-  String get summaryMilkLabelOz => 'Milk oz';
+  String get summaryMilkLabelOz => '수유 oz';
 
   @override
   String get summaryBreastLabel => '수유 분';
@@ -1147,33 +1147,33 @@ class AppLocalizationsKo extends AppLocalizations {
   String get whoChartsEntry => 'WHO 성장 차트';
 
   @override
-  String get medicationEditTitle => 'Edit medication';
+  String get medicationEditTitle => '약 수정';
 
   @override
-  String get medicationLogTitle => 'Log medication';
+  String get medicationLogTitle => '약 기록';
 
   @override
-  String get medicationYourCourses => 'Your courses';
+  String get medicationYourCourses => '복용 중인 약';
 
   @override
-  String get medicationManageCourses => 'Manage courses';
+  String get medicationManageCourses => '복용 관리';
 
   @override
-  String get medicationNameRequired => 'Medication name *';
+  String get medicationNameRequired => '약 이름 *';
 
   @override
-  String get medicationDosageWarning => 'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.';
+  String get medicationDosageWarning => '항상 체중/나이에 맞는 용량을 지키세요. 권장 횟수를 넘기지 마세요.';
 
   @override
-  String get medicationNotesOptional => 'Notes (optional)';
+  String get medicationNotesOptional => '메모 (선택)';
 
   @override
   String timeAgoMinutes(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count minutes ago',
-      one: '1 minute ago',
+      other: '$count분 전',
+      one: '1분 전',
     );
     return '$_temp0';
   }
@@ -1183,8 +1183,8 @@ class AppLocalizationsKo extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count hours ago',
-      one: '1 hour ago',
+      other: '$count시간 전',
+      one: '1시간 전',
     );
     return '$_temp0';
   }
@@ -1194,228 +1194,228 @@ class AppLocalizationsKo extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days ago',
-      one: '1 day ago',
+      other: '$count일 전',
+      one: '1일 전',
     );
     return '$_temp0';
   }
 
   @override
   String medicationLastGivenAgo(String ago) {
-    return 'Last given $ago';
+    return '마지막 복용 $ago';
   }
 
   @override
-  String get medicationNeverGiven => 'Not given yet';
+  String get medicationNeverGiven => '아직 복용 안 함';
 
   @override
   String medicationDosesToday(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count doses today',
-      one: '1 dose today',
-      zero: 'No doses today',
+      other: '오늘 $count회',
+      one: '오늘 1회',
+      zero: '오늘 복용 없음',
     );
     return '$_temp0';
   }
 
   @override
   String medicationTooSoonWarning(int hours) {
-    return 'Next dose isn\'t due for ${hours}h after the last one';
+    return '다음 복용은 마지막 복용 후 $hours시간 뒤입니다';
   }
 
   @override
   String medicationMaxPerDayWarning(int max) {
-    return 'Already at the $max/day limit for this course';
+    return '이 약의 하루 $max회 한도에 이미 도달했습니다';
   }
 
   @override
-  String get medicationEditCourse => 'Edit course';
+  String get medicationEditCourse => '복용 계획 수정';
 
   @override
-  String get medicationNewCourse => 'New course';
+  String get medicationNewCourse => '새 복용 계획';
 
   @override
-  String get medicationReasonOptional => 'Reason (optional)';
+  String get medicationReasonOptional => '이유 (선택)';
 
   @override
-  String get medicationIntervalHoursOptional => 'Repeat every (hours, optional)';
+  String get medicationIntervalHoursOptional => '반복 간격 (시간, 선택)';
 
   @override
-  String get medicationMaxPerDayOptional => 'Max doses/day (optional)';
+  String get medicationMaxPerDayOptional => '하루 최대 횟수 (선택)';
 
   @override
-  String get medicationRemindNextDose => 'Remind me when the next dose is due';
+  String get medicationRemindNextDose => '다음 복용 시간에 알림';
 
   @override
   String medicationEndCourseTitle(String name) {
-    return 'End $name?';
+    return '$name 복용을 종료할까요?';
   }
 
   @override
-  String get medicationEndCoursePrompt => 'How did it go?';
+  String get medicationEndCoursePrompt => '효과는 어땠나요?';
 
   @override
-  String get medicationDeleteCourseTitle => 'Delete this course?';
+  String get medicationDeleteCourseTitle => '이 복용 계획을 삭제할까요?';
 
   @override
-  String get medicationResultWorked => 'Worked';
+  String get medicationResultWorked => '효과 있음';
 
   @override
-  String get medicationResultPartlyWorked => 'Partly worked';
+  String get medicationResultPartlyWorked => '약간 효과 있음';
 
   @override
-  String get medicationResultDidntWork => 'Didn\'t work';
+  String get medicationResultDidntWork => '효과 없음';
 
   @override
-  String get medicationResultSideEffects => 'Side effects';
+  String get medicationResultSideEffects => '부작용 있음';
 
   @override
-  String get medicationResultNone => 'Not rated';
+  String get medicationResultNone => '평가 안 함';
 
   @override
-  String get medicationsTitle => 'Medications';
+  String get medicationsTitle => '약';
 
   @override
   String medicationActiveTab(int count) {
-    return 'Active ($count)';
+    return '복용 중 ($count)';
   }
 
   @override
   String medicationPastTab(int count) {
-    return 'Past ($count)';
+    return '종료 ($count)';
   }
 
   @override
-  String get medicationNoActiveCourses => 'No active medication courses.\nStart one with the + button.';
+  String get medicationNoActiveCourses => '복용 중인 약이 없습니다.\n+ 버튼으로 시작하세요.';
 
   @override
-  String get medicationNoPastCourses => 'No past courses yet.';
+  String get medicationNoPastCourses => '아직 종료된 복용 계획이 없습니다.';
 
   @override
   String medicationTimesGiven(int count) {
-    return 'Given $count×';
+    return '$count회 복용';
   }
 
   @override
   String medicationLastGivenShort(String date) {
-    return 'Last: $date';
+    return '마지막: $date';
   }
 
   @override
   String medicationNextDueShort(String time) {
-    return 'Next due $time';
+    return '다음 $time';
   }
 
   @override
-  String get medicationEndCourse => 'End course';
+  String get medicationEndCourse => '복용 종료';
 
   @override
   String feedLastSideHint(String side) {
-    return 'Last time: $side';
+    return '지난번: $side';
   }
 
   @override
-  String get feedSideLeft => 'Left';
+  String get feedSideLeft => '왼쪽';
 
   @override
-  String get feedSideRight => 'Right';
+  String get feedSideRight => '오른쪽';
 
   @override
-  String get feedSideBoth => 'Both';
+  String get feedSideBoth => '양쪽';
 
   @override
-  String get feedSideLeftMinutes => 'Left (min)';
+  String get feedSideLeftMinutes => '왼쪽 (분)';
 
   @override
-  String get feedSideRightMinutes => 'Right (min)';
+  String get feedSideRightMinutes => '오른쪽 (분)';
 
   @override
-  String get timeAgoJustNow => 'Just now';
+  String get timeAgoJustNow => '방금';
 
   @override
-  String get timeUntilOverdue => 'Overdue';
+  String get timeUntilOverdue => '시간 지남';
 
   @override
   String timeUntilMinutes(int count) {
-    return 'in ${count}m';
+    return '$count분 후';
   }
 
   @override
   String timeUntilHours(int count) {
-    return 'in ${count}h';
+    return '$count시간 후';
   }
 
   @override
   String timeUntilDays(int count) {
-    return 'in ${count}d';
+    return '$count일 후';
   }
 
   @override
-  String get timerDiscardTitle => 'Discard this timer?';
+  String get timerDiscardTitle => '이 타이머를 취소할까요?';
 
   @override
-  String get timerDiscard => 'Discard';
+  String get timerDiscard => '취소';
 
   @override
   String timerFeedingRunning(String side) {
-    return 'Feeding · $side';
+    return '수유 중 · $side';
   }
 
   @override
-  String get timerSleepRunning => 'Sleep timer running';
+  String get timerSleepRunning => '수면 타이머 작동 중';
 
   @override
-  String get timerSwitchSide => 'Switch side';
+  String get timerSwitchSide => '방향 바꾸기';
 
   @override
-  String get timerStop => 'Stop';
+  String get timerStop => '정지';
 
   @override
-  String get sinceLastFeed => 'Last feed';
+  String get sinceLastFeed => '마지막 수유';
 
   @override
-  String get sinceLastDiaper => 'Last diaper';
+  String get sinceLastDiaper => '마지막 기저귀';
 
   @override
-  String get sinceAwake => 'Awake';
+  String get sinceAwake => '깨어 있음';
 
   @override
-  String get sinceAsleep => 'Asleep';
+  String get sinceAsleep => '자는 중';
 
   @override
   String nextDoseDue(String name) {
-    return '$name due';
+    return '$name 복용 시간';
   }
 
   @override
-  String get weighConditionNaked => 'Naked';
+  String get weighConditionNaked => '알몸';
 
   @override
-  String get weighConditionDiaper => 'Diaper only';
+  String get weighConditionDiaper => '기저귀만';
 
   @override
-  String get weighConditionLightClothes => 'Light clothes';
+  String get weighConditionLightClothes => '가벼운 옷';
 
   @override
-  String get weighConditionDressed => 'Dressed';
+  String get weighConditionDressed => '옷 입음';
 
   @override
-  String get weighCondition => 'Weighed wearing';
+  String get weighCondition => '측정 시 복장';
 
   @override
-  String get growthMeasurementsOptional => 'Other measurements (optional)';
+  String get growthMeasurementsOptional => '기타 측정 (선택)';
 
   @override
-  String get growthHeightCm => 'Height (cm)';
+  String get growthHeightCm => '키 (cm)';
 
   @override
-  String get growthHeadCm => 'Head circumference (cm)';
+  String get growthHeadCm => '머리둘레 (cm)';
 
   @override
   String weighConditionChangedWarning(String condition) {
-    return 'Last time was weighed $condition — the difference may not be just growth';
+    return '지난번에는 $condition 상태로 쟀습니다 — 차이가 성장 때문만은 아닐 수 있어요';
   }
 
   @override
@@ -1425,299 +1425,299 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String growthHeadValue(String cm) {
-    return 'Head $cm cm';
+    return '머리 $cm cm';
   }
 
   @override
-  String get growthHeightOverTime => 'Height over time';
+  String get growthHeightOverTime => '키 변화';
 
   @override
-  String get growthHeadOverTime => 'Head circumference over time';
+  String get growthHeadOverTime => '머리둘레 변화';
 
   @override
-  String get graphsRecentWeighIns => 'Recent weigh-ins';
+  String get graphsRecentWeighIns => '최근 체중 측정';
 
   @override
-  String get solidsAmountFewSpoons => 'A few spoons';
+  String get solidsAmountFewSpoons => '몇 숟가락';
 
   @override
-  String get solidsAmountHalf => 'Half a portion';
+  String get solidsAmountHalf => '반 그릇';
 
   @override
-  String get solidsAmountFull => 'Full portion';
+  String get solidsAmountFull => '한 그릇';
 
   @override
-  String get solidsAmountTaste => 'Just a taste';
+  String get solidsAmountTaste => '맛만 봄';
 
   @override
-  String get solidsReactionMild => 'Mild reaction';
+  String get solidsReactionMild => '가벼운 반응';
 
   @override
-  String get solidsReactionAllergic => 'Allergic reaction';
+  String get solidsReactionAllergic => '알레르기 반응';
 
   @override
-  String get solidsReactionNone => 'No reaction';
+  String get solidsReactionNone => '반응 없음';
 
   @override
-  String get solidsEditTitle => 'Edit solid food';
+  String get solidsEditTitle => '이유식 수정';
 
   @override
-  String get solidsLogTitle => 'Log solid food';
+  String get solidsLogTitle => '이유식 기록';
 
   @override
-  String get solidsFoodsLabel => 'Foods';
+  String get solidsFoodsLabel => '식재료';
 
   @override
-  String get solidsAddFoodHint => 'Add a food';
+  String get solidsAddFoodHint => '식재료 추가';
 
   @override
-  String get solidsAmount => 'Amount';
+  String get solidsAmount => '양';
 
   @override
-  String get solidsLiked => 'How did they like it?';
+  String get solidsLiked => '잘 먹었나요?';
 
   @override
-  String get solidsReaction => 'Reaction';
+  String get solidsReaction => '반응';
 
   @override
-  String get solidsNotesOptional => 'Notes (optional)';
+  String get solidsNotesOptional => '메모 (선택)';
 
   @override
-  String get foodsTitle => 'Foods tried';
+  String get foodsTitle => '먹어 본 식재료';
 
   @override
-  String get foodsEmpty => 'No solid foods logged yet.';
+  String get foodsEmpty => '아직 기록된 이유식이 없습니다.';
 
   @override
-  String get foodsAllergensNotYet => 'Common allergens not yet introduced';
+  String get foodsAllergensNotYet => '아직 시도하지 않은 주요 알레르기 식품';
 
   @override
   String foodsTriedCount(int count) {
-    return '$count foods tried';
+    return '식재료 $count가지 시도';
   }
 
   @override
   String foodsFirstTried(String date) {
-    return 'First: $date';
+    return '처음: $date';
   }
 
   @override
   String foodsTimesEaten(int count) {
-    return '$count×';
+    return '$count회';
   }
 
   @override
-  String get entryTypeSolids => 'Solid food';
+  String get entryTypeSolids => '이유식';
 
   @override
-  String get feedAmountOz => 'Amount (oz)';
+  String get feedAmountOz => '양 (oz)';
 
   @override
   String notifFeedingReminderDescInterval(String interval) {
-    return 'Remind me $interval after the last feed';
+    return '마지막 수유 $interval 후 알림';
   }
 
   @override
   String notifDiaperReminderDescInterval(String interval) {
-    return 'Remind me $interval after the last diaper';
+    return '마지막 기저귀 교체 $interval 후 알림';
   }
 
   @override
   String notifIntervalEvery(String interval) {
-    return 'Every $interval';
+    return '$interval마다';
   }
 
   @override
-  String get notifIntervalTitle => 'Reminder interval';
+  String get notifIntervalTitle => '알림 간격';
 
   @override
-  String get notifIntervalHours => 'Hours';
+  String get notifIntervalHours => '시간';
 
   @override
-  String get notifIntervalMinutes => 'Minutes';
+  String get notifIntervalMinutes => '분';
 
   @override
   String notifIntervalTooShort(int minutes) {
-    return 'At least $minutes minutes';
+    return '최소 $minutes분';
   }
 
   @override
-  String get settingsFeeding => 'Feeding';
+  String get settingsFeeding => '수유';
 
   @override
-  String get settingsTrackBottles => 'Track bottles';
+  String get settingsTrackBottles => '젖병 기록';
 
   @override
-  String get settingsTrackBottlesDesc => 'Pick which bottle was used, and how much was prepared vs drunk';
+  String get settingsTrackBottlesDesc => '어떤 젖병을 썼는지, 탄 양과 먹은 양을 기록합니다';
 
   @override
-  String get bottlesTitle => 'My bottles';
+  String get bottlesTitle => '내 젖병';
 
   @override
-  String get bottlesEmpty => 'No bottles yet.\nAdd the bottles you use so you can pick one when logging a feed.';
+  String get bottlesEmpty => '아직 젖병이 없습니다.\n사용하는 젖병을 추가하면 수유를 기록할 때 고를 수 있어요.';
 
   @override
-  String get bottleAdd => 'Add bottle';
+  String get bottleAdd => '젖병 추가';
 
   @override
-  String get bottleEdit => 'Edit bottle';
+  String get bottleEdit => '젖병 수정';
 
   @override
-  String get bottleLabel => 'Label / number (e.g. #3)';
+  String get bottleLabel => '라벨 / 번호 (예: #3)';
 
   @override
-  String get bottleBrand => 'Brand / type (optional)';
+  String get bottleBrand => '브랜드 / 종류 (선택)';
 
   @override
-  String get bottleCapacity => 'Capacity (optional)';
+  String get bottleCapacity => '용량 (선택)';
 
   @override
-  String get bottleNipple => 'Nipple size / flow (optional)';
+  String get bottleNipple => '젖꼭지 크기 / 단계 (선택)';
 
   @override
-  String get bottleMaterial => 'Material';
+  String get bottleMaterial => '소재';
 
   @override
-  String get bottleRetired => 'Retired';
+  String get bottleRetired => '사용 중지';
 
   @override
-  String get bottleRetire => 'Retire';
+  String get bottleRetire => '사용 중지';
 
   @override
-  String get bottleUnretire => 'Use again';
+  String get bottleUnretire => '다시 사용';
 
   @override
   String bottleDeleteTitle(String name) {
-    return 'Delete $name?';
+    return '$name을(를) 삭제할까요?';
   }
 
   @override
-  String get bottleDeleteBody => 'Past feeds keep their amounts but will no longer show this bottle. To hide it from the picker but keep history, use Retire instead.';
+  String get bottleDeleteBody => '이전 수유 기록의 양은 유지되지만 이 젖병은 더 이상 표시되지 않습니다. 기록은 남기고 목록에서만 숨기려면 \'사용 중지\'를 사용하세요.';
 
   @override
-  String get feedPrepared => 'Prepared';
+  String get feedPrepared => '탄 양';
 
   @override
-  String get feedDrank => 'Drank';
+  String get feedDrank => '먹은 양';
 
   @override
   String feedLeftover(String amount) {
-    return '$amount left over';
+    return '$amount 남음';
   }
 
   @override
-  String get feedDrankMoreThanPrepared => 'More than was prepared?';
+  String get feedDrankMoreThanPrepared => '탄 양보다 많나요?';
 
   @override
-  String get feedWhichBottle => 'Which bottle?';
+  String get feedWhichBottle => '어떤 젖병?';
 
   @override
-  String get feedNoBottlesYet => 'No bottles yet — add them in Settings → My bottles.';
+  String get feedNoBottlesYet => '아직 젖병이 없습니다 — 설정 → 내 젖병에서 추가하세요.';
 
   @override
-  String get photoPrivacyTitle => 'Your photos stay on this phone';
+  String get photoPrivacyTitle => '사진은 이 휴대폰에만 저장돼요';
 
   @override
-  String get photoPrivacyBody => 'Photos are saved only inside this app on this device. The app has no internet access, so nothing is ever uploaded or shared unless you export a backup yourself.\n\nAndroid may ask for camera access the first time you take a photo.';
+  String get photoPrivacyBody => '사진은 이 기기의 이 앱 안에만 저장됩니다. 앱은 인터넷에 연결되지 않으므로, 직접 백업을 내보내지 않는 한 어떤 것도 업로드되거나 공유되지 않습니다.\n\n처음 사진을 찍을 때 Android가 카메라 권한을 요청할 수 있습니다.';
 
   @override
-  String get photoPrivacyContinue => 'Continue';
+  String get photoPrivacyContinue => '계속';
 
   @override
-  String get photoTakePhoto => 'Take a photo';
+  String get photoTakePhoto => '사진 찍기';
 
   @override
-  String get photoChooseFromGallery => 'Choose from gallery';
+  String get photoChooseFromGallery => '갤러리에서 선택';
 
   @override
-  String get photoCaption => 'Caption';
+  String get photoCaption => '설명';
 
   @override
-  String get photoCompare => 'First vs latest';
+  String get photoCompare => '처음과 최근';
 
   @override
-  String get photoAddOtherDay => 'Add for another day';
+  String get photoAddOtherDay => '다른 날짜에 추가';
 
   @override
-  String get photoEmpty => 'No photos yet.\nTake one photo a day and watch your baby grow.';
+  String get photoEmpty => '아직 사진이 없습니다.\n하루 한 장씩 찍고 아기가 자라는 모습을 지켜보세요.';
 
   @override
-  String get photoToday => 'Today\'s photo';
+  String get photoToday => '오늘의 사진';
 
   @override
-  String get photoAddToday => 'Add today\'s photo';
+  String get photoAddToday => '오늘의 사진 추가';
 
   @override
-  String get photoReplace => 'Replace';
+  String get photoReplace => '바꾸기';
 
   @override
-  String get photoDeleteTitle => 'Delete this photo?';
+  String get photoDeleteTitle => '이 사진을 삭제할까요?';
 
   @override
-  String get ageBeforeBirth => 'Before birth';
+  String get ageBeforeBirth => '출생 전';
 
   @override
   String ageDays(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days old',
-      one: '1 day old',
-      zero: 'Birth day',
+      other: '생후 $count일',
+      one: '생후 1일',
+      zero: '태어난 날',
     );
     return '$_temp0';
   }
 
   @override
   String ageMonthsDays(int months, int days) {
-    return '$months mo $days d';
+    return '$months개월 $days일';
   }
 
   @override
   String ageYearsMonths(int years, int months) {
-    return '$years yr $months mo';
+    return '$years년 $months개월';
   }
 
   @override
-  String get navMemories => 'Memories';
+  String get navMemories => '추억';
 
   @override
-  String get memoriesTabPhotos => 'Photos';
+  String get memoriesTabPhotos => '사진';
 
   @override
-  String get milestoneNoAchievedHint => 'Tap \"Upcoming\" to log a preset,\nor use the button below for a custom one.';
+  String get milestoneNoAchievedHint => '\'다가오는\'을 눌러 준비된 이정표를 기록하거나,\n아래 버튼으로 직접 추가하세요.';
 
   @override
-  String get skinTitle => 'Skin conditions';
+  String get skinTitle => '피부 상태';
 
   @override
-  String get skinNew => 'New skin condition';
+  String get skinNew => '새 피부 상태';
 
   @override
-  String get skinEdit => 'Edit skin condition';
+  String get skinEdit => '피부 상태 수정';
 
   @override
   String skinTabActive(int count) {
-    return 'Active ($count)';
+    return '진행 중 ($count)';
   }
 
   @override
   String skinTabHealed(int count) {
-    return 'Healed ($count)';
+    return '나음 ($count)';
   }
 
   @override
-  String get skinEmptyActive => 'No skin conditions being tracked.\nTap + to start one — you can add a photo each day to show the doctor how it\'s changing.';
+  String get skinEmptyActive => '기록 중인 피부 상태가 없습니다.\n+를 눌러 시작하세요 — 매일 사진을 추가해 의사에게 변화를 보여줄 수 있어요.';
 
   @override
-  String get skinEmptyHealed => 'Nothing healed yet.';
+  String get skinEmptyHealed => '아직 나은 것이 없습니다.';
 
   @override
-  String get skinUpdateDue => 'Update today';
+  String get skinUpdateDue => '오늘 기록 필요';
 
   @override
   String skinSince(String date) {
-    return 'Since $date';
+    return '$date부터';
   }
 
   @override
@@ -1725,195 +1725,550 @@ class AppLocalizationsKo extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days',
-      one: '1 day',
+      other: '$count일',
+      one: '1일',
     );
     return '$_temp0';
   }
 
   @override
   String skinHealedOn(String date) {
-    return 'Healed $date';
+    return '$date에 나음';
   }
 
   @override
   String skinReminderAt(String time) {
-    return 'Daily reminder at $time';
+    return '매일 $time에 알림';
   }
 
   @override
-  String get skinSeverityTrend => 'Severity over time';
+  String get skinSeverityTrend => '심한 정도 변화';
 
   @override
-  String get skinNoUpdates => 'No updates yet. Add today\'s to start the timeline.';
+  String get skinNoUpdates => '아직 기록이 없습니다. 오늘 기록을 추가해 타임라인을 시작하세요.';
 
   @override
-  String get skinExportPdf => 'Export for doctor (PDF)';
+  String get skinExportPdf => '의사용으로 내보내기 (PDF)';
 
   @override
-  String get skinMarkHealed => 'Mark healed';
+  String get skinMarkHealed => '나음으로 표시';
 
   @override
-  String get skinReopen => 'Mark active again';
+  String get skinReopen => '다시 진행 중으로 표시';
 
   @override
-  String get skinUpdateToday => 'Add today\'s update';
+  String get skinUpdateToday => '오늘 기록 추가';
 
   @override
-  String get skinEditToday => 'Edit today\'s update';
+  String get skinEditToday => '오늘 기록 수정';
 
   @override
   String skinDeleteTitle(String name) {
-    return 'Delete $name and all its updates?';
+    return '$name과(와) 모든 기록을 삭제할까요?';
   }
 
   @override
-  String get skinDeleteUpdateTitle => 'Delete this update?';
+  String get skinDeleteUpdateTitle => '이 기록을 삭제할까요?';
 
   @override
   String skinTreatmentValue(String treatment) {
-    return 'Treatment: $treatment';
+    return '치료: $treatment';
   }
 
   @override
-  String get skinName => 'Condition *';
+  String get skinName => '증상 *';
 
   @override
-  String get skinBodyArea => 'Where on the body?';
+  String get skinBodyArea => '몸의 어느 부위인가요?';
 
   @override
-  String get skinBegan => 'Began on';
+  String get skinBegan => '시작일';
 
   @override
-  String get skinRemindDaily => 'Remind me to update it daily';
+  String get skinRemindDaily => '매일 기록하도록 알림';
 
   @override
-  String get skinReminderTime => 'Reminder time';
+  String get skinReminderTime => '알림 시간';
 
   @override
-  String get skinUpdateTitle => 'Skin update';
+  String get skinUpdateTitle => '피부 기록';
 
   @override
-  String get skinSeverity => 'How does it look?';
+  String get skinSeverity => '상태가 어떤가요?';
 
   @override
-  String get skinSeverity0 => '0 · Clear';
+  String get skinSeverity0 => '0 · 깨끗함';
 
   @override
-  String get skinSeverity1 => '1 · Mild';
+  String get skinSeverity1 => '1 · 가벼움';
 
   @override
-  String get skinSeverity2 => '2 · Moderate';
+  String get skinSeverity2 => '2 · 보통';
 
   @override
-  String get skinSeverity3 => '3 · Severe';
+  String get skinSeverity3 => '3 · 심함';
 
   @override
-  String get skinSeverity4 => '4 · Very severe';
+  String get skinSeverity4 => '4 · 매우 심함';
 
   @override
-  String get skinTreatment => 'Treatment (optional)';
+  String get skinTreatment => '치료 (선택)';
 
   @override
-  String get skinTreatmentHint => 'e.g. moisturiser, hydrocortisone 1%';
+  String get skinTreatmentHint => '예: 보습제, 하이드로코르티손 1%';
 
   @override
-  String get skinAddPhoto => 'Add a photo';
+  String get skinAddPhoto => '사진 추가';
 
   @override
-  String get skinCardNone => 'Track a rash, eczema or other skin condition day by day, with photos for the doctor';
+  String get skinCardNone => '발진, 습진 등 피부 상태를 의사에게 보여줄 사진과 함께 매일 기록하세요';
 
   @override
   String skinCardDue(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count need today\'s update',
-      one: '1 needs today\'s update',
+      other: '$count건이 오늘 기록 필요',
+      one: '1건이 오늘 기록 필요',
     );
     return '$_temp0';
   }
 
   @override
-  String get backupPreparing => 'Preparing backup…';
+  String get backupPreparing => '백업 준비 중…';
 
   @override
-  String get backupFailed => 'Couldn\'t create the backup.';
+  String get backupFailed => '백업을 만들 수 없습니다.';
 
   @override
-  String get backupSavedTo => 'Backup saved to:';
+  String get backupSavedTo => '백업 저장 위치:';
 
   @override
-  String get backupShareSubject => 'Baby Tracker backup';
+  String get backupShareSubject => 'Baby Tracker 백업';
 
   @override
   String importIncludesPhotos(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Includes $count photos.',
-      one: 'Includes 1 photo.',
+      other: '사진 $count장 포함.',
+      one: '사진 1장 포함.',
     );
     return '$_temp0';
   }
 
   @override
-  String get widgetFeed => 'Feed';
+  String get widgetFeed => '수유';
 
   @override
-  String get widgetStopFeed => 'Stop feed';
+  String get widgetStopFeed => '수유 종료';
 
   @override
-  String get widgetDiaper => 'Diaper';
+  String get widgetDiaper => '기저귀';
 
   @override
-  String get widgetSleep => 'Sleep';
+  String get widgetSleep => '수면';
 
   @override
-  String get widgetWakeUp => 'Woke up';
+  String get widgetWakeUp => '깼어요';
 
   @override
   String widgetFeedingFor(String duration) {
-    return 'Feeding $duration';
+    return '수유 중 $duration';
   }
 
   @override
   String widgetFedAgo(String ago) {
-    return 'Fed $ago';
+    return '수유 $ago';
   }
 
   @override
-  String get widgetNoFeedsYet => 'No feeds yet';
+  String get widgetNoFeedsYet => '수유 기록 없음';
 
   @override
   String widgetChangedAgo(String ago) {
-    return 'Changed $ago';
+    return '교체 $ago';
   }
 
   @override
-  String get widgetNoDiapersYet => 'No diapers yet';
+  String get widgetNoDiapersYet => '기저귀 기록 없음';
 
   @override
   String widgetAsleepFor(String duration) {
-    return 'Asleep $duration';
+    return '자는 중 $duration';
   }
 
   @override
   String widgetAwakeFor(String ago) {
-    return 'Woke $ago';
+    return '기상 $ago';
   }
 
   @override
-  String get widgetStopSleepFirst => 'Stop the sleep timer first';
+  String get widgetStopSleepFirst => '먼저 수면 타이머를 멈추세요';
 
   @override
-  String get widgetStopFeedFirst => 'Stop the feeding timer first';
+  String get widgetStopFeedFirst => '먼저 수유 타이머를 멈추세요';
 
   @override
   String quickAddTitle(String name) {
-    return 'Add for $name';
+    return '$name 기록 추가';
   }
 
   @override
-  String get quickAddOpenApp => 'Open the app';
+  String get quickAddOpenApp => '앱 열기';
+
+  @override
+  String get foodPeanut => '땅콩';
+
+  @override
+  String get foodEgg => '달걀';
+
+  @override
+  String get foodDairy => '유제품';
+
+  @override
+  String get foodWheat => '밀';
+
+  @override
+  String get foodSoy => '콩';
+
+  @override
+  String get foodFish => '생선';
+
+  @override
+  String get foodShellfish => '갑각류·조개류';
+
+  @override
+  String get foodTreeNuts => '견과류';
+
+  @override
+  String get foodSesame => '참깨';
+
+  @override
+  String get foodBanana => '바나나';
+
+  @override
+  String get foodAvocado => '아보카도';
+
+  @override
+  String get foodSweetPotato => '고구마';
+
+  @override
+  String get foodRiceCereal => '쌀미음';
+
+  @override
+  String get foodOatmeal => '오트밀';
+
+  @override
+  String get foodCarrot => '당근';
+
+  @override
+  String get foodApple => '사과';
+
+  @override
+  String get foodPea => '완두콩';
+
+  @override
+  String get symptomRash => '발진';
+
+  @override
+  String get symptomHives => '두드러기';
+
+  @override
+  String get symptomVomiting => '구토';
+
+  @override
+  String get symptomDiarrhea => '설사';
+
+  @override
+  String get symptomSwelling => '부기';
+
+  @override
+  String get doseUnitDrops => '방울';
+
+  @override
+  String get doseUnitTablets => '정';
+
+  @override
+  String get bottleMaterialPlastic => '플라스틱';
+
+  @override
+  String get bottleMaterialGlass => '유리';
+
+  @override
+  String get bottleMaterialSilicone => '실리콘';
+
+  @override
+  String get bottleMaterialSteel => '스테인리스';
+
+  @override
+  String get visitReasonRoutine => '정기 검진';
+
+  @override
+  String get visitReasonSick => '아파서';
+
+  @override
+  String get visitReasonVaccination => '예방접종';
+
+  @override
+  String get visitReasonSpecialist => '전문의';
+
+  @override
+  String get visitReasonFollowUp => '재진';
+
+  @override
+  String get visitReasonOther => '기타';
+
+  @override
+  String get pooColourPale => '옅은 색';
+
+  @override
+  String get noteTagHappyDay => '행복한 날';
+
+  @override
+  String get noteTagSleptWell => '푹 잤어요';
+
+  @override
+  String get noteTagFussy => '보챘어요';
+
+  @override
+  String get noteTagNotWell => '컨디션 안 좋음';
+
+  @override
+  String get noteTagFirstTime => '처음으로!';
+
+  @override
+  String get noteTagTeething => '이가 나요';
+
+  @override
+  String get noteTagGrowthSpurt => '급성장기';
+
+  @override
+  String get noteTagMilestone => '성장 이정표';
+
+  @override
+  String get tummyTimeNotesHint => '예: 즐거워함, 보챔...';
+
+  @override
+  String get skinSuggestEczema => '습진';
+
+  @override
+  String get skinSuggestDiaperRash => '기저귀 발진';
+
+  @override
+  String get skinSuggestCradleCap => '지루성 피부염(유아 두피)';
+
+  @override
+  String get skinSuggestBabyAcne => '신생아 여드름';
+
+  @override
+  String get skinSuggestHeatRash => '땀띠';
+
+  @override
+  String get skinSuggestDrySkin => '건조한 피부';
+
+  @override
+  String get bodyFace => '얼굴';
+
+  @override
+  String get bodyScalp => '두피';
+
+  @override
+  String get bodyNeck => '목';
+
+  @override
+  String get bodyChest => '가슴';
+
+  @override
+  String get bodyBack => '등';
+
+  @override
+  String get bodyArms => '팔';
+
+  @override
+  String get bodyHands => '손';
+
+  @override
+  String get bodyDiaperArea => '기저귀 부위';
+
+  @override
+  String get bodyLegs => '다리';
+
+  @override
+  String get bodyFeet => '발';
+
+  @override
+  String get medSuggestGripeWater => '그라이프 워터';
+
+  @override
+  String get medSuggestVitaminD => '비타민 D';
+
+  @override
+  String get medSuggestIronDrops => '철분 드롭';
+
+  @override
+  String get medSuggestAntibiotic => '항생제';
+
+  @override
+  String get medSuggestProbiotic => '유산균';
+
+  @override
+  String vaccinePageTitle(String name) {
+    return '$name — 예방접종';
+  }
+
+  @override
+  String get vaccineDeleteTitle => '예방접종 기록을 삭제할까요?';
+
+  @override
+  String get vaccineSiteHint => '예: 왼쪽 허벅지';
+
+  @override
+  String get vaccineNotesHint => '예: 미열, 보챔, 반응 없음...';
+
+  @override
+  String get vaccineNoGivenHint => '+ 버튼을 쓰거나 일정 탭에서 \'접종 완료로 표시\'를 누르세요.';
+
+  @override
+  String get vaccineAgeBirth => '출생 시';
+
+  @override
+  String vaccineAgeMonths(String range) {
+    return '$range개월';
+  }
+
+  @override
+  String vaccineAgeMonthsAnnual(String range) {
+    return '$range개월 (매년)';
+  }
+
+  @override
+  String get whoTabHeight => '키';
+
+  @override
+  String get whoTabHead => '머리';
+
+  @override
+  String get whoChartFor => '차트 기준:';
+
+  @override
+  String whoAgeRange(String title) {
+    return '$title (0–24개월)';
+  }
+
+  @override
+  String get whoNoDataPoints => '아직 데이터가 없습니다. 측정값을 기록하면 차트에 아기가 표시됩니다.';
+
+  @override
+  String get whoLatestMeasurement => '최근 측정';
+
+  @override
+  String whoApproxPercentile(String value) {
+    return '대략적인 백분위: $value';
+  }
+
+  @override
+  String whoBetween(String low, String high) {
+    return '$low와 $high 사이';
+  }
+
+  @override
+  String whoMonthsOld(String months) {
+    return '생후 $months개월';
+  }
+
+  @override
+  String get whoDisclaimer => '이 차트는 참고용입니다. 해석은 항상 소아과 의사에게 맡기세요.';
+
+  @override
+  String get whoMedian => 'P50 (중앙값)';
+
+  @override
+  String get notifChannelName => 'Baby Tracker 알림';
+
+  @override
+  String get notifChannelDesc => '수유, 기저귀, 약, 피부 확인 알림';
+
+  @override
+  String get notifFeedTitle => '수유할 시간이에요!';
+
+  @override
+  String notifFeedBody(String interval) {
+    return '지난 $interval 동안 수유 기록이 없습니다.';
+  }
+
+  @override
+  String get notifDiaperTitle => '기저귀 확인!';
+
+  @override
+  String notifDiaperBody(String interval) {
+    return '지난 $interval 동안 기저귀 교체 기록이 없습니다.';
+  }
+
+  @override
+  String notifDoseTitle(String name) {
+    return '복용 시간: $name';
+  }
+
+  @override
+  String notifDoseBody(String name) {
+    return '$name 다음 복용 시간입니다.';
+  }
+
+  @override
+  String notifSkinTitle(String name) {
+    return '피부 확인: $name';
+  }
+
+  @override
+  String get notifSkinBody => '오늘 기록을 추가하세요 (원하면 사진도).';
+
+  @override
+  String get timerFeedingNotif => '수유 타이머 작동 중';
+
+  @override
+  String intervalMinutes(String m) {
+    return '$m분';
+  }
+
+  @override
+  String intervalHours(String h) {
+    return '$h시간';
+  }
+
+  @override
+  String intervalHoursMinutes(String h, String m) {
+    return '$h시간 $m분';
+  }
+
+  @override
+  String get settingsRtlActive => '오른쪽에서 왼쪽 레이아웃 사용 중';
+
+  @override
+  String get measurementHeightIn => '키 (인치)';
+
+  @override
+  String get measurementHeadIn => '머리둘레 (인치)';
+
+  @override
+  String get growthHeightIn => '키 (인치)';
+
+  @override
+  String get growthHeadIn => '머리둘레 (인치)';
+
+  @override
+  String growthHeightValueIn(String value) {
+    return '$value인치';
+  }
+
+  @override
+  String growthHeadValueIn(String value) {
+    return '머리 $value인치';
+  }
+
+  @override
+  String get settingsLengthUnitNote => '길이 단위는 체중 단위를 따릅니다 (kg이면 cm, lbs면 인치)';
+
+  @override
+  String get formulaStoreBrand => 'PB 상품';
 }

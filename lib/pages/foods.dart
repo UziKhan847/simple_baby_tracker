@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/forms/solids.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/labels.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
 import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
@@ -78,8 +79,13 @@ class FoodsPage extends StatelessWidget {
     final l = AppLocalizations.of(context)!;
     final foods = _summaries();
     final introducedAllergens = foods.map((f) => f.name.toLowerCase()).toSet();
+    // Typed-in names count too, in English or the current language.
     final notYetAllergens = commonAllergens
-        .where((a) => !introducedAllergens.contains(a.toLowerCase()))
+        .where(
+          (a) =>
+              !introducedAllergens.contains(a.toLowerCase()) &&
+              !introducedAllergens.contains(foodLabel(a, l).toLowerCase()),
+        )
         .toList();
     final colors = Theme.of(context).extension<AppColors>()!;
 
@@ -125,7 +131,7 @@ class FoodsPage extends StatelessWidget {
                                 .map(
                                   (a) => Chip(
                                     label: Text(
-                                      a,
+                                      foodLabel(a, l),
                                       style: const TextStyle(fontSize: 12),
                                     ),
                                   ),
@@ -155,7 +161,7 @@ class FoodsPage extends StatelessWidget {
                     softColor: f.lastReaction != null
                         ? Colors.orange.withAlpha(30)
                         : colors.noteSoft,
-                    title: f.name,
+                    title: foodLabel(f.name, l),
                     subtitle: [
                       l.foodsFirstTried(fullDate(f.firstTried)),
                       l.foodsTimesEaten(f.timesEaten),

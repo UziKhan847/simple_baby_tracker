@@ -652,7 +652,7 @@ class _ConditionDialogState extends State<_ConditionDialog> {
                 spacing: 6,
                 runSpacing: 4,
                 children: [
-                  for (final s in skinConditionSuggestions)
+                  for (final s in skinConditionSuggestions(l))
                     ActionChip(
                       label: Text(s, style: const TextStyle(fontSize: 12)),
                       onPressed: () => setState(() => _nameCtrl.text = s),
@@ -674,7 +674,7 @@ class _ConditionDialogState extends State<_ConditionDialog> {
               spacing: 6,
               runSpacing: 4,
               children: [
-                for (final a in skinBodyAreas)
+                for (final a in skinBodyAreas(l))
                   ChoiceChip(
                     label: Text(a, style: const TextStyle(fontSize: 12)),
                     selected: _area == a,

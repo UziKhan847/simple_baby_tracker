@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/baby_profile.dart';
 import 'package:simple_baby_tracker/data/who.dart';
 import 'package:simple_baby_tracker/helpers.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
 import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
@@ -107,19 +108,24 @@ class _WhoChartsPageState extends State<WhoChartsPage>
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final settings = SettingsProvider.of(context).settings;
     final hasBirthDate = widget.profile?.birthDate != null;
+    // Lengths follow the weight unit: inches alongside lbs.
+    final useCm = settings.useKg;
+    final lengthUnit = useCm ? 'cm' : 'in';
+    double toLength(double cm) => useCm ? cm : cmToIn(cm);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('WHO Growth Charts'),
+        title: Text(l.whoChartTitle),
         automaticallyImplyLeading: false,
         bottom: TabBar(
           controller: _tabs,
-          tabs: const [
-            Tab(text: 'Weight'),
-            Tab(text: 'Height'),
-            Tab(text: 'Head'),
+          tabs: [
+            Tab(text: l.weightLabel),
+            Tab(text: l.whoTabHeight),
+            Tab(text: l.whoTabHead),
           ],
         ),
       ),
@@ -130,19 +136,19 @@ class _WhoChartsPageState extends State<WhoChartsPage>
             padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
             child: Row(
               children: [
-                const Text('Chart for:', style: TextStyle(fontSize: 13)),
+                Text(l.whoChartFor, style: const TextStyle(fontSize: 13)),
                 const SizedBox(width: 10),
                 SegmentedButton<bool>(
-                  segments: const [
+                  segments: [
                     ButtonSegment(
                       value: true,
-                      label: Text('Boy'),
-                      icon: AppIcon(AppIcons.boy, size: 16),
+                      label: Text(l.whoGenderBoy),
+                      icon: const AppIcon(AppIcons.boy, size: 16),
                     ),
                     ButtonSegment(
                       value: false,
-                      label: Text('Girl'),
-                      icon: AppIcon(AppIcons.girl, size: 16),
+                      label: Text(l.whoGenderGirl),
+                      icon: const AppIcon(AppIcons.girl, size: 16),
                     ),
                   ],
                   selected: {_showBoy},
@@ -170,10 +176,13 @@ class _WhoChartsPageState extends State<WhoChartsPage>
                       size: 16,
                     ),
                     const SizedBox(width: 8),
-                    const Expanded(
+                    Expanded(
                       child: Text(
-                        'Set baby\'s date of birth in the profile to see age-based placement on the chart.',
-                        style: TextStyle(fontSize: 12, color: Colors.orange),
+                        l.whoNoBirthDate,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.orange,
+                        ),
                       ),
                     ),
                   ],
@@ -186,7 +195,7 @@ class _WhoChartsPageState extends State<WhoChartsPage>
               controller: _tabs,
               children: [
                 _GrowthChartTab(
-                  title: 'Weight-for-age (0–24 months)',
+                  title: l.whoAgeRange(l.whoWeightForAge),
                   whoData: _showBoy ? whoWeightBoys : whoWeightGirls,
                   babyPoints: _weightPoints(),
                   yLabel: settings.useKg ? 'kg' : 'lbs',
@@ -196,19 +205,19 @@ class _WhoChartsPageState extends State<WhoChartsPage>
                       : v.toStringAsFixed(1),
                 ),
                 _GrowthChartTab(
-                  title: 'Length/Height-for-age (0–24 months)',
+                  title: l.whoAgeRange(l.whoHeightForAge),
                   whoData: _showBoy ? whoHeightBoys : whoHeightGirls,
                   babyPoints: _heightPoints(),
-                  yLabel: 'cm',
-                  convertY: (v) => v,
+                  yLabel: lengthUnit,
+                  convertY: toLength,
                   formatY: (v) => v.toStringAsFixed(1),
                 ),
                 _GrowthChartTab(
-                  title: 'Head circumference-for-age (0–24 months)',
+                  title: l.whoAgeRange(l.whoHeadForAge),
                   whoData: _showBoy ? whoHeadBoys : whoHeadGirls,
                   babyPoints: _headPoints(),
-                  yLabel: 'cm',
-                  convertY: (v) => v,
+                  yLabel: lengthUnit,
+                  convertY: toLength,
                   formatY: (v) => v.toStringAsFixed(1),
                 ),
               ],
@@ -286,9 +295,9 @@ class _GrowthChartTab extends StatelessWidget {
               ).colorScheme.secondaryContainer.withAlpha(80),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Text(
-              'No data points yet. Log measurements to see your baby on the chart.',
-              style: TextStyle(color: Colors.grey, fontSize: 13),
+            child: Text(
+              AppLocalizations.of(context)!.whoNoDataPoints,
+              style: const TextStyle(color: Colors.grey, fontSize: 13),
             ),
           ),
         ],
@@ -314,7 +323,11 @@ class _PercentileCard extends StatelessWidget {
     required this.yLabel,
   });
 
-  String _estimatePercentile(double ageMonths, double value) {
+  String _estimatePercentile(
+    double ageMonths,
+    double value,
+    AppLocalizations l,
+  ) {
     // Find the nearest WHO month entry
     final months = whoData.keys.toList()..sort();
     int nearest = months.first;
@@ -328,7 +341,7 @@ class _PercentileCard extends StatelessWidget {
     const pLabels = ['P3', 'P15', 'P50', 'P85', 'P97'];
     for (int i = 0; i < 4; i++) {
       if (value >= percentiles[i] && value <= percentiles[i + 1]) {
-        return 'between ${pLabels[i]} and ${pLabels[i + 1]}';
+        return l.whoBetween(pLabels[i], pLabels[i + 1]);
       }
     }
     return 'P50';
@@ -336,9 +349,14 @@ class _PercentileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final latest = babyPoints.last;
-    final percentileStr = _estimatePercentile(latest.$1, convertY(latest.$2));
-    final ageStr = '${latest.$1.toStringAsFixed(1)} months old';
+    final percentileStr = _estimatePercentile(
+      latest.$1,
+      convertY(latest.$2),
+      l,
+    );
+    final ageStr = l.whoMonthsOld(latest.$1.toStringAsFixed(1));
 
     return Card(
       child: Padding(
@@ -347,7 +365,7 @@ class _PercentileCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Latest measurement',
+              l.whoLatestMeasurement,
               style: Theme.of(context).textTheme.labelLarge,
             ),
             const SizedBox(height: 6),
@@ -367,7 +385,7 @@ class _PercentileCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Approximate percentile: $percentileStr',
+                        l.whoApproxPercentile(percentileStr),
                         style: const TextStyle(
                           fontSize: 13,
                           color: Colors.grey,
@@ -380,7 +398,7 @@ class _PercentileCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              '⚠️ These charts are for informational purposes. Always consult your paediatrician for clinical interpretation.',
+              '⚠️ ${l.whoDisclaimer}',
               style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
             ),
           ],
@@ -395,18 +413,19 @@ class _PercentileCard extends StatelessWidget {
 class _Legend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return Wrap(
       spacing: 16,
       runSpacing: 4,
       children: [
         _LegendItem(
           color: Color(whoPercentileColors[2]),
-          label: 'P50 (median)',
+          label: l.whoMedian,
           bold: true,
         ),
         _LegendItem(color: Color(whoPercentileColors[1]), label: 'P15 / P85'),
         _LegendItem(color: Color(whoPercentileColors[0]), label: 'P3 / P97'),
-        _LegendItem(color: Colors.red, label: 'Your baby', isDot: true),
+        _LegendItem(color: Colors.red, label: l.whoYourBaby, isDot: true),
       ],
     );
   }

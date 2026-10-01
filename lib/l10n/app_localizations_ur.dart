@@ -736,10 +736,10 @@ class AppLocalizationsUr extends AppLocalizations {
   String get exportTitle => 'برآمد اور بیک اپ';
 
   @override
-  String get exportJson => 'JSON کے طور پر برآمد کریں';
+  String get exportJson => 'بیک اپ برآمد کریں';
 
   @override
-  String get exportJsonDesc => 'بیک اپ کے لیے خام ڈیٹا';
+  String get exportJsonDesc => 'تمام ڈیٹا اور تصاویر ایک ‎.zip فائل میں';
 
   @override
   String get exportPdf => 'PDF کے طور پر برآمد کریں';
@@ -748,10 +748,10 @@ class AppLocalizationsUr extends AppLocalizations {
   String get exportPdfDesc => 'ماہر اطفال کے لیے پڑھنے کے قابل خلاصہ';
 
   @override
-  String get importJson => 'JSON سے درآمد کریں';
+  String get importJson => 'بیک اپ بحال کریں';
 
   @override
-  String get importJsonDesc => 'بیک اپ فائل سے بحال کریں';
+  String get importJsonDesc => '‎.zip بیک اپ سے (یا پرانی ‎.json برآمد سے)';
 
   @override
   String get importDialogTitle => 'ڈیٹا درآمد کریں؟';
@@ -889,7 +889,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get settingsTempUnit => 'درجہ حرارت کی اکائی';
 
   @override
-  String get settingsVolumeUnit => 'Milk volume unit';
+  String get settingsVolumeUnit => 'دودھ کی مقدار کی اکائی';
 
   @override
   String get settingsLanguage => 'زبان';
@@ -928,7 +928,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get tipExportData => 'ڈیٹا برآمد کریں';
 
   @override
-  String get tipExportDataDesc => 'ہوم اسکرین پر شیئر آئیکون استعمال کریں تاکہ تمام ڈیٹا JSON میں برآمد ہو سکے۔';
+  String get tipExportDataDesc => 'تمام ڈیٹا اور تصاویر کو ایک فائل میں محفوظ کرنے کے لیے ہوم پر شیئر آئیکن استعمال کریں۔';
 
   @override
   String get babiesTitle => 'بچے';
@@ -1013,10 +1013,10 @@ class AppLocalizationsUr extends AppLocalizations {
   String get graphsMilkPerDay => 'فی دن دودھ (ملی لیٹر)';
 
   @override
-  String get graphsMilkPerDayMl => 'Milk per day (ml)';
+  String get graphsMilkPerDayMl => 'روزانہ دودھ (ملی لیٹر)';
 
   @override
-  String get graphsMilkPerDayOz => 'Milk per day (oz)';
+  String get graphsMilkPerDayOz => 'روزانہ دودھ (اونس)';
 
   @override
   String get graphsSleepPerDay => 'فی دن نیند (گھنٹے)';
@@ -1117,10 +1117,10 @@ class AppLocalizationsUr extends AppLocalizations {
   String get summaryMilkLabel => 'دودھ ملی';
 
   @override
-  String get summaryMilkLabelMl => 'Milk ml';
+  String get summaryMilkLabelMl => 'دودھ ملی لیٹر';
 
   @override
-  String get summaryMilkLabelOz => 'Milk oz';
+  String get summaryMilkLabelOz => 'دودھ اونس';
 
   @override
   String get summaryBreastLabel => 'دودھ پلانا من';
@@ -1147,33 +1147,33 @@ class AppLocalizationsUr extends AppLocalizations {
   String get whoChartsEntry => 'WHO نمو کے چارٹس';
 
   @override
-  String get medicationEditTitle => 'Edit medication';
+  String get medicationEditTitle => 'دوائی میں ترمیم';
 
   @override
-  String get medicationLogTitle => 'Log medication';
+  String get medicationLogTitle => 'دوائی درج کریں';
 
   @override
-  String get medicationYourCourses => 'Your courses';
+  String get medicationYourCourses => 'آپ کے علاج';
 
   @override
-  String get medicationManageCourses => 'Manage courses';
+  String get medicationManageCourses => 'علاج کا انتظام';
 
   @override
-  String get medicationNameRequired => 'Medication name *';
+  String get medicationNameRequired => 'دوائی کا نام *';
 
   @override
-  String get medicationDosageWarning => 'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.';
+  String get medicationDosageWarning => 'ہمیشہ وزن/عمر کے مطابق خوراک دیں۔ تجویز کردہ تعداد سے زیادہ نہ دیں۔';
 
   @override
-  String get medicationNotesOptional => 'Notes (optional)';
+  String get medicationNotesOptional => 'نوٹس (اختیاری)';
 
   @override
   String timeAgoMinutes(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count minutes ago',
-      one: '1 minute ago',
+      other: '$count منٹ پہلے',
+      one: '1 منٹ پہلے',
     );
     return '$_temp0';
   }
@@ -1183,8 +1183,8 @@ class AppLocalizationsUr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count hours ago',
-      one: '1 hour ago',
+      other: '$count گھنٹے پہلے',
+      one: '1 گھنٹہ پہلے',
     );
     return '$_temp0';
   }
@@ -1194,311 +1194,311 @@ class AppLocalizationsUr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days ago',
-      one: '1 day ago',
+      other: '$count دن پہلے',
+      one: '1 دن پہلے',
     );
     return '$_temp0';
   }
 
   @override
   String medicationLastGivenAgo(String ago) {
-    return 'Last given $ago';
+    return 'آخری بار دی گئی $ago';
   }
 
   @override
-  String get medicationNeverGiven => 'Not given yet';
+  String get medicationNeverGiven => 'ابھی نہیں دی گئی';
 
   @override
   String medicationDosesToday(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count doses today',
-      one: '1 dose today',
-      zero: 'No doses today',
+      other: 'آج $count خوراکیں',
+      one: 'آج 1 خوراک',
+      zero: 'آج کوئی خوراک نہیں',
     );
     return '$_temp0';
   }
 
   @override
   String medicationTooSoonWarning(int hours) {
-    return 'Next dose isn\'t due for ${hours}h after the last one';
+    return 'اگلی خوراک پچھلی کے $hours گھنٹے بعد ہی دی جا سکتی ہے';
   }
 
   @override
   String medicationMaxPerDayWarning(int max) {
-    return 'Already at the $max/day limit for this course';
+    return 'اس علاج کی روزانہ حد $max پوری ہو چکی ہے';
   }
 
   @override
-  String get medicationEditCourse => 'Edit course';
+  String get medicationEditCourse => 'علاج میں ترمیم';
 
   @override
-  String get medicationNewCourse => 'New course';
+  String get medicationNewCourse => 'نیا علاج';
 
   @override
-  String get medicationReasonOptional => 'Reason (optional)';
+  String get medicationReasonOptional => 'وجہ (اختیاری)';
 
   @override
-  String get medicationIntervalHoursOptional => 'Repeat every (hours, optional)';
+  String get medicationIntervalHoursOptional => 'ہر کتنے گھنٹے بعد (اختیاری)';
 
   @override
-  String get medicationMaxPerDayOptional => 'Max doses/day (optional)';
+  String get medicationMaxPerDayOptional => 'روزانہ زیادہ سے زیادہ خوراکیں (اختیاری)';
 
   @override
-  String get medicationRemindNextDose => 'Remind me when the next dose is due';
+  String get medicationRemindNextDose => 'اگلی خوراک کے وقت یاد دلائیں';
 
   @override
   String medicationEndCourseTitle(String name) {
-    return 'End $name?';
+    return '$name ختم کریں؟';
   }
 
   @override
-  String get medicationEndCoursePrompt => 'How did it go?';
+  String get medicationEndCoursePrompt => 'کیسا رہا؟';
 
   @override
-  String get medicationDeleteCourseTitle => 'Delete this course?';
+  String get medicationDeleteCourseTitle => 'یہ علاج حذف کریں؟';
 
   @override
-  String get medicationResultWorked => 'Worked';
+  String get medicationResultWorked => 'فائدہ ہوا';
 
   @override
-  String get medicationResultPartlyWorked => 'Partly worked';
+  String get medicationResultPartlyWorked => 'کچھ فائدہ ہوا';
 
   @override
-  String get medicationResultDidntWork => 'Didn\'t work';
+  String get medicationResultDidntWork => 'فائدہ نہیں ہوا';
 
   @override
-  String get medicationResultSideEffects => 'Side effects';
+  String get medicationResultSideEffects => 'مضر اثرات';
 
   @override
-  String get medicationResultNone => 'Not rated';
+  String get medicationResultNone => 'درجہ بندی نہیں';
 
   @override
-  String get medicationsTitle => 'Medications';
+  String get medicationsTitle => 'دوائیاں';
 
   @override
   String medicationActiveTab(int count) {
-    return 'Active ($count)';
+    return 'جاری ($count)';
   }
 
   @override
   String medicationPastTab(int count) {
-    return 'Past ($count)';
+    return 'گزشتہ ($count)';
   }
 
   @override
-  String get medicationNoActiveCourses => 'No active medication courses.\nStart one with the + button.';
+  String get medicationNoActiveCourses => 'کوئی جاری علاج نہیں۔\n+ بٹن سے نیا شروع کریں۔';
 
   @override
-  String get medicationNoPastCourses => 'No past courses yet.';
+  String get medicationNoPastCourses => 'ابھی کوئی گزشتہ علاج نہیں۔';
 
   @override
   String medicationTimesGiven(int count) {
-    return 'Given $count×';
+    return '$count× دی گئی';
   }
 
   @override
   String medicationLastGivenShort(String date) {
-    return 'Last: $date';
+    return 'آخری: $date';
   }
 
   @override
   String medicationNextDueShort(String time) {
-    return 'Next due $time';
+    return 'اگلی $time';
   }
 
   @override
-  String get medicationEndCourse => 'End course';
+  String get medicationEndCourse => 'علاج ختم کریں';
 
   @override
   String feedLastSideHint(String side) {
-    return 'Last time: $side';
+    return 'پچھلی بار: $side';
   }
 
   @override
-  String get feedSideLeft => 'Left';
+  String get feedSideLeft => 'بایاں';
 
   @override
-  String get feedSideRight => 'Right';
+  String get feedSideRight => 'دایاں';
 
   @override
-  String get feedSideBoth => 'Both';
+  String get feedSideBoth => 'دونوں';
 
   @override
-  String get feedSideLeftMinutes => 'Left (min)';
+  String get feedSideLeftMinutes => 'بایاں (منٹ)';
 
   @override
-  String get feedSideRightMinutes => 'Right (min)';
+  String get feedSideRightMinutes => 'دایاں (منٹ)';
 
   @override
-  String get timeAgoJustNow => 'Just now';
+  String get timeAgoJustNow => 'ابھی ابھی';
 
   @override
-  String get timeUntilOverdue => 'Overdue';
+  String get timeUntilOverdue => 'وقت گزر گیا';
 
   @override
   String timeUntilMinutes(int count) {
-    return 'in ${count}m';
+    return '$count منٹ میں';
   }
 
   @override
   String timeUntilHours(int count) {
-    return 'in ${count}h';
+    return '$count گھنٹے میں';
   }
 
   @override
   String timeUntilDays(int count) {
-    return 'in ${count}d';
+    return '$count دن میں';
   }
 
   @override
-  String get timerDiscardTitle => 'Discard this timer?';
+  String get timerDiscardTitle => 'یہ ٹائمر ختم کریں؟';
 
   @override
-  String get timerDiscard => 'Discard';
+  String get timerDiscard => 'ختم کریں';
 
   @override
   String timerFeedingRunning(String side) {
-    return 'Feeding · $side';
+    return 'فیڈنگ · $side';
   }
 
   @override
-  String get timerSleepRunning => 'Sleep timer running';
+  String get timerSleepRunning => 'نیند کا ٹائمر چل رہا ہے';
 
   @override
-  String get timerSwitchSide => 'Switch side';
+  String get timerSwitchSide => 'طرف بدلیں';
 
   @override
-  String get timerStop => 'Stop';
+  String get timerStop => 'روکیں';
 
   @override
-  String get sinceLastFeed => 'Last feed';
+  String get sinceLastFeed => 'آخری فیڈ';
 
   @override
-  String get sinceLastDiaper => 'Last diaper';
+  String get sinceLastDiaper => 'آخری ڈائپر';
 
   @override
-  String get sinceAwake => 'Awake';
+  String get sinceAwake => 'جاگ رہا ہے';
 
   @override
-  String get sinceAsleep => 'Asleep';
+  String get sinceAsleep => 'سو رہا ہے';
 
   @override
   String nextDoseDue(String name) {
-    return '$name due';
+    return '$name کا وقت';
   }
 
   @override
-  String get weighConditionNaked => 'Naked';
+  String get weighConditionNaked => 'بغیر کپڑوں کے';
 
   @override
-  String get weighConditionDiaper => 'Diaper only';
+  String get weighConditionDiaper => 'صرف ڈائپر';
 
   @override
-  String get weighConditionLightClothes => 'Light clothes';
+  String get weighConditionLightClothes => 'ہلکے کپڑے';
 
   @override
-  String get weighConditionDressed => 'Dressed';
+  String get weighConditionDressed => 'کپڑوں سمیت';
 
   @override
-  String get weighCondition => 'Weighed wearing';
+  String get weighCondition => 'وزن کے وقت پہنا ہوا';
 
   @override
-  String get growthMeasurementsOptional => 'Other measurements (optional)';
+  String get growthMeasurementsOptional => 'دیگر پیمائشیں (اختیاری)';
 
   @override
-  String get growthHeightCm => 'Height (cm)';
+  String get growthHeightCm => 'قد (سینٹی میٹر)';
 
   @override
-  String get growthHeadCm => 'Head circumference (cm)';
+  String get growthHeadCm => 'سر کا گھیر (سینٹی میٹر)';
 
   @override
   String weighConditionChangedWarning(String condition) {
-    return 'Last time was weighed $condition — the difference may not be just growth';
+    return 'پچھلی بار وزن $condition کیا گیا تھا — فرق صرف نشوونما کا نہیں ہو سکتا';
   }
 
   @override
   String growthHeightValue(String cm) {
-    return '$cm cm';
+    return '$cm سینٹی میٹر';
   }
 
   @override
   String growthHeadValue(String cm) {
-    return 'Head $cm cm';
+    return 'سر $cm سینٹی میٹر';
   }
 
   @override
-  String get growthHeightOverTime => 'Height over time';
+  String get growthHeightOverTime => 'وقت کے ساتھ قد';
 
   @override
-  String get growthHeadOverTime => 'Head circumference over time';
+  String get growthHeadOverTime => 'وقت کے ساتھ سر کا گھیر';
 
   @override
-  String get graphsRecentWeighIns => 'Recent weigh-ins';
+  String get graphsRecentWeighIns => 'حالیہ وزن';
 
   @override
-  String get solidsAmountFewSpoons => 'A few spoons';
+  String get solidsAmountFewSpoons => 'چند چمچ';
 
   @override
-  String get solidsAmountHalf => 'Half a portion';
+  String get solidsAmountHalf => 'آدھی مقدار';
 
   @override
-  String get solidsAmountFull => 'Full portion';
+  String get solidsAmountFull => 'پوری مقدار';
 
   @override
-  String get solidsAmountTaste => 'Just a taste';
+  String get solidsAmountTaste => 'صرف چکھا';
 
   @override
-  String get solidsReactionMild => 'Mild reaction';
+  String get solidsReactionMild => 'ہلکا ردعمل';
 
   @override
-  String get solidsReactionAllergic => 'Allergic reaction';
+  String get solidsReactionAllergic => 'الرجی کا ردعمل';
 
   @override
-  String get solidsReactionNone => 'No reaction';
+  String get solidsReactionNone => 'کوئی ردعمل نہیں';
 
   @override
-  String get solidsEditTitle => 'Edit solid food';
+  String get solidsEditTitle => 'ٹھوس غذا میں ترمیم';
 
   @override
-  String get solidsLogTitle => 'Log solid food';
+  String get solidsLogTitle => 'ٹھوس غذا درج کریں';
 
   @override
-  String get solidsFoodsLabel => 'Foods';
+  String get solidsFoodsLabel => 'غذائیں';
 
   @override
-  String get solidsAddFoodHint => 'Add a food';
+  String get solidsAddFoodHint => 'غذا شامل کریں';
 
   @override
-  String get solidsAmount => 'Amount';
+  String get solidsAmount => 'مقدار';
 
   @override
-  String get solidsLiked => 'How did they like it?';
+  String get solidsLiked => 'پسند آیا؟';
 
   @override
-  String get solidsReaction => 'Reaction';
+  String get solidsReaction => 'ردعمل';
 
   @override
-  String get solidsNotesOptional => 'Notes (optional)';
+  String get solidsNotesOptional => 'نوٹس (اختیاری)';
 
   @override
-  String get foodsTitle => 'Foods tried';
+  String get foodsTitle => 'آزمائی گئی غذائیں';
 
   @override
-  String get foodsEmpty => 'No solid foods logged yet.';
+  String get foodsEmpty => 'ابھی کوئی ٹھوس غذا درج نہیں۔';
 
   @override
-  String get foodsAllergensNotYet => 'Common allergens not yet introduced';
+  String get foodsAllergensNotYet => 'عام الرجی والی غذائیں جو ابھی شروع نہیں ہوئیں';
 
   @override
   String foodsTriedCount(int count) {
-    return '$count foods tried';
+    return '$count غذائیں آزمائی گئیں';
   }
 
   @override
   String foodsFirstTried(String date) {
-    return 'First: $date';
+    return 'پہلی بار: $date';
   }
 
   @override
@@ -1507,217 +1507,217 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
-  String get entryTypeSolids => 'Solid food';
+  String get entryTypeSolids => 'ٹھوس غذا';
 
   @override
-  String get feedAmountOz => 'Amount (oz)';
+  String get feedAmountOz => 'مقدار (اونس)';
 
   @override
   String notifFeedingReminderDescInterval(String interval) {
-    return 'Remind me $interval after the last feed';
+    return 'آخری فیڈ کے $interval بعد یاد دلائیں';
   }
 
   @override
   String notifDiaperReminderDescInterval(String interval) {
-    return 'Remind me $interval after the last diaper';
+    return 'آخری ڈائپر کے $interval بعد یاد دلائیں';
   }
 
   @override
   String notifIntervalEvery(String interval) {
-    return 'Every $interval';
+    return 'ہر $interval';
   }
 
   @override
-  String get notifIntervalTitle => 'Reminder interval';
+  String get notifIntervalTitle => 'یاد دہانی کا وقفہ';
 
   @override
-  String get notifIntervalHours => 'Hours';
+  String get notifIntervalHours => 'گھنٹے';
 
   @override
-  String get notifIntervalMinutes => 'Minutes';
+  String get notifIntervalMinutes => 'منٹ';
 
   @override
   String notifIntervalTooShort(int minutes) {
-    return 'At least $minutes minutes';
+    return 'کم از کم $minutes منٹ';
   }
 
   @override
-  String get settingsFeeding => 'Feeding';
+  String get settingsFeeding => 'فیڈنگ';
 
   @override
-  String get settingsTrackBottles => 'Track bottles';
+  String get settingsTrackBottles => 'بوتلوں کا ریکارڈ رکھیں';
 
   @override
-  String get settingsTrackBottlesDesc => 'Pick which bottle was used, and how much was prepared vs drunk';
+  String get settingsTrackBottlesDesc => 'منتخب کریں کہ کون سی بوتل استعمال ہوئی، اور کتنا تیار ہوا اور کتنا پیا گیا';
 
   @override
-  String get bottlesTitle => 'My bottles';
+  String get bottlesTitle => 'میری بوتلیں';
 
   @override
-  String get bottlesEmpty => 'No bottles yet.\nAdd the bottles you use so you can pick one when logging a feed.';
+  String get bottlesEmpty => 'ابھی کوئی بوتل نہیں۔\nاپنی بوتلیں شامل کریں تاکہ فیڈ درج کرتے وقت ایک منتخب کر سکیں۔';
 
   @override
-  String get bottleAdd => 'Add bottle';
+  String get bottleAdd => 'بوتل شامل کریں';
 
   @override
-  String get bottleEdit => 'Edit bottle';
+  String get bottleEdit => 'بوتل میں ترمیم';
 
   @override
-  String get bottleLabel => 'Label / number (e.g. #3)';
+  String get bottleLabel => 'لیبل / نمبر (مثلاً #3)';
 
   @override
-  String get bottleBrand => 'Brand / type (optional)';
+  String get bottleBrand => 'برانڈ / قسم (اختیاری)';
 
   @override
-  String get bottleCapacity => 'Capacity (optional)';
+  String get bottleCapacity => 'گنجائش (اختیاری)';
 
   @override
-  String get bottleNipple => 'Nipple size / flow (optional)';
+  String get bottleNipple => 'نپل کا سائز / بہاؤ (اختیاری)';
 
   @override
-  String get bottleMaterial => 'Material';
+  String get bottleMaterial => 'مواد';
 
   @override
-  String get bottleRetired => 'Retired';
+  String get bottleRetired => 'استعمال سے باہر';
 
   @override
-  String get bottleRetire => 'Retire';
+  String get bottleRetire => 'استعمال بند کریں';
 
   @override
-  String get bottleUnretire => 'Use again';
+  String get bottleUnretire => 'دوبارہ استعمال کریں';
 
   @override
   String bottleDeleteTitle(String name) {
-    return 'Delete $name?';
+    return '$name حذف کریں؟';
   }
 
   @override
-  String get bottleDeleteBody => 'Past feeds keep their amounts but will no longer show this bottle. To hide it from the picker but keep history, use Retire instead.';
+  String get bottleDeleteBody => 'پچھلی فیڈز اپنی مقدار برقرار رکھیں گی لیکن یہ بوتل نہیں دکھائیں گی۔ ریکارڈ رکھتے ہوئے اسے فہرست سے چھپانے کے لیے \"استعمال بند کریں\" استعمال کریں۔';
 
   @override
-  String get feedPrepared => 'Prepared';
+  String get feedPrepared => 'تیار کیا';
 
   @override
-  String get feedDrank => 'Drank';
+  String get feedDrank => 'پیا';
 
   @override
   String feedLeftover(String amount) {
-    return '$amount left over';
+    return '$amount بچ گیا';
   }
 
   @override
-  String get feedDrankMoreThanPrepared => 'More than was prepared?';
+  String get feedDrankMoreThanPrepared => 'تیار شدہ سے زیادہ؟';
 
   @override
-  String get feedWhichBottle => 'Which bottle?';
+  String get feedWhichBottle => 'کون سی بوتل؟';
 
   @override
-  String get feedNoBottlesYet => 'No bottles yet — add them in Settings → My bottles.';
+  String get feedNoBottlesYet => 'ابھی کوئی بوتل نہیں — ترتیبات ← میری بوتلیں میں شامل کریں۔';
 
   @override
-  String get photoPrivacyTitle => 'Your photos stay on this phone';
+  String get photoPrivacyTitle => 'آپ کی تصاویر اسی فون پر رہتی ہیں';
 
   @override
-  String get photoPrivacyBody => 'Photos are saved only inside this app on this device. The app has no internet access, so nothing is ever uploaded or shared unless you export a backup yourself.\n\nAndroid may ask for camera access the first time you take a photo.';
+  String get photoPrivacyBody => 'تصاویر صرف اس ڈیوائس پر اسی ایپ کے اندر محفوظ ہوتی ہیں۔ ایپ کو انٹرنیٹ تک رسائی نہیں، اس لیے کچھ بھی اپ لوڈ یا شیئر نہیں ہوتا جب تک آپ خود بیک اپ برآمد نہ کریں۔\n\nپہلی تصویر لیتے وقت Android کیمرے کی اجازت مانگ سکتا ہے۔';
 
   @override
-  String get photoPrivacyContinue => 'Continue';
+  String get photoPrivacyContinue => 'جاری رکھیں';
 
   @override
-  String get photoTakePhoto => 'Take a photo';
+  String get photoTakePhoto => 'تصویر لیں';
 
   @override
-  String get photoChooseFromGallery => 'Choose from gallery';
+  String get photoChooseFromGallery => 'گیلری سے منتخب کریں';
 
   @override
-  String get photoCaption => 'Caption';
+  String get photoCaption => 'عنوان';
 
   @override
-  String get photoCompare => 'First vs latest';
+  String get photoCompare => 'پہلی بمقابلہ تازہ ترین';
 
   @override
-  String get photoAddOtherDay => 'Add for another day';
+  String get photoAddOtherDay => 'کسی اور دن کے لیے شامل کریں';
 
   @override
-  String get photoEmpty => 'No photos yet.\nTake one photo a day and watch your baby grow.';
+  String get photoEmpty => 'ابھی کوئی تصویر نہیں۔\nروزانہ ایک تصویر لیں اور اپنے بچے کو بڑا ہوتا دیکھیں۔';
 
   @override
-  String get photoToday => 'Today\'s photo';
+  String get photoToday => 'آج کی تصویر';
 
   @override
-  String get photoAddToday => 'Add today\'s photo';
+  String get photoAddToday => 'آج کی تصویر شامل کریں';
 
   @override
-  String get photoReplace => 'Replace';
+  String get photoReplace => 'بدلیں';
 
   @override
-  String get photoDeleteTitle => 'Delete this photo?';
+  String get photoDeleteTitle => 'یہ تصویر حذف کریں؟';
 
   @override
-  String get ageBeforeBirth => 'Before birth';
+  String get ageBeforeBirth => 'پیدائش سے پہلے';
 
   @override
   String ageDays(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days old',
-      one: '1 day old',
-      zero: 'Birth day',
+      other: '$count دن کا',
+      one: '1 دن کا',
+      zero: 'پیدائش کا دن',
     );
     return '$_temp0';
   }
 
   @override
   String ageMonthsDays(int months, int days) {
-    return '$months mo $days d';
+    return '$months ماہ $days دن';
   }
 
   @override
   String ageYearsMonths(int years, int months) {
-    return '$years yr $months mo';
+    return '$years سال $months ماہ';
   }
 
   @override
-  String get navMemories => 'Memories';
+  String get navMemories => 'یادیں';
 
   @override
-  String get memoriesTabPhotos => 'Photos';
+  String get memoriesTabPhotos => 'تصاویر';
 
   @override
-  String get milestoneNoAchievedHint => 'Tap \"Upcoming\" to log a preset,\nor use the button below for a custom one.';
+  String get milestoneNoAchievedHint => 'تیار شدہ مرحلہ درج کرنے کے لیے \"آنے والے\" پر ٹیپ کریں،\nیا اپنا مرحلہ شامل کرنے کے لیے نیچے والا بٹن استعمال کریں۔';
 
   @override
-  String get skinTitle => 'Skin conditions';
+  String get skinTitle => 'جلد کے مسائل';
 
   @override
-  String get skinNew => 'New skin condition';
+  String get skinNew => 'جلد کا نیا مسئلہ';
 
   @override
-  String get skinEdit => 'Edit skin condition';
+  String get skinEdit => 'جلد کے مسئلے میں ترمیم';
 
   @override
   String skinTabActive(int count) {
-    return 'Active ($count)';
+    return 'جاری ($count)';
   }
 
   @override
   String skinTabHealed(int count) {
-    return 'Healed ($count)';
+    return 'ٹھیک ہو گئے ($count)';
   }
 
   @override
-  String get skinEmptyActive => 'No skin conditions being tracked.\nTap + to start one — you can add a photo each day to show the doctor how it\'s changing.';
+  String get skinEmptyActive => 'جلد کے کسی مسئلے کو ٹریک نہیں کیا جا رہا۔\nشروع کرنے کے لیے + دبائیں — ڈاکٹر کو تبدیلی دکھانے کے لیے آپ روزانہ تصویر شامل کر سکتے ہیں۔';
 
   @override
-  String get skinEmptyHealed => 'Nothing healed yet.';
+  String get skinEmptyHealed => 'ابھی کچھ ٹھیک نہیں ہوا۔';
 
   @override
-  String get skinUpdateDue => 'Update today';
+  String get skinUpdateDue => 'آج اپ ڈیٹ کریں';
 
   @override
   String skinSince(String date) {
-    return 'Since $date';
+    return '$date سے';
   }
 
   @override
@@ -1725,195 +1725,550 @@ class AppLocalizationsUr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days',
-      one: '1 day',
+      other: '$count دن',
+      one: '1 دن',
     );
     return '$_temp0';
   }
 
   @override
   String skinHealedOn(String date) {
-    return 'Healed $date';
+    return '$date کو ٹھیک ہوا';
   }
 
   @override
   String skinReminderAt(String time) {
-    return 'Daily reminder at $time';
+    return 'روزانہ یاد دہانی $time بجے';
   }
 
   @override
-  String get skinSeverityTrend => 'Severity over time';
+  String get skinSeverityTrend => 'وقت کے ساتھ شدت';
 
   @override
-  String get skinNoUpdates => 'No updates yet. Add today\'s to start the timeline.';
+  String get skinNoUpdates => 'ابھی کوئی اپ ڈیٹ نہیں۔ ٹائم لائن شروع کرنے کے لیے آج کی اپ ڈیٹ شامل کریں۔';
 
   @override
-  String get skinExportPdf => 'Export for doctor (PDF)';
+  String get skinExportPdf => 'ڈاکٹر کے لیے برآمد کریں (PDF)';
 
   @override
-  String get skinMarkHealed => 'Mark healed';
+  String get skinMarkHealed => 'ٹھیک ہونے کا نشان لگائیں';
 
   @override
-  String get skinReopen => 'Mark active again';
+  String get skinReopen => 'دوبارہ جاری کا نشان لگائیں';
 
   @override
-  String get skinUpdateToday => 'Add today\'s update';
+  String get skinUpdateToday => 'آج کی اپ ڈیٹ شامل کریں';
 
   @override
-  String get skinEditToday => 'Edit today\'s update';
+  String get skinEditToday => 'آج کی اپ ڈیٹ میں ترمیم';
 
   @override
   String skinDeleteTitle(String name) {
-    return 'Delete $name and all its updates?';
+    return '$name اور اس کی تمام اپ ڈیٹس حذف کریں؟';
   }
 
   @override
-  String get skinDeleteUpdateTitle => 'Delete this update?';
+  String get skinDeleteUpdateTitle => 'یہ اپ ڈیٹ حذف کریں؟';
 
   @override
   String skinTreatmentValue(String treatment) {
-    return 'Treatment: $treatment';
+    return 'علاج: $treatment';
   }
 
   @override
-  String get skinName => 'Condition *';
+  String get skinName => 'مسئلہ *';
 
   @override
-  String get skinBodyArea => 'Where on the body?';
+  String get skinBodyArea => 'جسم پر کہاں؟';
 
   @override
-  String get skinBegan => 'Began on';
+  String get skinBegan => 'شروع ہوا';
 
   @override
-  String get skinRemindDaily => 'Remind me to update it daily';
+  String get skinRemindDaily => 'روزانہ اپ ڈیٹ کی یاد دلائیں';
 
   @override
-  String get skinReminderTime => 'Reminder time';
+  String get skinReminderTime => 'یاد دہانی کا وقت';
 
   @override
-  String get skinUpdateTitle => 'Skin update';
+  String get skinUpdateTitle => 'جلد کی اپ ڈیٹ';
 
   @override
-  String get skinSeverity => 'How does it look?';
+  String get skinSeverity => 'کیسا لگ رہا ہے؟';
 
   @override
-  String get skinSeverity0 => '0 · Clear';
+  String get skinSeverity0 => '0 · صاف';
 
   @override
-  String get skinSeverity1 => '1 · Mild';
+  String get skinSeverity1 => '1 · ہلکا';
 
   @override
-  String get skinSeverity2 => '2 · Moderate';
+  String get skinSeverity2 => '2 · درمیانہ';
 
   @override
-  String get skinSeverity3 => '3 · Severe';
+  String get skinSeverity3 => '3 · شدید';
 
   @override
-  String get skinSeverity4 => '4 · Very severe';
+  String get skinSeverity4 => '4 · بہت شدید';
 
   @override
-  String get skinTreatment => 'Treatment (optional)';
+  String get skinTreatment => 'علاج (اختیاری)';
 
   @override
-  String get skinTreatmentHint => 'e.g. moisturiser, hydrocortisone 1%';
+  String get skinTreatmentHint => 'مثلاً موئسچرائزر، ہائیڈروکارٹیزون 1%';
 
   @override
-  String get skinAddPhoto => 'Add a photo';
+  String get skinAddPhoto => 'تصویر شامل کریں';
 
   @override
-  String get skinCardNone => 'Track a rash, eczema or other skin condition day by day, with photos for the doctor';
+  String get skinCardNone => 'خارش، ایگزیما یا جلد کے کسی اور مسئلے کو روز بہ روز ڈاکٹر کے لیے تصاویر کے ساتھ ٹریک کریں';
 
   @override
   String skinCardDue(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count need today\'s update',
-      one: '1 needs today\'s update',
+      other: '$count کو آج کی اپ ڈیٹ چاہیے',
+      one: '1 کو آج کی اپ ڈیٹ چاہیے',
     );
     return '$_temp0';
   }
 
   @override
-  String get backupPreparing => 'Preparing backup…';
+  String get backupPreparing => 'بیک اپ تیار ہو رہا ہے…';
 
   @override
-  String get backupFailed => 'Couldn\'t create the backup.';
+  String get backupFailed => 'بیک اپ نہیں بن سکا۔';
 
   @override
-  String get backupSavedTo => 'Backup saved to:';
+  String get backupSavedTo => 'بیک اپ یہاں محفوظ ہوا:';
 
   @override
-  String get backupShareSubject => 'Baby Tracker backup';
+  String get backupShareSubject => 'Baby Tracker بیک اپ';
 
   @override
   String importIncludesPhotos(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Includes $count photos.',
-      one: 'Includes 1 photo.',
+      other: '$count تصاویر شامل ہیں۔',
+      one: '1 تصویر شامل ہے۔',
     );
     return '$_temp0';
   }
 
   @override
-  String get widgetFeed => 'Feed';
+  String get widgetFeed => 'فیڈ';
 
   @override
-  String get widgetStopFeed => 'Stop feed';
+  String get widgetStopFeed => 'فیڈ روکیں';
 
   @override
-  String get widgetDiaper => 'Diaper';
+  String get widgetDiaper => 'ڈائپر';
 
   @override
-  String get widgetSleep => 'Sleep';
+  String get widgetSleep => 'نیند';
 
   @override
-  String get widgetWakeUp => 'Woke up';
+  String get widgetWakeUp => 'جاگ گیا';
 
   @override
   String widgetFeedingFor(String duration) {
-    return 'Feeding $duration';
+    return 'فیڈنگ $duration';
   }
 
   @override
   String widgetFedAgo(String ago) {
-    return 'Fed $ago';
+    return 'فیڈ $ago';
   }
 
   @override
-  String get widgetNoFeedsYet => 'No feeds yet';
+  String get widgetNoFeedsYet => 'ابھی کوئی فیڈ نہیں';
 
   @override
   String widgetChangedAgo(String ago) {
-    return 'Changed $ago';
+    return 'بدلا گیا $ago';
   }
 
   @override
-  String get widgetNoDiapersYet => 'No diapers yet';
+  String get widgetNoDiapersYet => 'ابھی کوئی ڈائپر نہیں';
 
   @override
   String widgetAsleepFor(String duration) {
-    return 'Asleep $duration';
+    return 'سو رہا ہے $duration';
   }
 
   @override
   String widgetAwakeFor(String ago) {
-    return 'Woke $ago';
+    return 'جاگا $ago';
   }
 
   @override
-  String get widgetStopSleepFirst => 'Stop the sleep timer first';
+  String get widgetStopSleepFirst => 'پہلے نیند کا ٹائمر روکیں';
 
   @override
-  String get widgetStopFeedFirst => 'Stop the feeding timer first';
+  String get widgetStopFeedFirst => 'پہلے فیڈنگ کا ٹائمر روکیں';
 
   @override
   String quickAddTitle(String name) {
-    return 'Add for $name';
+    return '$name کے لیے شامل کریں';
   }
 
   @override
-  String get quickAddOpenApp => 'Open the app';
+  String get quickAddOpenApp => 'ایپ کھولیں';
+
+  @override
+  String get foodPeanut => 'مونگ پھلی';
+
+  @override
+  String get foodEgg => 'انڈا';
+
+  @override
+  String get foodDairy => 'دودھ کی مصنوعات';
+
+  @override
+  String get foodWheat => 'گندم';
+
+  @override
+  String get foodSoy => 'سویا';
+
+  @override
+  String get foodFish => 'مچھلی';
+
+  @override
+  String get foodShellfish => 'جھینگا / شیل فش';
+
+  @override
+  String get foodTreeNuts => 'میوے';
+
+  @override
+  String get foodSesame => 'تل';
+
+  @override
+  String get foodBanana => 'کیلا';
+
+  @override
+  String get foodAvocado => 'ایووکاڈو';
+
+  @override
+  String get foodSweetPotato => 'شکرقندی';
+
+  @override
+  String get foodRiceCereal => 'چاول کا دلیہ';
+
+  @override
+  String get foodOatmeal => 'جئی کا دلیہ';
+
+  @override
+  String get foodCarrot => 'گاجر';
+
+  @override
+  String get foodApple => 'سیب';
+
+  @override
+  String get foodPea => 'مٹر';
+
+  @override
+  String get symptomRash => 'دانے';
+
+  @override
+  String get symptomHives => 'پتی اچھلنا';
+
+  @override
+  String get symptomVomiting => 'قے';
+
+  @override
+  String get symptomDiarrhea => 'دست';
+
+  @override
+  String get symptomSwelling => 'سوجن';
+
+  @override
+  String get doseUnitDrops => 'قطرے';
+
+  @override
+  String get doseUnitTablets => 'گولیاں';
+
+  @override
+  String get bottleMaterialPlastic => 'پلاسٹک';
+
+  @override
+  String get bottleMaterialGlass => 'شیشہ';
+
+  @override
+  String get bottleMaterialSilicone => 'سلیکون';
+
+  @override
+  String get bottleMaterialSteel => 'اسٹین لیس اسٹیل';
+
+  @override
+  String get visitReasonRoutine => 'معمول کا معائنہ';
+
+  @override
+  String get visitReasonSick => 'بیماری';
+
+  @override
+  String get visitReasonVaccination => 'ویکسینیشن';
+
+  @override
+  String get visitReasonSpecialist => 'ماہر ڈاکٹر';
+
+  @override
+  String get visitReasonFollowUp => 'فالو اپ';
+
+  @override
+  String get visitReasonOther => 'دیگر';
+
+  @override
+  String get pooColourPale => 'پھیکا';
+
+  @override
+  String get noteTagHappyDay => 'خوشی کا دن';
+
+  @override
+  String get noteTagSleptWell => 'اچھی نیند';
+
+  @override
+  String get noteTagFussy => 'چڑچڑا';
+
+  @override
+  String get noteTagNotWell => 'طبیعت ٹھیک نہیں';
+
+  @override
+  String get noteTagFirstTime => 'پہلی بار!';
+
+  @override
+  String get noteTagTeething => 'دانت نکلنا';
+
+  @override
+  String get noteTagGrowthSpurt => 'تیز نشوونما';
+
+  @override
+  String get noteTagMilestone => 'اہم مرحلہ';
+
+  @override
+  String get tummyTimeNotesHint => 'مثلاً مزہ آیا، چڑچڑا تھا...';
+
+  @override
+  String get skinSuggestEczema => 'ایگزیما';
+
+  @override
+  String get skinSuggestDiaperRash => 'ڈائپر ریش';
+
+  @override
+  String get skinSuggestCradleCap => 'سر کی خشکی (کریڈل کیپ)';
+
+  @override
+  String get skinSuggestBabyAcne => 'بچوں کے دانے';
+
+  @override
+  String get skinSuggestHeatRash => 'گرمی دانے';
+
+  @override
+  String get skinSuggestDrySkin => 'خشک جلد';
+
+  @override
+  String get bodyFace => 'چہرہ';
+
+  @override
+  String get bodyScalp => 'سر کی جلد';
+
+  @override
+  String get bodyNeck => 'گردن';
+
+  @override
+  String get bodyChest => 'سینہ';
+
+  @override
+  String get bodyBack => 'کمر';
+
+  @override
+  String get bodyArms => 'بازو';
+
+  @override
+  String get bodyHands => 'ہاتھ';
+
+  @override
+  String get bodyDiaperArea => 'ڈائپر والی جگہ';
+
+  @override
+  String get bodyLegs => 'ٹانگیں';
+
+  @override
+  String get bodyFeet => 'پاؤں';
+
+  @override
+  String get medSuggestGripeWater => 'گرائپ واٹر';
+
+  @override
+  String get medSuggestVitaminD => 'وٹامن ڈی';
+
+  @override
+  String get medSuggestIronDrops => 'آئرن کے قطرے';
+
+  @override
+  String get medSuggestAntibiotic => 'اینٹی بائیوٹک';
+
+  @override
+  String get medSuggestProbiotic => 'پروبائیوٹک';
+
+  @override
+  String vaccinePageTitle(String name) {
+    return '$name — ویکسینیشن';
+  }
+
+  @override
+  String get vaccineDeleteTitle => 'ویکسین کا ریکارڈ حذف کریں؟';
+
+  @override
+  String get vaccineSiteHint => 'مثلاً بائیں ران';
+
+  @override
+  String get vaccineNotesHint => 'مثلاً ہلکا بخار، چڑچڑاپن، کوئی ردعمل نہیں...';
+
+  @override
+  String get vaccineNoGivenHint => '+ بٹن استعمال کریں یا شیڈول ٹیب میں \"دی گئی کا نشان لگائیں\" پر ٹیپ کریں۔';
+
+  @override
+  String get vaccineAgeBirth => 'پیدائش پر';
+
+  @override
+  String vaccineAgeMonths(String range) {
+    return '$range ماہ';
+  }
+
+  @override
+  String vaccineAgeMonthsAnnual(String range) {
+    return '$range ماہ (سالانہ)';
+  }
+
+  @override
+  String get whoTabHeight => 'قد';
+
+  @override
+  String get whoTabHead => 'سر';
+
+  @override
+  String get whoChartFor => 'چارٹ برائے:';
+
+  @override
+  String whoAgeRange(String title) {
+    return '$title (0–24 ماہ)';
+  }
+
+  @override
+  String get whoNoDataPoints => 'ابھی کوئی ڈیٹا نہیں۔ اپنے بچے کو چارٹ پر دیکھنے کے لیے پیمائشیں درج کریں۔';
+
+  @override
+  String get whoLatestMeasurement => 'تازہ ترین پیمائش';
+
+  @override
+  String whoApproxPercentile(String value) {
+    return 'تقریبی پرسنٹائل: $value';
+  }
+
+  @override
+  String whoBetween(String low, String high) {
+    return '$low اور $high کے درمیان';
+  }
+
+  @override
+  String whoMonthsOld(String months) {
+    return '$months ماہ کا';
+  }
+
+  @override
+  String get whoDisclaimer => 'یہ چارٹ صرف معلومات کے لیے ہیں۔ ان کی تشریح ہمیشہ بچوں کے ڈاکٹر سے کروائیں۔';
+
+  @override
+  String get whoMedian => 'P50 (وسطانیہ)';
+
+  @override
+  String get notifChannelName => 'Baby Tracker یاد دہانیاں';
+
+  @override
+  String get notifChannelDesc => 'فیڈنگ، ڈائپر، دوائی اور جلد کے معائنے کی یاد دہانیاں';
+
+  @override
+  String get notifFeedTitle => 'فیڈ کا وقت!';
+
+  @override
+  String notifFeedBody(String interval) {
+    return 'پچھلے $interval میں کوئی فیڈ درج نہیں ہوئی۔';
+  }
+
+  @override
+  String get notifDiaperTitle => 'ڈائپر چیک کریں!';
+
+  @override
+  String notifDiaperBody(String interval) {
+    return 'پچھلے $interval میں کوئی ڈائپر تبدیلی درج نہیں ہوئی۔';
+  }
+
+  @override
+  String notifDoseTitle(String name) {
+    return 'خوراک کا وقت: $name';
+  }
+
+  @override
+  String notifDoseBody(String name) {
+    return '$name کی اگلی خوراک کا وقت ہو گیا ہے۔';
+  }
+
+  @override
+  String notifSkinTitle(String name) {
+    return 'جلد کا معائنہ: $name';
+  }
+
+  @override
+  String get notifSkinBody => 'آج کی اپ ڈیٹ شامل کریں (اور چاہیں تو تصویر بھی)۔';
+
+  @override
+  String get timerFeedingNotif => 'فیڈنگ کا ٹائمر چل رہا ہے';
+
+  @override
+  String intervalMinutes(String m) {
+    return '$m منٹ';
+  }
+
+  @override
+  String intervalHours(String h) {
+    return '$h گھنٹے';
+  }
+
+  @override
+  String intervalHoursMinutes(String h, String m) {
+    return '$h گھنٹے $m منٹ';
+  }
+
+  @override
+  String get settingsRtlActive => 'دائیں سے بائیں ترتیب فعال ہے';
+
+  @override
+  String get measurementHeightIn => 'لمبائی / قد (انچ)';
+
+  @override
+  String get measurementHeadIn => 'سر کا گھیر (انچ)';
+
+  @override
+  String get growthHeightIn => 'قد (انچ)';
+
+  @override
+  String get growthHeadIn => 'سر کا گھیر (انچ)';
+
+  @override
+  String growthHeightValueIn(String value) {
+    return '$value انچ';
+  }
+
+  @override
+  String growthHeadValueIn(String value) {
+    return 'سر $value انچ';
+  }
+
+  @override
+  String get settingsLengthUnitNote => 'لمبائی وزن کی اکائی کے مطابق ہے (کلوگرام کے ساتھ سینٹی میٹر، پاؤنڈ کے ساتھ انچ)';
+
+  @override
+  String get formulaStoreBrand => 'اسٹور کا برانڈ';
 }

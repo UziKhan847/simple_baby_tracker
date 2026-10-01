@@ -146,9 +146,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 title: Text(
                   '${localeFlags[currentCode] ?? ''}  ${localeNames[currentCode] ?? currentCode}',
                 ),
-                subtitle: isRtl(currentCode)
-                    ? const Text('RTL layout active')
-                    : null,
+                subtitle: isRtl(currentCode) ? Text(l.settingsRtlActive) : null,
                 trailing: const AppIcon(
                   AppIcons.chevronRight,
                   style: AppIconStyle.line,
@@ -164,13 +162,13 @@ class _SettingsPageState extends State<SettingsPage> {
           AppSettingsGroup(
             children: [
               ListTile(
-                contentPadding: _singleLinePadding,
                 leading: _RowBadge(
                   icon: AppIcons.weightUnit,
                   color: colors.weightStrong,
                   softColor: colors.weightSoft,
                 ),
                 title: Text(l.settingsWeightUnit),
+                subtitle: Text(l.settingsLengthUnitNote),
                 trailing: SizedBox(
                   width: 130,
                   child: PillSegmentedControl<bool>(
@@ -286,7 +284,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   title: Text(l.notifFeedingReminder),
                   subtitle: Text(
                     l.notifFeedingReminderDescInterval(
-                      formatInterval(_notifSettings.feedingInterval),
+                      formatInterval(_notifSettings.feedingInterval, l),
                     ),
                   ),
                   value: _notifSettings.feedingEnabled,
@@ -320,7 +318,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   title: Text(l.notifDiaperReminder),
                   subtitle: Text(
                     l.notifDiaperReminderDescInterval(
-                      formatInterval(_notifSettings.diaperInterval),
+                      formatInterval(_notifSettings.diaperInterval, l),
                     ),
                   ),
                   value: _notifSettings.diaperEnabled,
@@ -532,11 +530,13 @@ class _SettingsPageState extends State<SettingsPage> {
     final data = await Storage.loadAll(id);
     final medicationCourses = await Storage.loadMedicationCourses(id);
     final bottles = await Storage.loadBottles();
+    final skinConditions = await Storage.loadSkinConditions(id);
 
     if (!context.mounted) return;
+    final l = AppLocalizations.of(context)!;
     ScaffoldMessenger.of(
       context,
-    ).showSnackBar(const SnackBar(content: Text('Generating PDF…')));
+    ).showSnackBar(SnackBar(content: Text(l.exportGenerating)));
 
     await PdfExportService.instance.shareReport(
       profile: profile,
@@ -545,6 +545,7 @@ class _SettingsPageState extends State<SettingsPage> {
       useCelsius: settings.useCelsius,
       medicationCourses: medicationCourses,
       bottles: bottles,
+      skinConditions: skinConditions,
     );
   }
 
@@ -561,8 +562,11 @@ class _SettingsPageState extends State<SettingsPage> {
     final l = AppLocalizations.of(context)!;
 
     final picked = await openFile(
-      acceptedTypeGroups: const [
-        XTypeGroup(label: 'Baby Tracker backup', extensions: ['zip', 'json']),
+      acceptedTypeGroups: [
+        XTypeGroup(
+          label: l.backupShareSubject,
+          extensions: const ['zip', 'json'],
+        ),
       ],
     );
     if (picked == null) return;
@@ -677,7 +681,7 @@ class _IntervalRow extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.only(left: 64, right: 16),
       title: Text(
-        l.notifIntervalEvery(formatInterval(Duration(minutes: minutes))),
+        l.notifIntervalEvery(formatInterval(Duration(minutes: minutes), l)),
       ),
       trailing: const AppIcon(
         AppIcons.chevronRight,
@@ -760,7 +764,7 @@ class _IntervalPickerDialogState extends State<_IntervalPickerDialog> {
           Text(
             valid
                 ? l.notifIntervalEvery(
-                    formatInterval(Duration(minutes: _total)),
+                    formatInterval(Duration(minutes: _total), l),
                   )
                 : l.notifIntervalTooShort(_minMinutes),
             style: TextStyle(

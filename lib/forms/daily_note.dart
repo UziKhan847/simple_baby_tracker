@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_baby_tracker/l10n/app_localizations.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
 import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/theme/category_style.dart';
@@ -28,16 +29,16 @@ class _DailyNoteFormState extends State<DailyNoteForm> {
 
   // Quick-tag suggestions to inspire journaling
   // (icon, colour pair, text) — the text is what gets appended to the note.
-  static const _tags = [
-    (AppIcons.faceHappy, 'feeding', 'Happy day'),
-    (AppIcons.faceSleepy, 'sleep', 'Slept well'),
-    (AppIcons.faceSad, 'weight', 'Fussy'),
-    (AppIcons.faceSick, 'temperature', 'Not feeling well'),
-    (AppIcons.milestones, 'note', 'First time!'),
-    (AppIcons.medication, 'medication', 'Medication'),
-    (AppIcons.tooth, 'misc', 'Teething'),
-    (AppIcons.growthSpurt, 'growth', 'Growth spurt'),
-    (AppIcons.celebrate, 'diaper', 'Milestone'),
+  static List<(String, String, String)> _tags(AppLocalizations l) => [
+    (AppIcons.faceHappy, 'feeding', l.noteTagHappyDay),
+    (AppIcons.faceSleepy, 'sleep', l.noteTagSleptWell),
+    (AppIcons.faceSad, 'weight', l.noteTagFussy),
+    (AppIcons.faceSick, 'temperature', l.noteTagNotWell),
+    (AppIcons.milestones, 'note', l.noteTagFirstTime),
+    (AppIcons.medication, 'medication', l.entryTypeMedication),
+    (AppIcons.tooth, 'misc', l.noteTagTeething),
+    (AppIcons.growthSpurt, 'growth', l.noteTagGrowthSpurt),
+    (AppIcons.celebrate, 'diaper', l.noteTagMilestone),
   ];
 
   @override
@@ -68,11 +69,12 @@ class _DailyNoteFormState extends State<DailyNoteForm> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return AppFormScaffold(
-      title: _isEditing ? 'Edit note' : 'Daily note',
+      title: _isEditing ? l.dailyNoteEdit : l.dailyNoteLog,
       time: _time,
       onTimeChanged: (t) => setState(() => _time = t),
-      ctaLabel: _isEditing ? 'Update' : 'Save',
+      ctaLabel: _isEditing ? l.actionUpdate : l.actionSave,
       onSubmit: _textCtrl.text.trim().isNotEmpty ? _save : () {},
       ctaEnabled: _textCtrl.text.trim().isNotEmpty,
       child: Column(
@@ -82,21 +84,21 @@ class _DailyNoteFormState extends State<DailyNoteForm> {
           TextField(
             controller: _titleCtrl,
             textCapitalization: TextCapitalization.sentences,
-            decoration: const InputDecoration(
-              labelText: 'Title (optional)',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l.dailyNoteTitle,
+              border: const OutlineInputBorder(),
               isDense: true,
             ),
           ),
           const SizedBox(height: 10),
 
           // Quick tags
-          Text('Quick tags', style: Theme.of(context).textTheme.labelSmall),
+          Text(l.dailyNoteTags, style: Theme.of(context).textTheme.labelSmall),
           const SizedBox(height: 4),
           Wrap(
             spacing: 6,
             runSpacing: 4,
-            children: _tags.map((tag) {
+            children: _tags(l).map((tag) {
               final (icon, pairName, text) = tag;
               final (strong, soft) = colorPairNamed(
                 pairName,
@@ -117,11 +119,10 @@ class _DailyNoteFormState extends State<DailyNoteForm> {
             minLines: 4,
             maxLines: 10,
             textCapitalization: TextCapitalization.sentences,
-            decoration: const InputDecoration(
-              labelText: 'Note',
-              hintText:
-                  'What happened today? First time rolling? Fussy morning? Doctor notes?',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l.dailyNoteText,
+              hintText: l.dailyNoteHint,
+              border: const OutlineInputBorder(),
               alignLabelWithHint: true,
             ),
           ),

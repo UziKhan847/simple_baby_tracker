@@ -15,6 +15,7 @@ import 'package:simple_baby_tracker/forms/tummy_time.dart';
 import 'package:simple_baby_tracker/forms/weight.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/labels.dart';
 import 'package:simple_baby_tracker/models/bottle.dart';
 import 'package:simple_baby_tracker/pages/foods.dart';
 import 'package:simple_baby_tracker/pages/medications.dart';
@@ -720,24 +721,20 @@ class _DayPageState extends State<DayPage> with WidgetsBindingObserver {
         return base;
       case 'sleep':
         final min = (e.data['durationMin'] as num?)?.toInt() ?? 0;
-        final h = min ~/ 60;
-        final rem = min % 60;
-        return '${l.entryTypeSleep}  (${h > 0 ? '${h}h ${rem}m' : '${rem}m'})';
+        return '${l.entryTypeSleep}  (${formatInterval(Duration(minutes: min), l)})';
       case 'temperature':
         return l.entryTypeTemperature;
       case 'weight':
         return l.entryTypeWeight;
       case 'tummy_time':
         final min = (e.data['durationMin'] as num?)?.toInt() ?? 0;
-        final h = min ~/ 60;
-        final rem = min % 60;
-        return '${l.entryTypeTummyTime}  (${h > 0 ? '${h}h ${rem}m' : '${rem}m'})';
+        return '${l.entryTypeTummyTime}  (${formatInterval(Duration(minutes: min), l)})';
       case 'medication':
         return l.medicationLabel((e.data['name'] as String?) ?? '');
       case 'doctor_visit':
         final reason =
             e.data['reason'] as String? ?? l.doctorVisitDefaultReason;
-        return l.doctorVisitLabel(reason);
+        return l.doctorVisitLabel(visitReasonLabel(reason, l));
       case 'note':
         final title = e.data['title'] as String?;
         return title != null && title.isNotEmpty
@@ -754,7 +751,9 @@ class _DayPageState extends State<DayPage> with WidgetsBindingObserver {
         };
       case 'solids':
         final foods = (e.data['foods'] as List?)?.cast<String>() ?? [];
-        return foods.isEmpty ? l.entryTypeSolids : foods.join(', ');
+        return foods.isEmpty
+            ? l.entryTypeSolids
+            : foods.map((f) => foodLabel(f, l)).join(', ');
       default:
         final isBottle = (e.data['isBottle'] as bool?) ?? true;
         if (isBottle) {
@@ -792,7 +791,7 @@ class _DayPageState extends State<DayPage> with WidgetsBindingObserver {
                     ' / ${formatMilk(prepared, useMl: useMl)}';
           final bottle = _bottles[e.data['bottleId']];
           if (bottle != null) amount = '${bottle.displayName}  •  $amount';
-          return brand != null ? '$amount  •  $brand' : amount;
+          return brand != null ? '$amount  •  ${brandLabel(brand, l)}' : amount;
         }
         return '${e.data['durationMin'] ?? 0} min';
       case 'sleep':
@@ -818,15 +817,20 @@ class _DayPageState extends State<DayPage> with WidgetsBindingObserver {
           if (kg != null && condition != null)
             weighConditionLabel(condition, l),
           if (heightCm != null)
-            l.growthHeightValue(heightCm.toStringAsFixed(1)),
-          if (headCm != null) l.growthHeadValue(headCm.toStringAsFixed(1)),
+            useKg
+                ? l.growthHeightValue(lengthValue(heightCm, useCm: true))
+                : l.growthHeightValueIn(lengthValue(heightCm, useCm: false)),
+          if (headCm != null)
+            useKg
+                ? l.growthHeadValue(lengthValue(headCm, useCm: true))
+                : l.growthHeadValueIn(lengthValue(headCm, useCm: false)),
         ];
         return parts.isEmpty ? l.noDetails : parts.join('  •  ');
       case 'tummy_time':
         return (e.data['notes'] as String?) ?? l.noNotes;
       case 'medication':
         final dose = e.data['dose'];
-        final unit = e.data['unit'] ?? '';
+        final unit = doseUnitLabel(e.data['unit'] as String? ?? '', l);
         return dose != null ? '$dose $unit' : unit;
       case 'doctor_visit':
         final doctor = e.data['doctorName'] as String?;

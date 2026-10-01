@@ -736,10 +736,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get exportTitle => 'Dışa aktarma ve yedekleme';
 
   @override
-  String get exportJson => 'JSON olarak dışa aktar';
+  String get exportJson => 'Yedeği dışa aktar';
 
   @override
-  String get exportJsonDesc => 'Yedekleme için ham veri';
+  String get exportJsonDesc => 'Tüm veriler ve fotoğraflar tek bir .zip dosyasında';
 
   @override
   String get exportPdf => 'PDF olarak dışa aktar';
@@ -748,10 +748,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get exportPdfDesc => 'Doktorunuz için okunabilir özet';
 
   @override
-  String get importJson => 'JSON\'dan içe aktar';
+  String get importJson => 'Yedeği geri yükle';
 
   @override
-  String get importJsonDesc => 'Bir yedek dosyasından geri yükle';
+  String get importJsonDesc => 'Bir .zip yedeğinden (veya eski bir .json dışa aktarımından)';
 
   @override
   String get importDialogTitle => 'Veriler içe aktarılsın mı?';
@@ -889,7 +889,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsTempUnit => 'Sıcaklık birimi';
 
   @override
-  String get settingsVolumeUnit => 'Milk volume unit';
+  String get settingsVolumeUnit => 'Süt hacmi birimi';
 
   @override
   String get settingsLanguage => 'Dil';
@@ -928,7 +928,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get tipExportData => 'Verileri dışa aktar';
 
   @override
-  String get tipExportDataDesc => 'Ana sayfadaki paylaş simgesini kullanarak tüm verilerinizi JSON olarak dışa aktarabilirsiniz.';
+  String get tipExportDataDesc => 'Tüm verileri ve fotoğrafları tek dosyada yedeklemek için Ana Sayfa\'daki paylaş simgesini kullanın.';
 
   @override
   String get babiesTitle => 'Bebekler';
@@ -1013,10 +1013,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get graphsMilkPerDay => 'Günlük süt miktarı (ml)';
 
   @override
-  String get graphsMilkPerDayMl => 'Milk per day (ml)';
+  String get graphsMilkPerDayMl => 'Günlük süt (ml)';
 
   @override
-  String get graphsMilkPerDayOz => 'Milk per day (oz)';
+  String get graphsMilkPerDayOz => 'Günlük süt (oz)';
 
   @override
   String get graphsSleepPerDay => 'Günlük uyku (saat)';
@@ -1117,10 +1117,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get summaryMilkLabel => 'Süt ml';
 
   @override
-  String get summaryMilkLabelMl => 'Milk ml';
+  String get summaryMilkLabelMl => 'Süt ml';
 
   @override
-  String get summaryMilkLabelOz => 'Milk oz';
+  String get summaryMilkLabelOz => 'Süt oz';
 
   @override
   String get summaryBreastLabel => 'Emzirme dk';
@@ -1147,33 +1147,33 @@ class AppLocalizationsTr extends AppLocalizations {
   String get whoChartsEntry => 'DSÖ büyüme grafikleri';
 
   @override
-  String get medicationEditTitle => 'Edit medication';
+  String get medicationEditTitle => 'İlacı düzenle';
 
   @override
-  String get medicationLogTitle => 'Log medication';
+  String get medicationLogTitle => 'İlaç kaydet';
 
   @override
-  String get medicationYourCourses => 'Your courses';
+  String get medicationYourCourses => 'Tedavileriniz';
 
   @override
-  String get medicationManageCourses => 'Manage courses';
+  String get medicationManageCourses => 'Tedavileri yönet';
 
   @override
-  String get medicationNameRequired => 'Medication name *';
+  String get medicationNameRequired => 'İlaç adı *';
 
   @override
-  String get medicationDosageWarning => 'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.';
+  String get medicationDosageWarning => 'Her zaman kiloya/yaşa uygun dozu kullanın. Önerilen sıklığı aşmayın.';
 
   @override
-  String get medicationNotesOptional => 'Notes (optional)';
+  String get medicationNotesOptional => 'Notlar (isteğe bağlı)';
 
   @override
   String timeAgoMinutes(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count minutes ago',
-      one: '1 minute ago',
+      other: '$count dakika önce',
+      one: '1 dakika önce',
     );
     return '$_temp0';
   }
@@ -1183,8 +1183,8 @@ class AppLocalizationsTr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count hours ago',
-      one: '1 hour ago',
+      other: '$count saat önce',
+      one: '1 saat önce',
     );
     return '$_temp0';
   }
@@ -1194,228 +1194,228 @@ class AppLocalizationsTr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days ago',
-      one: '1 day ago',
+      other: '$count gün önce',
+      one: '1 gün önce',
     );
     return '$_temp0';
   }
 
   @override
   String medicationLastGivenAgo(String ago) {
-    return 'Last given $ago';
+    return 'Son verilme $ago';
   }
 
   @override
-  String get medicationNeverGiven => 'Not given yet';
+  String get medicationNeverGiven => 'Henüz verilmedi';
 
   @override
   String medicationDosesToday(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count doses today',
-      one: '1 dose today',
-      zero: 'No doses today',
+      other: 'Bugün $count doz',
+      one: 'Bugün 1 doz',
+      zero: 'Bugün doz yok',
     );
     return '$_temp0';
   }
 
   @override
   String medicationTooSoonWarning(int hours) {
-    return 'Next dose isn\'t due for ${hours}h after the last one';
+    return 'Sonraki doz, sondan $hours saat sonra verilmeli';
   }
 
   @override
   String medicationMaxPerDayWarning(int max) {
-    return 'Already at the $max/day limit for this course';
+    return 'Bu tedavi için günlük $max sınırına zaten ulaşıldı';
   }
 
   @override
-  String get medicationEditCourse => 'Edit course';
+  String get medicationEditCourse => 'Tedaviyi düzenle';
 
   @override
-  String get medicationNewCourse => 'New course';
+  String get medicationNewCourse => 'Yeni tedavi';
 
   @override
-  String get medicationReasonOptional => 'Reason (optional)';
+  String get medicationReasonOptional => 'Neden (isteğe bağlı)';
 
   @override
-  String get medicationIntervalHoursOptional => 'Repeat every (hours, optional)';
+  String get medicationIntervalHoursOptional => 'Tekrar aralığı (saat, isteğe bağlı)';
 
   @override
-  String get medicationMaxPerDayOptional => 'Max doses/day (optional)';
+  String get medicationMaxPerDayOptional => 'Günlük maks. doz (isteğe bağlı)';
 
   @override
-  String get medicationRemindNextDose => 'Remind me when the next dose is due';
+  String get medicationRemindNextDose => 'Sonraki doz zamanı geldiğinde hatırlat';
 
   @override
   String medicationEndCourseTitle(String name) {
-    return 'End $name?';
+    return '$name sonlandırılsın mı?';
   }
 
   @override
-  String get medicationEndCoursePrompt => 'How did it go?';
+  String get medicationEndCoursePrompt => 'Nasıl geçti?';
 
   @override
-  String get medicationDeleteCourseTitle => 'Delete this course?';
+  String get medicationDeleteCourseTitle => 'Bu tedavi silinsin mi?';
 
   @override
-  String get medicationResultWorked => 'Worked';
+  String get medicationResultWorked => 'İşe yaradı';
 
   @override
-  String get medicationResultPartlyWorked => 'Partly worked';
+  String get medicationResultPartlyWorked => 'Kısmen işe yaradı';
 
   @override
-  String get medicationResultDidntWork => 'Didn\'t work';
+  String get medicationResultDidntWork => 'İşe yaramadı';
 
   @override
-  String get medicationResultSideEffects => 'Side effects';
+  String get medicationResultSideEffects => 'Yan etkiler';
 
   @override
-  String get medicationResultNone => 'Not rated';
+  String get medicationResultNone => 'Değerlendirilmedi';
 
   @override
-  String get medicationsTitle => 'Medications';
+  String get medicationsTitle => 'İlaçlar';
 
   @override
   String medicationActiveTab(int count) {
-    return 'Active ($count)';
+    return 'Devam eden ($count)';
   }
 
   @override
   String medicationPastTab(int count) {
-    return 'Past ($count)';
+    return 'Geçmiş ($count)';
   }
 
   @override
-  String get medicationNoActiveCourses => 'No active medication courses.\nStart one with the + button.';
+  String get medicationNoActiveCourses => 'Devam eden tedavi yok.\n+ düğmesiyle başlatın.';
 
   @override
-  String get medicationNoPastCourses => 'No past courses yet.';
+  String get medicationNoPastCourses => 'Henüz geçmiş tedavi yok.';
 
   @override
   String medicationTimesGiven(int count) {
-    return 'Given $count×';
+    return '$count× verildi';
   }
 
   @override
   String medicationLastGivenShort(String date) {
-    return 'Last: $date';
+    return 'Son: $date';
   }
 
   @override
   String medicationNextDueShort(String time) {
-    return 'Next due $time';
+    return 'Sonraki $time';
   }
 
   @override
-  String get medicationEndCourse => 'End course';
+  String get medicationEndCourse => 'Tedaviyi sonlandır';
 
   @override
   String feedLastSideHint(String side) {
-    return 'Last time: $side';
+    return 'Geçen sefer: $side';
   }
 
   @override
-  String get feedSideLeft => 'Left';
+  String get feedSideLeft => 'Sol';
 
   @override
-  String get feedSideRight => 'Right';
+  String get feedSideRight => 'Sağ';
 
   @override
-  String get feedSideBoth => 'Both';
+  String get feedSideBoth => 'İkisi de';
 
   @override
-  String get feedSideLeftMinutes => 'Left (min)';
+  String get feedSideLeftMinutes => 'Sol (dk)';
 
   @override
-  String get feedSideRightMinutes => 'Right (min)';
+  String get feedSideRightMinutes => 'Sağ (dk)';
 
   @override
-  String get timeAgoJustNow => 'Just now';
+  String get timeAgoJustNow => 'Az önce';
 
   @override
-  String get timeUntilOverdue => 'Overdue';
+  String get timeUntilOverdue => 'Gecikti';
 
   @override
   String timeUntilMinutes(int count) {
-    return 'in ${count}m';
+    return '$count dk sonra';
   }
 
   @override
   String timeUntilHours(int count) {
-    return 'in ${count}h';
+    return '$count sa sonra';
   }
 
   @override
   String timeUntilDays(int count) {
-    return 'in ${count}d';
+    return '$count gün sonra';
   }
 
   @override
-  String get timerDiscardTitle => 'Discard this timer?';
+  String get timerDiscardTitle => 'Bu zamanlayıcı silinsin mi?';
 
   @override
-  String get timerDiscard => 'Discard';
+  String get timerDiscard => 'Sil';
 
   @override
   String timerFeedingRunning(String side) {
-    return 'Feeding · $side';
+    return 'Emzirme · $side';
   }
 
   @override
-  String get timerSleepRunning => 'Sleep timer running';
+  String get timerSleepRunning => 'Uyku zamanlayıcısı çalışıyor';
 
   @override
-  String get timerSwitchSide => 'Switch side';
+  String get timerSwitchSide => 'Taraf değiştir';
 
   @override
-  String get timerStop => 'Stop';
+  String get timerStop => 'Durdur';
 
   @override
-  String get sinceLastFeed => 'Last feed';
+  String get sinceLastFeed => 'Son beslenme';
 
   @override
-  String get sinceLastDiaper => 'Last diaper';
+  String get sinceLastDiaper => 'Son bez';
 
   @override
-  String get sinceAwake => 'Awake';
+  String get sinceAwake => 'Uyanık';
 
   @override
-  String get sinceAsleep => 'Asleep';
+  String get sinceAsleep => 'Uyuyor';
 
   @override
   String nextDoseDue(String name) {
-    return '$name due';
+    return '$name zamanı';
   }
 
   @override
-  String get weighConditionNaked => 'Naked';
+  String get weighConditionNaked => 'Çıplak';
 
   @override
-  String get weighConditionDiaper => 'Diaper only';
+  String get weighConditionDiaper => 'Sadece bez';
 
   @override
-  String get weighConditionLightClothes => 'Light clothes';
+  String get weighConditionLightClothes => 'İnce kıyafet';
 
   @override
-  String get weighConditionDressed => 'Dressed';
+  String get weighConditionDressed => 'Giyinik';
 
   @override
-  String get weighCondition => 'Weighed wearing';
+  String get weighCondition => 'Tartılırken üzerinde';
 
   @override
-  String get growthMeasurementsOptional => 'Other measurements (optional)';
+  String get growthMeasurementsOptional => 'Diğer ölçümler (isteğe bağlı)';
 
   @override
-  String get growthHeightCm => 'Height (cm)';
+  String get growthHeightCm => 'Boy (cm)';
 
   @override
-  String get growthHeadCm => 'Head circumference (cm)';
+  String get growthHeadCm => 'Baş çevresi (cm)';
 
   @override
   String weighConditionChangedWarning(String condition) {
-    return 'Last time was weighed $condition — the difference may not be just growth';
+    return 'Geçen sefer şöyle tartıldı: $condition — fark sadece büyümeden kaynaklanmıyor olabilir';
   }
 
   @override
@@ -1425,80 +1425,80 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String growthHeadValue(String cm) {
-    return 'Head $cm cm';
+    return 'Baş $cm cm';
   }
 
   @override
-  String get growthHeightOverTime => 'Height over time';
+  String get growthHeightOverTime => 'Zaman içinde boy';
 
   @override
-  String get growthHeadOverTime => 'Head circumference over time';
+  String get growthHeadOverTime => 'Zaman içinde baş çevresi';
 
   @override
-  String get graphsRecentWeighIns => 'Recent weigh-ins';
+  String get graphsRecentWeighIns => 'Son tartımlar';
 
   @override
-  String get solidsAmountFewSpoons => 'A few spoons';
+  String get solidsAmountFewSpoons => 'Birkaç kaşık';
 
   @override
-  String get solidsAmountHalf => 'Half a portion';
+  String get solidsAmountHalf => 'Yarım porsiyon';
 
   @override
-  String get solidsAmountFull => 'Full portion';
+  String get solidsAmountFull => 'Tam porsiyon';
 
   @override
-  String get solidsAmountTaste => 'Just a taste';
+  String get solidsAmountTaste => 'Sadece tattı';
 
   @override
-  String get solidsReactionMild => 'Mild reaction';
+  String get solidsReactionMild => 'Hafif reaksiyon';
 
   @override
-  String get solidsReactionAllergic => 'Allergic reaction';
+  String get solidsReactionAllergic => 'Alerjik reaksiyon';
 
   @override
-  String get solidsReactionNone => 'No reaction';
+  String get solidsReactionNone => 'Reaksiyon yok';
 
   @override
-  String get solidsEditTitle => 'Edit solid food';
+  String get solidsEditTitle => 'Ek gıdayı düzenle';
 
   @override
-  String get solidsLogTitle => 'Log solid food';
+  String get solidsLogTitle => 'Ek gıda kaydet';
 
   @override
-  String get solidsFoodsLabel => 'Foods';
+  String get solidsFoodsLabel => 'Yiyecekler';
 
   @override
-  String get solidsAddFoodHint => 'Add a food';
+  String get solidsAddFoodHint => 'Yiyecek ekle';
 
   @override
-  String get solidsAmount => 'Amount';
+  String get solidsAmount => 'Miktar';
 
   @override
-  String get solidsLiked => 'How did they like it?';
+  String get solidsLiked => 'Beğendi mi?';
 
   @override
-  String get solidsReaction => 'Reaction';
+  String get solidsReaction => 'Reaksiyon';
 
   @override
-  String get solidsNotesOptional => 'Notes (optional)';
+  String get solidsNotesOptional => 'Notlar (isteğe bağlı)';
 
   @override
-  String get foodsTitle => 'Foods tried';
+  String get foodsTitle => 'Denenen yiyecekler';
 
   @override
-  String get foodsEmpty => 'No solid foods logged yet.';
+  String get foodsEmpty => 'Henüz ek gıda kaydedilmedi.';
 
   @override
-  String get foodsAllergensNotYet => 'Common allergens not yet introduced';
+  String get foodsAllergensNotYet => 'Henüz verilmeyen yaygın alerjenler';
 
   @override
   String foodsTriedCount(int count) {
-    return '$count foods tried';
+    return '$count yiyecek denendi';
   }
 
   @override
   String foodsFirstTried(String date) {
-    return 'First: $date';
+    return 'İlk: $date';
   }
 
   @override
@@ -1507,217 +1507,217 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get entryTypeSolids => 'Solid food';
+  String get entryTypeSolids => 'Ek gıda';
 
   @override
-  String get feedAmountOz => 'Amount (oz)';
+  String get feedAmountOz => 'Miktar (oz)';
 
   @override
   String notifFeedingReminderDescInterval(String interval) {
-    return 'Remind me $interval after the last feed';
+    return 'Son beslenmeden $interval sonra hatırlat';
   }
 
   @override
   String notifDiaperReminderDescInterval(String interval) {
-    return 'Remind me $interval after the last diaper';
+    return 'Son bezden $interval sonra hatırlat';
   }
 
   @override
   String notifIntervalEvery(String interval) {
-    return 'Every $interval';
+    return 'Her $interval';
   }
 
   @override
-  String get notifIntervalTitle => 'Reminder interval';
+  String get notifIntervalTitle => 'Hatırlatma aralığı';
 
   @override
-  String get notifIntervalHours => 'Hours';
+  String get notifIntervalHours => 'Saat';
 
   @override
-  String get notifIntervalMinutes => 'Minutes';
+  String get notifIntervalMinutes => 'Dakika';
 
   @override
   String notifIntervalTooShort(int minutes) {
-    return 'At least $minutes minutes';
+    return 'En az $minutes dakika';
   }
 
   @override
-  String get settingsFeeding => 'Feeding';
+  String get settingsFeeding => 'Beslenme';
 
   @override
-  String get settingsTrackBottles => 'Track bottles';
+  String get settingsTrackBottles => 'Biberonları takip et';
 
   @override
-  String get settingsTrackBottlesDesc => 'Pick which bottle was used, and how much was prepared vs drunk';
+  String get settingsTrackBottlesDesc => 'Hangi biberonun kullanıldığını ve ne kadar hazırlanıp ne kadar içildiğini seçin';
 
   @override
-  String get bottlesTitle => 'My bottles';
+  String get bottlesTitle => 'Biberonlarım';
 
   @override
-  String get bottlesEmpty => 'No bottles yet.\nAdd the bottles you use so you can pick one when logging a feed.';
+  String get bottlesEmpty => 'Henüz biberon yok.\nBeslenme kaydederken seçebilmek için kullandığınız biberonları ekleyin.';
 
   @override
-  String get bottleAdd => 'Add bottle';
+  String get bottleAdd => 'Biberon ekle';
 
   @override
-  String get bottleEdit => 'Edit bottle';
+  String get bottleEdit => 'Biberonu düzenle';
 
   @override
-  String get bottleLabel => 'Label / number (e.g. #3)';
+  String get bottleLabel => 'Etiket / numara (ör. #3)';
 
   @override
-  String get bottleBrand => 'Brand / type (optional)';
+  String get bottleBrand => 'Marka / tür (isteğe bağlı)';
 
   @override
-  String get bottleCapacity => 'Capacity (optional)';
+  String get bottleCapacity => 'Hacim (isteğe bağlı)';
 
   @override
-  String get bottleNipple => 'Nipple size / flow (optional)';
+  String get bottleNipple => 'Emzik boyu / akış (isteğe bağlı)';
 
   @override
-  String get bottleMaterial => 'Material';
+  String get bottleMaterial => 'Malzeme';
 
   @override
-  String get bottleRetired => 'Retired';
+  String get bottleRetired => 'Kullanım dışı';
 
   @override
-  String get bottleRetire => 'Retire';
+  String get bottleRetire => 'Kullanımdan kaldır';
 
   @override
-  String get bottleUnretire => 'Use again';
+  String get bottleUnretire => 'Yeniden kullan';
 
   @override
   String bottleDeleteTitle(String name) {
-    return 'Delete $name?';
+    return '$name silinsin mi?';
   }
 
   @override
-  String get bottleDeleteBody => 'Past feeds keep their amounts but will no longer show this bottle. To hide it from the picker but keep history, use Retire instead.';
+  String get bottleDeleteBody => 'Geçmiş beslenmeler miktarlarını korur ama artık bu biberonu göstermez. Geçmişi koruyup listeden gizlemek için bunun yerine Kullanımdan kaldır\'ı kullanın.';
 
   @override
-  String get feedPrepared => 'Prepared';
+  String get feedPrepared => 'Hazırlanan';
 
   @override
-  String get feedDrank => 'Drank';
+  String get feedDrank => 'İçilen';
 
   @override
   String feedLeftover(String amount) {
-    return '$amount left over';
+    return '$amount arttı';
   }
 
   @override
-  String get feedDrankMoreThanPrepared => 'More than was prepared?';
+  String get feedDrankMoreThanPrepared => 'Hazırlanandan fazla mı?';
 
   @override
-  String get feedWhichBottle => 'Which bottle?';
+  String get feedWhichBottle => 'Hangi biberon?';
 
   @override
-  String get feedNoBottlesYet => 'No bottles yet — add them in Settings → My bottles.';
+  String get feedNoBottlesYet => 'Henüz biberon yok — Ayarlar → Biberonlarım bölümünden ekleyin.';
 
   @override
-  String get photoPrivacyTitle => 'Your photos stay on this phone';
+  String get photoPrivacyTitle => 'Fotoğraflarınız bu telefonda kalır';
 
   @override
-  String get photoPrivacyBody => 'Photos are saved only inside this app on this device. The app has no internet access, so nothing is ever uploaded or shared unless you export a backup yourself.\n\nAndroid may ask for camera access the first time you take a photo.';
+  String get photoPrivacyBody => 'Fotoğraflar yalnızca bu cihazda, bu uygulamanın içinde saklanır. Uygulamanın internet erişimi yoktur; siz kendiniz yedek dışa aktarmadıkça hiçbir şey yüklenmez veya paylaşılmaz.\n\nAndroid, ilk fotoğrafı çektiğinizde kamera izni isteyebilir.';
 
   @override
-  String get photoPrivacyContinue => 'Continue';
+  String get photoPrivacyContinue => 'Devam';
 
   @override
-  String get photoTakePhoto => 'Take a photo';
+  String get photoTakePhoto => 'Fotoğraf çek';
 
   @override
-  String get photoChooseFromGallery => 'Choose from gallery';
+  String get photoChooseFromGallery => 'Galeriden seç';
 
   @override
-  String get photoCaption => 'Caption';
+  String get photoCaption => 'Açıklama';
 
   @override
-  String get photoCompare => 'First vs latest';
+  String get photoCompare => 'İlk ve son';
 
   @override
-  String get photoAddOtherDay => 'Add for another day';
+  String get photoAddOtherDay => 'Başka bir gün için ekle';
 
   @override
-  String get photoEmpty => 'No photos yet.\nTake one photo a day and watch your baby grow.';
+  String get photoEmpty => 'Henüz fotoğraf yok.\nHer gün bir fotoğraf çekin ve bebeğinizin büyümesini izleyin.';
 
   @override
-  String get photoToday => 'Today\'s photo';
+  String get photoToday => 'Bugünün fotoğrafı';
 
   @override
-  String get photoAddToday => 'Add today\'s photo';
+  String get photoAddToday => 'Bugünün fotoğrafını ekle';
 
   @override
-  String get photoReplace => 'Replace';
+  String get photoReplace => 'Değiştir';
 
   @override
-  String get photoDeleteTitle => 'Delete this photo?';
+  String get photoDeleteTitle => 'Bu fotoğraf silinsin mi?';
 
   @override
-  String get ageBeforeBirth => 'Before birth';
+  String get ageBeforeBirth => 'Doğumdan önce';
 
   @override
   String ageDays(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days old',
-      one: '1 day old',
-      zero: 'Birth day',
+      other: '$count günlük',
+      one: '1 günlük',
+      zero: 'Doğum günü',
     );
     return '$_temp0';
   }
 
   @override
   String ageMonthsDays(int months, int days) {
-    return '$months mo $days d';
+    return '$months ay $days g';
   }
 
   @override
   String ageYearsMonths(int years, int months) {
-    return '$years yr $months mo';
+    return '$years yaş $months ay';
   }
 
   @override
-  String get navMemories => 'Memories';
+  String get navMemories => 'Anılar';
 
   @override
-  String get memoriesTabPhotos => 'Photos';
+  String get memoriesTabPhotos => 'Fotoğraflar';
 
   @override
-  String get milestoneNoAchievedHint => 'Tap \"Upcoming\" to log a preset,\nor use the button below for a custom one.';
+  String get milestoneNoAchievedHint => 'Hazır bir aşamayı kaydetmek için \"Yaklaşan\"a dokunun,\nya da özel bir aşama için aşağıdaki düğmeyi kullanın.';
 
   @override
-  String get skinTitle => 'Skin conditions';
+  String get skinTitle => 'Cilt sorunları';
 
   @override
-  String get skinNew => 'New skin condition';
+  String get skinNew => 'Yeni cilt sorunu';
 
   @override
-  String get skinEdit => 'Edit skin condition';
+  String get skinEdit => 'Cilt sorununu düzenle';
 
   @override
   String skinTabActive(int count) {
-    return 'Active ($count)';
+    return 'Devam eden ($count)';
   }
 
   @override
   String skinTabHealed(int count) {
-    return 'Healed ($count)';
+    return 'İyileşen ($count)';
   }
 
   @override
-  String get skinEmptyActive => 'No skin conditions being tracked.\nTap + to start one — you can add a photo each day to show the doctor how it\'s changing.';
+  String get skinEmptyActive => 'Takip edilen cilt sorunu yok.\nBaşlamak için + simgesine dokunun — doktora nasıl değiştiğini göstermek için her gün fotoğraf ekleyebilirsiniz.';
 
   @override
-  String get skinEmptyHealed => 'Nothing healed yet.';
+  String get skinEmptyHealed => 'Henüz iyileşen yok.';
 
   @override
-  String get skinUpdateDue => 'Update today';
+  String get skinUpdateDue => 'Bugün güncelle';
 
   @override
   String skinSince(String date) {
-    return 'Since $date';
+    return '$date tarihinden beri';
   }
 
   @override
@@ -1725,195 +1725,550 @@ class AppLocalizationsTr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days',
-      one: '1 day',
+      other: '$count gün',
+      one: '1 gün',
     );
     return '$_temp0';
   }
 
   @override
   String skinHealedOn(String date) {
-    return 'Healed $date';
+    return '$date tarihinde iyileşti';
   }
 
   @override
   String skinReminderAt(String time) {
-    return 'Daily reminder at $time';
+    return 'Her gün $time hatırlatma';
   }
 
   @override
-  String get skinSeverityTrend => 'Severity over time';
+  String get skinSeverityTrend => 'Zaman içinde şiddet';
 
   @override
-  String get skinNoUpdates => 'No updates yet. Add today\'s to start the timeline.';
+  String get skinNoUpdates => 'Henüz güncelleme yok. Zaman çizelgesini başlatmak için bugünkünü ekleyin.';
 
   @override
-  String get skinExportPdf => 'Export for doctor (PDF)';
+  String get skinExportPdf => 'Doktor için dışa aktar (PDF)';
 
   @override
-  String get skinMarkHealed => 'Mark healed';
+  String get skinMarkHealed => 'İyileşti olarak işaretle';
 
   @override
-  String get skinReopen => 'Mark active again';
+  String get skinReopen => 'Yeniden aktif olarak işaretle';
 
   @override
-  String get skinUpdateToday => 'Add today\'s update';
+  String get skinUpdateToday => 'Bugünün güncellemesini ekle';
 
   @override
-  String get skinEditToday => 'Edit today\'s update';
+  String get skinEditToday => 'Bugünün güncellemesini düzenle';
 
   @override
   String skinDeleteTitle(String name) {
-    return 'Delete $name and all its updates?';
+    return '$name ve tüm güncellemeleri silinsin mi?';
   }
 
   @override
-  String get skinDeleteUpdateTitle => 'Delete this update?';
+  String get skinDeleteUpdateTitle => 'Bu güncelleme silinsin mi?';
 
   @override
   String skinTreatmentValue(String treatment) {
-    return 'Treatment: $treatment';
+    return 'Tedavi: $treatment';
   }
 
   @override
-  String get skinName => 'Condition *';
+  String get skinName => 'Sorun *';
 
   @override
-  String get skinBodyArea => 'Where on the body?';
+  String get skinBodyArea => 'Vücudun neresinde?';
 
   @override
-  String get skinBegan => 'Began on';
+  String get skinBegan => 'Başlangıç';
 
   @override
-  String get skinRemindDaily => 'Remind me to update it daily';
+  String get skinRemindDaily => 'Her gün güncellemeyi hatırlat';
 
   @override
-  String get skinReminderTime => 'Reminder time';
+  String get skinReminderTime => 'Hatırlatma saati';
 
   @override
-  String get skinUpdateTitle => 'Skin update';
+  String get skinUpdateTitle => 'Cilt güncellemesi';
 
   @override
-  String get skinSeverity => 'How does it look?';
+  String get skinSeverity => 'Nasıl görünüyor?';
 
   @override
-  String get skinSeverity0 => '0 · Clear';
+  String get skinSeverity0 => '0 · Temiz';
 
   @override
-  String get skinSeverity1 => '1 · Mild';
+  String get skinSeverity1 => '1 · Hafif';
 
   @override
-  String get skinSeverity2 => '2 · Moderate';
+  String get skinSeverity2 => '2 · Orta';
 
   @override
-  String get skinSeverity3 => '3 · Severe';
+  String get skinSeverity3 => '3 · Şiddetli';
 
   @override
-  String get skinSeverity4 => '4 · Very severe';
+  String get skinSeverity4 => '4 · Çok şiddetli';
 
   @override
-  String get skinTreatment => 'Treatment (optional)';
+  String get skinTreatment => 'Tedavi (isteğe bağlı)';
 
   @override
-  String get skinTreatmentHint => 'e.g. moisturiser, hydrocortisone 1%';
+  String get skinTreatmentHint => 'ör. nemlendirici, %1 hidrokortizon';
 
   @override
-  String get skinAddPhoto => 'Add a photo';
+  String get skinAddPhoto => 'Fotoğraf ekle';
 
   @override
-  String get skinCardNone => 'Track a rash, eczema or other skin condition day by day, with photos for the doctor';
+  String get skinCardNone => 'Pişik, egzama veya başka bir cilt sorununu doktor için fotoğraflarla gün gün takip edin';
 
   @override
   String skinCardDue(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count need today\'s update',
-      one: '1 needs today\'s update',
+      other: '$count tanesi bugün güncellenmeli',
+      one: '1 tanesi bugün güncellenmeli',
     );
     return '$_temp0';
   }
 
   @override
-  String get backupPreparing => 'Preparing backup…';
+  String get backupPreparing => 'Yedek hazırlanıyor…';
 
   @override
-  String get backupFailed => 'Couldn\'t create the backup.';
+  String get backupFailed => 'Yedek oluşturulamadı.';
 
   @override
-  String get backupSavedTo => 'Backup saved to:';
+  String get backupSavedTo => 'Yedek şuraya kaydedildi:';
 
   @override
-  String get backupShareSubject => 'Baby Tracker backup';
+  String get backupShareSubject => 'Baby Tracker yedeği';
 
   @override
   String importIncludesPhotos(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Includes $count photos.',
-      one: 'Includes 1 photo.',
+      other: '$count fotoğraf içerir.',
+      one: '1 fotoğraf içerir.',
     );
     return '$_temp0';
   }
 
   @override
-  String get widgetFeed => 'Feed';
+  String get widgetFeed => 'Besle';
 
   @override
-  String get widgetStopFeed => 'Stop feed';
+  String get widgetStopFeed => 'Beslemeyi durdur';
 
   @override
-  String get widgetDiaper => 'Diaper';
+  String get widgetDiaper => 'Bez';
 
   @override
-  String get widgetSleep => 'Sleep';
+  String get widgetSleep => 'Uyku';
 
   @override
-  String get widgetWakeUp => 'Woke up';
+  String get widgetWakeUp => 'Uyandı';
 
   @override
   String widgetFeedingFor(String duration) {
-    return 'Feeding $duration';
+    return '$duration beslenme';
   }
 
   @override
   String widgetFedAgo(String ago) {
-    return 'Fed $ago';
+    return 'Beslendi $ago';
   }
 
   @override
-  String get widgetNoFeedsYet => 'No feeds yet';
+  String get widgetNoFeedsYet => 'Henüz beslenme yok';
 
   @override
   String widgetChangedAgo(String ago) {
-    return 'Changed $ago';
+    return 'Değiştirildi $ago';
   }
 
   @override
-  String get widgetNoDiapersYet => 'No diapers yet';
+  String get widgetNoDiapersYet => 'Henüz bez yok';
 
   @override
   String widgetAsleepFor(String duration) {
-    return 'Asleep $duration';
+    return '$duration uyuyor';
   }
 
   @override
   String widgetAwakeFor(String ago) {
-    return 'Woke $ago';
+    return 'Uyandı $ago';
   }
 
   @override
-  String get widgetStopSleepFirst => 'Stop the sleep timer first';
+  String get widgetStopSleepFirst => 'Önce uyku zamanlayıcısını durdurun';
 
   @override
-  String get widgetStopFeedFirst => 'Stop the feeding timer first';
+  String get widgetStopFeedFirst => 'Önce beslenme zamanlayıcısını durdurun';
 
   @override
   String quickAddTitle(String name) {
-    return 'Add for $name';
+    return '$name için ekle';
   }
 
   @override
-  String get quickAddOpenApp => 'Open the app';
+  String get quickAddOpenApp => 'Uygulamayı aç';
+
+  @override
+  String get foodPeanut => 'Yer fıstığı';
+
+  @override
+  String get foodEgg => 'Yumurta';
+
+  @override
+  String get foodDairy => 'Süt ürünleri';
+
+  @override
+  String get foodWheat => 'Buğday';
+
+  @override
+  String get foodSoy => 'Soya';
+
+  @override
+  String get foodFish => 'Balık';
+
+  @override
+  String get foodShellfish => 'Kabuklu deniz ürünleri';
+
+  @override
+  String get foodTreeNuts => 'Sert kabuklu yemişler';
+
+  @override
+  String get foodSesame => 'Susam';
+
+  @override
+  String get foodBanana => 'Muz';
+
+  @override
+  String get foodAvocado => 'Avokado';
+
+  @override
+  String get foodSweetPotato => 'Tatlı patates';
+
+  @override
+  String get foodRiceCereal => 'Pirinç unu lapası';
+
+  @override
+  String get foodOatmeal => 'Yulaf lapası';
+
+  @override
+  String get foodCarrot => 'Havuç';
+
+  @override
+  String get foodApple => 'Elma';
+
+  @override
+  String get foodPea => 'Bezelye';
+
+  @override
+  String get symptomRash => 'Döküntü';
+
+  @override
+  String get symptomHives => 'Kurdeşen';
+
+  @override
+  String get symptomVomiting => 'Kusma';
+
+  @override
+  String get symptomDiarrhea => 'İshal';
+
+  @override
+  String get symptomSwelling => 'Şişlik';
+
+  @override
+  String get doseUnitDrops => 'damla';
+
+  @override
+  String get doseUnitTablets => 'tablet';
+
+  @override
+  String get bottleMaterialPlastic => 'Plastik';
+
+  @override
+  String get bottleMaterialGlass => 'Cam';
+
+  @override
+  String get bottleMaterialSilicone => 'Silikon';
+
+  @override
+  String get bottleMaterialSteel => 'Paslanmaz çelik';
+
+  @override
+  String get visitReasonRoutine => 'Rutin kontrol';
+
+  @override
+  String get visitReasonSick => 'Hastalık';
+
+  @override
+  String get visitReasonVaccination => 'Aşı';
+
+  @override
+  String get visitReasonSpecialist => 'Uzman';
+
+  @override
+  String get visitReasonFollowUp => 'Kontrol randevusu';
+
+  @override
+  String get visitReasonOther => 'Diğer';
+
+  @override
+  String get pooColourPale => 'Soluk';
+
+  @override
+  String get noteTagHappyDay => 'Mutlu gün';
+
+  @override
+  String get noteTagSleptWell => 'İyi uyudu';
+
+  @override
+  String get noteTagFussy => 'Huysuz';
+
+  @override
+  String get noteTagNotWell => 'İyi hissetmiyordu';
+
+  @override
+  String get noteTagFirstTime => 'İlk kez!';
+
+  @override
+  String get noteTagTeething => 'Diş çıkarma';
+
+  @override
+  String get noteTagGrowthSpurt => 'Büyüme atağı';
+
+  @override
+  String get noteTagMilestone => 'Gelişim aşaması';
+
+  @override
+  String get tummyTimeNotesHint => 'ör. keyif aldı, huysuzdu...';
+
+  @override
+  String get skinSuggestEczema => 'Egzama';
+
+  @override
+  String get skinSuggestDiaperRash => 'Pişik';
+
+  @override
+  String get skinSuggestCradleCap => 'Konak';
+
+  @override
+  String get skinSuggestBabyAcne => 'Bebek aknesi';
+
+  @override
+  String get skinSuggestHeatRash => 'İsilik';
+
+  @override
+  String get skinSuggestDrySkin => 'Kuru cilt';
+
+  @override
+  String get bodyFace => 'Yüz';
+
+  @override
+  String get bodyScalp => 'Saçlı deri';
+
+  @override
+  String get bodyNeck => 'Boyun';
+
+  @override
+  String get bodyChest => 'Göğüs';
+
+  @override
+  String get bodyBack => 'Sırt';
+
+  @override
+  String get bodyArms => 'Kollar';
+
+  @override
+  String get bodyHands => 'Eller';
+
+  @override
+  String get bodyDiaperArea => 'Bez bölgesi';
+
+  @override
+  String get bodyLegs => 'Bacaklar';
+
+  @override
+  String get bodyFeet => 'Ayaklar';
+
+  @override
+  String get medSuggestGripeWater => 'Gaz şurubu (gripe water)';
+
+  @override
+  String get medSuggestVitaminD => 'D vitamini';
+
+  @override
+  String get medSuggestIronDrops => 'Demir damlası';
+
+  @override
+  String get medSuggestAntibiotic => 'Antibiyotik';
+
+  @override
+  String get medSuggestProbiotic => 'Probiyotik';
+
+  @override
+  String vaccinePageTitle(String name) {
+    return '$name — Aşılar';
+  }
+
+  @override
+  String get vaccineDeleteTitle => 'Aşı kaydı silinsin mi?';
+
+  @override
+  String get vaccineSiteHint => 'ör. sol uyluk';
+
+  @override
+  String get vaccineNotesHint => 'ör. hafif ateş, huysuzluk, reaksiyon yok...';
+
+  @override
+  String get vaccineNoGivenHint => '+ düğmesini kullanın veya Takvim sekmesinde \"Yapıldı olarak işaretle\"ye dokunun.';
+
+  @override
+  String get vaccineAgeBirth => 'Doğumda';
+
+  @override
+  String vaccineAgeMonths(String range) {
+    return '$range ay';
+  }
+
+  @override
+  String vaccineAgeMonthsAnnual(String range) {
+    return '$range ay (her yıl)';
+  }
+
+  @override
+  String get whoTabHeight => 'Boy';
+
+  @override
+  String get whoTabHead => 'Baş';
+
+  @override
+  String get whoChartFor => 'Grafik:';
+
+  @override
+  String whoAgeRange(String title) {
+    return '$title (0–24 ay)';
+  }
+
+  @override
+  String get whoNoDataPoints => 'Henüz veri yok. Bebeğinizi grafikte görmek için ölçüm kaydedin.';
+
+  @override
+  String get whoLatestMeasurement => 'Son ölçüm';
+
+  @override
+  String whoApproxPercentile(String value) {
+    return 'Yaklaşık persentil: $value';
+  }
+
+  @override
+  String whoBetween(String low, String high) {
+    return '$low ile $high arası';
+  }
+
+  @override
+  String whoMonthsOld(String months) {
+    return '$months aylık';
+  }
+
+  @override
+  String get whoDisclaimer => 'Bu grafikler yalnızca bilgi amaçlıdır. Yorumlaması için her zaman çocuk doktorunuza danışın.';
+
+  @override
+  String get whoMedian => 'P50 (ortanca)';
+
+  @override
+  String get notifChannelName => 'Baby Tracker hatırlatmaları';
+
+  @override
+  String get notifChannelDesc => 'Beslenme, bez, ilaç ve cilt kontrolü hatırlatmaları';
+
+  @override
+  String get notifFeedTitle => 'Beslenme zamanı!';
+
+  @override
+  String notifFeedBody(String interval) {
+    return 'Son $interval içinde beslenme kaydedilmedi.';
+  }
+
+  @override
+  String get notifDiaperTitle => 'Bez kontrolü!';
+
+  @override
+  String notifDiaperBody(String interval) {
+    return 'Son $interval içinde bez değişimi kaydedilmedi.';
+  }
+
+  @override
+  String notifDoseTitle(String name) {
+    return 'Doz zamanı: $name';
+  }
+
+  @override
+  String notifDoseBody(String name) {
+    return '$name için sonraki doz zamanı geldi.';
+  }
+
+  @override
+  String notifSkinTitle(String name) {
+    return 'Cilt kontrolü: $name';
+  }
+
+  @override
+  String get notifSkinBody => 'Bugünün güncellemesini ekleyin (isterseniz fotoğrafla).';
+
+  @override
+  String get timerFeedingNotif => 'Beslenme zamanlayıcısı çalışıyor';
+
+  @override
+  String intervalMinutes(String m) {
+    return '$m dk';
+  }
+
+  @override
+  String intervalHours(String h) {
+    return '$h sa';
+  }
+
+  @override
+  String intervalHoursMinutes(String h, String m) {
+    return '$h sa $m dk';
+  }
+
+  @override
+  String get settingsRtlActive => 'Sağdan sola düzen etkin';
+
+  @override
+  String get measurementHeightIn => 'Boy (inç)';
+
+  @override
+  String get measurementHeadIn => 'Baş çevresi (inç)';
+
+  @override
+  String get growthHeightIn => 'Boy (inç)';
+
+  @override
+  String get growthHeadIn => 'Baş çevresi (inç)';
+
+  @override
+  String growthHeightValueIn(String value) {
+    return '$value inç';
+  }
+
+  @override
+  String growthHeadValueIn(String value) {
+    return 'Baş $value inç';
+  }
+
+  @override
+  String get settingsLengthUnitNote => 'Uzunluk ağırlık birimini izler (kg ile cm, lbs ile inç)';
+
+  @override
+  String get formulaStoreBrand => 'Market markası';
 }

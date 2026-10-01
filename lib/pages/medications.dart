@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/helpers.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/labels.dart';
 import 'package:simple_baby_tracker/models/medication_course.dart';
 import 'package:simple_baby_tracker/services/medication_stats.dart';
 import 'package:simple_baby_tracker/services/notification.dart';
@@ -108,7 +109,7 @@ class _MedicationsPageState extends State<MedicationsPage>
                   Wrap(
                     spacing: 6,
                     runSpacing: 4,
-                    children: commonMedicationNames.map((name) {
+                    children: commonMedicationNames(l).map((name) {
                       final selected = selectedPreset == name;
                       return ChoiceChip(
                         label: Text(name, style: const TextStyle(fontSize: 12)),
@@ -158,7 +159,10 @@ class _MedicationsPageState extends State<MedicationsPage>
                       value: unit,
                       items: medicationDoseUnits
                           .map(
-                            (u) => DropdownMenuItem(value: u, child: Text(u)),
+                            (u) => DropdownMenuItem(
+                              value: u,
+                              child: Text(doseUnitLabel(u, l)),
+                            ),
                           )
                           .toList(),
                       onChanged: (v) => set(() => unit = v ?? 'ml'),

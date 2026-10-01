@@ -41,67 +41,47 @@ class VaccinationEntry {
 }
 
 /// Standard vaccination schedule (WHO/CDC-aligned).
-/// Each entry: { name, ageLabel, ageMonths (approximate) }.
+/// Each entry: { name, ageRange, ageMonths (approximate), annual? }.
+/// `ageRange` is in months ('' = at birth) and is turned into a translated
+/// label by `vaccineAgeLabel` in pages/vaccinations.dart. Names stay in
+/// English: they're the standard vaccine names and abbreviations, and
+/// logged vaccines are matched against them.
 const vaccineSchedule = <Map<String, dynamic>>[
-  {'name': 'Hepatitis B (HepB)', 'ageLabel': 'Birth', 'ageMonths': 0},
-  {
-    'name': 'Hepatitis B (HepB) — Dose 2',
-    'ageLabel': '1–2 months',
-    'ageMonths': 1,
-  },
-  {'name': 'Rotavirus (RV)', 'ageLabel': '2 months', 'ageMonths': 2},
+  {'name': 'Hepatitis B (HepB)', 'ageRange': '', 'ageMonths': 0},
+  {'name': 'Hepatitis B (HepB) — Dose 2', 'ageRange': '1–2', 'ageMonths': 1},
+  {'name': 'Rotavirus (RV)', 'ageRange': '2', 'ageMonths': 2},
   {
     'name': 'DTaP (Diphtheria, Tetanus, Pertussis)',
-    'ageLabel': '2 months',
+    'ageRange': '2',
     'ageMonths': 2,
   },
   {
     'name': 'Hib (Haemophilus influenzae type b)',
-    'ageLabel': '2 months',
+    'ageRange': '2',
     'ageMonths': 2,
   },
-  {
-    'name': 'PCV13 / PCV15 (Pneumococcal)',
-    'ageLabel': '2 months',
-    'ageMonths': 2,
-  },
-  {'name': 'IPV (Polio)', 'ageLabel': '2 months', 'ageMonths': 2},
-  {'name': 'Rotavirus (RV) — Dose 2', 'ageLabel': '4 months', 'ageMonths': 4},
-  {'name': 'DTaP — Dose 2', 'ageLabel': '4 months', 'ageMonths': 4},
-  {'name': 'Hib — Dose 2', 'ageLabel': '4 months', 'ageMonths': 4},
-  {'name': 'PCV — Dose 2', 'ageLabel': '4 months', 'ageMonths': 4},
-  {'name': 'IPV — Dose 2', 'ageLabel': '4 months', 'ageMonths': 4},
-  {'name': 'Rotavirus (RV) — Dose 3', 'ageLabel': '6 months', 'ageMonths': 6},
-  {'name': 'DTaP — Dose 3', 'ageLabel': '6 months', 'ageMonths': 6},
-  {'name': 'PCV — Dose 3', 'ageLabel': '6 months', 'ageMonths': 6},
-  {'name': 'Influenza (Flu)', 'ageLabel': '6 months (annual)', 'ageMonths': 6},
-  {
-    'name': 'Hepatitis B (HepB) — Dose 3',
-    'ageLabel': '6–18 months',
-    'ageMonths': 6,
-  },
-  {'name': 'Hib — Dose 3 or 4', 'ageLabel': '12–15 months', 'ageMonths': 12},
-  {'name': 'PCV — Dose 4', 'ageLabel': '12–15 months', 'ageMonths': 12},
+  {'name': 'PCV13 / PCV15 (Pneumococcal)', 'ageRange': '2', 'ageMonths': 2},
+  {'name': 'IPV (Polio)', 'ageRange': '2', 'ageMonths': 2},
+  {'name': 'Rotavirus (RV) — Dose 2', 'ageRange': '4', 'ageMonths': 4},
+  {'name': 'DTaP — Dose 2', 'ageRange': '4', 'ageMonths': 4},
+  {'name': 'Hib — Dose 2', 'ageRange': '4', 'ageMonths': 4},
+  {'name': 'PCV — Dose 2', 'ageRange': '4', 'ageMonths': 4},
+  {'name': 'IPV — Dose 2', 'ageRange': '4', 'ageMonths': 4},
+  {'name': 'Rotavirus (RV) — Dose 3', 'ageRange': '6', 'ageMonths': 6},
+  {'name': 'DTaP — Dose 3', 'ageRange': '6', 'ageMonths': 6},
+  {'name': 'PCV — Dose 3', 'ageRange': '6', 'ageMonths': 6},
+  {'name': 'Influenza (Flu)', 'ageRange': '6', 'annual': true, 'ageMonths': 6},
+  {'name': 'Hepatitis B (HepB) — Dose 3', 'ageRange': '6–18', 'ageMonths': 6},
+  {'name': 'Hib — Dose 3 or 4', 'ageRange': '12–15', 'ageMonths': 12},
+  {'name': 'PCV — Dose 4', 'ageRange': '12–15', 'ageMonths': 12},
   {
     'name': 'MMR (Measles, Mumps, Rubella)',
-    'ageLabel': '12–15 months',
+    'ageRange': '12–15',
     'ageMonths': 12,
   },
-  {
-    'name': 'Varicella (Chickenpox)',
-    'ageLabel': '12–15 months',
-    'ageMonths': 12,
-  },
-  {
-    'name': 'Hepatitis A (HepA) — Dose 1',
-    'ageLabel': '12–23 months',
-    'ageMonths': 12,
-  },
-  {
-    'name': 'Hepatitis A (HepA) — Dose 2',
-    'ageLabel': '18–23 months',
-    'ageMonths': 18,
-  },
-  {'name': 'DTaP — Dose 4', 'ageLabel': '15–18 months', 'ageMonths': 15},
-  {'name': 'IPV — Dose 3', 'ageLabel': '6–18 months', 'ageMonths': 18},
+  {'name': 'Varicella (Chickenpox)', 'ageRange': '12–15', 'ageMonths': 12},
+  {'name': 'Hepatitis A (HepA) — Dose 1', 'ageRange': '12–23', 'ageMonths': 12},
+  {'name': 'Hepatitis A (HepA) — Dose 2', 'ageRange': '18–23', 'ageMonths': 18},
+  {'name': 'DTaP — Dose 4', 'ageRange': '15–18', 'ageMonths': 15},
+  {'name': 'IPV — Dose 3', 'ageRange': '6–18', 'ageMonths': 18},
 ];

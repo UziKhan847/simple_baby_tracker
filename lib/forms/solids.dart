@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/labels.dart';
 import 'package:simple_baby_tracker/theme/app_icons.dart';
 import 'package:simple_baby_tracker/tracker_event.dart';
 import 'package:simple_baby_tracker/widgets/app_form_scaffold.dart';
@@ -155,7 +156,7 @@ class _SolidsFormState extends State<SolidsForm> {
                   avatar: firstTime
                       ? const AppIcon(AppIcons.sparkle, size: 16)
                       : null,
-                  label: Text(food),
+                  label: Text(foodLabel(food, l)),
                   onDeleted: () => _toggleFood(food),
                 );
               }).toList(),
@@ -172,7 +173,10 @@ class _SolidsFormState extends State<SolidsForm> {
             runSpacing: 4,
             children: suggestions.map((food) {
               return ChoiceChip(
-                label: Text(food, style: const TextStyle(fontSize: 12)),
+                label: Text(
+                  foodLabel(food, l),
+                  style: const TextStyle(fontSize: 12),
+                ),
                 selected: _foods.contains(food),
                 onSelected: (_) => _toggleFood(food),
               );
@@ -264,7 +268,10 @@ class _SolidsFormState extends State<SolidsForm> {
               runSpacing: 4,
               children: solidsReactionSymptoms.map((s) {
                 return ChoiceChip(
-                  label: Text(s, style: const TextStyle(fontSize: 12)),
+                  label: Text(
+                    symptomLabel(s, l),
+                    style: const TextStyle(fontSize: 12),
+                  ),
                   selected: _symptoms.contains(s),
                   onSelected: (sel) => setState(() {
                     sel ? _symptoms.add(s) : _symptoms.remove(s);

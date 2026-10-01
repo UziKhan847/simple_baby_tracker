@@ -926,7 +926,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tipExportData => 'Export data';
 
   @override
-  String get tipExportDataDesc => 'Use the share icon on Home to export all data as JSON.';
+  String get tipExportDataDesc => 'Use the share icon on Home to back up all data and photos in one file.';
 
   @override
   String get babiesTitle => 'Babies';
@@ -1912,4 +1912,359 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quickAddOpenApp => 'Open the app';
+
+  @override
+  String get foodPeanut => 'Peanut';
+
+  @override
+  String get foodEgg => 'Egg';
+
+  @override
+  String get foodDairy => 'Dairy';
+
+  @override
+  String get foodWheat => 'Wheat';
+
+  @override
+  String get foodSoy => 'Soy';
+
+  @override
+  String get foodFish => 'Fish';
+
+  @override
+  String get foodShellfish => 'Shellfish';
+
+  @override
+  String get foodTreeNuts => 'Tree nuts';
+
+  @override
+  String get foodSesame => 'Sesame';
+
+  @override
+  String get foodBanana => 'Banana';
+
+  @override
+  String get foodAvocado => 'Avocado';
+
+  @override
+  String get foodSweetPotato => 'Sweet potato';
+
+  @override
+  String get foodRiceCereal => 'Rice cereal';
+
+  @override
+  String get foodOatmeal => 'Oatmeal';
+
+  @override
+  String get foodCarrot => 'Carrot';
+
+  @override
+  String get foodApple => 'Apple';
+
+  @override
+  String get foodPea => 'Pea';
+
+  @override
+  String get symptomRash => 'Rash';
+
+  @override
+  String get symptomHives => 'Hives';
+
+  @override
+  String get symptomVomiting => 'Vomiting';
+
+  @override
+  String get symptomDiarrhea => 'Diarrhea';
+
+  @override
+  String get symptomSwelling => 'Swelling';
+
+  @override
+  String get doseUnitDrops => 'drops';
+
+  @override
+  String get doseUnitTablets => 'tablets';
+
+  @override
+  String get bottleMaterialPlastic => 'Plastic';
+
+  @override
+  String get bottleMaterialGlass => 'Glass';
+
+  @override
+  String get bottleMaterialSilicone => 'Silicone';
+
+  @override
+  String get bottleMaterialSteel => 'Stainless steel';
+
+  @override
+  String get visitReasonRoutine => 'Routine check-up';
+
+  @override
+  String get visitReasonSick => 'Sick visit';
+
+  @override
+  String get visitReasonVaccination => 'Vaccination';
+
+  @override
+  String get visitReasonSpecialist => 'Specialist';
+
+  @override
+  String get visitReasonFollowUp => 'Follow-up';
+
+  @override
+  String get visitReasonOther => 'Other';
+
+  @override
+  String get pooColourPale => 'Pale';
+
+  @override
+  String get noteTagHappyDay => 'Happy day';
+
+  @override
+  String get noteTagSleptWell => 'Slept well';
+
+  @override
+  String get noteTagFussy => 'Fussy';
+
+  @override
+  String get noteTagNotWell => 'Not feeling well';
+
+  @override
+  String get noteTagFirstTime => 'First time!';
+
+  @override
+  String get noteTagTeething => 'Teething';
+
+  @override
+  String get noteTagGrowthSpurt => 'Growth spurt';
+
+  @override
+  String get noteTagMilestone => 'Milestone';
+
+  @override
+  String get tummyTimeNotesHint => 'e.g. enjoyed it, fussy...';
+
+  @override
+  String get skinSuggestEczema => 'Eczema';
+
+  @override
+  String get skinSuggestDiaperRash => 'Diaper rash';
+
+  @override
+  String get skinSuggestCradleCap => 'Cradle cap';
+
+  @override
+  String get skinSuggestBabyAcne => 'Baby acne';
+
+  @override
+  String get skinSuggestHeatRash => 'Heat rash';
+
+  @override
+  String get skinSuggestDrySkin => 'Dry skin';
+
+  @override
+  String get bodyFace => 'Face';
+
+  @override
+  String get bodyScalp => 'Scalp';
+
+  @override
+  String get bodyNeck => 'Neck';
+
+  @override
+  String get bodyChest => 'Chest';
+
+  @override
+  String get bodyBack => 'Back';
+
+  @override
+  String get bodyArms => 'Arms';
+
+  @override
+  String get bodyHands => 'Hands';
+
+  @override
+  String get bodyDiaperArea => 'Diaper area';
+
+  @override
+  String get bodyLegs => 'Legs';
+
+  @override
+  String get bodyFeet => 'Feet';
+
+  @override
+  String get medSuggestGripeWater => 'Gripe water';
+
+  @override
+  String get medSuggestVitaminD => 'Vitamin D';
+
+  @override
+  String get medSuggestIronDrops => 'Iron drops';
+
+  @override
+  String get medSuggestAntibiotic => 'Antibiotic';
+
+  @override
+  String get medSuggestProbiotic => 'Probiotic';
+
+  @override
+  String vaccinePageTitle(String name) {
+    return '$name — Vaccinations';
+  }
+
+  @override
+  String get vaccineDeleteTitle => 'Delete vaccine record?';
+
+  @override
+  String get vaccineSiteHint => 'e.g. left thigh';
+
+  @override
+  String get vaccineNotesHint => 'e.g. mild fever, fussiness, no reaction...';
+
+  @override
+  String get vaccineNoGivenHint => 'Use the + button or tap \"Mark as given\" in the Schedule tab.';
+
+  @override
+  String get vaccineAgeBirth => 'Birth';
+
+  @override
+  String vaccineAgeMonths(String range) {
+    return '$range months';
+  }
+
+  @override
+  String vaccineAgeMonthsAnnual(String range) {
+    return '$range months (yearly)';
+  }
+
+  @override
+  String get whoTabHeight => 'Height';
+
+  @override
+  String get whoTabHead => 'Head';
+
+  @override
+  String get whoChartFor => 'Chart for:';
+
+  @override
+  String whoAgeRange(String title) {
+    return '$title (0–24 months)';
+  }
+
+  @override
+  String get whoNoDataPoints => 'No data points yet. Log measurements to see your baby on the chart.';
+
+  @override
+  String get whoLatestMeasurement => 'Latest measurement';
+
+  @override
+  String whoApproxPercentile(String value) {
+    return 'Approximate percentile: $value';
+  }
+
+  @override
+  String whoBetween(String low, String high) {
+    return 'between $low and $high';
+  }
+
+  @override
+  String whoMonthsOld(String months) {
+    return '$months months old';
+  }
+
+  @override
+  String get whoDisclaimer => 'These charts are for information only. Always ask your paediatrician to interpret them.';
+
+  @override
+  String get whoMedian => 'P50 (median)';
+
+  @override
+  String get notifChannelName => 'Baby Tracker reminders';
+
+  @override
+  String get notifChannelDesc => 'Feeding, diaper, medication and skin check reminders';
+
+  @override
+  String get notifFeedTitle => 'Time to feed!';
+
+  @override
+  String notifFeedBody(String interval) {
+    return 'No feeding logged in the last $interval.';
+  }
+
+  @override
+  String get notifDiaperTitle => 'Diaper check!';
+
+  @override
+  String notifDiaperBody(String interval) {
+    return 'No diaper change logged in the last $interval.';
+  }
+
+  @override
+  String notifDoseTitle(String name) {
+    return 'Dose due: $name';
+  }
+
+  @override
+  String notifDoseBody(String name) {
+    return 'It\'s time for the next dose of $name.';
+  }
+
+  @override
+  String notifSkinTitle(String name) {
+    return 'Skin check: $name';
+  }
+
+  @override
+  String get notifSkinBody => 'Add today\'s update (and a photo if you like).';
+
+  @override
+  String get timerFeedingNotif => 'Feeding timer running';
+
+  @override
+  String intervalMinutes(String m) {
+    return '$m min';
+  }
+
+  @override
+  String intervalHours(String h) {
+    return '$h h';
+  }
+
+  @override
+  String intervalHoursMinutes(String h, String m) {
+    return '$h h $m min';
+  }
+
+  @override
+  String get settingsRtlActive => 'Right-to-left layout active';
+
+  @override
+  String get measurementHeightIn => 'Length / height (in)';
+
+  @override
+  String get measurementHeadIn => 'Head circumference (in)';
+
+  @override
+  String get growthHeightIn => 'Height (in)';
+
+  @override
+  String get growthHeadIn => 'Head circumference (in)';
+
+  @override
+  String growthHeightValueIn(String value) {
+    return '$value in';
+  }
+
+  @override
+  String growthHeadValueIn(String value) {
+    return 'Head $value in';
+  }
+
+  @override
+  String get settingsLengthUnitNote => 'Length follows the weight unit (cm with kg, inches with lbs)';
+
+  @override
+  String get formulaStoreBrand => 'Store brand';
 }

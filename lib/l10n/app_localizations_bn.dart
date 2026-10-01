@@ -736,10 +736,10 @@ class AppLocalizationsBn extends AppLocalizations {
   String get exportTitle => 'এক্সপোর্ট ও ব্যাকআপ';
 
   @override
-  String get exportJson => 'JSON হিসেবে এক্সপোর্ট';
+  String get exportJson => 'ব্যাকআপ এক্সপোর্ট করুন';
 
   @override
-  String get exportJsonDesc => 'ব্যাকআপের জন্য কাঁচা ডেটা';
+  String get exportJsonDesc => 'সব ডেটা ও ছবি একটি .zip ফাইলে';
 
   @override
   String get exportPdf => 'PDF হিসেবে এক্সপোর্ট';
@@ -748,10 +748,10 @@ class AppLocalizationsBn extends AppLocalizations {
   String get exportPdfDesc => 'আপনার শিশু বিশেষজ্ঞের জন্য পাঠযোগ্য সারাংশ';
 
   @override
-  String get importJson => 'JSON থেকে ইম্পোর্ট করুন';
+  String get importJson => 'ব্যাকআপ পুনরুদ্ধার করুন';
 
   @override
-  String get importJsonDesc => 'ব্যাকআপ ফাইল থেকে পুনরুদ্ধার করুন';
+  String get importJsonDesc => '.zip ব্যাকআপ থেকে (বা পুরোনো .json এক্সপোর্ট থেকে)';
 
   @override
   String get importDialogTitle => 'ডেটা ইম্পোর্ট করবেন?';
@@ -889,7 +889,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsTempUnit => 'তাপমাত্রার একক';
 
   @override
-  String get settingsVolumeUnit => 'Milk volume unit';
+  String get settingsVolumeUnit => 'দুধের পরিমাণের একক';
 
   @override
   String get settingsLanguage => 'ভাষা';
@@ -928,7 +928,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get tipExportData => 'ডেটা এক্সপোর্ট করুন';
 
   @override
-  String get tipExportDataDesc => 'হোম স্ক্রিনের শেয়ার আইকন ব্যবহার করে সব ডেটা JSON আকারে এক্সপোর্ট করুন।';
+  String get tipExportDataDesc => 'সব ডেটা ও ছবি একটি ফাইলে ব্যাকআপ করতে হোমে শেয়ার আইকন ব্যবহার করুন।';
 
   @override
   String get babiesTitle => 'শিশু';
@@ -1013,10 +1013,10 @@ class AppLocalizationsBn extends AppLocalizations {
   String get graphsMilkPerDay => 'প্রতিদিন দুধ (মিলি)';
 
   @override
-  String get graphsMilkPerDayMl => 'Milk per day (ml)';
+  String get graphsMilkPerDayMl => 'দৈনিক দুধ (ml)';
 
   @override
-  String get graphsMilkPerDayOz => 'Milk per day (oz)';
+  String get graphsMilkPerDayOz => 'দৈনিক দুধ (oz)';
 
   @override
   String get graphsSleepPerDay => 'প্রতিদিন ঘুম (ঘণ্টা)';
@@ -1117,10 +1117,10 @@ class AppLocalizationsBn extends AppLocalizations {
   String get summaryMilkLabel => 'দুধ মিলি';
 
   @override
-  String get summaryMilkLabelMl => 'Milk ml';
+  String get summaryMilkLabelMl => 'দুধ ml';
 
   @override
-  String get summaryMilkLabelOz => 'Milk oz';
+  String get summaryMilkLabelOz => 'দুধ oz';
 
   @override
   String get summaryBreastLabel => 'স্তন্যপান মি';
@@ -1147,33 +1147,33 @@ class AppLocalizationsBn extends AppLocalizations {
   String get whoChartsEntry => 'WHO বৃদ্ধি চার্ট';
 
   @override
-  String get medicationEditTitle => 'Edit medication';
+  String get medicationEditTitle => 'ঔষধ সম্পাদনা';
 
   @override
-  String get medicationLogTitle => 'Log medication';
+  String get medicationLogTitle => 'ঔষধ লগ করুন';
 
   @override
-  String get medicationYourCourses => 'Your courses';
+  String get medicationYourCourses => 'আপনার চিকিৎসা';
 
   @override
-  String get medicationManageCourses => 'Manage courses';
+  String get medicationManageCourses => 'চিকিৎসা পরিচালনা';
 
   @override
-  String get medicationNameRequired => 'Medication name *';
+  String get medicationNameRequired => 'ঔষধের নাম *';
 
   @override
-  String get medicationDosageWarning => 'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.';
+  String get medicationDosageWarning => 'সবসময় ওজন/বয়স অনুযায়ী ডোজ দিন। প্রস্তাবিত সংখ্যার বেশি দেবেন না।';
 
   @override
-  String get medicationNotesOptional => 'Notes (optional)';
+  String get medicationNotesOptional => 'নোট (ঐচ্ছিক)';
 
   @override
   String timeAgoMinutes(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count minutes ago',
-      one: '1 minute ago',
+      other: '$count মিনিট আগে',
+      one: '1 মিনিট আগে',
     );
     return '$_temp0';
   }
@@ -1183,8 +1183,8 @@ class AppLocalizationsBn extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count hours ago',
-      one: '1 hour ago',
+      other: '$count ঘণ্টা আগে',
+      one: '1 ঘণ্টা আগে',
     );
     return '$_temp0';
   }
@@ -1194,228 +1194,228 @@ class AppLocalizationsBn extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days ago',
-      one: '1 day ago',
+      other: '$count দিন আগে',
+      one: '1 দিন আগে',
     );
     return '$_temp0';
   }
 
   @override
   String medicationLastGivenAgo(String ago) {
-    return 'Last given $ago';
+    return 'শেষ দেওয়া হয়েছে $ago';
   }
 
   @override
-  String get medicationNeverGiven => 'Not given yet';
+  String get medicationNeverGiven => 'এখনও দেওয়া হয়নি';
 
   @override
   String medicationDosesToday(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count doses today',
-      one: '1 dose today',
-      zero: 'No doses today',
+      other: 'আজ $countটি ডোজ',
+      one: 'আজ 1টি ডোজ',
+      zero: 'আজ কোনো ডোজ নেই',
     );
     return '$_temp0';
   }
 
   @override
   String medicationTooSoonWarning(int hours) {
-    return 'Next dose isn\'t due for ${hours}h after the last one';
+    return 'পরের ডোজ আগেরটির $hours ঘণ্টা পরে দিতে হবে';
   }
 
   @override
   String medicationMaxPerDayWarning(int max) {
-    return 'Already at the $max/day limit for this course';
+    return 'এই চিকিৎসার দৈনিক $max সীমা ইতিমধ্যে পূর্ণ';
   }
 
   @override
-  String get medicationEditCourse => 'Edit course';
+  String get medicationEditCourse => 'চিকিৎসা সম্পাদনা';
 
   @override
-  String get medicationNewCourse => 'New course';
+  String get medicationNewCourse => 'নতুন চিকিৎসা';
 
   @override
-  String get medicationReasonOptional => 'Reason (optional)';
+  String get medicationReasonOptional => 'কারণ (ঐচ্ছিক)';
 
   @override
-  String get medicationIntervalHoursOptional => 'Repeat every (hours, optional)';
+  String get medicationIntervalHoursOptional => 'প্রতি কত ঘণ্টায় (ঐচ্ছিক)';
 
   @override
-  String get medicationMaxPerDayOptional => 'Max doses/day (optional)';
+  String get medicationMaxPerDayOptional => 'দৈনিক সর্বোচ্চ ডোজ (ঐচ্ছিক)';
 
   @override
-  String get medicationRemindNextDose => 'Remind me when the next dose is due';
+  String get medicationRemindNextDose => 'পরের ডোজের সময় মনে করিয়ে দিন';
 
   @override
   String medicationEndCourseTitle(String name) {
-    return 'End $name?';
+    return '$name শেষ করবেন?';
   }
 
   @override
-  String get medicationEndCoursePrompt => 'How did it go?';
+  String get medicationEndCoursePrompt => 'কেমন হলো?';
 
   @override
-  String get medicationDeleteCourseTitle => 'Delete this course?';
+  String get medicationDeleteCourseTitle => 'এই চিকিৎসা মুছবেন?';
 
   @override
-  String get medicationResultWorked => 'Worked';
+  String get medicationResultWorked => 'কাজ করেছে';
 
   @override
-  String get medicationResultPartlyWorked => 'Partly worked';
+  String get medicationResultPartlyWorked => 'কিছুটা কাজ করেছে';
 
   @override
-  String get medicationResultDidntWork => 'Didn\'t work';
+  String get medicationResultDidntWork => 'কাজ করেনি';
 
   @override
-  String get medicationResultSideEffects => 'Side effects';
+  String get medicationResultSideEffects => 'পার্শ্বপ্রতিক্রিয়া';
 
   @override
-  String get medicationResultNone => 'Not rated';
+  String get medicationResultNone => 'মূল্যায়ন নেই';
 
   @override
-  String get medicationsTitle => 'Medications';
+  String get medicationsTitle => 'ঔষধ';
 
   @override
   String medicationActiveTab(int count) {
-    return 'Active ($count)';
+    return 'চলমান ($count)';
   }
 
   @override
   String medicationPastTab(int count) {
-    return 'Past ($count)';
+    return 'আগের ($count)';
   }
 
   @override
-  String get medicationNoActiveCourses => 'No active medication courses.\nStart one with the + button.';
+  String get medicationNoActiveCourses => 'কোনো চলমান চিকিৎসা নেই।\n+ বোতাম দিয়ে শুরু করুন।';
 
   @override
-  String get medicationNoPastCourses => 'No past courses yet.';
+  String get medicationNoPastCourses => 'এখনও কোনো আগের চিকিৎসা নেই।';
 
   @override
   String medicationTimesGiven(int count) {
-    return 'Given $count×';
+    return '$count× দেওয়া হয়েছে';
   }
 
   @override
   String medicationLastGivenShort(String date) {
-    return 'Last: $date';
+    return 'শেষ: $date';
   }
 
   @override
   String medicationNextDueShort(String time) {
-    return 'Next due $time';
+    return 'পরের $time';
   }
 
   @override
-  String get medicationEndCourse => 'End course';
+  String get medicationEndCourse => 'চিকিৎসা শেষ করুন';
 
   @override
   String feedLastSideHint(String side) {
-    return 'Last time: $side';
+    return 'গতবার: $side';
   }
 
   @override
-  String get feedSideLeft => 'Left';
+  String get feedSideLeft => 'বাম';
 
   @override
-  String get feedSideRight => 'Right';
+  String get feedSideRight => 'ডান';
 
   @override
-  String get feedSideBoth => 'Both';
+  String get feedSideBoth => 'দুটোই';
 
   @override
-  String get feedSideLeftMinutes => 'Left (min)';
+  String get feedSideLeftMinutes => 'বাম (মিনিট)';
 
   @override
-  String get feedSideRightMinutes => 'Right (min)';
+  String get feedSideRightMinutes => 'ডান (মিনিট)';
 
   @override
-  String get timeAgoJustNow => 'Just now';
+  String get timeAgoJustNow => 'এইমাত্র';
 
   @override
-  String get timeUntilOverdue => 'Overdue';
+  String get timeUntilOverdue => 'সময় পেরিয়ে গেছে';
 
   @override
   String timeUntilMinutes(int count) {
-    return 'in ${count}m';
+    return '$count মিনিটে';
   }
 
   @override
   String timeUntilHours(int count) {
-    return 'in ${count}h';
+    return '$count ঘণ্টায়';
   }
 
   @override
   String timeUntilDays(int count) {
-    return 'in ${count}d';
+    return '$count দিনে';
   }
 
   @override
-  String get timerDiscardTitle => 'Discard this timer?';
+  String get timerDiscardTitle => 'এই টাইমার বাতিল করবেন?';
 
   @override
-  String get timerDiscard => 'Discard';
+  String get timerDiscard => 'বাতিল';
 
   @override
   String timerFeedingRunning(String side) {
-    return 'Feeding · $side';
+    return 'খাওয়ানো · $side';
   }
 
   @override
-  String get timerSleepRunning => 'Sleep timer running';
+  String get timerSleepRunning => 'ঘুমের টাইমার চলছে';
 
   @override
-  String get timerSwitchSide => 'Switch side';
+  String get timerSwitchSide => 'পাশ বদলান';
 
   @override
-  String get timerStop => 'Stop';
+  String get timerStop => 'থামান';
 
   @override
-  String get sinceLastFeed => 'Last feed';
+  String get sinceLastFeed => 'শেষ খাওয়া';
 
   @override
-  String get sinceLastDiaper => 'Last diaper';
+  String get sinceLastDiaper => 'শেষ ডায়াপার';
 
   @override
-  String get sinceAwake => 'Awake';
+  String get sinceAwake => 'জেগে আছে';
 
   @override
-  String get sinceAsleep => 'Asleep';
+  String get sinceAsleep => 'ঘুমিয়ে আছে';
 
   @override
   String nextDoseDue(String name) {
-    return '$name due';
+    return '$name-এর সময়';
   }
 
   @override
-  String get weighConditionNaked => 'Naked';
+  String get weighConditionNaked => 'পোশাক ছাড়া';
 
   @override
-  String get weighConditionDiaper => 'Diaper only';
+  String get weighConditionDiaper => 'শুধু ডায়াপার';
 
   @override
-  String get weighConditionLightClothes => 'Light clothes';
+  String get weighConditionLightClothes => 'হালকা পোশাক';
 
   @override
-  String get weighConditionDressed => 'Dressed';
+  String get weighConditionDressed => 'পোশাক পরে';
 
   @override
-  String get weighCondition => 'Weighed wearing';
+  String get weighCondition => 'ওজনের সময় পরনে';
 
   @override
-  String get growthMeasurementsOptional => 'Other measurements (optional)';
+  String get growthMeasurementsOptional => 'অন্যান্য মাপ (ঐচ্ছিক)';
 
   @override
-  String get growthHeightCm => 'Height (cm)';
+  String get growthHeightCm => 'উচ্চতা (cm)';
 
   @override
-  String get growthHeadCm => 'Head circumference (cm)';
+  String get growthHeadCm => 'মাথার পরিধি (cm)';
 
   @override
   String weighConditionChangedWarning(String condition) {
-    return 'Last time was weighed $condition — the difference may not be just growth';
+    return 'গতবার ওজন নেওয়া হয়েছিল $condition — পার্থক্যটা শুধু বৃদ্ধির কারণে নাও হতে পারে';
   }
 
   @override
@@ -1425,80 +1425,80 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String growthHeadValue(String cm) {
-    return 'Head $cm cm';
+    return 'মাথা $cm cm';
   }
 
   @override
-  String get growthHeightOverTime => 'Height over time';
+  String get growthHeightOverTime => 'সময়ের সাথে উচ্চতা';
 
   @override
-  String get growthHeadOverTime => 'Head circumference over time';
+  String get growthHeadOverTime => 'সময়ের সাথে মাথার পরিধি';
 
   @override
-  String get graphsRecentWeighIns => 'Recent weigh-ins';
+  String get graphsRecentWeighIns => 'সাম্প্রতিক ওজন';
 
   @override
-  String get solidsAmountFewSpoons => 'A few spoons';
+  String get solidsAmountFewSpoons => 'কয়েক চামচ';
 
   @override
-  String get solidsAmountHalf => 'Half a portion';
+  String get solidsAmountHalf => 'অর্ধেক পরিমাণ';
 
   @override
-  String get solidsAmountFull => 'Full portion';
+  String get solidsAmountFull => 'পুরো পরিমাণ';
 
   @override
-  String get solidsAmountTaste => 'Just a taste';
+  String get solidsAmountTaste => 'শুধু চেখেছে';
 
   @override
-  String get solidsReactionMild => 'Mild reaction';
+  String get solidsReactionMild => 'হালকা প্রতিক্রিয়া';
 
   @override
-  String get solidsReactionAllergic => 'Allergic reaction';
+  String get solidsReactionAllergic => 'অ্যালার্জির প্রতিক্রিয়া';
 
   @override
-  String get solidsReactionNone => 'No reaction';
+  String get solidsReactionNone => 'কোনো প্রতিক্রিয়া নেই';
 
   @override
-  String get solidsEditTitle => 'Edit solid food';
+  String get solidsEditTitle => 'শক্ত খাবার সম্পাদনা';
 
   @override
-  String get solidsLogTitle => 'Log solid food';
+  String get solidsLogTitle => 'শক্ত খাবার লগ করুন';
 
   @override
-  String get solidsFoodsLabel => 'Foods';
+  String get solidsFoodsLabel => 'খাবার';
 
   @override
-  String get solidsAddFoodHint => 'Add a food';
+  String get solidsAddFoodHint => 'খাবার যোগ করুন';
 
   @override
-  String get solidsAmount => 'Amount';
+  String get solidsAmount => 'পরিমাণ';
 
   @override
-  String get solidsLiked => 'How did they like it?';
+  String get solidsLiked => 'পছন্দ হয়েছে?';
 
   @override
-  String get solidsReaction => 'Reaction';
+  String get solidsReaction => 'প্রতিক্রিয়া';
 
   @override
-  String get solidsNotesOptional => 'Notes (optional)';
+  String get solidsNotesOptional => 'নোট (ঐচ্ছিক)';
 
   @override
-  String get foodsTitle => 'Foods tried';
+  String get foodsTitle => 'চেখে দেখা খাবার';
 
   @override
-  String get foodsEmpty => 'No solid foods logged yet.';
+  String get foodsEmpty => 'এখনও কোনো শক্ত খাবার লগ করা হয়নি।';
 
   @override
-  String get foodsAllergensNotYet => 'Common allergens not yet introduced';
+  String get foodsAllergensNotYet => 'সাধারণ অ্যালার্জেন যা এখনও দেওয়া হয়নি';
 
   @override
   String foodsTriedCount(int count) {
-    return '$count foods tried';
+    return '$countটি খাবার চেখেছে';
   }
 
   @override
   String foodsFirstTried(String date) {
-    return 'First: $date';
+    return 'প্রথম: $date';
   }
 
   @override
@@ -1507,217 +1507,217 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get entryTypeSolids => 'Solid food';
+  String get entryTypeSolids => 'শক্ত খাবার';
 
   @override
-  String get feedAmountOz => 'Amount (oz)';
+  String get feedAmountOz => 'পরিমাণ (oz)';
 
   @override
   String notifFeedingReminderDescInterval(String interval) {
-    return 'Remind me $interval after the last feed';
+    return 'শেষ খাওয়ার $interval পরে মনে করিয়ে দিন';
   }
 
   @override
   String notifDiaperReminderDescInterval(String interval) {
-    return 'Remind me $interval after the last diaper';
+    return 'শেষ ডায়াপারের $interval পরে মনে করিয়ে দিন';
   }
 
   @override
   String notifIntervalEvery(String interval) {
-    return 'Every $interval';
+    return 'প্রতি $interval';
   }
 
   @override
-  String get notifIntervalTitle => 'Reminder interval';
+  String get notifIntervalTitle => 'রিমাইন্ডারের ব্যবধান';
 
   @override
-  String get notifIntervalHours => 'Hours';
+  String get notifIntervalHours => 'ঘণ্টা';
 
   @override
-  String get notifIntervalMinutes => 'Minutes';
+  String get notifIntervalMinutes => 'মিনিট';
 
   @override
   String notifIntervalTooShort(int minutes) {
-    return 'At least $minutes minutes';
+    return 'অন্তত $minutes মিনিট';
   }
 
   @override
-  String get settingsFeeding => 'Feeding';
+  String get settingsFeeding => 'খাওয়ানো';
 
   @override
-  String get settingsTrackBottles => 'Track bottles';
+  String get settingsTrackBottles => 'বোতল ট্র্যাক করুন';
 
   @override
-  String get settingsTrackBottlesDesc => 'Pick which bottle was used, and how much was prepared vs drunk';
+  String get settingsTrackBottlesDesc => 'কোন বোতল ব্যবহার হলো, এবং কতটা তৈরি হলো আর কতটা খেল তা বেছে নিন';
 
   @override
-  String get bottlesTitle => 'My bottles';
+  String get bottlesTitle => 'আমার বোতল';
 
   @override
-  String get bottlesEmpty => 'No bottles yet.\nAdd the bottles you use so you can pick one when logging a feed.';
+  String get bottlesEmpty => 'এখনও কোনো বোতল নেই।\nআপনার বোতলগুলো যোগ করুন যাতে খাওয়ানো লগ করার সময় একটি বেছে নিতে পারেন।';
 
   @override
-  String get bottleAdd => 'Add bottle';
+  String get bottleAdd => 'বোতল যোগ করুন';
 
   @override
-  String get bottleEdit => 'Edit bottle';
+  String get bottleEdit => 'বোতল সম্পাদনা';
 
   @override
-  String get bottleLabel => 'Label / number (e.g. #3)';
+  String get bottleLabel => 'লেবেল / নম্বর (যেমন #3)';
 
   @override
-  String get bottleBrand => 'Brand / type (optional)';
+  String get bottleBrand => 'ব্র্যান্ড / ধরন (ঐচ্ছিক)';
 
   @override
-  String get bottleCapacity => 'Capacity (optional)';
+  String get bottleCapacity => 'ধারণক্ষমতা (ঐচ্ছিক)';
 
   @override
-  String get bottleNipple => 'Nipple size / flow (optional)';
+  String get bottleNipple => 'নিপলের আকার / প্রবাহ (ঐচ্ছিক)';
 
   @override
-  String get bottleMaterial => 'Material';
+  String get bottleMaterial => 'উপাদান';
 
   @override
-  String get bottleRetired => 'Retired';
+  String get bottleRetired => 'ব্যবহার বন্ধ';
 
   @override
-  String get bottleRetire => 'Retire';
+  String get bottleRetire => 'ব্যবহার বন্ধ করুন';
 
   @override
-  String get bottleUnretire => 'Use again';
+  String get bottleUnretire => 'আবার ব্যবহার করুন';
 
   @override
   String bottleDeleteTitle(String name) {
-    return 'Delete $name?';
+    return '$name মুছবেন?';
   }
 
   @override
-  String get bottleDeleteBody => 'Past feeds keep their amounts but will no longer show this bottle. To hide it from the picker but keep history, use Retire instead.';
+  String get bottleDeleteBody => 'আগের খাওয়ানোগুলো পরিমাণ রাখবে কিন্তু এই বোতল আর দেখাবে না। ইতিহাস রেখে তালিকা থেকে লুকাতে \"ব্যবহার বন্ধ করুন\" বেছে নিন।';
 
   @override
-  String get feedPrepared => 'Prepared';
+  String get feedPrepared => 'তৈরি';
 
   @override
-  String get feedDrank => 'Drank';
+  String get feedDrank => 'খেয়েছে';
 
   @override
   String feedLeftover(String amount) {
-    return '$amount left over';
+    return '$amount বাকি';
   }
 
   @override
-  String get feedDrankMoreThanPrepared => 'More than was prepared?';
+  String get feedDrankMoreThanPrepared => 'তৈরির চেয়ে বেশি?';
 
   @override
-  String get feedWhichBottle => 'Which bottle?';
+  String get feedWhichBottle => 'কোন বোতল?';
 
   @override
-  String get feedNoBottlesYet => 'No bottles yet — add them in Settings → My bottles.';
+  String get feedNoBottlesYet => 'এখনও কোনো বোতল নেই — সেটিংস → আমার বোতল-এ যোগ করুন।';
 
   @override
-  String get photoPrivacyTitle => 'Your photos stay on this phone';
+  String get photoPrivacyTitle => 'আপনার ছবি এই ফোনেই থাকে';
 
   @override
-  String get photoPrivacyBody => 'Photos are saved only inside this app on this device. The app has no internet access, so nothing is ever uploaded or shared unless you export a backup yourself.\n\nAndroid may ask for camera access the first time you take a photo.';
+  String get photoPrivacyBody => 'ছবি শুধু এই ডিভাইসে এই অ্যাপের ভেতরে সংরক্ষিত হয়। অ্যাপটির ইন্টারনেট অ্যাক্সেস নেই, তাই আপনি নিজে ব্যাকআপ এক্সপোর্ট না করলে কিছুই আপলোড বা শেয়ার হয় না।\n\nপ্রথমবার ছবি তোলার সময় Android ক্যামেরার অনুমতি চাইতে পারে।';
 
   @override
-  String get photoPrivacyContinue => 'Continue';
+  String get photoPrivacyContinue => 'চালিয়ে যান';
 
   @override
-  String get photoTakePhoto => 'Take a photo';
+  String get photoTakePhoto => 'ছবি তুলুন';
 
   @override
-  String get photoChooseFromGallery => 'Choose from gallery';
+  String get photoChooseFromGallery => 'গ্যালারি থেকে বাছুন';
 
   @override
-  String get photoCaption => 'Caption';
+  String get photoCaption => 'ক্যাপশন';
 
   @override
-  String get photoCompare => 'First vs latest';
+  String get photoCompare => 'প্রথম বনাম সর্বশেষ';
 
   @override
-  String get photoAddOtherDay => 'Add for another day';
+  String get photoAddOtherDay => 'অন্য দিনের জন্য যোগ করুন';
 
   @override
-  String get photoEmpty => 'No photos yet.\nTake one photo a day and watch your baby grow.';
+  String get photoEmpty => 'এখনও কোনো ছবি নেই।\nপ্রতিদিন একটি ছবি তুলুন আর শিশুকে বড় হতে দেখুন।';
 
   @override
-  String get photoToday => 'Today\'s photo';
+  String get photoToday => 'আজকের ছবি';
 
   @override
-  String get photoAddToday => 'Add today\'s photo';
+  String get photoAddToday => 'আজকের ছবি যোগ করুন';
 
   @override
-  String get photoReplace => 'Replace';
+  String get photoReplace => 'বদলান';
 
   @override
-  String get photoDeleteTitle => 'Delete this photo?';
+  String get photoDeleteTitle => 'এই ছবি মুছবেন?';
 
   @override
-  String get ageBeforeBirth => 'Before birth';
+  String get ageBeforeBirth => 'জন্মের আগে';
 
   @override
   String ageDays(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days old',
-      one: '1 day old',
-      zero: 'Birth day',
+      other: '$count দিন বয়স',
+      one: '1 দিন বয়স',
+      zero: 'জন্মদিন',
     );
     return '$_temp0';
   }
 
   @override
   String ageMonthsDays(int months, int days) {
-    return '$months mo $days d';
+    return '$months মাস $days দিন';
   }
 
   @override
   String ageYearsMonths(int years, int months) {
-    return '$years yr $months mo';
+    return '$years বছর $months মাস';
   }
 
   @override
-  String get navMemories => 'Memories';
+  String get navMemories => 'স্মৃতি';
 
   @override
-  String get memoriesTabPhotos => 'Photos';
+  String get memoriesTabPhotos => 'ছবি';
 
   @override
-  String get milestoneNoAchievedHint => 'Tap \"Upcoming\" to log a preset,\nor use the button below for a custom one.';
+  String get milestoneNoAchievedHint => 'তৈরি করা মাইলস্টোন লগ করতে \"আসন্ন\" ট্যাপ করুন,\nবা নিজের জন্য নিচের বোতাম ব্যবহার করুন।';
 
   @override
-  String get skinTitle => 'Skin conditions';
+  String get skinTitle => 'ত্বকের সমস্যা';
 
   @override
-  String get skinNew => 'New skin condition';
+  String get skinNew => 'নতুন ত্বকের সমস্যা';
 
   @override
-  String get skinEdit => 'Edit skin condition';
+  String get skinEdit => 'ত্বকের সমস্যা সম্পাদনা';
 
   @override
   String skinTabActive(int count) {
-    return 'Active ($count)';
+    return 'চলমান ($count)';
   }
 
   @override
   String skinTabHealed(int count) {
-    return 'Healed ($count)';
+    return 'সেরে গেছে ($count)';
   }
 
   @override
-  String get skinEmptyActive => 'No skin conditions being tracked.\nTap + to start one — you can add a photo each day to show the doctor how it\'s changing.';
+  String get skinEmptyActive => 'কোনো ত্বকের সমস্যা ট্র্যাক হচ্ছে না।\nশুরু করতে + ট্যাপ করুন — ডাক্তারকে পরিবর্তন দেখাতে প্রতিদিন একটি ছবি যোগ করতে পারেন।';
 
   @override
-  String get skinEmptyHealed => 'Nothing healed yet.';
+  String get skinEmptyHealed => 'এখনও কিছু সারেনি।';
 
   @override
-  String get skinUpdateDue => 'Update today';
+  String get skinUpdateDue => 'আজ আপডেট করুন';
 
   @override
   String skinSince(String date) {
-    return 'Since $date';
+    return '$date থেকে';
   }
 
   @override
@@ -1725,195 +1725,550 @@ class AppLocalizationsBn extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days',
-      one: '1 day',
+      other: '$count দিন',
+      one: '1 দিন',
     );
     return '$_temp0';
   }
 
   @override
   String skinHealedOn(String date) {
-    return 'Healed $date';
+    return '$date-এ সেরেছে';
   }
 
   @override
   String skinReminderAt(String time) {
-    return 'Daily reminder at $time';
+    return 'প্রতিদিন $time-এ রিমাইন্ডার';
   }
 
   @override
-  String get skinSeverityTrend => 'Severity over time';
+  String get skinSeverityTrend => 'সময়ের সাথে তীব্রতা';
 
   @override
-  String get skinNoUpdates => 'No updates yet. Add today\'s to start the timeline.';
+  String get skinNoUpdates => 'এখনও কোনো আপডেট নেই। টাইমলাইন শুরু করতে আজকেরটি যোগ করুন।';
 
   @override
-  String get skinExportPdf => 'Export for doctor (PDF)';
+  String get skinExportPdf => 'ডাক্তারের জন্য এক্সপোর্ট (PDF)';
 
   @override
-  String get skinMarkHealed => 'Mark healed';
+  String get skinMarkHealed => 'সেরে গেছে চিহ্নিত করুন';
 
   @override
-  String get skinReopen => 'Mark active again';
+  String get skinReopen => 'আবার চলমান চিহ্নিত করুন';
 
   @override
-  String get skinUpdateToday => 'Add today\'s update';
+  String get skinUpdateToday => 'আজকের আপডেট যোগ করুন';
 
   @override
-  String get skinEditToday => 'Edit today\'s update';
+  String get skinEditToday => 'আজকের আপডেট সম্পাদনা';
 
   @override
   String skinDeleteTitle(String name) {
-    return 'Delete $name and all its updates?';
+    return '$name ও এর সব আপডেট মুছবেন?';
   }
 
   @override
-  String get skinDeleteUpdateTitle => 'Delete this update?';
+  String get skinDeleteUpdateTitle => 'এই আপডেট মুছবেন?';
 
   @override
   String skinTreatmentValue(String treatment) {
-    return 'Treatment: $treatment';
+    return 'চিকিৎসা: $treatment';
   }
 
   @override
-  String get skinName => 'Condition *';
+  String get skinName => 'সমস্যা *';
 
   @override
-  String get skinBodyArea => 'Where on the body?';
+  String get skinBodyArea => 'শরীরের কোথায়?';
 
   @override
-  String get skinBegan => 'Began on';
+  String get skinBegan => 'শুরু হয়েছে';
 
   @override
-  String get skinRemindDaily => 'Remind me to update it daily';
+  String get skinRemindDaily => 'প্রতিদিন আপডেট করতে মনে করিয়ে দিন';
 
   @override
-  String get skinReminderTime => 'Reminder time';
+  String get skinReminderTime => 'রিমাইন্ডারের সময়';
 
   @override
-  String get skinUpdateTitle => 'Skin update';
+  String get skinUpdateTitle => 'ত্বকের আপডেট';
 
   @override
-  String get skinSeverity => 'How does it look?';
+  String get skinSeverity => 'দেখতে কেমন?';
 
   @override
-  String get skinSeverity0 => '0 · Clear';
+  String get skinSeverity0 => '0 · পরিষ্কার';
 
   @override
-  String get skinSeverity1 => '1 · Mild';
+  String get skinSeverity1 => '1 · হালকা';
 
   @override
-  String get skinSeverity2 => '2 · Moderate';
+  String get skinSeverity2 => '2 · মাঝারি';
 
   @override
-  String get skinSeverity3 => '3 · Severe';
+  String get skinSeverity3 => '3 · গুরুতর';
 
   @override
-  String get skinSeverity4 => '4 · Very severe';
+  String get skinSeverity4 => '4 · খুব গুরুতর';
 
   @override
-  String get skinTreatment => 'Treatment (optional)';
+  String get skinTreatment => 'চিকিৎসা (ঐচ্ছিক)';
 
   @override
-  String get skinTreatmentHint => 'e.g. moisturiser, hydrocortisone 1%';
+  String get skinTreatmentHint => 'যেমন ময়েশ্চারাইজার, হাইড্রোকর্টিসোন 1%';
 
   @override
-  String get skinAddPhoto => 'Add a photo';
+  String get skinAddPhoto => 'ছবি যোগ করুন';
 
   @override
-  String get skinCardNone => 'Track a rash, eczema or other skin condition day by day, with photos for the doctor';
+  String get skinCardNone => 'র‍্যাশ, একজিমা বা অন্য ত্বকের সমস্যা দিনে দিনে ট্র্যাক করুন, ডাক্তারের জন্য ছবিসহ';
 
   @override
   String skinCardDue(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count need today\'s update',
-      one: '1 needs today\'s update',
+      other: '$countটির আজকের আপডেট দরকার',
+      one: '1টির আজকের আপডেট দরকার',
     );
     return '$_temp0';
   }
 
   @override
-  String get backupPreparing => 'Preparing backup…';
+  String get backupPreparing => 'ব্যাকআপ তৈরি হচ্ছে…';
 
   @override
-  String get backupFailed => 'Couldn\'t create the backup.';
+  String get backupFailed => 'ব্যাকআপ তৈরি করা যায়নি।';
 
   @override
-  String get backupSavedTo => 'Backup saved to:';
+  String get backupSavedTo => 'ব্যাকআপ সংরক্ষিত হয়েছে:';
 
   @override
-  String get backupShareSubject => 'Baby Tracker backup';
+  String get backupShareSubject => 'Baby Tracker ব্যাকআপ';
 
   @override
   String importIncludesPhotos(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Includes $count photos.',
-      one: 'Includes 1 photo.',
+      other: '$countটি ছবি আছে।',
+      one: '1টি ছবি আছে।',
     );
     return '$_temp0';
   }
 
   @override
-  String get widgetFeed => 'Feed';
+  String get widgetFeed => 'খাওয়ানো';
 
   @override
-  String get widgetStopFeed => 'Stop feed';
+  String get widgetStopFeed => 'খাওয়ানো থামান';
 
   @override
-  String get widgetDiaper => 'Diaper';
+  String get widgetDiaper => 'ডায়াপার';
 
   @override
-  String get widgetSleep => 'Sleep';
+  String get widgetSleep => 'ঘুম';
 
   @override
-  String get widgetWakeUp => 'Woke up';
+  String get widgetWakeUp => 'জেগেছে';
 
   @override
   String widgetFeedingFor(String duration) {
-    return 'Feeding $duration';
+    return 'খাচ্ছে $duration';
   }
 
   @override
   String widgetFedAgo(String ago) {
-    return 'Fed $ago';
+    return 'খেয়েছে $ago';
   }
 
   @override
-  String get widgetNoFeedsYet => 'No feeds yet';
+  String get widgetNoFeedsYet => 'এখনও খাওয়ানো হয়নি';
 
   @override
   String widgetChangedAgo(String ago) {
-    return 'Changed $ago';
+    return 'বদলানো $ago';
   }
 
   @override
-  String get widgetNoDiapersYet => 'No diapers yet';
+  String get widgetNoDiapersYet => 'এখনও ডায়াপার নেই';
 
   @override
   String widgetAsleepFor(String duration) {
-    return 'Asleep $duration';
+    return 'ঘুমাচ্ছে $duration';
   }
 
   @override
   String widgetAwakeFor(String ago) {
-    return 'Woke $ago';
+    return 'জেগেছে $ago';
   }
 
   @override
-  String get widgetStopSleepFirst => 'Stop the sleep timer first';
+  String get widgetStopSleepFirst => 'আগে ঘুমের টাইমার থামান';
 
   @override
-  String get widgetStopFeedFirst => 'Stop the feeding timer first';
+  String get widgetStopFeedFirst => 'আগে খাওয়ানোর টাইমার থামান';
 
   @override
   String quickAddTitle(String name) {
-    return 'Add for $name';
+    return '$name-এর জন্য যোগ করুন';
   }
 
   @override
-  String get quickAddOpenApp => 'Open the app';
+  String get quickAddOpenApp => 'অ্যাপ খুলুন';
+
+  @override
+  String get foodPeanut => 'চিনাবাদাম';
+
+  @override
+  String get foodEgg => 'ডিম';
+
+  @override
+  String get foodDairy => 'দুগ্ধজাত';
+
+  @override
+  String get foodWheat => 'গম';
+
+  @override
+  String get foodSoy => 'সয়া';
+
+  @override
+  String get foodFish => 'মাছ';
+
+  @override
+  String get foodShellfish => 'চিংড়ি / খোলসযুক্ত মাছ';
+
+  @override
+  String get foodTreeNuts => 'বাদাম';
+
+  @override
+  String get foodSesame => 'তিল';
+
+  @override
+  String get foodBanana => 'কলা';
+
+  @override
+  String get foodAvocado => 'অ্যাভোকাডো';
+
+  @override
+  String get foodSweetPotato => 'মিষ্টি আলু';
+
+  @override
+  String get foodRiceCereal => 'চালের সুজি';
+
+  @override
+  String get foodOatmeal => 'ওটস';
+
+  @override
+  String get foodCarrot => 'গাজর';
+
+  @override
+  String get foodApple => 'আপেল';
+
+  @override
+  String get foodPea => 'মটরশুঁটি';
+
+  @override
+  String get symptomRash => 'র‍্যাশ';
+
+  @override
+  String get symptomHives => 'আমবাত';
+
+  @override
+  String get symptomVomiting => 'বমি';
+
+  @override
+  String get symptomDiarrhea => 'ডায়রিয়া';
+
+  @override
+  String get symptomSwelling => 'ফোলা';
+
+  @override
+  String get doseUnitDrops => 'ফোঁটা';
+
+  @override
+  String get doseUnitTablets => 'ট্যাবলেট';
+
+  @override
+  String get bottleMaterialPlastic => 'প্লাস্টিক';
+
+  @override
+  String get bottleMaterialGlass => 'কাচ';
+
+  @override
+  String get bottleMaterialSilicone => 'সিলিকন';
+
+  @override
+  String get bottleMaterialSteel => 'স্টেইনলেস স্টিল';
+
+  @override
+  String get visitReasonRoutine => 'নিয়মিত চেক-আপ';
+
+  @override
+  String get visitReasonSick => 'অসুস্থতা';
+
+  @override
+  String get visitReasonVaccination => 'টিকা';
+
+  @override
+  String get visitReasonSpecialist => 'বিশেষজ্ঞ';
+
+  @override
+  String get visitReasonFollowUp => 'ফলো-আপ';
+
+  @override
+  String get visitReasonOther => 'অন্যান্য';
+
+  @override
+  String get pooColourPale => 'ফ্যাকাশে';
+
+  @override
+  String get noteTagHappyDay => 'আনন্দের দিন';
+
+  @override
+  String get noteTagSleptWell => 'ভালো ঘুম';
+
+  @override
+  String get noteTagFussy => 'খিটখিটে';
+
+  @override
+  String get noteTagNotWell => 'শরীর ভালো ছিল না';
+
+  @override
+  String get noteTagFirstTime => 'প্রথমবার!';
+
+  @override
+  String get noteTagTeething => 'দাঁত ওঠা';
+
+  @override
+  String get noteTagGrowthSpurt => 'দ্রুত বৃদ্ধি';
+
+  @override
+  String get noteTagMilestone => 'মাইলস্টোন';
+
+  @override
+  String get tummyTimeNotesHint => 'যেমন মজা পেয়েছে, খিটখিটে...';
+
+  @override
+  String get skinSuggestEczema => 'একজিমা';
+
+  @override
+  String get skinSuggestDiaperRash => 'ডায়াপার র‍্যাশ';
+
+  @override
+  String get skinSuggestCradleCap => 'ক্র্যাডল ক্যাপ (মাথার খুশকি)';
+
+  @override
+  String get skinSuggestBabyAcne => 'শিশুর ব্রণ';
+
+  @override
+  String get skinSuggestHeatRash => 'ঘামাচি';
+
+  @override
+  String get skinSuggestDrySkin => 'শুষ্ক ত্বক';
+
+  @override
+  String get bodyFace => 'মুখ';
+
+  @override
+  String get bodyScalp => 'মাথার ত্বক';
+
+  @override
+  String get bodyNeck => 'ঘাড়';
+
+  @override
+  String get bodyChest => 'বুক';
+
+  @override
+  String get bodyBack => 'পিঠ';
+
+  @override
+  String get bodyArms => 'বাহু';
+
+  @override
+  String get bodyHands => 'হাত';
+
+  @override
+  String get bodyDiaperArea => 'ডায়াপারের জায়গা';
+
+  @override
+  String get bodyLegs => 'পা';
+
+  @override
+  String get bodyFeet => 'পায়ের পাতা';
+
+  @override
+  String get medSuggestGripeWater => 'গ্রাইপ ওয়াটার';
+
+  @override
+  String get medSuggestVitaminD => 'ভিটামিন D';
+
+  @override
+  String get medSuggestIronDrops => 'আয়রন ড্রপ';
+
+  @override
+  String get medSuggestAntibiotic => 'অ্যান্টিবায়োটিক';
+
+  @override
+  String get medSuggestProbiotic => 'প্রোবায়োটিক';
+
+  @override
+  String vaccinePageTitle(String name) {
+    return '$name — টিকাদান';
+  }
+
+  @override
+  String get vaccineDeleteTitle => 'টিকার রেকর্ড মুছবেন?';
+
+  @override
+  String get vaccineSiteHint => 'যেমন বাম ঊরু';
+
+  @override
+  String get vaccineNotesHint => 'যেমন হালকা জ্বর, খিটখিটে, কোনো প্রতিক্রিয়া নেই...';
+
+  @override
+  String get vaccineNoGivenHint => '+ বোতাম ব্যবহার করুন বা সময়সূচি ট্যাবে \"দেওয়া হয়েছে চিহ্নিত করুন\" ট্যাপ করুন।';
+
+  @override
+  String get vaccineAgeBirth => 'জন্মের সময়';
+
+  @override
+  String vaccineAgeMonths(String range) {
+    return '$range মাস';
+  }
+
+  @override
+  String vaccineAgeMonthsAnnual(String range) {
+    return '$range মাস (প্রতি বছর)';
+  }
+
+  @override
+  String get whoTabHeight => 'উচ্চতা';
+
+  @override
+  String get whoTabHead => 'মাথা';
+
+  @override
+  String get whoChartFor => 'চার্ট:';
+
+  @override
+  String whoAgeRange(String title) {
+    return '$title (0–24 মাস)';
+  }
+
+  @override
+  String get whoNoDataPoints => 'এখনও কোনো ডেটা নেই। চার্টে শিশুকে দেখতে মাপ লগ করুন।';
+
+  @override
+  String get whoLatestMeasurement => 'সর্বশেষ মাপ';
+
+  @override
+  String whoApproxPercentile(String value) {
+    return 'আনুমানিক পার্সেন্টাইল: $value';
+  }
+
+  @override
+  String whoBetween(String low, String high) {
+    return '$low ও $high-এর মধ্যে';
+  }
+
+  @override
+  String whoMonthsOld(String months) {
+    return '$months মাস বয়স';
+  }
+
+  @override
+  String get whoDisclaimer => 'এই চার্টগুলো শুধু তথ্যের জন্য। ব্যাখ্যার জন্য সবসময় শিশু বিশেষজ্ঞের পরামর্শ নিন।';
+
+  @override
+  String get whoMedian => 'P50 (মধ্যমা)';
+
+  @override
+  String get notifChannelName => 'Baby Tracker রিমাইন্ডার';
+
+  @override
+  String get notifChannelDesc => 'খাওয়ানো, ডায়াপার, ঔষধ ও ত্বক পরীক্ষার রিমাইন্ডার';
+
+  @override
+  String get notifFeedTitle => 'খাওয়ানোর সময়!';
+
+  @override
+  String notifFeedBody(String interval) {
+    return 'গত $interval-এ কোনো খাওয়ানো লগ হয়নি।';
+  }
+
+  @override
+  String get notifDiaperTitle => 'ডায়াপার দেখুন!';
+
+  @override
+  String notifDiaperBody(String interval) {
+    return 'গত $interval-এ কোনো ডায়াপার বদল লগ হয়নি।';
+  }
+
+  @override
+  String notifDoseTitle(String name) {
+    return 'ডোজের সময়: $name';
+  }
+
+  @override
+  String notifDoseBody(String name) {
+    return '$name-এর পরের ডোজের সময় হয়েছে।';
+  }
+
+  @override
+  String notifSkinTitle(String name) {
+    return 'ত্বক পরীক্ষা: $name';
+  }
+
+  @override
+  String get notifSkinBody => 'আজকের আপডেট যোগ করুন (চাইলে ছবিও)।';
+
+  @override
+  String get timerFeedingNotif => 'খাওয়ানোর টাইমার চলছে';
+
+  @override
+  String intervalMinutes(String m) {
+    return '$m মিনিট';
+  }
+
+  @override
+  String intervalHours(String h) {
+    return '$h ঘণ্টা';
+  }
+
+  @override
+  String intervalHoursMinutes(String h, String m) {
+    return '$h ঘণ্টা $m মিনিট';
+  }
+
+  @override
+  String get settingsRtlActive => 'ডান থেকে বাম লেআউট চালু';
+
+  @override
+  String get measurementHeightIn => 'দৈর্ঘ্য / উচ্চতা (ইঞ্চি)';
+
+  @override
+  String get measurementHeadIn => 'মাথার পরিধি (ইঞ্চি)';
+
+  @override
+  String get growthHeightIn => 'উচ্চতা (ইঞ্চি)';
+
+  @override
+  String get growthHeadIn => 'মাথার পরিধি (ইঞ্চি)';
+
+  @override
+  String growthHeightValueIn(String value) {
+    return '$value ইঞ্চি';
+  }
+
+  @override
+  String growthHeadValueIn(String value) {
+    return 'মাথা $value ইঞ্চি';
+  }
+
+  @override
+  String get settingsLengthUnitNote => 'দৈর্ঘ্য ওজনের একক অনুসরণ করে (kg-এর সাথে cm, lbs-এর সাথে ইঞ্চি)';
+
+  @override
+  String get formulaStoreBrand => 'দোকানের নিজস্ব ব্র্যান্ড';
 }

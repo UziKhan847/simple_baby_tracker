@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/labels.dart';
 import 'package:simple_baby_tracker/models/bottle.dart';
 import 'package:simple_baby_tracker/storage.dart';
 import 'package:simple_baby_tracker/theme/app_colors.dart';
@@ -135,7 +136,7 @@ class _BottlesPageState extends State<BottlesPage> {
                       title: b.displayName,
                       subtitle: [
                         if (b.capacityMl != null) '${b.capacityMl} ml',
-                        ?b.material,
+                        if (b.material case final m?) bottleMaterialLabel(m, l),
                         ?b.nippleSize,
                         if (b.retired) l.bottleRetired,
                       ].join('  •  '),
@@ -260,7 +261,10 @@ class _BottleDialogState extends State<_BottleDialog> {
               children: [
                 for (final m in bottleMaterials)
                   ChoiceChip(
-                    label: Text(m, style: const TextStyle(fontSize: 12)),
+                    label: Text(
+                      bottleMaterialLabel(m, l),
+                      style: const TextStyle(fontSize: 12),
+                    ),
                     selected: _material == m,
                     onSelected: (sel) =>
                         setState(() => _material = sel ? m : null),

@@ -740,10 +740,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get exportTitle => 'Экспорт и резервное копирование';
 
   @override
-  String get exportJson => 'Экспорт в JSON';
+  String get exportJson => 'Экспорт резервной копии';
 
   @override
-  String get exportJsonDesc => 'Необработанные данные для резервной копии';
+  String get exportJsonDesc => 'Все данные и фото в одном файле .zip';
 
   @override
   String get exportPdf => 'Экспорт в PDF';
@@ -752,10 +752,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get exportPdfDesc => 'Читаемая сводка для вашего педиатра';
 
   @override
-  String get importJson => 'Импорт из JSON';
+  String get importJson => 'Восстановить из копии';
 
   @override
-  String get importJsonDesc => 'Восстановить из файла резервной копии';
+  String get importJsonDesc => 'Из резервной копии .zip (или старого экспорта .json)';
 
   @override
   String get importDialogTitle => 'Импортировать данные?';
@@ -893,7 +893,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settingsTempUnit => 'Единица температуры';
 
   @override
-  String get settingsVolumeUnit => 'Milk volume unit';
+  String get settingsVolumeUnit => 'Единица объёма молока';
 
   @override
   String get settingsLanguage => 'Язык';
@@ -932,7 +932,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get tipExportData => 'Экспорт данных';
 
   @override
-  String get tipExportDataDesc => 'Используйте значок «Поделиться» на главном экране, чтобы экспортировать все данные в JSON.';
+  String get tipExportDataDesc => 'Нажмите значок «Поделиться» на главной, чтобы сохранить все данные и фото в один файл.';
 
   @override
   String get babiesTitle => 'Дети';
@@ -1017,10 +1017,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get graphsMilkPerDay => 'Молока в день (мл)';
 
   @override
-  String get graphsMilkPerDayMl => 'Milk per day (ml)';
+  String get graphsMilkPerDayMl => 'Молоко в день (мл)';
 
   @override
-  String get graphsMilkPerDayOz => 'Milk per day (oz)';
+  String get graphsMilkPerDayOz => 'Молоко в день (унц.)';
 
   @override
   String get graphsSleepPerDay => 'Сна в день (часы)';
@@ -1125,10 +1125,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get summaryMilkLabel => 'Молоко мл';
 
   @override
-  String get summaryMilkLabelMl => 'Milk ml';
+  String get summaryMilkLabelMl => 'Молоко мл';
 
   @override
-  String get summaryMilkLabelOz => 'Milk oz';
+  String get summaryMilkLabelOz => 'Молоко унц.';
 
   @override
   String get summaryBreastLabel => 'Гр. вскармл. мин';
@@ -1155,33 +1155,35 @@ class AppLocalizationsRu extends AppLocalizations {
   String get whoChartsEntry => 'Графики роста ВОЗ';
 
   @override
-  String get medicationEditTitle => 'Edit medication';
+  String get medicationEditTitle => 'Изменить лекарство';
 
   @override
-  String get medicationLogTitle => 'Log medication';
+  String get medicationLogTitle => 'Записать лекарство';
 
   @override
-  String get medicationYourCourses => 'Your courses';
+  String get medicationYourCourses => 'Ваши курсы';
 
   @override
-  String get medicationManageCourses => 'Manage courses';
+  String get medicationManageCourses => 'Управление курсами';
 
   @override
-  String get medicationNameRequired => 'Medication name *';
+  String get medicationNameRequired => 'Название лекарства *';
 
   @override
-  String get medicationDosageWarning => 'Always follow dosage instructions for weight/age. Do not exceed recommended frequency.';
+  String get medicationDosageWarning => 'Всегда соблюдайте дозировку по весу/возрасту. Не превышайте рекомендуемую частоту.';
 
   @override
-  String get medicationNotesOptional => 'Notes (optional)';
+  String get medicationNotesOptional => 'Заметки (необязательно)';
 
   @override
   String timeAgoMinutes(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count minutes ago',
-      one: '1 minute ago',
+      other: '$count минуты назад',
+      many: '$count минут назад',
+      few: '$count минуты назад',
+      one: '$count минуту назад',
     );
     return '$_temp0';
   }
@@ -1191,8 +1193,10 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count hours ago',
-      one: '1 hour ago',
+      other: '$count часа назад',
+      many: '$count часов назад',
+      few: '$count часа назад',
+      one: '$count час назад',
     );
     return '$_temp0';
   }
@@ -1202,311 +1206,315 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days ago',
-      one: '1 day ago',
+      other: '$count дня назад',
+      many: '$count дней назад',
+      few: '$count дня назад',
+      one: '$count день назад',
     );
     return '$_temp0';
   }
 
   @override
   String medicationLastGivenAgo(String ago) {
-    return 'Last given $ago';
+    return 'Последний приём $ago';
   }
 
   @override
-  String get medicationNeverGiven => 'Not given yet';
+  String get medicationNeverGiven => 'Ещё не давали';
 
   @override
   String medicationDosesToday(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count doses today',
-      one: '1 dose today',
-      zero: 'No doses today',
+      other: '$count дозы сегодня',
+      many: '$count доз сегодня',
+      few: '$count дозы сегодня',
+      one: '$count доза сегодня',
+      zero: 'Сегодня доз не было',
     );
     return '$_temp0';
   }
 
   @override
   String medicationTooSoonWarning(int hours) {
-    return 'Next dose isn\'t due for ${hours}h after the last one';
+    return 'Следующая доза — не раньше чем через $hours ч после предыдущей';
   }
 
   @override
   String medicationMaxPerDayWarning(int max) {
-    return 'Already at the $max/day limit for this course';
+    return 'Дневной лимит этого курса ($max) уже достигнут';
   }
 
   @override
-  String get medicationEditCourse => 'Edit course';
+  String get medicationEditCourse => 'Изменить курс';
 
   @override
-  String get medicationNewCourse => 'New course';
+  String get medicationNewCourse => 'Новый курс';
 
   @override
-  String get medicationReasonOptional => 'Reason (optional)';
+  String get medicationReasonOptional => 'Причина (необязательно)';
 
   @override
-  String get medicationIntervalHoursOptional => 'Repeat every (hours, optional)';
+  String get medicationIntervalHoursOptional => 'Повторять каждые (часов, необязательно)';
 
   @override
-  String get medicationMaxPerDayOptional => 'Max doses/day (optional)';
+  String get medicationMaxPerDayOptional => 'Макс. доз в день (необязательно)';
 
   @override
-  String get medicationRemindNextDose => 'Remind me when the next dose is due';
+  String get medicationRemindNextDose => 'Напомнить, когда подойдёт время следующей дозы';
 
   @override
   String medicationEndCourseTitle(String name) {
-    return 'End $name?';
+    return 'Завершить $name?';
   }
 
   @override
-  String get medicationEndCoursePrompt => 'How did it go?';
+  String get medicationEndCoursePrompt => 'Как прошло?';
 
   @override
-  String get medicationDeleteCourseTitle => 'Delete this course?';
+  String get medicationDeleteCourseTitle => 'Удалить этот курс?';
 
   @override
-  String get medicationResultWorked => 'Worked';
+  String get medicationResultWorked => 'Помогло';
 
   @override
-  String get medicationResultPartlyWorked => 'Partly worked';
+  String get medicationResultPartlyWorked => 'Частично помогло';
 
   @override
-  String get medicationResultDidntWork => 'Didn\'t work';
+  String get medicationResultDidntWork => 'Не помогло';
 
   @override
-  String get medicationResultSideEffects => 'Side effects';
+  String get medicationResultSideEffects => 'Побочные эффекты';
 
   @override
-  String get medicationResultNone => 'Not rated';
+  String get medicationResultNone => 'Без оценки';
 
   @override
-  String get medicationsTitle => 'Medications';
+  String get medicationsTitle => 'Лекарства';
 
   @override
   String medicationActiveTab(int count) {
-    return 'Active ($count)';
+    return 'Текущие ($count)';
   }
 
   @override
   String medicationPastTab(int count) {
-    return 'Past ($count)';
+    return 'Завершённые ($count)';
   }
 
   @override
-  String get medicationNoActiveCourses => 'No active medication courses.\nStart one with the + button.';
+  String get medicationNoActiveCourses => 'Нет текущих курсов лечения.\nНачните новый кнопкой +.';
 
   @override
-  String get medicationNoPastCourses => 'No past courses yet.';
+  String get medicationNoPastCourses => 'Завершённых курсов пока нет.';
 
   @override
   String medicationTimesGiven(int count) {
-    return 'Given $count×';
+    return 'Дано $count×';
   }
 
   @override
   String medicationLastGivenShort(String date) {
-    return 'Last: $date';
+    return 'Последний: $date';
   }
 
   @override
   String medicationNextDueShort(String time) {
-    return 'Next due $time';
+    return 'Следующий $time';
   }
 
   @override
-  String get medicationEndCourse => 'End course';
+  String get medicationEndCourse => 'Завершить курс';
 
   @override
   String feedLastSideHint(String side) {
-    return 'Last time: $side';
+    return 'В прошлый раз: $side';
   }
 
   @override
-  String get feedSideLeft => 'Left';
+  String get feedSideLeft => 'Левая';
 
   @override
-  String get feedSideRight => 'Right';
+  String get feedSideRight => 'Правая';
 
   @override
-  String get feedSideBoth => 'Both';
+  String get feedSideBoth => 'Обе';
 
   @override
-  String get feedSideLeftMinutes => 'Left (min)';
+  String get feedSideLeftMinutes => 'Левая (мин)';
 
   @override
-  String get feedSideRightMinutes => 'Right (min)';
+  String get feedSideRightMinutes => 'Правая (мин)';
 
   @override
-  String get timeAgoJustNow => 'Just now';
+  String get timeAgoJustNow => 'Только что';
 
   @override
-  String get timeUntilOverdue => 'Overdue';
+  String get timeUntilOverdue => 'Просрочено';
 
   @override
   String timeUntilMinutes(int count) {
-    return 'in ${count}m';
+    return 'через $count мин';
   }
 
   @override
   String timeUntilHours(int count) {
-    return 'in ${count}h';
+    return 'через $count ч';
   }
 
   @override
   String timeUntilDays(int count) {
-    return 'in ${count}d';
+    return 'через $count дн.';
   }
 
   @override
-  String get timerDiscardTitle => 'Discard this timer?';
+  String get timerDiscardTitle => 'Сбросить этот таймер?';
 
   @override
-  String get timerDiscard => 'Discard';
+  String get timerDiscard => 'Сбросить';
 
   @override
   String timerFeedingRunning(String side) {
-    return 'Feeding · $side';
+    return 'Кормление · $side';
   }
 
   @override
-  String get timerSleepRunning => 'Sleep timer running';
+  String get timerSleepRunning => 'Таймер сна запущен';
 
   @override
-  String get timerSwitchSide => 'Switch side';
+  String get timerSwitchSide => 'Сменить грудь';
 
   @override
-  String get timerStop => 'Stop';
+  String get timerStop => 'Стоп';
 
   @override
-  String get sinceLastFeed => 'Last feed';
+  String get sinceLastFeed => 'Последнее кормление';
 
   @override
-  String get sinceLastDiaper => 'Last diaper';
+  String get sinceLastDiaper => 'Последний подгузник';
 
   @override
-  String get sinceAwake => 'Awake';
+  String get sinceAwake => 'Бодрствует';
 
   @override
-  String get sinceAsleep => 'Asleep';
+  String get sinceAsleep => 'Спит';
 
   @override
   String nextDoseDue(String name) {
-    return '$name due';
+    return 'Пора: $name';
   }
 
   @override
-  String get weighConditionNaked => 'Naked';
+  String get weighConditionNaked => 'Без одежды';
 
   @override
-  String get weighConditionDiaper => 'Diaper only';
+  String get weighConditionDiaper => 'Только подгузник';
 
   @override
-  String get weighConditionLightClothes => 'Light clothes';
+  String get weighConditionLightClothes => 'Лёгкая одежда';
 
   @override
-  String get weighConditionDressed => 'Dressed';
+  String get weighConditionDressed => 'В одежде';
 
   @override
-  String get weighCondition => 'Weighed wearing';
+  String get weighCondition => 'Взвешен(а)';
 
   @override
-  String get growthMeasurementsOptional => 'Other measurements (optional)';
+  String get growthMeasurementsOptional => 'Другие измерения (необязательно)';
 
   @override
-  String get growthHeightCm => 'Height (cm)';
+  String get growthHeightCm => 'Рост (см)';
 
   @override
-  String get growthHeadCm => 'Head circumference (cm)';
+  String get growthHeadCm => 'Окружность головы (см)';
 
   @override
   String weighConditionChangedWarning(String condition) {
-    return 'Last time was weighed $condition — the difference may not be just growth';
+    return 'В прошлый раз взвешивали: $condition — разница может быть не только из-за роста';
   }
 
   @override
   String growthHeightValue(String cm) {
-    return '$cm cm';
+    return '$cm см';
   }
 
   @override
   String growthHeadValue(String cm) {
-    return 'Head $cm cm';
+    return 'Голова $cm см';
   }
 
   @override
-  String get growthHeightOverTime => 'Height over time';
+  String get growthHeightOverTime => 'Рост по времени';
 
   @override
-  String get growthHeadOverTime => 'Head circumference over time';
+  String get growthHeadOverTime => 'Окружность головы по времени';
 
   @override
-  String get graphsRecentWeighIns => 'Recent weigh-ins';
+  String get graphsRecentWeighIns => 'Последние взвешивания';
 
   @override
-  String get solidsAmountFewSpoons => 'A few spoons';
+  String get solidsAmountFewSpoons => 'Несколько ложек';
 
   @override
-  String get solidsAmountHalf => 'Half a portion';
+  String get solidsAmountHalf => 'Половина порции';
 
   @override
-  String get solidsAmountFull => 'Full portion';
+  String get solidsAmountFull => 'Полная порция';
 
   @override
-  String get solidsAmountTaste => 'Just a taste';
+  String get solidsAmountTaste => 'Только попробовал(а)';
 
   @override
-  String get solidsReactionMild => 'Mild reaction';
+  String get solidsReactionMild => 'Лёгкая реакция';
 
   @override
-  String get solidsReactionAllergic => 'Allergic reaction';
+  String get solidsReactionAllergic => 'Аллергическая реакция';
 
   @override
-  String get solidsReactionNone => 'No reaction';
+  String get solidsReactionNone => 'Без реакции';
 
   @override
-  String get solidsEditTitle => 'Edit solid food';
+  String get solidsEditTitle => 'Изменить прикорм';
 
   @override
-  String get solidsLogTitle => 'Log solid food';
+  String get solidsLogTitle => 'Записать прикорм';
 
   @override
-  String get solidsFoodsLabel => 'Foods';
+  String get solidsFoodsLabel => 'Продукты';
 
   @override
-  String get solidsAddFoodHint => 'Add a food';
+  String get solidsAddFoodHint => 'Добавить продукт';
 
   @override
-  String get solidsAmount => 'Amount';
+  String get solidsAmount => 'Количество';
 
   @override
-  String get solidsLiked => 'How did they like it?';
+  String get solidsLiked => 'Понравилось?';
 
   @override
-  String get solidsReaction => 'Reaction';
+  String get solidsReaction => 'Реакция';
 
   @override
-  String get solidsNotesOptional => 'Notes (optional)';
+  String get solidsNotesOptional => 'Заметки (необязательно)';
 
   @override
-  String get foodsTitle => 'Foods tried';
+  String get foodsTitle => 'Опробованные продукты';
 
   @override
-  String get foodsEmpty => 'No solid foods logged yet.';
+  String get foodsEmpty => 'Прикорм пока не записан.';
 
   @override
-  String get foodsAllergensNotYet => 'Common allergens not yet introduced';
+  String get foodsAllergensNotYet => 'Частые аллергены, ещё не введённые';
 
   @override
   String foodsTriedCount(int count) {
-    return '$count foods tried';
+    return 'Опробовано продуктов: $count';
   }
 
   @override
   String foodsFirstTried(String date) {
-    return 'First: $date';
+    return 'Впервые: $date';
   }
 
   @override
@@ -1515,217 +1523,219 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get entryTypeSolids => 'Solid food';
+  String get entryTypeSolids => 'Прикорм';
 
   @override
-  String get feedAmountOz => 'Amount (oz)';
+  String get feedAmountOz => 'Количество (унц.)';
 
   @override
   String notifFeedingReminderDescInterval(String interval) {
-    return 'Remind me $interval after the last feed';
+    return 'Напомнить через $interval после последнего кормления';
   }
 
   @override
   String notifDiaperReminderDescInterval(String interval) {
-    return 'Remind me $interval after the last diaper';
+    return 'Напомнить через $interval после последнего подгузника';
   }
 
   @override
   String notifIntervalEvery(String interval) {
-    return 'Every $interval';
+    return 'Каждые $interval';
   }
 
   @override
-  String get notifIntervalTitle => 'Reminder interval';
+  String get notifIntervalTitle => 'Интервал напоминания';
 
   @override
-  String get notifIntervalHours => 'Hours';
+  String get notifIntervalHours => 'Часы';
 
   @override
-  String get notifIntervalMinutes => 'Minutes';
+  String get notifIntervalMinutes => 'Минуты';
 
   @override
   String notifIntervalTooShort(int minutes) {
-    return 'At least $minutes minutes';
+    return 'Не меньше $minutes минут';
   }
 
   @override
-  String get settingsFeeding => 'Feeding';
+  String get settingsFeeding => 'Кормление';
 
   @override
-  String get settingsTrackBottles => 'Track bottles';
+  String get settingsTrackBottles => 'Учитывать бутылочки';
 
   @override
-  String get settingsTrackBottlesDesc => 'Pick which bottle was used, and how much was prepared vs drunk';
+  String get settingsTrackBottlesDesc => 'Выбирать, какая бутылочка использовалась, и сколько приготовлено и выпито';
 
   @override
-  String get bottlesTitle => 'My bottles';
+  String get bottlesTitle => 'Мои бутылочки';
 
   @override
-  String get bottlesEmpty => 'No bottles yet.\nAdd the bottles you use so you can pick one when logging a feed.';
+  String get bottlesEmpty => 'Бутылочек пока нет.\nДобавьте свои бутылочки, чтобы выбирать их при записи кормления.';
 
   @override
-  String get bottleAdd => 'Add bottle';
+  String get bottleAdd => 'Добавить бутылочку';
 
   @override
-  String get bottleEdit => 'Edit bottle';
+  String get bottleEdit => 'Изменить бутылочку';
 
   @override
-  String get bottleLabel => 'Label / number (e.g. #3)';
+  String get bottleLabel => 'Метка / номер (напр. #3)';
 
   @override
-  String get bottleBrand => 'Brand / type (optional)';
+  String get bottleBrand => 'Марка / тип (необязательно)';
 
   @override
-  String get bottleCapacity => 'Capacity (optional)';
+  String get bottleCapacity => 'Объём (необязательно)';
 
   @override
-  String get bottleNipple => 'Nipple size / flow (optional)';
+  String get bottleNipple => 'Размер / поток соски (необязательно)';
 
   @override
-  String get bottleMaterial => 'Material';
+  String get bottleMaterial => 'Материал';
 
   @override
-  String get bottleRetired => 'Retired';
+  String get bottleRetired => 'Не используется';
 
   @override
-  String get bottleRetire => 'Retire';
+  String get bottleRetire => 'Убрать из использования';
 
   @override
-  String get bottleUnretire => 'Use again';
+  String get bottleUnretire => 'Использовать снова';
 
   @override
   String bottleDeleteTitle(String name) {
-    return 'Delete $name?';
+    return 'Удалить $name?';
   }
 
   @override
-  String get bottleDeleteBody => 'Past feeds keep their amounts but will no longer show this bottle. To hide it from the picker but keep history, use Retire instead.';
+  String get bottleDeleteBody => 'Прошлые кормления сохранят объёмы, но больше не будут показывать эту бутылочку. Чтобы скрыть её из списка и сохранить историю, лучше уберите её из использования.';
 
   @override
-  String get feedPrepared => 'Prepared';
+  String get feedPrepared => 'Приготовлено';
 
   @override
-  String get feedDrank => 'Drank';
+  String get feedDrank => 'Выпито';
 
   @override
   String feedLeftover(String amount) {
-    return '$amount left over';
+    return 'Осталось $amount';
   }
 
   @override
-  String get feedDrankMoreThanPrepared => 'More than was prepared?';
+  String get feedDrankMoreThanPrepared => 'Больше, чем приготовлено?';
 
   @override
-  String get feedWhichBottle => 'Which bottle?';
+  String get feedWhichBottle => 'Какая бутылочка?';
 
   @override
-  String get feedNoBottlesYet => 'No bottles yet — add them in Settings → My bottles.';
+  String get feedNoBottlesYet => 'Бутылочек пока нет — добавьте их в Настройки → Мои бутылочки.';
 
   @override
-  String get photoPrivacyTitle => 'Your photos stay on this phone';
+  String get photoPrivacyTitle => 'Ваши фото остаются на этом телефоне';
 
   @override
-  String get photoPrivacyBody => 'Photos are saved only inside this app on this device. The app has no internet access, so nothing is ever uploaded or shared unless you export a backup yourself.\n\nAndroid may ask for camera access the first time you take a photo.';
+  String get photoPrivacyBody => 'Фото хранятся только внутри этого приложения на этом устройстве. У приложения нет доступа к интернету, поэтому ничего никогда не загружается и не передаётся, если вы сами не экспортируете резервную копию.\n\nAndroid может запросить доступ к камере, когда вы впервые сделаете фото.';
 
   @override
-  String get photoPrivacyContinue => 'Continue';
+  String get photoPrivacyContinue => 'Продолжить';
 
   @override
-  String get photoTakePhoto => 'Take a photo';
+  String get photoTakePhoto => 'Сделать фото';
 
   @override
-  String get photoChooseFromGallery => 'Choose from gallery';
+  String get photoChooseFromGallery => 'Выбрать из галереи';
 
   @override
-  String get photoCaption => 'Caption';
+  String get photoCaption => 'Подпись';
 
   @override
-  String get photoCompare => 'First vs latest';
+  String get photoCompare => 'Первое и последнее';
 
   @override
-  String get photoAddOtherDay => 'Add for another day';
+  String get photoAddOtherDay => 'Добавить за другой день';
 
   @override
-  String get photoEmpty => 'No photos yet.\nTake one photo a day and watch your baby grow.';
+  String get photoEmpty => 'Фото пока нет.\nДелайте по фото в день и смотрите, как растёт малыш.';
 
   @override
-  String get photoToday => 'Today\'s photo';
+  String get photoToday => 'Фото дня';
 
   @override
-  String get photoAddToday => 'Add today\'s photo';
+  String get photoAddToday => 'Добавить фото дня';
 
   @override
-  String get photoReplace => 'Replace';
+  String get photoReplace => 'Заменить';
 
   @override
-  String get photoDeleteTitle => 'Delete this photo?';
+  String get photoDeleteTitle => 'Удалить это фото?';
 
   @override
-  String get ageBeforeBirth => 'Before birth';
+  String get ageBeforeBirth => 'До рождения';
 
   @override
   String ageDays(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days old',
-      one: '1 day old',
-      zero: 'Birth day',
+      other: '$count дня',
+      many: '$count дней',
+      few: '$count дня',
+      one: '$count день',
+      zero: 'День рождения',
     );
     return '$_temp0';
   }
 
   @override
   String ageMonthsDays(int months, int days) {
-    return '$months mo $days d';
+    return '$months мес. $days дн.';
   }
 
   @override
   String ageYearsMonths(int years, int months) {
-    return '$years yr $months mo';
+    return '$years г. $months мес.';
   }
 
   @override
-  String get navMemories => 'Memories';
+  String get navMemories => 'Воспоминания';
 
   @override
-  String get memoriesTabPhotos => 'Photos';
+  String get memoriesTabPhotos => 'Фото';
 
   @override
-  String get milestoneNoAchievedHint => 'Tap \"Upcoming\" to log a preset,\nor use the button below for a custom one.';
+  String get milestoneNoAchievedHint => 'Нажмите «Предстоящие», чтобы отметить готовый этап,\nили кнопку ниже, чтобы добавить свой.';
 
   @override
-  String get skinTitle => 'Skin conditions';
+  String get skinTitle => 'Проблемы с кожей';
 
   @override
-  String get skinNew => 'New skin condition';
+  String get skinNew => 'Новая проблема с кожей';
 
   @override
-  String get skinEdit => 'Edit skin condition';
+  String get skinEdit => 'Изменить проблему с кожей';
 
   @override
   String skinTabActive(int count) {
-    return 'Active ($count)';
+    return 'Текущие ($count)';
   }
 
   @override
   String skinTabHealed(int count) {
-    return 'Healed ($count)';
+    return 'Прошедшие ($count)';
   }
 
   @override
-  String get skinEmptyActive => 'No skin conditions being tracked.\nTap + to start one — you can add a photo each day to show the doctor how it\'s changing.';
+  String get skinEmptyActive => 'Проблемы с кожей не отслеживаются.\nНажмите +, чтобы начать — можно добавлять фото каждый день, чтобы показать врачу, как всё меняется.';
 
   @override
-  String get skinEmptyHealed => 'Nothing healed yet.';
+  String get skinEmptyHealed => 'Пока ничего не прошло.';
 
   @override
-  String get skinUpdateDue => 'Update today';
+  String get skinUpdateDue => 'Обновить сегодня';
 
   @override
   String skinSince(String date) {
-    return 'Since $date';
+    return 'С $date';
   }
 
   @override
@@ -1733,195 +1743,556 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count days',
-      one: '1 day',
+      other: '$count дня',
+      many: '$count дней',
+      few: '$count дня',
+      one: '$count день',
     );
     return '$_temp0';
   }
 
   @override
   String skinHealedOn(String date) {
-    return 'Healed $date';
+    return 'Прошло $date';
   }
 
   @override
   String skinReminderAt(String time) {
-    return 'Daily reminder at $time';
+    return 'Ежедневное напоминание в $time';
   }
 
   @override
-  String get skinSeverityTrend => 'Severity over time';
+  String get skinSeverityTrend => 'Тяжесть по времени';
 
   @override
-  String get skinNoUpdates => 'No updates yet. Add today\'s to start the timeline.';
+  String get skinNoUpdates => 'Записей пока нет. Добавьте сегодняшнюю, чтобы начать историю.';
 
   @override
-  String get skinExportPdf => 'Export for doctor (PDF)';
+  String get skinExportPdf => 'Экспорт для врача (PDF)';
 
   @override
-  String get skinMarkHealed => 'Mark healed';
+  String get skinMarkHealed => 'Отметить как прошедшее';
 
   @override
-  String get skinReopen => 'Mark active again';
+  String get skinReopen => 'Снова отметить как текущее';
 
   @override
-  String get skinUpdateToday => 'Add today\'s update';
+  String get skinUpdateToday => 'Добавить запись за сегодня';
 
   @override
-  String get skinEditToday => 'Edit today\'s update';
+  String get skinEditToday => 'Изменить запись за сегодня';
 
   @override
   String skinDeleteTitle(String name) {
-    return 'Delete $name and all its updates?';
+    return 'Удалить «$name» и все записи?';
   }
 
   @override
-  String get skinDeleteUpdateTitle => 'Delete this update?';
+  String get skinDeleteUpdateTitle => 'Удалить эту запись?';
 
   @override
   String skinTreatmentValue(String treatment) {
-    return 'Treatment: $treatment';
+    return 'Лечение: $treatment';
   }
 
   @override
-  String get skinName => 'Condition *';
+  String get skinName => 'Проблема *';
 
   @override
-  String get skinBodyArea => 'Where on the body?';
+  String get skinBodyArea => 'Где на теле?';
 
   @override
-  String get skinBegan => 'Began on';
+  String get skinBegan => 'Началось';
 
   @override
-  String get skinRemindDaily => 'Remind me to update it daily';
+  String get skinRemindDaily => 'Напоминать обновлять каждый день';
 
   @override
-  String get skinReminderTime => 'Reminder time';
+  String get skinReminderTime => 'Время напоминания';
 
   @override
-  String get skinUpdateTitle => 'Skin update';
+  String get skinUpdateTitle => 'Запись о коже';
 
   @override
-  String get skinSeverity => 'How does it look?';
+  String get skinSeverity => 'Как выглядит?';
 
   @override
-  String get skinSeverity0 => '0 · Clear';
+  String get skinSeverity0 => '0 · Чисто';
 
   @override
-  String get skinSeverity1 => '1 · Mild';
+  String get skinSeverity1 => '1 · Слабо';
 
   @override
-  String get skinSeverity2 => '2 · Moderate';
+  String get skinSeverity2 => '2 · Умеренно';
 
   @override
-  String get skinSeverity3 => '3 · Severe';
+  String get skinSeverity3 => '3 · Сильно';
 
   @override
-  String get skinSeverity4 => '4 · Very severe';
+  String get skinSeverity4 => '4 · Очень сильно';
 
   @override
-  String get skinTreatment => 'Treatment (optional)';
+  String get skinTreatment => 'Лечение (необязательно)';
 
   @override
-  String get skinTreatmentHint => 'e.g. moisturiser, hydrocortisone 1%';
+  String get skinTreatmentHint => 'напр. увлажняющий крем, гидрокортизон 1%';
 
   @override
-  String get skinAddPhoto => 'Add a photo';
+  String get skinAddPhoto => 'Добавить фото';
 
   @override
-  String get skinCardNone => 'Track a rash, eczema or other skin condition day by day, with photos for the doctor';
+  String get skinCardNone => 'Отслеживайте сыпь, экзему или другую проблему с кожей день за днём, с фото для врача';
 
   @override
   String skinCardDue(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count need today\'s update',
-      one: '1 needs today\'s update',
+      other: '$count ждут записи за сегодня',
+      many: '$count ждут записи за сегодня',
+      few: '$count ждут записи за сегодня',
+      one: '$count ждёт записи за сегодня',
     );
     return '$_temp0';
   }
 
   @override
-  String get backupPreparing => 'Preparing backup…';
+  String get backupPreparing => 'Подготовка резервной копии…';
 
   @override
-  String get backupFailed => 'Couldn\'t create the backup.';
+  String get backupFailed => 'Не удалось создать резервную копию.';
 
   @override
-  String get backupSavedTo => 'Backup saved to:';
+  String get backupSavedTo => 'Копия сохранена в:';
 
   @override
-  String get backupShareSubject => 'Baby Tracker backup';
+  String get backupShareSubject => 'Резервная копия Baby Tracker';
 
   @override
   String importIncludesPhotos(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Includes $count photos.',
-      one: 'Includes 1 photo.',
+      other: 'Включает $count фото.',
+      many: 'Включает $count фото.',
+      few: 'Включает $count фото.',
+      one: 'Включает $count фото.',
     );
     return '$_temp0';
   }
 
   @override
-  String get widgetFeed => 'Feed';
+  String get widgetFeed => 'Кормление';
 
   @override
-  String get widgetStopFeed => 'Stop feed';
+  String get widgetStopFeed => 'Стоп кормление';
 
   @override
-  String get widgetDiaper => 'Diaper';
+  String get widgetDiaper => 'Подгузник';
 
   @override
-  String get widgetSleep => 'Sleep';
+  String get widgetSleep => 'Сон';
 
   @override
-  String get widgetWakeUp => 'Woke up';
+  String get widgetWakeUp => 'Проснулся';
 
   @override
   String widgetFeedingFor(String duration) {
-    return 'Feeding $duration';
+    return 'Кормление $duration';
   }
 
   @override
   String widgetFedAgo(String ago) {
-    return 'Fed $ago';
+    return 'Ел(а) $ago';
   }
 
   @override
-  String get widgetNoFeedsYet => 'No feeds yet';
+  String get widgetNoFeedsYet => 'Кормлений пока нет';
 
   @override
   String widgetChangedAgo(String ago) {
-    return 'Changed $ago';
+    return 'Сменён $ago';
   }
 
   @override
-  String get widgetNoDiapersYet => 'No diapers yet';
+  String get widgetNoDiapersYet => 'Подгузников пока нет';
 
   @override
   String widgetAsleepFor(String duration) {
-    return 'Asleep $duration';
+    return 'Спит $duration';
   }
 
   @override
   String widgetAwakeFor(String ago) {
-    return 'Woke $ago';
+    return 'Проснулся $ago';
   }
 
   @override
-  String get widgetStopSleepFirst => 'Stop the sleep timer first';
+  String get widgetStopSleepFirst => 'Сначала остановите таймер сна';
 
   @override
-  String get widgetStopFeedFirst => 'Stop the feeding timer first';
+  String get widgetStopFeedFirst => 'Сначала остановите таймер кормления';
 
   @override
   String quickAddTitle(String name) {
-    return 'Add for $name';
+    return 'Добавить для $name';
   }
 
   @override
-  String get quickAddOpenApp => 'Open the app';
+  String get quickAddOpenApp => 'Открыть приложение';
+
+  @override
+  String get foodPeanut => 'Арахис';
+
+  @override
+  String get foodEgg => 'Яйцо';
+
+  @override
+  String get foodDairy => 'Молочные продукты';
+
+  @override
+  String get foodWheat => 'Пшеница';
+
+  @override
+  String get foodSoy => 'Соя';
+
+  @override
+  String get foodFish => 'Рыба';
+
+  @override
+  String get foodShellfish => 'Моллюски и ракообразные';
+
+  @override
+  String get foodTreeNuts => 'Орехи';
+
+  @override
+  String get foodSesame => 'Кунжут';
+
+  @override
+  String get foodBanana => 'Банан';
+
+  @override
+  String get foodAvocado => 'Авокадо';
+
+  @override
+  String get foodSweetPotato => 'Батат';
+
+  @override
+  String get foodRiceCereal => 'Рисовая каша';
+
+  @override
+  String get foodOatmeal => 'Овсянка';
+
+  @override
+  String get foodCarrot => 'Морковь';
+
+  @override
+  String get foodApple => 'Яблоко';
+
+  @override
+  String get foodPea => 'Горошек';
+
+  @override
+  String get symptomRash => 'Сыпь';
+
+  @override
+  String get symptomHives => 'Крапивница';
+
+  @override
+  String get symptomVomiting => 'Рвота';
+
+  @override
+  String get symptomDiarrhea => 'Диарея';
+
+  @override
+  String get symptomSwelling => 'Отёк';
+
+  @override
+  String get doseUnitDrops => 'капли';
+
+  @override
+  String get doseUnitTablets => 'таблетки';
+
+  @override
+  String get bottleMaterialPlastic => 'Пластик';
+
+  @override
+  String get bottleMaterialGlass => 'Стекло';
+
+  @override
+  String get bottleMaterialSilicone => 'Силикон';
+
+  @override
+  String get bottleMaterialSteel => 'Нержавеющая сталь';
+
+  @override
+  String get visitReasonRoutine => 'Плановый осмотр';
+
+  @override
+  String get visitReasonSick => 'По болезни';
+
+  @override
+  String get visitReasonVaccination => 'Прививка';
+
+  @override
+  String get visitReasonSpecialist => 'Специалист';
+
+  @override
+  String get visitReasonFollowUp => 'Повторный приём';
+
+  @override
+  String get visitReasonOther => 'Другое';
+
+  @override
+  String get pooColourPale => 'Светлый';
+
+  @override
+  String get noteTagHappyDay => 'Счастливый день';
+
+  @override
+  String get noteTagSleptWell => 'Хорошо спал(а)';
+
+  @override
+  String get noteTagFussy => 'Капризничал(а)';
+
+  @override
+  String get noteTagNotWell => 'Плохо себя чувствовал(а)';
+
+  @override
+  String get noteTagFirstTime => 'Впервые!';
+
+  @override
+  String get noteTagTeething => 'Режутся зубки';
+
+  @override
+  String get noteTagGrowthSpurt => 'Скачок роста';
+
+  @override
+  String get noteTagMilestone => 'Новый этап';
+
+  @override
+  String get tummyTimeNotesHint => 'напр. понравилось, капризничал(а)...';
+
+  @override
+  String get skinSuggestEczema => 'Экзема';
+
+  @override
+  String get skinSuggestDiaperRash => 'Опрелости';
+
+  @override
+  String get skinSuggestCradleCap => 'Гнейс (молочные корочки)';
+
+  @override
+  String get skinSuggestBabyAcne => 'Акне новорождённых';
+
+  @override
+  String get skinSuggestHeatRash => 'Потница';
+
+  @override
+  String get skinSuggestDrySkin => 'Сухая кожа';
+
+  @override
+  String get bodyFace => 'Лицо';
+
+  @override
+  String get bodyScalp => 'Кожа головы';
+
+  @override
+  String get bodyNeck => 'Шея';
+
+  @override
+  String get bodyChest => 'Грудь';
+
+  @override
+  String get bodyBack => 'Спина';
+
+  @override
+  String get bodyArms => 'Руки';
+
+  @override
+  String get bodyHands => 'Кисти';
+
+  @override
+  String get bodyDiaperArea => 'Зона подгузника';
+
+  @override
+  String get bodyLegs => 'Ноги';
+
+  @override
+  String get bodyFeet => 'Стопы';
+
+  @override
+  String get medSuggestGripeWater => 'Укропная водичка';
+
+  @override
+  String get medSuggestVitaminD => 'Витамин D';
+
+  @override
+  String get medSuggestIronDrops => 'Капли железа';
+
+  @override
+  String get medSuggestAntibiotic => 'Антибиотик';
+
+  @override
+  String get medSuggestProbiotic => 'Пробиотик';
+
+  @override
+  String vaccinePageTitle(String name) {
+    return '$name — прививки';
+  }
+
+  @override
+  String get vaccineDeleteTitle => 'Удалить запись о прививке?';
+
+  @override
+  String get vaccineSiteHint => 'напр. левое бедро';
+
+  @override
+  String get vaccineNotesHint => 'напр. небольшая температура, капризы, без реакции...';
+
+  @override
+  String get vaccineNoGivenHint => 'Нажмите + или «Отметить как сделанную» на вкладке «График».';
+
+  @override
+  String get vaccineAgeBirth => 'При рождении';
+
+  @override
+  String vaccineAgeMonths(String range) {
+    return '$range мес.';
+  }
+
+  @override
+  String vaccineAgeMonthsAnnual(String range) {
+    return '$range мес. (ежегодно)';
+  }
+
+  @override
+  String get whoTabHeight => 'Рост';
+
+  @override
+  String get whoTabHead => 'Голова';
+
+  @override
+  String get whoChartFor => 'График для:';
+
+  @override
+  String whoAgeRange(String title) {
+    return '$title (0–24 мес.)';
+  }
+
+  @override
+  String get whoNoDataPoints => 'Данных пока нет. Запишите измерения, чтобы увидеть малыша на графике.';
+
+  @override
+  String get whoLatestMeasurement => 'Последнее измерение';
+
+  @override
+  String whoApproxPercentile(String value) {
+    return 'Примерный перцентиль: $value';
+  }
+
+  @override
+  String whoBetween(String low, String high) {
+    return 'между $low и $high';
+  }
+
+  @override
+  String whoMonthsOld(String months) {
+    return '$months мес.';
+  }
+
+  @override
+  String get whoDisclaimer => 'Эти графики носят справочный характер. Для интерпретации всегда обращайтесь к педиатру.';
+
+  @override
+  String get whoMedian => 'P50 (медиана)';
+
+  @override
+  String get notifChannelName => 'Напоминания Baby Tracker';
+
+  @override
+  String get notifChannelDesc => 'Напоминания о кормлении, подгузниках, лекарствах и осмотре кожи';
+
+  @override
+  String get notifFeedTitle => 'Пора кормить!';
+
+  @override
+  String notifFeedBody(String interval) {
+    return 'За последние $interval кормлений не записано.';
+  }
+
+  @override
+  String get notifDiaperTitle => 'Проверьте подгузник!';
+
+  @override
+  String notifDiaperBody(String interval) {
+    return 'За последние $interval смен подгузника не записано.';
+  }
+
+  @override
+  String notifDoseTitle(String name) {
+    return 'Пора принять: $name';
+  }
+
+  @override
+  String notifDoseBody(String name) {
+    return 'Пора дать следующую дозу: $name.';
+  }
+
+  @override
+  String notifSkinTitle(String name) {
+    return 'Осмотр кожи: $name';
+  }
+
+  @override
+  String get notifSkinBody => 'Добавьте запись за сегодня (и фото, если хотите).';
+
+  @override
+  String get timerFeedingNotif => 'Таймер кормления запущен';
+
+  @override
+  String intervalMinutes(String m) {
+    return '$m мин';
+  }
+
+  @override
+  String intervalHours(String h) {
+    return '$h ч';
+  }
+
+  @override
+  String intervalHoursMinutes(String h, String m) {
+    return '$h ч $m мин';
+  }
+
+  @override
+  String get settingsRtlActive => 'Включена раскладка справа налево';
+
+  @override
+  String get measurementHeightIn => 'Длина / рост (дюймы)';
+
+  @override
+  String get measurementHeadIn => 'Окружность головы (дюймы)';
+
+  @override
+  String get growthHeightIn => 'Рост (дюймы)';
+
+  @override
+  String get growthHeadIn => 'Окружность головы (дюймы)';
+
+  @override
+  String growthHeightValueIn(String value) {
+    return '$value дюйм.';
+  }
+
+  @override
+  String growthHeadValueIn(String value) {
+    return 'Голова $value дюйм.';
+  }
+
+  @override
+  String get settingsLengthUnitNote => 'Длина следует единице веса (см с кг, дюймы с фунтами)';
+
+  @override
+  String get formulaStoreBrand => 'Собственная марка магазина';
 }
