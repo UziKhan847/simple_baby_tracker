@@ -45,8 +45,12 @@ android {
     val keyPropsFile = rootProject.file("key.properties")
     if (keyPropsFile.exists()) keyPropsFile.inputStream().use { keyProps.load(it) }
 
+    // An empty or incomplete key.properties (some build recipes `touch` one)
+    // counts as "no release key".
+    val hasReleaseKey = keyProps.getProperty("storeFile") != null
+
     signingConfigs {
-        if (keyPropsFile.exists()) {
+        if (hasReleaseKey) {
             create("release") {
                 storeFile = file(keyProps.getProperty("storeFile"))
                 storePassword = keyProps.getProperty("storePassword")
@@ -58,14 +62,14 @@ android {
 
     buildTypes {
         release {
-            signingConfig = if (keyPropsFile.exists()) {
+            signingConfig = if (hasReleaseKey) {
                 signingConfigs.getByName("release")
             } else {
                 // No key.properties: fall back to the debug key so local
                 // release builds still run, but never publish such a build —
                 // users could not update to a properly signed one later.
                 logger.warn(
-                    "WARNING: android/key.properties not found — release APK is " +
+                    "WARNING: no release key in android/key.properties — release APK is " +
                         "signed with the DEBUG key. Do not distribute it.",
                 )
                 signingConfigs.getByName("debug")
