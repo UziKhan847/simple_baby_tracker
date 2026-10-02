@@ -2271,4 +2271,72 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'اسٹور کا برانڈ';
+
+  @override
+  String get pooShade1 => 'چاک جیسا سفید';
+
+  @override
+  String get pooShade2 => 'ہلکا سرمئی';
+
+  @override
+  String get pooShade3 => 'مٹیالا سرمئی';
+
+  @override
+  String get pooShade4 => 'کریم';
+
+  @override
+  String get pooShade5 => 'گہرا بیج';
+
+  @override
+  String get pooShade6 => 'ہلکا زرد سبز';
+
+  @override
+  String get pooShade7 => 'سرسوں جیسا زرد';
+
+  @override
+  String get pooShade8 => 'بھورا';
+
+  @override
+  String get pooShade9 => 'سبز';
+
+  @override
+  String get vaccineScheduleNote => 'امریکی CDC شیڈول پر مبنی۔ آپ کے ملک کا شیڈول مختلف ہو سکتا ہے — اپنے ڈاکٹر کے مشورے پر عمل کریں۔';
+
+  @override
+  String get settingsAbout => 'ایپ کے بارے میں';
+
+  @override
+  String get aboutTitle => 'ایپ کے بارے میں اور لائسنس';
+
+  @override
+  String aboutVersion(String version) {
+    return 'ورژن $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'آزاد سافٹ ویئر جو GNU جنرل پبلک لائسنس v3.0 یا بعد کے تحت جاری کیا گیا ہے۔ آپ اسے استعمال کر سکتے ہیں، اس کا مطالعہ کر سکتے ہیں، شیئر کر سکتے ہیں اور تبدیل کر سکتے ہیں۔';
+
+  @override
+  String get aboutSourceCode => 'سورس کوڈ';
+
+  @override
+  String get aboutDisclaimerTitle => 'طبی مشورہ نہیں';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker آپ کے ذاتی ریکارڈ کے لیے ایک ڈائری ہے۔ یہ طبی آلہ نہیں ہے اور کسی بیماری کی تشخیص، علاج یا نگرانی نہیں کرتی۔ نشوونما کے چارٹ، درجہ حرارت کی حدیں، دوا کی یاد دہانیاں اور پاخانے کے رنگ کے نوٹس صرف عمومی معلومات ہیں اور نامکمل یا غلط ہو سکتے ہیں۔ ہمیشہ اپنے ڈاکٹر یا فارماسسٹ کے مشورے پر عمل کریں، اور اگر آپ کو اپنے بچے کی فکر ہو تو ان سے یا ایمرجنسی سروس سے رابطہ کریں۔';
+
+  @override
+  String get aboutPrivacyTitle => 'آپ کا ڈیٹا اسی فون پر رہتا ہے';
+
+  @override
+  String get aboutPrivacyBody => 'ایپ کو انٹرنیٹ تک رسائی نہیں، نہ اکاؤنٹ، نہ اشتہارات اور نہ تجزیات۔ اندراجات اور تصاویر صرف اسی ڈیوائس پر محفوظ ہوتی ہیں۔ جب تک آپ خود بیک اپ برآمد کر کے شیئر نہ کریں، کچھ بھی ڈیوائس سے باہر نہیں جاتا۔';
+
+  @override
+  String get aboutCreditsTitle => 'شکریہ';
+
+  @override
+  String get aboutCreditsBody => 'آئیکنز: Claude Design سے بنائے گئے۔\nفونٹس: Inter اور Quicksand (SIL Open Font License 1.1)۔\nنشوونما کے چارٹ: عالمی ادارۂ صحت کے بچوں کی نشوونما کے معیار (who.int)۔\nویکسین شیڈول: امریکی CDC شیڈول پر مبنی۔\nFlutter کے ساتھ بنایا گیا۔';
+
+  @override
+  String get aboutLicencesButton => 'اوپن سورس لائسنس';
 }

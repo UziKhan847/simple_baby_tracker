@@ -4114,6 +4114,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Store brand'**
   String get formulaStoreBrand;
+
+  /// No description provided for @pooShade1.
+  ///
+  /// In en, this message translates to:
+  /// **'Chalk white'**
+  String get pooShade1;
+
+  /// No description provided for @pooShade2.
+  ///
+  /// In en, this message translates to:
+  /// **'Light grey'**
+  String get pooShade2;
+
+  /// No description provided for @pooShade3.
+  ///
+  /// In en, this message translates to:
+  /// **'Grey clay'**
+  String get pooShade3;
+
+  /// No description provided for @pooShade4.
+  ///
+  /// In en, this message translates to:
+  /// **'Cream'**
+  String get pooShade4;
+
+  /// No description provided for @pooShade5.
+  ///
+  /// In en, this message translates to:
+  /// **'Tan'**
+  String get pooShade5;
+
+  /// No description provided for @pooShade6.
+  ///
+  /// In en, this message translates to:
+  /// **'Pale yellow-green'**
+  String get pooShade6;
+
+  /// No description provided for @pooShade7.
+  ///
+  /// In en, this message translates to:
+  /// **'Mustard yellow'**
+  String get pooShade7;
+
+  /// No description provided for @pooShade8.
+  ///
+  /// In en, this message translates to:
+  /// **'Brown'**
+  String get pooShade8;
+
+  /// No description provided for @pooShade9.
+  ///
+  /// In en, this message translates to:
+  /// **'Green'**
+  String get pooShade9;
+
+  /// No description provided for @vaccineScheduleNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Based on the US CDC schedule. Your country\'s schedule may differ — follow your doctor\'s advice.'**
+  String get vaccineScheduleNote;
+
+  /// No description provided for @settingsAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get settingsAbout;
+
+  /// No description provided for @aboutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About & licences'**
+  String get aboutTitle;
+
+  /// No description provided for @aboutVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version}'**
+  String aboutVersion(String version);
+
+  /// No description provided for @aboutLicenseLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Free software, released under the GNU General Public License v3.0 or later. You may use, study, share and change it.'**
+  String get aboutLicenseLine;
+
+  /// No description provided for @aboutSourceCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Source code'**
+  String get aboutSourceCode;
+
+  /// No description provided for @aboutDisclaimerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Not medical advice'**
+  String get aboutDisclaimerTitle;
+
+  /// No description provided for @aboutDisclaimerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple Baby Tracker is a diary for your own records. It is not a medical device and does not diagnose, treat or monitor any condition. Growth charts, temperature ranges, medication reminders and stool-colour notes are general information only and can be incomplete or wrong. Always follow the advice of your doctor or pharmacist, and contact them or emergency services if you are worried about your baby.'**
+  String get aboutDisclaimerBody;
+
+  /// No description provided for @aboutPrivacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data stays on this phone'**
+  String get aboutPrivacyTitle;
+
+  /// No description provided for @aboutPrivacyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The app has no internet access, no account, no ads and no analytics. Entries and photos are stored only on this device. Nothing leaves it unless you export a backup and share it yourself.'**
+  String get aboutPrivacyBody;
+
+  /// No description provided for @aboutCreditsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Credits'**
+  String get aboutCreditsTitle;
+
+  /// No description provided for @aboutCreditsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Icons: created with Claude Design.\nFonts: Inter and Quicksand (SIL Open Font License 1.1).\nGrowth charts: WHO Child Growth Standards (who.int).\nVaccine schedule: based on the US CDC schedule.\nBuilt with Flutter.'**
+  String get aboutCreditsBody;
+
+  /// No description provided for @aboutLicencesButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Open-source licences'**
+  String get aboutLicencesButton;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

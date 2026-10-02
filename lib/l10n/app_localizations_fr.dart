@@ -2271,4 +2271,72 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'Marque distributeur';
+
+  @override
+  String get pooShade1 => 'Blanc crayeux';
+
+  @override
+  String get pooShade2 => 'Gris clair';
+
+  @override
+  String get pooShade3 => 'Gris argile';
+
+  @override
+  String get pooShade4 => 'Crème';
+
+  @override
+  String get pooShade5 => 'Beige foncé';
+
+  @override
+  String get pooShade6 => 'Jaune-vert pâle';
+
+  @override
+  String get pooShade7 => 'Jaune moutarde';
+
+  @override
+  String get pooShade8 => 'Marron';
+
+  @override
+  String get pooShade9 => 'Vert';
+
+  @override
+  String get vaccineScheduleNote => 'D’après le calendrier des CDC américains. Le calendrier de votre pays peut différer — suivez l’avis de votre médecin.';
+
+  @override
+  String get settingsAbout => 'À propos';
+
+  @override
+  String get aboutTitle => 'À propos et licences';
+
+  @override
+  String aboutVersion(String version) {
+    return 'Version $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'Logiciel libre publié sous la licence publique générale GNU v3.0 ou ultérieure. Vous pouvez l’utiliser, l’étudier, le partager et le modifier.';
+
+  @override
+  String get aboutSourceCode => 'Code source';
+
+  @override
+  String get aboutDisclaimerTitle => 'Pas un avis médical';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker est un journal pour vos propres notes. Ce n’est pas un dispositif médical : il ne diagnostique, ne traite ni ne surveille aucune affection. Les courbes de croissance, les plages de température, les rappels de médicaments et les remarques sur la couleur des selles sont des informations générales, qui peuvent être incomplètes ou erronées. Suivez toujours l’avis de votre médecin ou pharmacien, et contactez-les, ou les urgences, si vous êtes inquiet pour votre bébé.';
+
+  @override
+  String get aboutPrivacyTitle => 'Vos données restent sur ce téléphone';
+
+  @override
+  String get aboutPrivacyBody => 'L’appli n’a pas accès à Internet, ni compte, ni publicité, ni statistiques. Les entrées et photos sont stockées uniquement sur cet appareil. Rien n’en sort, sauf si vous exportez une sauvegarde et la partagez vous-même.';
+
+  @override
+  String get aboutCreditsTitle => 'Crédits';
+
+  @override
+  String get aboutCreditsBody => 'Icônes : créées avec Claude Design.\nPolices : Inter et Quicksand (SIL Open Font License 1.1).\nCourbes de croissance : normes de croissance de l’enfant de l’OMS (who.int).\nCalendrier vaccinal : d’après le calendrier des CDC américains.\nRéalisé avec Flutter.';
+
+  @override
+  String get aboutLicencesButton => 'Licences open source';
 }

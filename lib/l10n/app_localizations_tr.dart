@@ -2271,4 +2271,72 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'Market markası';
+
+  @override
+  String get pooShade1 => 'Tebeşir beyazı';
+
+  @override
+  String get pooShade2 => 'Açık gri';
+
+  @override
+  String get pooShade3 => 'Kil grisi';
+
+  @override
+  String get pooShade4 => 'Krem';
+
+  @override
+  String get pooShade5 => 'Koyu bej';
+
+  @override
+  String get pooShade6 => 'Soluk sarı-yeşil';
+
+  @override
+  String get pooShade7 => 'Hardal sarısı';
+
+  @override
+  String get pooShade8 => 'Kahverengi';
+
+  @override
+  String get pooShade9 => 'Yeşil';
+
+  @override
+  String get vaccineScheduleNote => 'ABD CDC takvimine dayanır. Ülkenizdeki takvim farklı olabilir — doktorunuzun önerisine uyun.';
+
+  @override
+  String get settingsAbout => 'Hakkında';
+
+  @override
+  String get aboutTitle => 'Hakkında ve lisanslar';
+
+  @override
+  String aboutVersion(String version) {
+    return 'Sürüm $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'GNU Genel Kamu Lisansı v3.0 veya sonrası altında yayımlanan özgür yazılım. Kullanabilir, inceleyebilir, paylaşabilir ve değiştirebilirsiniz.';
+
+  @override
+  String get aboutSourceCode => 'Kaynak kodu';
+
+  @override
+  String get aboutDisclaimerTitle => 'Tıbbi tavsiye değildir';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker, kendi kayıtlarınız için bir günlüktür. Tıbbi cihaz değildir; hiçbir durumu teşhis etmez, tedavi etmez veya izlemez. Büyüme grafikleri, ateş aralıkları, ilaç hatırlatıcıları ve dışkı rengi notları yalnızca genel bilgidir; eksik veya yanlış olabilir. Her zaman doktorunuzun veya eczacınızın tavsiyesine uyun; bebeğiniz için endişeleniyorsanız onlarla veya acil servisle iletişime geçin.';
+
+  @override
+  String get aboutPrivacyTitle => 'Verileriniz bu telefonda kalır';
+
+  @override
+  String get aboutPrivacyBody => 'Uygulamanın internet erişimi, hesabı, reklamı ve analitiği yoktur. Kayıtlar ve fotoğraflar yalnızca bu cihazda saklanır. Siz kendiniz yedek dışa aktarıp paylaşmadıkça hiçbir şey cihazdan çıkmaz.';
+
+  @override
+  String get aboutCreditsTitle => 'Katkılar';
+
+  @override
+  String get aboutCreditsBody => 'Simgeler: Claude Design ile oluşturuldu.\nYazı tipleri: Inter ve Quicksand (SIL Open Font License 1.1).\nBüyüme grafikleri: WHO Çocuk Büyüme Standartları (who.int).\nAşı takvimi: ABD CDC takvimine dayanır.\nFlutter ile yapıldı.';
+
+  @override
+  String get aboutLicencesButton => 'Açık kaynak lisansları';
 }

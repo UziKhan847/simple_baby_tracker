@@ -1,8 +1,9 @@
+# Regenerate with: dart run flutter_launcher_icons
+# Sources are original artwork (SVG + exported PNG) in assets/launcher/.
 flutter_launcher_icons:
-  min_sdk_android: 21 
+  min_sdk_android: 21
   android: true
-  image_path: 'assets/apk_icons/app_launcher_icon.png'
-  adaptive_icon_background: 'assets/apk_icons/adaptive_icon_background.png'
-  adaptive_icon_foreground: 'assets/apk_icons/adaptive_icon_foreground.png'
-  adaptive_icon_monochrome: 'assets/apk_icons/adaptive_icon_monochrome.png'
-
+  image_path: 'assets/launcher/app_icon.png'
+  adaptive_icon_background: 'assets/launcher/adaptive_icon_background.png'
+  adaptive_icon_foreground: 'assets/launcher/adaptive_icon_foreground.png'
+  adaptive_icon_monochrome: 'assets/launcher/adaptive_icon_monochrome.png'

@@ -395,8 +395,21 @@ class _ScheduleTab extends StatelessWidget {
     final l = AppLocalizations.of(context)!;
     return ListView.builder(
       padding: const EdgeInsets.fromLTRB(12, 8, 12, 24),
-      itemCount: vaccineSchedule.length,
-      itemBuilder: (context, i) {
+      // One extra row at the top for the "schedules differ by country" note.
+      itemCount: vaccineSchedule.length + 1,
+      itemBuilder: (context, index) {
+        if (index == 0) {
+          return Padding(
+            padding: const EdgeInsets.fromLTRB(4, 0, 4, 8),
+            child: Text(
+              l.vaccineScheduleNote,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+            ),
+          );
+        }
+        final i = index - 1;
         final v = vaccineSchedule[i];
         final name = v['name'] as String;
         final age = vaccineAgeLabel(v, l);

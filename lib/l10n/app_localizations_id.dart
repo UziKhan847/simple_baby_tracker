@@ -2271,4 +2271,72 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'Merek toko';
+
+  @override
+  String get pooShade1 => 'Putih kapur';
+
+  @override
+  String get pooShade2 => 'Abu-abu muda';
+
+  @override
+  String get pooShade3 => 'Abu-abu tanah liat';
+
+  @override
+  String get pooShade4 => 'Krem';
+
+  @override
+  String get pooShade5 => 'Beige tua';
+
+  @override
+  String get pooShade6 => 'Kuning kehijauan pucat';
+
+  @override
+  String get pooShade7 => 'Kuning mustard';
+
+  @override
+  String get pooShade8 => 'Cokelat';
+
+  @override
+  String get pooShade9 => 'Hijau';
+
+  @override
+  String get vaccineScheduleNote => 'Berdasarkan jadwal CDC Amerika Serikat. Jadwal di negara Anda bisa berbeda — ikuti saran dokter.';
+
+  @override
+  String get settingsAbout => 'Tentang';
+
+  @override
+  String get aboutTitle => 'Tentang & lisensi';
+
+  @override
+  String aboutVersion(String version) {
+    return 'Versi $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'Perangkat lunak bebas yang dirilis di bawah GNU General Public License v3.0 atau yang lebih baru. Anda boleh menggunakan, mempelajari, membagikan, dan mengubahnya.';
+
+  @override
+  String get aboutSourceCode => 'Kode sumber';
+
+  @override
+  String get aboutDisclaimerTitle => 'Bukan saran medis';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker adalah buku harian untuk catatan pribadi Anda. Aplikasi ini bukan alat medis dan tidak mendiagnosis, mengobati, atau memantau kondisi apa pun. Grafik pertumbuhan, rentang suhu, pengingat obat, dan catatan warna tinja hanyalah informasi umum dan bisa tidak lengkap atau keliru. Selalu ikuti saran dokter atau apoteker Anda, dan hubungi mereka atau layanan darurat jika Anda khawatir dengan bayi Anda.';
+
+  @override
+  String get aboutPrivacyTitle => 'Data Anda tetap di ponsel ini';
+
+  @override
+  String get aboutPrivacyBody => 'Aplikasi ini tidak punya akses internet, akun, iklan, maupun analitik. Catatan dan foto hanya disimpan di perangkat ini. Tidak ada yang keluar kecuali Anda sendiri mengekspor cadangan dan membagikannya.';
+
+  @override
+  String get aboutCreditsTitle => 'Kredit';
+
+  @override
+  String get aboutCreditsBody => 'Ikon: dibuat dengan Claude Design.\nFont: Inter dan Quicksand (SIL Open Font License 1.1).\nGrafik pertumbuhan: Standar Pertumbuhan Anak WHO (who.int).\nJadwal vaksin: berdasarkan jadwal CDC Amerika Serikat.\nDibuat dengan Flutter.';
+
+  @override
+  String get aboutLicencesButton => 'Lisensi sumber terbuka';
 }

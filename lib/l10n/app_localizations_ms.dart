@@ -2271,4 +2271,72 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'Jenama kedai';
+
+  @override
+  String get pooShade1 => 'Putih kapur';
+
+  @override
+  String get pooShade2 => 'Kelabu cerah';
+
+  @override
+  String get pooShade3 => 'Kelabu tanah liat';
+
+  @override
+  String get pooShade4 => 'Krim';
+
+  @override
+  String get pooShade5 => 'Perang cair gelap';
+
+  @override
+  String get pooShade6 => 'Kuning kehijauan pucat';
+
+  @override
+  String get pooShade7 => 'Kuning mustard';
+
+  @override
+  String get pooShade8 => 'Perang';
+
+  @override
+  String get pooShade9 => 'Hijau';
+
+  @override
+  String get vaccineScheduleNote => 'Berdasarkan jadual CDC Amerika Syarikat. Jadual di negara anda mungkin berbeza — ikut nasihat doktor.';
+
+  @override
+  String get settingsAbout => 'Perihal';
+
+  @override
+  String get aboutTitle => 'Perihal & lesen';
+
+  @override
+  String aboutVersion(String version) {
+    return 'Versi $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'Perisian bebas yang dikeluarkan di bawah GNU General Public License v3.0 atau lebih baharu. Anda boleh menggunakan, mengkaji, berkongsi dan mengubahnya.';
+
+  @override
+  String get aboutSourceCode => 'Kod sumber';
+
+  @override
+  String get aboutDisclaimerTitle => 'Bukan nasihat perubatan';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker ialah diari untuk rekod peribadi anda. Ia bukan peranti perubatan dan tidak mendiagnosis, merawat atau memantau sebarang keadaan. Carta pertumbuhan, julat suhu, peringatan ubat dan nota warna najis hanyalah maklumat umum dan mungkin tidak lengkap atau tidak tepat. Sentiasa ikut nasihat doktor atau ahli farmasi anda, dan hubungi mereka atau perkhidmatan kecemasan jika anda bimbang tentang bayi anda.';
+
+  @override
+  String get aboutPrivacyTitle => 'Data anda kekal pada telefon ini';
+
+  @override
+  String get aboutPrivacyBody => 'Aplikasi ini tiada akses internet, akaun, iklan atau analitik. Catatan dan foto disimpan pada peranti ini sahaja. Tiada apa-apa yang keluar melainkan anda sendiri mengeksport sandaran dan mengongsikannya.';
+
+  @override
+  String get aboutCreditsTitle => 'Kredit';
+
+  @override
+  String get aboutCreditsBody => 'Ikon: dicipta dengan Claude Design.\nFon: Inter dan Quicksand (SIL Open Font License 1.1).\nCarta pertumbuhan: Piawaian Pertumbuhan Kanak-kanak WHO (who.int).\nJadual vaksin: berdasarkan jadual CDC Amerika Syarikat.\nDibina dengan Flutter.';
+
+  @override
+  String get aboutLicencesButton => 'Lesen sumber terbuka';
 }

@@ -166,15 +166,16 @@ since they're just `Text('🍼', ...)`.
 
 ## 11. Image assets
 
-- `assets/1.jpg` … `assets/9.jpg` — 256×256 photos used only in the diaper
-  form's poo-colour picker (`diaper.dart`). IDs 1–6 are "Pale" (abnormal
-  colours worth flagging), 7–9 are "Normal".
-- `assets/apk_icons/` — launcher icon source images
-  (`adaptive_icon_background.png`, `adaptive_icon_foreground.png`,
-  `adaptive_icon_monochrome.png`, `app_launcher_icon.png`, `baby.png`), used
-  only by `flutter_launcher_icons.yaml`, not at runtime.
-- `assets/apk_icons/svgs/drawing.svg` — the Inkscape source for the launcher
-  icon; not referenced by the app itself.
+- The poo-colour picker in `diaper.dart` draws nine colour swatches itself
+  (`_pooOptions`, no image files). IDs 1–6 are "Pale" (abnormal colours worth
+  flagging), 7–9 are "Normal". The colours were chosen so that no two differ
+  by less than CIEDE2000 ΔE 12.
+- `assets/launcher/` — original launcher-icon artwork: `app_icon.svg`,
+  `adaptive_icon_{background,foreground,monochrome}.svg` and the PNGs exported
+  from them. Used only by `flutter_launcher_icons.yaml`
+  (`dart run flutter_launcher_icons`), not at runtime.
+- `assets/icons/{line,duo,solid}/` — the 95-icon SVG set used inside the app
+  (created with Claude Design).
 
 ---
 

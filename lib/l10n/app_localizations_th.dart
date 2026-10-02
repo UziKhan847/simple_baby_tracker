@@ -2243,4 +2243,72 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'แบรนด์ของร้าน';
+
+  @override
+  String get pooShade1 => 'ขาวเหมือนชอล์ก';
+
+  @override
+  String get pooShade2 => 'เทาอ่อน';
+
+  @override
+  String get pooShade3 => 'เทาดินเหนียว';
+
+  @override
+  String get pooShade4 => 'สีครีม';
+
+  @override
+  String get pooShade5 => 'เบจเข้ม';
+
+  @override
+  String get pooShade6 => 'เหลืองอมเขียวซีด';
+
+  @override
+  String get pooShade7 => 'เหลืองมัสตาร์ด';
+
+  @override
+  String get pooShade8 => 'น้ำตาล';
+
+  @override
+  String get pooShade9 => 'เขียว';
+
+  @override
+  String get vaccineScheduleNote => 'อ้างอิงตารางของ CDC สหรัฐฯ ตารางในประเทศของคุณอาจต่างออกไป — โปรดทำตามคำแนะนำของแพทย์';
+
+  @override
+  String get settingsAbout => 'เกี่ยวกับ';
+
+  @override
+  String get aboutTitle => 'เกี่ยวกับและสัญญาอนุญาต';
+
+  @override
+  String aboutVersion(String version) {
+    return 'เวอร์ชัน $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'ซอฟต์แวร์เสรีเผยแพร่ภายใต้ GNU General Public License v3.0 หรือใหม่กว่า คุณสามารถใช้ ศึกษา แบ่งปัน และแก้ไขได้';
+
+  @override
+  String get aboutSourceCode => 'ซอร์สโค้ด';
+
+  @override
+  String get aboutDisclaimerTitle => 'ไม่ใช่คำแนะนำทางการแพทย์';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker เป็นสมุดบันทึกสำหรับบันทึกส่วนตัวของคุณ ไม่ใช่อุปกรณ์ทางการแพทย์ และไม่วินิจฉัย รักษา หรือติดตามอาการใด ๆ กราฟการเจริญเติบโต ช่วงอุณหภูมิ การเตือนให้ยา และบันทึกสีอุจจาระเป็นเพียงข้อมูลทั่วไป อาจไม่ครบถ้วนหรือคลาดเคลื่อน โปรดทำตามคำแนะนำของแพทย์หรือเภสัชกรเสมอ และติดต่อแพทย์หรือหน่วยฉุกเฉินหากกังวลเกี่ยวกับลูกน้อย';
+
+  @override
+  String get aboutPrivacyTitle => 'ข้อมูลของคุณอยู่ในโทรศัพท์เครื่องนี้';
+
+  @override
+  String get aboutPrivacyBody => 'แอปไม่มีการเชื่อมต่ออินเทอร์เน็ต ไม่มีบัญชี โฆษณา หรือการวิเคราะห์ รายการและรูปภาพถูกเก็บไว้บนอุปกรณ์นี้เท่านั้น ไม่มีอะไรออกจากเครื่อง เว้นแต่คุณส่งออกข้อมูลสำรองและแชร์เอง';
+
+  @override
+  String get aboutCreditsTitle => 'เครดิต';
+
+  @override
+  String get aboutCreditsBody => 'ไอคอน: สร้างด้วย Claude Design\nฟอนต์: Inter และ Quicksand (SIL Open Font License 1.1)\nกราฟการเจริญเติบโต: มาตรฐานการเจริญเติบโตของเด็กขององค์การอนามัยโลก (who.int)\nตารางวัคซีน: อ้างอิงตารางของ CDC สหรัฐฯ\nสร้างด้วย Flutter';
+
+  @override
+  String get aboutLicencesButton => 'สัญญาอนุญาตโอเพนซอร์ส';
 }

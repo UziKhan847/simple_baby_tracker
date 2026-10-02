@@ -2271,4 +2271,72 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'Marca própria';
+
+  @override
+  String get pooShade1 => 'Branco giz';
+
+  @override
+  String get pooShade2 => 'Cinza claro';
+
+  @override
+  String get pooShade3 => 'Cinza argila';
+
+  @override
+  String get pooShade4 => 'Creme';
+
+  @override
+  String get pooShade5 => 'Bege escuro';
+
+  @override
+  String get pooShade6 => 'Amarelo-esverdeado pálido';
+
+  @override
+  String get pooShade7 => 'Amarelo mostarda';
+
+  @override
+  String get pooShade8 => 'Marrom';
+
+  @override
+  String get pooShade9 => 'Verde';
+
+  @override
+  String get vaccineScheduleNote => 'Baseado no calendário do CDC dos EUA. O calendário do seu país pode ser diferente — siga a orientação do seu médico.';
+
+  @override
+  String get settingsAbout => 'Sobre';
+
+  @override
+  String get aboutTitle => 'Sobre e licenças';
+
+  @override
+  String aboutVersion(String version) {
+    return 'Versão $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'Software livre lançado sob a Licença Pública Geral GNU v3.0 ou posterior. Você pode usá-lo, estudá-lo, compartilhá-lo e modificá-lo.';
+
+  @override
+  String get aboutSourceCode => 'Código-fonte';
+
+  @override
+  String get aboutDisclaimerTitle => 'Não é orientação médica';
+
+  @override
+  String get aboutDisclaimerBody => 'O Simple Baby Tracker é um diário para os seus próprios registros. Não é um dispositivo médico e não diagnostica, trata nem monitora nenhuma condição. Curvas de crescimento, faixas de temperatura, lembretes de medicamentos e notas sobre a cor das fezes são apenas informações gerais e podem estar incompletas ou erradas. Siga sempre a orientação do seu médico ou farmacêutico e entre em contato com eles, ou com a emergência, se estiver preocupado com seu bebê.';
+
+  @override
+  String get aboutPrivacyTitle => 'Seus dados ficam neste celular';
+
+  @override
+  String get aboutPrivacyBody => 'O app não tem acesso à internet, conta, anúncios nem análises. Registros e fotos ficam salvos somente neste aparelho. Nada sai dele, a menos que você exporte um backup e compartilhe por conta própria.';
+
+  @override
+  String get aboutCreditsTitle => 'Créditos';
+
+  @override
+  String get aboutCreditsBody => 'Ícones: criados com o Claude Design.\nFontes: Inter e Quicksand (SIL Open Font License 1.1).\nCurvas de crescimento: Padrões de Crescimento Infantil da OMS (who.int).\nCalendário de vacinas: baseado no calendário do CDC dos EUA.\nFeito com Flutter.';
+
+  @override
+  String get aboutLicencesButton => 'Licenças de código aberto';
 }

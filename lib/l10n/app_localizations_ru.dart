@@ -2295,4 +2295,72 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'Собственная марка магазина';
+
+  @override
+  String get pooShade1 => 'Меловой белый';
+
+  @override
+  String get pooShade2 => 'Светло-серый';
+
+  @override
+  String get pooShade3 => 'Глинисто-серый';
+
+  @override
+  String get pooShade4 => 'Кремовый';
+
+  @override
+  String get pooShade5 => 'Тёмно-бежевый';
+
+  @override
+  String get pooShade6 => 'Бледный жёлто-зелёный';
+
+  @override
+  String get pooShade7 => 'Горчично-жёлтый';
+
+  @override
+  String get pooShade8 => 'Коричневый';
+
+  @override
+  String get pooShade9 => 'Зелёный';
+
+  @override
+  String get vaccineScheduleNote => 'По календарю CDC США. В вашей стране календарь может отличаться — следуйте советам врача.';
+
+  @override
+  String get settingsAbout => 'О приложении';
+
+  @override
+  String get aboutTitle => 'О приложении и лицензии';
+
+  @override
+  String aboutVersion(String version) {
+    return 'Версия $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'Свободное ПО, распространяемое по лицензии GNU General Public License версии 3.0 или новее. Вы можете использовать, изучать, распространять и изменять его.';
+
+  @override
+  String get aboutSourceCode => 'Исходный код';
+
+  @override
+  String get aboutDisclaimerTitle => 'Не является медицинской консультацией';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker — дневник для ваших личных записей. Это не медицинское изделие: оно не ставит диагнозы, не лечит и не наблюдает за состоянием здоровья. Графики роста, диапазоны температуры, напоминания о лекарствах и заметки о цвете стула — лишь общая информация, она может быть неполной или неверной. Всегда следуйте советам врача или фармацевта и обращайтесь к ним или в скорую помощь, если беспокоитесь за малыша.';
+
+  @override
+  String get aboutPrivacyTitle => 'Ваши данные остаются на этом телефоне';
+
+  @override
+  String get aboutPrivacyBody => 'У приложения нет доступа к интернету, аккаунта, рекламы и аналитики. Записи и фото хранятся только на этом устройстве. Ничего не покидает его, пока вы сами не экспортируете резервную копию и не поделитесь ею.';
+
+  @override
+  String get aboutCreditsTitle => 'Благодарности';
+
+  @override
+  String get aboutCreditsBody => 'Значки: созданы в Claude Design.\nШрифты: Inter и Quicksand (SIL Open Font License 1.1).\nГрафики роста: стандарты роста детей ВОЗ (who.int).\nКалендарь прививок: по календарю CDC США.\nСоздано на Flutter.';
+
+  @override
+  String get aboutLicencesButton => 'Лицензии открытого ПО';
 }

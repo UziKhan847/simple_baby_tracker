@@ -30,16 +30,23 @@ const _rashCreams = [
 
 const _diaperSizes = ['NB', '1', '2', '3', '4', '5', '6'];
 
+/// Stool-colour scale, drawn as swatches (no photos). Ids 1–9 are what gets
+/// saved, so entries logged earlier keep their meaning; 1–6 are the pale
+/// shades worth a doctor's attention, 7–9 are normal.
+///
+/// The colours were picked so that no two look alike side by side (every pair
+/// differs by CIEDE2000 ΔE ≥ 12), unlike photographs, where neighbouring
+/// shades blurred into each other.
 const _pooOptions = [
-  {'id': '1', 'label': '1', 'abnormal': true},
-  {'id': '2', 'label': '2', 'abnormal': true},
-  {'id': '3', 'label': '3', 'abnormal': true},
-  {'id': '4', 'label': '4', 'abnormal': true},
-  {'id': '5', 'label': '5', 'abnormal': true},
-  {'id': '6', 'label': '6', 'abnormal': true},
-  {'id': '7', 'label': '7', 'abnormal': false},
-  {'id': '8', 'label': '8', 'abnormal': false},
-  {'id': '9', 'label': '9', 'abnormal': false},
+  {'id': '1', 'label': '1', 'abnormal': true, 'color': 0xFFF6F3EC},
+  {'id': '2', 'label': '2', 'abnormal': true, 'color': 0xFFBDBEB8},
+  {'id': '3', 'label': '3', 'abnormal': true, 'color': 0xFF8E8A78},
+  {'id': '4', 'label': '4', 'abnormal': true, 'color': 0xFFFEE6AF},
+  {'id': '5', 'label': '5', 'abnormal': true, 'color': 0xFFC9A877},
+  {'id': '6', 'label': '6', 'abnormal': true, 'color': 0xFFC6C65C},
+  {'id': '7', 'label': '7', 'abnormal': false, 'color': 0xFFD39610},
+  {'id': '8', 'label': '8', 'abnormal': false, 'color': 0xFF7B4A22},
+  {'id': '9', 'label': '9', 'abnormal': false, 'color': 0xFF5F7A1E},
 ];
 
 // Consistency options — labels/hints are looked up from l10n in build().
@@ -471,6 +478,10 @@ class _DiaperFormState extends State<DiaperForm> {
             final o = items[index];
             final id = o['id'] as String;
             final selected = _pooColor == id;
+            final swatch = Color(o['color'] as int);
+            final onSwatch = swatch.computeLuminance() > 0.4
+                ? Colors.black87
+                : Colors.white;
             return GestureDetector(
               onTap: () => setState(() => _pooColor = id),
               child: AnimatedContainer(
@@ -496,22 +507,32 @@ class _DiaperFormState extends State<DiaperForm> {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      Image.asset('assets/$id.jpg', fit: BoxFit.cover),
-                      if (selected)
-                        Container(color: Colors.black.withAlpha(50)),
-                      if (selected)
-                        const Center(
-                          child: AppIcon(
-                            AppIcons.given,
-                            style: AppIconStyle.line,
-                            color: Colors.white,
-                            size: 28,
-                          ),
-                        ),
-                    ],
+                  child: Semantics(
+                    label: _optionLabel(id, l),
+                    selected: selected,
+                    child: ColoredBox(
+                      color: swatch,
+                      child: Center(
+                        // The number is always shown (the shade can't be
+                        // told from colour alone); a tick replaces it when
+                        // selected.
+                        child: selected
+                            ? AppIcon(
+                                AppIcons.given,
+                                style: AppIconStyle.line,
+                                color: onSwatch,
+                                size: 30,
+                              )
+                            : Text(
+                                o['label'] as String,
+                                style: TextStyle(
+                                  color: onSwatch,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -528,10 +549,7 @@ class _DiaperFormState extends State<DiaperForm> {
       orElse: () => {},
     );
     if (found.isEmpty) return id;
-    final shade = found['abnormal'] == true
-        ? l.pooColourPale
-        : l.consistencyNormal;
-    return '${found['label']} — $shade';
+    return '${found['label']} — ${pooShadeName(id, l)}';
   }
 
   void _save() {

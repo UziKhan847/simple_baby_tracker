@@ -2295,4 +2295,72 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'ماركة المتجر';
+
+  @override
+  String get pooShade1 => 'أبيض طباشيري';
+
+  @override
+  String get pooShade2 => 'رمادي فاتح';
+
+  @override
+  String get pooShade3 => 'رمادي طيني';
+
+  @override
+  String get pooShade4 => 'كريمي';
+
+  @override
+  String get pooShade5 => 'بيج داكن';
+
+  @override
+  String get pooShade6 => 'أصفر مخضر باهت';
+
+  @override
+  String get pooShade7 => 'أصفر خردلي';
+
+  @override
+  String get pooShade8 => 'بني';
+
+  @override
+  String get pooShade9 => 'أخضر';
+
+  @override
+  String get vaccineScheduleNote => 'مبني على جدول مراكز السيطرة على الأمراض الأمريكية (CDC). قد يختلف الجدول في بلدك — اتبع نصيحة طبيبك.';
+
+  @override
+  String get settingsAbout => 'حول التطبيق';
+
+  @override
+  String get aboutTitle => 'حول التطبيق والتراخيص';
+
+  @override
+  String aboutVersion(String version) {
+    return 'الإصدار $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'برنامج حر منشور برخصة جنو العمومية العامة الإصدار 3.0 أو أحدث. يمكنك استخدامه ودراسته ومشاركته وتعديله.';
+
+  @override
+  String get aboutSourceCode => 'الشفرة المصدرية';
+
+  @override
+  String get aboutDisclaimerTitle => 'ليست نصيحة طبية';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker دفتر يوميات لسجلاتك الخاصة. وهو ليس جهازًا طبيًا ولا يشخّص أو يعالج أو يراقب أي حالة. مخططات النمو ونطاقات الحرارة وتذكيرات الأدوية وملاحظات لون البراز معلومات عامة فقط وقد تكون ناقصة أو خاطئة. اتبع دائمًا نصيحة طبيبك أو الصيدلي، واتصل بهم أو بالطوارئ إذا كنت قلقًا على طفلك.';
+
+  @override
+  String get aboutPrivacyTitle => 'بياناتك تبقى على هذا الهاتف';
+
+  @override
+  String get aboutPrivacyBody => 'لا يملك التطبيق اتصالًا بالإنترنت ولا حسابًا ولا إعلانات ولا تحليلات. تُحفظ السجلات والصور على هذا الجهاز فقط. لا يغادره شيء ما لم تصدّر نسخة احتياطية وتشاركها بنفسك.';
+
+  @override
+  String get aboutCreditsTitle => 'شكر وتقدير';
+
+  @override
+  String get aboutCreditsBody => 'الأيقونات: أُنشئت باستخدام Claude Design.\nالخطوط: Inter وQuicksand (رخصة SIL Open Font License 1.1).\nمخططات النمو: معايير نمو الطفل لمنظمة الصحة العالمية (who.int).\nجدول التطعيمات: مبني على جدول CDC الأمريكي.\nبُني باستخدام Flutter.';
+
+  @override
+  String get aboutLicencesButton => 'تراخيص المصدر المفتوح';
 }

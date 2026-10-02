@@ -2,6 +2,7 @@ import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:simple_baby_tracker/l10n/app_localizations.dart';
+import 'package:simple_baby_tracker/pages/about.dart';
 import 'package:simple_baby_tracker/pages/bottles.dart';
 import 'package:simple_baby_tracker/providers/locale.dart';
 import 'package:simple_baby_tracker/providers/settings.dart';
@@ -393,6 +394,29 @@ class _SettingsPageState extends State<SettingsPage> {
                   size: 18,
                 ),
                 onTap: () => _importJson(context),
+              ),
+            ],
+          ),
+
+          // ── About ─────────────────────────────────────────────────────────
+          AppSectionHeader(l.settingsAbout),
+          AppSettingsGroup(
+            children: [
+              ListTile(
+                leading: const AppIcon(
+                  AppIcons.info,
+                  style: AppIconStyle.line,
+                  size: 20,
+                ),
+                title: Text(l.aboutTitle),
+                trailing: const AppIcon(
+                  AppIcons.chevronRight,
+                  style: AppIconStyle.line,
+                ),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const AboutPage()),
+                ),
               ),
             ],
           ),

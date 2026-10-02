@@ -2271,4 +2271,72 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'Marca blanca';
+
+  @override
+  String get pooShade1 => 'Blanco tiza';
+
+  @override
+  String get pooShade2 => 'Gris claro';
+
+  @override
+  String get pooShade3 => 'Gris arcilla';
+
+  @override
+  String get pooShade4 => 'Crema';
+
+  @override
+  String get pooShade5 => 'Beige oscuro';
+
+  @override
+  String get pooShade6 => 'Amarillo verdoso pálido';
+
+  @override
+  String get pooShade7 => 'Amarillo mostaza';
+
+  @override
+  String get pooShade8 => 'Marrón';
+
+  @override
+  String get pooShade9 => 'Verde';
+
+  @override
+  String get vaccineScheduleNote => 'Basado en el calendario de los CDC de EE. UU. El calendario de tu país puede ser distinto: sigue el consejo de tu médico.';
+
+  @override
+  String get settingsAbout => 'Acerca de';
+
+  @override
+  String get aboutTitle => 'Acerca de y licencias';
+
+  @override
+  String aboutVersion(String version) {
+    return 'Versión $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'Software libre publicado bajo la Licencia Pública General de GNU v3.0 o posterior. Puedes usarlo, estudiarlo, compartirlo y modificarlo.';
+
+  @override
+  String get aboutSourceCode => 'Código fuente';
+
+  @override
+  String get aboutDisclaimerTitle => 'No es asesoramiento médico';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker es un diario para tus propios registros. No es un producto sanitario y no diagnostica, trata ni controla ninguna afección. Las gráficas de crecimiento, los rangos de temperatura, los recordatorios de medicación y las notas sobre el color de las heces son solo información general y pueden ser incompletas o incorrectas. Sigue siempre el consejo de tu médico o farmacéutico y contáctalos, o llama a emergencias, si te preocupa tu bebé.';
+
+  @override
+  String get aboutPrivacyTitle => 'Tus datos se quedan en este teléfono';
+
+  @override
+  String get aboutPrivacyBody => 'La app no tiene acceso a internet, ni cuenta, ni anuncios, ni analíticas. Los registros y las fotos se guardan solo en este dispositivo. Nada sale de él a menos que exportes una copia de seguridad y la compartas tú mismo.';
+
+  @override
+  String get aboutCreditsTitle => 'Créditos';
+
+  @override
+  String get aboutCreditsBody => 'Iconos: creados con Claude Design.\nTipografías: Inter y Quicksand (SIL Open Font License 1.1).\nGráficas de crecimiento: Patrones de crecimiento infantil de la OMS (who.int).\nCalendario de vacunas: basado en el calendario de los CDC de EE. UU.\nCreado con Flutter.';
+
+  @override
+  String get aboutLicencesButton => 'Licencias de código abierto';
 }

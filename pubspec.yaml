@@ -1,9 +1,9 @@
 name: simple_baby_tracker
-description: "A new Flutter project."
+description: "A private, offline baby tracker: feeding, diapers, sleep, growth, medication, skin and photos. Free software (GPL-3.0)."
 
 publish_to: 'none' 
 
-version: 3.0.5+305
+version: 3.0.7+307
 
 environment:
   sdk: ^3.10.4
@@ -23,19 +23,20 @@ dependencies:
   timezone: ^0.11.0
   pdf: ^3.12.0
   printing: ^5.14.3
-  flutter_launcher_icons: ^0.14.4
   file_selector: ^1.0.3
   flutter_svg: ^2.3.0
   image_picker: ^1.2.3
   archive: ^4.3.0
   home_widget: ^0.10.0
   fluttertoast: ^10.0.0
+  package_info_plus: ^10.2.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
 
 flutter:
   generate: true
@@ -47,6 +48,9 @@ flutter:
     - assets/icons/line/
     - assets/icons/duo/
     - assets/icons/solid/
+    # Font licences, shown on the in-app licence page.
+    - assets/fonts/Inter-OFL.txt
+    - assets/fonts/Quicksand-OFL.txt
   fonts:
     - family: Quicksand
       fonts:

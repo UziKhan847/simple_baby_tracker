@@ -2267,4 +2267,72 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'Store brand';
+
+  @override
+  String get pooShade1 => 'Chalk white';
+
+  @override
+  String get pooShade2 => 'Light grey';
+
+  @override
+  String get pooShade3 => 'Grey clay';
+
+  @override
+  String get pooShade4 => 'Cream';
+
+  @override
+  String get pooShade5 => 'Tan';
+
+  @override
+  String get pooShade6 => 'Pale yellow-green';
+
+  @override
+  String get pooShade7 => 'Mustard yellow';
+
+  @override
+  String get pooShade8 => 'Brown';
+
+  @override
+  String get pooShade9 => 'Green';
+
+  @override
+  String get vaccineScheduleNote => 'Based on the US CDC schedule. Your country\'s schedule may differ — follow your doctor\'s advice.';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get aboutTitle => 'About & licences';
+
+  @override
+  String aboutVersion(String version) {
+    return 'Version $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'Free software, released under the GNU General Public License v3.0 or later. You may use, study, share and change it.';
+
+  @override
+  String get aboutSourceCode => 'Source code';
+
+  @override
+  String get aboutDisclaimerTitle => 'Not medical advice';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker is a diary for your own records. It is not a medical device and does not diagnose, treat or monitor any condition. Growth charts, temperature ranges, medication reminders and stool-colour notes are general information only and can be incomplete or wrong. Always follow the advice of your doctor or pharmacist, and contact them or emergency services if you are worried about your baby.';
+
+  @override
+  String get aboutPrivacyTitle => 'Your data stays on this phone';
+
+  @override
+  String get aboutPrivacyBody => 'The app has no internet access, no account, no ads and no analytics. Entries and photos are stored only on this device. Nothing leaves it unless you export a backup and share it yourself.';
+
+  @override
+  String get aboutCreditsTitle => 'Credits';
+
+  @override
+  String get aboutCreditsBody => 'Icons: created with Claude Design.\nFonts: Inter and Quicksand (SIL Open Font License 1.1).\nGrowth charts: WHO Child Growth Standards (who.int).\nVaccine schedule: based on the US CDC schedule.\nBuilt with Flutter.';
+
+  @override
+  String get aboutLicencesButton => 'Open-source licences';
 }

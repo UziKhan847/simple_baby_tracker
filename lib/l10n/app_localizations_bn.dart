@@ -2271,4 +2271,72 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'দোকানের নিজস্ব ব্র্যান্ড';
+
+  @override
+  String get pooShade1 => 'চকের মতো সাদা';
+
+  @override
+  String get pooShade2 => 'হালকা ধূসর';
+
+  @override
+  String get pooShade3 => 'কাদামাটির ধূসর';
+
+  @override
+  String get pooShade4 => 'ক্রিম';
+
+  @override
+  String get pooShade5 => 'গাঢ় বেইজ';
+
+  @override
+  String get pooShade6 => 'ফ্যাকাশে হলদে-সবুজ';
+
+  @override
+  String get pooShade7 => 'সরষে হলুদ';
+
+  @override
+  String get pooShade8 => 'বাদামি';
+
+  @override
+  String get pooShade9 => 'সবুজ';
+
+  @override
+  String get vaccineScheduleNote => 'মার্কিন CDC সময়সূচির ভিত্তিতে। আপনার দেশের সময়সূচি আলাদা হতে পারে — ডাক্তারের পরামর্শ মেনে চলুন।';
+
+  @override
+  String get settingsAbout => 'অ্যাপ সম্পর্কে';
+
+  @override
+  String get aboutTitle => 'অ্যাপ সম্পর্কে ও লাইসেন্স';
+
+  @override
+  String aboutVersion(String version) {
+    return 'সংস্করণ $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'GNU জেনারেল পাবলিক লাইসেন্স v3.0 বা পরবর্তী সংস্করণে প্রকাশিত মুক্ত সফটওয়্যার। আপনি এটি ব্যবহার, অধ্যয়ন, শেয়ার ও পরিবর্তন করতে পারেন।';
+
+  @override
+  String get aboutSourceCode => 'সোর্স কোড';
+
+  @override
+  String get aboutDisclaimerTitle => 'চিকিৎসা পরামর্শ নয়';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker আপনার নিজের রেকর্ডের জন্য একটি ডায়েরি। এটি কোনো চিকিৎসা যন্ত্র নয় এবং কোনো রোগ নির্ণয়, চিকিৎসা বা পর্যবেক্ষণ করে না। বৃদ্ধির চার্ট, তাপমাত্রার সীমা, ঔষধের রিমাইন্ডার এবং মলের রঙের নোট শুধু সাধারণ তথ্য এবং অসম্পূর্ণ বা ভুল হতে পারে। সবসময় আপনার ডাক্তার বা ফার্মাসিস্টের পরামর্শ মানুন, আর শিশুকে নিয়ে চিন্তা হলে তাঁদের বা জরুরি সেবার সাথে যোগাযোগ করুন।';
+
+  @override
+  String get aboutPrivacyTitle => 'আপনার ডেটা এই ফোনেই থাকে';
+
+  @override
+  String get aboutPrivacyBody => 'অ্যাপটির ইন্টারনেট অ্যাক্সেস, অ্যাকাউন্ট, বিজ্ঞাপন বা অ্যানালিটিক্স নেই। এন্ট্রি ও ছবি শুধু এই ডিভাইসে সংরক্ষিত হয়। আপনি নিজে ব্যাকআপ এক্সপোর্ট করে শেয়ার না করলে কিছুই বাইরে যায় না।';
+
+  @override
+  String get aboutCreditsTitle => 'কৃতজ্ঞতা';
+
+  @override
+  String get aboutCreditsBody => 'আইকন: Claude Design দিয়ে তৈরি।\nফন্ট: Inter ও Quicksand (SIL Open Font License 1.1)।\nবৃদ্ধির চার্ট: WHO শিশু বৃদ্ধির মান (who.int)।\nটিকার সময়সূচি: মার্কিন CDC সময়সূচির ভিত্তিতে।\nFlutter দিয়ে তৈরি।';
+
+  @override
+  String get aboutLicencesButton => 'ওপেন-সোর্স লাইসেন্স';
 }

@@ -33,6 +33,7 @@ Future<void> main() async {
   // platform's local timezone is picked up automatically as the engine's
   // default local location.
   tz.initializeTimeZones();
+  _registerFontLicenses();
   await NotificationService.instance.init();
   // Re-arm any reminders the user had enabled, based on the most recent
   // logged event — previously reminders only (re)scheduled when the
@@ -51,6 +52,21 @@ Future<void> main() async {
     unawaited(WidgetService.refreshActive());
   }
   runApp(const MyApp());
+}
+
+/// Adds the bundled fonts' SIL Open Font Licence texts to the in-app licence
+/// page (Flutter lists the Dart packages by itself, but not fonts).
+void _registerFontLicenses() {
+  LicenseRegistry.addLicense(() async* {
+    for (final (name, file) in const [
+      ('Inter', 'assets/fonts/Inter-OFL.txt'),
+      ('Quicksand', 'assets/fonts/Quicksand-OFL.txt'),
+    ]) {
+      yield LicenseEntryWithLineBreaks([
+        '$name font',
+      ], await rootBundle.loadString(file));
+    }
+  });
 }
 
 /// Entry point of the home-screen widget's "+" popup — QuickAddActivity.kt

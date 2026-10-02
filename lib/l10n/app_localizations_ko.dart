@@ -2271,4 +2271,72 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'PB 상품';
+
+  @override
+  String get pooShade1 => '분필 흰색';
+
+  @override
+  String get pooShade2 => '밝은 회색';
+
+  @override
+  String get pooShade3 => '점토빛 회색';
+
+  @override
+  String get pooShade4 => '크림색';
+
+  @override
+  String get pooShade5 => '진한 베이지';
+
+  @override
+  String get pooShade6 => '옅은 연두빛 노랑';
+
+  @override
+  String get pooShade7 => '겨자색';
+
+  @override
+  String get pooShade8 => '갈색';
+
+  @override
+  String get pooShade9 => '초록색';
+
+  @override
+  String get vaccineScheduleNote => '미국 CDC 일정을 기준으로 합니다. 사는 나라의 일정은 다를 수 있으니 의사의 조언을 따르세요.';
+
+  @override
+  String get settingsAbout => '앱 정보';
+
+  @override
+  String get aboutTitle => '앱 정보 및 라이선스';
+
+  @override
+  String aboutVersion(String version) {
+    return '버전 $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'GNU 일반 공중 사용 허가서(GPL) v3.0 이상으로 공개된 자유 소프트웨어입니다. 사용, 연구, 공유, 수정할 수 있습니다.';
+
+  @override
+  String get aboutSourceCode => '소스 코드';
+
+  @override
+  String get aboutDisclaimerTitle => '의료 조언이 아닙니다';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker는 나만의 기록을 위한 일기장입니다. 의료기기가 아니며 어떤 질환도 진단, 치료 또는 모니터링하지 않습니다. 성장 차트, 체온 범위, 투약 알림, 대변 색 메모는 일반 정보일 뿐이며 불완전하거나 틀릴 수 있습니다. 항상 의사나 약사의 조언을 따르고, 아기가 걱정되면 의사나 응급 서비스에 연락하세요.';
+
+  @override
+  String get aboutPrivacyTitle => '데이터는 이 휴대폰에만 있습니다';
+
+  @override
+  String get aboutPrivacyBody => '이 앱에는 인터넷 접근, 계정, 광고, 분석이 없습니다. 기록과 사진은 이 기기에만 저장됩니다. 직접 백업을 내보내 공유하지 않는 한 어떤 것도 밖으로 나가지 않습니다.';
+
+  @override
+  String get aboutCreditsTitle => '크레딧';
+
+  @override
+  String get aboutCreditsBody => '아이콘: Claude Design으로 제작.\n글꼴: Inter 및 Quicksand (SIL Open Font License 1.1).\n성장 차트: WHO 아동 성장 표준 (who.int).\n예방접종 일정: 미국 CDC 일정 기준.\nFlutter로 제작.';
+
+  @override
+  String get aboutLicencesButton => '오픈 소스 라이선스';
 }

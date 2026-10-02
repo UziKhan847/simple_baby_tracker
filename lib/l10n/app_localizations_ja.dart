@@ -2271,4 +2271,72 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'プライベートブランド';
+
+  @override
+  String get pooShade1 => 'チョーク白';
+
+  @override
+  String get pooShade2 => '明るい灰色';
+
+  @override
+  String get pooShade3 => '粘土色がかった灰色';
+
+  @override
+  String get pooShade4 => 'クリーム色';
+
+  @override
+  String get pooShade5 => '濃いベージュ';
+
+  @override
+  String get pooShade6 => '淡い黄緑';
+
+  @override
+  String get pooShade7 => 'からし色';
+
+  @override
+  String get pooShade8 => '茶色';
+
+  @override
+  String get pooShade9 => '緑';
+
+  @override
+  String get vaccineScheduleNote => '米国CDCのスケジュールに基づいています。お住まいの国では異なる場合があります。医師の指示に従ってください。';
+
+  @override
+  String get settingsAbout => 'このアプリについて';
+
+  @override
+  String get aboutTitle => 'アプリ情報とライセンス';
+
+  @override
+  String aboutVersion(String version) {
+    return 'バージョン $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'GNU General Public License v3.0 以降で公開されているフリーソフトウェアです。使用、調査、共有、改変ができます。';
+
+  @override
+  String get aboutSourceCode => 'ソースコード';
+
+  @override
+  String get aboutDisclaimerTitle => '医療上の助言ではありません';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker は、ご自身の記録のための日記です。医療機器ではなく、いかなる症状の診断・治療・監視も行いません。成長曲線、体温の範囲、服薬リマインダー、便の色に関するメモは一般的な情報にすぎず、不完全または誤りを含むことがあります。必ず医師や薬剤師の指示に従い、赤ちゃんのことで心配なときは医師や救急に連絡してください。';
+
+  @override
+  String get aboutPrivacyTitle => 'データはこのスマホの中だけにあります';
+
+  @override
+  String get aboutPrivacyBody => 'このアプリにはインターネット接続、アカウント、広告、解析がありません。記録と写真はこの端末にのみ保存されます。ご自身でバックアップを書き出して共有しない限り、何も外部に出ません。';
+
+  @override
+  String get aboutCreditsTitle => 'クレジット';
+
+  @override
+  String get aboutCreditsBody => 'アイコン: Claude Design で作成。\nフォント: Inter と Quicksand(SIL Open Font License 1.1)。\n成長曲線: WHO 子どもの成長基準(who.int)。\n予防接種スケジュール: 米国CDCのスケジュールに基づく。\nFlutter で開発。';
+
+  @override
+  String get aboutLicencesButton => 'オープンソースライセンス';
 }

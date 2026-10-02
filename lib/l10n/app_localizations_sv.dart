@@ -2271,4 +2271,72 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'Butikens eget märke';
+
+  @override
+  String get pooShade1 => 'Kritvit';
+
+  @override
+  String get pooShade2 => 'Ljusgrå';
+
+  @override
+  String get pooShade3 => 'Lergrå';
+
+  @override
+  String get pooShade4 => 'Gräddvit';
+
+  @override
+  String get pooShade5 => 'Mörkbeige';
+
+  @override
+  String get pooShade6 => 'Blekt gulgrön';
+
+  @override
+  String get pooShade7 => 'Senapsgul';
+
+  @override
+  String get pooShade8 => 'Brun';
+
+  @override
+  String get pooShade9 => 'Grön';
+
+  @override
+  String get vaccineScheduleNote => 'Baserat på det amerikanska CDC-schemat. Schemat i ditt land kan skilja sig – följ din läkares råd.';
+
+  @override
+  String get settingsAbout => 'Om';
+
+  @override
+  String get aboutTitle => 'Om och licenser';
+
+  @override
+  String aboutVersion(String version) {
+    return 'Version $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'Fri programvara utgiven under GNU General Public License v3.0 eller senare. Du får använda, studera, dela och ändra den.';
+
+  @override
+  String get aboutSourceCode => 'Källkod';
+
+  @override
+  String get aboutDisclaimerTitle => 'Inte medicinsk rådgivning';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker är en dagbok för dina egna anteckningar. Den är inte en medicinteknisk produkt och ställer inga diagnoser, behandlar eller övervakar inga tillstånd. Tillväxtkurvor, temperaturintervall, medicinpåminnelser och anteckningar om avföringens färg är endast allmän information och kan vara ofullständiga eller felaktiga. Följ alltid råd från din läkare eller apotekare och kontakta dem, eller larmcentralen, om du är orolig för ditt barn.';
+
+  @override
+  String get aboutPrivacyTitle => 'Dina data stannar på den här telefonen';
+
+  @override
+  String get aboutPrivacyBody => 'Appen har ingen internetåtkomst, inget konto, inga annonser och ingen analys. Anteckningar och foton sparas bara på den här enheten. Inget lämnar den om du inte själv exporterar en säkerhetskopia och delar den.';
+
+  @override
+  String get aboutCreditsTitle => 'Tack till';
+
+  @override
+  String get aboutCreditsBody => 'Ikoner: skapade med Claude Design.\nTypsnitt: Inter och Quicksand (SIL Open Font License 1.1).\nTillväxtkurvor: WHO:s tillväxtstandarder för barn (who.int).\nVaccinationsschema: baserat på det amerikanska CDC-schemat.\nByggd med Flutter.';
+
+  @override
+  String get aboutLicencesButton => 'Öppen källkod-licenser';
 }

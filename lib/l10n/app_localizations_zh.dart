@@ -2271,4 +2271,72 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => '超市自有品牌';
+
+  @override
+  String get pooShade1 => '粉笔白';
+
+  @override
+  String get pooShade2 => '浅灰';
+
+  @override
+  String get pooShade3 => '陶土灰';
+
+  @override
+  String get pooShade4 => '奶油色';
+
+  @override
+  String get pooShade5 => '深米色';
+
+  @override
+  String get pooShade6 => '淡黄绿';
+
+  @override
+  String get pooShade7 => '芥末黄';
+
+  @override
+  String get pooShade8 => '棕色';
+
+  @override
+  String get pooShade9 => '绿色';
+
+  @override
+  String get vaccineScheduleNote => '基于美国 CDC 接种程序。你所在国家的程序可能不同,请遵医嘱。';
+
+  @override
+  String get settingsAbout => '关于';
+
+  @override
+  String get aboutTitle => '关于与许可';
+
+  @override
+  String aboutVersion(String version) {
+    return '版本 $version';
+  }
+
+  @override
+  String get aboutLicenseLine => '自由软件,以 GNU 通用公共许可证 v3.0 或更高版本发布。你可以使用、研究、分享和修改它。';
+
+  @override
+  String get aboutSourceCode => '源代码';
+
+  @override
+  String get aboutDisclaimerTitle => '不构成医疗建议';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker 是用于个人记录的日记。它不是医疗器械,不会诊断、治疗或监测任何病症。生长曲线、体温范围、用药提醒和大便颜色说明仅为一般信息,可能不完整或有误。请始终遵循医生或药师的建议;如果你担心宝宝的情况,请联系他们或急救服务。';
+
+  @override
+  String get aboutPrivacyTitle => '你的数据只保存在这部手机上';
+
+  @override
+  String get aboutPrivacyBody => '本应用没有联网权限、账号、广告和统计分析。记录和照片只保存在此设备上。除非你自己导出备份并分享,否则不会有任何内容离开设备。';
+
+  @override
+  String get aboutCreditsTitle => '致谢';
+
+  @override
+  String get aboutCreditsBody => '图标:使用 Claude Design 制作。\n字体:Inter 和 Quicksand(SIL Open Font License 1.1)。\n生长曲线:WHO 儿童生长标准(who.int)。\n疫苗接种计划:基于美国 CDC 接种程序。\n使用 Flutter 构建。';
+
+  @override
+  String get aboutLicencesButton => '开源许可';
 }

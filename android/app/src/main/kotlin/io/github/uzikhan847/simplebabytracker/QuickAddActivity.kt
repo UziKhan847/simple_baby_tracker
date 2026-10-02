@@ -1,4 +1,4 @@
-package com.example.simple_baby_tracker
+package io.github.uzikhan847.simplebabytracker
 
 import android.content.Intent
 import io.flutter.embedding.android.FlutterActivity

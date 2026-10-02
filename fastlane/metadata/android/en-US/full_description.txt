@@ -1,0 +1,26 @@
+A private baby diary that lives entirely on your phone. No account, no ads, no analytics — and no internet permission at all.
+
+<b>What you can log</b>
+• Feeding — bottle (prepared vs drunk, optional bottle tracking) or timed breastfeeding with left/right sides
+• Diapers — pee/poo, consistency, a stool-colour scale, rash and cream tracking
+• Sleep, pumping, temperature, tummy time, baths, notes and doctor visits
+• Growth — weight, height and head circumference, with WHO growth charts
+• Medication courses with dose limits and "next dose due" reminders
+• Solid foods with allergen tracking and reactions
+• Skin conditions with daily updates and photos — export a PDF for the doctor
+• Milestones and a daily photo timeline
+
+<b>Fast to use</b>
+• Live feeding and sleep timers
+• Home-screen widget: log a diaper, start/stop timers, or add any entry from a pop-up menu without opening the app
+• Reminders at any interval, down to the minute
+• Graphs, a PDF report and a vaccination schedule
+
+<b>Your data, your device</b>
+• Backup and restore as a single .zip file, photos included
+• Light, dark and true-black themes, metric or imperial units
+• 20 languages, including right-to-left
+
+<b>Not medical advice.</b> This app is a diary for your own records, not a medical device. Growth charts, temperature ranges, dose reminders and stool-colour notes are general information only. Always follow your doctor's advice.
+
+Free software, licensed under the GNU GPL v3 or later.

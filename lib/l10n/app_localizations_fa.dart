@@ -2271,4 +2271,72 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'برند فروشگاه';
+
+  @override
+  String get pooShade1 => 'سفید گچی';
+
+  @override
+  String get pooShade2 => 'خاکستری روشن';
+
+  @override
+  String get pooShade3 => 'خاکستری گلی';
+
+  @override
+  String get pooShade4 => 'کرم';
+
+  @override
+  String get pooShade5 => 'بژ تیره';
+
+  @override
+  String get pooShade6 => 'زرد مایل به سبز کم‌رنگ';
+
+  @override
+  String get pooShade7 => 'زرد خردلی';
+
+  @override
+  String get pooShade8 => 'قهوه‌ای';
+
+  @override
+  String get pooShade9 => 'سبز';
+
+  @override
+  String get vaccineScheduleNote => 'بر اساس برنامهٔ CDC آمریکا. برنامهٔ کشور شما ممکن است متفاوت باشد — توصیهٔ پزشک را دنبال کنید.';
+
+  @override
+  String get settingsAbout => 'دربارهٔ برنامه';
+
+  @override
+  String get aboutTitle => 'دربارهٔ برنامه و مجوزها';
+
+  @override
+  String aboutVersion(String version) {
+    return 'نسخهٔ $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'نرم‌افزار آزاد منتشرشده با مجوز عمومی همگانی گنو نسخهٔ ۳٫۰ یا بالاتر. می‌توانید آن را استفاده، بررسی، به اشتراک‌گذاری و تغییر دهید.';
+
+  @override
+  String get aboutSourceCode => 'کد منبع';
+
+  @override
+  String get aboutDisclaimerTitle => 'توصیهٔ پزشکی نیست';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker دفترچه‌ای برای یادداشت‌های شخصی شماست. این برنامه یک وسیلهٔ پزشکی نیست و هیچ بیماری را تشخیص، درمان یا پایش نمی‌کند. نمودارهای رشد، بازهٔ دما، یادآوری‌های دارو و نکات رنگ مدفوع فقط اطلاعات عمومی هستند و ممکن است ناقص یا نادرست باشند. همیشه از توصیهٔ پزشک یا داروساز پیروی کنید و اگر نگران نوزادتان هستید با آن‌ها یا اورژانس تماس بگیرید.';
+
+  @override
+  String get aboutPrivacyTitle => 'داده‌های شما روی همین گوشی می‌ماند';
+
+  @override
+  String get aboutPrivacyBody => 'برنامه به اینترنت دسترسی ندارد و حساب کاربری، تبلیغات یا تحلیل آماری ندارد. یادداشت‌ها و عکس‌ها فقط روی همین دستگاه ذخیره می‌شوند. چیزی از دستگاه خارج نمی‌شود مگر اینکه خودتان پشتیبان بگیرید و آن را به اشتراک بگذارید.';
+
+  @override
+  String get aboutCreditsTitle => 'قدردانی';
+
+  @override
+  String get aboutCreditsBody => 'نمادها: ساخته‌شده با Claude Design.\nقلم‌ها: Inter و Quicksand (مجوز SIL Open Font License 1.1).\nنمودارهای رشد: استانداردهای رشد کودک سازمان جهانی بهداشت (who.int).\nبرنامهٔ واکسن: بر اساس برنامهٔ CDC آمریکا.\nساخته‌شده با Flutter.';
+
+  @override
+  String get aboutLicencesButton => 'مجوزهای متن‌باز';
 }

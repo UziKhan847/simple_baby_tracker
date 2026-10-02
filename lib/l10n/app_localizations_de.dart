@@ -2271,4 +2271,72 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'Eigenmarke';
+
+  @override
+  String get pooShade1 => 'Kreideweiß';
+
+  @override
+  String get pooShade2 => 'Hellgrau';
+
+  @override
+  String get pooShade3 => 'Lehmgrau';
+
+  @override
+  String get pooShade4 => 'Cremefarben';
+
+  @override
+  String get pooShade5 => 'Hellbraun';
+
+  @override
+  String get pooShade6 => 'Blass gelbgrün';
+
+  @override
+  String get pooShade7 => 'Senfgelb';
+
+  @override
+  String get pooShade8 => 'Braun';
+
+  @override
+  String get pooShade9 => 'Grün';
+
+  @override
+  String get vaccineScheduleNote => 'Basiert auf dem US-amerikanischen CDC-Impfplan. Der Impfplan in deinem Land kann abweichen – folge dem Rat deines Arztes.';
+
+  @override
+  String get settingsAbout => 'Info';
+
+  @override
+  String get aboutTitle => 'Info & Lizenzen';
+
+  @override
+  String aboutVersion(String version) {
+    return 'Version $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'Freie Software unter der GNU General Public License v3.0 oder später. Du darfst sie nutzen, untersuchen, weitergeben und ändern.';
+
+  @override
+  String get aboutSourceCode => 'Quellcode';
+
+  @override
+  String get aboutDisclaimerTitle => 'Keine medizinische Beratung';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker ist ein Tagebuch für deine eigenen Aufzeichnungen. Die App ist kein Medizinprodukt und stellt weder Diagnosen noch überwacht oder behandelt sie Erkrankungen. Wachstumskurven, Temperaturbereiche, Medikamentenerinnerungen und Hinweise zur Stuhlfarbe sind nur allgemeine Informationen und können unvollständig oder falsch sein. Befolge immer den Rat deines Arztes oder Apothekers und wende dich an sie oder den Notruf, wenn du dir Sorgen um dein Baby machst.';
+
+  @override
+  String get aboutPrivacyTitle => 'Deine Daten bleiben auf diesem Handy';
+
+  @override
+  String get aboutPrivacyBody => 'Die App hat keinen Internetzugang, kein Konto, keine Werbung und keine Analyse. Einträge und Fotos werden nur auf diesem Gerät gespeichert. Nichts verlässt es, außer du exportierst eine Sicherung und teilst sie selbst.';
+
+  @override
+  String get aboutCreditsTitle => 'Danksagung';
+
+  @override
+  String get aboutCreditsBody => 'Symbole: erstellt mit Claude Design.\nSchriften: Inter und Quicksand (SIL Open Font License 1.1).\nWachstumskurven: WHO-Kinderwachstumsstandards (who.int).\nImpfplan: basiert auf dem US-amerikanischen CDC-Impfplan.\nEntwickelt mit Flutter.';
+
+  @override
+  String get aboutLicencesButton => 'Open-Source-Lizenzen';
 }

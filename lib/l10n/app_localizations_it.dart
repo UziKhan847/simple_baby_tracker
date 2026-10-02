@@ -2271,4 +2271,72 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get formulaStoreBrand => 'Marca del supermercato';
+
+  @override
+  String get pooShade1 => 'Bianco gesso';
+
+  @override
+  String get pooShade2 => 'Grigio chiaro';
+
+  @override
+  String get pooShade3 => 'Grigio argilla';
+
+  @override
+  String get pooShade4 => 'Crema';
+
+  @override
+  String get pooShade5 => 'Beige scuro';
+
+  @override
+  String get pooShade6 => 'Giallo-verde pallido';
+
+  @override
+  String get pooShade7 => 'Giallo senape';
+
+  @override
+  String get pooShade8 => 'Marrone';
+
+  @override
+  String get pooShade9 => 'Verde';
+
+  @override
+  String get vaccineScheduleNote => 'Basato sul calendario dei CDC degli Stati Uniti. Il calendario del tuo paese può essere diverso: segui il consiglio del medico.';
+
+  @override
+  String get settingsAbout => 'Informazioni';
+
+  @override
+  String get aboutTitle => 'Informazioni e licenze';
+
+  @override
+  String aboutVersion(String version) {
+    return 'Versione $version';
+  }
+
+  @override
+  String get aboutLicenseLine => 'Software libero rilasciato con la GNU General Public License v3.0 o successiva. Puoi usarlo, studiarlo, condividerlo e modificarlo.';
+
+  @override
+  String get aboutSourceCode => 'Codice sorgente';
+
+  @override
+  String get aboutDisclaimerTitle => 'Non è un parere medico';
+
+  @override
+  String get aboutDisclaimerBody => 'Simple Baby Tracker è un diario per i tuoi appunti personali. Non è un dispositivo medico e non diagnostica, cura né monitora alcuna condizione. Curve di crescita, intervalli di temperatura, promemoria dei farmaci e note sul colore delle feci sono solo informazioni generali e possono essere incomplete o errate. Segui sempre il consiglio del medico o del farmacista e contattali, o chiama i soccorsi, se sei preoccupato per il tuo bambino.';
+
+  @override
+  String get aboutPrivacyTitle => 'I tuoi dati restano su questo telefono';
+
+  @override
+  String get aboutPrivacyBody => 'L’app non ha accesso a internet, né account, pubblicità o statistiche. Registrazioni e foto sono salvate solo su questo dispositivo. Nulla esce da qui, a meno che tu non esporti un backup e lo condivida tu stesso.';
+
+  @override
+  String get aboutCreditsTitle => 'Crediti';
+
+  @override
+  String get aboutCreditsBody => 'Icone: create con Claude Design.\nFont: Inter e Quicksand (SIL Open Font License 1.1).\nCurve di crescita: standard di crescita OMS (who.int).\nCalendario vaccinale: basato sul calendario dei CDC degli Stati Uniti.\nRealizzata con Flutter.';
+
+  @override
+  String get aboutLicencesButton => 'Licenze open source';
 }

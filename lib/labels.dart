@@ -71,3 +71,17 @@ String brandLabel(String brand, AppLocalizations l) => switch (brand) {
   'Other' => l.visitReasonOther,
   _ => brand,
 };
+
+/// Name of a stool-colour shade (1–9) in the current language.
+String pooShadeName(String id, AppLocalizations l) => switch (id) {
+  '1' => l.pooShade1,
+  '2' => l.pooShade2,
+  '3' => l.pooShade3,
+  '4' => l.pooShade4,
+  '5' => l.pooShade5,
+  '6' => l.pooShade6,
+  '7' => l.pooShade7,
+  '8' => l.pooShade8,
+  '9' => l.pooShade9,
+  _ => id,
+};
